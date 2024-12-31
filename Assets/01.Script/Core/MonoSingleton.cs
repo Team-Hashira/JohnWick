@@ -12,7 +12,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 _Instance = FindFirstObjectByType<T>();
                 if (_Instance == null)
                 {
-                    Debug.LogWarning($"{typeof(T).ToString()} is not found.");
+                    Debug.LogError($"[ {typeof(T).ToString()} ] object is not found.");
                 }
             }
             return _Instance;
