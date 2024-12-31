@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BG_Amusement_Night2_0: 8643729824803275741
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
