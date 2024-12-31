@@ -21,6 +21,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
 
     public Vector2 MousePosition { get; private set; }
     public float XMovement { get; private set; }
+    public bool IsSprint { get; private set; }
 
     #endregion
 
@@ -69,9 +70,15 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     public void OnSprint(InputAction.CallbackContext context)
     {
         if (context.performed)
+        {
+            IsSprint = true;
             OnSprintEvent?.Invoke(true);
+        }
         else if (context.canceled)
+        {
+            IsSprint = false;
             OnSprintEvent?.Invoke(false);
+        }
     }
 
     public void OnMousePosition(InputAction.CallbackContext context)

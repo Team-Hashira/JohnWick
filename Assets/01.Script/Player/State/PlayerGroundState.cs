@@ -1,4 +1,5 @@
 using Doryu.StatSystem;
+using System;
 using UnityEngine;
 
 public class PlayerGroundState : EntityState<Player>
@@ -17,6 +18,15 @@ public class PlayerGroundState : EntityState<Player>
         base.Enter();
 
         _owner.InputReader.OnJumpEvent += HandleJumpEvent;
+        _owner.InputReader.OnCrouchEvent += HandleCrouchEvent;
+    }
+
+    private void HandleCrouchEvent(bool isOn)
+    {
+        if (isOn)
+            _stateMachine.ChangeState(EPlayerState.Crouch);
+        else
+            _stateMachine.ChangeState(EPlayerState.Idle);
     }
 
     private void HandleJumpEvent()
@@ -37,5 +47,6 @@ public class PlayerGroundState : EntityState<Player>
         base.Exit();
 
         _owner.InputReader.OnJumpEvent -= HandleJumpEvent;
+        _owner.InputReader.OnCrouchEvent -= HandleCrouchEvent;
     }
 }

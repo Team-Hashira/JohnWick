@@ -2,13 +2,13 @@ using Doryu.StatSystem;
 using System;
 using UnityEngine;
 
-public class PlayerWalkState : PlayerGroundState
+public class PlayerSprintState : PlayerGroundState
 {
-    private StatElement _speedStat;
+    private StatElement _sprintSpeedStat;
 
-    public PlayerWalkState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+    public PlayerSprintState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
     {
-        _speedStat = owner.GetEntityComponent<StatCompo>().GetElement("Speed");
+        _sprintSpeedStat = owner.GetEntityComponent<StatCompo>().GetElement("SprintSpeed");
     }
 
     public override void Enter()
@@ -22,16 +22,16 @@ public class PlayerWalkState : PlayerGroundState
 
         if (_owner.InputReader.XMovement != 0)
         {
-            if (_owner.InputReader.IsSprint == false)
+            if (_owner.InputReader.IsSprint)
             {
                 float movement = _owner.InputReader.XMovement;
-                if (_speedStat != null)
-                    movement *= _speedStat.Value;
+                if (_sprintSpeedStat != null)
+                    movement *= _sprintSpeedStat.Value;
                 _moverCompo.SetMovement(movement);
             }
             else
             {
-                _stateMachine.ChangeState(EPlayerState.Sprint);
+                _stateMachine.ChangeState(EPlayerState.Walk);
             }
         }
         else
