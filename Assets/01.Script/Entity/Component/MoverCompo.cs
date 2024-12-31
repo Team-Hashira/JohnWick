@@ -7,7 +7,6 @@ public class MoverCompo : MonoBehaviour, IEntityComponent
     [field: SerializeField] public Rigidbody2D Rigidbody2D { get; private set; }
 
     [Header("Ground check setting")]
-    [SerializeField] private Vector2 _groundCheckerOffset;
     [SerializeField] private Vector2 _groundCheckerSize;
     [SerializeField] private LayerMask _whatIsGround;
 
@@ -30,7 +29,7 @@ public class MoverCompo : MonoBehaviour, IEntityComponent
 
     private void GroundCheck()
     {
-        Collider2D[] raycastHit2Ds = Physics2D.OverlapBoxAll((Vector2)transform.position + _groundCheckerOffset, _groundCheckerSize, 0, _whatIsGround);
+        Collider2D[] raycastHit2Ds = Physics2D.OverlapBoxAll((Vector2)transform.position, _groundCheckerSize, 0, _whatIsGround);
 
         IsGround = raycastHit2Ds.Length > 0;
     }
@@ -65,7 +64,7 @@ public class MoverCompo : MonoBehaviour, IEntityComponent
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position + (Vector3)_groundCheckerOffset, _groundCheckerSize);
+        Gizmos.DrawWireCube(transform.position, _groundCheckerSize);
     }
 #endif
 }

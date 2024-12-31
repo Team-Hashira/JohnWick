@@ -221,6 +221,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
   m_PrefabInstance: {fileID: 5457064906219075926}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &309289911 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2163975733565134096, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+  m_PrefabInstance: {fileID: 5457064906219075926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &414766235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,10 +1072,10 @@ Transform:
   m_Children:
   - {fileID: 619394802}
   - {fileID: 191554986}
-  - {fileID: 256296941}
   - {fileID: 1117190093}
   - {fileID: 414766236}
   - {fileID: 968152926}
+  - {fileID: 256296941}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5457064906219075926
@@ -1125,6 +1130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8831168981273924249, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: <VisualTrm>k__BackingField
+      value: 
+      objectReference: {fileID: 309289911}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

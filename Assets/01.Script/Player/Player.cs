@@ -13,6 +13,7 @@ public enum EPlayerState
 public class Player : Entity
 {
     [field: SerializeField] public InputReaderSO InputReader { get; private set; }
+    [field: SerializeField] public Transform VisualTrm { get; private set; }
 
     [SerializeField] private Gun _gun;
 
