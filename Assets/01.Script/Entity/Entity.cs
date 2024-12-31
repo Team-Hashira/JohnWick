@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    //protected StateMachine _stateMachine;
     private Dictionary<Type, IEntityComponent> _compoDict;
 
     protected virtual void Awake()
@@ -15,8 +14,6 @@ public class Entity : MonoBehaviour
         ComponentAdd();
         ComponentInit();
         ComponentAfterInit();
-
-        //_stateMachine = new StateMachine(this);
     }
 
     private void ComponentAdd()
@@ -39,7 +36,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
-        //_stateMachine.MachineUpdate();
+
     }
 
     protected virtual void OnDestroy()
@@ -48,7 +45,7 @@ public class Entity : MonoBehaviour
             .ForEach(component => component.Dispose());
     }
 
-    public T GetCompo<T>(bool isDerived = false) where T : class, IEntityComponent
+    public T GetEntityComponent<T>(bool isDerived = false) where T : class, IEntityComponent
     {
         if (_compoDict.TryGetValue(typeof(T), out IEntityComponent compo))
         {

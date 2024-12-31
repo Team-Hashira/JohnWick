@@ -12,7 +12,7 @@ namespace Doryu.StatSystem
 
     //StatElementSO를 가져와서 해당 스탯의 [변화]를 표현해줌
     [Serializable]
-    public class StatElement : ISerializationCallbackReceiver
+    public class StatElement
     {
         public StatElementSO elementSO;
         [SerializeField] private float _baseValue;
@@ -30,16 +30,8 @@ namespace Doryu.StatSystem
         public float Value { get; private set; }
         public int IntValue { get; private set; }
 
-        public StatElement(float baseValue)
-        {
-            SetDictionary();
-            SetValue();
-        }
 
-        public void OnBeforeSerialize() { }
-
-        //Serialize값이 변경된 이후 호출
-        public void OnAfterDeserialize()
+        public void Initialize()
         {
             SetDictionary();
             SetValue();
@@ -95,7 +87,7 @@ namespace Doryu.StatSystem
             IntValue = intValue;
         }
 
-        public void AddModify(string key, int modify, EModifyMode eModifyMode)
+        public void AddModify(string key, float modify, EModifyMode eModifyMode)
         {
             if (!_modifierOverlaps[eModifyMode].TryAdd(key, 1))
                 _modifierOverlaps[eModifyMode][key]++;

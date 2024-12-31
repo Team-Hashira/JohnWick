@@ -21,6 +21,7 @@ namespace Doryu.StatSystem
             {
                 if (statElement.elementSO == null) continue;
 
+                statElement.Initialize();
                 _statDictionary.Add(statElement.elementSO.statName, statElement);
             }
         }

@@ -20,6 +20,7 @@ namespace Doryu.StatSystem
             {
                 if (statElement.elementSO == null) continue;
 
+                statElement.Initialize();
                 _overrideStatDictionary.Add(statElement.elementSO.statName, statElement);
             }
         }

@@ -24,7 +24,7 @@ public class HealthCompo : MonoBehaviour, IEntityComponent, IAfterInitComponent
 
     public void AfterInit()
     {
-        _maxHealth = _owner.GetCompo<StatCompo>().GetElement(_healthStatSO);
+        _maxHealth = _owner.GetEntityComponent<StatCompo>().GetElement(_healthStatSO);
         _isInvincible = _maxHealth == null;
         Health = MaxHealth;
     }
