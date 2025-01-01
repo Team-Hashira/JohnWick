@@ -16,19 +16,19 @@ public class Entity : MonoBehaviour
         ComponentAfterInit();
     }
 
-    private void ComponentAdd()
+    protected virtual void ComponentAdd()
     {
         GetComponentsInChildren<IEntityComponent>().ToList()
             .ForEach(component => _compoDict.Add(component.GetType(), component));
     }
 
-    private void ComponentInit()
+    protected virtual void ComponentInit()
     {
         _compoDict.Values.ToList()
             .ForEach(component => component.Initialize(this));
     }
 
-    private void ComponentAfterInit()
+    protected virtual void ComponentAfterInit()
     {
         _compoDict.Values.OfType<IAfterInitComponent>().ToList()
                     .ForEach(component => component.AfterInit());
@@ -59,5 +59,26 @@ public class Entity : MonoBehaviour
             return _compoDict[findType] as T;
 
         return default;
+    }
+    public bool TryGetEntityComponent<T>(out T component, bool isDerived = false) where T : class, IEntityComponent
+    {
+        component = null;
+        if (_compoDict.TryGetValue(typeof(T), out IEntityComponent compo))
+        {
+            component = compo as T;
+            return true;
+        }
+
+        if (!isDerived) return false;
+
+
+        Type findType = _compoDict.Keys.FirstOrDefault(x => x.IsSubclassOf(typeof(T)));
+        if (findType != null)
+        {
+            component = _compoDict[findType] as T;
+            return true;
+        }
+
+        return false;
     }
 }

@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private ProjectileCollider2D _projectileCollider;
     [SerializeField] private Transform _hitEffect;
     private float _speed;
+    private int _damage;
     private LayerMask _whatIsTarget;
     private SpriteRenderer _spriteRenderer;
     private bool _isDead = false;
@@ -27,9 +28,34 @@ public class Bullet : MonoBehaviour
         Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
         if (_projectileCollider.CheckCollision(_whatIsTarget, out RaycastHit2D[] hits, movement))
         {
-            transform.position += transform.right * hits[0].distance;
-            Transform hitEffect = Instantiate(_hitEffect, hits[0].point + hits[0].normal * 0.1f, Quaternion.identity);
-            hitEffect.up = hits[0].normal;
+            RaycastHit2D hit = hits[0];
+
+            //Move
+            transform.position += transform.right * hit.distance;
+
+            //Effect
+            Transform hitEffect = Instantiate(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
+            hitEffect.up = hit.normal;
+
+            //Damage
+            int damage = _damage;
+            if (hit.transform.TryGetComponent(out Entity entity))
+            {
+                if (entity.TryGetEntityComponent(out PartsColliderCompo partsColliderCompo))
+                {
+                    EEntityParts parts = partsColliderCompo.Hit(hit.collider);
+                    Debug.Log("PartsColliderCheck : " + parts.ToString());
+                    if (parts == EEntityParts.Head) damage *= 5;
+                }
+                if (entity.TryGetEntityComponent(out HealthCompo health))
+                {
+                    health.ApplyDamage(damage);
+                    Debug.Log("HealthCheck");
+                }
+            }
+
+
+            //Die
             Die();
         }
         else
@@ -38,8 +64,9 @@ public class Bullet : MonoBehaviour
         if (_spawnTime + _lifeTime < Time.time) Die();
     }
 
-    public void Init(LayerMask whatIsTarget, Vector3 direction, float speed)
+    public void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage)
     {
+        _damage = damage;
         _speed = speed;
         _whatIsTarget = whatIsTarget;
         transform.right = direction;

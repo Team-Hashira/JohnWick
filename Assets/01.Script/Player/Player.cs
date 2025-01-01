@@ -1,3 +1,4 @@
+using Doryu.StatSystem;
 using System;
 using UnityEngine;
 
@@ -19,6 +20,9 @@ public class Player : Entity
 
     protected StateMachine _stateMachine;
 
+    protected StatCompo _statCompo;
+    protected StatElement _damageStat;
+
     protected override void Awake()
     {
         base.Awake();
@@ -28,9 +32,17 @@ public class Player : Entity
         InputReader.OnAttackEvent += HandleAttackEvent;
     }
 
+    protected override void ComponentInit()
+    {
+        base.ComponentInit();
+
+        _statCompo = GetEntityComponent<StatCompo>();
+        _damageStat = _statCompo.GetElement("AttackPower");
+    }
+
     private void HandleAttackEvent()
     {
-        _gun.Fire();
+        _gun.Fire(_damageStat.IntValue);
         CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
     }
 

@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform _firePoint;
     [SerializeField] private Bullet _bullet;
     [SerializeField] private float _bulletSpeed;
+    [SerializeField] private float _damageCoefficient;
 
     private Sequence _slideBackSeq;
 
@@ -21,7 +22,7 @@ public class Gun : MonoBehaviour
         _visualTrm.localRotation = Quaternion.Euler(targetPos.x - transform.position.x < 0 ? 0 : 180, 0, 0);
     }
 
-    public void Fire()
+    public void Fire(int damage)
     {
         Vector3 movePos = _slideTrm.localPosition;
         movePos.x = -0.2f;
@@ -34,6 +35,6 @@ public class Gun : MonoBehaviour
         _cartridgeCaseParticle.Play();
 
         Bullet bullet = Instantiate(_bullet, _firePoint.position, Quaternion.identity);
-        bullet.Init(_whatIsTarget, transform.right, _bulletSpeed);
+        bullet.Init(_whatIsTarget, transform.right, _bulletSpeed, Mathf.CeilToInt(damage * _damageCoefficient / 100));
     }
 }
