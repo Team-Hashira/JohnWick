@@ -20,7 +20,9 @@ public class Player : Entity
 
     protected StateMachine _stateMachine;
 
+    protected RenderCompo _renderCompo;
     protected StatCompo _statCompo;
+
     protected StatElement _damageStat;
 
     protected override void Awake()
@@ -37,6 +39,7 @@ public class Player : Entity
         base.ComponentInit();
 
         _statCompo = GetEntityComponent<StatCompo>();
+        _renderCompo = GetEntityComponent<RenderCompo>();
         _damageStat = _statCompo.GetElement("AttackPower");
     }
 
@@ -55,6 +58,8 @@ public class Player : Entity
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
         mousePos.z = 0;
         _gun.LookTarget(mousePos);
+
+        _renderCompo.LookTarget(mousePos);
     }
 
     protected override void OnDestroy()

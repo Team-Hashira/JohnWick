@@ -2,23 +2,20 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : DestroyLifetime
 {
-    [SerializeField] private float _lifeTime;
     [SerializeField] private ProjectileCollider2D _projectileCollider;
     [SerializeField] private Transform _hitEffect;
+    [SerializeField] private Transform _spakleEffect;
+    [SerializeField] private Transform _bloodEffect;
     private float _speed;
     private int _damage;
     private LayerMask _whatIsTarget;
     private SpriteRenderer _spriteRenderer;
-    private bool _isDead = false;
-
-    private float _spawnTime;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spawnTime = Time.time;
     }
 
     private void FixedUpdate()
@@ -33,35 +30,46 @@ public class Bullet : MonoBehaviour
             //Move
             transform.position += transform.right * hit.distance;
 
-            //Effect
-            Transform hitEffect = Instantiate(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
-            hitEffect.up = hit.normal;
-
             //Damage
             int damage = _damage;
             if (hit.transform.TryGetComponent(out Entity entity))
             {
+                bool isHeadShot = false;
                 if (entity.TryGetEntityComponent(out PartsColliderCompo partsColliderCompo))
                 {
                     EEntityParts parts = partsColliderCompo.Hit(hit.collider);
                     Debug.Log("PartsColliderCheck : " + parts.ToString());
-                    if (parts == EEntityParts.Head) damage *= 5;
+                    isHeadShot = parts == EEntityParts.Head;
                 }
                 if (entity.TryGetEntityComponent(out HealthCompo health))
                 {
-                    health.ApplyDamage(damage);
-                    Debug.Log("HealthCheck");
+                    if (isHeadShot)
+                    {
+                        //Effect
+                        Transform headBloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
+                        headBloodEffect.up = hit.normal;
+                    }
+                    health.ApplyDamage(isHeadShot ? damage * 5 : damage);
+
+                    //Effect
+                    Transform bloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
+                    bloodEffect.up = hit.normal;
+                    Transform hitEffect = Instantiate(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
+                    hitEffect.up = -hit.normal;
                 }
             }
-
+            else
+            {
+                //Effect
+                Transform spakleEffect = Instantiate(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
+                spakleEffect.up = hit.normal;
+            }
 
             //Die
             Die();
         }
         else
             transform.position += movement;
-
-        if (_spawnTime + _lifeTime < Time.time) Die();
     }
 
     public void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage)
@@ -70,19 +78,12 @@ public class Bullet : MonoBehaviour
         _speed = speed;
         _whatIsTarget = whatIsTarget;
         transform.right = direction;
+        Spawn();
     }
 
-    public void Die()
+    public override void Die()
     {
-        if (_isDead) return;
-        _isDead = true;
+        base.Die();
         _spriteRenderer.enabled = false;
-        StartCoroutine(DieDelayCoroutine(0.2f));
-    }
-
-    public IEnumerator DieDelayCoroutine(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(gameObject);
     }
 }

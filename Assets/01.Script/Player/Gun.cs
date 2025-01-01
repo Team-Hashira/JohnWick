@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private Transform _firePoint;
     [SerializeField] private Bullet _bullet;
+    [SerializeField] private Transform _fireSpakleEffect;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _damageCoefficient;
 
@@ -34,7 +35,11 @@ public class Gun : MonoBehaviour
 
         _cartridgeCaseParticle.Play();
 
+        //Bullet
         Bullet bullet = Instantiate(_bullet, _firePoint.position, Quaternion.identity);
         bullet.Init(_whatIsTarget, transform.right, _bulletSpeed, Mathf.CeilToInt(damage * _damageCoefficient / 100));
+        //Effect
+        Transform fireSpakle = Instantiate(_fireSpakleEffect, _firePoint.position, Quaternion.identity);
+        fireSpakle.up = transform.right;
     }
 }

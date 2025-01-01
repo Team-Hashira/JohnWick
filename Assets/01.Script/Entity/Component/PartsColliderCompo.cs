@@ -17,7 +17,7 @@ public class PartsColliderCompo : MonoBehaviour, IEntityComponent
 
     private Entity _entity;
 
-    public event Action<EEntityParts> OnCollisionHitEvent;
+    public event Action<EEntityParts> OnPartsCollisionHitEvent;
 
     public void Initialize(Entity entity)
     {
@@ -33,7 +33,7 @@ public class PartsColliderCompo : MonoBehaviour, IEntityComponent
     public EEntityParts Hit(Collider2D collider)
     {
         EEntityParts parts = _partsDictionary.Keys.FirstOrDefault(x => _partsDictionary[x] == collider);
-        OnCollisionHitEvent?.Invoke(parts);
+        OnPartsCollisionHitEvent?.Invoke(parts);
         return parts;
     }
 }

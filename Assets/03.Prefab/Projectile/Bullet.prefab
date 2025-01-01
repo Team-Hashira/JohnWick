@@ -102,9 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29dbcfa22e6be14ca67d25b8dedb8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeTime: 2
+  lifetime: 2
+  _dieDelay: 0.2
   _projectileCollider: {fileID: 8440955077746115221}
   _hitEffect: {fileID: 8215850276481640330, guid: 6bb59100eaa657d44bebf8bcaec8b1bb, type: 3}
+  _spakleEffect: {fileID: 8215850276481640330, guid: 82b070fb2e05d7c4f8eec0b0c632821d, type: 3}
+  _bloodEffect: {fileID: 8215850276481640330, guid: 0bcf156d5190ab84f8985dfb19ba06ce, type: 3}
 --- !u!114 &8440955077746115221
 MonoBehaviour:
   m_ObjectHideFlags: 0
