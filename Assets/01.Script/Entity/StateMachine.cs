@@ -12,14 +12,14 @@ namespace Hashira.FSM
         private Dictionary<Enum, EntityStateBase> _stateDictionary;
         public Enum CurrentStateEnum { get; private set; }
 
-        public StateMachine(Entity owner)
+        public StateMachine(Entity owner, string namespaceName)
         {
             _owner = owner;
 
             _stateDictionary = new Dictionary<Enum, EntityStateBase>();
 
             string unitName = _owner.name;
-            Type unitStateEnumType = Type.GetType("E" + unitName + "State");
+            Type unitStateEnumType = Type.GetType(namespaceName + "E" + unitName + "State");
 
             if (unitStateEnumType == null)
             {
@@ -30,7 +30,7 @@ namespace Hashira.FSM
             foreach (Enum stateEnum in Enum.GetValues(unitStateEnumType))
             {
                 string enumName = stateEnum.ToString();
-                Type unitState = Type.GetType(unitName + enumName + "State");
+                Type unitState = Type.GetType(namespaceName + unitName + enumName + "State");
                 try
                 {
                     EntityStateBase state = Activator.CreateInstance(unitState, _owner, this, enumName) as EntityStateBase;

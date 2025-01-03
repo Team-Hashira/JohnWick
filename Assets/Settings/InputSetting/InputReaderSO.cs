@@ -38,7 +38,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
 
     private void OnDisable()
     {
-        _controls.Player.Disable();
+        _controls.Disable();
     }
 
     public void OnAttack(InputAction.CallbackContext context)

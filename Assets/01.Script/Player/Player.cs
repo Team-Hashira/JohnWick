@@ -4,17 +4,17 @@ using Hashira.FSM;
 using System;
 using UnityEngine;
 
-public enum EPlayerState
-{
-    Idle,
-    Walk,
-    Sprint,
-    Crouch,
-    Air
-}
-
 namespace Hashira.Players
 {
+    public enum EPlayerState
+    {
+        Idle,
+        Walk,
+        Sprint,
+        Crouch,
+        Air
+    }
+
     public class Player : Entity
     {
         [field: SerializeField] public InputReaderSO InputReader { get; private set; }
@@ -33,7 +33,7 @@ namespace Hashira.Players
         {
             base.Awake();
 
-            _stateMachine = new StateMachine(this);
+            _stateMachine = new StateMachine(this, "Hashira.Players.");
 
             InputReader.OnAttackEvent += HandleAttackEvent;
         }

@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4241799316659571125}
-  - component: {fileID: 8163472522896512539}
+  - component: {fileID: 60309785952840756}
   m_Layer: 8
   m_Name: Stat
   m_TagString: Untagged
@@ -238,7 +238,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1166736368097611534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8163472522896512539
+--- !u!114 &60309785952840756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,14 +247,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 813996075332693095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 656ff3f151905c743a033a385687aba4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fba40fa689bfbf409007540282a7219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _overrideStatElements:
-  - elementSO: {fileID: 11400000, guid: c54150478d1977442aed93f95a3b7e9f, type: 2}
-    _baseValue: 20
-  - elementSO: {fileID: 11400000, guid: bacfa96d89f0d914e9059f5a2abdf4ec, type: 2}
-    _baseValue: 20
+  _overrideStatElements: []
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
 --- !u!1 &1253597962467769934
 GameObject:
@@ -527,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2388621978125986934}
-  - component: {fileID: 7852328765525825683}
+  - component: {fileID: 3492486429302394498}
   m_Layer: 8
   m_Name: Mover
   m_TagString: Untagged
@@ -550,7 +546,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1166736368097611534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7852328765525825683
+--- !u!114 &3492486429302394498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -559,11 +555,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2691646265240130800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b8028cb84b1b446a66fac10735dac0, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bcacf70402f927489dd5617c72b0b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Rigidbody2D>k__BackingField: {fileID: 3887808363589502260}
-  _groundCheckerSize: {x: 1, y: 0.2}
+  _groundCheckerSize: {x: 0, y: 0}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -5911,11 +5907,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4964481410553960484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd93981c97789aa43a3e1907328487d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2120d6e2cf234e343aec182f70d63025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <VisualTrm>k__BackingField: {fileID: 2163975733565134096}
-  _spriteRenderers:
+  _spriteRendererList:
   - {fileID: 6559738879112933502}
   - {fileID: 2700410974172575931}
   _isFlip: 0
@@ -6094,6 +6090,7 @@ MonoBehaviour:
     m_Bits: 576
   _firePoint: {fileID: 3712018327002714071}
   _bullet: {fileID: 3964518662618131671, guid: 40e74f823ad969d488df489f138e3a4b, type: 3}
+  _fireSpakleEffect: {fileID: 0}
   _bulletSpeed: 200
   _damageCoefficient: 100
 --- !u!1 &8041651624380263427
@@ -6397,6 +6394,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7681486342380750731, guid: f422a4b1b8b5f734ab4726eca04574b9, type: 3}
       propertyPath: _healthCompo
+      value: 
+      objectReference: {fileID: 9015119265426446136}
+    - target: {fileID: 7681486342380750731, guid: f422a4b1b8b5f734ab4726eca04574b9, type: 3}
+      propertyPath: _entityHealth
       value: 
       objectReference: {fileID: 9015119265426446136}
     m_RemovedComponents: []
