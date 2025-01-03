@@ -117,6 +117,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2958880839669307362}
+  - {fileID: 1406340821427441814}
   m_Father: {fileID: 2365600500662696666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725803603898554547
@@ -633,7 +634,7 @@ Transform:
   m_GameObject: {fileID: 3068055817096666976}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.348, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -761,6 +762,37 @@ Transform:
   - {fileID: 2262968298054627258}
   - {fileID: 3713092955316050683}
   m_Father: {fileID: 66906717448539788}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4013529701888184258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1406340821427441814}
+  m_Layer: 8
+  m_Name: CameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1406340821427441814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013529701888184258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2163975733565134096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4478761898889932558
 GameObject:
@@ -6090,9 +6122,10 @@ MonoBehaviour:
     m_Bits: 576
   _firePoint: {fileID: 3712018327002714071}
   _bullet: {fileID: 3964518662618131671, guid: 40e74f823ad969d488df489f138e3a4b, type: 3}
-  _fireSpakleEffect: {fileID: 0}
+  _fireSpakleEffect: {fileID: 8215850276481640330, guid: 741a9a6e065c4cb4f9645a0a953c8866, type: 3}
   _bulletSpeed: 200
   _damageCoefficient: 100
+  _soundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1 &8041651624380263427
 GameObject:
   m_ObjectHideFlags: 0
