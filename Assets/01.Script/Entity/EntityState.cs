@@ -1,25 +1,29 @@
+using Hashira.Entities;
 using UnityEngine;
 
-public class EntityState<T> : EntityStateBase where T : Entity
+namespace Hashira.FSM
 {
-    protected T _owner;
-
-    private readonly int _AnimationHash;
-
-    public EntityState(T owner, StateMachine stateMachine, string animationName)
+    public class EntityState<T> : EntityStateBase where T : Entity
     {
-        _owner = owner;
-        _stateMachine = stateMachine;
+        protected T _owner;
 
-        _AnimationHash = Animator.StringToHash(animationName);
+        private readonly int _AnimationHash;
+
+        public EntityState(T owner, StateMachine stateMachine, string animationName)
+        {
+            _owner = owner;
+            _stateMachine = stateMachine;
+
+            _AnimationHash = Animator.StringToHash(animationName);
+        }
     }
-}
 
-public class EntityStateBase
-{
-    protected StateMachine _stateMachine;
+    public class EntityStateBase
+    {
+        protected StateMachine _stateMachine;
 
-    public virtual void Enter() { }
-    public virtual void Update() { }
-    public virtual void Exit() { }
+        public virtual void Enter() { }
+        public virtual void Update() { }
+        public virtual void Exit() { }
+    }
 }

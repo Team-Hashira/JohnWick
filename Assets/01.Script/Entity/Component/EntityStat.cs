@@ -1,9 +1,10 @@
+using Hashira.Core.StatSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Doryu.StatSystem
+namespace Hashira.Entities
 {
-    public class StatCompo : MonoBehaviour, IEntityComponent
+    public class EntityStat : MonoBehaviour, IEntityComponent
     {
         [SerializeField] private List<StatElement> _overrideStatElements = new List<StatElement>();
         [SerializeField] private StatBaseSO _baseStat;
@@ -36,6 +37,7 @@ namespace Doryu.StatSystem
             else
                 return null;
         }
+
         public bool TryGetElement(StatElementSO statType, out StatElement statElement)
         {
             if (_overrideStatDictionary.TryGetValue(statType.statName, out statElement)) return true;
@@ -43,6 +45,7 @@ namespace Doryu.StatSystem
             statElement = _baseStat.GetStatElement(statType.statName);
             return statElement != null;
         }
+
         public StatElement GetElement(string statName)
         {
             if (_overrideStatDictionary.TryGetValue(statName, out StatElement statElement))
@@ -54,6 +57,7 @@ namespace Doryu.StatSystem
             else
                 return null;
         }
+
         public bool TryGetElement(string statName, out StatElement statElement)
         {
             if (_overrideStatDictionary.TryGetValue(statName, out statElement)) return true;

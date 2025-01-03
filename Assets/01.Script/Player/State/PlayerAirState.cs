@@ -1,32 +1,37 @@
-using Doryu.StatSystem;
+using Hashira.Core.StatSystem;
+using Hashira.Entities;
+using Hashira.FSM;
 using UnityEngine;
 
-public class PlayerAirState : EntityState<Player>
+namespace Hashira.Players
 {
-    private StatElement _speedStat;
-    private StatElement _sprintSpeedStat;
-    protected MoverCompo _moverCompo;
-
-    public PlayerAirState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+    public class PlayerAirState : EntityState<Player>
     {
-        _moverCompo = owner.GetEntityComponent<MoverCompo>();
-        _speedStat = owner.GetEntityComponent<StatCompo>().GetElement("Speed");
-        _sprintSpeedStat = owner.GetEntityComponent<StatCompo>().GetElement("SprintSpeed");
-    }
+        private StatElement _speedStat;
+        private StatElement _sprintSpeedStat;
+        protected EntityMover _entityMover;
 
-    public override void Update()
-    {
-        base.Update();
+        public PlayerAirState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+        {
+            _entityMover = owner.GetEntityComponent<EntityMover>();
+            _speedStat = owner.GetEntityComponent<EntityStat>().GetElement("Speed");
+            _sprintSpeedStat = owner.GetEntityComponent<EntityStat>().GetElement("SprintSpeed");
+        }
 
-        float movement = _owner.InputReader.XMovement;
-        if (_owner.InputReader.IsSprint && _sprintSpeedStat != null)
-            movement *= _sprintSpeedStat.Value;
-        else if (_speedStat != null)
+        public override void Update()
+        {
+            base.Update();
+
+            float movement = _owner.InputReader.XMovement;
+            if (_owner.InputReader.IsSprint && _sprintSpeedStat != null)
+                movement *= _sprintSpeedStat.Value;
+            else if (_speedStat != null)
                 movement *= _speedStat.Value;
 
-        _moverCompo.SetMovement(movement);
+            _entityMover.SetMovement(movement);
 
-        if (_moverCompo.IsGround == true)
-            _stateMachine.ChangeState(EPlayerState.Idle);
+            if (_entityMover.IsGrounded == true)
+                _stateMachine.ChangeState(EPlayerState.Idle);
+        }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Doryu.StatSystem
+namespace Hashira.Core.StatSystem
 {
     public static class DamageCalculator
     {

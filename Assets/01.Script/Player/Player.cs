@@ -1,4 +1,6 @@
-using Doryu.StatSystem;
+using Hashira.Core.StatSystem;
+using Hashira.Entities;
+using Hashira.FSM;
 using System;
 using UnityEngine;
 
@@ -11,60 +13,63 @@ public enum EPlayerState
     Air
 }
 
-public class Player : Entity
+namespace Hashira.Players
 {
-    [field: SerializeField] public InputReaderSO InputReader { get; private set; }
-    [field: SerializeField] public Transform VisualTrm { get; private set; }
-
-    [SerializeField] private Gun _gun;
-
-    protected StateMachine _stateMachine;
-
-    protected RenderCompo _renderCompo;
-    protected StatCompo _statCompo;
-
-    protected StatElement _damageStat;
-
-    protected override void Awake()
+    public class Player : Entity
     {
-        base.Awake();
+        [field: SerializeField] public InputReaderSO InputReader { get; private set; }
+        [field: SerializeField] public Transform VisualTrm { get; private set; }
 
-        _stateMachine = new StateMachine(this);
+        [SerializeField] private Gun _gun;
 
-        InputReader.OnAttackEvent += HandleAttackEvent;
-    }
+        protected StateMachine _stateMachine;
 
-    protected override void ComponentInit()
-    {
-        base.ComponentInit();
+        protected EntityRenderer _renderCompo;
+        protected EntityStat _statCompo;
 
-        _statCompo = GetEntityComponent<StatCompo>();
-        _renderCompo = GetEntityComponent<RenderCompo>();
-        _damageStat = _statCompo.GetElement("AttackPower");
-    }
+        protected StatElement _damageStat;
 
-    private void HandleAttackEvent()
-    {
-        _gun.Fire(_damageStat.IntValue);
-        CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
-    }
+        protected override void Awake()
+        {
+            base.Awake();
 
-    protected override void Update()
-    {
-        base.Update();
+            _stateMachine = new StateMachine(this);
 
-        _stateMachine.MachineUpdate();
+            InputReader.OnAttackEvent += HandleAttackEvent;
+        }
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
-        mousePos.z = 0;
-        _gun.LookTarget(mousePos);
+        protected override void InitializeComponent()
+        {
+            base.InitializeComponent();
 
-        _renderCompo.LookTarget(mousePos);
-    }
+            _statCompo = GetEntityComponent<EntityStat>();
+            _renderCompo = GetEntityComponent<EntityRenderer>();
+            _damageStat = _statCompo.GetElement("AttackPower");
+        }
 
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-        InputReader.OnAttackEvent -= HandleAttackEvent;
+        private void HandleAttackEvent()
+        {
+            _gun.Fire(_damageStat.IntValue);
+            CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            _stateMachine.UpdateMachine();
+
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
+            mousePos.z = 0;
+            _gun.LookTarget(mousePos);
+
+            _renderCompo.LookTarget(mousePos);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            InputReader.OnAttackEvent -= HandleAttackEvent;
+        }
     }
 }

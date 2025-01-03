@@ -1,14 +1,17 @@
-public interface IEntityComponent
+namespace Hashira.Entities
 {
-    public void Initialize(Entity entity);
-}
+    public interface IEntityComponent
+    {
+        public void Initialize(Entity entity);
+    }
 
-public interface IAfterInitComponent
-{
-    public void AfterInit();
-}
+    public interface IAfterInitialzeComponent
+    {
+        public void AfterInit();
+    }
 
-public interface IEntityDisposeComponent
-{
-    public void Dispose();
+    public interface IEntityDisposeComponent
+    {
+        public void Dispose();
+    }
 }

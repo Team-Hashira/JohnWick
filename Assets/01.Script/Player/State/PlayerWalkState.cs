@@ -1,47 +1,52 @@
-using Doryu.StatSystem;
+using Hashira.Core.StatSystem;
+using Hashira.Entities;
+using Hashira.FSM;
 using System;
 using UnityEngine;
 
-public class PlayerWalkState : PlayerGroundState
+namespace Hashira.Players
 {
-    private StatElement _speedStat;
-
-    public PlayerWalkState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+    public class PlayerWalkState : PlayerGroundState
     {
-        _speedStat = owner.GetEntityComponent<StatCompo>().GetElement("Speed");
-    }
+        private StatElement _speedStat;
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Update()
-    {
-        base.Update();
-
-        if (_owner.InputReader.XMovement != 0)
+        public PlayerWalkState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
         {
-            if (_owner.InputReader.IsSprint == false)
+            _speedStat = owner.GetEntityComponent<EntityStat>().GetElement("Speed");
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (_owner.InputReader.XMovement != 0)
             {
-                float movement = _owner.InputReader.XMovement;
-                if (_speedStat != null)
-                    movement *= _speedStat.Value;
-                _moverCompo.SetMovement(movement);
+                if (_owner.InputReader.IsSprint == false)
+                {
+                    float movement = _owner.InputReader.XMovement;
+                    if (_speedStat != null)
+                        movement *= _speedStat.Value;
+                    _entityMover.SetMovement(movement);
+                }
+                else
+                {
+                    _stateMachine.ChangeState(EPlayerState.Sprint);
+                }
             }
             else
             {
-                _stateMachine.ChangeState(EPlayerState.Sprint);
+                _stateMachine.ChangeState(EPlayerState.Idle);
             }
         }
-        else
-        {
-            _stateMachine.ChangeState(EPlayerState.Idle);
-        }
-    }
 
-    public override void Exit()
-    {
-        base.Exit();
+        public override void Exit()
+        {
+            base.Exit();
+        }
     }
 }

@@ -1,9 +1,10 @@
+using Hashira.Entities;
 using UnityEditor;
 using UnityEngine;
 
-namespace Doryu.StatSystem
+namespace Hashira.Core.StatSystem
 {
-    [CustomEditor(typeof(StatCompo))]
+    [CustomEditor(typeof(EntityStat))]
     public class StatCustomInspector : Editor
     {
         private SerializedProperty statProp;

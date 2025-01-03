@@ -1,52 +1,57 @@
-using Doryu.StatSystem;
+using Hashira.Core.StatSystem;
+using Hashira.Entities;
+using Hashira.FSM;
 using System;
 using UnityEngine;
 
-public class PlayerGroundState : EntityState<Player>
+namespace Hashira.Players
 {
-    protected MoverCompo _moverCompo;
-    protected StatElement _jumpStat;
-
-    public PlayerGroundState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+    public class PlayerGroundState : EntityState<Player>
     {
-        _moverCompo = owner.GetEntityComponent<MoverCompo>();
-        _jumpStat = owner.GetEntityComponent<StatCompo>().GetElement("JumpPower");
-    }
+        protected EntityMover _entityMover;
+        protected StatElement _jumpStat;
 
-    public override void Enter()
-    {
-        base.Enter();
+        public PlayerGroundState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+        {
+            _entityMover = owner.GetEntityComponent<EntityMover>();
+            _jumpStat = owner.GetEntityComponent<EntityStat>().GetElement("JumpPower");
+        }
 
-        _owner.InputReader.OnJumpEvent += HandleJumpEvent;
-        _owner.InputReader.OnCrouchEvent += HandleCrouchEvent;
-    }
+        public override void Enter()
+        {
+            base.Enter();
 
-    private void HandleCrouchEvent(bool isOn)
-    {
-        if (isOn)
-            _stateMachine.ChangeState(EPlayerState.Crouch);
-        else
-            _stateMachine.ChangeState(EPlayerState.Idle);
-    }
+            _owner.InputReader.OnJumpEvent += HandleJumpEvent;
+            _owner.InputReader.OnCrouchEvent += HandleCrouchEvent;
+        }
 
-    private void HandleJumpEvent()
-    {
-        _moverCompo.Jump(_jumpStat == null ? 0 : _jumpStat.Value);
-    }
+        private void HandleCrouchEvent(bool isOn)
+        {
+            if (isOn)
+                _stateMachine.ChangeState(EPlayerState.Crouch);
+            else
+                _stateMachine.ChangeState(EPlayerState.Idle);
+        }
 
-    public override void Update()
-    {
-        base.Update();
+        private void HandleJumpEvent()
+        {
+            _entityMover.Jump(_jumpStat == null ? 0 : _jumpStat.Value);
+        }
 
-        if (_moverCompo.IsGround == false)
-            _stateMachine.ChangeState(EPlayerState.Air);
-    }
+        public override void Update()
+        {
+            base.Update();
 
-    public override void Exit()
-    {
-        base.Exit();
+            if (_entityMover.IsGrounded == false)
+                _stateMachine.ChangeState(EPlayerState.Air);
+        }
 
-        _owner.InputReader.OnJumpEvent -= HandleJumpEvent;
-        _owner.InputReader.OnCrouchEvent -= HandleCrouchEvent;
+        public override void Exit()
+        {
+            base.Exit();
+
+            _owner.InputReader.OnJumpEvent -= HandleJumpEvent;
+            _owner.InputReader.OnCrouchEvent -= HandleCrouchEvent;
+        }
     }
 }

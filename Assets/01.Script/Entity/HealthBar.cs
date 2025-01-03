@@ -1,60 +1,64 @@
+using Hashira.Entities;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+namespace Hashira.UI
 {
-    [SerializeField] private HealthCompo _healthCompo;
-    [SerializeField] private Transform _health, _changedHealth;
-
-    [Header("Health changing setting")]
-    [SerializeField] private float _downSpeed = 8;
-    [SerializeField] private float _changedBarWaitTime = 0.5f;
-
-    private int _targetHealth;
-    private float _targetHealthAmount;
-    private float _lastDownTime;
-
-    private void Awake()
+    public class HealthBar : MonoBehaviour
     {
-        _healthCompo.OnHealthChangedEvent += HandleHealthChangedEvent;
-        _lastDownTime = Time.time;
-    }
+        [SerializeField] private EntityHealth _entityHealth;
+        [SerializeField] private Transform _health, _changedHealth;
 
-    private void Start()
-    {
-        HandleHealthChangedEvent(_healthCompo.Health, _healthCompo.Health, false);
-    }
+        [Header("Health changing setting")]
+        [SerializeField] private float _downSpeed = 8;
+        [SerializeField] private float _changedBarWaitTime = 0.5f;
 
-    private void HandleHealthChangedEvent(int prevHealth, int newHealth, bool isChangeVisible)
-    {
-        _targetHealth = newHealth;
-        _targetHealthAmount = (float)newHealth / _healthCompo.MaxHealth;
+        private int _targetHealth;
+        private float _targetHealthAmount;
+        private float _lastDownTime;
 
-        if (isChangeVisible == false)
+        private void Awake()
         {
-            _health.localScale = new Vector3(_targetHealthAmount, 1, 1);
-            _changedHealth.localScale = new Vector3(_targetHealthAmount, 1, 1);
-        }
-
-        if (prevHealth > newHealth)
-        {
+            _entityHealth.OnHealthChangedEvent += HandleHealthChangedEvent;
             _lastDownTime = Time.time;
         }
-    }
 
-    private void Update()
-    {
-        if (Mathf.Abs(_health.localScale.x - _targetHealthAmount) > Mathf.Epsilon)
+        private void Start()
         {
-            float healthChangeAmount = Mathf.Lerp(_health.localScale.x,
-                _targetHealthAmount, Time.deltaTime * _downSpeed);
-            _health.localScale = new Vector3(healthChangeAmount, 1, 1);
+            HandleHealthChangedEvent(_entityHealth.Health, _entityHealth.Health, false);
         }
-        if (Mathf.Abs(_changedHealth.localScale.x - _targetHealthAmount) > Mathf.Epsilon
-            && _lastDownTime + _changedBarWaitTime < Time.time)
+
+        private void HandleHealthChangedEvent(int prevHealth, int newHealth, bool isChangeVisible)
         {
-            float healthChangeAmount = Mathf.Lerp(_changedHealth.localScale.x,
-                _targetHealthAmount, Time.deltaTime * _downSpeed);
-            _changedHealth.localScale = new Vector3(healthChangeAmount, 1, 1);
+            _targetHealth = newHealth;
+            _targetHealthAmount = (float)newHealth / _entityHealth.MaxHealth;
+
+            if (isChangeVisible == false)
+            {
+                _health.localScale = new Vector3(_targetHealthAmount, 1, 1);
+                _changedHealth.localScale = new Vector3(_targetHealthAmount, 1, 1);
+            }
+
+            if (prevHealth > newHealth)
+            {
+                _lastDownTime = Time.time;
+            }
+        }
+
+        private void Update()
+        {
+            if (Mathf.Abs(_health.localScale.x - _targetHealthAmount) > Mathf.Epsilon)
+            {
+                float healthChangeAmount = Mathf.Lerp(_health.localScale.x,
+                    _targetHealthAmount, Time.deltaTime * _downSpeed);
+                _health.localScale = new Vector3(healthChangeAmount, 1, 1);
+            }
+            if (Mathf.Abs(_changedHealth.localScale.x - _targetHealthAmount) > Mathf.Epsilon
+                && _lastDownTime + _changedBarWaitTime < Time.time)
+            {
+                float healthChangeAmount = Mathf.Lerp(_changedHealth.localScale.x,
+                    _targetHealthAmount, Time.deltaTime * _downSpeed);
+                _changedHealth.localScale = new Vector3(healthChangeAmount, 1, 1);
+            }
         }
     }
 }

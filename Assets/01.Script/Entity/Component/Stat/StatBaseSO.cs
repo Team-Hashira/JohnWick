@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Doryu.StatSystem
+namespace Hashira.Core.StatSystem
 {
     [CreateAssetMenu(fileName = "BaseStat", menuName = "SO/Stat/BaseStat")]
     public class StatBaseSO : ScriptableObject
