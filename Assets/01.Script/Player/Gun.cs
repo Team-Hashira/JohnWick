@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Hashira.Core.EventSystem;
 using Hashira.Projectile;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ namespace Hashira.Players
         [SerializeField] private Transform _fireSpakleEffect;
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _damageCoefficient;
+
+        [SerializeField]
+        private GameEventChannelSO _soundEventChannel;
 
         private Sequence _slideBackSeq;
 
@@ -37,6 +41,12 @@ namespace Hashira.Players
 
 
             _cartridgeCaseParticle.Play();
+
+            var evt = SoundEvents.SoundGeneratedEvent;
+            evt.origin = transform;
+            evt.loudness = 20;
+            evt.isContinuous = false;
+            _soundEventChannel.RaiseEvent(evt);
 
             //Bullet
             Bullet bullet = Instantiate(_bullet, _firePoint.position, Quaternion.identity);
