@@ -17,7 +17,6 @@ namespace Hashira.Players
         {
             Debug.Log("IsCrouching");
             base.Enter();
-            _inputReader.OnJumpEvent += OnUnderJump;
             _entityMover.StopImmediately();
             _owner.VisualTrm.localScale = new Vector3(1f, 0.8f, 1f);
         }
@@ -25,12 +24,11 @@ namespace Hashira.Players
         public override void Exit()
         {
             base.Exit();
-            _inputReader.OnJumpEvent -= OnUnderJump;
             _playerMover.UnderJump(false);
             _owner.VisualTrm.localScale = new Vector3(1f, 1f, 1f);
         }
 
-        private void OnUnderJump()
+        protected override void HandleJumpEvent()
         {
             _playerMover.UnderJump(true);
         }

@@ -33,7 +33,7 @@ namespace Hashira.Players
                 _stateMachine.ChangeState(EPlayerState.Idle);
         }
 
-        private void HandleJumpEvent()
+        protected virtual void HandleJumpEvent()
         {
             _entityMover.Jump(_jumpStat == null ? 0 : _jumpStat.Value);
         }
