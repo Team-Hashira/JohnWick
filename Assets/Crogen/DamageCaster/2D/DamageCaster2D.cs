@@ -8,7 +8,7 @@ public abstract class DamageCaster2D : MonoBehaviour
 	public bool excluded;
 	public int allocationCount = 32;
 	[SerializeField] protected LayerMask _whatIsCastable;
-	protected Collider2D[] _castColliders;
+	protected RaycastHit2D[] _raycastHits;
 	[SerializeField] private bool _usingExcludeCast = true;
 	public List<DamageCaster2D> excludedDamageCasterList;
 
@@ -26,10 +26,10 @@ public abstract class DamageCaster2D : MonoBehaviour
 
 	protected virtual void Awake()
 	{
-		_castColliders = new Collider2D[allocationCount];
+		_raycastHits = new RaycastHit2D[allocationCount];
 	}
 
-	public abstract void CastOverlap();
+	public abstract void CastOverlap(Vector2 moveTo = default);
 
 	public virtual void CastDamage(int damage)
 	{
@@ -37,42 +37,38 @@ public abstract class DamageCaster2D : MonoBehaviour
 
 		//제외
 		if (_usingExcludeCast)
-			ExcludeCast(_castColliders);
+			ExcludeCast(_raycastHits);
 
 
 		//데미지 입히기
-		for (int i = 0; i < _castColliders.Length; ++i)
+		for (int i = 0; i < _raycastHits.Length; ++i)
 		{
-			if (_castColliders[i] == null)
+			if (_raycastHits[i].collider == null)
 			{
 				break;
 			}
 			else
+            {
+                OnCasterSuccessEvent?.Invoke();
+            }
+            if (_raycastHits[i].transform.TryGetComponent(out IDamageable damageable))
 			{
-				OnDamageCastSuccessEvent?.Invoke();
-			}
-			if (_castColliders[i].TryGetComponent(out IDamageable damageable))
-			{
-				damageable.ApplyDamage(damage, _castColliders[i]);
-			}
-			if (_castColliders[i] != null)
-			{
-				OnCasterSuccessEvent?.Invoke();
-			}
-
+				damageable.ApplyDamage(damage, _raycastHits[i].collider);
+                OnDamageCastSuccessEvent?.Invoke();
+            }
 		}
 
 		OnCasterEvent?.Invoke();
 		//이거 내부적으로 메모리를 직접 초기화해서 가벼움
-		Array.Clear(_castColliders, 0, _castColliders.Length);
+		Array.Clear(_raycastHits, 0, _raycastHits.Length);
 	}
 
-	protected void ExcludeCast(Collider2D[] colliders)
+	protected void ExcludeCast(RaycastHit2D[] colliders)
 	{
 		foreach (var excludeCaster in excludedDamageCasterList)
 		{
 			excludeCaster.CastOverlap();
-			colliders = colliders.Except(excludeCaster._castColliders).ToArray();
+			colliders = colliders.Except(excludeCaster._raycastHits).ToArray();
 		}
 	}
 
