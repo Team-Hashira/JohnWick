@@ -31,5 +31,6 @@ public abstract class Lifetime : MonoBehaviour
         _isDead = true;
         StartCoroutine(DelayDieCoroutine(_dieDelay));
     }
+
     public abstract void DelayDie();
 }
