@@ -53,7 +53,7 @@ public abstract class DamageCaster2D : MonoBehaviour
 			}
 			if (_castColliders[i].TryGetComponent(out IDamageable damageable))
 			{
-				damageable.TakeDamage(damage);
+				damageable.ApplyDamage(damage);
 			}
 			if (_castColliders[i] != null)
 			{
