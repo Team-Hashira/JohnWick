@@ -77,7 +77,7 @@ namespace Hashira.Players
             _meleeAttackSeq.Append(_visualTrm.DOLocalMove(prevPos, 0.15f).SetEase(Ease.InSine));
             _meleeAttackSeq.Join(_visualTrm.DOLocalRotate(Vector3.zero, 0.15f).SetEase(Ease.InSine));
 
-            _boxDamageCaster2D.CastDamage(damage);
+            _boxDamageCaster2D.CastDamage(damage, transform.right * 2.5f);
         }
     }
 }

@@ -31,17 +31,17 @@ public abstract class DamageCaster2D : MonoBehaviour
 
 	public abstract void CastOverlap(Vector2 moveTo = default);
 
-	public virtual void CastDamage(int damage)
+	public virtual void CastDamage(int damage, Vector2 moveTo = default)
 	{
-		CastOverlap();
+		CastOverlap(moveTo);
 
 		//제외
 		if (_usingExcludeCast)
 			ExcludeCast(_raycastHits);
-
+		 
 
 		//데미지 입히기
-		for (int i = 0; i < _raycastHits.Length; ++i)
+		for (int i = 0; i < _raycastHits.Length && i < allocationCount; ++i)
 		{
 			if (_raycastHits[i].collider == null)
 			{
