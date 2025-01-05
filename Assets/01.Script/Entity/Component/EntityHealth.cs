@@ -31,17 +31,21 @@ namespace Hashira.Entities
             Health = MaxHealth;
         }
 
-        public void ApplyDamage(int damage)
+        public EEntityPartType ApplyDamage(int damage, Collider2D hitCollider)
         {
-            if (_isDie) return;
+            EEntityPartType hitPoint 
+                = _owner.GetEntityComponent<EntityPartCollider>().Hit(hitCollider);
+            if (_isDie) return hitPoint;
 
             int prev = Health;
-            Health -= damage;
+            Health -= hitPoint == EEntityPartType.Head ? damage * 5 : damage;
             if (Health < 0)
                 Health = 0;
             OnHealthChangedEvent?.Invoke(prev, Health);
 
             if (Health == 0) Die();
+
+            return hitPoint;
         }
 
         public void ApplyRecovery(int recovery)
