@@ -24,19 +24,13 @@ namespace Hashira.UI
 
         private void Start()
         {
-            HandleHealthChangedEvent(_entityHealth.Health, _entityHealth.Health, false);
+            HandleHealthChangedEvent(_entityHealth.Health, _entityHealth.Health);
         }
 
-        private void HandleHealthChangedEvent(int prevHealth, int newHealth, bool isChangeVisible)
+        private void HandleHealthChangedEvent(int prevHealth, int newHealth)
         {
             _targetHealth = newHealth;
             _targetHealthAmount = (float)newHealth / _entityHealth.MaxHealth;
-
-            if (isChangeVisible == false)
-            {
-                _health.localScale = new Vector3(_targetHealthAmount, 1, 1);
-                _changedHealth.localScale = new Vector3(_targetHealthAmount, 1, 1);
-            }
 
             if (prevHealth > newHealth)
             {
