@@ -15,6 +15,7 @@ namespace Hashira.Players
 
         public override void Enter()
         {
+            Debug.Log("IsCrouching");
             base.Enter();
             _inputReader.OnJumpEvent += OnUnderJump;
             _entityMover.StopImmediately();
