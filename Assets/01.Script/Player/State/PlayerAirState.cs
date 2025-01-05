@@ -13,7 +13,7 @@ namespace Hashira.Players
 
         public PlayerAirState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
         {
-            _entityMover = owner.GetEntityComponent<EntityMover>();
+            _entityMover = owner.GetEntityComponent<EntityMover>(true);
             _speedStat = owner.GetEntityComponent<EntityStat>().GetElement("Speed");
             _sprintSpeedStat = owner.GetEntityComponent<EntityStat>().GetElement("SprintSpeed");
         }

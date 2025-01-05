@@ -13,7 +13,7 @@ namespace Hashira.Players
 
         public PlayerGroundState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
         {
-            _entityMover = owner.GetEntityComponent<EntityMover>();
+            _entityMover = owner.GetEntityComponent<EntityMover>(true);
             _jumpStat = owner.GetEntityComponent<EntityStat>().GetElement("JumpPower");
         }
 
