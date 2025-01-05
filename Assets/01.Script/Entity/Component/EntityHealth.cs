@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Hashira.Entities
 {
-    public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent
+    public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDamageable, IRecoverable
     {
         public int Health { get; private set; }
 
@@ -16,7 +16,7 @@ namespace Hashira.Entities
         private bool _isDie;
 
         public int MaxHealth => _maxHealth.IntValue;
-        public event Action<int, int, bool> OnHealthChangedEvent;
+        public event Action<int, int> OnHealthChangedEvent;
         public event Action OnDieEvent;
 
         public void Initialize(Entity entity)
@@ -31,7 +31,7 @@ namespace Hashira.Entities
             Health = MaxHealth;
         }
 
-        public void ApplyDamage(int damage, bool isChangeVisible = true)
+        public void ApplyDamage(int damage)
         {
             if (_isDie) return;
 
@@ -39,12 +39,12 @@ namespace Hashira.Entities
             Health -= damage;
             if (Health < 0)
                 Health = 0;
-            OnHealthChangedEvent?.Invoke(prev, Health, isChangeVisible);
+            OnHealthChangedEvent?.Invoke(prev, Health);
 
             if (Health == 0) Die();
         }
 
-        public void ApplyRecovery(int recovery, bool isChangeVisible = true)
+        public void ApplyRecovery(int recovery)
         {
             if (_isDie) return;
 
@@ -52,13 +52,13 @@ namespace Hashira.Entities
             Health += recovery;
             if (Health > MaxHealth)
                 Health = MaxHealth;
-            OnHealthChangedEvent?.Invoke(prev, Health, isChangeVisible);
+            OnHealthChangedEvent?.Invoke(prev, Health);
         }
 
         public void Resurrection()
         {
             _isDie = false;
-            ApplyRecovery(MaxHealth, false);
+            ApplyRecovery(MaxHealth);
         }
 
         public void Die()
