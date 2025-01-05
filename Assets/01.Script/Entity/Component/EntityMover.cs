@@ -12,7 +12,7 @@ namespace Hashira.Entities
         [SerializeField] private Vector2 _groundCheckerSize;
         [SerializeField] private LayerMask _whatIsGround;
 
-        private Entity _entity;
+        protected Entity _entity;
 
         private float _xVelocity;
 
