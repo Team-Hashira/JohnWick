@@ -35,31 +35,30 @@ namespace Hashira.Projectile
 
                 //Damage
                 int damage = _damage;
-                if (hit.transform.TryGetComponent(out Entity entity))
+                if (hit.transform.TryGetComponent(out IDamageable damageable))
                 {
                     bool isHeadShot = false;
-                    if (entity.TryGetEntityComponent(out EntityPartCollider partCollider))
+                    if (damageable.TryGetEntityComponent(out EntityPartCollider partCollider))
                     {
                         EEntityPartType parts = partCollider.Hit(hit.collider);
                         Debug.Log("PartsColliderCheck : " + parts.ToString());
                         isHeadShot = parts == EEntityPartType.Head;
                     }
-                    if (entity.TryGetEntityComponent(out EntityHealth health))
-                    {
-                        if (isHeadShot)
-                        {
-                            //Effect
-                            Transform headBloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
-                            headBloodEffect.up = hit.normal;
-                        }
-                        health.ApplyDamage(isHeadShot ? damage * 5 : damage);
 
+
+                    if (isHeadShot)
+                    {
                         //Effect
-                        Transform bloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
-                        bloodEffect.up = hit.normal;
-                        Transform hitEffect = Instantiate(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
-                        hitEffect.up = -hit.normal;
+                        Transform headBloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
+                        headBloodEffect.up = hit.normal;
                     }
+                    damageable.ApplyDamage(isHeadShot ? damage * 5 : damage);
+
+                    //Effect
+                    Transform bloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
+                    bloodEffect.up = hit.normal;
+                    Transform hitEffect = Instantiate(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
+                    hitEffect.up = -hit.normal;
                 }
                 else
                 {
