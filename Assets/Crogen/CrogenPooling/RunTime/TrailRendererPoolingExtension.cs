@@ -34,10 +34,8 @@ public class TrailRendererPoolingExtension : MonoBehaviour
 
 	private void Update()
 	{
-		Debug.Log(_poolingObjectParent.gameObject.activeInHierarchy);
 		if (_poolingObjectParent.gameObject.activeInHierarchy == false && _isParentDisable == false)
 		{
-			Debug.Log("nrtnrents");
 			transform.SetParent(null, true);
 			_isParentDisable = true;
 		}
@@ -49,7 +47,6 @@ public class TrailRendererPoolingExtension : MonoBehaviour
 			if (_curTime > duration)
 			{
 				transform.SetParent(_poolingObjectParent.transform, false);
-				Debug.Log("dfdf");
 			}
 		}
 	}
