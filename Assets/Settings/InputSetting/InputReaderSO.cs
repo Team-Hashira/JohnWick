@@ -10,6 +10,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     #region Actions
 
     public event Action OnAttackEvent;
+    public event Action OnMeleeAttackEvent;
     public event Action OnInteractEvent;
     public event Action OnJumpEvent;
     public event Action<bool> OnCrouchEvent;
@@ -45,6 +46,12 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     {
         if (context.performed)
             OnAttackEvent?.Invoke();
+    }
+
+    public void OnMeleeAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnMeleeAttackEvent?.Invoke();
     }
 
     public void OnInteract(InputAction.CallbackContext context)

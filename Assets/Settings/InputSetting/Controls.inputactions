@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "MeleeAttack",
+                    "type": "Button",
+                    "id": "60991eac-bbb7-432d-8f73-174533064e23",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
@@ -166,6 +175,17 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70bf3aa2-c531-4051-b67c-e249661893ed",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MeleeAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

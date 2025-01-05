@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Hashira.Core.EventSystem;
 using Hashira.Projectile;
 using UnityEngine;
 
@@ -18,10 +17,10 @@ namespace Hashira.Players
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _damageCoefficient;
 
-        [SerializeField]
-        private GameEventChannelSO _soundEventChannel;
+        [SerializeField] private DamageCaster2D _damageCaster2D;
 
         private Sequence _slideBackSeq;
+        private Sequence _meleeAttackSeq;
 
         public void LookTarget(Vector3 targetPos)
         {
@@ -42,18 +41,24 @@ namespace Hashira.Players
 
             _cartridgeCaseParticle.Play();
 
-            var evt = SoundEvents.SoundGeneratedEvent;
-            evt.origin = transform;
-            evt.loudness = 20;
-            evt.isContinuous = false;
-            _soundEventChannel.RaiseEvent(evt);
-
             //Bullet
             Bullet bullet = Instantiate(_bullet, _firePoint.position, Quaternion.identity);
             bullet.Init(_whatIsTarget, transform.right, _bulletSpeed, Mathf.CeilToInt(damage * _damageCoefficient / 100));
             //Effect
             Transform fireSpakle = Instantiate(_fireSpakleEffect, _firePoint.position, Quaternion.identity);
             fireSpakle.up = transform.right;
+        }
+
+        public void MeleeAttack(int damage)
+        {
+            Vector3 movePos = _visualTrm.localPosition;
+            movePos.x = 0.5f;
+            _visualTrm.localPosition = movePos;
+            if (_meleeAttackSeq != null && _meleeAttackSeq.IsActive()) _meleeAttackSeq.Kill();
+            _meleeAttackSeq = DOTween.Sequence();
+            _meleeAttackSeq.Append(_visualTrm.DOLocalMoveX(0f, 0.15f).SetEase(Ease.InSine));
+
+            _damageCaster2D.CastDamage(damage);
         }
     }
 }
