@@ -17,7 +17,10 @@ namespace Hashira.Players
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _damageCoefficient;
 
+        [SerializeField] private DamageCaster2D _damageCaster2D;
+
         private Sequence _slideBackSeq;
+        private Sequence _meleeAttackSeq;
 
         public void LookTarget(Vector3 targetPos)
         {
@@ -44,6 +47,18 @@ namespace Hashira.Players
             //Effect
             Transform fireSpakle = Instantiate(_fireSpakleEffect, _firePoint.position, Quaternion.identity);
             fireSpakle.up = transform.right;
+        }
+
+        public void MeleeAttack(int damage)
+        {
+            Vector3 movePos = _visualTrm.localPosition;
+            movePos.x = 0.5f;
+            _visualTrm.localPosition = movePos;
+            if (_meleeAttackSeq != null && _meleeAttackSeq.IsActive()) _meleeAttackSeq.Kill();
+            _meleeAttackSeq = DOTween.Sequence();
+            _meleeAttackSeq.Append(_visualTrm.DOLocalMoveX(0f, 0.15f).SetEase(Ease.InSine));
+
+            _damageCaster2D.CastDamage(damage);
         }
     }
 }

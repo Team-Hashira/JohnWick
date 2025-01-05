@@ -36,6 +36,12 @@ namespace Hashira.Players
             _stateMachine = new StateMachine(this, "Hashira.Players.");
 
             InputReader.OnAttackEvent += HandleAttackEvent;
+            InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
+        }
+
+        private void HandleMeleeAttackEvent()
+        {
+            _gun.MeleeAttack(_damageStat.IntValue);
         }
 
         protected override void InitializeComponent()
