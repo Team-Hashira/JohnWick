@@ -5937,7 +5937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6586277770026984110}
-  - component: {fileID: 1920774909193289999}
+  - component: {fileID: 4016720954160572029}
   m_Layer: 8
   m_Name: Mover
   m_TagString: Untagged
@@ -5960,7 +5960,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2365600500662696666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1920774909193289999
+--- !u!114 &4016720954160572029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5976,7 +5976,7 @@ MonoBehaviour:
   _groundCheckerSize: {x: 1, y: 0.1}
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4160
 --- !u!1 &7841916498450414231
 GameObject:
   m_ObjectHideFlags: 0

@@ -96071,7 +96071,7 @@ GameObject:
   - component: {fileID: 1959022375}
   - component: {fileID: 1959022374}
   - component: {fileID: 1959022379}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: OneWayPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96734,44 +96734,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
---- !u!114 &2048680600 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8898830313081796299, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 5457064906219075926}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e857d5695f40c274b86b8df736425ccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!50 &2048680601 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 3887808363589502260, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 5457064906219075926}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2082221100 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7486108195377540764, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 5457064906219075926}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2082221102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082221100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4188e2b15322842949811c6729172b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Rigidbody2D>k__BackingField: {fileID: 2048680601}
-  _groundCheckerSize: {x: 1, y: 0.1}
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1001 &5457064906219075926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96820,22 +96782,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4450267394207056422, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: _entityHealth
-      value: 
-      objectReference: {fileID: 2048680600}
     - target: {fileID: 4478761898889932558, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1920774909193289999, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7486108195377540764, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2082221102}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
 --- !u!1001 &7122811976521842032
 PrefabInstance:
