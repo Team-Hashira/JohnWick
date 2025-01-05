@@ -269,7 +269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba40fa689bfbf409007540282a7219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _overrideStatElements: []
+  _overrideStatElements:
+  - elementSO: {fileID: 11400000, guid: c54150478d1977442aed93f95a3b7e9f, type: 2}
+    _baseValue: 12
+  - elementSO: {fileID: 11400000, guid: bacfa96d89f0d914e9059f5a2abdf4ec, type: 2}
+    _baseValue: 15
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
 --- !u!1 &1253597962467769934
 GameObject:
@@ -5983,6 +5987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9167237958965288525}
   - component: {fileID: 5705545756267011346}
+  - component: {fileID: 5992748599963313963}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
@@ -6023,12 +6028,34 @@ MonoBehaviour:
   _cartridgeCaseParticle: {fileID: 6838808109248198728}
   _whatIsTarget:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 2752
   _firePoint: {fileID: 3712018327002714071}
   _bullet: {fileID: 3964518662618131671, guid: 40e74f823ad969d488df489f138e3a4b, type: 3}
   _fireSpakleEffect: {fileID: 8215850276481640330, guid: 741a9a6e065c4cb4f9645a0a953c8866, type: 3}
   _bulletSpeed: 200
   _damageCoefficient: 100
+  _damageCaster2D: {fileID: 5992748599963313963}
+--- !u!114 &5992748599963313963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841916498450414231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6481a3c94b541ce409c28ab0b2650c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excluded: 0
+  allocationCount: 1
+  _whatIsCastable:
+    serializedVersion: 2
+    m_Bits: 2560
+  _usingExcludeCast: 0
+  excludedDamageCasterList: []
+  center: {x: 1.5, y: 0}
+  size: {x: 2, y: 1}
 --- !u!1 &8041651624380263427
 GameObject:
   m_ObjectHideFlags: 0
@@ -6328,6 +6355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 7681486342380750731, guid: f422a4b1b8b5f734ab4726eca04574b9, type: 3}
+      propertyPath: _entityHealth
+      value: 
+      objectReference: {fileID: 8898830313081796299}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
