@@ -15,10 +15,10 @@ public class CircleDamageCaster2D : DamageCaster2D
         return finalRadius;
     }
     
-    public override void CastOverlap()
+    public override void CastOverlap(Vector2 moveTo = default)
     {
-        Physics2D.OverlapCircle(transform.position + transform.rotation * GetFinalCenter(center),
-            GetScaledSize(radius), new ContactFilter2D(){useLayerMask = true, layerMask = _whatIsCastable}, _castColliders);
+        _raycastHits = Physics2D.CircleCastAll(transform.position + transform.rotation * GetFinalCenter(center),
+            GetScaledSize(radius), moveTo.normalized, moveTo.magnitude, _whatIsCastable);
     }
     
     private void OnDrawGizmos()
