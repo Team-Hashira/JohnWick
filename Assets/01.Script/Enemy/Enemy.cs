@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities;
 using Hashira.Players;
 using System;
@@ -11,12 +12,15 @@ namespace Hashira.Enemies
         protected EntityHealth _entityHealth;
 
         //Test
-        [SerializeField] private Player _player;
-        [SerializeField] private Transform _dieEffect;
+        [SerializeField] private EffectPoolType _dieEffect;
+
+        private Player _player;
 
         protected override void Awake()
         {
             base.Awake();
+
+            _player = GameManager.Instance.Player;
 
             GetEntityComponent<EntityPartCollider>().OnPartCollisionHitEvent += HandlePartsCollisionHitEvent;
             _entityHealth.OnDieEvent += HandleDieEvent;
@@ -24,7 +28,7 @@ namespace Hashira.Enemies
 
         private void HandleDieEvent()
         {
-            Instantiate(_dieEffect, transform.position, Quaternion.identity);
+            gameObject.Pop(_dieEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

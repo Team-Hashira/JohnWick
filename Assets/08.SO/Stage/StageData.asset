@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369bbfa8c89c8e648ae56b517c9ac5bd, type: 3}
+  m_Name: StageData
+  m_EditorClassIdentifier: 
+  stageName: "\uC9C0\uD558\uCCA0"
+  stagePiceDatas:
+  - stagePices:
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
+  - stagePices:
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
+  - stagePices:
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
+  - stagePices:
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
+  - stagePices:
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}

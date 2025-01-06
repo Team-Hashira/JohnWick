@@ -521,8 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23ab4722c14bdf438907eb1e1f6bcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _dieEffect: {fileID: 8215850276481640330, guid: 9a9325f24c7c2624490b97acac33221d, type: 3}
+  _dieEffect: 3
 --- !u!114 &210163588326717836
 MonoBehaviour:
   m_ObjectHideFlags: 0

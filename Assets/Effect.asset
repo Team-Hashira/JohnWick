@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef843ff4ebdeee344a631d7c1ad9917f, type: 3}
+  m_Name: Effect
+  m_EditorClassIdentifier: 
+  pairs:
+  - poolType: BulletHitEffect
+    prefab: {fileID: 7171291666861227977, guid: 6bb59100eaa657d44bebf8bcaec8b1bb, type: 3}
+    poolCount: 20
+  - poolType: BulletShootSpakleEffect
+    prefab: {fileID: 7171291666861227977, guid: 741a9a6e065c4cb4f9645a0a953c8866, type: 3}
+    poolCount: 20
+  - poolType: DoorBreak
+    prefab: {fileID: 7688809193365958300, guid: 220e2544c4368964db1aa090d8d496d3, type: 3}
+    poolCount: 20
+  - poolType: EntityDie
+    prefab: {fileID: 7171291666861227977, guid: 9a9325f24c7c2624490b97acac33221d, type: 3}
+    poolCount: 20
+  - poolType: Hitblood
+    prefab: {fileID: 7171291666861227977, guid: 0bcf156d5190ab84f8985dfb19ba06ce, type: 3}
+    poolCount: 20
+  - poolType: HitSpakleEffect
+    prefab: {fileID: 7171291666861227977, guid: 82b070fb2e05d7c4f8eec0b0c632821d, type: 3}
+    poolCount: 20
+  - poolType: LightBreakEffect
+    prefab: {fileID: 5433795387509247220, guid: 521fc1d0ac18ddd459e36a1bf3156faf, type: 3}
+    poolCount: 20

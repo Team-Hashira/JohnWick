@@ -4,19 +4,16 @@ using UnityEngine;
 
 namespace Hashira.Projectile
 {
-    public class Bullet : DestroyLifetime, IPoolingObject
+    public class Bullet : PushLifetime
     {
         [SerializeField] private ProjectileCollider2D _projectileCollider;
-        [SerializeField] private Transform _hitEffect;
-        [SerializeField] private Transform _spakleEffect;
-        [SerializeField] private Transform _bloodEffect;
+        [SerializeField] private EffectPoolType _hitEffect;
+        [SerializeField] private EffectPoolType _spakleEffect;
+        [SerializeField] private EffectPoolType _bloodEffect;
         private float _speed;
         private int _damage;
         private LayerMask _whatIsTarget;
         private SpriteRenderer _spriteRenderer;
-
-        public string OriginPoolType { get; set; }
-        GameObject IPoolingObject.gameObject { get; set; }
 
         private void Awake()
         {
@@ -44,21 +41,17 @@ namespace Hashira.Projectile
                     if (parts == EEntityPartType.Head)
                     {
                         //Effect
-                        Transform headBloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
-                        headBloodEffect.up = hit.normal;
+                        gameObject.Pop(_bloodEffect, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
                     }
 
                     //Effect
-                    Transform bloodEffect = Instantiate(_bloodEffect, hit.point, Quaternion.identity);
-                    bloodEffect.up = hit.normal;
-                    Transform hitEffect = Instantiate(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
-                    hitEffect.up = -hit.normal;
+                    gameObject.Pop(_bloodEffect, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
+                    gameObject.Pop(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, -hit.normal));
                 }
                 else
                 {
                     //Effect
-                    Transform spakleEffect = Instantiate(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.identity);
-                    spakleEffect.up = hit.normal;
+                    gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
                 }
 
                 //Die
@@ -74,29 +67,13 @@ namespace Hashira.Projectile
             _speed = speed;
             _whatIsTarget = whatIsTarget;
             transform.right = direction;
-            Spawn();
+            _spriteRenderer.enabled = true;
         }
 
         public override void Die()
         {
             base.Die();
             _spriteRenderer.enabled = false;
-        }
-
-        public override void DelayDie()
-        {
-            base.DelayDie();
-            
-        }
-
-        public void OnPop()
-        {
-
-        }
-
-        public void OnPush()
-        {
-
         }
     }
 }
