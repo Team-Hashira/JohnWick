@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overrideStatElements:
   - elementSO: {fileID: 11400000, guid: c54150478d1977442aed93f95a3b7e9f, type: 2}
-    _baseValue: 12
+    _baseValue: 15
   - elementSO: {fileID: 11400000, guid: bacfa96d89f0d914e9059f5a2abdf4ec, type: 2}
     _baseValue: 15
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
@@ -6034,7 +6034,7 @@ MonoBehaviour:
   _fireSpakleEffect: {fileID: 8215850276481640330, guid: 741a9a6e065c4cb4f9645a0a953c8866, type: 3}
   _bulletSpeed: 200
   _damageCoefficient: 100
-  _damageCaster2D: {fileID: 5992748599963313963}
+  _boxDamageCaster2D: {fileID: 5992748599963313963}
 --- !u!114 &5992748599963313963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6054,8 +6054,8 @@ MonoBehaviour:
     m_Bits: 2560
   _usingExcludeCast: 0
   excludedDamageCasterList: []
-  center: {x: 1.5, y: 0}
-  size: {x: 2, y: 1}
+  center: {x: 0.2, y: -0.58}
+  size: {x: 0.1, y: 0.59}
 --- !u!1 &8041651624380263427
 GameObject:
   m_ObjectHideFlags: 0
