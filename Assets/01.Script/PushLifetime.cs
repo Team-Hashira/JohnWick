@@ -16,6 +16,7 @@ namespace Hashira
         public void OnPop()
         {
             Spawn();
+            _isDead = false;
         }
 
         public void OnPush()

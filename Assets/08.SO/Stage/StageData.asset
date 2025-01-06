@@ -15,15 +15,12 @@ MonoBehaviour:
   stageName: "\uC9C0\uD558\uCCA0"
   stagePiceDatas:
   - stagePices:
-    - {fileID: 3447781891085579937, guid: 30338b603afda4b49941897ffdfdacd6, type: 3}
-    - {fileID: 3447781891085579937, guid: d83d9699bc387834796022d7c8d9f9c8, type: 3}
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
   - stagePices:
-    - {fileID: 3447781891085579937, guid: b4e9e514d1a576740b14fee46c8f5188, type: 3}
-    - {fileID: 3447781891085579937, guid: 072446ba02f78244d87c536e1bcb0790, type: 3}
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
   - stagePices:
-    - {fileID: 3447781891085579937, guid: d83d9699bc387834796022d7c8d9f9c8, type: 3}
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
   - stagePices:
-    - {fileID: 3447781891085579937, guid: 30338b603afda4b49941897ffdfdacd6, type: 3}
-    - {fileID: 3447781891085579937, guid: d83d9699bc387834796022d7c8d9f9c8, type: 3}
-    - {fileID: 3447781891085579937, guid: b4e9e514d1a576740b14fee46c8f5188, type: 3}
-    - {fileID: 3447781891085579937, guid: 072446ba02f78244d87c536e1bcb0790, type: 3}
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
+  - stagePices:
+    - {fileID: 4290700035163809619, guid: f07735bcf28ab884c9fa97be88c0df6a, type: 3}
