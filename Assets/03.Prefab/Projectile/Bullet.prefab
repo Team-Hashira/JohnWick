@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3470204695144833513}
   - component: {fileID: 3964518662618131671}
   - component: {fileID: 8440955077746115221}
-  - component: {fileID: 8462256356196856192}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -106,9 +105,9 @@ MonoBehaviour:
   lifetime: 2
   _dieDelay: 0.2
   _projectileCollider: {fileID: 8440955077746115221}
-  _hitEffect: {fileID: 8215850276481640330, guid: 6bb59100eaa657d44bebf8bcaec8b1bb, type: 3}
-  _spakleEffect: {fileID: 8215850276481640330, guid: 82b070fb2e05d7c4f8eec0b0c632821d, type: 3}
-  _bloodEffect: {fileID: 8215850276481640330, guid: 0bcf156d5190ab84f8985dfb19ba06ce, type: 3}
+  _hitEffect: 0
+  _spakleEffect: 5
+  _bloodEffect: 4
 --- !u!114 &8440955077746115221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,27 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: {x: 1, y: 1}
   offset: {x: 0, y: 0}
---- !u!114 &8462256356196856192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714320040144927719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6481a3c94b541ce409c28ab0b2650c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  excluded: 0
-  allocationCount: 32
-  _whatIsCastable:
-    serializedVersion: 2
-    m_Bits: 0
-  _usingExcludeCast: 1
-  excludedDamageCasterList: []
-  center: {x: 0, y: 0}
-  size: {x: 1, y: 1}
 --- !u!1 &6874828105478536385
 GameObject:
   m_ObjectHideFlags: 0

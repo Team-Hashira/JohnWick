@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using DG.Tweening;
 using Hashira.Projectile;
 using System;
@@ -13,8 +14,8 @@ namespace Hashira.Players
         [SerializeField] private LayerMask _whatIsTarget;
 
         [SerializeField] private Transform _firePoint;
-        [SerializeField] private Bullet _bullet;
-        [SerializeField] private Transform _fireSpakleEffect;
+        [SerializeField] private ProjectilePoolType _bullet;
+        [SerializeField] private EffectPoolType _fireSpakleEffect;
         [SerializeField] private float _bulletSpeed;
         [SerializeField] private float _damageCoefficient;
 
@@ -60,10 +61,10 @@ namespace Hashira.Players
             _cartridgeCaseParticle.Play();
 
             //Bullet
-            Bullet bullet = Instantiate(_bullet, _firePoint.position, Quaternion.identity);
+            Bullet bullet = gameObject.Pop(_bullet, _firePoint.position, Quaternion.identity) as Bullet;
             bullet.Init(_whatIsTarget, transform.right, _bulletSpeed, Mathf.CeilToInt(damage * _damageCoefficient / 100));
             //Effect
-            Transform fireSpakle = Instantiate(_fireSpakleEffect, _firePoint.position, Quaternion.identity);
+            Transform fireSpakle = (gameObject.Pop(_fireSpakleEffect, null) as SimplePoolingObject).transform;
             fireSpakle.up = transform.right;
         }
 

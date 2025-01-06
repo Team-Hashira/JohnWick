@@ -6115,8 +6115,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2752
   _firePoint: {fileID: 3712018327002714071}
-  _bullet: {fileID: 3964518662618131671, guid: 40e74f823ad969d488df489f138e3a4b, type: 3}
-  _fireSpakleEffect: {fileID: 8215850276481640330, guid: 741a9a6e065c4cb4f9645a0a953c8866, type: 3}
+  _bullet: 0
+  _fireSpakleEffect: 1
   _bulletSpeed: 200
   _damageCoefficient: 100
   _boxDamageCaster2D: {fileID: 5992748599963313963}
