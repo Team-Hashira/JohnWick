@@ -10,7 +10,7 @@ namespace Hashira
 
         public override void DelayDie()
         {
-            OnPush();
+            this.Push();
         }
 
         public void OnPop()

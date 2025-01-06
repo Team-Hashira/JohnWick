@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities;
 using Hashira.Players;
 using System;
@@ -11,7 +12,7 @@ namespace Hashira.Enemies
         protected EntityHealth _entityHealth;
 
         //Test
-        [SerializeField] private Transform _dieEffect;
+        [SerializeField] private EffectPoolType _dieEffect;
 
         private Player _player;
 
@@ -27,7 +28,7 @@ namespace Hashira.Enemies
 
         private void HandleDieEvent()
         {
-            Instantiate(_dieEffect, transform.position, Quaternion.identity);
+            gameObject.Pop(_dieEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

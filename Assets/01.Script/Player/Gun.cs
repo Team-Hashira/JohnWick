@@ -64,8 +64,7 @@ namespace Hashira.Players
             Bullet bullet = gameObject.Pop(_bullet, _firePoint.position, Quaternion.identity) as Bullet;
             bullet.Init(_whatIsTarget, transform.right, _bulletSpeed, Mathf.CeilToInt(damage * _damageCoefficient / 100));
             //Effect
-            Transform fireSpakle = (gameObject.Pop(_fireSpakleEffect, null) as SimplePoolingObject).transform;
-            fireSpakle.up = transform.right;
+            gameObject.Pop(_fireSpakleEffect, _firePoint.position, Quaternion.LookRotation(Vector3.back, transform.right));
         }
 
         public void MeleeAttack(int damage)
