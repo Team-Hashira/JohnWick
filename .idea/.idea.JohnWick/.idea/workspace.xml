@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +35,9 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2rDGfkQOxqn0IELD3iWw98XONqH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
