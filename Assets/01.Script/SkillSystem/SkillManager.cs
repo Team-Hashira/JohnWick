@@ -8,56 +8,34 @@ namespace Hashira.SkillSystem
 {
     public class SkillManager : MonoBehaviour
     {
-        [FormerlySerializedAs("startSkills")] public List<string> startSkillNames;
+        private static readonly Dictionary<Type, Skill> _skills = new Dictionary<Type, Skill>();
         private static readonly Dictionary<Type, Skill> _currentSkills = new Dictionary<Type, Skill>();
 
-#if UNITY_EDITOR
-        [Space(25)]
-        [SerializeField] private string _debugSkillName = "new skill";
-        [Button]
-        private void AddSkillForDebug()
-        {
-            AddSkill(Type.GetType(_debugSkillName));
-        }
-#endif
         private void Awake()
         {
-            foreach (var startSkillName in startSkillNames)
+            var skills = GetComponentsInChildren<Skill>();
+
+            foreach (var skill in skills)
             {
-                Type t = Type.GetType(startSkillName);
-                AddSkill(t);
+                _skills.Add(skill.GetType(), skill);
             }
         }
 
 
         public static void AddSkill(Type type) 
         {
-            var skill = Activator.CreateInstance(type) as Skill;
-            
-            if(skill == null)
-                Debug.LogError($"Could not create skill {type}");
-            
-            if (_currentSkills.TryAdd(type, skill))
+            if (_skills.TryGetValue(type, out var skill))
             {
-                Debug.Log($"Add Skill {{{skill.GetType().Name}}}");
-            }
-            else
-            {
-                Debug.Log($"Level Up Skill {{{skill.GetType().Name}}}");
+                _currentSkills.Add(type, skill);
             }
         }
         
-        public static void AddSkill<T>() where T : Skill, new()
+        public static void AddSkill<T>() where T : Skill
         {
-            var skill = new T();
-            
-            if (_currentSkills.TryAdd(typeof(T), skill))
+            Type type = typeof(T);
+            if (_skills.TryGetValue(type, out var skill))
             {
-                Debug.Log($"Add Skill {{{skill.GetType().Name}}}");
-            }
-            else
-            {
-                Debug.Log($"Level Up Skill {{{skill.GetType().Name}}}");
+                _currentSkills.Add(type, skill);
             }
         }
         
@@ -73,12 +51,23 @@ namespace Hashira.SkillSystem
 
         private void Update()
         {
-            foreach (var skill in _currentSkills)
+            foreach (var skillKeyValue in _currentSkills)
             {
-                if (skill.Value.useCoolTime)
+                Skill skill = skillKeyValue.Value;
+                if (skill.useCoolTime == false) return;
+                
+                if (skill.currentCoolTime >= skill.coolTime)
                 {
-                    
+                    //조건 이벤트를 달고 있을 스킬이 아니라면 
+                    if (skill.useConditionalEvent == false)
+                        skill.UseSkill(); //스킬 사용
+                    //만약 조건 이벤트를 달고 있을 스킬이라면
+                    else
+                    //조건만 충조한다면 바로 실행할 수 있도록 준비
+                        skill.IsReadyCoolTime = true;
                 }
+                else
+                    skill.currentCoolTime += Time.deltaTime;
             }
         }
     }
