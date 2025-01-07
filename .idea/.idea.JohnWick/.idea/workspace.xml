@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUpSkill.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/KDRScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/KDRScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Enemy/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Object/DoorObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Object/DoorObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Object/LightObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Object/LightObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Player/State/PlayerCrouchState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Player/State/PlayerCrouchState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUpSkill.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Texture/platformer.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Texture/platformer.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/StagePice/TestTileStage/Stage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/StagePice/TestTileStage/Stage.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUpSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUpSkill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Effect.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Effect.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +33,17 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillEventController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -115,7 +117,8 @@
       <workItem from="1736098456263" duration="4297000" />
       <workItem from="1736142376848" duration="4095000" />
       <workItem from="1736156491258" duration="4713000" />
-      <workItem from="1736222442560" duration="2577000" />
+      <workItem from="1736222442560" duration="9955000" />
+      <workItem from="1736255968655" duration="2156000" />
     </task>
     <servers />
   </component>
@@ -129,6 +132,17 @@
     <option name="unityProjectFolder" value="true" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="GitHub.CommitStatus" />
+      </list>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

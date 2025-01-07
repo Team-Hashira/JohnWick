@@ -18,7 +18,8 @@ namespace Hashira.SkillSystem
         
         //Conditional Event
         public bool useConditionalEvent;
-
+        public Action<object> ConditionalEvent;
+        
         public virtual void UseSkill()
         {
             currentCoolTime = 0;

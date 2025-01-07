@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Crogen.AttributeExtension;
+using Hashira.SkillSystem.Skills;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -20,7 +21,6 @@ namespace Hashira.SkillSystem
                 _skills.Add(skill.GetType(), skill);
             }
         }
-
 
         public static void AddSkill(Type type) 
         {
@@ -51,6 +51,11 @@ namespace Hashira.SkillSystem
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                AddSkill<MoveSpeedUpSkill>();
+            }
+            
             foreach (var skillKeyValue in _currentSkills)
             {
                 Skill skill = skillKeyValue.Value;

@@ -10,7 +10,11 @@ namespace Hashira.SkillSystem.Skills
     public class MoveSpeedUpSkill : Skill
     {
         private Player _player;
+        private EntityHealth _health;
         private StatElement _statElement;
+        [SerializeField] private int _maxStackCount = 2;
+        [SerializeField] private int _stackCount = 0;
+        
         private void Awake()
         {
             _player = GameManager.Instance.Player;
@@ -19,22 +23,37 @@ namespace Hashira.SkillSystem.Skills
         private void Start()
         {
             _statElement = _player.GetEntityComponent<EntityStat>().GetElement("Speed");
+            _health = _player.GetEntityComponent<EntityHealth>();
+            _health.OnHealthChangedEvent += HandleStackCountReset;
+        }
+
+        private void OnDestroy()
+        {
+            _health.OnHealthChangedEvent -= HandleStackCountReset;
+        }
+
+        private void HandleStackCountReset(int newValue, int lastValue)
+        {
+            if (lastValue > newValue)
+            {
+                int prev = _stackCount;
+                
+                for (int i = 0; i < prev; i++)
+                {
+                    _statElement.RemoveModify($"MoveSpeedUpSkill{i}", EModifyMode.Percnet);
+                    _stackCount--;
+                }
+                
+                Debug.Log(_stackCount);
+            }
         }
 
         public override void UseSkill()
         {
             base.UseSkill();
-           Debug.Log("Use Skill");
-            _statElement.AddModify("MoveSpeedUpSkill", 100, EModifyMode.Add);
-            StartCoroutine(CoroutineEndSkill());
-        }
-
-        private IEnumerator CoroutineEndSkill()
-        {
-            yield return new WaitForSeconds(10);
-            _statElement.RemoveModify("MoveSpeedUpSkill", EModifyMode.Add);
-
-            
+            if (_stackCount > _maxStackCount) return;
+            ++_stackCount;
+            _statElement.AddModify($"MoveSpeedUpSkill{_stackCount}", 10, EModifyMode.Percnet);
         }
     }
 }
