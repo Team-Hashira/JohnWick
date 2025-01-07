@@ -1,3 +1,4 @@
+using System.Collections;
 using Hashira.FSM;
 using UnityEngine;
 
@@ -15,7 +16,6 @@ namespace Hashira.Players
 
         public override void Enter()
         {
-            Debug.Log("IsCrouching");
             base.Enter();
             _entityMover.StopImmediately();
             _owner.VisualTrm.localScale = new Vector3(1f, 0.8f, 1f);

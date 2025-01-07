@@ -2,7 +2,7 @@ using Crogen.CrogenPooling;
 using Hashira.Entities;
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Object
 {
     public class DoorObject : MonoBehaviour, IDamageable
     {
