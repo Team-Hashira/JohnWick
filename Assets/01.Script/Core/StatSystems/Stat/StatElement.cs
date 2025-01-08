@@ -10,10 +10,11 @@ namespace Hashira.Core.StatSystem
         Percnet
     }
 
-    //StatElementSO¸¦ °¡Á®¿Í¼­ ÇØ´ç ½ºÅÈÀÇ [º¯È­]¸¦ Ç¥ÇöÇØÁÜ
+    //StatElementSOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ [ï¿½ï¿½È­]ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     [Serializable]
     public class StatElement
     {
+        [HideInInspector] public string Name;
         public StatElementSO elementSO;
         [SerializeField] private float _baseValue;
         private Dictionary<string, float> _addModifiers;
@@ -29,7 +30,6 @@ namespace Hashira.Core.StatSystem
 
         public float Value { get; private set; }
         public int IntValue { get; private set; }
-
 
         public void Initialize()
         {
@@ -57,24 +57,24 @@ namespace Hashira.Core.StatSystem
 
         private void SetValue()
         {
-            //µ¡¼À º¯°æ»çÇ× Àû¿ë
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             float totalAddModifier = 0;
             foreach (float addModifier in _addModifiers.Values)
             {
                 totalAddModifier += addModifier;
             }
 
-            //ÆÛ¼¾Æ® º¯°æ»çÇ× Àû¿ë
+            //ï¿½Û¼ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             float totalPercentModifier = 0;
             foreach (float percentModifier in _percentModifiers.Values)
             {
                 totalPercentModifier += percentModifier;
             }
 
-            //µµÇÕ °ª °è»ê
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
             float value = (_baseValue + totalAddModifier) * (1 + totalPercentModifier / 100);
 
-            //ÃÖ´ë, ÃÖ¼Ò Àû¿ë
+            //ï¿½Ö´ï¿½, ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (elementSO != null)
                 value = Mathf.Clamp(value, elementSO.minMaxValue.x, elementSO.minMaxValue.y);
 
