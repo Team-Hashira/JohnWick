@@ -22,6 +22,7 @@ namespace Hashira.Core.StatSystem
                 if (statElement.elementSO == null) continue;
 
                 statElement.Initialize();
+                statElement.Name = statElement.elementSO.name;
                 _statDictionary.Add(statElement.elementSO.statName, statElement);
             }
         }
