@@ -7,10 +7,8 @@
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUpSkill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUpSkill.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Effect.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Effect.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,18 +31,14 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/01.Script/Object/LightObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillEventController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/EffectContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/EffectSlot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/ProFillContainer.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -118,13 +112,15 @@
       <workItem from="1736142376848" duration="4095000" />
       <workItem from="1736156491258" duration="4713000" />
       <workItem from="1736222442560" duration="9955000" />
-      <workItem from="1736255968655" duration="2156000" />
+      <workItem from="1736255968655" duration="4325000" />
+      <workItem from="1736318280318" duration="6778000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />

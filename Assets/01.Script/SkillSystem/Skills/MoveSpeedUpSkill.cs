@@ -32,7 +32,7 @@ namespace Hashira.SkillSystem.Skills
             _health.OnHealthChangedEvent -= HandleStackCountReset;
         }
 
-        private void HandleStackCountReset(int newValue, int lastValue)
+        private void HandleStackCountReset(int lastValue, int newValue)
         {
             if (lastValue > newValue)
             {
