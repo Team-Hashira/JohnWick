@@ -53,7 +53,7 @@ namespace Hashira.SkillSystem
         {
             if (Input.GetKeyDown(KeyCode.T))
             {
-                AddSkill<MoveSpeedUpSkill>();
+                AddSkill<MoveSpeedUp>();
             }
             
             foreach (var skillKeyValue in _currentSkills)

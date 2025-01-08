@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hashira.EffectSystem;
 using UnityEngine;
 
 namespace Hashira.UI.Effect
@@ -8,6 +10,25 @@ namespace Hashira.UI.Effect
     {
         [SerializeField] private EffectSlot _effectSlotPrefab;
         private readonly List<EffectSlot> _currentSlots = new List<EffectSlot>();
+
+        private EffectManager _effectManager;
+
+        private void Awake()
+        {
+            _effectManager = EffectManager.Instance;
+        }
+
+        private void Start()
+        {
+            _effectManager.EffectAddedEvent += AddEffectUI;
+            _effectManager.EffectRemovedEvent += RemoveEffectUI;
+        }
+
+        private void OnDestroy()
+        {
+            _effectManager.EffectAddedEvent -= AddEffectUI;
+            _effectManager.EffectRemovedEvent -= RemoveEffectUI;
+        }
 
         public void AddEffectUI(EffectSystem.Effect effect)
         {
@@ -30,6 +51,8 @@ namespace Hashira.UI.Effect
             
             //Null뜰 수 있으니까 외부에서 이벤트 구독
             effectSlot.effectBase.CoolTimeEvent += effectSlot.HandleCoolTime;
+            effectSlot.Init(effect);
+            
             
             _currentSlots.Add(effectSlot);   
         }

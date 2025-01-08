@@ -11,6 +11,12 @@ namespace Hashira.UI.Effect
 
         public EffectSystem.Effect effectBase;
 
+        public void Init(EffectSystem.Effect effectBase)
+        {
+            this.effectBase = effectBase;
+            //여기서 다른 UI 정보들까지 싹 다 초기화
+        }
+        
         public void HandleCoolTime(float currentCoolTime, float duration)
         {
             _coolTimeGauge.fillAmount = currentCoolTime / duration;
