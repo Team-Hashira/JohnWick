@@ -24,24 +24,10 @@ namespace Hashira.Players
         {
             base.Update();
 
-            if (_owner.InputReader.XMovement != 0)
-            {
-                if (_owner.InputReader.IsSprint == false)
-                {
-                    float movement = _owner.InputReader.XMovement;
-                    if (_speedStat != null)
-                        movement *= _speedStat.Value;
-                    _entityMover.SetMovement(movement);
-                }
-                else
-                {
-                    _stateMachine.ChangeState(EPlayerState.Sprint);
-                }
-            }
-            else
-            {
-                _stateMachine.ChangeState(EPlayerState.Idle);
-            }
+            float movement = _owner.InputReader.XMovement;
+            if (_speedStat != null)
+                movement *= _speedStat.Value;
+            _entityMover.SetMovement(movement);
         }
 
         public override void Exit()

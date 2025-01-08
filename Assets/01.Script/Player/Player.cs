@@ -12,7 +12,7 @@ namespace Hashira.Players
     {
         Idle,
         Walk,
-        Sprint,
+        Dash,
         Crouch,
         Air
     }
@@ -31,7 +31,8 @@ namespace Hashira.Players
 
         public Transform _weaponHolder;
 
-        public List<Weapon> _weaponList;
+        private List<Weapon> _weaponList;
+        private int _weaponIndex;
         public Weapon CurrentWeapon { get; private set; }
 
         protected override void Awake()
@@ -42,12 +43,32 @@ namespace Hashira.Players
 
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
+            InputReader.OnDashEvent += HandleDashEvent;
+            InputReader.OnWeaponSawpEvent += HandleWeaponSawpEvent;
 
+            _weaponList = new List<Weapon>();
             _weaponHolder.GetComponentsInChildren(_weaponList);
             _weaponList.ForEach(weapon => weapon.gameObject.SetActive(false));
 
-            CurrentWeapon = _weaponList[0];
+            _weaponIndex = -1;
+            HandleWeaponSawpEvent();
+        }
+
+        private void HandleWeaponSawpEvent()
+        {
+            if (CurrentWeapon != null) 
+                CurrentWeapon.gameObject.SetActive(false);
+
+            _weaponIndex++;
+            if (_weaponIndex >= _weaponList.Count) _weaponIndex -= _weaponList.Count;
+
+            CurrentWeapon = _weaponList[_weaponIndex];
             CurrentWeapon.gameObject.SetActive(true);
+        }
+
+        private void HandleDashEvent()
+        {
+            _stateMachine.ChangeState(EPlayerState.Dash);
         }
 
         private void HandleMeleeAttackEvent()
@@ -64,9 +85,9 @@ namespace Hashira.Players
             _damageStat = _statCompo.GetElement("AttackPower");
         }
 
-        private void HandleAttackEvent()
+        private void HandleAttackEvent(bool isDown)
         {
-            CurrentWeapon.MainAttack(_damageStat.IntValue);
+            CurrentWeapon.MainAttack(_damageStat.IntValue, isDown);
         }
 
         protected override void Update()
@@ -86,6 +107,9 @@ namespace Hashira.Players
         {
             base.OnDestroy();
             InputReader.OnAttackEvent -= HandleAttackEvent;
+            InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
+            InputReader.OnDashEvent -= HandleDashEvent;
+            InputReader.OnWeaponSawpEvent -= HandleWeaponSawpEvent;
         }
     }
 }

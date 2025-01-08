@@ -20,6 +20,6 @@ namespace Hashira.Weapons
         }
 
         public abstract void MeleeAttack(int damage);
-        public abstract bool MainAttack(int damage);
+        public abstract void MainAttack(int damage, bool isDown);
     }
 }
