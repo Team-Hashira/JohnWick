@@ -18,7 +18,7 @@ namespace Hashira.Projectile
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
-            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
             Gizmos.DrawWireCube(offset, size);
         }
     }
