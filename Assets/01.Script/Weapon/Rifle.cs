@@ -12,6 +12,11 @@ namespace Hashira.Weapons
         private bool _isFiring;
         private int _damage;
 
+        private void OnEnable()
+        {
+            _isFiring = false;
+        }
+
         public override void MainAttack(int damage, bool isDown)
         {
             if (BulletAmount <= 0) return;
@@ -42,6 +47,7 @@ namespace Hashira.Weapons
             if (_isFiring && _lastFireTime + _autoSpeed < Time.time)
             {
                 if (Fire()) _lastFireTime = Time.time;
+                else _isFiring = false;
             }
         }
     }

@@ -25,6 +25,8 @@ namespace Hashira.Weapons
         public int BulletAmount { get; protected set; }
         [field: SerializeField] public int MaxBulletAmount { get; protected set; }
 
+        [SerializeField] private float _reloadDuration;
+
         private Sequence _slideBackSeq;
         private Sequence _meleeAttackSeq;
 
@@ -77,6 +79,12 @@ namespace Hashira.Weapons
             SpawnCartridgeCase();
 
             return true;
+        }
+
+        public void Reload()
+        {
+            BulletAmount = MaxBulletAmount;
+            Debug.Log("Reload");
         }
     }
 }

@@ -14,6 +14,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     public event Action OnJumpEvent;
     public event Action OnDashEvent;
     public event Action OnWeaponSawpEvent;
+    public event Action OnReloadEvent;
     public event Action<bool> OnCrouchEvent;
     public event Action<bool> OnAttackEvent;
 
@@ -96,5 +97,11 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     {
         if (context.performed)
             OnWeaponSawpEvent?.Invoke();
+    }
+
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnReloadEvent?.Invoke();
     }
 }
