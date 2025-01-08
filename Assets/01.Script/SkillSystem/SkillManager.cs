@@ -22,19 +22,17 @@ namespace Hashira.SkillSystem
             }
         }
 
+        public static void AddSkill<T>() where T : Skill
+        {
+            Type type = typeof(T);
+            AddSkill(type);
+        }
+        
         public static void AddSkill(Type type) 
         {
             if (_skills.TryGetValue(type, out var skill))
             {
-                _currentSkills.Add(type, skill);
-            }
-        }
-        
-        public static void AddSkill<T>() where T : Skill
-        {
-            Type type = typeof(T);
-            if (_skills.TryGetValue(type, out var skill))
-            {
+                skill.currentCoolTime = skill.coolTime;
                 _currentSkills.Add(type, skill);
             }
         }

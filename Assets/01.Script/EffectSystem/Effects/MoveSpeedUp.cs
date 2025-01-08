@@ -11,6 +11,7 @@ namespace Hashira.EffectSystem.Effects
 
         public override void Update()
         {
+            base.Update();
             Debug.Log("Moving SpeedUp");
         }
 

@@ -30,7 +30,7 @@ namespace Hashira.UI.Effect
             _effectManager.EffectRemovedEvent -= RemoveEffectUI;
         }
 
-        public void AddEffectUI(EffectSystem.Effect effect)
+        private void AddEffectUI(EffectSystem.Effect effect)
         {
             EffectSlot oldEffectSlot = _currentSlots.FirstOrDefault(x => x.Equals(effect));
 
@@ -48,22 +48,21 @@ namespace Hashira.UI.Effect
             }
             
             EffectSlot effectSlot = Instantiate(_effectSlotPrefab, transform);
-            
-            //Null뜰 수 있으니까 외부에서 이벤트 구독
-            effectSlot.effectBase.CoolTimeEvent += effectSlot.HandleCoolTime;
             effectSlot.Init(effect);
-            
+            effectSlot.effectBase.CoolTimeEvent += effectSlot.HandleCoolTime;
             
             _currentSlots.Add(effectSlot);   
+            effect.Enable();
         }
         
-        public void RemoveEffectUI(EffectSystem.Effect effect)
+        private void RemoveEffectUI(EffectSystem.Effect effect)
         {
             EffectSlot effectSlot = _currentSlots.FirstOrDefault(x => x.Equals(effect));
 
             if (effectSlot != null)
             {
                 _currentSlots.Remove(effectSlot);
+                effect.Disable();
                 Destroy(effectSlot.gameObject);
             }
             else

@@ -21,7 +21,8 @@ namespace Hashira.EffectSystem
                 name = typeof(T).Name,
                 duration = duration,
                 level = level,
-                effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x=>x.name == typeof(T).Name)
+                effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x=>x.name == typeof(T).Name),
+                baseEffector = baseEffector
             };
             
             _effectList.Add(effect);
@@ -43,11 +44,32 @@ namespace Hashira.EffectSystem
                 Debug.Log($"Effect {typeof(T).Name} was not found");
         }
         
+        public void RemoveEffect(EntityEffector baseEffector, Type effectType)
+        {
+            Effect removeEffect = _effectList.FirstOrDefault(x=>x.name==effectType.Name);
+
+            if (removeEffect != null)
+            {
+                _effectList.Remove(removeEffect);
+                
+                EffectRemovedEvent?.Invoke(removeEffect);
+            }
+            else
+                Debug.Log($"Effect {effectType.Name} was not found");
+        }
+        
         private void Update()
         {
-            foreach (var effect in _effectList)
+            for (int i = 0; i < _effectList.Count; i++)
             {
+                var effect = _effectList[i];
+                
                 effect.Update();
+                effect.currentTime += Time.deltaTime;
+                if (effect.currentTime >= effect.duration)
+                {
+                    RemoveEffect(effect.baseEffector, effect.GetType());
+                }
             }
         }
     }

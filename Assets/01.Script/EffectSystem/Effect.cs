@@ -1,4 +1,5 @@
 using System;
+using Hashira.Entities;
 using UnityEngine;
 
 namespace Hashira.EffectSystem
@@ -9,11 +10,16 @@ namespace Hashira.EffectSystem
         public float duration;
         public float currentTime = 0;
         public int level;
+        public EntityEffector baseEffector;
         public EffectUIDataSO effectUIDataSO;
         public event Action<float, float> CoolTimeEvent;
 
         public abstract void Enable();
-        public abstract void Update();
+
+        public virtual void Update()
+        {
+            CoolTimeEvent?.Invoke(currentTime, duration);
+        }
         public abstract void Disable();
     }
 }
