@@ -1,7 +1,9 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.FSM;
+using Hashira.Weapons;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Players
@@ -20,14 +22,17 @@ namespace Hashira.Players
         [field: SerializeField] public InputReaderSO InputReader { get; private set; }
         [field: SerializeField] public Transform VisualTrm { get; private set; }
 
-        [SerializeField] private Gun _gun;
-
         protected StateMachine _stateMachine;
 
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
 
         protected StatElement _damageStat;
+
+        public Transform _weaponHolder;
+
+        public List<Weapon> _weaponList;
+        public Weapon CurrentWeapon { get; private set; }
 
         protected override void Awake()
         {
@@ -37,11 +42,17 @@ namespace Hashira.Players
 
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
+
+            _weaponHolder.GetComponentsInChildren(_weaponList);
+            _weaponList.ForEach(weapon => weapon.gameObject.SetActive(false));
+
+            CurrentWeapon = _weaponList[0];
+            CurrentWeapon.gameObject.SetActive(true);
         }
 
         private void HandleMeleeAttackEvent()
         {
-            _gun.MeleeAttack(_damageStat.IntValue);
+            CurrentWeapon.MeleeAttack(_damageStat.IntValue);
         }
 
         protected override void InitializeComponent()
@@ -55,8 +66,7 @@ namespace Hashira.Players
 
         private void HandleAttackEvent()
         {
-            _gun.Fire(_damageStat.IntValue);
-            CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
+            CurrentWeapon.MainAttack(_damageStat.IntValue);
         }
 
         protected override void Update()
@@ -67,7 +77,7 @@ namespace Hashira.Players
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
-            _gun.LookTarget(mousePos);
+            CurrentWeapon.LookTarget(mousePos);
 
             _renderCompo.LookTarget(mousePos);
         }
