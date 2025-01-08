@@ -45,6 +45,7 @@ namespace Hashira.Players
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnWeaponSawpEvent += HandleWeaponSawpEvent;
+            InputReader.OnReloadEvent += HandleReloadEvent;
 
             _weaponList = new List<Weapon>();
             _weaponHolder.GetComponentsInChildren(_weaponList);
@@ -52,6 +53,11 @@ namespace Hashira.Players
 
             _weaponIndex = -1;
             HandleWeaponSawpEvent();
+        }
+
+        private void HandleReloadEvent()
+        {
+            (CurrentWeapon as Gun).Reload();
         }
 
         private void HandleWeaponSawpEvent()
@@ -110,6 +116,7 @@ namespace Hashira.Players
             InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
             InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnWeaponSawpEvent -= HandleWeaponSawpEvent;
+            InputReader.OnReloadEvent -= HandleReloadEvent;
         }
     }
 }
