@@ -25,6 +25,11 @@ namespace Hashira.Players
             _owner.InputReader.OnCrouchEvent += HandleCrouchEvent;
         }
 
+        private void HandleDashEvent()
+        {
+            _stateMachine.ChangeState(EPlayerState.Dash);
+        }
+
         private void HandleCrouchEvent(bool isOn)
         {
             if (isOn)
@@ -52,6 +57,7 @@ namespace Hashira.Players
 
             _owner.InputReader.OnJumpEvent -= HandleJumpEvent;
             _owner.InputReader.OnCrouchEvent -= HandleCrouchEvent;
+            _owner.InputReader.OnDashEvent -= HandleDashEvent;
         }
     }
 }

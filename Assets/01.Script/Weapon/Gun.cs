@@ -40,22 +40,14 @@ namespace Hashira.Weapons
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
         }
 
-        public override bool MainAttack(int damage)
+        public override void MainAttack(int damage, bool isDown)
         {
-            if (BulletAmount <= 0) return false;
-            BulletAmount--;
-            OnFireEvent?.Invoke(BulletAmount);
-
             Vector3 movePos = _slideTrm.localPosition;
             movePos.x = -0.2f;
             _slideTrm.localPosition = movePos;
             if (_slideBackSeq != null && _slideBackSeq.IsActive()) _slideBackSeq.Kill();
             _slideBackSeq = DOTween.Sequence();
             _slideBackSeq.Append(_slideTrm.DOLocalMoveX(0f, 0.15f).SetEase(Ease.InSine));
-
-            _cartridgeCaseParticle.Play();
-
-            return true;
         }
 
         public override void MeleeAttack(int damage)
@@ -69,6 +61,22 @@ namespace Hashira.Weapons
             _meleeAttackSeq.Join(_visualTrm.DOLocalRotate(Vector3.zero, 0.15f).SetEase(Ease.InSine));
 
             _boxDamageCaster2D.CastDamage(damage, transform.right * 2.5f);
+        }
+
+        protected void SpawnCartridgeCase()
+        {
+            _cartridgeCaseParticle.Play();
+        }
+
+        protected virtual bool Fire()
+        {
+            if (BulletAmount <= 0) return false;
+            BulletAmount--;
+            OnFireEvent?.Invoke(BulletAmount);
+
+            SpawnCartridgeCase();
+
+            return true;
         }
     }
 }
