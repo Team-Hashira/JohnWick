@@ -8,7 +8,7 @@ namespace Hashira.Object
     {
         [SerializeField] private EffectPoolType _breakParticle;
 
-        public EEntityPartType ApplyDamage(int value, Collider2D collider2)
+        public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm)
         {
             gameObject.Pop(_breakParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);

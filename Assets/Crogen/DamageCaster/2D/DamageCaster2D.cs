@@ -53,7 +53,7 @@ public abstract class DamageCaster2D : MonoBehaviour
             }
             if (_raycastHits[i].transform.TryGetComponent(out IDamageable damageable))
 			{
-				damageable.ApplyDamage(damage, _raycastHits[i].collider);
+				damageable.ApplyDamage(damage, _raycastHits[i], transform);
                 OnDamageCastSuccessEvent?.Invoke();
             }
 		}

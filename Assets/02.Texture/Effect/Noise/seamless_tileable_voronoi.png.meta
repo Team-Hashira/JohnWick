@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      seamless_tileable_voronoi_0: 4819230556301337778
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

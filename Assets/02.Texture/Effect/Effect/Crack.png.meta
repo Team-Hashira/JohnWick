@@ -409,7 +409,19 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Crack_0: -2114233804336852664
+      Crack_1: 235771998588910746
+      Crack_10: 828615697683995705
+      Crack_11: -2407676308812455830
+      Crack_2: -586972033896344875
+      Crack_3: 2055153008835038240
+      Crack_4: 4343046211830935308
+      Crack_5: 4081376641611171243
+      Crack_6: -2506285675574459004
+      Crack_7: -2028146287052535769
+      Crack_8: -8076212258529740374
+      Crack_9: 4971313115025639257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

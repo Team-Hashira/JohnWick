@@ -47,8 +47,9 @@ namespace Hashira.Enemies
             _entityRenderer.LookTarget(_player.transform.position);
         }
 
-        private void HandlePartsCollisionHitEvent(EEntityPartType parts)
+        private void HandlePartsCollisionHitEvent(EEntityPartType parts, RaycastHit2D raycastHit, Transform attackerTrm)
         {
+
             if (parts == EEntityPartType.Head)
             {
                 _entityRenderer.Blink(0.2f, DG.Tweening.Ease.InCirc);

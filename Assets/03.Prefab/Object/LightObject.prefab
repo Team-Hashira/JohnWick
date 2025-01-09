@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _light: {fileID: 7132368582605141273}
   _collider: {fileID: 2327151767551035988}
-  _breakEffct: 6
+  _breakEffect: 6
 --- !u!61 &2327151767551035988
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ namespace Hashira.Object
         [SerializeField] private BoxCollider2D _collider;
         [SerializeField] private EffectPoolType _breakEffect;
 
-        public EEntityPartType ApplyDamage(int value, Collider2D collider2)
+        public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm)
         {
             _light.enabled = false;
             _collider.enabled = false;

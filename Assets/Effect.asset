@@ -25,7 +25,7 @@ MonoBehaviour:
   - poolType: EntityDie
     prefab: {fileID: 7171291666861227977, guid: 9a9325f24c7c2624490b97acac33221d, type: 3}
     poolCount: 20
-  - poolType: Hitblood
+  - poolType: HitBlood
     prefab: {fileID: 7171291666861227977, guid: 0bcf156d5190ab84f8985dfb19ba06ce, type: 3}
     poolCount: 20
   - poolType: HitSpakleEffect
@@ -33,4 +33,10 @@ MonoBehaviour:
     poolCount: 20
   - poolType: LightBreakEffect
     prefab: {fileID: 5433795387509247220, guid: 521fc1d0ac18ddd459e36a1bf3156faf, type: 3}
+    poolCount: 20
+  - poolType: HitBloodBack
+    prefab: {fileID: 7171291666861227977, guid: 33117ae2294937442b852d41e07a8b57, type: 3}
+    poolCount: 20
+  - poolType: SpreadWallBlood
+    prefab: {fileID: 6572880926036562658, guid: 18a2ff746d0e5f24ba2e235bfc9a1ba6, type: 3}
     poolCount: 20
