@@ -11,6 +11,9 @@ namespace Hashira.Pathfinder
         private Tilemap _groundTilemap, _oneWayTilemap;
 
         [SerializeField]
+        private TileBase _stairTileBases;
+
+        [SerializeField]
         private Node[] _nodes;
 
         [Button("Initialize", 20)]
@@ -46,7 +49,11 @@ namespace Hashira.Pathfinder
             {
                 for(int y = groundBounds.yMin; y <= groundBounds.yMax; y++)
                 {
-                    Vector3Int position = new Vector3Int(x, y); 
+                    Vector3Int position = new Vector3Int(x, y);
+                    if(_groundTilemap.HasTile(position))
+                    {
+                        
+                    }
                 }
             }
         }
