@@ -1,7 +1,9 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.FSM;
+using Hashira.Weapons;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Players
@@ -10,7 +12,7 @@ namespace Hashira.Players
     {
         Idle,
         Walk,
-        Sprint,
+        Dash,
         Crouch,
         Air
     }
@@ -20,14 +22,18 @@ namespace Hashira.Players
         [field: SerializeField] public InputReaderSO InputReader { get; private set; }
         [field: SerializeField] public Transform VisualTrm { get; private set; }
 
-        [SerializeField] private Gun _gun;
-
         protected StateMachine _stateMachine;
 
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
 
         protected StatElement _damageStat;
+
+        public Transform _weaponHolder;
+
+        private List<Weapon> _weaponList;
+        private int _weaponIndex;
+        public Weapon CurrentWeapon { get; private set; }
 
         protected override void Awake()
         {
@@ -37,11 +43,43 @@ namespace Hashira.Players
 
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
+            InputReader.OnDashEvent += HandleDashEvent;
+            InputReader.OnWeaponSawpEvent += HandleWeaponSawpEvent;
+            InputReader.OnReloadEvent += HandleReloadEvent;
+
+            _weaponList = new List<Weapon>();
+            _weaponHolder.GetComponentsInChildren(_weaponList);
+            _weaponList.ForEach(weapon => weapon.gameObject.SetActive(false));
+
+            _weaponIndex = -1;
+            HandleWeaponSawpEvent();
+        }
+
+        private void HandleReloadEvent()
+        {
+            (CurrentWeapon as Gun).Reload();
+        }
+
+        private void HandleWeaponSawpEvent()
+        {
+            if (CurrentWeapon != null) 
+                CurrentWeapon.gameObject.SetActive(false);
+
+            _weaponIndex++;
+            if (_weaponIndex >= _weaponList.Count) _weaponIndex -= _weaponList.Count;
+
+            CurrentWeapon = _weaponList[_weaponIndex];
+            CurrentWeapon.gameObject.SetActive(true);
+        }
+
+        private void HandleDashEvent()
+        {
+            _stateMachine.ChangeState(EPlayerState.Dash);
         }
 
         private void HandleMeleeAttackEvent()
         {
-            _gun.MeleeAttack(_damageStat.IntValue);
+            CurrentWeapon.MeleeAttack(_damageStat.IntValue);
         }
 
         protected override void InitializeComponent()
@@ -53,10 +91,9 @@ namespace Hashira.Players
             _damageStat = _statCompo.GetElement("AttackPower");
         }
 
-        private void HandleAttackEvent()
+        private void HandleAttackEvent(bool isDown)
         {
-            _gun.Fire(_damageStat.IntValue);
-            CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
+            CurrentWeapon.MainAttack(_damageStat.IntValue, isDown);
         }
 
         protected override void Update()
@@ -67,7 +104,7 @@ namespace Hashira.Players
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
-            _gun.LookTarget(mousePos);
+            CurrentWeapon.LookTarget(mousePos);
 
             _renderCompo.LookTarget(mousePos);
         }
@@ -76,6 +113,10 @@ namespace Hashira.Players
         {
             base.OnDestroy();
             InputReader.OnAttackEvent -= HandleAttackEvent;
+            InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
+            InputReader.OnDashEvent -= HandleDashEvent;
+            InputReader.OnWeaponSawpEvent -= HandleWeaponSawpEvent;
+            InputReader.OnReloadEvent -= HandleReloadEvent;
         }
     }
 }

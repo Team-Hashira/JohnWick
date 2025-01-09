@@ -13,15 +13,24 @@ MonoBehaviour:
   m_Name: EntityBase
   m_EditorClassIdentifier: 
   _statElements:
-  - elementSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
+  - Name: Health
+    elementSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
     _baseValue: 100
-  - elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+  - Name: AttackPower
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 10
-  - elementSO: {fileID: 11400000, guid: 51a8954ad1e5c564caa6ec2e3a9b88cc, type: 2}
+  - Name: Defense
+    elementSO: {fileID: 11400000, guid: 51a8954ad1e5c564caa6ec2e3a9b88cc, type: 2}
     _baseValue: 100
-  - elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
+  - Name: Speed
+    elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
     _baseValue: 10
-  - elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
+  - Name: Critical
+    elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
     _baseValue: 0
-  - elementSO: {fileID: 11400000, guid: 9bc29b520cc3efa4d8516ac876e5072c, type: 2}
+  - Name: CriticalDamage
+    elementSO: {fileID: 11400000, guid: 9bc29b520cc3efa4d8516ac876e5072c, type: 2}
     _baseValue: 100
+  - Name: JumpCount
+    elementSO: {fileID: 11400000, guid: 32eebfd8fac02bb4e874d31eb75a797c, type: 2}
+    _baseValue: 1

@@ -9,12 +9,14 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
 
     #region Actions
 
-    public event Action OnAttackEvent;
     public event Action OnMeleeAttackEvent;
     public event Action OnInteractEvent;
     public event Action OnJumpEvent;
+    public event Action OnDashEvent;
+    public event Action OnWeaponSawpEvent;
+    public event Action OnReloadEvent;
     public event Action<bool> OnCrouchEvent;
-    public event Action<bool> OnSprintEvent;
+    public event Action<bool> OnAttackEvent;
 
     #endregion
 
@@ -22,7 +24,6 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
 
     public Vector2 MousePosition { get; private set; }
     public float XMovement { get; private set; }
-    public bool IsSprint { get; private set; }
 
     #endregion
 
@@ -45,7 +46,9 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
-            OnAttackEvent?.Invoke();
+            OnAttackEvent?.Invoke(true);
+        else if (context.canceled)
+            OnAttackEvent?.Invoke(false);
     }
 
     public void OnMeleeAttack(InputAction.CallbackContext context)
@@ -74,20 +77,6 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
             OnCrouchEvent?.Invoke(false);
     }
 
-    public void OnSprint(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            IsSprint = true;
-            OnSprintEvent?.Invoke(true);
-        }
-        else if (context.canceled)
-        {
-            IsSprint = false;
-            OnSprintEvent?.Invoke(false);
-        }
-    }
-
     public void OnMousePosition(InputAction.CallbackContext context)
     {
         MousePosition = context.ReadValue<Vector2>();
@@ -96,5 +85,23 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         XMovement = context.ReadValue<float>();
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnDashEvent?.Invoke();
+    }
+
+    public void OnWeaponSwap(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnWeaponSawpEvent?.Invoke();
+    }
+
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnReloadEvent?.Invoke();
     }
 }

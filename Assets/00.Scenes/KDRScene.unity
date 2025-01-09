@@ -1345,9 +1345,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1442627410}
     m_Modifications:
-    - target: {fileID: 633159324194936854, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_Intensity
-      value: 3
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElements.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElements.Array.data[1].elementSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 94d0fa0c7a683bc48b3f69f9c9401688, type: 2}
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElements.Array.data[2].elementSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 94d0fa0c7a683bc48b3f69f9c9401688, type: 2}
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElements.Array.data[1]._baseValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElements.Array.data[2]._baseValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 831205060420009852, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1389,9 +1409,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4189368368450578804, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189368368450578804, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189368368450578804, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189368368450578804, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437956123893059269, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: <MaxBulletAmount>k__BackingField
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4478761898889932558, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831168981273924249, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _gun
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9102432017188083152, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: <MaxBulletAmount>k__BackingField
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
