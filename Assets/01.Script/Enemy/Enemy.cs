@@ -2,7 +2,6 @@ using Crogen.CrogenPooling;
 using Hashira.Entities;
 using Hashira.Players;
 using System;
-using Crogen.CrogenPooling;
 using UnityEngine;
 
 namespace Hashira.Enemies

@@ -1409,6 +1409,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3659791351898874512, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659791351898874512, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659791351898874512, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659791351898874512, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887808363589502260, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887808363589502260, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 9e7588590f2d06f45924d95c6c9fb1c4, type: 2}
+    - target: {fileID: 3887808363589502260, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887808363589502260, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016720954160572029, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _downDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016720954160572029, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _whatIsGround.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016720954160572029, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _oneWayPlatform.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     - target: {fileID: 4189368368450578804, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -1432,6 +1476,10 @@ PrefabInstance:
     - target: {fileID: 4478761898889932558, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586277770026984110, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 8831168981273924249, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: _gun

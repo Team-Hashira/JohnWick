@@ -24,13 +24,19 @@ namespace Hashira.Players
         public override void Exit()
         {
             base.Exit();
-            _playerMover.UnderJump(false);
             _owner.VisualTrm.localScale = new Vector3(1f, 1f, 1f);
         }
 
         protected override void HandleJumpEvent()
         {
+            _owner.StartCoroutine(UnderJumpCoroutime());
+        }
+
+        private IEnumerator UnderJumpCoroutime()
+        {
             _playerMover.UnderJump(true);
+            yield return new WaitForSeconds(0.2f);
+            _playerMover.UnderJump(false);
         }
     }
 }
