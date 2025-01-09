@@ -101,8 +101,8 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: c54150478d1977442aed93f95a3b7e9f, type: 2}
     _baseValue: 15
   - Name: 
-    elementSO: {fileID: 11400000, guid: bacfa96d89f0d914e9059f5a2abdf4ec, type: 2}
-    _baseValue: 15
+    elementSO: {fileID: 11400000, guid: 94d0fa0c7a683bc48b3f69f9c9401688, type: 2}
+    _baseValue: 40
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
 --- !u!1 &1168156252607547634
 GameObject:
@@ -384,7 +384,6 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
   <VisualTrm>k__BackingField: {fileID: 2163975733565134096}
   _weaponHolder: {fileID: 8152302228208947013}
-  _weaponList: []
 --- !u!114 &8898830313081796299
 MonoBehaviour:
   m_ObjectHideFlags: 0
