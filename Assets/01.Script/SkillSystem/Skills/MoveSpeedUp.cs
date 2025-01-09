@@ -42,7 +42,7 @@ namespace Hashira.SkillSystem.Skills
             {
                 int prev = _stackCount;
                 
-                EffectManager.Instance.RemoveEffect<EffectSystem.Effects.MoveSpeedUp>(_playerEffector);
+                EffectManager.Instance.RemoveEffect<EffectSystem.Effects.IncreaseMoveSpeed>(_playerEffector);
                 
                 Debug.Log(_stackCount);
             }
@@ -53,7 +53,7 @@ namespace Hashira.SkillSystem.Skills
             base.UseSkill();
             if (_stackCount > _maxStackCount) return;
             ++_stackCount;
-            EffectManager.Instance.AddEffect<EffectSystem.Effects.MoveSpeedUp>(_playerEffector, _stackCount, 2f);
+            EffectManager.Instance.AddEffect<EffectSystem.Effects.IncreaseMoveSpeed>(_playerEffector, _stackCount, 2f);
         }
     }
 }
