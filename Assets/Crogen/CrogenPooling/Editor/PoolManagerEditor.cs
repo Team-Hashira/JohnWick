@@ -93,10 +93,12 @@ public class PoolManagerEditor : Editor
 	        GUILayout.BeginHorizontal();
 	        {
 		        GUILayout.Label("Name", EditorStyles.boldLabel, GUILayout.Width(70));
-		        string str = _currentSelectedPoolCategory.name.ToString();
-		        _currentSelectedPoolCategory.name = EditorGUILayout.DelayedTextField(str);
-		        if (str.Equals(_currentSelectedPoolCategory.name) == false)
+		        string oldName = _currentSelectedPoolCategory.name.ToString();
+		        string newName = EditorGUILayout.DelayedTextField(oldName);
+		        if (oldName.Equals(newName) == false)
 		        {
+					var path = AssetDatabase.GetAssetPath(_currentSelectedPoolCategory);
+			        AssetDatabase.RenameAsset(path, newName);
 			        EditorUtility.SetDirty(_currentSelectedPoolCategory);
 			        AssetDatabase.SaveAssets();
 		        }

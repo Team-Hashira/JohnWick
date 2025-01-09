@@ -1,5 +1,6 @@
 using System;
 using Hashira.Entities;
+using Hashira.Players;
 using UnityEngine;
 
 namespace Hashira.EffectSystem
@@ -12,14 +13,23 @@ namespace Hashira.EffectSystem
         public int level;
         public EntityEffector baseEffector;
         public EffectUIDataSO effectUIDataSO;
+        protected readonly Player _player = GameManager.Instance.Player;
+        protected EntityStat _playerStat;
         public event Action<float, float> CoolTimeEvent;
 
-        public abstract void Enable();
+        public virtual void Enable()
+        {
+            _playerStat = _player.GetEntityComponent<EntityStat>();
+        }
 
         public virtual void Update()
         {
             CoolTimeEvent?.Invoke(currentTime, duration);
         }
-        public abstract void Disable();
+
+        public virtual void Disable()
+        {
+            
+        }
     }
 }

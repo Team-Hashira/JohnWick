@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="feat : Profile UI">
+    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Core/StatSystems/Stat/StatBaseSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Core/StatSystems/Stat/StatBaseSO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/EffectContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/EffectContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/MoveSpeedUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/MoveSpeedUp.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/EffectSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/EffectSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/EffectSlot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/EffectSlot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/Effect.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/Effect/MoveSpeedUp.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/Effect/MoveSpeedUp.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Crogen/CrogenPooling/Editor/PoolManagerEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Crogen/CrogenPooling/Editor/PoolManagerEditor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +128,7 @@
       <workItem from="1736222442560" duration="9955000" />
       <workItem from="1736255968655" duration="4325000" />
       <workItem from="1736318280318" duration="7598000" />
+      <workItem from="1736407589641" duration="3715000" />
     </task>
     <servers />
   </component>
