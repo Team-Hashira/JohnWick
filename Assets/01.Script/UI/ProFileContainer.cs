@@ -43,7 +43,7 @@ namespace Hashira.UI
             _hpText.text = $"{newValue}/{_playerHealth.MaxHealth}";
         }
         
-        //TODO 현재 무기의 이미정보 가져오기
+        //TODO 현재 무기의 이미지 정보 가져오기
         private void HandleWeaponChange()
         {
             

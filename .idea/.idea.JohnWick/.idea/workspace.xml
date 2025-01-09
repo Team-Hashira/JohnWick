@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="feat : Profile UI">
+    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/MoveSpeedUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseMoveSpeed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/MoveSpeedUp.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseMoveSpeed.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/EffectContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/EffectContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/EffectSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/EffectSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/EffectSlot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/EffectSlot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/UI/Effect/MoveSpeedUp.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/UI/Effect/MoveSpeedUp.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +35,12 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0900e0d4bb644dafbfd59eb7fd222a681ddc00/5f/fc84ea4e/Object.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://D:/_projectGame/JohnWick/Assets/00.Scenes/CrogenScene.unity" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Combat/FollowTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectUIDataSO.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/MoveSpeedUp.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseJumpCount.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseMoveSpeed.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityEffector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/EffectContainer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -125,6 +123,7 @@
       <workItem from="1736222442560" duration="9955000" />
       <workItem from="1736255968655" duration="4325000" />
       <workItem from="1736318280318" duration="7598000" />
+      <workItem from="1736407589641" duration="4864000" />
     </task>
     <servers />
   </component>

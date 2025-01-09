@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effectUIDataSOList:
+  - {fileID: 11400000, guid: 2a423cf986ad6724685270936fe42238, type: 2}
   - {fileID: 11400000, guid: 1f0ce721247d9ad4f8c126e03c9c0caa, type: 2}
 --- !u!1 &414766235
 GameObject:
@@ -1136,6 +1137,7 @@ MonoBehaviour:
   poolBaseList:
   - {fileID: 11400000, guid: fc7e96950fbbc7b4899c615b990bd1df, type: 2}
   - {fileID: 11400000, guid: 4a833b267593e4e4bb77a0a197f0550a, type: 2}
+  - {fileID: 11400000, guid: bd14b2b2bcf14bb4b8d6acc19dbc353f, type: 2}
   poolingPairs:
   - poolType: BulletHitEffect
     prefab: {fileID: 7171291666861227977, guid: 6bb59100eaa657d44bebf8bcaec8b1bb, type: 3}

@@ -10,11 +10,14 @@ namespace Hashira.UI.Effect
         [SerializeField] private Image _coolTimeGauge;
         [SerializeField] private TextMeshProUGUI _coolTimeText;
 
+        [SerializeField] private Image _iconImage;
+        
         public EffectSystem.Effect effectBase;
 
         public void Init(EffectSystem.Effect effectBase)
         {
             this.effectBase = effectBase;
+            _iconImage.sprite = effectBase.effectUIDataSO.icon;
             //여기서 다른 UI 정보들까지 싹 다 초기화
             effectBase.CoolTimeEvent += HandleCoolTime;
         }
