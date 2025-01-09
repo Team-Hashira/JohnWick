@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "SO/InputReader")]
-public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
+public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls.IUIActions
 {
     private Controls _controls;
 
@@ -18,6 +18,8 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
     public event Action<bool> OnCrouchEvent;
     public event Action<bool> OnAttackEvent;
 
+    public event Action OnStatusWindowEnableEvent;
+    
     #endregion
 
     #region Values
@@ -104,4 +106,54 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions
         if (context.performed)
             OnReloadEvent?.Invoke();
     }
+    
+    #region UI
+    public void OnStatusWindowEnable(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnStatusWindowEnableEvent?.Invoke();
+    }
+
+    public void OnNavigate(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnCancel(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnPoint(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnRightClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnMiddleClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnScrollWheel(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnTrackedDevicePosition(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
+    {
+    }
+    
+    #endregion
 }
