@@ -5,9 +5,8 @@ namespace Hashira.Pathfinder
 {
     public enum NodeType
     {
-        Ground,
-        OneWayPlatform,
-        Stair,
+        Common,
+        Curve,
     }
 
     public class Node : MonoBehaviour

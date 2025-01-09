@@ -1,23 +1,24 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Pathfinder
 {
+    public enum DirectionType
+    {
+        Zero,
+        Up,
+        UpperRight,
+        Right,
+        LowerRight,
+        Down,
+        LowerLeft,
+        Left,
+        UpperLeft,
+    }
+
     public static class Direction2D
     {
-        public enum DirectionType
-        {
-            Zero,
-            Up,
-            UpperRight,
-            Right,
-            LowerRight,
-            Down,
-            LowerLeft,
-            Left,
-            UpperLeft,
-        }
-
         private static Dictionary<DirectionType, Vector2Int> _directionDict;
 
         static Direction2D()
