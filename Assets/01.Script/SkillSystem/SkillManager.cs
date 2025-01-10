@@ -22,6 +22,14 @@ namespace Hashira.SkillSystem
             }
         }
 
+        public static void RemoveSkill(Skill skill)
+        {
+            if (_skills.Remove(skill.GetType()))
+            {
+                
+            }
+        }
+        
         public static void AddSkill<T>() where T : Skill
         {
             Type type = typeof(T);
