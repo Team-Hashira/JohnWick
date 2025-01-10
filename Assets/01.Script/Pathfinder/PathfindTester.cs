@@ -1,7 +1,7 @@
 using Crogen.AttributeExtension;
 using UnityEngine;
 
-namespace Hashira.Pathfinder
+namespace Hashira.Pathfind
 {
     public class PathfindTester : MonoBehaviour
     {

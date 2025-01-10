@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Hashira.Pathfinder
+namespace Hashira.Pathfind
 {
     public class NodeGenerator : MonoBehaviour
     {

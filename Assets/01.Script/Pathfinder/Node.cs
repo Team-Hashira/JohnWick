@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hashira.Pathfinder
+namespace Hashira.Pathfind
 {
     public enum NodeType
     {
