@@ -522,6 +522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dieEffect: 3
+  _bloodEffect: 8
+  _bloodBackEffect: 7
 --- !u!114 &210163588326717836
 MonoBehaviour:
   m_ObjectHideFlags: 0

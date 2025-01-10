@@ -1,9 +1,10 @@
 using Hashira.Entities;
+using System;
 using UnityEngine;
 
 public interface IDamageable
 {
-	public EEntityPartType ApplyDamage(int value, Collider2D collider2);
+	public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm);
 }
 
 public interface IRecoverable

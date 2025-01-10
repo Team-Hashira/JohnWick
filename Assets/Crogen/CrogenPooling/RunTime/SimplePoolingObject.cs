@@ -18,13 +18,13 @@ public class SimplePoolingObject : MonoBehaviour, IPoolingObject
 	public UnityEvent pushEvent;
 
 	public void OnPop()
-	{
-		popEvent?.Invoke();
+    {
+        _curTime = 0f;
+        popEvent?.Invoke();
 	}
 
 	public void OnPush()
 	{
-		_curTime = 0f;
 		pushEvent?.Invoke();
 	}
 

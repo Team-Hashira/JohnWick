@@ -10,6 +10,8 @@ namespace Hashira.Projectile
         [SerializeField] private EffectPoolType _hitEffect;
         [SerializeField] private EffectPoolType _spakleEffect;
         [SerializeField] private EffectPoolType _bloodEffect;
+        [SerializeField] private EffectPoolType _bloodBackEffect;
+        [SerializeField] private EffectPoolType _wallBloodEffect;
         private float _speed;
         private int _damage;
         private LayerMask _whatIsTarget;
@@ -36,16 +38,32 @@ namespace Hashira.Projectile
                 int damage = _damage;
                 if (hit.transform.TryGetComponent(out IDamageable damageable))
                 {
-                    EEntityPartType parts = damageable.ApplyDamage(damage, hit.collider);
-                    Debug.Log("PartsColliderCheck : " + parts.ToString());
-                    if (parts == EEntityPartType.Head)
+                    EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform);
+
+                    if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                     {
                         //Effect
-                        gameObject.Pop(_bloodEffect, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
+                        ParticleSystem wallBloodEffect = gameObject.Pop(_wallBloodEffect, hit.point, transform.rotation)
+                            .gameObject.GetComponent<ParticleSystem>();
+                        var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+
+                        //Effect
+                        ParticleSystem bloodBackEffect = gameObject.Pop(_bloodBackEffect, hit.point, transform.rotation)
+                            .gameObject.GetComponent<ParticleSystem>();
+
+                        if (parts == EEntityPartType.Head)
+                        {
+                            //Effect
+                            gameObject.Pop(_bloodEffect, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
+                            limitVelocityOverLifetimeModule.dampen = 0.6f;
+                        }
+                        else
+                        {
+                            limitVelocityOverLifetimeModule.dampen = 0.9f;
+                        }
                     }
 
                     //Effect
-                    gameObject.Pop(_bloodEffect, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
                     gameObject.Pop(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, -hit.normal));
                 }
                 else

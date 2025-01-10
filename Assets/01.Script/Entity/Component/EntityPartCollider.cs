@@ -19,23 +19,23 @@ namespace Hashira.Entities
 
         private Entity _entity;
 
-        public event Action<EEntityPartType> OnPartCollisionHitEvent;
+        public event Action<EEntityPartType, RaycastHit2D, Transform> OnPartCollisionHitEvent;
 
         public void Initialize(Entity entity)
         {
             _entity = entity;
             _partDictionary = new Dictionary<EEntityPartType, Collider2D>()
-        {
-            { EEntityPartType.Head, _head },
-            { EEntityPartType.Body, _body },
-            { EEntityPartType.Legs, _legs }
-        };
+            {
+                { EEntityPartType.Head, _head },
+                { EEntityPartType.Body, _body },
+                { EEntityPartType.Legs, _legs }
+            };
         }
 
-        public EEntityPartType Hit(Collider2D collider)
+        public EEntityPartType Hit(Collider2D collider, RaycastHit2D raycastHit, Transform attackerTrm)
         {
             EEntityPartType parts = _partDictionary.Keys.FirstOrDefault(x => _partDictionary[x] == collider);
-            OnPartCollisionHitEvent?.Invoke(parts);
+            OnPartCollisionHitEvent?.Invoke(parts, raycastHit, attackerTrm);
             return parts;
         }
     }
