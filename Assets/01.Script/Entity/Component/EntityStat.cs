@@ -26,6 +26,19 @@ namespace Hashira.Entities
             }
         }
 
+        public StatElement[] GetElements()
+        {
+            List<StatElement> elementList = new List<StatElement>();
+
+            foreach (StatElement statElement in _overrideStatDictionary.Values)
+                elementList.Add(statElement);
+
+            foreach (var statElement in _baseStat.GetStatElements())
+                elementList.Add(statElement);
+            
+            return elementList.ToArray();
+        }
+        
         public StatElement GetElement(StatElementSO statType)
         {
             if (_overrideStatDictionary.TryGetValue(statType.statName, out StatElement statElement))
