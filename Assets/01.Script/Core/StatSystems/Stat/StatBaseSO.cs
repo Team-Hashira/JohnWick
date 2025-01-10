@@ -27,6 +27,8 @@ namespace Hashira.Core.StatSystem
             }
         }
 
+        public List<StatElement> GetStatElements() => _statElements;
+        
         public StatElement GetStatElement(string statName)
         {
             if (_statDictionary.ContainsKey(statName))

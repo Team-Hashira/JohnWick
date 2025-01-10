@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityStat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityStat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/GameCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/GameCanvas.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/InputSetting/InputReaderSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/InputSetting/InputReaderSO.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,14 +40,15 @@
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Combat/FollowTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectUIDataSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseJumpCount.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseMoveSpeed.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityEffector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillUIDataSO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/EffectContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/EffectSlot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusPanel.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -119,7 +127,11 @@
       <workItem from="1736255968655" duration="4325000" />
       <workItem from="1736318280318" duration="7598000" />
       <workItem from="1736407589641" duration="4864000" />
-      <workItem from="1736423568706" duration="956000" />
+      <workItem from="1736423559026" duration="2909000" />
+      <workItem from="1736435275133" duration="73000" />
+      <workItem from="1736482146918" duration="2122000" />
+      <workItem from="1736487635100" duration="350000" />
+      <workItem from="1736507047024" duration="5735000" />
     </task>
     <servers />
   </component>
