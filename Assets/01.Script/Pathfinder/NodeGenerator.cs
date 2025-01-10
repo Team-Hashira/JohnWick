@@ -18,18 +18,18 @@ namespace Hashira.Pathfinder
         private TileBase[] _stairTileBases;
 
         [SerializeField]
-        private List<Node> _nodes;
+        private List<Node> _nodeList;
 
         private Vector3 _offset;
-        
+
 
         [Button("Initialize", 20)]
         public void Initialize()
         {
-            if (_nodes.Count() <= 0)
+            if (_nodeList.Count() <= 0)
                 return;
 
-            foreach (var node in _nodes)
+            foreach (var node in _nodeList)
             {
                 if (node != null)
                 {
@@ -43,7 +43,7 @@ namespace Hashira.Pathfinder
                     }
                 }
             }
-            _nodes.Clear();
+            _nodeList.Clear();
         }
 
         [Button("Generate Nodes", 10)]
@@ -64,24 +64,27 @@ namespace Hashira.Pathfinder
                         Vector3Int fixedPos = position + Vector3Int.up;
                         if (_groundTilemap.HasTile(fixedPos)) //바로 위에 타일맵이 있는가? (천장이거나, 벽이거나, 밖으로 드러나 있지 않은 타일임)
                             continue;
-                        CreateNode(NodeType.Curve, fixedPos);
-                        if (IsStair(_groundTilemap.GetTile(position))) //계단이면 다음으로.
-                            continue;
-                        if (IsWallOnLeftOrRight(fixedPos))
+                        if (IsStair(_groundTilemap.GetTile(position)))
                         {
-                            CreateNode(NodeType.Curve, fixedPos);
-                            continue;
-                        }
-                        if (IsEmptyOnLeftOrRight(position))
-                        {
-                            CreateNode(NodeType.Curve, fixedPos);
+                            CreateNode(NodeType.Stair, fixedPos);
                             continue;
                         }
                         if (IsStairOnLeftOrRight(position))
                         {
-                            CreateNode(NodeType.Curve, fixedPos);
+                            CreateNode(NodeType.StairEnter, fixedPos);
                             continue;
                         }
+                        if (IsWallOnLeftOrRight(fixedPos))
+                        {
+                            CreateNode(NodeType.Ground, fixedPos);
+                            continue;
+                        }
+                        if (IsEmptyOnLeftOrRight(position))
+                        {
+                            CreateNode(NodeType.Ground, fixedPos);
+                            continue;
+                        }
+                        CreateNode(NodeType.Ground, fixedPos);
                     }
                 }
             }
@@ -96,7 +99,7 @@ namespace Hashira.Pathfinder
                         Vector3Int fixedPos = position + Vector3Int.up;
                         if (_oneWayTilemap.HasTile(fixedPos)) //바로 위에 타일맵이 있는가? (원웨이 타일맵이 2겹임)
                             continue;
-                        CreateNode(NodeType.Curve, fixedPos);
+                        CreateNode(NodeType.OneWay, fixedPos);
                     }
                 }
             }
@@ -105,7 +108,7 @@ namespace Hashira.Pathfinder
         [Button("Connect Nodes")]
         public void ConnectNodes()
         {
-
+            _nodeList.ForEach(node => node.SetupConnection(1.5f));
         }
 
         private void CreateNode(NodeType type, Vector3 position)
@@ -114,12 +117,12 @@ namespace Hashira.Pathfinder
             node.transform.position = position + _offset;
             node.position = position;
             node.nodeType = type;
-            _nodes.Add(node);
+            _nodeList.Add(node);
         }
 
         private bool IsStairOnLeftOrRight(Vector3Int position)
         {
-            Vector2Int[] dirs = Direction2D.GetDirections(DirectionType.Left, DirectionType.Right); //검사 지점으로부터 양쪽만 탐색.
+            Vector2Int[] dirs = { Vector2Int.left, Vector2Int.right };
             foreach (var dir in dirs)
             {
                 if (IsStair(position + (Vector3Int)dir)) // 바로 옆에 계단이 있는지 체크.
@@ -161,19 +164,15 @@ namespace Hashira.Pathfinder
             TileBase tile = _groundTilemap.GetTile(position);
             if (tile == null)
                 return false;
-            foreach (var t in _stairTileBases)
-            {
-                if (tile == t)
-                    return true;
-            }
-            return false;
+            Debug.Log(position);
+            return IsStair(tile);
         }
 
         private bool IsStair(TileBase tile)
         {
-            foreach(var t in _stairTileBases)
+            for (int i = 0; i < _stairTileBases.Length; i++)
             {
-                if (tile == t)
+                if (tile == _stairTileBases[i])
                     return true;
             }
             return false;
