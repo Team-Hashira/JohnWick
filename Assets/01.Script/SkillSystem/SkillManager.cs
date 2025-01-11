@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Crogen.AttributeExtension;
 using Hashira.SkillSystem.Skills;
 using UnityEngine;
@@ -43,6 +44,11 @@ namespace Hashira.SkillSystem
                 skill.currentCoolTime = skill.coolTime;
                 _currentSkills.Add(type, skill);
             }
+        }
+        
+        public static Skill GetSkill(int index)
+        {
+            return _currentSkills.ElementAt(index).Value;
         }
         
         public static T GetSkill<T>() where T : Skill

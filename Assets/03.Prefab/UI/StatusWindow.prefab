@@ -72,6 +72,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93bf7ee38ffc8b64593ce8cc90ae7d54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSelectedSkillSlot: {fileID: 0}
+  _throwButton: {fileID: 5905204646658208094}
+  _destroyButton: {fileID: 8763165722417758063}
 --- !u!1 &571257322719895466
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,6 +228,7 @@ GameObject:
   - component: {fileID: 8668513260669689610}
   - component: {fileID: 2646751886731320664}
   - component: {fileID: 3091481596410142133}
+  - component: {fileID: 2594997289655922047}
   m_Layer: 5
   m_Name: SkillPanel
   m_TagString: Untagged
@@ -330,6 +334,19 @@ MonoBehaviour:
   m_Spacing: {x: 30, y: 30}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &2594997289655922047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773577149956798673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed852f136f18f94438bc47d659a63b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectionSign: {fileID: 2808558654415597281}
 --- !u!1 &861697739534311420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1677,7 @@ GameObject:
   - component: {fileID: 2929318585392445163}
   - component: {fileID: 5905204646658208094}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ThrowButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1959,7 +1976,7 @@ GameObject:
   - component: {fileID: 7328556339997062610}
   - component: {fileID: 8763165722417758063}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: DestroyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
