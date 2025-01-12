@@ -16,6 +16,7 @@ namespace Hashira.UI.StatusWindow
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             _canvasGroup.alpha = 0;
+            _inputReaderSO.UIActions.Enable();
             _canvasGroup.interactable = false;
             _isShowStatusWindow = false;
         }
@@ -46,6 +47,7 @@ namespace Hashira.UI.StatusWindow
         private void Show()
         {
             _inputReaderSO.PlayerActions.Disable();
+            _inputReaderSO.UIActions.Enable();
             _canvasGroup.DOFade(1, 0.5f)
                 .SetUpdate(true).OnComplete(()=>_isFading = false);
             _canvasGroup.interactable = true;
@@ -55,6 +57,7 @@ namespace Hashira.UI.StatusWindow
         private void Hide()
         {
             _inputReaderSO.PlayerActions.Enable();
+            _inputReaderSO.UIActions.Disable();
             _canvasGroup.DOFade(0, 0.5f)
                 .SetUpdate(true).OnComplete(()=>_isFading = false);
             _canvasGroup.interactable = false;

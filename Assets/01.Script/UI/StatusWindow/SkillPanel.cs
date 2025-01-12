@@ -1,3 +1,4 @@
+using System;
 using Hashira.UI.StatusWindow.SkillPanel.SkillSlots;
 using UnityEngine;
 
@@ -5,13 +6,29 @@ namespace Hashira.UI.StatusWindow.SkillPanel
 {
     public class SkillPanel : MonoBehaviour
     {
-        [SerializeField] private SelectionSign _selectionSign;
+        [SerializeField] private InputReaderSO _inputReaderSO;
+        public SelectionSign selectionSign;
         private SkillSlot[] _skillSlots;
-        
-        private void OnEnable()
+
+        private void Awake()
         {
             _skillSlots = GetComponentsInChildren<SkillSlot>();
-            _selectionSign.currentSelectedSkillSlot = _skillSlots[0];
+            selectionSign.SetCurrentSelectedSkillSlot(_skillSlots[0]);
+            _inputReaderSO.OnNavigateEvent += HandleSkillSelectMove;
+        }
+
+        private void OnDestroy()
+        {
+            _inputReaderSO.OnNavigateEvent -= HandleSkillSelectMove;
+        }
+
+        private void HandleSkillSelectMove(Vector2 dir)
+        {
+            
+        }
+
+        private void Start()
+        {
         }
     }
 }

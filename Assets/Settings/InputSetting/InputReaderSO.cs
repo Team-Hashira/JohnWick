@@ -19,7 +19,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action OnReloadEvent;
     public event Action<bool> OnCrouchEvent;
     public event Action<bool> OnAttackEvent;
-
+    public event Action<Vector2> OnNavigateEvent;
     public event Action OnStatusWindowEnableEvent;
     
     #endregion
@@ -122,7 +122,8 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 
     public void OnNavigate(InputAction.CallbackContext context)
     {
-        
+        if(context.performed)
+            OnNavigateEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnSubmit(InputAction.CallbackContext context)

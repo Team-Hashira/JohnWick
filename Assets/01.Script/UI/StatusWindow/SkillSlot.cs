@@ -6,10 +6,24 @@ namespace Hashira.UI.StatusWindow.SkillPanel.SkillSlots
 {
     public class SkillSlot : MonoBehaviour
     {
-        private Skill _baseSkill;
         [SerializeField] private Image _iconImage;
-        
+        private SkillPanel _skillPanel;
+        public Button button;
         public Skill GetBaseSkill() => _baseSkill;
+        
+        private Skill _baseSkill;
+
+        private void Awake()
+        {
+            _skillPanel = GetComponentInParent<SkillPanel>();
+            button = GetComponent<Button>();
+            button.onClick.AddListener(HandleSelectSkill);
+        }
+
+        private void HandleSelectSkill()
+        {
+            _skillPanel.selectionSign.SetCurrentSelectedSkillSlot(this);
+        }
         
         public void Init(Skill skill)
         {
