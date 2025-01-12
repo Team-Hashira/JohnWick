@@ -6,16 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SelectionSign.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SelectionSign.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 Bold SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/InputSetting/InputReaderSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/InputSetting/InputReaderSO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/vHierarchy/vHierarchy Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/vHierarchy/vHierarchy Data.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +135,7 @@
       <workItem from="1736558786650" duration="2040000" />
       <workItem from="1736596298115" duration="678000" />
       <workItem from="1736608150277" duration="3244000" />
-      <workItem from="1736649549931" duration="1528000" />
+      <workItem from="1736649549931" duration="5598000" />
     </task>
     <servers />
   </component>

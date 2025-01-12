@@ -26,7 +26,6 @@ namespace Hashira.UI.StatusWindow.SkillPanel
         {
             _currentSelectedSkillSlot = skillSlot;
             _rectTransform.position = skillSlot.transform.position;
-            Debug.Log(_rectTransform.position);
         }
         
         private void HandleThrowSkill()

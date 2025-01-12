@@ -12,7 +12,7 @@ namespace Hashira.UI.StatusWindow.SkillPanel.SkillSlots
         public Skill GetBaseSkill() => _baseSkill;
         
         private Skill _baseSkill;
-
+        public int SlotIndex { get; set; }
         private void Awake()
         {
             _skillPanel = GetComponentInParent<SkillPanel>();
@@ -23,6 +23,7 @@ namespace Hashira.UI.StatusWindow.SkillPanel.SkillSlots
         private void HandleSelectSkill()
         {
             _skillPanel.selectionSign.SetCurrentSelectedSkillSlot(this);
+            _skillPanel.currentSelectionIndex = SlotIndex;
         }
         
         public void Init(Skill skill)
