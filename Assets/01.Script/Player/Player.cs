@@ -46,6 +46,7 @@ namespace Hashira.Players
             InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnWeaponSawpEvent += HandleWeaponSawpEvent;
             InputReader.OnReloadEvent += HandleReloadEvent;
+            InputReader.OnInteractEvent += HandleInteractEvent;
 
             _weaponList = new List<Weapon>();
             _weaponHolder.GetComponentsInChildren(_weaponList);
@@ -55,6 +56,13 @@ namespace Hashira.Players
             HandleWeaponSawpEvent();
         }
 
+        #region Handles
+
+        private void HandleInteractEvent()
+        {
+
+        }
+
         private void HandleReloadEvent()
         {
             (CurrentWeapon as Gun).Reload();
@@ -62,7 +70,7 @@ namespace Hashira.Players
 
         private void HandleWeaponSawpEvent()
         {
-            if (CurrentWeapon != null) 
+            if (CurrentWeapon != null)
                 CurrentWeapon.gameObject.SetActive(false);
 
             _weaponIndex++;
@@ -82,6 +90,13 @@ namespace Hashira.Players
             CurrentWeapon.MeleeAttack(_damageStat.IntValue);
         }
 
+        private void HandleAttackEvent(bool isDown)
+        {
+            CurrentWeapon.MainAttack(_damageStat.IntValue, isDown);
+        }
+
+        #endregion
+
         protected override void InitializeComponent()
         {
             base.InitializeComponent();
@@ -89,11 +104,6 @@ namespace Hashira.Players
             _statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
             _damageStat = _statCompo.GetElement("AttackPower");
-        }
-
-        private void HandleAttackEvent(bool isDown)
-        {
-            CurrentWeapon.MainAttack(_damageStat.IntValue, isDown);
         }
 
         protected override void Update()
@@ -117,6 +127,7 @@ namespace Hashira.Players
             InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnWeaponSawpEvent -= HandleWeaponSawpEvent;
             InputReader.OnReloadEvent -= HandleReloadEvent;
+            InputReader.OnInteractEvent -= HandleInteractEvent;
         }
     }
 }
