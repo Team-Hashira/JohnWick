@@ -1,5 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
+using Hashira.Entities.Components;
 using Hashira.FSM;
 using Hashira.Weapons;
 using System;
@@ -26,14 +27,12 @@ namespace Hashira.Players
 
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
+        protected EntityWeaponHolder _weaponHolderCompo;
+        protected EntityInteractor _interactor;
+
+        private Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
-
-        public Transform _weaponHolder;
-
-        private List<Weapon> _weaponList;
-        private int _weaponIndex;
-        public Weapon CurrentWeapon { get; private set; }
 
         protected override void Awake()
         {
@@ -41,43 +40,20 @@ namespace Hashira.Players
 
             _stateMachine = new StateMachine(this, "Hashira.Players.");
 
-            InputReader.OnAttackEvent += HandleAttackEvent;
-            InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnDashEvent += HandleDashEvent;
-            InputReader.OnWeaponSawpEvent += HandleWeaponSawpEvent;
-            InputReader.OnReloadEvent += HandleReloadEvent;
             InputReader.OnInteractEvent += HandleInteractEvent;
 
-            _weaponList = new List<Weapon>();
-            _weaponHolder.GetComponentsInChildren(_weaponList);
-            _weaponList.ForEach(weapon => weapon.gameObject.SetActive(false));
-
-            _weaponIndex = -1;
-            HandleWeaponSawpEvent();
+            InputReader.OnAttackEvent += HandleAttackEvent;
+            InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
+            InputReader.OnReloadEvent += HandleReloadEvent;
+            InputReader.OnWeaponSawpEvent += HandleWeaponSawpEvent;
         }
 
         #region Handles
 
         private void HandleInteractEvent()
         {
-
-        }
-
-        private void HandleReloadEvent()
-        {
-            (CurrentWeapon as Gun).Reload();
-        }
-
-        private void HandleWeaponSawpEvent()
-        {
-            if (CurrentWeapon != null)
-                CurrentWeapon.gameObject.SetActive(false);
-
-            _weaponIndex++;
-            if (_weaponIndex >= _weaponList.Count) _weaponIndex -= _weaponList.Count;
-
-            CurrentWeapon = _weaponList[_weaponIndex];
-            CurrentWeapon.gameObject.SetActive(true);
+            _interactor.Interact();
         }
 
         private void HandleDashEvent()
@@ -87,12 +63,23 @@ namespace Hashira.Players
 
         private void HandleMeleeAttackEvent()
         {
-            CurrentWeapon.MeleeAttack(_damageStat.IntValue);
+            CurrentWeapon?.MeleeAttack(_damageStat.IntValue);
         }
 
         private void HandleAttackEvent(bool isDown)
         {
-            CurrentWeapon.MainAttack(_damageStat.IntValue, isDown);
+            CurrentWeapon?.MainAttack(_damageStat.IntValue, isDown);
+        }
+
+        private void HandleReloadEvent()
+        {
+            if (CurrentWeapon != null &&CurrentWeapon is Gun gun)
+                gun.Reload();
+        }
+
+        private void HandleWeaponSawpEvent()
+        {
+            _weaponHolderCompo.WeaponSawp();
         }
 
         #endregion
@@ -103,6 +90,8 @@ namespace Hashira.Players
 
             _statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
+            _weaponHolderCompo = GetEntityComponent<EntityWeaponHolder>();
+            _interactor = GetEntityComponent<EntityInteractor>();
             _damageStat = _statCompo.GetElement("AttackPower");
         }
 
@@ -114,7 +103,7 @@ namespace Hashira.Players
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
-            CurrentWeapon.LookTarget(mousePos);
+            CurrentWeapon?.LookTarget(mousePos);
 
             _renderCompo.LookTarget(mousePos);
         }
@@ -122,12 +111,13 @@ namespace Hashira.Players
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            InputReader.OnDashEvent -= HandleDashEvent;
+            InputReader.OnInteractEvent -= HandleInteractEvent;
+
             InputReader.OnAttackEvent -= HandleAttackEvent;
             InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
-            InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnWeaponSawpEvent -= HandleWeaponSawpEvent;
             InputReader.OnReloadEvent -= HandleReloadEvent;
-            InputReader.OnInteractEvent -= HandleInteractEvent;
         }
     }
 }

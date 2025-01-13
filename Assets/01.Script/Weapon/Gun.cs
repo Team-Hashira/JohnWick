@@ -84,7 +84,6 @@ namespace Hashira.Weapons
         public void Reload()
         {
             BulletAmount = MaxBulletAmount;
-            Debug.Log("Reload");
         }
     }
 }

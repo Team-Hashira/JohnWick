@@ -5,6 +5,7 @@ namespace Hashira.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {
+        [field:SerializeField] public WeaponSO WeaponSO { get; private set; }
         [SerializeField] protected Transform _visualTrm;
         protected float _facing;
 
