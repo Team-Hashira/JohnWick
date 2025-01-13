@@ -58,6 +58,10 @@ namespace Hashira.Entities.Components
                 CurrentWeapon = _weaponDictionary[_weapons[_weaponIndex]];
                 CurrentWeapon.gameObject.SetActive(true);
             }
+            else
+            {
+                CurrentWeapon = null;
+            }
         }
     }
 }
