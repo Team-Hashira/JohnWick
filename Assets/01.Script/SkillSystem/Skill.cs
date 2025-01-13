@@ -8,6 +8,7 @@ namespace Hashira.SkillSystem
     public abstract class Skill : MonoBehaviour
     {
         //Passive
+        
         public bool isPassive;
         //Cool Time
         public bool useCoolTime;
@@ -15,10 +16,13 @@ namespace Hashira.SkillSystem
         [HideInInspector] public float currentCoolTime = 0;
         [HideInInspector] public bool IsReadyCoolTime;
         public event Action<float> CoolTimePercentEvent;
-        
+
         //Conditional Event
         public bool useConditionalEvent;
         public Action<object> ConditionalEvent;
+        
+        //Others
+        public SkillUIDataSO skillUIDataSO;
         
         public virtual void UseSkill()
         {

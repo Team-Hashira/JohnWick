@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Crogen.AttributeExtension;
 using Hashira.SkillSystem.Skills;
 using UnityEngine;
@@ -22,6 +23,14 @@ namespace Hashira.SkillSystem
             }
         }
 
+        public static void RemoveSkill(Skill skill)
+        {
+            if (_skills.Remove(skill.GetType()))
+            {
+                
+            }
+        }
+        
         public static void AddSkill<T>() where T : Skill
         {
             Type type = typeof(T);
@@ -35,6 +44,11 @@ namespace Hashira.SkillSystem
                 skill.currentCoolTime = skill.coolTime;
                 _currentSkills.Add(type, skill);
             }
+        }
+        
+        public static Skill GetSkill(int index)
+        {
+            return _currentSkills.ElementAt(index).Value;
         }
         
         public static T GetSkill<T>() where T : Skill

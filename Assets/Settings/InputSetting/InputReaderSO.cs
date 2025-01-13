@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls.IUIActions
 {
     private Controls _controls;
-
+    public Controls.PlayerActions PlayerActions { get; private set; }
+    public Controls.UIActions UIActions { get; private set; }
+    
     #region Actions
 
     public event Action OnMeleeAttackEvent;
@@ -17,8 +19,9 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action OnReloadEvent;
     public event Action<bool> OnCrouchEvent;
     public event Action<bool> OnAttackEvent;
-
+    public event Action<Vector2> OnNavigateEvent;
     public event Action OnStatusWindowEnableEvent;
+    public event Action<float> OnStatusTapMoveToSideEvent;
     
     #endregion
 
@@ -34,10 +37,14 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
         if (_controls == null)
         {
             _controls = new Controls();
-            _controls.Player.SetCallbacks(this);
+            PlayerActions = _controls.Player;
+            UIActions = _controls.UI;
+            
+            PlayerActions.SetCallbacks(this);
+            UIActions.SetCallbacks(this);
         }
 
-        _controls.Player.Enable();
+        _controls.Enable();
     }
 
     private void OnDisable()
@@ -116,7 +123,8 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 
     public void OnNavigate(InputAction.CallbackContext context)
     {
-        
+        if(context.performed)
+            OnNavigateEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
@@ -154,6 +162,12 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
     {
     }
-    
+
+    public void OnStatusTapMoveToSide(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+           OnStatusTapMoveToSideEvent?.Invoke(context.ReadValue<float>()); 
+    }
+
     #endregion
 }
