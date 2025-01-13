@@ -18,6 +18,7 @@ TagManager:
   - Projectile
   - Object
   - OneWayGround
+  - Node
   - Interactable
   - 
   - 
