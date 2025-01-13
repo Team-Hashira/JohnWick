@@ -21,13 +21,33 @@ namespace Crogen.UIExtension
         public Transform buttonGroup;
         public Transform panelGroup;
         
+        private int _currentIndex;
+
+        public int CurrentIndex
+        {
+            get=>_currentIndex;
+            private set
+            {
+                _currentIndex = value;
+                _currentIndex = Mathf.Clamp(_currentIndex, 0, TapSectionList.Count - 1);
+            }
+        }
+        
         protected override void Awake()
         {
             base.Awake();
-            foreach (var tapSectionData in TapSectionList)
+
+            for (int i = 0; i < TapSectionList.Count; i++)
             {
+                var tapSectionData = TapSectionList[i];
+                
                 tapSectionData.isConnected = true;
-                AddListener(tapSectionData.button, tapSectionData.panel);
+                var copyValue = i;
+                tapSectionData.button.onClick.AddListener(() =>
+                {
+                    CurrentIndex = copyValue;
+                    HandleSelectionMove(tapSectionData.button, tapSectionData.panel);
+                });
             }
         }
 
@@ -48,27 +68,36 @@ namespace Crogen.UIExtension
         public void AddSection(Button button, UIBehaviour panel)
         {
             TapSectionList.Add(new TapSectionData {button = button, panel = panel});
-            AddListener(button, panel);
+            button.onClick.AddListener(() => { HandleSelectionMove(button, panel); });
         }
 
-        private void AddListener(Button button, UIBehaviour panel)
+        private void HandleSelectionMove(Button button, UIBehaviour panel)
         {
-            button.onClick.AddListener(() =>
+            TapSectionList.FirstOrDefault(x=>x.panel.gameObject.activeSelf)?.panel.gameObject.SetActive(false);
+            TapSectionList.ForEach(x =>
             {
-                TapSectionList.FirstOrDefault(x=>x.panel.gameObject.activeSelf)?.panel.gameObject.SetActive(false);
-                TapSectionList.ForEach(x =>
+                if (x.button == button)
                 {
-                    if (x.button == button)
-                    {
-                        button.image.rectTransform.SetAsFirstSibling();
-                    }
-                    else
-                    {
-                        button.image.rectTransform.SetAsLastSibling();
-                    }
-                });
-                panel.gameObject.SetActive(true);   
+                    button.image.rectTransform.SetAsFirstSibling();
+                }
+                else
+                {
+                    button.image.rectTransform.SetAsLastSibling();
+                }
             });
+            panel.gameObject.SetActive(true);
+        }
+
+        public void MoveToRight()
+        {
+            ++CurrentIndex;
+            HandleSelectionMove(TapSectionList[CurrentIndex].button, TapSectionList[CurrentIndex].panel);
+        }
+
+        public void MoveToLeft()
+        {
+            --CurrentIndex;
+            HandleSelectionMove(TapSectionList[CurrentIndex].button, TapSectionList[CurrentIndex].panel);
         }
     }
 }

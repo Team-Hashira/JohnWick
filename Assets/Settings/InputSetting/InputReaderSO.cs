@@ -21,6 +21,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action<bool> OnAttackEvent;
     public event Action<Vector2> OnNavigateEvent;
     public event Action OnStatusWindowEnableEvent;
+    public event Action<float> OnStatusTapMoveToSideEvent;
     
     #endregion
 
@@ -161,6 +162,12 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
     {
     }
-    
+
+    public void OnStatusTapMoveToSide(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+           OnStatusTapMoveToSideEvent?.Invoke(context.ReadValue<float>()); 
+    }
+
     #endregion
 }
