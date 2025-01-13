@@ -89,7 +89,7 @@ namespace Hashira.Pathfind
             return BuildPath(bestNode);
         }
 
-        public float EvaluatePathQuality(List<Node> path, Node targetNode)
+        private float EvaluatePathQuality(List<Node> path, Node targetNode)
         {
             if (path == null || path.Count == 0)
                 return float.MaxValue;

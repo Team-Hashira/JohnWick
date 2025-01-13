@@ -1,4 +1,5 @@
 using Hashira.Core.StatSystem;
+using Hashira.Pathfind;
 using System;
 using UnityEngine;
 
@@ -25,6 +26,13 @@ namespace Hashira.Entities
 
         public bool IsGrounded { get; private set; }
 
+
+        [Header("Node Set")]
+        [SerializeField]
+        private LayerMask _whatIsNode;
+        [field: Space(10)]
+        public Node CurrentNode { get; private set; }
+
         public virtual void Initialize(Entity entity)
         {
             _gravityScale = Rigidbody2D.gravityScale;
@@ -37,7 +45,7 @@ namespace Hashira.Entities
 
         private void FixedUpdate()
         {
-            GroundCheck();
+            GroundAndNodeCheck();
             ApplyGravity();
             ApplyVelocity();
         }
@@ -54,15 +62,25 @@ namespace Hashira.Entities
             }
         }
 
-        private void GroundCheck()
+        private void GroundAndNodeCheck()
         {
             RaycastHit2D[] hits = Physics2D.BoxCastAll((Vector2)transform.position,
-                _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsGround);
+                _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsGround | _whatIsNode);
 
             IsGrounded = hits.Length > 0 && _yMovement < 0;
 
             if (IsGrounded)
-                _hitedGround = hits[0];
+            {
+                for (int i = 0; i < hits.Length; i++)
+                {
+                    if (hits[i].collider.TryGetComponent(out Node node))
+                    {
+                        CurrentNode = node;
+                    }
+                    else
+                        _hitedGround = hits[i];
+                }
+            }
         }
 
         private void ApplyVelocity()
