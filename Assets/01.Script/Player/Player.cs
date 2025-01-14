@@ -46,7 +46,7 @@ namespace Hashira.Players
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnReloadEvent += HandleReloadEvent;
-            InputReader.OnWeaponSawpEvent += HandleWeaponSawpEvent;
+            InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
         #region Handles
@@ -77,7 +77,7 @@ namespace Hashira.Players
                 gun.Reload();
         }
 
-        private void HandleWeaponSawpEvent()
+        private void HandleWeaponSwapEvent()
         {
             _weaponHolderCompo.WeaponSawp();
         }
@@ -116,7 +116,7 @@ namespace Hashira.Players
 
             InputReader.OnAttackEvent -= HandleAttackEvent;
             InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
-            InputReader.OnWeaponSawpEvent -= HandleWeaponSawpEvent;
+            InputReader.OnWeaponSwapEvent -= HandleWeaponSwapEvent;
             InputReader.OnReloadEvent -= HandleReloadEvent;
         }
     }
