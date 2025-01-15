@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 72169296}
   - component: {fileID: 72169295}
   m_Layer: 0
-  m_Name: SkillManager
+  m_Name: PerkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
   currentCoolTime: 0
   IsReadyCoolTime: 0
   useConditionalEvent: 0
-  skillUIDataSO: {fileID: 0}
+  perkUIDataSO: {fileID: 11400000, guid: 8fe94f10fdc0433428f537532e6e42eb, type: 2}
   _maxStackCount: 2
   _stackCount: 0
 --- !u!114 &72169296
