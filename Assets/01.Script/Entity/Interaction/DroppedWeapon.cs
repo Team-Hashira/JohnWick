@@ -1,5 +1,5 @@
 using Hashira.Entities.Components;
-using Hashira.Items;
+using Hashira.Weapons;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -18,7 +18,7 @@ namespace Hashira.Entities.Interacts
         public void Init(WeaponSO weaponSO)
         {
             _weaponSO = weaponSO;
-            _spriteRenderer.sprite = _weaponSO.weaponSprite;
+            _spriteRenderer.sprite = _weaponSO.itemSprite;
         }
 
         public override void Interaction(Entity entity)

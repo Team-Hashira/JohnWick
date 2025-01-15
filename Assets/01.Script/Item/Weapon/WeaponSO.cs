@@ -1,11 +1,10 @@
 using UnityEngine;
 
-namespace Hashira.Items
+namespace Hashira.Weapons
 {
     [CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Weapon")]
     public class WeaponSO : ItemSO
     {
-        public string weaponName;
-        public Sprite weaponSprite;
+
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hashira.Items
+namespace Hashira.Weapons
 {
     public abstract class ItemSO : ScriptableObject
     {

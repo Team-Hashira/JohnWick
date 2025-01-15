@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Hashira.Items
+namespace Hashira.Weapons
 {
     public abstract class Weapon : MonoBehaviour
     {

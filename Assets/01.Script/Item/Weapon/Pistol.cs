@@ -2,7 +2,7 @@ using Crogen.CrogenPooling;
 using Hashira.Projectile;
 using UnityEngine;
 
-namespace Hashira.Items
+namespace Hashira.Weapons
 {
     public class Pistol : Gun
     {

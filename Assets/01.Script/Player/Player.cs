@@ -2,7 +2,7 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.FSM;
-using Hashira.Items;
+using Hashira.Weapons;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +30,7 @@ namespace Hashira.Players
         protected EntityWeaponHolder _weaponHolderCompo;
         protected EntityInteractor _interactor;
 
-        private Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
+        private Weapons.Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
 
