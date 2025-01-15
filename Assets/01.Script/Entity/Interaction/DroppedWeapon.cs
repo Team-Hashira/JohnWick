@@ -1,5 +1,5 @@
 using Hashira.Entities.Components;
-using Hashira.Weapons;
+using Hashira.Items;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
