@@ -10,7 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4365168ff40fea408f799fc9fc45cbc, type: 3}
-  m_Name: RifleWeaponSO
+  m_Name: PistolWeaponSO
   m_EditorClassIdentifier: 
-  weaponName: "\uC18C\uCD1D"
-  weaponSprite: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
+  itemSprite: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
+  itemName: "\uAD8C\uCD1D"
+  itemDescription: 
+  equippableWeaponPartsType: 0
+  overrideStatElements:
+  - Name: 
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 2

@@ -6,7 +6,7 @@ namespace Hashira.Entities
 {
     public class EntityStat : MonoBehaviour, IEntityComponent
     {
-        [SerializeField] private List<StatElement> _overrideStatElements = new List<StatElement>();
+        [SerializeField] private List<StatElement> _overrideStatElementList = new List<StatElement>();
         [SerializeField] private StatBaseSO _baseStat;
 
         private Dictionary<string, StatElement> _overrideStatDictionary;
@@ -17,7 +17,7 @@ namespace Hashira.Entities
         {
             _entity = entity;
             _overrideStatDictionary = new Dictionary<string, StatElement>();
-            foreach (StatElement statElement in _overrideStatElements)
+            foreach (StatElement statElement in _overrideStatElementList)
             {
                 if (statElement.elementSO == null) continue;
 

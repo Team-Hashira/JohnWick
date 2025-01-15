@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4365168ff40fea408f799fc9fc45cbc, type: 3}
-  m_Name: PistolWeaponSO
+  m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
+  m_Name: MuzzleParts
   m_EditorClassIdentifier: 
-  weaponName: "\uAD8C\uCD1D"
-  weaponSprite: {fileID: -5338738485830625687, guid: 2801f29e1de612f4aab817d3f4ee0260, type: 3}
+  itemSprite: {fileID: 0}
+  itemName: 
+  itemDescription: 
+  eWeaponPartsType: 0

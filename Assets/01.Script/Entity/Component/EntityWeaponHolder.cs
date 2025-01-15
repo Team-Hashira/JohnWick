@@ -7,14 +7,14 @@ namespace Hashira.Entities.Components
 {
     public class EntityWeaponHolder : MonoBehaviour, IEntityComponent
     {
-        private Dictionary<WeaponSO, Weapons.Weapon> _weaponDictionary;
+        private Dictionary<WeaponSO, Weapon> _weaponDictionary;
         private int _weaponIndex;
-        public Weapons.Weapon CurrentWeapon { get; private set; }
-        private WeaponSO[] _weapons = new WeaponSO[3] { null, null, null };
+        public Weapon CurrentWeapon { get; private set; }
+        private WeaponSO[] _weapons = new WeaponSO[2] { null, null };
 
         public void Initialize(Entity entity)
         {
-            _weaponDictionary = new Dictionary<WeaponSO, Weapons.Weapon>();
+            _weaponDictionary = new Dictionary<WeaponSO, Weapon>();
             Weapon[] waepons = transform.GetComponentsInChildren<Weapon>();
             waepons.ToList().ForEach(weapon =>
             {
