@@ -5,27 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkSlot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skill.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillUIDataSO.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/SkillUIDataSO.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/SkillSystem/Skills/MoveSpeedUp.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SelectionSign.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SelectionSign.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillPanel.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkPanel.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillSlot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SkillSlot.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkSlot.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/GameCanvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/GameCanvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/SkillSlot.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/SkillSlot.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/Perk.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/Perk.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/PerkManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/PerkManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/PerkUIDataSO.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/PerkUIDataSO.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/Perks.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/Perks/MoveSpeedUp.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/PerkSystem/Perks/MoveSpeedUp.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkPanel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkPanel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkSlot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PerkSlot.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SelectionSign.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/SelectionSign.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
