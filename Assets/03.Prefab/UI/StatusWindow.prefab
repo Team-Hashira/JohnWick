@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 2646751886731320664}
   - component: {fileID: 2594997289655922047}
   m_Layer: 5
-  m_Name: SkillPanel
+  m_Name: PerkPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3728,7 +3728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (13)
+      value: PerkSlot (13)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3932,7 +3932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (11)
+      value: PerkSlot (11)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4034,7 +4034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (8)
+      value: PerkSlot (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4136,7 +4136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (7)
+      value: PerkSlot (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4340,7 +4340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (4)
+      value: PerkSlot (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4442,7 +4442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (5)
+      value: PerkSlot (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4544,7 +4544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (10)
+      value: PerkSlot (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4646,7 +4646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (9)
+      value: PerkSlot (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4748,7 +4748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (1)
+      value: PerkSlot (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4850,7 +4850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (6)
+      value: PerkSlot (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4952,7 +4952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (15)
+      value: PerkSlot (15)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5054,7 +5054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (14)
+      value: PerkSlot (14)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5156,7 +5156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot
+      value: PerkSlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5258,7 +5258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (2)
+      value: PerkSlot (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5462,7 +5462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (3)
+      value: PerkSlot (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5564,7 +5564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7623774850842135544, guid: cb9199a4363e42a45b04875111835849, type: 3}
       propertyPath: m_Name
-      value: SkillSlot (12)
+      value: PerkSlot (12)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

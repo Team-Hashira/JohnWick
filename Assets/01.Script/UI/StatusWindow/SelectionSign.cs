@@ -1,14 +1,14 @@
 using DG.Tweening;
-using Hashira.SkillSystem;
-using Hashira.UI.StatusWindow.SkillPanel.SkillSlots;
+using Hashira.PerkSystem;
+using Hashira.UI.StatusWindow.PerkPanel.SkillSlots;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Hashira.UI.StatusWindow.SkillPanel
+namespace Hashira.UI.StatusWindow.PerkPanel
 {
     public class SelectionSign : MonoBehaviour
     {
-        private SkillSlot _currentSelectedSkillSlot;
+        private PerkSlot _currentSelectedPerkSlot;
         
         [SerializeField] private Button _throwButton;
         [SerializeField] private Button _destroyButton;
@@ -22,24 +22,24 @@ namespace Hashira.UI.StatusWindow.SkillPanel
             _destroyButton.onClick.AddListener(HandleDestroySkill);
         }
 
-        public void SetCurrentSelectedSkillSlot(SkillSlot skillSlot)
+        public void SetCurrentSelectedPerkSlot(PerkSlot perkSlot)
         {
-            _currentSelectedSkillSlot = skillSlot;
-            _rectTransform.position = skillSlot.transform.position;
+            _currentSelectedPerkSlot = perkSlot;
+            _rectTransform.position = perkSlot.transform.position;
         }
         
         private void HandleThrowSkill()
         {
-            Skill skill = _currentSelectedSkillSlot.GetBaseSkill();
-            SkillManager.RemoveSkill(skill);
+            Perk perk = _currentSelectedPerkSlot.GetBaseSkill();
+            PerkManager.RemovePerk(perk);
             
             // TODO 걍 버리기만(스킬 자체는 필드에서 언제든지 다시 회수할 수 있도록)
         }
 
         private void HandleDestroySkill()
         {
-            Skill skill = _currentSelectedSkillSlot.GetBaseSkill();
-            SkillManager.RemoveSkill(skill);
+            Perk perk = _currentSelectedPerkSlot.GetBaseSkill();
+            PerkManager.RemovePerk(perk);
             
             // TODO 스킬 파괴(리턴)
         }

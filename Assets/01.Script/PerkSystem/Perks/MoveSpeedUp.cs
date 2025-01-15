@@ -1,14 +1,12 @@
-using System;
-using System.Collections;
 using Hashira.Core.StatSystem;
 using Hashira.EffectSystem;
 using Hashira.Entities;
 using Hashira.Players;
 using UnityEngine;
 
-namespace Hashira.SkillSystem.Skills
+namespace Hashira.PerkSystem.Perks
 {
-    public class MoveSpeedUp : Skill
+    public class MoveSpeedUp : Perk
     {
         private Player _player;
         private EntityEffector _playerEffector;
@@ -40,17 +38,13 @@ namespace Hashira.SkillSystem.Skills
         {
             if (lastValue > newValue)
             {
-                int prev = _stackCount;
-                
                 EffectManager.Instance.RemoveEffect<EffectSystem.Effects.IncreaseMoveSpeed>(_playerEffector);
-                
-                Debug.Log(_stackCount);
             }
         }
 
-        public override void UseSkill()
+        public override void UsePerk()
         {
-            base.UseSkill();
+            base.UsePerk();
             if (_stackCount > _maxStackCount) return;
             ++_stackCount;
             EffectManager.Instance.AddEffect<EffectSystem.Effects.IncreaseMoveSpeed>(_playerEffector, _stackCount, 2f);

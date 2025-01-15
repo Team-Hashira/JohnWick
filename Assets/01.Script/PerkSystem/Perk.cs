@@ -1,11 +1,10 @@
 using System;
 using Crogen.AttributeExtension;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Hashira.SkillSystem
+namespace Hashira.PerkSystem
 {
-    public abstract class Skill : MonoBehaviour
+    public abstract class Perk : MonoBehaviour
     {
         //Passive
         
@@ -22,9 +21,9 @@ namespace Hashira.SkillSystem
         public Action<object> ConditionalEvent;
         
         //Others
-        public SkillUIDataSO skillUIDataSO;
+        public PerkUIDataSO perkUIDataSo;
         
-        public virtual void UseSkill()
+        public virtual void UsePerk()
         {
             currentCoolTime = 0;
             IsReadyCoolTime = false;
