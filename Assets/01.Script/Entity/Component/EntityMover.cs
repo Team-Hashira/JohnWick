@@ -14,6 +14,7 @@ namespace Hashira.Entities
         [SerializeField] private Vector2 _groundCheckerSize;
         [SerializeField] private float _downDistance;
         [SerializeField] protected LayerMask _whatIsGround;
+        [SerializeField] private LayerMask _oneWayPlatform;
         protected RaycastHit2D _hitedGround;
         protected float _gravity;
         protected float _gravityScale;
@@ -41,6 +42,7 @@ namespace Hashira.Entities
             _yMovement = 0;
             _xMovement = 0;
             _entity = entity;
+            _whatIsGround += _oneWayPlatform;
         }
 
         private void FixedUpdate()
@@ -67,18 +69,17 @@ namespace Hashira.Entities
             RaycastHit2D[] hits = Physics2D.BoxCastAll((Vector2)transform.position,
                 _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsGround | _whatIsNode);
 
-            IsGrounded = hits.Length > 0 && _yMovement < 0;
 
-            if (IsGrounded)
+            for (int i = 0; i < hits.Length; i++)
             {
-                for (int i = 0; i < hits.Length; i++)
+                if (hits[i].collider.TryGetComponent(out Node node))
                 {
-                    if (hits[i].collider.TryGetComponent(out Node node))
-                    {
-                        CurrentNode = node;
-                    }
-                    else
-                        _hitedGround = hits[i];
+                    CurrentNode = node;
+                }
+                else
+                {
+                    _hitedGround = hits[i];
+                    IsGrounded = _yMovement < 0;
                 }
             }
         }
@@ -119,6 +120,19 @@ namespace Hashira.Entities
                 Rigidbody2D.linearVelocityY = 0;
         }
 
+        public void UnderJump(bool isUnderJump)
+        {
+            int layerCheck = _whatIsGround & _oneWayPlatform;
+            if (layerCheck != 0 && isUnderJump)
+                _whatIsGround -= _oneWayPlatform;
+            else if (isUnderJump == false)
+                _whatIsGround += _oneWayPlatform;
+
+            foreach (var platformEffector in FindObjectsByType<PlatformEffector2D>(FindObjectsSortMode.None))
+            {
+                platformEffector.rotationalOffset = isUnderJump ? 180 : 0;
+            }
+        }
 
 #if UNITY_EDITOR
         private void OnDrawGizmos()
