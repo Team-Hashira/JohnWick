@@ -11,6 +11,7 @@ namespace Hashira.Weapons
         public EWeaponPartsType equippableWeaponPartsType;
         public List<StatElement> statElementLsit = new List<StatElement>();
         [field: SerializeField] public LayerMask WhatIsTarget { get; internal set; }
+        public StatBaseSO baseStat;
 
         private Weapon weapon;
 

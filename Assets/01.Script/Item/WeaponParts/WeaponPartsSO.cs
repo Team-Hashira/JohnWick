@@ -18,6 +18,6 @@ namespace Hashira.Weapons
     public class WeaponPartsSO : ItemSO
     {
         [Header("Weapon parts setting")]
-        public EWeaponPartsType weaponPartsType;
+        public EWeaponPartsType partsType;
     }
 }

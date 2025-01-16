@@ -1,5 +1,6 @@
 using Hashira.Entities.Components;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Weapons
@@ -10,9 +11,15 @@ namespace Hashira.Weapons
 
         protected EntityWeapon _EntityWeapon { get; private set; }
 
+        private Dictionary<EWeaponPartsType, WeaponPartsSO> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponPartsSO>();
+
+        public event Action<EWeaponPartsType, WeaponPartsSO> OnPartsChanged;
+
         public void Init(WeaponSO weaponSO)
         {   
             WeaponSO = weaponSO;
+            foreach (EWeaponPartsType partsType in Enum.GetValues(typeof(EWeaponPartsType)))
+                _partsSlotDictionary.Add(partsType, null);
         }
 
         //ÀåÂø
@@ -39,6 +46,17 @@ namespace Hashira.Weapons
         public virtual object Clone()
         {
             return MemberwiseClone();
+        }
+
+        public WeaponPartsSO SwapParts(EWeaponPartsType eWeaponPartsType, WeaponPartsSO partsSO)
+        {
+            Debug.Log(eWeaponPartsType);
+            WeaponPartsSO prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
+
+            _partsSlotDictionary[eWeaponPartsType] = partsSO;
+            OnPartsChanged?.Invoke(eWeaponPartsType, partsSO);
+
+            return prevPartsSO;
         }
     }
 }

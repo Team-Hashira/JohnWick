@@ -64,7 +64,7 @@ namespace Hashira.Entities.Components
             return prevWeapon;
         }
 
-        public void WeaponSawp()
+        public void WeaponSwap()
         {
             //ΩΩ∑‘ ¿Œµ¶Ω∫ ¥ı«œ±‚
             WeaponIndex++;

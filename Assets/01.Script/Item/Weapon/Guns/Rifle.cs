@@ -12,8 +12,9 @@ namespace Hashira.Weapons
         private bool _isFiring;
         private int _damage;
 
-        private void OnEnable()
+        public override void UnEquip()
         {
+            base.UnEquip();
             _isFiring = false;
         }
 

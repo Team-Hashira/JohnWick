@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
   itemSprite: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
-  itemName: "\uAD8C\uCD1D"
+  itemName: Pistol
+  itemDisplayName: "\uAD8C\uCD1D"
   itemDescription: 
   equippableWeaponPartsType: 15
   statElementLsit: []
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
+  baseStat: {fileID: 0}
   _firePoint: {x: 2.3, y: 0}
   _bullet: 0
   _fireSpakleEffect: 1

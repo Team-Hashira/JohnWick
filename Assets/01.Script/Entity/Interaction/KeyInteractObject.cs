@@ -1,4 +1,5 @@
 using Hashira.Entities.Components;
+using TMPro;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -6,6 +7,7 @@ namespace Hashira.Entities.Interacts
     public abstract class KeyInteractObject : MonoBehaviour, IInteractable
     {
         [SerializeField] protected GameObject _keyGuideObject;
+        [SerializeField] protected TextMeshProUGUI _text;
 
         protected virtual void Awake()
         {
