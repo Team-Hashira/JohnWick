@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1395637572835810311}
   - component: {fileID: 8834974861013871216}
   m_Layer: 5
-  m_Name: SkillSlot
+  m_Name: PerkSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

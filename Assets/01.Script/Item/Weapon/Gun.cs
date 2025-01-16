@@ -3,7 +3,7 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items
 {
     public class Gun : Weapon
     {

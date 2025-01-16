@@ -113,6 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8152302228208947013}
+  - component: {fileID: 104710591773758529}
   m_Layer: 8
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -139,6 +140,18 @@ Transform:
   - {fileID: 5965346560229105023}
   m_Father: {fileID: 2163975733565134096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &104710591773758529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168156252607547634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16aba320951473d4f91e553039235d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000908875141724941
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +309,7 @@ Transform:
   - {fileID: 4241799316659571125}
   - {fileID: 6586277770026984110}
   - {fileID: 8230924652911601850}
+  - {fileID: 6286951172132089138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3659791351898874512
@@ -385,7 +399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
   <VisualTrm>k__BackingField: {fileID: 2163975733565134096}
-  _weaponHolder: {fileID: 8152302228208947013}
 --- !u!114 &8898830313081796299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10276,9 +10289,61 @@ MonoBehaviour:
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  _whatIsNode:
+    serializedVersion: 2
+    m_Bits: 0
   _oneWayPlatform:
     serializedVersion: 2
     m_Bits: 4096
+--- !u!1 &7573086966961867391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6286951172132089138}
+  - component: {fileID: 2775173315977361200}
+  m_Layer: 8
+  m_Name: Interactor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6286951172132089138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7573086966961867391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.632, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2365600500662696666}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2775173315977361200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7573086966961867391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df9441fdf1fe67e489c75a6fcbbb2d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _input: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
+  _interactable:
+    serializedVersion: 2
+    m_Bits: 8192
+  _radius: 1.2
 --- !u!1 &8152136280330247051
 GameObject:
   m_ObjectHideFlags: 0
@@ -10453,6 +10518,10 @@ PrefabInstance:
       propertyPath: _cartridgeCaseParticle
       value: 
       objectReference: {fileID: 3911198574197439489}
+    - target: {fileID: 8013740874618944389, guid: 781ee56c9dd8a8042981f4f0c7e20440, type: 3}
+      propertyPath: <WeaponSO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: f51256a092abb024ca5e18cade0df06f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10479,6 +10548,10 @@ PrefabInstance:
       propertyPath: _cartridgeCaseParticle
       value: 
       objectReference: {fileID: 256740920506850395}
+    - target: {fileID: 8744405551330159911, guid: aa3cb2a9869fe6647b570a996aecdbf5, type: 3}
+      propertyPath: <WeaponSO>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: b1ea9e84fcdf4924c81bf82333c8a96c, type: 2}
     - target: {fileID: 9146590140076362390, guid: aa3cb2a9869fe6647b570a996aecdbf5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
