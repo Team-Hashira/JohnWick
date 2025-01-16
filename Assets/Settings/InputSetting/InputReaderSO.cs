@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +30,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 
     public Vector2 MousePosition { get; private set; }
     public float XMovement { get; private set; }
+    public string InteractKey { get; private set; }
 
     #endregion
 
@@ -39,13 +41,19 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
             _controls = new Controls();
             PlayerActions = _controls.Player;
             UIActions = _controls.UI;
-            
+
             PlayerActions.SetCallbacks(this);
             UIActions.SetCallbacks(this);
         }
 
         _controls.Enable();
+        InteractKeyUpdate();
     }
+
+    private void InteractKeyUpdate()
+        => InteractKey = PlayerActions.Interact.bindings
+                        .Where(binding => binding.path.Contains("<Keyboard>"))
+                        .ToList()[0].ToDisplayString();
 
     private void OnDisable()
     {

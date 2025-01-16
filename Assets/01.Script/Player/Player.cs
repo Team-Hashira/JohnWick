@@ -72,7 +72,7 @@ namespace Hashira.Players
 
         private void HandleWeaponSwapEvent()
         {
-            _weaponHolderCompo.WeaponSawp();
+            _weaponHolderCompo.WeaponSwap();
         }
 
         #endregion

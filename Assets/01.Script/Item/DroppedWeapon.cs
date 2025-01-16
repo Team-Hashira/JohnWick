@@ -5,23 +5,22 @@ using UnityEngine;
 
 namespace Hashira.Entities.Interacts
 {
-    public class DroppedWeapon : KeyInteractObject
+    public class DroppedWeapon : DroppedItem
     {
-        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private WeaponSO _weaponSO;
         [SerializeField] private Weapon _weapon;
 
         protected override void Awake()
         {
             base.Awake();
-            Init(_weaponSO.GetWeaponClass());
+            SetWeapon(_weaponSO.GetWeaponClass());
         }
 
-        public void Init(Weapon weapon)
+        private void SetWeapon(Weapon weapon)
         {
             _weapon = weapon;
             _weaponSO = weapon.WeaponSO;
-            _spriteRenderer.sprite = weapon.WeaponSO.itemIcon;
+            SetItemSO(_weaponSO);
         }
 
         public override void Interaction(Entity entity)
@@ -30,10 +29,8 @@ namespace Hashira.Entities.Interacts
 
             EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
             Weapon weapon = weaponHolder.EquipWeapon(_weapon);
-            if (weapon != null)
-                Init(weapon);
-            else
-                Destroy(gameObject);
+            if (weapon != null) SetWeapon(weapon);
+            else Destroy(gameObject);
         }
     }
 }
