@@ -28,7 +28,7 @@ namespace Hashira.Entities.Interacts
             base.Interaction(entity);
 
             EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
-            WeaponPartsSO weaponPartsSO = weaponHolder.CurrentWeapon.SwapParts(_weaponSO.partsType, _weaponSO);
+            WeaponPartsSO weaponPartsSO = weaponHolder.CurrentWeapon.EquipParts(_weaponSO.partsType, _weaponSO);
             if (weaponPartsSO != null) SetItemSO(weaponPartsSO);
             else Destroy(gameObject);
         }

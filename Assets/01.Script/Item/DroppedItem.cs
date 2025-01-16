@@ -11,7 +11,7 @@ namespace Hashira.Entities.Interacts
         {
             _spriteRenderer.sprite = itemSO?.itemIcon;
             string itemName = itemSO == null ? "" : itemSO.itemDisplayName;
-            _text.text = $"{itemName}";
+            _nameText.text = $"{itemName}";
         }
     }
 }
