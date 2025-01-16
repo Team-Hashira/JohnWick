@@ -479,7 +479,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940448862745694505}
-  - component: {fileID: 8013740874618944389}
   - component: {fileID: 2123138491481026667}
   m_Layer: 8
   m_Name: Rifle
@@ -505,34 +504,6 @@ Transform:
   - {fileID: 7352894964872963454}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8013740874618944389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2508412908413669406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f80c585a0be3c542b48390d0339e388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _visualTrm: {fileID: 1446215139971824576}
-  _slideTrm: {fileID: 2317600746521549898}
-  _cartridgeCaseParticle: {fileID: 0}
-  _whatIsTarget:
-    serializedVersion: 2
-    m_Bits: 2752
-  _firePoint: {fileID: 2425633106322880740}
-  _bullet: 0
-  _fireSpakleEffect: 1
-  _bulletSpeed: 200
-  _damageCoefficient: 100
-  _boxDamageCaster2D: {fileID: 2123138491481026667}
-  <MaxBulletAmount>k__BackingField: 30
-  _reloadDuration: 0
-  _autoSpeed: 0.15
-  _lastFireTime: 0
 --- !u!114 &2123138491481026667
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -130,7 +130,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9146590140076362390}
-  - component: {fileID: 8744405551330159911}
   - component: {fileID: 7290970602873851435}
   m_Layer: 8
   m_Name: Pistol
@@ -156,32 +155,6 @@ Transform:
   - {fileID: 7295115224950976449}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8744405551330159911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2025806761544763657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c215e2ca20035e43b4146a391331d0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _visualTrm: {fileID: 7669147047537405483}
-  _slideTrm: {fileID: 1023068162423357282}
-  _cartridgeCaseParticle: {fileID: 0}
-  _whatIsTarget:
-    serializedVersion: 2
-    m_Bits: 2752
-  _firePoint: {fileID: 4358543265841590969}
-  _bullet: 0
-  _fireSpakleEffect: 1
-  _bulletSpeed: 200
-  _damageCoefficient: 100
-  _boxDamageCaster2D: {fileID: 7290970602873851435}
-  <MaxBulletAmount>k__BackingField: 8
-  _reloadDuration: 0
 --- !u!114 &7290970602873851435
 MonoBehaviour:
   m_ObjectHideFlags: 0
