@@ -77,7 +77,7 @@ namespace Hashira.Enemies
                 //if(hasToJump)
                 //    _enemy.GetComponent<Collider2D>().excludeLayers = _onewayPlatform;
                 //else
-                //    _enemy.GetComponent<Collider2D>().excludeLayers = 0;
+                //    _enemy.GetComponent<Collider2D>().excludeLayers = 0; 
                 _entityMover.UnderJump(hasToJump);
                 while (true)
                 {
