@@ -16,4 +16,4 @@ MonoBehaviour:
   itemSprite: {fileID: 5316577475085910651, guid: 77240e70ef7b53d4d801a9978f4b06d1, type: 3}
   itemName: "\uC18C\uC74C\uAE30"
   itemDescription: 
-  eWeaponPartsType: 1
+  weaponPartsType: 1
