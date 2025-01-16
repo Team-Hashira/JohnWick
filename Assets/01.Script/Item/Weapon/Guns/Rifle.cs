@@ -2,12 +2,12 @@ using Crogen.CrogenPooling;
 using Hashira.Projectile;
 using UnityEngine;
 
-namespace Hashira.Items
+namespace Hashira.Weapons
 {
     public class Rifle : Gun
     {
-        [SerializeField] private float _autoSpeed = 0.15f;
-        [SerializeField] private float _lastFireTime;
+        private float _autoSpeed = 0.15f;
+        private float _lastFireTime;
         
         private bool _isFiring;
         private int _damage;
@@ -17,11 +17,11 @@ namespace Hashira.Items
             _isFiring = false;
         }
 
-        public override void MainAttack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown)
         {
             if (BulletAmount <= 0) return;
 
-            base.MainAttack(damage, isDown);
+            base.Attack(damage, isDown);
             _isFiring = isDown;
             _damage = damage;
         }
@@ -33,16 +33,17 @@ namespace Hashira.Items
 
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
 
+            Vector3 firePos = _EntityWeapon.transform.position + _EntityWeapon.transform.rotation * GunSO._firePoint;
             //Bullet
-            Bullet bullet = gameObject.Pop(_bullet, _firePoint.position, Quaternion.identity) as Bullet;
-            bullet.Init(_whatIsTarget, transform.right, _bulletSpeed, Mathf.CeilToInt(_damage * _damageCoefficient / 100));
+            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO._bullet, firePos, Quaternion.identity) as Bullet;
+            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, Mathf.CeilToInt(_damage * GunSO._damageCoefficient / 100));
             //Effect
-            gameObject.Pop(_fireSpakleEffect, _firePoint.position, Quaternion.LookRotation(Vector3.back, transform.right));
+            _EntityWeapon.gameObject.Pop(GunSO._fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
 
             return true;
         }
 
-        private void Update()
+        public override void WeaponUpdate()
         {
             if (_isFiring && _lastFireTime + _autoSpeed < Time.time)
             {

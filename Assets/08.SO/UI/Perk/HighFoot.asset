@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4365168ff40fea408f799fc9fc45cbc, type: 3}
-  m_Name: PistolWeaponSO
+  m_Script: {fileID: 11500000, guid: a52b61319c0ad3a4da8eb67cfe74380f, type: 3}
+  m_Name: HighFoot
   m_EditorClassIdentifier: 
-  weaponName: "\uAD8C\uCD1D"
-  weaponSprite: {fileID: -5338738485830625687, guid: 2801f29e1de612f4aab817d3f4ee0260, type: 3}
+  perkName: "\uAC00\uBCBC\uC6B4 \uBC1C"
+  icon: {fileID: 21300000, guid: 39453174b9e439e4cac970cdb874525b, type: 3}
+  description: "\uC0C1\uCF8C\uD1B5\uCF8C\uBA85\uCF8C"

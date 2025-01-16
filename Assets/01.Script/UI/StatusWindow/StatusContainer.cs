@@ -1,35 +1,45 @@
-using System;
-using Crogen.UIExtension;
+using Hashira.Core.StatSystem;
+using Hashira.Entities;
+using Hashira.Players;
+using TMPro;
 using UnityEngine;
 
-namespace Hashira.UI.StatusWindow
+namespace Hashira.UI.StatusWindow.StatusPanel
 {
     public class StatusContainer : MonoBehaviour
     {
-        [SerializeField] private InputReaderSO _inputReaderSO;
-        private Tap _tap;
+        [SerializeField] private TextMeshProUGUI _statusNameText;
+        [SerializeField] private TextMeshProUGUI _statusValueText;
+        
+        private Player _player;
+        private EntityStat _entityStat;
+        
+        private StatElement[] _statElement;
+
+        private bool _isInit;
         
         private void Awake()
         {
-            _tap = GetComponent<Tap>();
-            _inputReaderSO.OnStatusTapMoveToSideEvent += HandleMoveToSide;
+            _player = GameManager.Instance.Player;
         }
 
-        private void OnDestroy()
+        private void Start()
         {
-            _inputReaderSO.OnStatusTapMoveToSideEvent -= HandleMoveToSide;
+            _entityStat = _player.GetEntityComponent<EntityStat>();
+            _isInit = true;
         }
 
-        private void HandleMoveToSide(float axis)
+        private void OnEnable()
         {
-            switch (axis)
+            if (_isInit == false) return;
+            StatElement[] statElements = _entityStat.GetElements();
+            _statusNameText.text = string.Empty;
+            _statusValueText.text = string.Empty;
+            
+            foreach (var statElement in statElements)
             {
-                case < 0:
-                    _tap.MoveToLeft();
-                    break;
-                case > 0:
-                    _tap.MoveToRight();
-                    break;
+                _statusNameText.text += $"{statElement.elementSO.displayName}\n";
+                _statusValueText.text += $"{statElement.Value}\n";
             }
         }
     }
