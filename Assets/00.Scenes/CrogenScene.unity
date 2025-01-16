@@ -310,15 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424fea26867e496184bf490030885a9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPassive: 1
-  useCoolTime: 1
-  coolTime: 10
-  currentCoolTime: 0
-  IsReadyCoolTime: 0
-  useConditionalEvent: 0
-  perkUIDataSO: {fileID: 11400000, guid: 8fe94f10fdc0433428f537532e6e42eb, type: 2}
-  _maxStackCount: 2
-  _stackCount: 0
 --- !u!114 &72169296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,6 +1326,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3950334006321986286, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950334006321986286, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950334006321986286, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950334006321986286, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7042647141873436127, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1421,6 +1428,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7281288894214205471, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319789715405139464, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319789715405139464, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319789715405139464, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319789715405139464, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8982273915821645971, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
