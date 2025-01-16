@@ -2,7 +2,7 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.FSM;
-using Hashira.Weapons;
+using Hashira.Items;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
