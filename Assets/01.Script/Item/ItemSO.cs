@@ -5,6 +5,7 @@ namespace Hashira.Weapons
     public abstract class ItemSO : ScriptableObject
     {
         [Header("Item setting")]
+        public Sprite itemIcon;
         public Sprite itemSprite;
         public string itemName;
         [TextArea]

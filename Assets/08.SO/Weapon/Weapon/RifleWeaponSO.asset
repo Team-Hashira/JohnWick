@@ -9,10 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4365168ff40fea408f799fc9fc45cbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: RifleWeaponSO
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: -3643760154290002694, guid: 5f5a1a3625f2a0d4f8d3c2a6af2c93d5, type: 3}
   itemSprite: {fileID: -3643760154290002694, guid: 5f5a1a3625f2a0d4f8d3c2a6af2c93d5, type: 3}
   itemName: "\uC18C\uCD1D"
   itemDescription: 
-  maxOverlapCount: 1
+  equippableWeaponPartsType: 47
+  statElementLsit: []
+  <WhatIsTarget>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 2752
+  _firePoint: {x: 3, y: 0}
+  _bullet: 0
+  _fireSpakleEffect: 1
+  _bulletSpeed: 200
+  _damageCoefficient: 100
+  _reloadDuration: 1

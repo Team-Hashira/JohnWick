@@ -27,10 +27,10 @@ namespace Hashira.Players
 
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
-        protected EntityWeaponHolder _weaponHolderCompo;
+        protected EntityWeapon _weaponHolderCompo;
         protected EntityInteractor _interactor;
 
-        private Weapons.Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
+        private Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
 
@@ -45,7 +45,6 @@ namespace Hashira.Players
 
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
-            InputReader.OnReloadEvent += HandleReloadEvent;
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
@@ -63,18 +62,12 @@ namespace Hashira.Players
 
         private void HandleMeleeAttackEvent()
         {
-            CurrentWeapon?.MeleeAttack(_damageStat.IntValue);
+            //근접공격
         }
 
         private void HandleAttackEvent(bool isDown)
         {
-            CurrentWeapon?.MainAttack(_damageStat.IntValue, isDown);
-        }
-
-        private void HandleReloadEvent()
-        {
-            if (CurrentWeapon != null &&CurrentWeapon is Gun gun)
-                gun.Reload();
+            _weaponHolderCompo?.Attack(_damageStat.IntValue, isDown);
         }
 
         private void HandleWeaponSwapEvent()
@@ -90,7 +83,7 @@ namespace Hashira.Players
 
             _statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
-            _weaponHolderCompo = GetEntityComponent<EntityWeaponHolder>();
+            _weaponHolderCompo = GetEntityComponent<EntityWeapon>();
             _interactor = GetEntityComponent<EntityInteractor>();
             _damageStat = _statCompo.GetElement("AttackPower");
         }
@@ -103,7 +96,7 @@ namespace Hashira.Players
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
-            CurrentWeapon?.LookTarget(mousePos);
+            _weaponHolderCompo.LookTarget(mousePos);
 
             _renderCompo.LookTarget(mousePos);
         }
@@ -117,7 +110,6 @@ namespace Hashira.Players
             InputReader.OnAttackEvent -= HandleAttackEvent;
             InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
             InputReader.OnWeaponSwapEvent -= HandleWeaponSwapEvent;
-            InputReader.OnReloadEvent -= HandleReloadEvent;
         }
     }
 }

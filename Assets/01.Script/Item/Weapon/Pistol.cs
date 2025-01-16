@@ -8,14 +8,14 @@ namespace Hashira.Weapons
     {
         private int _damage;
 
-        public override void MainAttack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown)
         {
             if (isDown == false) return;
 
             if (Fire() == false) return;
 
             _damage = damage;
-            base.MainAttack(damage, isDown);
+            base.Attack(damage, isDown);
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
         }
 
@@ -23,11 +23,12 @@ namespace Hashira.Weapons
         {
             if (base.Fire() == false) return false;
 
+            Vector3 firePos = _EntityWeapon.transform.position + _EntityWeapon.transform.rotation * GunSO._firePoint;
             //Bullet
-            Bullet bullet = gameObject.Pop(_bullet, _firePoint.position, Quaternion.identity) as Bullet;
-            bullet.Init(_whatIsTarget, transform.right, _bulletSpeed, Mathf.CeilToInt(_damage * _damageCoefficient / 100));
+            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO._bullet, firePos, Quaternion.identity) as Bullet;
+            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, Mathf.CeilToInt(_damage * GunSO._damageCoefficient / 100));
             //Effect
-            gameObject.Pop(_fireSpakleEffect, _firePoint.position, Quaternion.LookRotation(Vector3.back, transform.right));
+            _EntityWeapon.gameObject.Pop(GunSO._fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
             return true;
         }
     }

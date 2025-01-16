@@ -437,7 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _keyGuideObject: {fileID: 5318323076836066997}
   _spriteRenderer: {fileID: 2896141964441686297}
-  _weaponSO: {fileID: 11400000, guid: b1ea9e84fcdf4924c81bf82333c8a96c, type: 2}
+  _weaponSO: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
 --- !u!1 &8522616256855370617
 GameObject:
   m_ObjectHideFlags: 0

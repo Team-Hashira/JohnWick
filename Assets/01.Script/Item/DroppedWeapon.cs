@@ -1,5 +1,6 @@
 using Hashira.Entities.Components;
 using Hashira.Weapons;
+using System;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -8,27 +9,29 @@ namespace Hashira.Entities.Interacts
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private WeaponSO _weaponSO;
+        [SerializeField] private Weapon _weapon;
 
         protected override void Awake()
         {
             base.Awake();
-            Init(_weaponSO);
+            Init(_weaponSO.GetWeaponClass());
         }
 
-        public void Init(WeaponSO weaponSO)
+        public void Init(Weapon weapon)
         {
-            _weaponSO = weaponSO;
-            _spriteRenderer.sprite = _weaponSO.itemSprite;
+            _weapon = weapon;
+            _weaponSO = weapon.WeaponSO;
+            _spriteRenderer.sprite = weapon.WeaponSO.itemIcon;
         }
 
         public override void Interaction(Entity entity)
         {
             base.Interaction(entity);
 
-            EntityWeaponHolder weaponHolder = entity.GetEntityComponent<EntityWeaponHolder>();
-            WeaponSO weaponSO = weaponHolder.EquipWeapon(_weaponSO);
-            if (weaponSO != null)
-                Init(weaponSO);
+            EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
+            Weapon weapon = weaponHolder.EquipWeapon(_weapon);
+            if (weapon != null)
+                Init(weapon);
             else
                 Destroy(gameObject);
         }
