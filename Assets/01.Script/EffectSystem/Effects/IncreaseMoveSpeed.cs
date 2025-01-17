@@ -8,7 +8,7 @@ namespace Hashira.EffectSystem.Effects
         public override void Enable()
         {
             base.Enable();
-            _speedStatElement = _playerStat.GetElement("Speed");
+            _speedStatElement = _playerStat.StatDictionary["Speed"];
             _speedStatElement.AddModify("IncreaseMoveSpeed", 10.0f * level, EModifyMode.Percnet);
             //TODO 여기에 이펙트
         }

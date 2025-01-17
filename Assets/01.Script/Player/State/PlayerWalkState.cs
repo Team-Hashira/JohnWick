@@ -12,7 +12,7 @@ namespace Hashira.Players
 
         public PlayerWalkState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
         {
-            _speedStat = owner.GetEntityComponent<EntityStat>().GetElement("Speed");
+            _speedStat = owner.GetEntityComponent<EntityStat>().StatDictionary["Speed"];
         }
 
         public override void Enter()

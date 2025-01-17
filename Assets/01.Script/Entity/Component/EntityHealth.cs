@@ -26,7 +26,7 @@ namespace Hashira.Entities
 
         public void AfterInit()
         {
-            _maxHealth = _owner.GetEntityComponent<EntityStat>().GetElement(_healthStatSO);
+            _maxHealth = _owner.GetEntityComponent<EntityStat>().StatDictionary[_healthStatSO];
             _isInvincible = _maxHealth == null;
             Health = MaxHealth;
         }

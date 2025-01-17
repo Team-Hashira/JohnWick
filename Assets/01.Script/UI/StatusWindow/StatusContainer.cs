@@ -32,7 +32,7 @@ namespace Hashira.UI.StatusWindow.StatusPanel
         private void OnEnable()
         {
             if (_isInit == false) return;
-            StatElement[] statElements = _entityStat.GetElements();
+            StatElement[] statElements = _entityStat.StatDictionary.GetElements();
             _statusNameText.text = string.Empty;
             _statusValueText.text = string.Empty;
             

@@ -85,7 +85,7 @@ namespace Hashira.Players
             _renderCompo = GetEntityComponent<EntityRenderer>();
             _weaponHolderCompo = GetEntityComponent<EntityWeapon>();
             _interactor = GetEntityComponent<EntityInteractor>();
-            _damageStat = _statCompo.GetElement("AttackPower");
+            _damageStat = _statCompo.StatDictionary["AttackPower"];
         }
 
         protected override void Update()

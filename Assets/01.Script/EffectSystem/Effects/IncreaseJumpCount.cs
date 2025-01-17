@@ -9,7 +9,7 @@ namespace Hashira.EffectSystem.Effects
         public override void Enable()
         {
             base.Enable();
-            _speedStatElement = _playerStat.GetElement("JumpCount");
+            _speedStatElement = _playerStat.StatDictionary["JumpCount"];
             _speedStatElement.AddModify("IncreaseJumpCount", level, EModifyMode.Add);
         }
 
