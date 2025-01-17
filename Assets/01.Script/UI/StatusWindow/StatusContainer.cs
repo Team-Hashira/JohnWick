@@ -4,7 +4,7 @@ using Hashira.Players;
 using TMPro;
 using UnityEngine;
 
-namespace Hashira.UI.StatusWindow.StatusPanel
+namespace Hashira.UI.StatusWindow
 {
     public class StatusContainer : MonoBehaviour
     {

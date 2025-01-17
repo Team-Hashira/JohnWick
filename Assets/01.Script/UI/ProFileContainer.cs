@@ -27,6 +27,8 @@ namespace Hashira.UI
         private void Awake()
         {
             _player = GameManager.Instance.Player;
+            _weaponLoadText.text = "-";
+            _weaponLoadSlider.value = 1;
         }
 
         private void Start()
@@ -82,6 +84,7 @@ namespace Hashira.UI
             if (maxAmount < 0 || amount < 0)
             {
                 _weaponLoadText.text = "-";
+                _weaponLoadSlider.value = 1;
                 return;
             }
             
