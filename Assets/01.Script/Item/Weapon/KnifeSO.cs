@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.Weapons
 {
     [CreateAssetMenu(fileName = "KnifeSO", menuName = "SO/Weapon/Knife")]
     public class KnifeSO : WeaponSO

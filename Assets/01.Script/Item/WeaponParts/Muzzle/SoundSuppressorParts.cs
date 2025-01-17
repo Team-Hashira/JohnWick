@@ -1,6 +1,7 @@
+using Hashira.Items.Weapons;
 using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.WeaponPartsSystem
 {
     public class SoundSuppressorParts : WeaponParts
     {

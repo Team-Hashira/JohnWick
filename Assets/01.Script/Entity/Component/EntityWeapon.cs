@@ -1,5 +1,5 @@
+using Hashira.Items.Weapons;
 using Hashira.Players;
-using Hashira.Weapons;
 using System;
 using UnityEngine;
 

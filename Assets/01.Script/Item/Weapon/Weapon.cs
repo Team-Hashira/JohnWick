@@ -1,12 +1,13 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
+using Hashira.Items.WeaponPartsSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.Weapons
 {
-    public class Weapon : ICloneable
+    public class Weapon : Item, ICloneable, IStatable
     {
         public WeaponSO WeaponSO { get; private set; }
         protected EntityWeapon _EntityWeapon { get; private set; }
@@ -20,20 +21,22 @@ namespace Hashira.Weapons
         private StatBaseSO _baseStat;
         public StatDictionary StatDictionary { get; private set; }
 
-        public void Init(WeaponSO weaponSO)
-        {   
-            WeaponSO = weaponSO;
+        public override void Init(ItemSO itemSO)
+        {
+            base.Init(itemSO);
 
-            if (weaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
+            WeaponSO = itemSO as WeaponSO;
+
+            if (WeaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
             else
             {
-                _baseStat = GameObject.Instantiate(weaponSO.baseStat);
-                _overrideStatElementList = weaponSO.overrideStatElementList;
+                _baseStat = GameObject.Instantiate(WeaponSO.baseStat);
+                _overrideStatElementList = WeaponSO.overrideStatElementList;
 
                 StatDictionary = new StatDictionary(_overrideStatElementList, _baseStat);
             }
 
-            foreach (EWeaponPartsType partsType in weaponSO.partsEquipPosDict.Keys)
+            foreach (EWeaponPartsType partsType in WeaponSO.partsEquipPosDict.Keys)
                 _partsSlotDictionary.Add(partsType, null);
         }
 
@@ -63,7 +66,9 @@ namespace Hashira.Weapons
 
         public virtual object Clone()
         {
-            return MemberwiseClone();
+            Weapon clonedWeapon = MemberwiseClone() as Weapon;
+            clonedWeapon.WeaponSO = WeaponSO;
+            return clonedWeapon;
         }
 
         public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
@@ -81,6 +86,24 @@ namespace Hashira.Weapons
             OnPartsChanged?.Invoke(eWeaponPartsType, parts);
 
             return prevPartsSO;
+        }
+
+        public WeaponParts GetParts(EWeaponPartsType eWeaponPartsType)
+        {
+            if (_partsSlotDictionary.TryGetValue(eWeaponPartsType, out WeaponParts weaponParts))
+                return weaponParts;
+            else
+                return null;
+        }
+        public bool TryGetParts(EWeaponPartsType eWeaponPartsType, out WeaponParts weaponParts)
+        {
+            if (_partsSlotDictionary.TryGetValue(eWeaponPartsType, out WeaponParts parts))
+            {
+                weaponParts = parts;
+                return weaponParts != null;
+            }
+            weaponParts = null;
+            return false;
         }
     }
 }

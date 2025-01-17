@@ -16,5 +16,12 @@ MonoBehaviour:
   itemSprite: {fileID: 5316577475085910651, guid: 77240e70ef7b53d4d801a9978f4b06d1, type: 3}
   itemName: SoundSuppressor
   itemDisplayName: "\uC18C\uC74C\uAE30"
-  itemDescription: 
+  itemDescription: "\uC774\uAC83\uC740 \uC18C\uB9AC \uC5B5\uC81C\uAE30"
   partsType: 0
+  _statList:
+  - Name: 
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 42
+  - Name: 
+    elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
+    _baseValue: 2

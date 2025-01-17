@@ -16,5 +16,6 @@ MonoBehaviour:
   itemSprite: {fileID: 7608949080694248145, guid: 5161f4a45480a624ead8809dea2aeb62, type: 3}
   itemName: DotSight
   itemDisplayName: "\uB3C4\uD2B8 \uC0AC\uC774\uD2B8"
-  itemDescription: 
+  itemDescription: "\uC774\uAC83\uC740 \uC810 \uBCF4\uC870 \uC870\uC900\uACBD"
   partsType: 1
+  _statList: []

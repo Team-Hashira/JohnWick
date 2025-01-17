@@ -2,7 +2,7 @@ using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.Weapons
 {
     [CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Weapon/Gun")]
     public class GunSO : WeaponSO

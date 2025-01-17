@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Hashira.Entities
 {
-    public class EntityStat : MonoBehaviour, IEntityComponent
+    public class EntityStat : MonoBehaviour, IEntityComponent, IStatable
     {
         [SerializeField] private List<StatElement> _overrideStatElementList = new List<StatElement>();
         [SerializeField] private StatBaseSO _baseStat;

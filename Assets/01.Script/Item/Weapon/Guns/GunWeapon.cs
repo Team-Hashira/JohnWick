@@ -1,9 +1,6 @@
-using Crogen.CrogenPooling;
-using DG.Tweening;
 using System;
-using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.Weapons
 {
     public class GunWeapon : Weapon
     {

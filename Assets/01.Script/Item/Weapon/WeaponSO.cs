@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.Weapons
 {
     public class WeaponSO : ItemSO
     {
@@ -25,7 +25,7 @@ namespace Hashira.Weapons
             string className = name;
             try
             {
-                Type type = Type.GetType("Hashira.Weapons." + className);
+                Type type = Type.GetType("Hashira.Items.Weapons." + className);
                 Weapon findedWeapon = Activator.CreateInstance(type) as Weapon;
                 findedWeapon.Init(this);
                 weapon = findedWeapon;

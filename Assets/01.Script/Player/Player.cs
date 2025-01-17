@@ -2,9 +2,7 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.FSM;
-using Hashira.Weapons;
-using System;
-using System.Collections.Generic;
+using Hashira.Items.Weapons;
 using UnityEngine;
 
 namespace Hashira.Players
@@ -50,9 +48,9 @@ namespace Hashira.Players
 
         #region Handles
 
-        private void HandleInteractEvent()
+        private void HandleInteractEvent(bool isDown)
         {
-            _interactor.Interact();
+            _interactor.Interact(isDown);
         }
 
         private void HandleDashEvent()
