@@ -9,22 +9,31 @@ namespace Hashira.Weapons
     public class Weapon : ICloneable
     {
         public WeaponSO WeaponSO { get; private set; }
-
         protected EntityWeapon _EntityWeapon { get; private set; }
 
+        //Parts
         private Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
-
         public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
 
+        //Stat
         private List<StatElement> _overrideStatElementList = new List<StatElement>();
         private StatBaseSO _baseStat;
+        public StatDictionary StatDictionary { get; private set; }
 
         public void Init(WeaponSO weaponSO)
         {   
             WeaponSO = weaponSO;
+
             if (weaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
-            else _baseStat = GameObject.Instantiate(weaponSO.baseStat);
-            foreach (EWeaponPartsType partsType in WeaponSO.partsEquipPosDict.Keys)
+            else
+            {
+                _baseStat = GameObject.Instantiate(weaponSO.baseStat);
+                _overrideStatElementList = weaponSO.overrideStatElementList;
+
+                StatDictionary = new StatDictionary(_overrideStatElementList, _baseStat);
+            }
+
+            foreach (EWeaponPartsType partsType in weaponSO.partsEquipPosDict.Keys)
                 _partsSlotDictionary.Add(partsType, null);
         }
 

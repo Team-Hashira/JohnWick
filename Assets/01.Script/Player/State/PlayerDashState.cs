@@ -16,7 +16,7 @@ namespace Hashira.Players
         public PlayerDashState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
         {
             _entityMover = owner.GetEntityComponent<EntityMover>(true);
-            _dashSpeedStat = owner.GetEntityComponent<EntityStat>().GetElement("DashSpeed");
+            _dashSpeedStat = owner.GetEntityComponent<EntityStat>().StatDictionary["DashSpeed"];
         }
 
         public override void Enter()

@@ -10,7 +10,6 @@ namespace Hashira.Core.StatSystem
         Percnet
     }
 
-    //StatElementSO�� �����ͼ� �ش� ������ [��ȭ]�� ǥ������
     [Serializable]
     public class StatElement
     {
@@ -57,24 +56,20 @@ namespace Hashira.Core.StatSystem
 
         private void SetValue()
         {
-            //���� ������� ����
             float totalAddModifier = 0;
             foreach (float addModifier in _addModifiers.Values)
             {
                 totalAddModifier += addModifier;
             }
 
-            //�ۼ�Ʈ ������� ����
             float totalPercentModifier = 0;
             foreach (float percentModifier in _percentModifiers.Values)
             {
                 totalPercentModifier += percentModifier;
             }
 
-            //���� �� ���
             float value = (_baseValue + totalAddModifier) * (1 + totalPercentModifier / 100);
 
-            //�ִ�, �ּ� ����
             if (elementSO != null)
                 value = Mathf.Clamp(value, elementSO.minMaxValue.x, elementSO.minMaxValue.y);
 
