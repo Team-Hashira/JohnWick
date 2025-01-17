@@ -566,6 +566,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6220717345106750376, guid: c7d553f690003474bba5c87772154ad0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1678084514465218823, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2823915214414442236, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 6249513753203677906, guid: c7d553f690003474bba5c87772154ad0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -618,7 +624,7 @@ MonoBehaviour:
   m_Intensity: 0.1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000e7220134ddd6b784779eea6e1b93bf5323be148c
+  m_ApplyToSortingLayers: e722013400000000779eea6eddd6b78423be148c1b93bf53
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -805,6 +811,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3722143645132923418, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8266946876316207285, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4810784996227589966, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 3695594089162298208, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
@@ -1439,6 +1451,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3722143645132923418, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8266946876316207285, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4810784996227589966, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 3695594089162298208, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -1645,6 +1663,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3722143645132923418, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8266946876316207285, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4810784996227589966, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 3695594089162298208, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -1767,6 +1791,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6220717345106750376, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1678084514465218823, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 2823915214414442236, guid: c7d553f690003474bba5c87772154ad0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 6249513753203677906, guid: c7d553f690003474bba5c87772154ad0, type: 3}

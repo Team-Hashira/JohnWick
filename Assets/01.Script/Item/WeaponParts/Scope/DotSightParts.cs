@@ -1,6 +1,6 @@
-using UnityEngine;
+using Hashira.Items.Weapons;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.WeaponPartsSystem
 {
     public class DotSightParts : WeaponParts
     {
@@ -13,7 +13,7 @@ namespace Hashira.Weapons
         {
             base.PartsUpdate();
         }
-         
+
         public override void UnEquip()
         {
             base.UnEquip();

@@ -16,7 +16,7 @@ MonoBehaviour:
   itemSprite: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
   itemName: Pistol
   itemDisplayName: "\uAD8C\uCD1D"
-  itemDescription: 
+  itemDescription: "\uC774\uAC83\uC740 \uC8FC\uBA39 \uCD1D"
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752

@@ -28,6 +28,17 @@ namespace Hashira.Core.StatSystem
                 statElementList.Add(statElement.elementSO.statName, statElement);
             }
         }
+        public StatDictionary(List<StatElement> overrideStatElementList)
+        {
+            statElementList = new Dictionary<string, StatElement>();
+            foreach (StatElement statElement in overrideStatElementList)
+            {
+                if (statElement.elementSO == null) continue;
+
+                statElement.Initialize();
+                statElementList.Add(statElement.elementSO.statName, statElement);
+            }
+        }
 
         public StatElement[] GetElements()
             => statElementList.Values.ToArray();

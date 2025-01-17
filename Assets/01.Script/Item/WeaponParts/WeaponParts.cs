@@ -1,19 +1,24 @@
+using Hashira.Core.StatSystem;
+using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
 
-namespace Hashira.Weapons
+namespace Hashira.Items.WeaponPartsSystem
 {
-    public class WeaponParts : ICloneable
+    public class WeaponParts : Item, ICloneable, IStatable
     {
         public WeaponPartsSO WeaponPartsSO { get; private set; }
 
+        public StatDictionary StatDictionary => WeaponPartsSO.StatDictionary;
+
         protected Weapon _weapon;
 
-
         //가장 처음 만들어질 때 한번
-        public void Init(WeaponPartsSO weaponPartsSO)
+        public override void Init(ItemSO itemSO)
         {
-            WeaponPartsSO = weaponPartsSO;
+            base.Init(itemSO);
+
+            WeaponPartsSO = itemSO as WeaponPartsSO;
         }
 
         public virtual void Equip(Weapon weapon)
@@ -32,7 +37,7 @@ namespace Hashira.Weapons
 
         public object Clone()
         {
-            return MemberwiseClone();
+            return MemberwiseClone() as WeaponParts;
         }
     }
 }

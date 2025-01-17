@@ -13,7 +13,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     #region Actions
 
     public event Action OnMeleeAttackEvent;
-    public event Action OnInteractEvent;
+    public event Action<bool> OnInteractEvent;
     public event Action OnJumpEvent;
     public event Action OnDashEvent;
     public event Action OnWeaponSwapEvent;
@@ -77,7 +77,9 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed)
-            OnInteractEvent?.Invoke();
+            OnInteractEvent?.Invoke(true);
+        else if (context.canceled)
+            OnInteractEvent?.Invoke(false);
     }
 
     public void OnJump(InputAction.CallbackContext context)

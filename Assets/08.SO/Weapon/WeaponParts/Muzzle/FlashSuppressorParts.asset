@@ -16,5 +16,9 @@ MonoBehaviour:
   itemSprite: {fileID: 4640784304104946908, guid: 77240e70ef7b53d4d801a9978f4b06d1, type: 3}
   itemName: FlashSuppressor
   itemDisplayName: "\uC18C\uC5FC\uAE30"
-  itemDescription: 
+  itemDescription: "\uC774\uAC83\uC740 \uBD88\uAF43 \uC5B5\uC81C\uAE30"
   partsType: 0
+  _statList:
+  - Name: 
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 5

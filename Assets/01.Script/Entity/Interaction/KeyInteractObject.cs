@@ -9,6 +9,7 @@ namespace Hashira.Entities.Interacts
 {
     public abstract class KeyInteractObject : MonoBehaviour, IInteractable
     {
+        [Header("==========KeyInteractObject setting==========")]
         [SerializeField] protected GameObject _keyGuideObject;
         [SerializeField] protected TMP_Text _keyText, _nameText;
         [SerializeField] protected InputReaderSO _inputReader;
