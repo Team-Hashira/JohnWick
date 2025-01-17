@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/ProFileContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/ProFileContainer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +136,7 @@
       <workItem from="1736928495398" duration="1616000" />
       <workItem from="1736990000230" duration="5534000" />
       <workItem from="1737036289792" duration="1325000" />
+      <workItem from="1737097346905" duration="731000" />
     </task>
     <servers />
   </component>

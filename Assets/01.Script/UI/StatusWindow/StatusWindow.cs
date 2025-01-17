@@ -33,8 +33,6 @@ namespace Hashira.UI.StatusWindow
 
         private void HandleStatusWindowEnable()
         {
-            Debug.Log(nameof(_isFading) + _isFading);
-            Debug.Log(nameof(_isShowStatusWindow) + _isShowStatusWindow);
             //페이드 중일 때는 어떤 것도 콜하지 않음
             if (_isFading == true) return;
             _isFading = true;
