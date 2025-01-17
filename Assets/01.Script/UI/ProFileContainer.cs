@@ -1,6 +1,8 @@
 using System;
 using Hashira.Entities;
+using Hashira.Entities.Components;
 using Hashira.Players;
+using Hashira.Weapons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +22,8 @@ namespace Hashira.UI
 
         private Player _player;
         private EntityHealth _playerHealth;
-
+        private EntityWeapon _entityWeapon;
+            
         private void Awake()
         {
             _player = GameManager.Instance.Player;
@@ -29,30 +32,61 @@ namespace Hashira.UI
         private void Start()
         {
             _playerHealth = _player.GetEntityComponent<EntityHealth>();
+            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
+
             _playerHealth.OnHealthChangedEvent += HandleHpChange;
+            _entityWeapon.OnCurrnetWeaponChanged += HandleWeaponChange;
         }
 
         private void OnDestroy()
         {
             _playerHealth.OnHealthChangedEvent -= HandleHpChange;
+            _entityWeapon.OnCurrnetWeaponChanged -= HandleWeaponChange;
         }
 
         private void HandleHpChange(int lastValue, int newValue)
         {
-            _hpSlider.value = _playerHealth.MaxHealth / newValue;
+            _hpSlider.value = (float)_playerHealth.MaxHealth / newValue;
             _hpText.text = $"{newValue}/{_playerHealth.MaxHealth}";
         }
-        
-        //TODO 현재 무기의 이미지 정보 가져오기
-        private void HandleWeaponChange()
+
+        private void Update()
         {
-            
+            if (_entityWeapon.CurrentWeapon is GunWeapon gunWeapon)
+            {
+                HandleUseWeapon(gunWeapon.BulletAmount, gunWeapon.GunSO.MaxBulletAmount);
+            }
+            else if (_entityWeapon.CurrentWeapon is MeleeWeapon meleeWeapon)
+            {
+                HandleUseWeapon(-1, -1);
+            }
+        }
+
+        private void HandleWeaponChange(Weapon weapon)
+        {
+            if (weapon == null)
+            {
+                _weaponImage.sprite = null;
+                _weaponImage.color = Color.clear;
+            }
+            else
+            {
+                _weaponImage.sprite = weapon.WeaponSO.itemSprite;
+                _weaponImage.color = Color.white;
+            }
         }
         
         //TODO 무기 사용할 때마다 장전 상태 가져오기
-        private void HandleUseWeapon()
+        private void HandleUseWeapon(int amount, int maxAmount)
         {
-            _weaponLoadText.text = "260/360";
+            if (maxAmount < 0 || amount < 0)
+            {
+                _weaponLoadText.text = "-";
+                return;
+            }
+            
+            _weaponLoadText.text = $"{amount}/{maxAmount}";
+            _weaponLoadSlider.value = (float)amount/maxAmount;
         }
     }
 }

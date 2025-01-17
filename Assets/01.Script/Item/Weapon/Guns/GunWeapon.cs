@@ -19,7 +19,7 @@ namespace Hashira.Weapons
 
         public override void Attack(int damage, bool isDown)
         {
-            //애니메이션
+            //???????
         }
 
         protected void SpawnCartridgeCase()
@@ -29,7 +29,7 @@ namespace Hashira.Weapons
 
         protected virtual bool Fire()
         {
-            //탄환검사
+            //?????
             if (BulletAmount <= 0) return false;
             BulletAmount--;
             OnFireEvent?.Invoke(BulletAmount);
