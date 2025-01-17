@@ -7,6 +7,9 @@ namespace Hashira.Weapons
     {
         public WeaponPartsSO WeaponPartsSO { get; private set; }
 
+        protected Weapon _weapon;
+
+
         //가장 처음 만들어질 때 한번
         public void Init(WeaponPartsSO weaponPartsSO)
         {
@@ -15,6 +18,7 @@ namespace Hashira.Weapons
 
         public virtual void Equip(Weapon weapon)
         {
+            _weapon = weapon;
             Debug.Log($"{WeaponPartsSO.itemDisplayName} 장착!");
         }
         public virtual void UnEquip()

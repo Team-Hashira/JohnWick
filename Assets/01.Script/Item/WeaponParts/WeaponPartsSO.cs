@@ -25,8 +25,7 @@ namespace Hashira.Weapons
 
         private void OnEnable()
         {
-            string partsTypeName = partsType.ToString();
-            string className = name.Replace(partsTypeName, "");
+            string className = name;
             try
             {
                 Type type = Type.GetType("Hashira.Weapons." + className);
@@ -36,7 +35,7 @@ namespace Hashira.Weapons
             }
             catch (Exception ex)
             {
-                Debug.LogError($"{className} not found.\n" +
+                Debug.LogError($"{className} not found.\n" + 
                                 $"Error : {ex.ToString()}");
             }
         }
