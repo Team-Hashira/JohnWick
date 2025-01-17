@@ -17,4 +17,4 @@ MonoBehaviour:
   itemName: SoundSuppressor
   itemDisplayName: "\uC18C\uC74C\uAE30"
   itemDescription: 
-  partsType: 1
+  partsType: 0

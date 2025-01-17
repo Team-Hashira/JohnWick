@@ -17,4 +17,4 @@ MonoBehaviour:
   itemName: FlashSuppressor
   itemDisplayName: "\uC18C\uC5FC\uAE30"
   itemDescription: 
-  partsType: 1
+  partsType: 0
