@@ -16,8 +16,8 @@ namespace Hashira.Weapons
 
         public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
 
+        private List<StatElement> _overrideStatElementList = new List<StatElement>();
         private StatBaseSO _baseStat;
-
 
         public void Init(WeaponSO weaponSO)
         {   
