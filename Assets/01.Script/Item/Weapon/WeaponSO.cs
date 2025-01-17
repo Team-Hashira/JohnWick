@@ -1,11 +1,44 @@
+using Hashira.Core.StatSystem;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hashira.Items
+namespace Hashira.Weapons
 {
-    [CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Weapon")]
     public class WeaponSO : ItemSO
     {
-        public string weaponName;
-        public Sprite weaponSprite;
+        [field: Header("==========Weapon setting==========")]
+        [field: SerializeField] public LayerMask WhatIsTarget { get; internal set; }
+        [Header("Parts")]
+        public EWeaponPartsType equippableWeaponPartsType;
+        [Tooltip("Is local position")]
+        public List<Vector2> partsEquipPosList = new List<Vector2>();
+        [Header("Stat")]
+        public List<StatElement> overrideStatElementList = new List<StatElement>();
+        public StatBaseSO baseStat;
+
+        private Weapon weapon;
+
+        private void OnEnable()
+        {
+            string className = name;
+            try
+            {
+                Type type = Type.GetType("Hashira.Weapons." + className);
+                Weapon findedWeapon = Activator.CreateInstance(type) as Weapon;
+                findedWeapon.Init(this);
+                weapon = findedWeapon;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"{className} not found.\n" +
+                                $"Error : {ex.ToString()}");
+            }
+        }
+
+        public Weapon GetWeaponClass()
+        {
+            return weapon.Clone() as Weapon;
+        }
     }
 }

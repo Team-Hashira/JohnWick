@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed9b17438a6c3c47945e9045002a83e, type: 3}
+  m_Name: GunBase
+  m_EditorClassIdentifier: 
+  _statElements:
+  - Name: AttackPower
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 10
+  - Name: Speed
+    elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
+    _baseValue: 0.1
+  - Name: Critical
+    elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
+    _baseValue: 0
+  - Name: CriticalDamage
+    elementSO: {fileID: 11400000, guid: 9bc29b520cc3efa4d8516ac876e5072c, type: 2}
+    _baseValue: 0
