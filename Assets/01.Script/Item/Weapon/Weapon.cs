@@ -19,7 +19,6 @@ namespace Hashira.Weapons
         private List<StatElement> _overrideStatElementList = new List<StatElement>();
         private StatBaseSO _baseStat;
 
-
         public void Init(WeaponSO weaponSO)
         {   
             WeaponSO = weaponSO;

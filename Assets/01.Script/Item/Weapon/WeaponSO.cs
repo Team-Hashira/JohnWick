@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using Hashira.Core.StatSystem;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace Hashira.Weapons
         [Header("Parts")]
         public EWeaponPartsType equippableWeaponPartsType;
         [Tooltip("Is local position")]
-        public List<Vector2> partsEquipPosList = new List<Vector2>();
+        public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipPosDict 
+            = new SerializedDictionary<EWeaponPartsType, Vector2>();
         [Header("Stat")]
         public List<StatElement> overrideStatElementList = new List<StatElement>();
         public StatBaseSO baseStat;
