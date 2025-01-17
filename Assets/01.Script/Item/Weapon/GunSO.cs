@@ -7,7 +7,7 @@ namespace Hashira.Weapons
     [CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Weapon/Gun")]
     public class GunSO : WeaponSO
     {
-        [Header("Gun setting")]
+        [Header("==========Gun setting==========")]
         public Vector2 _firePoint;
         public ProjectilePoolType _bullet = ProjectilePoolType.Bullet;
         public EffectPoolType _fireSpakleEffect = EffectPoolType.BulletShootSpakleEffect;

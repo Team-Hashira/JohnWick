@@ -1,3 +1,4 @@
+using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,18 @@ namespace Hashira.Weapons
 
         protected EntityWeapon _EntityWeapon { get; private set; }
 
-        private Dictionary<EWeaponPartsType, WeaponPartsSO> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponPartsSO>();
+        private Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
 
-        public event Action<EWeaponPartsType, WeaponPartsSO> OnPartsChanged;
+        public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
+
+        private StatBaseSO _baseStat;
+
 
         public void Init(WeaponSO weaponSO)
         {   
             WeaponSO = weaponSO;
+            if (weaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
+            else _baseStat = GameObject.Instantiate(weaponSO.baseStat);
             foreach (EWeaponPartsType partsType in Enum.GetValues(typeof(EWeaponPartsType)))
                 _partsSlotDictionary.Add(partsType, null);
         }
@@ -30,7 +36,10 @@ namespace Hashira.Weapons
         //장착중
         public virtual void WeaponUpdate()
         {
-
+            foreach (WeaponParts parts in _partsSlotDictionary.Values)
+            {
+                parts?.PartsUpdate();
+            }
         }
         //장착해제
         public virtual void UnEquip()
@@ -48,17 +57,16 @@ namespace Hashira.Weapons
             return MemberwiseClone();
         }
 
-        public WeaponPartsSO EquipParts(EWeaponPartsType eWeaponPartsType, WeaponPartsSO partsSO)
+        public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
         {
-            WeaponPartsSO prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
+            WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
 
-            //여기서 Parts들 Equip, UnEquip시켜주고
-            //PartsSO에서는 WeaponSO처럼 Parts클래스를 따로 가지고 거기있는 함수를 실행시켜주는 구조로.
-            //Parts는 따로 저장하고 여러개가 제각각 존재할 필요가 있겠다Tiqkf(ex. 유탄 발사기의 쿨타임이 바꿨다끼면 초기화 되는걸 방지)
-            //ㅆㅂ 그럼 Parts도 SO로 못하고 클래스로 DroppedItem에 저장해야하는거네? ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-            //1월 17일 김동률은 ㅈ뺑이 까라 난 잔다ㅋ ㅆㅂ
-            _partsSlotDictionary[eWeaponPartsType] = partsSO;
-            OnPartsChanged?.Invoke(eWeaponPartsType, partsSO);
+            //교환
+            _partsSlotDictionary[eWeaponPartsType]?.UnEquip();
+            _partsSlotDictionary[eWeaponPartsType] = parts;
+            _partsSlotDictionary[eWeaponPartsType]?.Equip(this);
+
+            OnPartsChanged?.Invoke(eWeaponPartsType, parts);
 
             return prevPartsSO;
         }

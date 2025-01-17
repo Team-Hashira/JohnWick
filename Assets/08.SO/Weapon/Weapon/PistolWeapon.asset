@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
-  m_Name: PistolWeaponSO
+  m_Name: PistolWeapon
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
   itemSprite: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
   itemName: Pistol
   itemDisplayName: "\uAD8C\uCD1D"
   itemDescription: 
-  equippableWeaponPartsType: 15
-  statElementLsit: []
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
-  baseStat: {fileID: 0}
+  equippableWeaponPartsType: 15
+  partsEquipPosList: []
+  overrideStatElementList: []
+  baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
   _firePoint: {x: 2.3, y: 0}
   _bullet: 0
   _fireSpakleEffect: 1

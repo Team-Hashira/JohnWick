@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Hashira.Weapons
 {
-    public class Pistol : Gun
+    public class PistolWeapon : GunWeapon
     {
         private int _damage;
 

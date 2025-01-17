@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Hashira.Weapons
 {
-    public class Gun : Weapon
+    public class GunWeapon : Weapon
     {
         public GunSO GunSO { get; private set; }
 

@@ -9,18 +9,20 @@ namespace Hashira.Entities.Interacts
 {
     public class DroppedParts : DroppedItem
     {
-        [SerializeField] private WeaponPartsSO _weaponSO;
+        [SerializeField] private WeaponPartsSO _partsSO;
+        private WeaponParts _parts;
 
         protected override void Awake()
         {
             base.Awake();
-            SetItemSO(_weaponSO);
+            SetParts(_partsSO.GetWeaponPartsClass());
         }
 
-        protected override void SetItemSO(ItemSO itemSO)
+        private void SetParts(WeaponParts parts)
         {
-            _weaponSO = itemSO as WeaponPartsSO;
-            base.SetItemSO(itemSO);
+            _parts = parts;
+            _partsSO = parts.WeaponPartsSO;
+            SetItemSO(_partsSO);
         }
 
         public override void Interaction(Entity entity)
@@ -28,8 +30,8 @@ namespace Hashira.Entities.Interacts
             base.Interaction(entity);
 
             EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
-            WeaponPartsSO weaponPartsSO = weaponHolder.CurrentWeapon.EquipParts(_weaponSO.partsType, _weaponSO);
-            if (weaponPartsSO != null) SetItemSO(weaponPartsSO);
+            WeaponParts weaponParts = weaponHolder.CurrentWeapon.EquipParts(_partsSO.partsType, _parts);
+            if (weaponParts != null) SetParts(weaponParts);
             else Destroy(gameObject);
         }
     }

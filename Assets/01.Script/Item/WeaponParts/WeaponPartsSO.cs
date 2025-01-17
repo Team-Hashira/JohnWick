@@ -1,3 +1,4 @@
+using Hashira.Core.StatSystem;
 using System;
 using UnityEngine;
 
@@ -16,8 +17,33 @@ namespace Hashira.Weapons
 {
     [CreateAssetMenu(fileName = "WeaponPartsSO", menuName = "SO/Weapon/Parts")]
     public class WeaponPartsSO : ItemSO
-    {
-        [Header("Weapon parts setting")]
+    { 
+        [Header("==========Weapon parts setting==========")]
         public EWeaponPartsType partsType;
+
+        private WeaponParts weaponParts;
+
+        private void OnEnable()
+        {
+            string partsTypeName = partsType.ToString();
+            string className = name.Replace(partsTypeName, "");
+            try
+            {
+                Type type = Type.GetType("Hashira.Weapons." + className);
+                WeaponParts findedWeaponParts = Activator.CreateInstance(type) as WeaponParts;
+                findedWeaponParts.Init(this);
+                weaponParts = findedWeaponParts;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"{className} not found.\n" +
+                                $"Error : {ex.ToString()}");
+            }
+        }
+
+        public WeaponParts GetWeaponPartsClass()
+        {
+            return weaponParts.Clone() as WeaponParts;
+        }
     }
 }

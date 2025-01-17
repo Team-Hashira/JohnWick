@@ -4,7 +4,7 @@ namespace Hashira.Weapons
 {
     public abstract class ItemSO : ScriptableObject
     {
-        [Header("Item setting")]
+        [Header("==========Item setting==========")]
         public Sprite itemIcon;
         public Sprite itemSprite;
         [Tooltip("¿µ¾î¸í")]

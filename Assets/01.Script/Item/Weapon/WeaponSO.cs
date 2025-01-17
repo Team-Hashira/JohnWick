@@ -7,21 +7,33 @@ namespace Hashira.Weapons
 {
     public class WeaponSO : ItemSO
     {
-        [Header("Weapon setting")]
-        public EWeaponPartsType equippableWeaponPartsType;
-        public List<StatElement> statElementLsit = new List<StatElement>();
+        [field: Header("==========Weapon setting==========")]
         [field: SerializeField] public LayerMask WhatIsTarget { get; internal set; }
+        [Header("Parts")]
+        public EWeaponPartsType equippableWeaponPartsType;
+        [Tooltip("Is local position")]
+        public List<Vector2> partsEquipPosList = new List<Vector2>();
+        [Header("Stat")]
+        public List<StatElement> overrideStatElementList = new List<StatElement>();
         public StatBaseSO baseStat;
 
         private Weapon weapon;
 
         private void OnEnable()
         {
-            string className = name.Replace("WeaponSO", "");
-            Type type = Type.GetType("Hashira.Weapons." + className);
-            Weapon newWeapon = Activator.CreateInstance(type) as Weapon;
-            newWeapon.Init(this);
-            weapon = newWeapon;
+            string className = name;
+            try
+            {
+                Type type = Type.GetType("Hashira.Weapons." + className);
+                Weapon findedWeapon = Activator.CreateInstance(type) as Weapon;
+                findedWeapon.Init(this);
+                weapon = findedWeapon;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"{className} not found.\n" +
+                                $"Error : {ex.ToString()}");
+            }
         }
 
         public Weapon GetWeaponClass()

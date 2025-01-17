@@ -8,7 +8,7 @@ namespace Hashira.Entities.Interacts
     public class DroppedWeapon : DroppedItem
     {
         [SerializeField] private WeaponSO _weaponSO;
-        [SerializeField] private Weapon _weapon;
+        private Weapon _weapon;
 
         protected override void Awake()
         {

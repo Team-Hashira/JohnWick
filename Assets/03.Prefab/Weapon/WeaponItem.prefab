@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5846946285149895117, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 12.43
       objectReference: {fileID: 0}
     - target: {fileID: 5846946285149895117, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.92
       objectReference: {fileID: 0}
     - target: {fileID: 5846946285149895117, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.0992725
       objectReference: {fileID: 0}
     - target: {fileID: 5846946285149895117, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -87,7 +87,7 @@ MonoBehaviour:
   _nameText: {fileID: 7101223832312223942}
   _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
   _spriteRenderer: {fileID: 7583406001278142269}
-  _weaponSO: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
+  _weaponSO: {fileID: 0}
 --- !u!114 &6970289649154942492 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2429678601276207160, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}

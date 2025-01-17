@@ -511,10 +511,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3430086557383450272, guid: c7d553f690003474bba5c87772154ad0, type: 3}
-      propertyPath: _weaponSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
     - target: {fileID: 1164185980148641769, guid: c7d553f690003474bba5c87772154ad0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.98
@@ -555,9 +551,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3430086557383450272, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+      propertyPath: _weaponSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
     - target: {fileID: 3881367526702418878, guid: c7d553f690003474bba5c87772154ad0, type: 3}
       propertyPath: m_Name
-      value: WeaponItem
+      value: RifleWeaponItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -753,12 +753,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2327014053734702115, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
-      propertyPath: _weaponSO
+      propertyPath: _partsSO
       value: 
       objectReference: {fileID: 11400000, guid: e480aaef75ac7f547ad7ce61dbd774a5, type: 2}
-    - target: {fileID: 2327014053734702115, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
-      propertyPath: _interactAction.m_Name
-      value: 
+    - target: {fileID: 5777761705006678540, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      propertyPath: m_Name
+      value: FlashSuppressorPartsItem
       objectReference: {fileID: 0}
     - target: {fileID: 8492623830688015963, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -799,10 +799,6 @@ PrefabInstance:
     - target: {fileID: 8492623830688015963, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5777761705006678540, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
-      propertyPath: m_Name
-      value: WeaponPartsItem (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1389,12 +1385,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2327014053734702115, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
-      propertyPath: _weaponSO
+      propertyPath: _partsSO
       value: 
-      objectReference: {fileID: 11400000, guid: 31e039e920bb75b47ba29bd23029c863, type: 2}
-    - target: {fileID: 2327014053734702115, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
-      propertyPath: _interactAction.m_Name
-      value: 
+      objectReference: {fileID: 11400000, guid: a32961db1d2cfc447b0cd9916ce28136, type: 2}
+    - target: {fileID: 5777761705006678540, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      propertyPath: m_Name
+      value: SoundSuppressorPartsItem
       objectReference: {fileID: 0}
     - target: {fileID: 8492623830688015963, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1435,10 +1431,6 @@ PrefabInstance:
     - target: {fileID: 8492623830688015963, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5777761705006678540, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
-      propertyPath: m_Name
-      value: WeaponPartsItem (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1598,9 +1590,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2327014053734702115, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+      propertyPath: _partsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 31e039e920bb75b47ba29bd23029c863, type: 2}
     - target: {fileID: 5777761705006678540, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       propertyPath: m_Name
-      value: WeaponPartsItem
+      value: DotSightPartsItem
       objectReference: {fileID: 0}
     - target: {fileID: 8492623830688015963, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1758,9 +1754,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3430086557383450272, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+      propertyPath: _weaponSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
     - target: {fileID: 3881367526702418878, guid: c7d553f690003474bba5c87772154ad0, type: 3}
       propertyPath: m_Name
-      value: WeaponItem (1)
+      value: PistolWeaponItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

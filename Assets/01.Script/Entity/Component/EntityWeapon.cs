@@ -39,7 +39,7 @@ namespace Hashira.Entities.Components
 
         private void HandleReloadEvent()
         {
-            if (CurrentWeapon is Gun gun)
+            if (CurrentWeapon is GunWeapon gun)
                 gun?.Reload();
         }
 

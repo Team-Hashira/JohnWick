@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Hashira.Weapons
 {
-    public class Rifle : Gun
+    public class RifleWeapon : GunWeapon
     {
         private float _autoSpeed = 0.15f;
         private float _lastFireTime;
