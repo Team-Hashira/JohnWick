@@ -11,7 +11,6 @@ namespace Hashira.Weapons
         [field: Header("==========Weapon setting==========")]
         [field: SerializeField] public LayerMask WhatIsTarget { get; internal set; }
         [Header("Parts")]
-        public EWeaponPartsType equippableWeaponPartsType;
         [Tooltip("Is local position")]
         public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipPosDict 
             = new SerializedDictionary<EWeaponPartsType, Vector2>();

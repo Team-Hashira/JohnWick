@@ -24,7 +24,7 @@ namespace Hashira.Weapons
             WeaponSO = weaponSO;
             if (weaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
             else _baseStat = GameObject.Instantiate(weaponSO.baseStat);
-            foreach (EWeaponPartsType partsType in Enum.GetValues(typeof(EWeaponPartsType)))
+            foreach (EWeaponPartsType partsType in WeaponSO.partsEquipPosDict.Keys)
                 _partsSlotDictionary.Add(partsType, null);
         }
 
@@ -59,6 +59,9 @@ namespace Hashira.Weapons
 
         public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
         {
+            //장착 불가능하면 그대로 반환
+            if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return parts;
+
             WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
 
             //교환

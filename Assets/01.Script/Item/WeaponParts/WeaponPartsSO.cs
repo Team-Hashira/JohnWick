@@ -2,15 +2,14 @@ using Hashira.Core.StatSystem;
 using System;
 using UnityEngine;
 
-[Flags]
 public enum EWeaponPartsType
 {
-    Muzzle = 1,             //√—±∏
-    Scope = 2,              //Ω∫ƒ⁄«¡
-    Grip = 4,               //º’¿‚¿Ã
-    Magazine = 8,           //≈∫√¢
-    CartridgeBelt = 16,     //≈∫∂Ï
-    Stock = 32,             //∞≥∏”∏Æ∆«
+    Muzzle,             //√—±∏
+    Scope,              //Ω∫ƒ⁄«¡
+    Grip,               //º’¿‚¿Ã
+    Magazine,           //≈∫√¢
+    CartridgeBelt,      //≈∫∂Ï
+    Stock,              //∞≥∏”∏Æ∆«
 }
 
 namespace Hashira.Weapons
