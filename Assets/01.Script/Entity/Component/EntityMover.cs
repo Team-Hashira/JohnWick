@@ -66,22 +66,15 @@ namespace Hashira.Entities
 
         private void GroundAndNodeCheck()
         {
-            RaycastHit2D[] hits = Physics2D.BoxCastAll((Vector2)transform.position,
-                _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsGround | _whatIsNode);
+            RaycastHit2D[] groundHits = Physics2D.BoxCastAll((Vector2)transform.position,
+                _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsGround);
+            RaycastHit2D[] nodeHits = Physics2D.BoxCastAll((Vector2)transform.position,
+                _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsNode);
 
+            IsGrounded = groundHits.Length > 0 && _yMovement < 0;
 
-            for (int i = 0; i < hits.Length; i++)
-            {
-                if (hits[i].collider.TryGetComponent(out Node node))
-                {
-                    CurrentNode = node;
-                }
-                else
-                {
-                    _hitedGround = hits[i];
-                    IsGrounded = _yMovement < 0;
-                }
-            }
+            if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node)) 
+                CurrentNode = node;
         }
 
         private void ApplyVelocity()
