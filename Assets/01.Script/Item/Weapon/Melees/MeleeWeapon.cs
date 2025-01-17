@@ -1,4 +1,4 @@
-namespace Hashira.Weapons
+namespace Hashira.Items.Weapons
 {
     public class MeleeWeapon : Weapon
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Hashira.Entities.Components;
 using Hashira.Players;
-using Hashira.Weapons;
+using Hashira.Items.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 
