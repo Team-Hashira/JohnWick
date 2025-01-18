@@ -117,9 +117,9 @@ namespace Hashira.Entities
         {
             int layerCheck = _whatIsGround & _oneWayPlatform;
             if (layerCheck != 0 && isUnderJump)
-                _whatIsGround -= _oneWayPlatform;
+                _whatIsGround &= ~(_oneWayPlatform);
             else if (isUnderJump == false)
-                _whatIsGround += _oneWayPlatform;
+                _whatIsGround |= _oneWayPlatform;
 
             foreach (var platformEffector in FindObjectsByType<PlatformEffector2D>(FindObjectsSortMode.None))
             {
