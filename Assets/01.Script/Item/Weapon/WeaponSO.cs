@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class WeaponSO : ItemSO
+    public abstract class WeaponSO : ItemSO
     {
         [field: Header("==========Weapon setting==========")]
         [field: SerializeField] public LayerMask WhatIsTarget { get; internal set; }
@@ -26,9 +26,9 @@ namespace Hashira.Items.Weapons
             try
             {
                 Type type = Type.GetType("Hashira.Items.Weapons." + className);
-                Weapon findedWeapon = Activator.CreateInstance(type) as Weapon;
-                findedWeapon.Init(this);
-                weapon = findedWeapon;
+                Weapon foundWeapon = Activator.CreateInstance(type) as Weapon;
+                foundWeapon.Init(this);
+                weapon = foundWeapon;
             }
             catch (Exception ex)
             {

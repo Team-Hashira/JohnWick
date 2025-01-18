@@ -37,13 +37,13 @@ namespace Hashira.UI
             _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
 
             _playerHealth.OnHealthChangedEvent += HandleHpChange;
-            _entityWeapon.OnCurrnetWeaponChanged += HandleWeaponChange;
+            _entityWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
         }
 
         private void OnDestroy()
         {
             _playerHealth.OnHealthChangedEvent -= HandleHpChange;
-            _entityWeapon.OnCurrnetWeaponChanged -= HandleWeaponChange;
+            _entityWeapon.OnCurrentWeaponChanged -= HandleWeaponChange;
         }
 
         private void HandleHpChange(int lastValue, int newValue)

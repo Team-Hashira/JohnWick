@@ -1,40 +1,21 @@
-using System;
 using System.Collections.Generic;
-using Hashira.Entities.Components;
-using Hashira.Players;
+using System.Linq;
+using Hashira.Items.WeaponPartsSystem;
 using Hashira.Items.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
-    public class WeaponSlot : MonoBehaviour
+    public class GunWeaponSlot : MonoBehaviour, IWeaponSlot
     {
         [SerializeField] private PartSlot _partSlotPrefab; 
         [SerializeField] private Image _iconImage;
         private Weapon _baseWeapon;
 
         private readonly List<PartSlot> _partSlotList = new List<PartSlot>();
-        private Player _player;
-        private EntityWeapon _entityWeapon;
 
-        private void Awake()
-        {
-            _player = GameManager.Instance.Player;
-        }
-
-        private void Start()
-        {
-            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
-            _entityWeapon.OnCurrnetWeaponChanged += HandleWeaponChanged;
-        }
-
-        private void OnDestroy()
-        {
-            _entityWeapon.OnCurrnetWeaponChanged -= HandleWeaponChanged;
-        }
-
-        private void HandleWeaponChanged(Weapon weapon)
+        public void HandleWeaponChanged(Weapon weapon)
         {
             _baseWeapon = weapon;
             _iconImage.sprite = weapon.WeaponSO.itemSprite;
@@ -48,10 +29,21 @@ namespace Hashira.UI.StatusWindow
                 AddPartSlot(posPair.Key, posPair.Value);
         }
 
+        public void OnChangedPart(WeaponPartsSO weaponPartsSO)
+        {
+            var partSlot = _partSlotList.FirstOrDefault(x => x.partType == weaponPartsSO.partsType);
+            partSlot?.Init(weaponPartsSO);
+        }
+        
         private void AddPartSlot(EWeaponPartsType partType, Vector2 position)
         {
             PartSlot partSlot = Instantiate(_partSlotPrefab, transform);
-            partSlot.Init(partType);
+            partSlot.partType = partType;
+            
+            // 위치 조정
+            RectTransform partSlotRectTrm = partSlot.transform as RectTransform;
+            partSlotRectTrm.anchoredPosition = position;
+            
             _partSlotList.Add(partSlot);
         }
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Combat
 {
     public class FollowTarget : MonoBehaviour
     {

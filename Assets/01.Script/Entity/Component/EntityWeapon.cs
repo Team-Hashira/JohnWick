@@ -19,9 +19,10 @@ namespace Hashira.Entities.Components
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
+        public Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[2];
 
         private SpriteRenderer _spriteRenderer;
-        public event Action<Weapon> OnCurrnetWeaponChanged;
+        public event Action<Weapon> OnCurrentWeaponChanged;
 
         private Player _player;
 
@@ -30,7 +31,7 @@ namespace Hashira.Entities.Components
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
 
             WeaponIndex = 0;
-            OnCurrnetWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
+            OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
             HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
 
             _player = entity as Player;
@@ -45,32 +46,33 @@ namespace Hashira.Entities.Components
 
         private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
         {
-            //º¯°æµÈ ¹«±â¿¡ ¸ÂÃç VisualÀ» º¯°æ
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ Visualï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             _spriteRenderer.sprite = weapon?.WeaponSO.itemSprite;
             VisualTrm.gameObject.SetActive(weapon != null);
         }
 
         public Weapon EquipWeapon(Weapon weapon)
         {
-            //ÇöÀç ½½·ÔÀÇ ¹«±â¸¦ º¯°æ
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½
             Weapon prevWeapon = CurrentWeapon;
             CurrentWeapon?.UnEquip();
             CurrentWeapon = weapon;
             CurrentWeapon?.Equip(this);
+            
+            OnChangedWeaponEvents[WeaponIndex]?.Invoke(weapon);
+            OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 
-            OnCurrnetWeaponChanged?.Invoke(CurrentWeapon);
-
-            //ÀÌÀü¿¡ °¡Áö°í ÀÖ´ø ¹«±â¸¦ ¹ÝÈ¯
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½È¯
             return prevWeapon;
         }
 
         public void WeaponSwap()
         {
-            //½½·Ô ÀÎµ¦½º ´õÇÏ±â
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
             WeaponIndex++;
             if (WeaponIndex >= 2) WeaponIndex = 0;
 
-            OnCurrnetWeaponChanged?.Invoke(CurrentWeapon);
+            OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
         public void Attack(int damage, bool isDown)

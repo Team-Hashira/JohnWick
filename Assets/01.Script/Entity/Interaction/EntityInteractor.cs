@@ -9,7 +9,6 @@ namespace Hashira.Entities
         public IInteractable Interactable { get; private set; }
         public IHoldInteractable HoldInteractable { get; private set; }
 
-        [SerializeField] private InputReaderSO _input;
         [SerializeField] private LayerMask _interactable;
         [SerializeField] private float _radius;
 
