@@ -51,8 +51,8 @@ namespace Hashira.UI.StatusWindow
             
             // 위치 조정
             RectTransform partSlotRectTrm = partSlot.transform as RectTransform;
-            partSlotRectTrm.anchoredPosition = position;
-            
+            if (partSlotRectTrm != null) partSlotRectTrm.anchoredPosition = position;
+
             _partSlotList.Add(partSlot);
         }
     }

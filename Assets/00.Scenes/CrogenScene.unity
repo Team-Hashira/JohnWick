@@ -1163,6 +1163,11 @@ MonoBehaviour:
   AmplitudeGain: 0
   FrequencyGain: 0
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!223 &1111739332 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5825091475942839344, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+  m_PrefabInstance: {fileID: 2972484720727090789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1190338210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4411ae2728c6493a9b022441295daeab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 2972484720727090790}
+  canvas: {fileID: 1111739332}
   _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
 --- !u!1 &1726012367
 GameObject:
@@ -2010,11 +2015,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
---- !u!223 &2972484720727090790 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 6214209191826908921, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
-  m_PrefabInstance: {fileID: 2972484720727090789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5457064906219075926
 PrefabInstance:
   m_ObjectHideFlags: 0

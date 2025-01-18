@@ -23,15 +23,15 @@ MonoBehaviour:
   partsEquipPosDict:
     _serializedList:
     - Key: 0
-      Value: {x: 0, y: 0}
+      Value: {x: 99.11, y: 0}
     - Key: 1
-      Value: {x: 0, y: 0}
+      Value: {x: 0, y: 48.8}
     - Key: 2
-      Value: {x: 0, y: 0}
+      Value: {x: -51.01, y: -46.27}
     - Key: 3
-      Value: {x: 0, y: 0}
+      Value: {x: 26.1, y: -46.27}
     - Key: 5
-      Value: {x: 0, y: 0}
+      Value: {x: -125.67, y: 0}
   overrideStatElementList:
   - Name: 
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
