@@ -55,20 +55,20 @@ namespace Hashira.UI.InGame
             float yBottom = -height / 2;
             //Icon
             Vector3 iconPos = _iconSprite.transform.position;
-            iconPos.y = yTop - 1.1f;
+            iconPos.y = yTop - 1.2f;
             _iconSprite.transform.position = iconPos;
             //Name
             Vector3 namePos = _itemNameText.transform.position;
-            namePos.y = yTop - 1.1f;
+            namePos.y = yTop - 1.2f;
             _itemNameText.transform.position = namePos;
             //Stat
             Vector3 statPos = _itemStatText.transform.position;
-            statPos.y = yTop - 1.9f;
+            statPos.y = yTop - 1.95f;
             _itemStatText.transform.position = statPos;
 
             //Description
             Vector3 descriptionPos = _itemDescriptionText.transform.parent.position;
-            descriptionPos.y = yBottom + 1.6f;
+            descriptionPos.y = yBottom + 1.4f;
             _itemDescriptionText.transform.parent.position = descriptionPos;
 
             foreach (SpriteRenderer sprite in _backgroundSprites)
