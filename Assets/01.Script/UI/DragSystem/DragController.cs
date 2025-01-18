@@ -1,0 +1,72 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace Hashira.UI.DragSystem
+{
+    public class DragController : MonoBehaviour
+    {
+        public Canvas canvas;
+        [SerializeField] private InputReaderSO _inputReader;
+        private static GraphicRaycaster _graphicRaycaster; // UI가 포함된 Canvas에 연결된 GraphicRaycaster
+        private static EventSystem _eventSystem;          // EventSystem 오브젝트
+        private static Vector2 MousePosition { get; set; } 
+        private IDraggableObject _currentDragObject;
+        
+        private void Awake()
+        {
+            _graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
+            _eventSystem = EventSystem.current;
+
+            _inputReader.OnClickEvent += HandleMouseClick;
+        }
+
+        private void OnDestroy()
+        {
+            _inputReader.OnClickEvent -= HandleMouseClick;
+        }
+
+        private void HandleMouseClick(bool isMouseDown)
+        {
+            Debug.Log("OnClick!");
+            if (isMouseDown)
+            {
+                var rayCastResult = GetUIUnderCursor();
+                if (rayCastResult[0].gameObject == null) return;
+                if (!rayCastResult[0].gameObject.TryGetComponent(out IDraggableObject draggableObject)) return;
+                _currentDragObject = draggableObject;
+                Debug.Log(_currentDragObject.RectTransform.gameObject.name);
+                draggableObject.OnDragStart();
+            }
+            else
+            {
+                _currentDragObject?.OnDragEnd(MousePosition);
+            }
+        }
+
+        public static List<RaycastResult> GetUIUnderCursor()
+        {
+            PointerEventData pointerEventData = new PointerEventData(_eventSystem)
+            {
+                position = MousePosition // 마우스 위치 설정
+            };
+
+            List<RaycastResult> results = new List<RaycastResult>();
+            _graphicRaycaster.Raycast(pointerEventData, results);
+
+            return results;
+        }
+
+        private void Update()
+        {
+            // 마우스 위치 
+            MousePosition = _inputReader.MousePosition;
+            
+            if (_currentDragObject == null) return;
+            Debug.Log(_currentDragObject.RectTransform.gameObject.name);
+            _currentDragObject.RectTransform.anchoredPosition = MousePosition;
+            _currentDragObject.OnDragging(MousePosition);
+        }
+    }
+}

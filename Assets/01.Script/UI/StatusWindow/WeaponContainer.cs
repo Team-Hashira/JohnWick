@@ -1,4 +1,3 @@
-using System;
 using Hashira.Entities.Components;
 using Hashira.Players;
 using UnityEngine;

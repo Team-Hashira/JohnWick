@@ -17,22 +17,31 @@ namespace Hashira.UI.StatusWindow
 
         public void HandleWeaponChanged(Weapon weapon)
         {
-            _baseWeapon = weapon;
-            _iconImage.sprite = weapon.WeaponSO.itemSprite;
-
+            if(_baseWeapon != null)
+                _baseWeapon.OnPartsChanged -= HandleParsChanged;
+            
             // 기존에 있던 UI 삭제
-            _partSlotList.ForEach(partSlot => Destroy(partSlot.gameObject));
+            foreach (var partSlot in _partSlotList)
+            {
+                Destroy(partSlot.gameObject);
+            }
             _partSlotList.Clear();
             
             // 새로 추가
             foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
                 AddPartSlot(posPair.Key, posPair.Value);
+            
+            _baseWeapon = weapon;
+            _iconImage.sprite = weapon.WeaponSO.itemSprite;
+            
+            if(_baseWeapon != null)
+                _baseWeapon.OnPartsChanged += HandleParsChanged;
         }
 
-        public void OnChangedPart(WeaponPartsSO weaponPartsSO)
+        private void HandleParsChanged(EWeaponPartsType partsType, WeaponParts weaponParts)
         {
-            var partSlot = _partSlotList.FirstOrDefault(x => x.partType == weaponPartsSO.partsType);
-            partSlot?.Init(weaponPartsSO);
+            var partSlot = _partSlotList.FirstOrDefault(x => x.partType == partsType);
+            partSlot?.Init(weaponParts);
         }
         
         private void AddPartSlot(EWeaponPartsType partType, Vector2 position)

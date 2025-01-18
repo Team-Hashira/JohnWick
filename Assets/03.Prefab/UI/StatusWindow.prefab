@@ -666,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b039ad39dfc985f40810de10ae500c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReaderSO: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
+  _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
 --- !u!225 &416689086413284083
 CanvasGroup:
   m_ObjectHideFlags: 0

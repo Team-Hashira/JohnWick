@@ -5,26 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/DragController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/DragController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDragEndTargetObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDragEndTargetObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDraggableObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDraggableObject.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Combat/FollowTarget.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Combat/FollowTarget.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/EntityInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/EntityInteractor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/WeaponSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/WeaponSO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/StatusWindow.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlot.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Texture/Sprite/UI/Free Flat Plus Icon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Texture/Sprite/UI/Free Flat Plus Icon.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/PerkSlot.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/PerkSlot.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/PartSlot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/PartSlot.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/WeaponSlot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/WeaponSlot.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/08.SO/Weapon/Weapon/PistolWeapon.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/Weapon/Weapon/PistolWeapon.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 Bold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Crogen/MathExtension/MathExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Crogen/MathExtension/MathExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/InputSetting/Controls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/InputSetting/Controls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/InputSetting/Controls.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/InputSetting/Controls.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/InputSetting/InputReaderSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/InputSetting/InputReaderSO.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

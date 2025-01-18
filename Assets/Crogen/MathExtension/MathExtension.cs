@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MathExtension
+public static class MathExtension
 {
     public static float RotateClamp(float value, float min, float max)
     {
@@ -37,10 +37,12 @@ public class MathExtension
         return out1 + (value - in1) * (out2 - out1) / (in2 - in1);
     }
 
-    public static Vector3 ClampMagnitude(Vector3 vec, float maxValue)
+    public static Vector3 ClampMagnitude(Vector3 vec, float min, float max)
     {
-        if (vec.magnitude > maxValue)
-            vec = vec/vec.magnitude*maxValue;
+        if (vec.magnitude < min)
+            vec = vec.normalized * min;
+        else if (vec.magnitude > max)
+            vec = vec.normalized * max;
         return vec;
     }
 }

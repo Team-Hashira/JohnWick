@@ -6,7 +6,7 @@ namespace Hashira.UI.StatusWindow
     public class StatusWindow : MonoBehaviour
     {
         private CanvasGroup _canvasGroup;
-        [SerializeField] private InputReaderSO _inputReaderSO;
+        [SerializeField] private InputReaderSO _inputReader;
         
         //Values
         private bool _isShowStatusWindow => gameObject.activeSelf;
@@ -16,19 +16,19 @@ namespace Hashira.UI.StatusWindow
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             _canvasGroup.alpha = 0;
-            _inputReaderSO.UIActions.Enable();
+            _inputReader.UIActions.Enable();
             _canvasGroup.interactable = false;
         }
 
         private void Start()
         {
-            _inputReaderSO.OnStatusWindowEnableEvent += HandleStatusWindowEnable;
+            _inputReader.OnStatusWindowEnableEvent += HandleStatusWindowEnable;
             gameObject.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            _inputReaderSO.OnStatusWindowEnableEvent -= HandleStatusWindowEnable;
+            _inputReader.OnStatusWindowEnableEvent -= HandleStatusWindowEnable;
         }
 
         private void HandleStatusWindowEnable()
@@ -45,7 +45,7 @@ namespace Hashira.UI.StatusWindow
         private void Show()
         {
             gameObject.SetActive(true);
-            _inputReaderSO.PlayerActions.Disable();
+            _inputReader.PlayerActions.Disable();
             _canvasGroup.DOFade(1, 0.5f)
                 .SetUpdate(true)
                 .OnComplete(() =>
@@ -58,7 +58,7 @@ namespace Hashira.UI.StatusWindow
         ///숨기기
         private void Hide()
         {
-            _inputReaderSO.PlayerActions.Enable();
+            _inputReader.PlayerActions.Enable();
             _canvasGroup.interactable = false;
             _canvasGroup.DOFade(0, 0.5f)
                 .SetUpdate(true)

@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "SO/InputReader")]
-public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls.IUIActions
+public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls.IUIActions, Controls.ISystemActions
 {
     private Controls _controls;
     public Controls.PlayerActions PlayerActions { get; private set; }
     public Controls.UIActions UIActions { get; private set; }
+    public Controls.SystemActions SystemActions { get; private set; }
     
     #region Actions
 
@@ -20,10 +21,8 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action OnReloadEvent;
     public event Action<bool> OnCrouchEvent;
     public event Action<bool> OnAttackEvent;
-    public event Action<Vector2> OnNavigateEvent;
     public event Action OnStatusWindowEnableEvent;
-    public event Action<float> OnStatusTapMoveToSideEvent;
-    
+    public event Action<bool> OnClickEvent;
     #endregion
 
     #region Values
@@ -41,9 +40,11 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
             _controls = new Controls();
             PlayerActions = _controls.Player;
             UIActions = _controls.UI;
-
+            SystemActions = _controls.System;
+            
             PlayerActions.SetCallbacks(this);
             UIActions.SetCallbacks(this);
+            SystemActions.SetCallbacks(this);
         }
 
         _controls.Enable();
@@ -96,11 +97,6 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
             OnCrouchEvent?.Invoke(false);
     }
 
-    public void OnMousePosition(InputAction.CallbackContext context)
-    {
-        MousePosition = context.ReadValue<Vector2>();
-    }
-
     public void OnMove(InputAction.CallbackContext context)
     {
         XMovement = context.ReadValue<float>();
@@ -133,8 +129,6 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 
     public void OnNavigate(InputAction.CallbackContext context)
     {
-        if(context.performed)
-            OnNavigateEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnSubmit(InputAction.CallbackContext context)
@@ -151,6 +145,10 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 
     public void OnClick(InputAction.CallbackContext context)
     {
+        if (context.started)
+            OnClickEvent?.Invoke(true);
+        if (context.canceled)
+            OnClickEvent?.Invoke(false);
     }
 
     public void OnRightClick(InputAction.CallbackContext context)
@@ -175,9 +173,12 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 
     public void OnStatusTapMoveToSide(InputAction.CallbackContext context)
     {
-        if (context.performed)
-           OnStatusTapMoveToSideEvent?.Invoke(context.ReadValue<float>()); 
     }
 
     #endregion
+
+    public void OnOnMouseMove(InputAction.CallbackContext context)
+    {
+        MousePosition = context.ReadValue<Vector2>();
+    }
 }
