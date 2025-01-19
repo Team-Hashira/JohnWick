@@ -9,7 +9,10 @@ namespace Hashira.Entities.Components
     public class EntityWeapon : MonoBehaviour, IEntityComponent, IEntityDisposeComponent
     {
         [SerializeField] private WeaponSO[] _defaultWeapons;
-        
+
+        public float Recoil { get; private set; }
+
+
         public Weapon CurrentWeapon
         {
             get => Weapons[WeaponIndex];
@@ -68,6 +71,8 @@ namespace Hashira.Entities.Components
             //����� ���⿡ ���� Visual�� ����
             _spriteRenderer.sprite = weapon?.WeaponSO.itemSprite;
             VisualTrm.gameObject.SetActive(weapon != null);
+
+            Recoil = 0;
 
             if (weapon != null)
             {
@@ -150,10 +155,23 @@ namespace Hashira.Entities.Components
             transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan(dir.y / dir.x) * Mathf.Rad2Deg * Facing);
         }
 
+        public void ApplyRecoil(float value)
+        {
+            Recoil = Mathf.Clamp(Recoil + value * 0.1f, 0, 10f);
+        }
 
         private void Update()
         {
             CurrentWeapon?.WeaponUpdate();
+
+            if (Recoil > 0)
+            {
+                Recoil -= Time.deltaTime * 10f;
+                if (Recoil < 0)
+                {
+                    Recoil = 0;
+                }
+            }
         }
 
         public void Dispose()

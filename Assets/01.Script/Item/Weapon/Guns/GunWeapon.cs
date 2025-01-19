@@ -15,11 +15,13 @@ namespace Hashira.Items.Weapons
         public int BulletAmount { get; protected set; }
 
         private StatElement _precisionStat;
+        private StatElement _recoilStat;
 
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
             _precisionStat = StatDictionary["Precision"];
+            _recoilStat = StatDictionary["Recoil"];
         }
 
         private void HandleDamageSuccessEvent()
@@ -36,6 +38,7 @@ namespace Hashira.Items.Weapons
         {
             if (BulletAmount <= 0) return false;
             BulletAmount--;
+
             OnFireEvent?.Invoke(BulletAmount);
 
             SpawnCartridgeCase();
@@ -47,7 +50,11 @@ namespace Hashira.Items.Weapons
         {
             //Bullet
             Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
-            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO.bulletSpeed, CalculateDamage());
+            float randomRecoil = Random.Range(-_EntityWeapon.Recoil, _EntityWeapon.Recoil);
+            Vector3 targetDir = (Quaternion.Euler(0, 0, randomRecoil) * _EntityWeapon.transform.right).normalized;
+            bullet.Init(GunSO.WhatIsTarget, targetDir, GunSO.bulletSpeed, CalculateDamage());
+
+            _EntityWeapon.ApplyRecoil(_recoilStat.Value);
         }
 
         public override int CalculateDamage()
