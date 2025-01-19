@@ -1,5 +1,7 @@
 using Hashira.Entities;
+using Hashira.Entities.Components;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Hashira.FSM
 {
@@ -7,23 +9,27 @@ namespace Hashira.FSM
     {
         protected T _owner;
 
-        private readonly int _AnimationHash;
-
         public EntityState(T owner, StateMachine stateMachine, string animationName)
         {
+            _EntityAnimator = owner.GetEntityComponent<EntityAnimator>();
+            SetAnimationHash(animationName);
             _owner = owner;
             _stateMachine = stateMachine;
-
-            _AnimationHash = Animator.StringToHash(animationName);
         }
     }
 
     public class EntityStateBase
     {
         protected StateMachine _stateMachine;
+        protected EntityAnimator _EntityAnimator;
 
-        public virtual void Enter() { }
+        private int _animationHash;
+
+        protected void SetAnimationHash(string animationName)
+            => _animationHash = Animator.StringToHash(animationName);
+
+        public virtual void Enter() { _EntityAnimator?.SetParam(_animationHash, true); }
         public virtual void Update() { }
-        public virtual void Exit() { }
+        public virtual void Exit() { _EntityAnimator?.SetParam(_animationHash, false); }
     }
 }

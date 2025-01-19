@@ -3,6 +3,7 @@ using Hashira.Entities;
 using Hashira.FSM;
 using System;
 using UnityEngine;
+using static UnityEditor.Rendering.FilterWindow;
 
 namespace Hashira.Players
 {
@@ -25,9 +26,14 @@ namespace Hashira.Players
             base.Update();
 
             float movement = _owner.InputReader.XMovement;
-            if (_speedStat != null)
-                movement *= _speedStat.Value;
-            _entityMover.SetMovement(movement);
+            if (movement != 0)
+            {
+                if (_speedStat != null)
+                    movement *= _speedStat.Value;
+                _entityMover.SetMovement(movement);
+            }
+            else
+                _stateMachine.ChangeState(EPlayerState.Idle);
         }
 
         public override void Exit()

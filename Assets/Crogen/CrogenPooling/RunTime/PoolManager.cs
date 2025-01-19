@@ -34,7 +34,7 @@ public class PoolManager : MonoBehaviour
 		{
             try
             {
-                poolDict.Add(poolPair.poolType, new Stack<IPoolingObject>());
+                poolDict.Add($"{poolCategory.name}.{poolPair.poolType}", new Stack<IPoolingObject>());
             }
             catch (System.Exception)
             {
@@ -43,19 +43,19 @@ public class PoolManager : MonoBehaviour
             }
             for (int i = 0; i < poolPair.poolCount; ++i)
             {
-                IPoolingObject poolingObject = CreateObject(poolPair, Vector3.zero, Quaternion.identity);
-                PoolingObjectInit(poolingObject, poolPair.poolType, transform);
+                IPoolingObject poolingObject = CreateObject(poolCategory, poolPair, Vector3.zero, Quaternion.identity);
+                PoolingObjectInit(poolingObject, $"{poolCategory.name}.{poolPair.poolType}", transform);
                 ++currentPairIndex;
             }
         }
     }
 
-    public static IPoolingObject CreateObject(PoolPair poolPair, Vector3 vec, Quaternion rot)
+    public static IPoolingObject CreateObject(PoolCategorySO poolCategory, PoolPair poolPair, Vector3 vec, Quaternion rot)
     {
         GameObject poolObject = Instantiate(poolPair.prefab);
         IPoolingObject poolingObject = poolObject.GetComponent<IPoolingObject>();
 
-        poolingObject.OriginPoolType = poolPair.poolType;
+        poolingObject.OriginPoolType = $"{poolCategory.name}.{poolPair.poolType}";
         poolingObject.gameObject = poolObject;
 
         poolObject.transform.localPosition = vec;

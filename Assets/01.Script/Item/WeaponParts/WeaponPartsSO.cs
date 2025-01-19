@@ -24,7 +24,6 @@ namespace Hashira.Items.WeaponPartsSystem
         [Header("==========Weapon parts setting==========")]
         public EWeaponPartsType partsType;
 
-        private WeaponParts weaponParts;
         [SerializeField] private List<StatElement> _statList = new List<StatElement>();
         public StatDictionary StatDictionary { get; private set; }
 
@@ -36,7 +35,7 @@ namespace Hashira.Items.WeaponPartsSystem
                 Type type = Type.GetType("Hashira.Items.WeaponPartsSystem." + className);
                 WeaponParts findedWeaponParts = Activator.CreateInstance(type) as WeaponParts;
                 findedWeaponParts.Init(this);
-                weaponParts = findedWeaponParts;
+                _itemClass = findedWeaponParts;
             }
             catch (Exception ex)
             {
@@ -44,11 +43,6 @@ namespace Hashira.Items.WeaponPartsSystem
                                 $"Error : {ex.ToString()}");
             }
             StatDictionary = new StatDictionary(_statList);
-        }
-
-        public WeaponParts GetWeaponPartsClass()
-        {
-            return weaponParts.Clone() as WeaponParts;
         }
     }
 }

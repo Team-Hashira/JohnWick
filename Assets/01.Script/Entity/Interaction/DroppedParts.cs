@@ -1,5 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
+using Hashira.Items;
 using Hashira.Items.WeaponPartsSystem;
 using UnityEngine;
 
@@ -15,14 +16,14 @@ namespace Hashira.Entities.Interacts
         {
             base.Awake();
             if (_partsSO == null) return;
-            SetParts(_partsSO.GetWeaponPartsClass());
+            SetItem(_partsSO.GetItemClass());
         }
 
-        public void SetParts(WeaponParts parts)
+        public override void SetItem(Item item)
         {
-            _parts = parts;
-            _partsSO = parts.WeaponPartsSO;
-            SetItemSO(_partsSO);
+            _parts = item as WeaponParts;
+            _partsSO = _parts.WeaponPartsSO;
+            base.SetItem(item);
         }
 
         public override void Interaction(Entity entity)
@@ -34,7 +35,7 @@ namespace Hashira.Entities.Interacts
             if (weaponHolder.CurrentWeapon == null) return;
 
             WeaponParts weaponParts = weaponHolder.CurrentWeapon.EquipParts(_partsSO.partsType, _parts);
-            if (weaponParts != null) SetParts(weaponParts);
+            if (weaponParts != null) SetItem(weaponParts);
             else this.Push();
         }
 

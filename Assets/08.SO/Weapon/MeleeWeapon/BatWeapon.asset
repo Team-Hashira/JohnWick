@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3cd03ed6644c944bc37d6e861e009c, type: 3}
   m_Name: BatWeapon
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 6872162382860945771, guid: 9e79f9eb8b0f3b64ca23d7c5ef78fbad, type: 3}
-  itemSprite: {fileID: 4232148301388940464, guid: 7860e985d2c89934d819c38c251d9e2e, type: 3}
+  itemIcon: {fileID: 8647823593821616703, guid: 5b189a418187cec48abac989460b6982, type: 3}
+  itemSprite: {fileID: 8647823593821616703, guid: 5b189a418187cec48abac989460b6982, type: 3}
   itemName: Bat
   itemDisplayName: "\uC57C\uAD6C \uB9DD\uBC29\uC774"
   itemDescription: "\uD06C\uACE0 \uD0D0\uC2A4\uB7FD\uB2E4"
@@ -30,4 +30,5 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
     _baseValue: 30
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  _attackSize: {x: 0, y: 0}
+  attackRange: {x: 0, y: 0}
+  attackEffect: 0
