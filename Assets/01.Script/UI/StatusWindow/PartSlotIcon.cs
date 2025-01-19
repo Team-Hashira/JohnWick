@@ -1,4 +1,6 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities.Interacts;
+using Hashira.Items;
 using Hashira.Items.WeaponPartsSystem;
 using Hashira.UI.DragSystem;
 using UnityEngine;
@@ -55,9 +57,8 @@ namespace Hashira.UI.StatusWindow
             var raycastResult = DragController.GetUIUnderCursor();
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
-                // TODO 이거 나중에 풀링 꼭!!!! 하기 
-                var droppedItem = Instantiate(_droppedPartsPrefab, GameManager.Instance.Player.transform.position, Quaternion.identity);
-                droppedItem.SetParts(Parent.BasePart);
+                Vector2 pos = GameManager.Instance.Player.transform.position;
+                ItemDropUtility.DropParts(Parent.BasePart.WeaponPartsSO, pos);
                 Parent.Parent.BaseWeapon.EquipParts(Parent.partType, null);
                 SetToOriginTrm();
                 return;

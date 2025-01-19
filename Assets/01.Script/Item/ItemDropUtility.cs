@@ -19,7 +19,7 @@ namespace Hashira.Items
 
         public static DroppedParts DropParts(WeaponPartsSO parts, Vector2 position)
         {
-            var partsItem = _gameObject.Pop(ItemPoolType.WeaponItem, position, Quaternion.identity) as DroppedParts;
+            var partsItem = _gameObject.Pop(ItemPoolType.WeaponPartsItem, position, Quaternion.identity) as DroppedParts;
             if (partsItem != null) partsItem.SetParts(parts.GetWeaponPartsClass());
             return partsItem;
         }

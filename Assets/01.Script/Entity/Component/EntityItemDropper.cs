@@ -19,7 +19,7 @@ namespace Hashira.Entities.Components
             foreach (var itemPair in _itemPercent)
             {
                 sum += itemPair.Value;
-                if (lastSum <= percent && percent > sum)
+                if (lastSum <= percent && percent < sum)
                 {
                     if (itemPair.Key is WeaponSO weapon)
                     {

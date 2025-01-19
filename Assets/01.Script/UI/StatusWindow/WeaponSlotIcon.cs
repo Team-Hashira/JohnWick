@@ -1,6 +1,7 @@
 using System;
 using Hashira.Entities.Components;
 using Hashira.Entities.Interacts;
+using Hashira.Items;
 using Hashira.Players;
 using Hashira.UI.DragSystem;
 using UnityEngine;
@@ -67,9 +68,8 @@ namespace Hashira.UI.StatusWindow
             var raycastResult = DragController.GetUIUnderCursor();
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
-                // TODO 이거 나중에 풀링 꼭!!!! 하기 
-                var droppedWeapon = Instantiate(_droppedWeaponPrefab, _player.transform.position, Quaternion.identity);
-                droppedWeapon.SetWeapon(Parent.BaseWeapon);
+                Vector2 pos = GameManager.Instance.Player.transform.position;
+                ItemDropUtility.DropWeapon(Parent.BaseWeapon.WeaponSO, pos);
                 _entityWeapon.RemoveWeapon(Parent.SlotIndex);
             } 
             
