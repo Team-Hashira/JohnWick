@@ -7,6 +7,7 @@ namespace Hashira.Projectile
     public class Bullet : PushLifetime
     {
         [SerializeField] private ProjectileCollider2D _projectileCollider;
+        [SerializeField] private TrailRenderer _trailRenderer;
         [SerializeField] private EffectPoolType _hitEffect;
         [SerializeField] private EffectPoolType _spakleEffect;
         [SerializeField] private EffectPoolType _bloodEffect;
@@ -86,12 +87,19 @@ namespace Hashira.Projectile
             _whatIsTarget = whatIsTarget;
             transform.right = direction;
             _spriteRenderer.enabled = true;
+            _trailRenderer.enabled = true;
         }
 
         public override void Die()
         {
             base.Die();
             _spriteRenderer.enabled = false;
+        }
+
+        public override void DelayDie()
+        {
+            base.DelayDie();
+            _trailRenderer.enabled = false;
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class Weapon : Item, ICloneable, IStatable
+    public class Weapon : Item, IStatable
     {
         public WeaponSO WeaponSO { get; private set; }
         protected EntityWeapon _EntityWeapon { get; private set; }
@@ -67,13 +67,6 @@ namespace Hashira.Items.Weapons
         }
 
         public virtual int CalculateDamage() { return _entityDamage + StatDictionary["AttackPower"].IntValue; }
-
-        public virtual object Clone()
-        {
-            Weapon clonedWeapon = MemberwiseClone() as Weapon;
-            clonedWeapon.WeaponSO = WeaponSO;
-            return clonedWeapon;
-        }
 
         public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
         {

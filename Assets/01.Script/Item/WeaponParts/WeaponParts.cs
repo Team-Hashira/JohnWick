@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Hashira.Items.WeaponPartsSystem
 {
-    public class WeaponParts : Item, ICloneable, IStatable
+    public class WeaponParts : Item, IStatable
     {
         public WeaponPartsSO WeaponPartsSO { get; private set; }
 
@@ -37,11 +37,6 @@ namespace Hashira.Items.WeaponPartsSystem
         public virtual void PartsUpdate()
         {
 
-        }
-
-        public object Clone()
-        {
-            return MemberwiseClone() as WeaponParts;
         }
     }
 }

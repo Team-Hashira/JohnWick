@@ -48,10 +48,15 @@ namespace Hashira.Entities.Interacts
             _holdOutlineSprite.material.SetFloat(_FillAmountShaderHash, 0);
         }
 
-        protected virtual void SetItemSO(ItemSO itemSO)
+        public void SetItem(ItemSO itemSO)
         {
-            _itemSprite.sprite = itemSO?.itemIcon;
-            string itemName = itemSO == null ? "" : itemSO.itemDisplayName;
+            Item item = itemSO.GetItemClass();
+            SetItem(item);
+        }
+        public virtual void SetItem(Item item)
+        {
+            _itemSprite.sprite = item.ItemSO?.itemIcon;
+            string itemName = item.ItemSO == null ? "" : item.ItemSO.itemDisplayName;
             _nameText.text = $"{itemName}";
         }
 

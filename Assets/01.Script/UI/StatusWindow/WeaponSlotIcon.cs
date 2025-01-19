@@ -69,7 +69,7 @@ namespace Hashira.UI.StatusWindow
             {
                 // TODO 이거 나중에 풀링 꼭!!!! 하기 
                 var droppedWeapon = Instantiate(_droppedWeaponPrefab, _player.transform.position, Quaternion.identity);
-                droppedWeapon.SetWeapon(Parent.BaseWeapon);
+                droppedWeapon.SetItem(Parent.BaseWeapon);
                 _entityWeapon.RemoveWeapon(Parent.SlotIndex);
             } 
             

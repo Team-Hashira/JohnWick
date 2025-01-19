@@ -57,7 +57,7 @@ namespace Hashira.UI.StatusWindow
             {
                 // TODO 이거 나중에 풀링 꼭!!!! 하기 
                 var droppedItem = Instantiate(_droppedPartsPrefab, GameManager.Instance.Player.transform.position, Quaternion.identity);
-                droppedItem.SetParts(Parent.BasePart);
+                droppedItem.SetItem(Parent.BasePart);
                 Parent.Parent.BaseWeapon.EquipParts(Parent.partType, null);
                 SetToOriginTrm();
                 return;
