@@ -91,9 +91,8 @@ namespace Hashira.Entities.Components
                 Weapons[meleeIndex]?.Equip(this);
                 
                 OnChangedWeaponEvents[meleeIndex]?.Invoke(meleeWeapon);
-                OnCurrentWeaponChanged?.Invoke(Weapons[meleeIndex]);
                 
-                return prevWeapon;
+                return CurrentWeapon as MeleeWeapon;
             }
             
             CurrentWeapon?.UnEquip();
