@@ -1,6 +1,7 @@
 using Hashira.Items.Weapons;
 using Hashira.Players;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Hashira.Entities.Components
@@ -53,7 +54,6 @@ namespace Hashira.Entities.Components
             }
         }
 
-
         private void HandleReloadEvent()
         {
             if (CurrentWeapon is GunWeapon gun)
@@ -86,13 +86,15 @@ namespace Hashira.Entities.Components
             {
                 int meleeIndex = 2;
                 
+                Weapon preMeleeWeapon = Weapons[meleeIndex];
+                
                 Weapons[meleeIndex]?.UnEquip();
                 Weapons[meleeIndex] = meleeWeapon;
                 Weapons[meleeIndex]?.Equip(this);
                 
                 OnChangedWeaponEvents[meleeIndex]?.Invoke(meleeWeapon);
                 
-                return CurrentWeapon as MeleeWeapon;
+                return preMeleeWeapon;
             }
             
             CurrentWeapon?.UnEquip();
@@ -109,6 +111,7 @@ namespace Hashira.Entities.Components
         public void WeaponSwap()
         {
             //���� �ε��� ���ϱ�
+            if (Weapons.Where(x => x != null && x is not MeleeWeapon).ToArray().Length == 1) return;
             WeaponIndex++;
             if (WeaponIndex >= 2) WeaponIndex = 0;
 
