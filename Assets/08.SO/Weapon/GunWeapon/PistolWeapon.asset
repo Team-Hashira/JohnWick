@@ -39,7 +39,7 @@ MonoBehaviour:
     _baseValue: 65
   - Name: "\uBC18\uB3D9"
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
-    _baseValue: 50
+    _baseValue: 25
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
   firePoint: {x: 0.292, y: 0.125, z: 0}
   cartridgeCaseParticlePoint: {x: -0.093, y: 0.125, z: 0}
