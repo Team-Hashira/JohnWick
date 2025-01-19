@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Core.StatSystem;
 using System;
 using UnityEngine;
@@ -38,7 +39,12 @@ namespace Hashira.Entities
             if (_isDie) return hitPoint;
 
             int prev = Health;
-            Health -= hitPoint == EEntityPartType.Head ? damage * 5 : damage;
+            bool isHead = hitPoint == EEntityPartType.Head;
+            int finalDamage = isHead ? damage * 5 : damage;
+            DamageText damageText = gameObject.Pop(UIPoolType.DamageText, raycastHit.point, Quaternion.identity)
+                                    .gameObject.GetComponent<DamageText>();
+            damageText.Init(finalDamage, isHead ? Color.yellow : Color.white);
+            Health -= finalDamage;
             if (Health < 0)
                 Health = 0;
             OnHealthChangedEvent?.Invoke(prev, Health);
