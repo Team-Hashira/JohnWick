@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 namespace Crogen.CrogenPooling
 {
@@ -15,10 +16,22 @@ namespace Crogen.CrogenPooling
             _poolBaseList = poolBaseList;
         }
 
-        public static IPoolingObject Pop(this GameObject target, Enum type, Transform parent)
+        public static IPoolingObject Pop(this GameObject target, Enum type, Transform parent = null)
         {
             string typeName = type.ToString();
 
+            return Pop(target, typeName, parent);
+        }
+
+        public static IPoolingObject Pop(this GameObject target, Enum type, Vector3 pos, Quaternion rot)
+        {
+            string typeName = type.ToString();
+
+            return Pop(target, typeName, pos, rot);
+        }
+
+        public static IPoolingObject Pop(this GameObject target, string typeName, Transform parent = null)
+        {
             try
             {
                 IPoolingObject poolingObject;
@@ -56,11 +69,8 @@ namespace Crogen.CrogenPooling
                 throw;
             }
         }
-
-        public static IPoolingObject Pop(this GameObject target, Enum type, Vector3 pos, Quaternion rot)
+        public static IPoolingObject Pop(this GameObject target, string typeName, Vector3 pos, Quaternion rot)
         {
-            string typeName = type.ToString();
-
             try
             {
                 IPoolingObject poolingObject;
