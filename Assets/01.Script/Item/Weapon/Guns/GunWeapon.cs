@@ -2,7 +2,6 @@ using Crogen.CrogenPooling;
 using Hashira.Core.StatSystem;
 using Hashira.Projectile;
 using System;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
