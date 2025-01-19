@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hashira
 {
-    public class AnimHashSO : MonoBehaviour
+    public class AnimatorParamSO : MonoBehaviour
     {
         public string paramName;
         public int hash;
