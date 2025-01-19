@@ -14,17 +14,10 @@ namespace Hashira.Items.Weapons
         public event Action<int> OnFireEvent;
         public int BulletAmount { get; protected set; }
 
-        private int _entityDamage;
-
 
         private void HandleDamageSuccessEvent()
         {
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
-        }
-
-        public override void Attack(int damage, bool isDown)
-        {
-            _entityDamage = damage;
         }
 
         protected void SpawnCartridgeCase()
@@ -45,10 +38,14 @@ namespace Hashira.Items.Weapons
 
         protected void CreateBullet(Vector3 firePos)
         {
-            int damage = Mathf.CeilToInt((_entityDamage + StatDictionary["AttackPower"].Value) * (Random.Range(StatDictionary["Precision"].Value, 100f) / 100));
             //Bullet
             Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO._bullet, firePos, Quaternion.identity) as Bullet;
-            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, damage);
+            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, CalculateDamage());
+        }
+
+        public override int CalculateDamage()
+        {
+            return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(StatDictionary["Precision"].Value, 100f) / 100));
         }
 
         public void Reload()

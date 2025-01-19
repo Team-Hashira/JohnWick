@@ -13,11 +13,6 @@ namespace Hashira.Items.Weapons
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
         }
 
-        public override void Attack(int damage, bool isDown)
-        {
-            
-        }
-
         public override object Clone()
         {
             MeleeSO = WeaponSO as MeleeSO;
