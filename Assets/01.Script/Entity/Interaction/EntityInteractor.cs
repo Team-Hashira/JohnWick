@@ -52,17 +52,15 @@ namespace Hashira.Entities
                 = collider2Ds.Length > 0 ? collider2Ds[0].GetComponent<IInteractable>() : null;
 
             if (Interactable == interactable) return;
-            else
-            {
-                _isClicked = false;
-                _isHolding = false;
-            }
 
             Interactable?.OffInteractable();
-            HoldInteractable?.HoldInteractionEnd();
+            if (_isHolding) HoldInteractable?.HoldInteractionEnd();
             Interactable = interactable;
             HoldInteractable = interactable as IHoldInteractable;
             Interactable?.OnInteractable();
+
+            _isClicked = false;
+            _isHolding = false;
         }
 
         private void Update()

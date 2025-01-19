@@ -110,8 +110,8 @@ namespace Hashira.Entities.Components
 
         public void WeaponSwap()
         {
-            //���� �ε��� ���ϱ�
-            if (Weapons.Where(x => x != null && x is not MeleeWeapon).ToArray().Length == 1) return;
+            //빈 슬롯에 자동삽입 기능을 추가할 지 안정했기에 일단 주석
+            //if (Weapons.Where(x => x != null && x is not MeleeWeapon).ToArray().Length == 1) return;
             WeaponIndex++;
             if (WeaponIndex >= 2) WeaponIndex = 0;
 

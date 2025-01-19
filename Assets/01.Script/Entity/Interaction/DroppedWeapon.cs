@@ -51,6 +51,7 @@ namespace Hashira.Entities.Interacts
                     }
                     else
                     {
+                        _ComparisonItemDataTrm.gameObject.SetActive(false);
                         _itemData.SetItem(_weapon);
                     }
                 }
@@ -62,6 +63,7 @@ namespace Hashira.Entities.Interacts
                 }
                 else
                 {
+                    _ComparisonItemDataTrm.gameObject.SetActive(false);
                     _itemData.SetItem(_weapon);
                 }
             }
