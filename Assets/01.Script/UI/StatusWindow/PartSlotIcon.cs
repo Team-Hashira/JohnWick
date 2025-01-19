@@ -26,7 +26,6 @@ namespace Hashira.UI.StatusWindow
         {
             _image.sprite = weaponPart?.WeaponPartsSO.itemSprite;
             _image.color = weaponPart != null ? Color.white : Color.clear;  
-            Debug.Log(weaponPart?.WeaponPartsSO.name);
             Parent = partSlot;
         }
         
@@ -44,22 +43,15 @@ namespace Hashira.UI.StatusWindow
         public void OnDragEnd(Vector2 curPos)
         {
             var raycastResult = DragController.GetUIUnderCursor();
-            for (int i = 0; i < raycastResult.Count; i++)
+            if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
-                Debug.Log(raycastResult[i].gameObject.name);
-            }
-            
-            foreach (var result in raycastResult)
-            {
-                if (result.gameObject.name.Equals("BlackSolid"))
-                {
-                    // TODO 이거 나중에 풀링 꼭!!!! 하기 
-                    var droppedItem = Instantiate(_droppedParts, GameManager.Instance.Player.transform.position, Quaternion.identity);
-                    droppedItem.SetParts(Parent.BasePart);
-                    Parent.Parent.baseWeapon.EquipParts(Parent.partType, null);
-                    break;
-                } 
-            }
+                // TODO 이거 나중에 풀링 꼭!!!! 하기 
+                var droppedItem = Instantiate(_droppedParts, GameManager.Instance.Player.transform.position, Quaternion.identity);
+                droppedItem.SetParts(Parent.BasePart);
+                Parent.Parent.baseWeapon.EquipParts(Parent.partType, null);
+                SetToOriginTrm();
+                return;
+            } 
                 
             foreach (var result in raycastResult)
             {
@@ -75,7 +67,13 @@ namespace Hashira.UI.StatusWindow
                 Parent.Parent.baseWeapon.EquipParts(Parent.partType, temp);
                 
             }
-            
+
+            SetToOriginTrm();
+        }
+
+
+        private void SetToOriginTrm()
+        {
             // 원위치
             RectTransform.anchoredPosition = Vector2.zero;
             transform.eulerAngles = Vector3.zero;
