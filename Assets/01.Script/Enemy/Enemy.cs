@@ -45,13 +45,6 @@ namespace Hashira.Enemies
             _entityHealth = GetEntityComponent<EntityHealth>();
         }
 
-        protected override void Update()
-        {
-            base.Update();
-
-            _entityRenderer.LookTarget(_player.transform.position);
-        }
-
         private void HandlePartsCollisionHitEvent(EEntityPartType parts, RaycastHit2D raycastHit, Transform attackerTrm)
         {
 

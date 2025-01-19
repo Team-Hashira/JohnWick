@@ -73,7 +73,7 @@ namespace Hashira.Entities
             if (groundHits.Length > 0) _hitedGround = groundHits[0];
             IsGrounded = groundHits.Length > 0 && _yMovement < 0;
 
-            if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node)) 
+            if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node))
                 CurrentNode = node;
         }
 

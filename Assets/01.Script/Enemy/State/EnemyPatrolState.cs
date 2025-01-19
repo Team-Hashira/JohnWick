@@ -26,8 +26,7 @@ namespace Hashira.Enemies
         public override void OnEnter()
         {
             base.OnEnter();
-            _entityRenderer.Flip(-_entityRenderer.FacingDirection);
-            _currentFacingDirection = _entityRenderer.FacingDirection;
+            _entityRenderer.Flip();
         }
 
         public override void OnUpdate()
@@ -38,7 +37,7 @@ namespace Hashira.Enemies
                 _entityStateMachine.ChangeState("Idle");
                 return;
             }
-            _enemyMover.SetMovement(_currentFacingDirection * _speedElement.Value);
+            _enemyMover.SetMovement(_entityRenderer.FacingDirection * _speedElement.Value);
         }
     }
 }
