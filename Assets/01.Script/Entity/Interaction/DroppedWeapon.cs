@@ -13,6 +13,7 @@ namespace Hashira.Entities.Interacts
         protected override void Awake()
         {
             base.Awake();
+            if (_weaponSO == null) return;
             SetWeapon(_weaponSO.GetWeaponClass());
         }
 

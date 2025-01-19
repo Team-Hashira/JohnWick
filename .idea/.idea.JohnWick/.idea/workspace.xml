@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="" />
+    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedWeapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/GunSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/GunSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/Effect/BulletShootSpakleEffect.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/Effect/BulletShootSpakleEffect.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/Effect/HitSpakleEffect.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/Effect/HitSpakleEffect.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Crogen/CrogenPooling/EnumTypes/EffectPoolType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Crogen/CrogenPooling/EnumTypes/EffectPoolType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Effect.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Effect.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +49,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseJumpCount.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseMoveSpeed.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityEffector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/Item/ItemDropUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/MeleeWeapon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDraggableObject.cs" root0="FORCE_HIGHLIGHTING" />
