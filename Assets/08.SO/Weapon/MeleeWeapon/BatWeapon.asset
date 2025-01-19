@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7f3cd03ed6644c944bc37d6e861e009c, type: 3}
-  m_Name: KnifeSO
+  m_Name: BatWeapon
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 6872162382860945771, guid: 9e79f9eb8b0f3b64ca23d7c5ef78fbad, type: 3}
   itemSprite: {fileID: 4232148301388940464, guid: 7860e985d2c89934d819c38c251d9e2e, type: 3}
