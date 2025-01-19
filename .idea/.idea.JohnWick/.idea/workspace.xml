@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/MeleeSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/MeleeSO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlotIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlotIcon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlotIcon.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlotIcon.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlotIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlotIcon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/GunWeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/GunWeaponSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/IWeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/IWeaponSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/MeleeWeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/MeleeWeaponSlot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/StatusWindow.prefab" afterDir="false" />
-    </list>
+    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

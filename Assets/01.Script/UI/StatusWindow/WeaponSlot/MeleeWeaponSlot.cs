@@ -12,7 +12,7 @@ namespace Hashira.UI.StatusWindow
 
         public void HandleWeaponChanged(Weapon weapon)
         {
-            Debug.Log(weapon.WeaponSO.itemName);
+            //Debug.Log(weapon.WeaponSO.itemName);
             BaseWeapon = weapon;
             _icon.Init(this);
         }

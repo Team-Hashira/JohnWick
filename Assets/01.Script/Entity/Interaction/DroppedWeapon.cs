@@ -1,5 +1,4 @@
 using Hashira.Entities.Components;
-using Hashira.Items.WeaponPartsSystem;
 using Hashira.Items.Weapons;
 using UnityEngine;
 
