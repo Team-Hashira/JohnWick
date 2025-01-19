@@ -11,14 +11,14 @@ namespace Hashira.UI.StatusWindow
     {
         [SerializeField] private PartSlot _partSlotPrefab; 
         [SerializeField] private Image _iconImage;
-        private Weapon _baseWeapon;
+        public Weapon baseWeapon;
 
         private readonly List<PartSlot> _partSlotList = new List<PartSlot>();
 
         public void HandleWeaponChanged(Weapon weapon)
         {
-            if(_baseWeapon != null)
-                _baseWeapon.OnPartsChanged -= HandleParsChanged;
+            if(baseWeapon != null)
+                baseWeapon.OnPartsChanged -= HandleParsChanged;
             
             // 기존에 있던 UI 삭제
             foreach (var partSlot in _partSlotList)
@@ -29,22 +29,25 @@ namespace Hashira.UI.StatusWindow
             
             // 새로 추가
             foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
-                AddPartSlot(posPair.Key, posPair.Value);
+            {
+                var partSlot = AddPartSlot(posPair.Key, posPair.Value);
+                partSlot.Init(this, null);
+            }
             
-            _baseWeapon = weapon;
+            baseWeapon = weapon;
             _iconImage.sprite = weapon.WeaponSO.itemSprite;
             
-            if(_baseWeapon != null)
-                _baseWeapon.OnPartsChanged += HandleParsChanged;
+            if(baseWeapon != null)
+                baseWeapon.OnPartsChanged += HandleParsChanged;
         }
 
         private void HandleParsChanged(EWeaponPartsType partsType, WeaponParts weaponParts)
         {
             var partSlot = _partSlotList.FirstOrDefault(x => x.partType == partsType);
-            partSlot?.Init(weaponParts);
+            partSlot?.Init(this, weaponParts);
         }
         
-        private void AddPartSlot(EWeaponPartsType partType, Vector2 position)
+        private PartSlot AddPartSlot(EWeaponPartsType partType, Vector2 position)
         {
             PartSlot partSlot = Instantiate(_partSlotPrefab, transform);
             partSlot.partType = partType;
@@ -54,6 +57,8 @@ namespace Hashira.UI.StatusWindow
             if (partSlotRectTrm != null) partSlotRectTrm.anchoredPosition = position;
 
             _partSlotList.Add(partSlot);
+
+            return partSlot;
         }
     }
 }

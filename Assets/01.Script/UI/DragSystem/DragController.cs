@@ -56,7 +56,6 @@ namespace Hashira.UI.DragSystem
 
             List<RaycastResult> results = new List<RaycastResult>();
             _graphicRaycaster.Raycast(pointerEventData, results);
-
             return results;
         }
 
@@ -66,7 +65,6 @@ namespace Hashira.UI.DragSystem
             MousePosition = _inputReader.MousePosition;
             
             if (_currentDragObject == null) return;
-            Debug.Log(_currentDragObject.RectTransform.gameObject.name);
             _currentDragObject.RectTransform.position = MousePosition;
             _currentDragObject.OnDragging(MousePosition);
         }

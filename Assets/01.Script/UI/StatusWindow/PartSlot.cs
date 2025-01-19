@@ -8,10 +8,11 @@ namespace Hashira.UI.StatusWindow
         [SerializeField] private PartSlotIcon _icon;
         public EWeaponPartsType partType;
         public WeaponParts BasePart { get; private set; }
-
-        public void Init(WeaponParts weaponPart)
+        public GunWeaponSlot Parent { get; private set; }
+        
+        public void Init(GunWeaponSlot weaponSlot, WeaponParts weaponPart)
         {
-            Debug.Log(weaponPart.WeaponPartsSO.name);
+            Parent = weaponSlot;
             BasePart = weaponPart;
             _icon.Init(this, weaponPart);
         }

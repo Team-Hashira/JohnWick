@@ -16,7 +16,7 @@ namespace Hashira.Entities.Interacts
             SetParts(_partsSO.GetWeaponPartsClass());
         }
 
-        private void SetParts(WeaponParts parts)
+        public void SetParts(WeaponParts parts)
         {
             _parts = parts;
             _partsSO = parts.WeaponPartsSO;
