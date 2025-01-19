@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: PistolWeapon
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
-  itemSprite: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
+  itemIcon: {fileID: -986481565, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
+  itemSprite: {fileID: -986481565, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
   itemName: Pistol
   itemDisplayName: "\uAD8C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC8FC\uBA39 \uCD1D"
@@ -29,7 +29,7 @@ MonoBehaviour:
     - Key: 3
       Value: {x: -45.67, y: -59.93}
   overrideStatElementList:
-  - Name: 
+  - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 153
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}

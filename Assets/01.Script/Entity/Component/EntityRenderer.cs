@@ -12,7 +12,7 @@ namespace Hashira.Entities
 
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [SerializeField] private List<SpriteRenderer> _spriteRendererList;
-        [SerializeField] private bool _isFlip;
+        [SerializeField] private bool _onFlip;
 
         public float FacingDirection { get; private set; }
 
@@ -50,7 +50,7 @@ namespace Hashira.Entities
         private void Flip()
         {
             FacingDirection *= -1;
-            VisualTrm.localEulerAngles = new Vector3(0, ((FacingDirection > 0) ^ _isFlip) ? 0 : 180, 0);
+            VisualTrm.localEulerAngles = new Vector3(0, ((FacingDirection > 0) ^ _onFlip) ? 0 : 180, 0);
         }
     }
 }
