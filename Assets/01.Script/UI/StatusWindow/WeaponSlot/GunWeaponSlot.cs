@@ -17,6 +17,8 @@ namespace Hashira.UI.StatusWindow
 
         public void HandleWeaponChanged(Weapon weapon)
         {
+            if (weapon is not GunWeapon) return;
+            
             if(baseWeapon != null)
                 baseWeapon.OnPartsChanged -= HandleParsChanged;
             
@@ -31,7 +33,7 @@ namespace Hashira.UI.StatusWindow
             foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
             {
                 var partSlot = AddPartSlot(posPair.Key, posPair.Value);
-                partSlot.Init(this, null);
+                partSlot.Init(this, weapon.GetParts(posPair.Key));
             }
             
             baseWeapon = weapon;

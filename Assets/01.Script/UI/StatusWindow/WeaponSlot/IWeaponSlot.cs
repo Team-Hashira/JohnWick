@@ -1,5 +1,4 @@
 using Hashira.Items.Weapons;
-using UnityEngine;
 
 namespace Hashira.UI.StatusWindow
 {
