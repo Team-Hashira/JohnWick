@@ -108,51 +108,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 16
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f5674a3a5ec0d0610800000000000000
-      internalID: 1588940423964161631
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gUN-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: efc461789cefd8bc0800000000000000
-      internalID: -3779084370785710850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gUN-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 16
-        width: 32
+        width: 31
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -162,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56037e34f486941498c5ccbfdffd8a9a
-      internalID: -643783570
+      spriteID: aad16dccc69a68f49b7a7a884c9b4e09
+      internalID: 1588940423964161631
       vertices: []
       indices: 
       edges: []
@@ -172,10 +128,10 @@ TextureImporter:
       name: gUN-Sheet_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 16
-        width: 32
-        height: 16
+        x: 118
+        y: 24
+        width: 7
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,7 +140,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ffca6fb8450d764f903b84782ba3e4a
+      spriteID: 6dddaec8a00a16142a3d6957a172315c
       internalID: 840248325
       vertices: []
       indices: 
@@ -206,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f633af3569a3b424c963fba0aa820ff3
+      spriteID: af4557617d55f24479614a5a76a8289d
       internalID: -986481565
       vertices: []
       indices: 
@@ -216,10 +172,10 @@ TextureImporter:
       name: gUN-Sheet_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 16
+        x: 43
+        y: 10
+        width: 6
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,7 +184,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 628283512e3cf214587a5cac9d4cdb8f
+      spriteID: 4cf34eb33cdd71c46a0a33f0cb916dc5
       internalID: 1146665500
       vertices: []
       indices: 
@@ -238,10 +194,10 @@ TextureImporter:
       name: gUN-Sheet_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 16
+        x: 84
+        y: 8
+        width: 8
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,30 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44b381092cca9a844a41109c61876500
+      spriteID: 22dd7007a2f725e42926ce759cd48df8
       internalID: -2088847164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gUN-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77f3c02cc07503e4a919d33981b3b93c
-      internalID: -1877590955
       vertices: []
       indices: 
       edges: []
@@ -293,13 +227,13 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       gUN-Sheet_0: 1588940423964161631
-      gUN-Sheet_1: -3779084370785710850
-      gUN-Sheet_2: -643783570
+      gUN-Sheet_1: -1335755398
+      gUN-Sheet_2: -2040163224
       gUN-Sheet_3: 840248325
       gUN-Sheet_4: -986481565
       gUN-Sheet_5: 1146665500
       gUN-Sheet_6: -2088847164
-      gUN-Sheet_7: -1877590955
+      gUN-Sheet_7: -156656507
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
