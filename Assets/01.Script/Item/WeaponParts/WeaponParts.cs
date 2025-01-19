@@ -24,10 +24,14 @@ namespace Hashira.Items.WeaponPartsSystem
         public virtual void Equip(Weapon weapon)
         {
             _weapon = weapon;
+            foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
+                _weapon.StatDictionary[stat.elementSO].AddModify(WeaponPartsSO.itemName, stat.Value, EModifyMode.Add);
             Debug.Log($"{WeaponPartsSO.itemDisplayName} ¿Â¬¯!");
         }
         public virtual void UnEquip()
         {
+            foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
+                _weapon.StatDictionary[stat.elementSO].RemoveModify(WeaponPartsSO.itemName, EModifyMode.Add);
             Debug.Log($"{WeaponPartsSO.itemDisplayName} ¿Â¬¯«ÿ¡¶!");
         }
         public virtual void PartsUpdate()

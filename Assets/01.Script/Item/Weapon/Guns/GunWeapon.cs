@@ -1,4 +1,9 @@
+using Crogen.CrogenPooling;
+using Hashira.Projectile;
 using System;
+using Unity.Burst.Intrinsics;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Hashira.Items.Weapons
 {
@@ -9,14 +14,10 @@ namespace Hashira.Items.Weapons
         public event Action<int> OnFireEvent;
         public int BulletAmount { get; protected set; }
 
+
         private void HandleDamageSuccessEvent()
         {
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
-        }
-
-        public override void Attack(int damage, bool isDown)
-        {
-            //???????
         }
 
         protected void SpawnCartridgeCase()
@@ -26,7 +27,6 @@ namespace Hashira.Items.Weapons
 
         protected virtual bool Fire()
         {
-            //?????
             if (BulletAmount <= 0) return false;
             BulletAmount--;
             OnFireEvent?.Invoke(BulletAmount);
@@ -34,6 +34,18 @@ namespace Hashira.Items.Weapons
             SpawnCartridgeCase();
 
             return true;
+        }
+
+        protected void CreateBullet(Vector3 firePos)
+        {
+            //Bullet
+            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO._bullet, firePos, Quaternion.identity) as Bullet;
+            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, CalculateDamage());
+        }
+
+        public override int CalculateDamage()
+        {
+            return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(StatDictionary["Precision"].Value, 100f) / 100));
         }
 
         public void Reload()

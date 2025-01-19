@@ -21,6 +21,8 @@ namespace Hashira.Items.Weapons
         private StatBaseSO _baseStat;
         public StatDictionary StatDictionary { get; private set; }
 
+        private int _entityDamage;
+
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
@@ -61,8 +63,10 @@ namespace Hashira.Items.Weapons
 
         public virtual void Attack(int damage, bool isDown)
         {
-
+            _entityDamage = damage;
         }
+
+        public virtual int CalculateDamage() { return _entityDamage + StatDictionary["AttackPower"].IntValue; }
 
         public virtual object Clone()
         {

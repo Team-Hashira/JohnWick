@@ -28,11 +28,13 @@ MonoBehaviour:
       Value: {x: 0, y: 56.38}
     - Key: 3
       Value: {x: -45.67, y: -59.93}
-  overrideStatElementList: []
+  overrideStatElementList:
+  - Name: 
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 153
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
   _firePoint: {x: 2.3, y: 0}
   _bullet: 0
   _fireSpakleEffect: 1
   _bulletSpeed: 200
-  _damageCoefficient: 100
   _reloadDuration: 1
