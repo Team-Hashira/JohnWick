@@ -7,6 +7,8 @@ namespace Hashira.Entities.Components
 {
     public class EntityWeapon : MonoBehaviour, IEntityComponent, IEntityDisposeComponent
     {
+        [SerializeField] private WeaponSO[] _defaultWeapons;
+        
         public Weapon CurrentWeapon
         {
             get => Weapons[WeaponIndex];
@@ -42,6 +44,15 @@ namespace Hashira.Entities.Components
             _player = entity as Player;
             _player.InputReader.OnReloadEvent += HandleReloadEvent;
         }
+
+        private void Start()
+        {
+            foreach (var t in _defaultWeapons)
+            {
+                EquipWeapon(t.GetWeaponClass());
+            }
+        }
+
 
         private void HandleReloadEvent()
         {
