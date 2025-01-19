@@ -12,20 +12,25 @@ namespace Hashira.Entities.Components
             get => Weapons[WeaponIndex];
             private set => Weapons[WeaponIndex] = value;
         }
+
         public int WeaponIndex { get; private set; } = 0;
-        public Weapon[] Weapons { get; private set; } = new Weapon[2] { null, null };
+        public Weapon[] Weapons { get; private set; } = new Weapon[3] { null, null, null };
         public float Facing { get; private set; }
 
+        // Melee Weapon
+        public bool IsMeleeWeapon => WeaponIndex == 2; // TODO
+        
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
-        public Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[2];
+        public Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
 
         private SpriteRenderer _spriteRenderer;
         public event Action<Weapon> OnCurrentWeaponChanged;
 
         private Player _player;
 
+        
         public void Initialize(Entity entity)
         {
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
@@ -51,10 +56,35 @@ namespace Hashira.Entities.Components
             VisualTrm.gameObject.SetActive(weapon != null);
         }
 
+        public void RemoveWeapon(int index)
+        {
+            //���� ������ ���⸦ ����
+            Weapons[index]?.UnEquip();
+            Weapons[index] = null;
+            Weapons[index]?.Equip(this);
+            
+            OnChangedWeaponEvents[index]?.Invoke(null);
+            OnCurrentWeaponChanged?.Invoke(Weapons[index]);
+        }
+        
         public Weapon EquipWeapon(Weapon weapon)
         {
             //���� ������ ���⸦ ����
             Weapon prevWeapon = CurrentWeapon;
+            if (weapon is MeleeWeapon meleeWeapon)
+            {
+                int meleeIndex = 2;
+                
+                Weapons[meleeIndex]?.UnEquip();
+                Weapons[meleeIndex] = meleeWeapon;
+                Weapons[meleeIndex]?.Equip(this);
+                
+                OnChangedWeaponEvents[meleeIndex]?.Invoke(meleeWeapon);
+                OnCurrentWeaponChanged?.Invoke(Weapons[meleeIndex]);
+                
+                return prevWeapon;
+            }
+            
             CurrentWeapon?.UnEquip();
             CurrentWeapon = weapon;
             CurrentWeapon?.Equip(this);

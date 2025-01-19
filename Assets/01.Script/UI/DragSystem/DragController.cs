@@ -34,6 +34,7 @@ namespace Hashira.UI.DragSystem
                 var rayCastResult = GetUIUnderCursor();
                 if (rayCastResult.Count == 0 || rayCastResult[0].gameObject == null) return;
                 if (!rayCastResult[0].gameObject.TryGetComponent(out IDraggableObject draggableObject)) return;
+                if (draggableObject.CanDrag == false) return;
                 _currentDragObject = draggableObject;
                 _currentDragObject.DragStartPosition = _currentDragObject.RectTransform.position;
                 _currentDragObject?.OnDragStart();

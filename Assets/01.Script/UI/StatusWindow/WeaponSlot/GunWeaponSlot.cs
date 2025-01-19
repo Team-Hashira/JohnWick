@@ -3,24 +3,21 @@ using System.Linq;
 using Hashira.Items.WeaponPartsSystem;
 using Hashira.Items.Weapons;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
     public class GunWeaponSlot : MonoBehaviour, IWeaponSlot
     {
         [SerializeField] private PartSlot _partSlotPrefab; 
-        [SerializeField] private Image _iconImage;
-        public Weapon baseWeapon;
-
-        private readonly List<PartSlot> _partSlotList = new List<PartSlot>();
+        public Weapon BaseWeapon { get; set; }
+        [SerializeField] private WeaponSlotIcon _icon;
+        private readonly List<PartSlot> _partSlotList = new();
+        public int SlotIndex { get; set; }
 
         public void HandleWeaponChanged(Weapon weapon)
         {
-            if (weapon is not GunWeapon) return;
-            
-            if(baseWeapon != null)
-                baseWeapon.OnPartsChanged -= HandleParsChanged;
+            if(BaseWeapon != null)
+                BaseWeapon.OnPartsChanged -= HandleParsChanged;
             
             // 기존에 있던 UI 삭제
             foreach (var partSlot in _partSlotList)
@@ -30,17 +27,20 @@ namespace Hashira.UI.StatusWindow
             _partSlotList.Clear();
             
             // 새로 추가
-            foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
+            if (weapon != null)
             {
-                var partSlot = AddPartSlot(posPair.Key, posPair.Value);
-                partSlot.Init(this, weapon.GetParts(posPair.Key));
+                foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
+                {
+                    var partSlot = AddPartSlot(posPair.Key, posPair.Value);
+                    partSlot.Init(this, weapon.GetParts(posPair.Key));
+                }    
             }
             
-            baseWeapon = weapon;
-            _iconImage.sprite = weapon.WeaponSO.itemSprite;
+            BaseWeapon = weapon;
+            _icon.Init(this);
             
-            if(baseWeapon != null)
-                baseWeapon.OnPartsChanged += HandleParsChanged;
+            if(BaseWeapon != null)
+                BaseWeapon.OnPartsChanged += HandleParsChanged;
         }
 
         private void HandleParsChanged(EWeaponPartsType partsType, WeaponParts weaponParts)

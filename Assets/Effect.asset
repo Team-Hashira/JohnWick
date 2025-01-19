@@ -16,7 +16,7 @@ MonoBehaviour:
   - poolType: BulletHitEffect
     prefab: {fileID: 7171291666861227977, guid: 6bb59100eaa657d44bebf8bcaec8b1bb, type: 3}
     poolCount: 20
-  - poolType: BulletShootSpakleEffect
+  - poolType: BulletShootSparkleEffect
     prefab: {fileID: 7171291666861227977, guid: 741a9a6e065c4cb4f9645a0a953c8866, type: 3}
     poolCount: 20
   - poolType: DoorBreak
@@ -28,7 +28,7 @@ MonoBehaviour:
   - poolType: HitBlood
     prefab: {fileID: 7171291666861227977, guid: 0bcf156d5190ab84f8985dfb19ba06ce, type: 3}
     poolCount: 20
-  - poolType: HitSpakleEffect
+  - poolType: HitSparkleEffect
     prefab: {fileID: 7171291666861227977, guid: 82b070fb2e05d7c4f8eec0b0c632821d, type: 3}
     poolCount: 20
   - poolType: LightBreakEffect

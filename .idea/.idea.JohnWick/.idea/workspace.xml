@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Editor/WeaponSOEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Editor/WeaponSOEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/BatWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/BatWeapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedParts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedParts.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedWeapon.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +40,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseJumpCount.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effects/IncreaseMoveSpeed.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityEffector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/Item/ItemDropUtility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/MeleeWeapon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Player/PlayerMover.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDraggableObject.cs" root0="FORCE_HIGHLIGHTING" />
