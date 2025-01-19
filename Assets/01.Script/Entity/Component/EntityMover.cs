@@ -7,7 +7,6 @@ namespace Hashira.Entities
 {
     public class EntityMover : MonoBehaviour, IEntityComponent
     {
-
         [field: SerializeField] public Rigidbody2D Rigidbody2D { get; private set; }
 
         [Header("Ground check setting")]
@@ -71,6 +70,7 @@ namespace Hashira.Entities
             RaycastHit2D[] nodeHits = Physics2D.BoxCastAll((Vector2)transform.position,
                 _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsNode);
 
+            if (groundHits.Length > 0) _hitedGround = groundHits[0];
             IsGrounded = groundHits.Length > 0 && _yMovement < 0;
 
             if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node)) 

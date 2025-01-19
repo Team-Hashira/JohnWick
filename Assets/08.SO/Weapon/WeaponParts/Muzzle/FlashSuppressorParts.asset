@@ -21,4 +21,4 @@ MonoBehaviour:
   _statList:
   - Name: 
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 5
+    _baseValue: 36

@@ -9,7 +9,10 @@ namespace Hashira.Entities.Components
     public class EntityWeapon : MonoBehaviour, IEntityComponent, IEntityDisposeComponent
     {
         [SerializeField] private WeaponSO[] _defaultWeapons;
-        
+
+        public float Recoil { get; private set; }
+
+
         public Weapon CurrentWeapon
         {
             get => Weapons[WeaponIndex];
@@ -28,6 +31,7 @@ namespace Hashira.Entities.Components
 
         public Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
 
+        private float _startYPos;
         private SpriteRenderer _spriteRenderer;
         public event Action<Weapon> OnCurrentWeaponChanged;
 
@@ -44,6 +48,8 @@ namespace Hashira.Entities.Components
 
             _player = entity as Player;
             _player.InputReader.OnReloadEvent += HandleReloadEvent;
+
+            _startYPos = transform.localPosition.y;
         }
 
         private void Start()
@@ -65,6 +71,27 @@ namespace Hashira.Entities.Components
             //����� ���⿡ ���� Visual�� ����
             _spriteRenderer.sprite = weapon?.WeaponSO.itemSprite;
             VisualTrm.gameObject.SetActive(weapon != null);
+
+            Recoil = 0;
+
+            if (weapon != null)
+            {
+                Vector3 position = transform.localPosition;
+                position.y = _startYPos + weapon.WeaponSO.GrapOffset.y;
+                transform.localPosition = position;
+                VisualTrm.localEulerAngles = new Vector3(0, 0, weapon.WeaponSO.GrapRotate);
+
+                Vector3 visualPosition = VisualTrm.localPosition;
+                visualPosition.x = weapon.WeaponSO.GrapOffset.x;
+
+                if (weapon is GunWeapon gun)
+                {
+                    GunSO gunSO = gun.GunSO;
+                    CartridgeCaseParticle.transform.localPosition = gunSO.cartridgeCaseParticlePoint;
+                    visualPosition.y = -gunSO.firePoint.y;
+                }
+                VisualTrm.localPosition = visualPosition;
+            }
         }
 
         public void RemoveWeapon(int index)
@@ -110,8 +137,8 @@ namespace Hashira.Entities.Components
 
         public void WeaponSwap()
         {
-            //���� �ε��� ���ϱ�
-            if (Weapons.Where(x => x != null && x is not MeleeWeapon).ToArray().Length == 1) return;
+            //빈 슬롯에 자동삽입 기능을 추가할 지 안정했기에 일단 주석
+            //if (Weapons.Where(x => x != null && x is not MeleeWeapon).ToArray().Length == 1) return;
             WeaponIndex++;
             if (WeaponIndex >= 2) WeaponIndex = 0;
 
@@ -128,10 +155,23 @@ namespace Hashira.Entities.Components
             transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan(dir.y / dir.x) * Mathf.Rad2Deg * Facing);
         }
 
+        public void ApplyRecoil(float value)
+        {
+            Recoil = Mathf.Clamp(Recoil + value * 0.1f, 0, 10f);
+        }
 
         private void Update()
         {
             CurrentWeapon?.WeaponUpdate();
+
+            if (Recoil > 0)
+            {
+                Recoil -= Time.deltaTime * 10f;
+                if (Recoil < 0)
+                {
+                    Recoil = 0;
+                }
+            }
         }
 
         public void Dispose()

@@ -20,6 +20,8 @@ MonoBehaviour:
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
+  <GrapOffset>k__BackingField: {x: 1, y: 0}
+  <GrapRotate>k__BackingField: 0
   partsEquipPosDict:
     _serializedList:
     - Key: 0
@@ -32,9 +34,16 @@ MonoBehaviour:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 153
+  - Name: "\uC815\uD655\uB3C4"
+    elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
+    _baseValue: 65
+  - Name: "\uBC18\uB3D9"
+    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
+    _baseValue: 50
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  _firePoint: {x: 2.3, y: 0}
-  _bullet: 0
-  _fireSpakleEffect: 1
-  _bulletSpeed: 200
-  _reloadDuration: 1
+  firePoint: {x: 0.292, y: 0.125, z: 0}
+  cartridgeCaseParticlePoint: {x: -0.093, y: 0.125, z: 0}
+  bullet: 0
+  fireSpakleEffect: 1
+  bulletSpeed: 200
+  reloadDuration: 1

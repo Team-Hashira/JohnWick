@@ -10,6 +10,8 @@ namespace Hashira.Items.Weapons
     {
         [field: Header("==========Weapon setting==========")]
         [field: SerializeField] public LayerMask WhatIsTarget { get; internal set; }
+        [field: SerializeField] public Vector2 GrapOffset { get; internal set; }
+        [field: SerializeField] public float GrapRotate { get; internal set; }
         [Header("Parts")]
         [Tooltip("Is local position")]
         public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipPosDict 

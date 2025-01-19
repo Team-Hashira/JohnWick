@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Core.StatSystem;
 using Hashira.Projectile;
 using UnityEngine;
 
@@ -6,11 +7,17 @@ namespace Hashira.Items.Weapons
 {
     public class RifleWeapon : GunWeapon
     {
-        private float _autoSpeed = 0.15f;
+        private StatElement _attackSpeedStat;
         private float _lastFireTime;
         
         private bool _isFiring;
         private int _damage;
+
+        public override void Init(ItemSO itemSO)
+        {
+            base.Init(itemSO);
+            _attackSpeedStat = StatDictionary["AttackSpeed"];
+        }
 
         public override void UnEquip()
         {
@@ -34,17 +41,17 @@ namespace Hashira.Items.Weapons
 
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
 
-            Vector3 firePos = _EntityWeapon.transform.position + _EntityWeapon.transform.rotation * GunSO._firePoint;
+            Vector3 firePos = _EntityWeapon.VisualTrm.position + _EntityWeapon.transform.rotation * GunSO.firePoint;
             CreateBullet(firePos);
             //Effect
-            _EntityWeapon.gameObject.Pop(GunSO._fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
+            _EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
 
             return true;
         }
 
         public override void WeaponUpdate()
         {
-            if (_isFiring && _lastFireTime + _autoSpeed < Time.time)
+            if (_isFiring && _lastFireTime + _attackSpeedStat.Value < Time.time)
             {
                 if (Fire()) _lastFireTime = Time.time;
                 else _isFiring = false;

@@ -40,7 +40,7 @@ namespace Hashira.Entities
 
             int prev = Health;
             bool isHead = hitPoint == EEntityPartType.Head;
-            int finalDamage = isHead ? damage * 5 : damage;
+            int finalDamage = isHead ? damage * 2 : damage;
             DamageText damageText = gameObject.Pop(UIPoolType.DamageText, raycastHit.point, Quaternion.identity)
                                     .gameObject.GetComponent<DamageText>();
             damageText.Init(finalDamage, isHead ? Color.yellow : Color.white);

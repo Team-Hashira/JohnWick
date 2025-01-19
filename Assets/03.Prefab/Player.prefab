@@ -51,7 +51,7 @@ MonoBehaviour:
   _spriteRendererList:
   - {fileID: 6559738879112933502}
   - {fileID: 2700410974172575931}
-  _isFlip: 0
+  _onFlip: 0
 --- !u!1 &813996075332693095
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +135,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7028462452996302252}
-  - {fileID: 5581552866811617440}
   m_Father: {fileID: 2163975733565134096}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1739164217382512514
@@ -150,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7272ff2cd5882bf4e9a3b447b8caa224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defaultWeapons: []
   <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
 --- !u!1 &2000908875141724941
@@ -300,7 +300,8 @@ Transform:
   m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5581552866811617440}
   m_Father: {fileID: 8152302228208947013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2198063410244957660
@@ -538,11 +539,11 @@ Transform:
   m_GameObject: {fileID: 7038684509338967887}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.914, y: 0.60899997, z: -0.012880899}
+  m_LocalPosition: {x: -0.086000025, y: 0.60899997, z: -0.012880899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8152302228208947013}
+  m_Father: {fileID: 7028462452996302252}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &256740920506850395
 ParticleSystem:
@@ -5502,7 +5503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9441fdf1fe67e489c75a6fcbbb2d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
   _interactable:
     serializedVersion: 2
     m_Bits: 16384

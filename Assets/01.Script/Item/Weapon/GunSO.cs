@@ -8,11 +8,12 @@ namespace Hashira.Items.Weapons
     public class GunSO : WeaponSO
     {
         [Header("==========Gun setting==========")]
-        public Vector2 _firePoint;
-        public ProjectilePoolType _bullet = ProjectilePoolType.Bullet;
-        public EffectPoolType _fireSpakleEffect = EffectPoolType.BulletShootSparkleEffect;
-        public float _bulletSpeed = 200;
-        public float _reloadDuration = 1;
+        public Vector3 firePoint;
+        public Vector3 cartridgeCaseParticlePoint;
+        public ProjectilePoolType bullet = ProjectilePoolType.Bullet;
+        public EffectPoolType fireSpakleEffect = EffectPoolType.BulletShootSparkleEffect;
+        public float bulletSpeed = 200;
+        public float reloadDuration = 1;
         public int MaxBulletAmount { get; protected set; } = 10;
     }
 }

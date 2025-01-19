@@ -1,7 +1,6 @@
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Hashira.FSM
 {

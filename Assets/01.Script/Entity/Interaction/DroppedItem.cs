@@ -1,6 +1,9 @@
 using Crogen.CrogenPooling;
+using Hashira.Entities.Components;
 using Hashira.Items;
+using Hashira.Items.Weapons;
 using Hashira.UI.InGame;
+using System;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -22,6 +25,7 @@ namespace Hashira.Entities.Interacts
         private bool _isHolding;
 
         protected Entity _entity;
+        protected EntityWeapon _entityWeapon;
 
         protected override void Awake()
         {
@@ -35,12 +39,21 @@ namespace Hashira.Entities.Interacts
         public void HoldInteractionStart(Entity entity)
         {
             _entity = entity;
+            _entityWeapon = _entity.GetEntityComponent<EntityWeapon>();
+            _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             _isHolding = true;
+            
             _holdStartTime = Time.time;
+        }
+
+        private void HandleCurrentWeaponChangedEvent(Weapon weapon)
+        {
+            SetItemData();
         }
 
         public void HoldInteractionEnd()
         {
+            _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
             _entity = null;
             _isHolding = false;
             _ItemDataTrm.gameObject.SetActive(false);

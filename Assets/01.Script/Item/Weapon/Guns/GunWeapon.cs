@@ -1,7 +1,7 @@
 using Crogen.CrogenPooling;
+using Hashira.Core.StatSystem;
 using Hashira.Projectile;
 using System;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +14,15 @@ namespace Hashira.Items.Weapons
         public event Action<int> OnFireEvent;
         public int BulletAmount { get; protected set; }
 
+        private StatElement _precisionStat;
+        private StatElement _recoilStat;
+
+        public override void Init(ItemSO itemSO)
+        {
+            base.Init(itemSO);
+            _precisionStat = StatDictionary["Precision"];
+            _recoilStat = StatDictionary["Recoil"];
+        }
 
         private void HandleDamageSuccessEvent()
         {
@@ -29,6 +38,7 @@ namespace Hashira.Items.Weapons
         {
             if (BulletAmount <= 0) return false;
             BulletAmount--;
+
             OnFireEvent?.Invoke(BulletAmount);
 
             SpawnCartridgeCase();
@@ -39,13 +49,17 @@ namespace Hashira.Items.Weapons
         protected void CreateBullet(Vector3 firePos)
         {
             //Bullet
-            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO._bullet, firePos, Quaternion.identity) as Bullet;
-            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, CalculateDamage());
+            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
+            float randomRecoil = Random.Range(-_EntityWeapon.Recoil, _EntityWeapon.Recoil);
+            Vector3 targetDir = (Quaternion.Euler(0, 0, randomRecoil) * _EntityWeapon.transform.right).normalized;
+            bullet.Init(GunSO.WhatIsTarget, targetDir, GunSO.bulletSpeed, CalculateDamage());
+
+            _EntityWeapon.ApplyRecoil(_recoilStat.Value);
         }
 
         public override int CalculateDamage()
         {
-            return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(StatDictionary["Precision"].Value, 100f) / 100));
+            return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(_precisionStat.Value, 100f - (100f - _precisionStat.Value) / 1.5f)) / 100);
         }
 
         public void Reload()
