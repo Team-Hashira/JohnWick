@@ -15,6 +15,8 @@ namespace Hashira.LatestFSM
         private string _namespace;
         [SerializeField]
         private List<StateSO> _stateList;
+        [SerializeField]
+        private StateSO _startState;
 
         private Dictionary<string, EntityState> _stateDictionary;
         private Dictionary<string, object> _shareVariableDict;
@@ -58,6 +60,8 @@ namespace Hashira.LatestFSM
                     _stateDictionary.Add(state.stateName, entityState);
                 }
             }
+
+            ChangeState(_startState.stateName);
         }
 
         public void ChangeState(string newState)

@@ -1,5 +1,7 @@
 using Crogen.CrogenPooling;
+using Hashira.Core.EventSystem;
 using Hashira.Entities;
+using Hashira.LatestFSM;
 using Hashira.Players;
 using System;
 using UnityEngine;
@@ -10,6 +12,9 @@ namespace Hashira.Enemies
     {
         protected EntityRenderer _entityRenderer;
         protected EntityHealth _entityHealth;
+
+        [field: SerializeField]
+        public GameEventChannelSO SoundEventChannel { get; private set; }
 
         //Test
         [SerializeField] private EffectPoolType _dieEffect;
