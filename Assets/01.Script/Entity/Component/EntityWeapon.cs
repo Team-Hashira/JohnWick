@@ -50,7 +50,7 @@ namespace Hashira.Entities.Components
         {
             foreach (var t in _defaultWeapons)
             {
-                EquipWeapon(t.GetWeaponClass());
+                EquipWeapon(t.GetItemClass() as Weapon);
             }
         }
 

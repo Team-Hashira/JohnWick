@@ -17,7 +17,7 @@ namespace Crogen.CrogenPooling
 
         public static IPoolingObject Pop(this GameObject target, Enum type, Transform parent = null)
         {
-            string typeName = type.GetType().ToString().Replace("Crogen.CrogenPooling.", "");
+            string typeName = type.GetType().ToString().Replace("Crogen.CrogenPooling.", "").Replace("PoolType", "");
             string enumName = type.ToString();
 
             return Pop(target, $"{typeName}.{enumName}", parent);
@@ -37,13 +37,16 @@ namespace Crogen.CrogenPooling
             {
                 IPoolingObject poolingObject;
 
+                string[] poolName = typeName.Split('.');
+
                 if (PoolManager.poolDict[typeName].Count == 0)
                 {
 					foreach (var poolBase in _poolBaseList)
 					{
+                        if (poolName[0] != poolBase.name) continue;
                         for (int i = 0; i < poolBase.pairs.Count; i++)
                         {
-                            if (poolBase.pairs[i].poolType.Equals(typeName))
+                            if (poolBase.pairs[i].poolType.Equals(poolName[1]))
                             {
                                 poolingObject = PoolManager.CreateObject(poolBase, poolBase.pairs[i], Vector3.zero, Quaternion.identity);
                                 PoolManager.PoolingObjectInit(poolingObject, typeName, PoolManager.Transform);
@@ -76,13 +79,16 @@ namespace Crogen.CrogenPooling
             {
                 IPoolingObject poolingObject;
 
+                string[] poolName = typeName.Split('.');
+
                 if (PoolManager.poolDict[typeName].Count == 0)
                 {
 					foreach (var poolBase in _poolBaseList)
 					{
+                        if (poolName[0] != poolBase.name) continue;
                         for (int i = 0; i < poolBase.pairs.Count; i++)
                         {
-                            if (poolBase.pairs[i].poolType.Equals(typeName))
+                            if (poolBase.pairs[i].poolType.Equals(poolName[1]))
                             {
                                 poolingObject = PoolManager.CreateObject(poolBase, poolBase.pairs[i], Vector3.zero, Quaternion.identity);
                                 PoolManager.PoolingObjectInit(poolingObject, typeName, PoolManager.Transform);
