@@ -28,6 +28,7 @@ namespace Hashira.Entities.Components
 
         public Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
 
+        private float _startYPos;
         private SpriteRenderer _spriteRenderer;
         public event Action<Weapon> OnCurrentWeaponChanged;
 
@@ -44,6 +45,8 @@ namespace Hashira.Entities.Components
 
             _player = entity as Player;
             _player.InputReader.OnReloadEvent += HandleReloadEvent;
+
+            _startYPos = transform.localPosition.y;
         }
 
         private void Start()
@@ -65,6 +68,25 @@ namespace Hashira.Entities.Components
             //����� ���⿡ ���� Visual�� ����
             _spriteRenderer.sprite = weapon?.WeaponSO.itemSprite;
             VisualTrm.gameObject.SetActive(weapon != null);
+
+            if (weapon != null)
+            {
+                Vector3 position = transform.localPosition;
+                position.y = _startYPos + weapon.WeaponSO.GrapOffset.y;
+                transform.localPosition = position;
+                VisualTrm.localEulerAngles = new Vector3(0, 0, weapon.WeaponSO.GrapRotate);
+
+                Vector3 visualPosition = VisualTrm.localPosition;
+                visualPosition.x = weapon.WeaponSO.GrapOffset.x;
+
+                if (weapon is GunWeapon gun)
+                {
+                    GunSO gunSO = gun.GunSO;
+                    CartridgeCaseParticle.transform.localPosition = gunSO.cartridgeCaseParticlePoint;
+                    visualPosition.y = -gunSO.firePoint.y;
+                }
+                VisualTrm.localPosition = visualPosition;
+            }
         }
 
         public void RemoveWeapon(int index)

@@ -39,8 +39,8 @@ namespace Hashira.Items.Weapons
         protected void CreateBullet(Vector3 firePos)
         {
             //Bullet
-            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO._bullet, firePos, Quaternion.identity) as Bullet;
-            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, CalculateDamage());
+            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
+            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO.bulletSpeed, CalculateDamage());
         }
 
         public override int CalculateDamage()

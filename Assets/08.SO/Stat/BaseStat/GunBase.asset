@@ -21,7 +21,7 @@ MonoBehaviour:
     _baseValue: 0.1
   - Name: Precision
     elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
-    _baseValue: 80
+    _baseValue: 50
   - Name: Critical
     elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
     _baseValue: 0

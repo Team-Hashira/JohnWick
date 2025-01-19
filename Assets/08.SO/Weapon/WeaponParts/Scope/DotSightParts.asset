@@ -18,4 +18,7 @@ MonoBehaviour:
   itemDisplayName: "\uB3C4\uD2B8 \uC0AC\uC774\uD2B8"
   itemDescription: "\uC774\uAC83\uC740 \uC810 \uBCF4\uC870 \uC870\uC900\uACBD"
   partsType: 1
-  _statList: []
+  _statList:
+  - Name: 
+    elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
+    _baseValue: 10

@@ -34,10 +34,10 @@ namespace Hashira.Items.Weapons
 
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
 
-            Vector3 firePos = _EntityWeapon.transform.position + _EntityWeapon.transform.rotation * GunSO._firePoint;
+            Vector3 firePos = _EntityWeapon.VisualTrm.position + _EntityWeapon.transform.rotation * GunSO.firePoint;
             CreateBullet(firePos);
             //Effect
-            _EntityWeapon.gameObject.Pop(GunSO._fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
+            _EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
 
             return true;
         }
