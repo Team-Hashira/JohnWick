@@ -1,6 +1,7 @@
 using Hashira.Core.EventSystem;
 using Hashira.Entities;
 using Hashira.LatestFSM;
+using System;
 using UnityEngine;
 
 namespace Hashira.Enemies
@@ -19,6 +20,14 @@ namespace Hashira.Enemies
         {
             base.OnEnter();
             _idleStartTime = Time.time;
+            _soundEventChannel.AddListener<NearbySoundPointEvent>(HandleOnSoundGenerated);
+        }
+
+        private void HandleOnSoundGenerated(NearbySoundPointEvent evt)
+        {
+            _entityStateMachine.SetShareVariable("TargetNode", evt.node);
+            _entityStateMachine.SetShareVariable("Loudness", evt.loudness);
+            _entityStateMachine.ChangeState("Chase");
         }
 
         public override void OnUpdate()

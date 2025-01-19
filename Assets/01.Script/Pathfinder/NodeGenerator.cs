@@ -1,6 +1,9 @@
 using Crogen.AttributeExtension;
+using Hashira.Core.EventSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,18 +13,43 @@ namespace Hashira.Pathfind
     {
         [SerializeField]
         private Node _nodePrefab;
-
         [SerializeField]
         private Tilemap _groundTilemap, _oneWayTilemap;
-
         [SerializeField]
         private TileBase[] _stairTileBases;
-
         [SerializeField]
         private List<Node> _nodeList;
-
         private Vector3 _offset;
 
+        [Header("Sound Setting")]
+        [SerializeField]
+        private GameEventChannelSO _soundEventChannel;
+        [SerializeField]
+        private LayerMask _whatIsGround;
+
+        private void Awake()
+        {
+            _soundEventChannel.AddListener<SoundGeneratedEvent>(HandleOnSoundGenerated);
+        }
+
+        private void HandleOnSoundGenerated(SoundGeneratedEvent evt)
+        {
+            List<Node> sortedNodeList =
+                _nodeList.OrderBy(node => Vector3.Distance(evt.originPosition, node.transform.position)).ToList();
+            foreach (Node node in sortedNodeList)
+            {
+                float distance = Vector3.Distance(node.transform.position, evt.originPosition);
+                bool isWallOnBetween = Physics2D.Raycast(node.transform.position, evt.originPosition, distance, _whatIsGround);
+                if (!isWallOnBetween)
+                {
+                    var e = SoundEvents.NearbySoundPointEvent;
+                    e.node = node;
+                    e.loudness = evt.loudness;
+                    _soundEventChannel.RaiseEvent(e);
+                    break;
+                }
+            }
+        }
 
         [Button("Initialize", 20)]
         public void Initialize()
@@ -115,8 +143,7 @@ namespace Hashira.Pathfind
         {
             Node node = Instantiate(_nodePrefab, transform);
             node.transform.position = position + _offset;
-            node.position = position;
-            node.nodeType = type;
+            node.NodeType = type;
             _nodeList.Add(node);
         }
 

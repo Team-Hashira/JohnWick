@@ -13,13 +13,12 @@ namespace Hashira.Pathfind
 
     public class Node : MonoBehaviour
     {
-        public Vector2 position;
-        public NodeType nodeType;
-        public List<Node> neighbors = new List<Node>();
+        public NodeType NodeType { get; set; }
+        public List<Node> Neighbors { get; private set; } = new List<Node>();
 
         public void SetupConnection(float nodeSpace)
         {
-            neighbors.Clear();
+            Neighbors.Clear();
             LayerMask layer = LayerMask.GetMask("Node");
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, nodeSpace, layer);
             foreach (Collider2D collider in colliders)
@@ -27,17 +26,17 @@ namespace Hashira.Pathfind
                 if (collider.gameObject == gameObject)
                     continue;
                 Node targetNode = collider.GetComponent<Node>();
-                if (nodeType == NodeType.Stair)
+                if (NodeType == NodeType.Stair)
                 {
-                    if (targetNode.nodeType != NodeType.Stair && targetNode.nodeType != NodeType.StairEnter)
+                    if (targetNode.NodeType != NodeType.Stair && targetNode.NodeType != NodeType.StairEnter)
                         continue;
                 }
-                if (nodeType == NodeType.OneWay)
+                if (NodeType == NodeType.OneWay)
                 {
-                    if (targetNode.nodeType == NodeType.Stair)
+                    if (targetNode.NodeType == NodeType.Stair)
                         continue;
                 }
-                neighbors.Add(targetNode);
+                Neighbors.Add(targetNode);
             }
         }
     }

@@ -73,7 +73,7 @@ namespace Hashira.Enemies
             {
                 Node currentNode = _currentPath[i];
                 float x = currentNode.transform.position.x - transform.position.x;
-                bool hasToJump = currentNode.nodeType == NodeType.Stair;
+                bool hasToJump = currentNode.NodeType == NodeType.Stair;
                 //if(hasToJump)
                 //    _enemy.GetComponent<Collider2D>().excludeLayers = _onewayPlatform;
                 //else
