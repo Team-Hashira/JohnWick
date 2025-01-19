@@ -14,7 +14,7 @@ namespace Hashira.UI.StatusWindow
         {
             Parent = weaponSlot;
             BasePart = weaponPart;
-            _icon.Init(this, weaponPart);
+            _icon.Init(this);
         }
     }
 }

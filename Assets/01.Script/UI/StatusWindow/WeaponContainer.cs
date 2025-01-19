@@ -22,8 +22,8 @@ namespace Hashira.UI.StatusWindow
 
             for (var i = 0; i < _entityWeapon.OnChangedWeaponEvents.Length; i++)
             {
-                Debug.Log(_slots[i]);
                 _entityWeapon.OnChangedWeaponEvents[i] += _slots[i].HandleWeaponChanged;
+                _slots[i].SlotIndex = i;
             }
         }
 

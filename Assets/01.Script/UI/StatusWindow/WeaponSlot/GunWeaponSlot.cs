@@ -10,15 +10,14 @@ namespace Hashira.UI.StatusWindow
     public class GunWeaponSlot : MonoBehaviour, IWeaponSlot
     {
         [SerializeField] private PartSlot _partSlotPrefab; 
-        [SerializeField] private Image _iconImage;
         public Weapon baseWeapon;
-
+        [SerializeField] private GunWeaponSlotIcon _icon;
         private readonly List<PartSlot> _partSlotList = new List<PartSlot>();
+
+        public int SlotIndex { get; set; }
 
         public void HandleWeaponChanged(Weapon weapon)
         {
-            if (weapon is not GunWeapon) return;
-            
             if(baseWeapon != null)
                 baseWeapon.OnPartsChanged -= HandleParsChanged;
             
@@ -30,14 +29,17 @@ namespace Hashira.UI.StatusWindow
             _partSlotList.Clear();
             
             // 새로 추가
-            foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
+            if (weapon != null)
             {
-                var partSlot = AddPartSlot(posPair.Key, posPair.Value);
-                partSlot.Init(this, weapon.GetParts(posPair.Key));
+                foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
+                {
+                    var partSlot = AddPartSlot(posPair.Key, posPair.Value);
+                    partSlot.Init(this, weapon.GetParts(posPair.Key));
+                }    
             }
             
             baseWeapon = weapon;
-            _iconImage.sprite = weapon.WeaponSO.itemSprite;
+            _icon.Init(this);
             
             if(baseWeapon != null)
                 baseWeapon.OnPartsChanged += HandleParsChanged;

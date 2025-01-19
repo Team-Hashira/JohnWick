@@ -8,7 +8,9 @@ namespace Hashira.UI.StatusWindow
     {
         [SerializeField] private Image _iconImage;
         public Weapon baseWeapon;
-        
+
+        public int SlotIndex { get; set; }
+
         public void HandleWeaponChanged(Weapon weapon)
         {
             Debug.Log(weapon.WeaponSO.itemName);

@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Editor/WeaponSOEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Editor/WeaponSOEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/BatWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/BatWeapon.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlotIcon.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/GunWeaponSlotIcon.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Interaction/DroppedWeapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/DragController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/DragController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDraggableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/DragSystem/IDraggableObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlotIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlotIcon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/GunWeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/GunWeaponSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/IWeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/IWeaponSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/MeleeWeaponSlot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlot/MeleeWeaponSlot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/PartSlot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/PartSlot.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/WeaponSlot.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/WeaponSlot.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

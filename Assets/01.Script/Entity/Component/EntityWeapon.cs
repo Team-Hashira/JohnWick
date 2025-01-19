@@ -26,6 +26,8 @@ namespace Hashira.Entities.Components
 
         private Player _player;
 
+        public MeleeWeapon MeleeWeapon { get; private set; }
+        
         public void Initialize(Entity entity)
         {
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
@@ -51,6 +53,17 @@ namespace Hashira.Entities.Components
             VisualTrm.gameObject.SetActive(weapon != null);
         }
 
+        public void RemoveWeapon(int index)
+        {
+            //���� ������ ���⸦ ����
+            Weapons[index]?.UnEquip();
+            Weapons[index] = null;
+            Weapons[index]?.Equip(this);
+            
+            OnChangedWeaponEvents[index]?.Invoke(null);
+            OnCurrentWeaponChanged?.Invoke(Weapons[index]);
+        }
+        
         public Weapon EquipWeapon(Weapon weapon)
         {
             //���� ������ ���⸦ ����

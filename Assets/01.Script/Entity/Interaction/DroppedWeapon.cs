@@ -17,7 +17,7 @@ namespace Hashira.Entities.Interacts
             SetWeapon(_weaponSO.GetWeaponClass());
         }
 
-        private void SetWeapon(Weapon weapon)
+        public void SetWeapon(Weapon weapon)
         {
             _weapon = weapon;
             _weaponSO = weapon.WeaponSO;
