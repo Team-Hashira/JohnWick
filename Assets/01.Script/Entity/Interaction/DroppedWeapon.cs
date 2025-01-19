@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace Hashira.Entities.Interacts
             EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
             Weapon weapon = weaponHolder.EquipWeapon(_weapon);
             if (weapon != null) SetWeapon(weapon);
-            else Destroy(gameObject);
+            else this.Push();
         }
 
         public override void SetItemData()

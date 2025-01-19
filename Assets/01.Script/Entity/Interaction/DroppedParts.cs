@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using Hashira.Items.WeaponPartsSystem;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Hashira.Entities.Interacts
         protected override void Awake()
         {
             base.Awake();
+            if (_partsSO == null) return;
             SetParts(_partsSO.GetWeaponPartsClass());
         }
 
@@ -33,7 +35,7 @@ namespace Hashira.Entities.Interacts
 
             WeaponParts weaponParts = weaponHolder.CurrentWeapon.EquipParts(_partsSO.partsType, _parts);
             if (weaponParts != null) SetParts(weaponParts);
-            else Destroy(gameObject);
+            else this.Push();
         }
 
         public override void SetItemData()
