@@ -8,15 +8,15 @@ using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
-    public class GunWeaponSlotIcon : MonoBehaviour, IDraggableObject
+    public class WeaponSlotIcon : MonoBehaviour, IDraggableObject
     {
         [SerializeField] private DroppedWeapon _droppedWeaponPrefab;
-        public bool CanDrag => Parent.baseWeapon != null;
+        public bool CanDrag => Parent.BaseWeapon != null;
         public Vector2 DragStartPosition { get; set; }
         public Vector2 DragEndPosition { get; set; }
         
         public RectTransform RectTransform { get; set; }
-        public GunWeaponSlot Parent { get; private set; }
+        public IWeaponSlot Parent { get; private set; }
         [SerializeField] private Image _image;
 
         private EntityWeapon _entityWeapon;
@@ -35,17 +35,17 @@ namespace Hashira.UI.StatusWindow
             _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
         }
 
-        public void Init(GunWeaponSlot gunWeaponSlot)
+        public void Init(IWeaponSlot gunWeaponSlot)
         {
-            _image.sprite = gunWeaponSlot.baseWeapon?.WeaponSO.itemSprite;
-            _image.color = gunWeaponSlot.baseWeapon != null ? Color.white : Color.clear;  
+            _image.sprite = gunWeaponSlot.BaseWeapon?.WeaponSO.itemSprite;
+            _image.color = gunWeaponSlot.BaseWeapon != null ? Color.white : Color.clear;  
             Parent = gunWeaponSlot;
         }
         
         public void OnDragStart()
         {
-            Parent.transform.SetAsLastSibling();
-            Parent.transform.parent.SetAsLastSibling();
+            (Parent as MonoBehaviour)?.transform.SetAsLastSibling();
+            (Parent as MonoBehaviour)?.transform.parent.SetAsLastSibling();
         }
 
         public void OnDragging(Vector2 curPos)
@@ -58,7 +58,7 @@ namespace Hashira.UI.StatusWindow
 
         public void OnDragEnd(Vector2 curPos)
         {
-            if (Parent.baseWeapon == null)
+            if (Parent.BaseWeapon == null)
             {
                 SetToOriginTrm();
                 return;
@@ -69,8 +69,7 @@ namespace Hashira.UI.StatusWindow
             {
                 // TODO 이거 나중에 풀링 꼭!!!! 하기 
                 var droppedWeapon = Instantiate(_droppedWeaponPrefab, _player.transform.position, Quaternion.identity);
-                droppedWeapon.SetWeapon(Parent.baseWeapon);
-                Debug.Log(Parent.SlotIndex);
+                droppedWeapon.SetWeapon(Parent.BaseWeapon);
                 _entityWeapon.RemoveWeapon(Parent.SlotIndex);
             } 
             

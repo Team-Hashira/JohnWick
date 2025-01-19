@@ -3,23 +3,21 @@ using System.Linq;
 using Hashira.Items.WeaponPartsSystem;
 using Hashira.Items.Weapons;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
     public class GunWeaponSlot : MonoBehaviour, IWeaponSlot
     {
         [SerializeField] private PartSlot _partSlotPrefab; 
-        public Weapon baseWeapon;
-        [SerializeField] private GunWeaponSlotIcon _icon;
-        private readonly List<PartSlot> _partSlotList = new List<PartSlot>();
-
+        public Weapon BaseWeapon { get; set; }
+        [SerializeField] private WeaponSlotIcon _icon;
+        private readonly List<PartSlot> _partSlotList = new();
         public int SlotIndex { get; set; }
 
         public void HandleWeaponChanged(Weapon weapon)
         {
-            if(baseWeapon != null)
-                baseWeapon.OnPartsChanged -= HandleParsChanged;
+            if(BaseWeapon != null)
+                BaseWeapon.OnPartsChanged -= HandleParsChanged;
             
             // 기존에 있던 UI 삭제
             foreach (var partSlot in _partSlotList)
@@ -38,11 +36,11 @@ namespace Hashira.UI.StatusWindow
                 }    
             }
             
-            baseWeapon = weapon;
+            BaseWeapon = weapon;
             _icon.Init(this);
             
-            if(baseWeapon != null)
-                baseWeapon.OnPartsChanged += HandleParsChanged;
+            if(BaseWeapon != null)
+                BaseWeapon.OnPartsChanged += HandleParsChanged;
         }
 
         private void HandleParsChanged(EWeaponPartsType partsType, WeaponParts weaponParts)
