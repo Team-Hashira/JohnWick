@@ -35,9 +35,7 @@ namespace Hashira.Items.Weapons
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
 
             Vector3 firePos = _EntityWeapon.transform.position + _EntityWeapon.transform.rotation * GunSO._firePoint;
-            //Bullet
-            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO._bullet, firePos, Quaternion.identity) as Bullet;
-            bullet.Init(GunSO.WhatIsTarget, _EntityWeapon.transform.right, GunSO._bulletSpeed, Mathf.CeilToInt(_damage * GunSO._damageCoefficient / 100));
+            CreateBullet(firePos);
             //Effect
             _EntityWeapon.gameObject.Pop(GunSO._fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
 

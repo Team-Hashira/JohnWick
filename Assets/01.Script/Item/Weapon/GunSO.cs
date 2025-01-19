@@ -12,7 +12,6 @@ namespace Hashira.Items.Weapons
         public ProjectilePoolType _bullet = ProjectilePoolType.Bullet;
         public EffectPoolType _fireSpakleEffect = EffectPoolType.BulletShootSpakleEffect;
         public float _bulletSpeed = 200;
-        public float _damageCoefficient = 100;
         public float _reloadDuration = 1;
         public int MaxBulletAmount { get; protected set; } = 10;
     }

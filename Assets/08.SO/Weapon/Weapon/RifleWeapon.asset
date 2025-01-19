@@ -35,7 +35,7 @@ MonoBehaviour:
   overrideStatElementList:
   - Name: 
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 12
+    _baseValue: 132
   - Name: 
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
     _baseValue: 0.15
@@ -44,5 +44,4 @@ MonoBehaviour:
   _bullet: 0
   _fireSpakleEffect: 1
   _bulletSpeed: 200
-  _damageCoefficient: 100
   _reloadDuration: 1
