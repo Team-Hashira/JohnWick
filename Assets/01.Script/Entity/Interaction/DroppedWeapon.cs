@@ -1,5 +1,6 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
-using Hashira.Items.WeaponPartsSystem;
+using Hashira.Items;
 using Hashira.Items.Weapons;
 using UnityEngine;
 
@@ -14,14 +15,15 @@ namespace Hashira.Entities.Interacts
         protected override void Awake()
         {
             base.Awake();
-            SetWeapon(_weaponSO.GetWeaponClass());
+            if (_weaponSO == null) return;
+            SetItem(_weaponSO);
         }
 
-        private void SetWeapon(Weapon weapon)
+        public override void SetItem(Item item)
         {
-            _weapon = weapon;
-            _weaponSO = weapon.WeaponSO;
-            SetItemSO(_weaponSO);
+            _weapon = item as Weapon;
+            _weaponSO = _weapon.WeaponSO;
+            base.SetItem(item);
         }
 
         public override void Interaction(Entity entity)
@@ -30,8 +32,8 @@ namespace Hashira.Entities.Interacts
 
             EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
             Weapon weapon = weaponHolder.EquipWeapon(_weapon);
-            if (weapon != null) SetWeapon(weapon);
-            else Destroy(gameObject);
+            if (weapon != null) SetItem(weapon);
+            else this.Push();
         }
 
         public override void SetItemData()

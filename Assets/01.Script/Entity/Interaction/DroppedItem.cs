@@ -1,12 +1,11 @@
-using Hashira.Entities.Components;
+using Crogen.CrogenPooling;
 using Hashira.Items;
-using Hashira.Items.WeaponPartsSystem;
 using Hashira.UI.InGame;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
 {
-    public class DroppedItem : KeyInteractObject, IHoldInteractable
+    public class DroppedItem : KeyInteractObject, IHoldInteractable, IPoolingObject
     {
         private readonly static int _FillAmountShaderHash = Shader.PropertyToID("_FillAmount");
 
@@ -49,10 +48,15 @@ namespace Hashira.Entities.Interacts
             _holdOutlineSprite.material.SetFloat(_FillAmountShaderHash, 0);
         }
 
-        protected virtual void SetItemSO(ItemSO itemSO)
+        public void SetItem(ItemSO itemSO)
         {
-            _itemSprite.sprite = itemSO?.itemIcon;
-            string itemName = itemSO == null ? "" : itemSO.itemDisplayName;
+            Item item = itemSO.GetItemClass();
+            SetItem(item);
+        }
+        public virtual void SetItem(Item item)
+        {
+            _itemSprite.sprite = item.ItemSO?.itemIcon;
+            string itemName = item.ItemSO == null ? "" : item.ItemSO.itemDisplayName;
             _nameText.text = $"{itemName}";
         }
 
@@ -71,5 +75,10 @@ namespace Hashira.Entities.Interacts
         }
 
         public virtual void SetItemData() { }
+        public string OriginPoolType { get; set; }
+        public GameObject gameObject { get; set; }
+        public virtual void OnPop() {}
+
+        public virtual void OnPush() {}
     }
 }

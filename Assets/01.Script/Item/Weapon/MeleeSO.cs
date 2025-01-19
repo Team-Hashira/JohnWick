@@ -1,11 +1,12 @@
+using Crogen.CrogenPooling;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    [CreateAssetMenu(fileName = "KnifeSO", menuName = "SO/Weapon/Knife")]
+    [CreateAssetMenu(fileName = "MeleeSO", menuName = "SO/Weapon/Melee")]
     public class MeleeSO : WeaponSO
     {
-        [Header("Gun setting")]
-        public Vector2 _attackSize;
+        public Vector2 attackRange;
+        public EffectPoolType attackEffect;
     }
 }

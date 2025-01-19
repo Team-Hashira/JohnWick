@@ -15,23 +15,40 @@ namespace Crogen.CrogenPooling
             _poolBaseList = poolBaseList;
         }
 
-        public static IPoolingObject Pop(this GameObject target, Enum type, Transform parent)
+        public static IPoolingObject Pop(this GameObject target, Enum type, Transform parent = null)
         {
-            string typeName = type.ToString();
+            string typeName = type.GetType().ToString().Replace("Crogen.CrogenPooling.", "").Replace("PoolType", "");
+            string enumName = type.ToString();
 
+            return Pop(target, $"{typeName}.{enumName}", parent);
+        }
+
+        public static IPoolingObject Pop(this GameObject target, Enum type, Vector3 pos, Quaternion rot)
+        {
+            string typeName = type.GetType().ToString().Replace("Crogen.CrogenPooling.", "").Replace("PoolType", "");
+            string enumName = type.ToString();
+
+            return Pop(target, $"{typeName}.{enumName}", pos, rot);
+        }
+
+        public static IPoolingObject Pop(this GameObject target, string typeName, Transform parent = null)
+        {
             try
             {
                 IPoolingObject poolingObject;
+
+                string[] poolName = typeName.Split('.');
 
                 if (PoolManager.poolDict[typeName].Count == 0)
                 {
 					foreach (var poolBase in _poolBaseList)
 					{
+                        if (poolName[0] != poolBase.name) continue;
                         for (int i = 0; i < poolBase.pairs.Count; i++)
                         {
-                            if (poolBase.pairs[i].poolType.Equals(typeName))
+                            if (poolBase.pairs[i].poolType.Equals(poolName[1]))
                             {
-                                poolingObject = PoolManager.CreateObject(poolBase.pairs[i], Vector3.zero, Quaternion.identity);
+                                poolingObject = PoolManager.CreateObject(poolBase, poolBase.pairs[i], Vector3.zero, Quaternion.identity);
                                 PoolManager.PoolingObjectInit(poolingObject, typeName, PoolManager.Transform);
                                 break;
                             }
@@ -56,24 +73,24 @@ namespace Crogen.CrogenPooling
                 throw;
             }
         }
-
-        public static IPoolingObject Pop(this GameObject target, Enum type, Vector3 pos, Quaternion rot)
+        public static IPoolingObject Pop(this GameObject target, string typeName, Vector3 pos, Quaternion rot)
         {
-            string typeName = type.ToString();
-
             try
             {
                 IPoolingObject poolingObject;
+
+                string[] poolName = typeName.Split('.');
 
                 if (PoolManager.poolDict[typeName].Count == 0)
                 {
 					foreach (var poolBase in _poolBaseList)
 					{
+                        if (poolName[0] != poolBase.name) continue;
                         for (int i = 0; i < poolBase.pairs.Count; i++)
                         {
-                            if (poolBase.pairs[i].poolType.Equals(typeName))
+                            if (poolBase.pairs[i].poolType.Equals(poolName[1]))
                             {
-                                poolingObject = PoolManager.CreateObject(poolBase.pairs[i], Vector3.zero, Quaternion.identity);
+                                poolingObject = PoolManager.CreateObject(poolBase, poolBase.pairs[i], Vector3.zero, Quaternion.identity);
                                 PoolManager.PoolingObjectInit(poolingObject, typeName, PoolManager.Transform);
                                 break;
                             }

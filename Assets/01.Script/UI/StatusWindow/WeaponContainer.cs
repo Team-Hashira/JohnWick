@@ -14,15 +14,13 @@ namespace Hashira.UI.StatusWindow
         {
             _slots = GetComponentsInChildren<IWeaponSlot>();
             _player = GameManager.Instance.Player;
-        }
-
-        private void Start()
-        {
+            
             _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
 
             for (var i = 0; i < _entityWeapon.OnChangedWeaponEvents.Length; i++)
             {
                 _entityWeapon.OnChangedWeaponEvents[i] += _slots[i].HandleWeaponChanged;
+                _slots[i].SlotIndex = i;
             }
         }
 

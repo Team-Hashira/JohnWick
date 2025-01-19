@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6124484353191649520}
   - component: {fileID: 7888952137249952937}
   m_Layer: 0
-  m_Name: BulletShootSpakleEffect
+  m_Name: BulletShootSparkleEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

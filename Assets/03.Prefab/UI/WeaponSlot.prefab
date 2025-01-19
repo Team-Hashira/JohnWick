@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 1026689672588383449}
   - component: {fileID: 4590146466326573918}
   - component: {fileID: 5696149378985898275}
+  - component: {fileID: 6563253245958335371}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7830188, b: 0.7830188, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -151,6 +152,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6563253245958335371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677349959109499228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa49f46efb8140049b495d41b95e3225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _droppedWeaponPrefab: {fileID: 3430086557383450272, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+  _image: {fileID: 5696149378985898275}
 --- !u!1 &6518122595481609303
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.4156863, b: 0.4156863, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -242,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _partSlotPrefab: {fileID: 8720548288729135734, guid: 625f3317864519f4da93e471dcf5c765, type: 3}
-  _iconImage: {fileID: 5696149378985898275}
+  _icon: {fileID: 6563253245958335371}
 --- !u!1 &7567704999970250923
 GameObject:
   m_ObjectHideFlags: 0

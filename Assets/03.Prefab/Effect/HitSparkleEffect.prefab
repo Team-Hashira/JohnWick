@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6124484353191649520}
   - component: {fileID: 2744750401458364099}
   m_Layer: 0
-  m_Name: HitSpakleEffect
+  m_Name: HitSparkleEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -105,6 +105,7 @@ MonoBehaviour:
   lifetime: 2
   _dieDelay: 0.2
   _projectileCollider: {fileID: 8440955077746115221}
+  _trailRenderer: {fileID: 2507159377879925505}
   _hitEffect: 0
   _spakleEffect: 5
   _bloodEffect: 4
@@ -202,7 +203,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 0.075
-  m_PreviewTimeScale: 0
+  m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.08

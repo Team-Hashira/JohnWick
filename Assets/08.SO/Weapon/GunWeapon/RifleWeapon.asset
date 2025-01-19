@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: RifleWeapon
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: -3643760154290002694, guid: 5f5a1a3625f2a0d4f8d3c2a6af2c93d5, type: 3}
-  itemSprite: {fileID: -3643760154290002694, guid: 5f5a1a3625f2a0d4f8d3c2a6af2c93d5, type: 3}
+  itemIcon: {fileID: 1588940423964161631, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
+  itemSprite: {fileID: 1588940423964161631, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
   itemName: Rifle
   itemDisplayName: "\uC18C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC791\uC740 \uCD1D"
@@ -23,20 +23,20 @@ MonoBehaviour:
   partsEquipPosDict:
     _serializedList:
     - Key: 0
-      Value: {x: 0, y: 0}
+      Value: {x: 99.11, y: 0}
     - Key: 1
-      Value: {x: 0, y: 0}
+      Value: {x: 0, y: 48.8}
     - Key: 2
-      Value: {x: 0, y: 0}
+      Value: {x: -51.01, y: -46.27}
     - Key: 3
-      Value: {x: 0, y: 0}
+      Value: {x: 26.1, y: -46.27}
     - Key: 5
-      Value: {x: 0, y: 0}
+      Value: {x: -125.67, y: 0}
   overrideStatElementList:
-  - Name: 
+  - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 12
-  - Name: 
+    _baseValue: 132
+  - Name: "\uC774\uB3D9\uC18D\uB3C4"
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
     _baseValue: 0.15
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
@@ -44,5 +44,4 @@ MonoBehaviour:
   _bullet: 0
   _fireSpakleEffect: 1
   _bulletSpeed: 200
-  _damageCoefficient: 100
   _reloadDuration: 1

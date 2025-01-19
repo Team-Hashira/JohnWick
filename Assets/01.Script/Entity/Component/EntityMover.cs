@@ -23,7 +23,7 @@ namespace Hashira.Entities
 
         protected float _yMovement;
         protected float _xMovement;
-        protected Vector2 _velocity;
+        public Vector2 Velocity { get; private set; }
 
         public bool IsGrounded { get; private set; }
 
@@ -83,14 +83,14 @@ namespace Hashira.Entities
             if (IsGrounded)
             {
                 //바닥의 기욱기에 따라 힘의 방향 회전
-                _velocity = Vector3.ProjectOnPlane(Vector2.right, _hitedGround.normal).normalized * _xMovement;
-                _velocity += _hitedGround.normal * _yMovement;
+                Velocity = Vector3.ProjectOnPlane(Vector2.right, _hitedGround.normal).normalized * _xMovement;
+                Velocity += _hitedGround.normal * _yMovement;
             }
             else
-                _velocity = new Vector2(_xMovement, _yMovement);
+                Velocity = new Vector2(_xMovement, _yMovement);
 
             //대입
-            Rigidbody2D.linearVelocity = _velocity;
+            Rigidbody2D.linearVelocity = Velocity;
         }
 
         public void SetMovement(float xMovement)

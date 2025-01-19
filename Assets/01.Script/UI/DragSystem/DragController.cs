@@ -29,19 +29,22 @@ namespace Hashira.UI.DragSystem
 
         private void HandleMouseClick(bool isMouseDown)
         {
-            Debug.Log("OnClick!");
             if (isMouseDown)
             {
                 var rayCastResult = GetUIUnderCursor();
-                if (rayCastResult[0].gameObject == null) return;
+                if (rayCastResult.Count == 0 || rayCastResult[0].gameObject == null) return;
                 if (!rayCastResult[0].gameObject.TryGetComponent(out IDraggableObject draggableObject)) return;
+                if (draggableObject.CanDrag == false) return;
                 _currentDragObject = draggableObject;
-                Debug.Log(_currentDragObject.RectTransform.gameObject.name);
-                draggableObject.OnDragStart();
+                _currentDragObject.DragStartPosition = _currentDragObject.RectTransform.position;
+                _currentDragObject?.OnDragStart();
             }
             else
             {
+                if(_currentDragObject == null) return;
+                _currentDragObject.DragEndPosition = _currentDragObject.RectTransform.position;
                 _currentDragObject?.OnDragEnd(MousePosition);
+                _currentDragObject = null;
             }
         }
 
@@ -54,7 +57,6 @@ namespace Hashira.UI.DragSystem
 
             List<RaycastResult> results = new List<RaycastResult>();
             _graphicRaycaster.Raycast(pointerEventData, results);
-
             return results;
         }
 
@@ -64,8 +66,7 @@ namespace Hashira.UI.DragSystem
             MousePosition = _inputReader.MousePosition;
             
             if (_currentDragObject == null) return;
-            Debug.Log(_currentDragObject.RectTransform.gameObject.name);
-            _currentDragObject.RectTransform.anchoredPosition = MousePosition;
+            _currentDragObject.RectTransform.position = MousePosition;
             _currentDragObject.OnDragging(MousePosition);
         }
     }

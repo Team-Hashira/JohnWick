@@ -1,3 +1,4 @@
+using Hashira.Items.WeaponPartsSystem;
 using UnityEngine;
 
 namespace Hashira.Items
@@ -13,5 +14,12 @@ namespace Hashira.Items
         public string itemDisplayName;
         [TextArea]
         public string itemDescription;
+
+        protected Item _itemClass;
+
+        public Item GetItemClass()
+        {
+            return _itemClass.Clone() as Item;
+        }
     }
 }
