@@ -39,12 +39,31 @@ namespace Hashira.Entities.Interacts
         public override void SetItemData()
         {
             _ItemDataTrm.gameObject.SetActive(true);
-            if (_entity.TryGetEntityComponent(out EntityWeapon entityWeapon) &&
-                entityWeapon.CurrentWeapon != null)
+            if (_entity.TryGetEntityComponent(out EntityWeapon entityWeapon))
             {
-                _ComparisonItemDataTrm.gameObject.SetActive(true);
-                _itemData.SetItem(_weapon, entityWeapon.CurrentWeapon);
-                _comparisonItemData.SetItem(entityWeapon.CurrentWeapon);
+                if (_weapon is MeleeWeapon)
+                {
+                    if (entityWeapon.Weapons[2] != null)
+                    {
+                        _ComparisonItemDataTrm.gameObject.SetActive(true);
+                        _itemData.SetItem(_weapon, entityWeapon.Weapons[2]);
+                        _comparisonItemData.SetItem(entityWeapon.Weapons[2]);
+                    }
+                    else
+                    {
+                        _itemData.SetItem(_weapon);
+                    }
+                }
+                else if (entityWeapon.CurrentWeapon != null)
+                {
+                    _ComparisonItemDataTrm.gameObject.SetActive(true);
+                    _itemData.SetItem(_weapon, entityWeapon.CurrentWeapon);
+                    _comparisonItemData.SetItem(entityWeapon.CurrentWeapon);
+                }
+                else
+                {
+                    _itemData.SetItem(_weapon);
+                }
             }
             else
             {
