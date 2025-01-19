@@ -15,7 +15,10 @@ namespace Hashira
 
         private void Update()
         {
-            rectTransform.anchoredPosition = InputReader.MousePosition;
+            if (InputReader.MousePosition != Vector2.zero)
+            {
+                rectTransform.anchoredPosition = InputReader.MousePosition;
+            }
         }
     }
 }

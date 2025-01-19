@@ -7,7 +7,6 @@ namespace Hashira.Entities
 {
     public class EntityMover : MonoBehaviour, IEntityComponent
     {
-
         [field: SerializeField] public Rigidbody2D Rigidbody2D { get; private set; }
 
         [Header("Ground check setting")]
@@ -83,6 +82,7 @@ namespace Hashira.Entities
             if (IsGrounded)
             {
                 //바닥의 기욱기에 따라 힘의 방향 회전
+                Debug.Log(_hitedGround.normal);
                 Velocity = Vector3.ProjectOnPlane(Vector2.right, _hitedGround.normal).normalized * _xMovement;
                 Velocity += _hitedGround.normal * _yMovement;
             }

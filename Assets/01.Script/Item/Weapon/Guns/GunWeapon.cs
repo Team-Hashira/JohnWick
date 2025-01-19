@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Core.StatSystem;
 using Hashira.Projectile;
 using System;
 using Unity.Burst.Intrinsics;
@@ -14,6 +15,13 @@ namespace Hashira.Items.Weapons
         public event Action<int> OnFireEvent;
         public int BulletAmount { get; protected set; }
 
+        private StatElement _precisionStat;
+
+        public override void Init(ItemSO itemSO)
+        {
+            base.Init(itemSO);
+            _precisionStat = StatDictionary["Precision"];
+        }
 
         private void HandleDamageSuccessEvent()
         {
@@ -45,7 +53,7 @@ namespace Hashira.Items.Weapons
 
         public override int CalculateDamage()
         {
-            return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(StatDictionary["Precision"].Value, 100f) / 100));
+            return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(_precisionStat.Value, 100f - (100f - _precisionStat.Value) / 1.5f)) / 100);
         }
 
         public void Reload()
