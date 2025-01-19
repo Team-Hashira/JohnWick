@@ -7,6 +7,6 @@ namespace Hashira
     {
         [field: SerializeField] public Animator Animator { get; private set; }
 
-
+        
     }
 }
