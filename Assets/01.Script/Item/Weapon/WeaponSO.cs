@@ -20,6 +20,14 @@ namespace Hashira.Items.Weapons
 
         private Weapon weapon;
 
+        private void OnValidate()
+        {
+            for (int i = 0; i < overrideStatElementList.Count; i++)
+            {
+                overrideStatElementList[i].Name = overrideStatElementList[i].elementSO.displayName;
+            }
+        }
+
         private void OnEnable()
         {
             string className = name;
