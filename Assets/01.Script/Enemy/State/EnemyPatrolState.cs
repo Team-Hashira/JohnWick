@@ -20,7 +20,7 @@ namespace Hashira.Enemies
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
-            _speedElement = _entityStat.StatDictionary["Speed"];
+            _speedElement = _entityStat?.StatDictionary["Speed"];
         }
 
         public override void OnEnter()

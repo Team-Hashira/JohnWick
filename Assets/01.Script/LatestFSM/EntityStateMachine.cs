@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.Rendering.DebugUI;
 
 namespace Hashira.LatestFSM
 {
-    public class EntityStateMachine : MonoBehaviour, IEntityComponent
+    public class EntityStateMachine : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent
     {
         private Entity _entity;
 
@@ -30,32 +31,11 @@ namespace Hashira.LatestFSM
 
             _stateDictionary = new Dictionary<string, EntityState>();
             _shareVariableDict = new Dictionary<string, object>();
-            //StringBuilder보다 $""이 가벼움.
-            //StringBuilder stringBuilder = new StringBuilder();
-            //foreach (var state in _stateList)
-            //{
-            //    stringBuilder.Append(_namespace);
-            //    stringBuilder.Append(state.ToString());
-            //    Type t = Type.GetType(stringBuilder.ToString());
-            //    stringBuilder.Clear();
-            //}
+        }
 
-            foreach (var state in _stateList)
-            {
-                try
-                {
-                    string className = $"{entity.GetType().FullName}{state.stateName}State";
-                    Type t = Type.GetType(className);
-                    EntityState entityState = Activator.CreateInstance(t, entity, state) as EntityState;
-                    _stateDictionary.Add(state.stateName, entityState);
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogError($"Fail to Create State class({state.stateName}). : {ex.Message}");
-                }
-            }
-
-            ChangeState(_startState.stateName);
+        private void Update()
+        {
+            CurrentState.OnUpdate();
         }
 
         public void ChangeState(string newState)
@@ -92,6 +72,36 @@ namespace Hashira.LatestFSM
             {
                 _shareVariableDict.Add(key, value);
             }
+        }
+
+        public void AfterInit()
+        {
+            //StringBuilder보다 $""이 가벼움.
+            //StringBuilder stringBuilder = new StringBuilder();
+            //foreach (var state in _stateList)
+            //{
+            //    stringBuilder.Append(_namespace);
+            //    stringBuilder.Append(state.ToString());
+            //    Type t = Type.GetType(stringBuilder.ToString());
+            //    stringBuilder.Clear();
+            //}
+
+            foreach (var state in _stateList)
+            {
+                try
+                {
+                    string className = $"{_entity.GetType().FullName}{state.stateName}State";
+                    Type t = Type.GetType(className);
+                    EntityState entityState = Activator.CreateInstance(t, _entity, state) as EntityState;
+                    _stateDictionary.Add(state.stateName, entityState);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Fail to Create State class({state.stateName}). : {ex.Message}");
+                }
+            }
+
+            ChangeState(_startState.stateName);
         }
     }
 }
