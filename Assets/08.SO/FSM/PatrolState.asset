@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0f9ec8e00339847bd80442a3810075, type: 3}
   m_Name: PatrolState
   m_EditorClassIdentifier: 
-  stateName: Chase
-  animatorParam: {fileID: 0}
+  stateName: Patrol
+  animatorParam: {fileID: 11400000, guid: a547bfe3c1ee1ac40909fabe789f99f8, type: 2}

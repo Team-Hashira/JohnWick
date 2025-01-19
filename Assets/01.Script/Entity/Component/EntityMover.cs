@@ -42,7 +42,7 @@ namespace Hashira.Entities
             _yMovement = 0;
             _xMovement = 0;
             _entity = entity;
-            _whatIsGround += _oneWayPlatform;
+            _whatIsGround |= _oneWayPlatform;
         }
 
         private void FixedUpdate()
@@ -128,7 +128,7 @@ namespace Hashira.Entities
         }
 
 #if UNITY_EDITOR
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(transform.position, _groundCheckerSize);

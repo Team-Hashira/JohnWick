@@ -1,6 +1,7 @@
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
@@ -41,23 +42,16 @@ namespace Hashira.LatestFSM
 
             foreach (var state in _stateList)
             {
-                string className = $"{_namespace}{state.stateName}State";
-                Type t = Type.GetType(className);
-                if (t == null)
+                try
                 {
-                    t = Type.GetType($"{_namespace}.{state.stateName}State");
-                    if (t == null)
-                    {
-                        Debug.LogError($"There is no State Class. {className}");
-                        continue;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"{gameObject.name} : Add a '.' next to the last letter of the namespace.");
-                    }
-
+                    string className = $"{entity.GetType().FullName}{state.stateName}State";
+                    Type t = Type.GetType(className);
                     EntityState entityState = Activator.CreateInstance(t, entity, state) as EntityState;
                     _stateDictionary.Add(state.stateName, entityState);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Fail to Create State class({state.stateName}). : {ex.Message}");
                 }
             }
 

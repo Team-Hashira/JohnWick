@@ -13,6 +13,7 @@ namespace Hashira.LatestFSM
 
         public EntityState(Entity entity, StateSO stateSO)
         {
+            Debug.Log("1찍히겠냐고 ㅋㅋ");
             _entity = entity;
             _stateSO = stateSO;
             _entityStateMachine = entity.GetEntityComponent<EntityStateMachine>();

@@ -1,3 +1,4 @@
+using Hashira.Core.AnimationSystem;
 using UnityEngine;
 
 namespace Hashira.LatestFSM

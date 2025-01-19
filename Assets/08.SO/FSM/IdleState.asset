@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IdleState
   m_EditorClassIdentifier: 
   stateName: Idle
-  animatorParam: {fileID: 0}
+  animatorParam: {fileID: 11400000, guid: 1e50c5048cf0aa64dafe3adc3c60b69e, type: 2}

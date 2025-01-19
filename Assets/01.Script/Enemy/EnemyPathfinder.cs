@@ -9,7 +9,7 @@ using VHierarchy.Libs;
 namespace Hashira.Enemies
 {
     [RequireComponent(typeof(Pathfinder))]
-    [RequireComponent(typeof(EntityMover))]
+    [RequireComponent(typeof(EnemyMover))]
     public class EnemyPathfinder : MonoBehaviour, IEntityComponent
     {
         private Enemy _enemy;

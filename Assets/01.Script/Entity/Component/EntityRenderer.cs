@@ -47,6 +47,13 @@ namespace Hashira.Entities
                 Flip();
         }
 
+        public void Flip(float direction)
+        {
+            direction = Mathf.Sign(direction);
+            FacingDirection *= direction;
+            VisualTrm.localEulerAngles = new Vector3(0, ((FacingDirection > 0) ^ _onFlip) ? 0 : 180, 0);
+        }
+
         private void Flip()
         {
             FacingDirection *= -1;

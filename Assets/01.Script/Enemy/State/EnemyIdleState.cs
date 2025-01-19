@@ -6,28 +6,22 @@ using UnityEngine;
 
 namespace Hashira.Enemies
 {
-    public class EnemyIdleState : EntityState
+    public class EnemyIdleState : ListeningSoundState
     {
+        private EnemyMover _enemyMover;
+
         private float _idleStartTime;
         private float _waitDelay = 2f;
-        private GameEventChannelSO _soundEventChannel;
         public EnemyIdleState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _soundEventChannel = (entity as Enemy).SoundEventChannel;
+            _enemyMover = entity.GetEntityComponent<EnemyMover>();
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+            _enemyMover.StopImmediately();
             _idleStartTime = Time.time;
-            _soundEventChannel.AddListener<NearbySoundPointEvent>(HandleOnSoundGenerated);
-        }
-
-        private void HandleOnSoundGenerated(NearbySoundPointEvent evt)
-        {
-            _entityStateMachine.SetShareVariable("TargetNode", evt.node);
-            _entityStateMachine.SetShareVariable("Loudness", evt.loudness);
-            _entityStateMachine.ChangeState("Chase");
         }
 
         public override void OnUpdate()

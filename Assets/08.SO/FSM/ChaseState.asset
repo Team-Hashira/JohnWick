@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ChaseState
   m_EditorClassIdentifier: 
   stateName: Chase
-  animatorParam: {fileID: 0}
+  animatorParam: {fileID: 11400000, guid: a547bfe3c1ee1ac40909fabe789f99f8, type: 2}
