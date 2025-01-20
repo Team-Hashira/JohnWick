@@ -19,6 +19,8 @@ namespace Hashira.Enemies
 
         //Test
         [SerializeField] private EffectPoolType _dieEffect;
+        [SerializeField]
+        private LayerMask _whatIsPlayer;
 
         private Player _player;
 
@@ -49,15 +51,25 @@ namespace Hashira.Enemies
 
         private void HandlePartsCollisionHitEvent(EEntityPartType parts, RaycastHit2D raycastHit, Transform attackerTrm)
         {
-            switch(parts)
+            switch (parts)
             {
                 case EEntityPartType.Head:
                     _entityRenderer.Blink(0.2f, DG.Tweening.Ease.InCirc);
                     break;
                 case EEntityPartType.Legs:
-                    _entityStat.StatDictionary["Speed"].AddModify("LegFracture", -5, Core.StatSystem.EModifyMode.Percnet);
+                    _entityStat.StatDictionary["Speed"].AddModify("LegFracture", -4, Core.StatSystem.EModifyMode.Add);
                     break;
             }
+        }
+
+        public Player DetectPlayer()
+        {
+            Collider2D coll = Physics2D.OverlapCircle(transform.position, 5, _whatIsPlayer);
+            if (coll == null)
+                return null;
+            if (Mathf.Sign(coll.transform.position.x - transform.position.x) != _entityRenderer.FacingDirection)
+                return null;
+            return coll.GetComponent<Player>();
         }
     }
 }
