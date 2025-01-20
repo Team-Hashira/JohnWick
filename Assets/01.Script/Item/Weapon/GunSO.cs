@@ -14,6 +14,6 @@ namespace Hashira.Items.Weapons
         public EffectPoolType fireSpakleEffect = EffectPoolType.BulletShootSparkleEffect;
         public float bulletSpeed = 200;
         public float reloadDuration = 1;
-        public int MaxBulletAmount { get; protected set; } = 10;
+        [field: SerializeField] public int MaxBulletAmount { get; protected set; } = 10;
     }
 }
