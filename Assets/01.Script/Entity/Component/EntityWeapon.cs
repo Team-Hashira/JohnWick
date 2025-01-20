@@ -13,7 +13,6 @@ namespace Hashira.Entities.Components
         public float Recoil { get; private set; }
 
         public bool IsReloading { get; private set; }
-
         private float _currentReloadTime;
 
         public Weapon CurrentWeapon
@@ -32,12 +31,13 @@ namespace Hashira.Entities.Components
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
-        public Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
-
         private float _startYPos;
         private SpriteRenderer _spriteRenderer;
+        
+        public readonly Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
         public event Action<Weapon> OnCurrentWeaponChanged;
-
+        public event Action<float> OnReloadEvent;
+        
         private Player _player;
         
         public void Initialize(Entity entity)
@@ -57,9 +57,7 @@ namespace Hashira.Entities.Components
         private void Start()
         {
             foreach (var t in _defaultWeapons)
-            {
                 EquipWeapon(t.GetItemClass() as Weapon);
-            }
         }
 
         private void HandleReloadEvent()
@@ -75,6 +73,8 @@ namespace Hashira.Entities.Components
 
             Recoil = 0;
             _currentReloadTime = 0;
+            OnReloadEvent?.Invoke(0);
+            IsReloading = false;
 
             if (weapon != null)
             {
@@ -170,6 +170,7 @@ namespace Hashira.Entities.Components
             if (IsReloading) return;
             IsReloading = true;
             _currentReloadTime = time;
+            OnReloadEvent?.Invoke(time);
         }
 
         private void Update()
@@ -191,7 +192,7 @@ namespace Hashira.Entities.Components
                 {
                     _currentReloadTime = 0;
                     IsReloading = false;
-                    (CurrentWeapon as GunWeapon).Reload();
+                    (CurrentWeapon as GunWeapon)?.Reload();
                 }
             }
         }

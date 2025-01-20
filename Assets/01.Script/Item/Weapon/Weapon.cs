@@ -13,7 +13,7 @@ namespace Hashira.Items.Weapons
         protected EntityWeapon _EntityWeapon { get; private set; }
 
         //Parts
-        private Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
+        private readonly Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
         public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
 
         //Stat
@@ -28,7 +28,7 @@ namespace Hashira.Items.Weapons
             base.Init(itemSO);
 
             WeaponSO = itemSO as WeaponSO;
-
+            _partsSlotDictionary.Clear();
             if (WeaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
             else
             {
@@ -39,15 +39,17 @@ namespace Hashira.Items.Weapons
             }
 
             foreach (EWeaponPartsType partsType in WeaponSO.partsEquipPosDict.Keys)
+            {
                 _partsSlotDictionary.Add(partsType, null);
+            }
         }
 
-        //ÀåÂø
+        //ï¿½ï¿½ï¿½ï¿½
         public virtual void Equip(EntityWeapon entityWeapon)
         {
             _EntityWeapon = entityWeapon;
         }
-        //ÀåÂøÁß
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public virtual void WeaponUpdate()
         {
             foreach (WeaponParts parts in _partsSlotDictionary.Values)
@@ -55,7 +57,7 @@ namespace Hashira.Items.Weapons
                 parts?.PartsUpdate();
             }
         }
-        //ÀåÂøÇØÁ¦
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public virtual void UnEquip()
         {
             _EntityWeapon = null;
@@ -70,12 +72,12 @@ namespace Hashira.Items.Weapons
 
         public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
         {
-            //ÀåÂø ºÒ°¡´ÉÇÏ¸é ±×´ë·Î ¹ÝÈ¯
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½È¯
             if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return parts;
 
             WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
 
-            //±³È¯
+            //ï¿½ï¿½È¯
             _partsSlotDictionary[eWeaponPartsType]?.UnEquip();
             _partsSlotDictionary[eWeaponPartsType] = parts;
             _partsSlotDictionary[eWeaponPartsType]?.Equip(this);

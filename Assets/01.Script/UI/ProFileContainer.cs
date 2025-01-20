@@ -1,4 +1,3 @@
-using System;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Players;
@@ -16,6 +15,7 @@ namespace Hashira.UI
         [SerializeField] private TextMeshProUGUI _hpText;
 
         [Header("Weapon")]
+        [SerializeField] private ReloadContainer _reloadContainer; 
         [SerializeField] private Image _weaponImage;
         [SerializeField] private Slider _weaponLoadSlider;
         [SerializeField] private TextMeshProUGUI _weaponLoadText;
@@ -29,21 +29,19 @@ namespace Hashira.UI
             _player = GameManager.Instance.Player;
             _weaponLoadText.text = "-";
             _weaponLoadSlider.value = 1;
-        }
-
-        private void Start()
-        {
             _playerHealth = _player.GetEntityComponent<EntityHealth>();
             _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
-
+            
             _playerHealth.OnHealthChangedEvent += HandleHpChange;
             _entityWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
+            _entityWeapon.OnReloadEvent += _reloadContainer.HandleReload;
         }
 
         private void OnDestroy()
         {
             _playerHealth.OnHealthChangedEvent -= HandleHpChange;
             _entityWeapon.OnCurrentWeaponChanged -= HandleWeaponChange;
+            _entityWeapon.OnReloadEvent -= _reloadContainer.HandleReload;
         }
 
         private void HandleHpChange(int lastValue, int newValue)

@@ -21,14 +21,7 @@ namespace Hashira.Entities.Components
                 sum += itemPair.Value;
                 if (lastSum <= percent && percent < sum)
                 {
-                    if (itemPair.Key is WeaponSO weapon)
-                    {
-                        ItemDropUtility.DropWeapon(weapon, _entity.transform.position);
-                    }
-                    else if (itemPair.Key is WeaponPartsSO weaponParts)
-                    {
-                        ItemDropUtility.DropParts(weaponParts, _entity.transform.position);
-                    }
+                    ItemDropUtility.DroppedItem(itemPair.Key, _entity.transform.position);
                     return;
                 }
                 lastSum = sum;
