@@ -12,6 +12,9 @@ namespace Hashira.Entities.Components
 
         public float Recoil { get; private set; }
 
+        public bool IsReloading { get; private set; }
+
+        private float _currentReloadTime;
 
         public Weapon CurrentWeapon
         {
@@ -36,7 +39,6 @@ namespace Hashira.Entities.Components
         public event Action<Weapon> OnCurrentWeaponChanged;
 
         private Player _player;
-
         
         public void Initialize(Entity entity)
         {
@@ -60,8 +62,7 @@ namespace Hashira.Entities.Components
 
         private void HandleReloadEvent()
         {
-            if (CurrentWeapon is GunWeapon gun)
-                gun?.Reload();
+            Reload(1f);
         }
 
         private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
@@ -71,6 +72,7 @@ namespace Hashira.Entities.Components
             VisualTrm.gameObject.SetActive(weapon != null);
 
             Recoil = 0;
+            _currentReloadTime = 0;
 
             if (weapon != null)
             {
@@ -144,7 +146,10 @@ namespace Hashira.Entities.Components
         }
 
         public void Attack(int damage, bool isDown)
-            => CurrentWeapon?.Attack(damage, isDown);
+        {
+            if (IsReloading) return;
+            CurrentWeapon?.Attack(damage, isDown);
+        }
 
         public void LookTarget(Vector3 targetPos)
         {
@@ -158,6 +163,13 @@ namespace Hashira.Entities.Components
             Recoil = Mathf.Clamp(Recoil + value * 0.1f, 0, 10f);
         }
 
+        public void Reload(float time)
+        {
+            if (IsReloading) return;
+            IsReloading = true;
+            _currentReloadTime = time;
+        }
+
         private void Update()
         {
             CurrentWeapon?.WeaponUpdate();
@@ -168,6 +180,16 @@ namespace Hashira.Entities.Components
                 if (Recoil < 0)
                 {
                     Recoil = 0;
+                }
+            }
+            if (_currentReloadTime > 0)
+            {
+                _currentReloadTime -= Time.deltaTime;
+                if (_currentReloadTime < 0)
+                {
+                    _currentReloadTime = 0;
+                    IsReloading = false;
+                    (CurrentWeapon as GunWeapon).Reload();
                 }
             }
         }
