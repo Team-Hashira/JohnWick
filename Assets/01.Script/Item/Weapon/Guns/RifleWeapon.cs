@@ -1,6 +1,8 @@
 using Crogen.CrogenPooling;
 using Hashira.Core.StatSystem;
+using Hashira.Entities.Components;
 using Hashira.Projectile;
+using System;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
@@ -19,10 +21,21 @@ namespace Hashira.Items.Weapons
             _attackSpeedStat = StatDictionary["AttackSpeed"];
         }
 
+        public override void Equip(EntityWeapon entityWeapon)
+        {
+            base.Equip(entityWeapon);
+            _EntityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
+        }
+
+        private void HandleCurrentWeaponChangedEvent(Weapon weapon)
+        {
+            _isFiring = false;
+        }
+
         public override void UnEquip()
         {
             base.UnEquip();
-            _isFiring = false;
+            _EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
         }
 
         public override void Attack(int damage, bool isDown)
