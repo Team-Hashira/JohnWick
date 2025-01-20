@@ -11,8 +11,6 @@ namespace Hashira.Enemies
         private EntityRenderer _entityRenderer;
         private EntityStat _entityStat;
 
-        private float _currentFacingDirection;
-
         private StatElement _speedElement;
 
         public EnemyPatrolState(Entity entity, StateSO stateSO) : base(entity, stateSO)

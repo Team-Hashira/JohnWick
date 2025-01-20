@@ -375,7 +375,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   <StopDistance>k__BackingField: 0.2
-  _speedElementSO: {fileID: 0}
+  _speedElementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
 --- !u!114 &3673250076483303631
 MonoBehaviour:
   m_ObjectHideFlags: 0
