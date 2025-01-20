@@ -127,6 +127,14 @@ namespace Hashira.Entities
             }
         }
 
+        public void SetIgnoreOnewayPlayform(bool isIgnore)
+        {
+            if (isIgnore)
+                _whatIsGround &= ~(_oneWayPlatform);
+            else
+                _whatIsGround |= _oneWayPlatform;
+        }
+
 #if UNITY_EDITOR
         protected virtual void OnDrawGizmos()
         {

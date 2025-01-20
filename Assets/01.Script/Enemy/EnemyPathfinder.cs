@@ -15,6 +15,7 @@ namespace Hashira.Enemies
     {
         private Enemy _enemy;
         private EnemyMover _enemyMover;
+        private EnemyIgnoreOneway _enemyIgnoreOneway;
         private EntityRenderer _entityRenderer;
         private Pathfinder _pathfinder;
 
@@ -36,6 +37,7 @@ namespace Hashira.Enemies
             _currentPath = new List<Node>();
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
+            _enemyIgnoreOneway = entity.GetEntityComponent<EnemyIgnoreOneway>();
             _pathfinder = GetComponent<Pathfinder>();
         }
 
@@ -81,19 +83,9 @@ namespace Hashira.Enemies
                 Node currentNode = _currentPath[i];
                 float x = currentNode.transform.position.x - transform.position.x;
                 float y = currentNode.transform.position.y - transform.position.y;
-                if (y > 0)
-                {
-                    _enemyMover.UnderJump(false);
-                }
-                else
-                {
-                    bool hasToJump = currentNode.NodeType == NodeType.Stair;
-                    _enemyMover.UnderJump(hasToJump);
-                }
-                //if(hasToJump)
-                //    _enemy.GetComponent<Collider2D>().excludeLayers = _onewayPlatform;
-                //else
-                //    _enemy.GetComponent<Collider2D>().excludeLayers = 0; 
+                bool hasToJump = currentNode.NodeType == NodeType.Stair || currentNode.NodeType == NodeType.StairEnter;
+                _enemyMover.SetIgnoreOnewayPlayform(hasToJump);
+                _enemyIgnoreOneway.SetIgnoreOneway(!hasToJump);
                 if (_entityRenderer.FacingDirection != Mathf.Sign(x))
                     _entityRenderer.Flip();
                 while (true)
