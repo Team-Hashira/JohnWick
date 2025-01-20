@@ -56,3 +56,4 @@ MonoBehaviour:
   fireSpakleEffect: 1
   bulletSpeed: 200
   reloadDuration: 1
+  <MaxBulletAmount>k__BackingField: 30
