@@ -18,7 +18,12 @@ namespace Hashira.Entities.Components
         public Weapon CurrentWeapon
         {
             get => Weapons[WeaponIndex];
-            private set => Weapons[WeaponIndex] = value;
+            private set
+            {
+                if(OldWeaponIndex != WeaponIndex)
+                    OldWeaponIndex = WeaponIndex;
+                Weapons[WeaponIndex] = value;
+            }
         }
 
         public int WeaponIndex { get; private set; } = 0;
@@ -39,6 +44,19 @@ namespace Hashira.Entities.Components
         public event Action<float> OnReloadEvent;
         
         private Player _player;
+
+        private int _oldWeaponIndex;
+
+        public int OldWeaponIndex
+        {
+            get => _oldWeaponIndex;
+            set
+            {
+                // ReSharper disable once RedundantCheckBeforeAssignment
+                if (_oldWeaponIndex != value)
+                    _oldWeaponIndex = value;
+            }
+        }
         
         public void Initialize(Entity entity)
         {
@@ -141,6 +159,15 @@ namespace Hashira.Entities.Components
             return prevWeapon;
         }
 
+        public void WeaponChange(int index)
+        {
+            if(index > Weapons.Length - 1)
+                index = Weapons.Length - 1;
+            
+            WeaponIndex = index;
+            OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
+        }
+        
         public void WeaponSwap()
         {
             //빈 슬롯에 자동삽입 기능을 추가할 지 안정했기에 일단 주석
@@ -151,15 +178,20 @@ namespace Hashira.Entities.Components
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
-        public void Attack(int damage, bool isDown)
+        public void Attack(int damage, bool isDown, bool isMelee = false)
         {
             if (IsReloading) return;
+            if (isMelee)
+            {
+                WeaponIndex = 2;
+                OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
+            }
             CurrentWeapon?.Attack(damage, isDown);
         }
 
         public void LookTarget(Vector3 targetPos)
         {
-            Facing = MathF.Sign(targetPos.x - transform.position.x);
+            Facing = Mathf.Sign(targetPos.x - transform.position.x);
             Vector3 dir = targetPos - transform.position;
             transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan(dir.y / dir.x) * Mathf.Rad2Deg * Facing);
         }
