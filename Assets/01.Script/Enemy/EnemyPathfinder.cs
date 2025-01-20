@@ -1,4 +1,5 @@
 using Crogen.AttributeExtension;
+using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Pathfind;
 using System;
@@ -11,10 +12,11 @@ namespace Hashira.Enemies
 {
     [RequireComponent(typeof(Pathfinder))]
     [RequireComponent(typeof(EnemyMover))]
-    public class EnemyPathfinder : MonoBehaviour, IEntityComponent
+    public class EnemyPathfinder : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent
     {
         private Enemy _enemy;
         private EnemyMover _enemyMover;
+        private EntityStat _entityStat;
         private EnemyIgnoreOneway _enemyIgnoreOneway;
         private EntityRenderer _entityRenderer;
         private Pathfinder _pathfinder;
@@ -27,7 +29,8 @@ namespace Hashira.Enemies
         public float StopDistance { get; set; } = 1f;
 
         [SerializeField]
-        private Node _targetNode;
+        private StatElementSO _speedElementSO;
+        private StatElement _speedElement;
 
         public event Action OnMoveEndEvent;
 
@@ -38,14 +41,20 @@ namespace Hashira.Enemies
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
             _enemyIgnoreOneway = entity.GetEntityComponent<EnemyIgnoreOneway>();
+            _entityStat = entity.GetEntityComponent<EntityStat>();
             _pathfinder = GetComponent<Pathfinder>();
         }
 
-        [Button("Test")]
-        private void Test()
+        public void AfterInit()
         {
-            PathfindAndMove(_targetNode);
+            _speedElement = _entityStat.StatDictionary[_speedElementSO];
         }
+
+        //[Button("Test")]
+        //private void Test()
+        //{
+        //    PathfindAndMove(_targetNode);
+        //}
 
         public void PathfindAndMove(Node targetNode)
         {
@@ -90,7 +99,7 @@ namespace Hashira.Enemies
                     _entityRenderer.Flip();
                 while (true)
                 {
-                    _enemyMover.SetMovement(Mathf.Sign(x) * 10);
+                    _enemyMover.SetMovement(Mathf.Sign(x) * _speedElement.Value);
                     float distance = currentNode.transform.position.x - transform.position.x;
                     if (Mathf.Abs(distance) <= StopDistance)
                     {
@@ -101,5 +110,7 @@ namespace Hashira.Enemies
             }
             OnMoveEndEvent?.Invoke();
         }
+
+        
     }
 }
