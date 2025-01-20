@@ -14,6 +14,7 @@ namespace Hashira.Items.Weapons
         
         private bool _isFiring;
         private int _damage;
+        private float _maxTime;
 
         public override void Init(ItemSO itemSO)
         {
@@ -25,6 +26,20 @@ namespace Hashira.Items.Weapons
         {
             base.Equip(entityWeapon);
             _EntityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
+            _EntityWeapon.OnReloadEvent += HandleReloadEvent;
+        }
+
+        private void HandleReloadEvent(float time)
+        {
+            if (time == 0)
+            {
+                _maxTime = 0;
+            }
+            else if (_maxTime < time)
+            {
+                _maxTime = time;
+                _isFiring = false;
+            }
         }
 
         private void HandleCurrentWeaponChangedEvent(Weapon weapon)
@@ -35,6 +50,7 @@ namespace Hashira.Items.Weapons
         public override void UnEquip()
         {
             _EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            _EntityWeapon.OnReloadEvent -= HandleReloadEvent;
             base.UnEquip();
         }
 
