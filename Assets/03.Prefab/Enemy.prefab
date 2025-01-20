@@ -157,7 +157,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.021226168, y: -0.27859497}
+  m_Offset: {x: 0, y: -0.27859497}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -235,7 +235,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.021226168, y: -0.27859497}
+  m_Offset: {x: 0, y: -0.27859497}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -336,7 +336,7 @@ MonoBehaviour:
   _dieEffect: 3
   _whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!114 &6722688745115300717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   _onewayPlatform:
     serializedVersion: 2
     m_Bits: 4096
-  <StopDistance>k__BackingField: 0.2
+  <StopDistance>k__BackingField: 0
   _speedElementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
 --- !u!114 &3673250076483303631
 MonoBehaviour:
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Rigidbody2D>k__BackingField: {fileID: 6464342731088211561}
-  _groundCheckerSize: {x: 1, y: 0.12}
+  _groundCheckerSize: {x: 0.639154, y: 0.12}
   _downDistance: 1.1
   _whatIsGround:
     serializedVersion: 2
@@ -420,6 +420,7 @@ MonoBehaviour:
   _oneWayPlatform:
     serializedVersion: 2
     m_Bits: 4096
+  <Velocity>k__BackingField: {x: 0, y: 0}
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 8192

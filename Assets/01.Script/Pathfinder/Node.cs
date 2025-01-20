@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Hashira.Pathfind
@@ -13,32 +14,41 @@ namespace Hashira.Pathfind
 
     public class Node : MonoBehaviour
     {
-        [field: SerializeField]
-        public NodeType NodeType { get; set; }
+        private NodeGenerator _nodeGenerator;
+        public NodeType NodeType { get; private set; }
         [field: SerializeField]
         public List<Node> Neighbors { get; private set; } = new List<Node>();
+
+        public void Initialize(NodeGenerator nodeGenerator, Vector3 position, NodeType type)
+        {
+            transform.position = position;
+            NodeType = type;
+            _nodeGenerator = nodeGenerator;
+        }
 
         public void SetupConnection(float nodeSpace)
         {
             Neighbors.Clear();
             LayerMask layer = LayerMask.GetMask("Node");
+            List<Node> nodeList = _nodeGenerator.NodeList
+                .Where(node => Vector3.Distance(transform.position, node.transform.position) <= nodeSpace)
+                .ToList();
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, nodeSpace, layer);
-            foreach (Collider2D collider in colliders)
+            foreach (Node node in nodeList)
             {
-                if (collider.gameObject == gameObject)
+                if (node.gameObject == gameObject)
                     continue;
-                Node targetNode = collider.GetComponent<Node>();
                 if (NodeType == NodeType.Stair)
                 {
-                    if (targetNode.NodeType != NodeType.Stair && targetNode.NodeType != NodeType.StairEnter)
+                    if (node.NodeType != NodeType.Stair && node.NodeType != NodeType.StairEnter)
                         continue;
                 }
                 if (NodeType == NodeType.OneWay)
                 {
-                    if (targetNode.NodeType == NodeType.Stair)
+                    if (node.NodeType == NodeType.Stair)
                         continue;
                 }
-                Neighbors.Add(targetNode);
+                Neighbors.Add(node);
             }
         }
     }
