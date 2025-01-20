@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -30,6 +31,8 @@ namespace Hashira.Pathfind
         private void Awake()
         {
             _soundEventChannel.AddListener<SoundGeneratedEvent>(HandleOnSoundGenerated);
+            GenerateNodes();
+            ConnectNodes();
         }
 
         private void HandleOnSoundGenerated(SoundGeneratedEvent evt)
@@ -90,7 +93,7 @@ namespace Hashira.Pathfind
                     if (_groundTilemap.HasTile(position))
                     {
                         Vector3Int fixedPos = position + Vector3Int.up;
-                        if (_groundTilemap.HasTile(fixedPos)) //¹Ù·Î À§¿¡ Å¸ÀÏ¸ÊÀÌ ÀÖ´Â°¡? (ÃµÀåÀÌ°Å³ª, º®ÀÌ°Å³ª, ¹ÛÀ¸·Î µå·¯³ª ÀÖÁö ¾ÊÀº Å¸ÀÏÀÓ)
+                        if (_groundTilemap.HasTile(fixedPos)) //ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½Ö´Â°ï¿½? (Ãµï¿½ï¿½ï¿½Ì°Å³ï¿½, ï¿½ï¿½ï¿½Ì°Å³ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½å·¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½)
                             continue;
                         if (IsStair(_groundTilemap.GetTile(position)))
                         {
@@ -125,18 +128,21 @@ namespace Hashira.Pathfind
                     if (_oneWayTilemap.HasTile(position))
                     {
                         Vector3Int fixedPos = position + Vector3Int.up;
-                        if (_oneWayTilemap.HasTile(fixedPos)) //¹Ù·Î À§¿¡ Å¸ÀÏ¸ÊÀÌ ÀÖ´Â°¡? (¿ø¿þÀÌ Å¸ÀÏ¸ÊÀÌ 2°ãÀÓ)
+                        if (_oneWayTilemap.HasTile(fixedPos)) //ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½Ö´Â°ï¿½? (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ï¸ï¿½ï¿½ï¿½ 2ï¿½ï¿½ï¿½ï¿½)
                             continue;
                         CreateNode(NodeType.OneWay, fixedPos);
                     }
                 }
             }
+            
+            EditorUtility.SetDirty(this);
         }
 
         [Button("Connect Nodes")]
         public void ConnectNodes()
         {
             _nodeList.ForEach(node => node.SetupConnection(1.5f));
+            EditorUtility.SetDirty(transform);
         }
 
         private void CreateNode(NodeType type, Vector3 position)
@@ -152,7 +158,7 @@ namespace Hashira.Pathfind
             Vector2Int[] dirs = { Vector2Int.left, Vector2Int.right };
             foreach (var dir in dirs)
             {
-                if (IsStair(position + (Vector3Int)dir)) // ¹Ù·Î ¿·¿¡ °è´ÜÀÌ ÀÖ´ÂÁö Ã¼Å©.
+                if (IsStair(position + (Vector3Int)dir)) // ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©.
                 {
                     return true;
                 }
@@ -162,10 +168,10 @@ namespace Hashira.Pathfind
 
         private bool IsEmptyOnLeftOrRight(Vector3Int posiiton)
         {
-            Vector2Int[] dirs = Direction2D.GetDirections(DirectionType.Left, DirectionType.Right); //°Ë»ç ÁöÁ¡À¸·ÎºÎÅÍ ¾çÂÊ¸¸ Å½»ö.
-            foreach (var dir in dirs) // ºñ¾îÀÖ´ÂÁö Ã¼Å·.
+            Vector2Int[] dirs = Direction2D.GetDirections(DirectionType.Left, DirectionType.Right); //ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¸ï¿½ Å½ï¿½ï¿½.
+            foreach (var dir in dirs) // ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å·.
             {
-                if (!_groundTilemap.HasTile(posiiton + (Vector3Int)dir)) // ¹Ù·Î ¿·¿¡ ºñ¾îÀÖ´ÂÁö Ã¼Å©.
+                if (!_groundTilemap.HasTile(posiiton + (Vector3Int)dir)) // ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©.
                 {
                     return true;
                 }
@@ -175,10 +181,10 @@ namespace Hashira.Pathfind
 
         private bool IsWallOnLeftOrRight(Vector3Int posiiton)
         {
-            Vector2Int[] wallDirs = Direction2D.GetDirections(DirectionType.Left, DirectionType.Right); //°Ë»ç ÁöÁ¡À¸·ÎºÎÅÍ ¾çÂÊ¸¸ Å½»ö.
-            foreach (var dir in wallDirs) // º® Å¸ÀÏÀÎÁö Ã¼Å·.
+            Vector2Int[] wallDirs = Direction2D.GetDirections(DirectionType.Left, DirectionType.Right); //ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¸ï¿½ Å½ï¿½ï¿½.
+            foreach (var dir in wallDirs) // ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å·.
             {
-                if (_groundTilemap.HasTile(posiiton + (Vector3Int)dir)) // ¹Ù·Î ¿·¿¡ º®ÀÌ ÀÖ´ÂÁö Ã¼Å©.
+                if (_groundTilemap.HasTile(posiiton + (Vector3Int)dir)) // ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ Ã¼Å©.
                 {
                     return true;
                 }
