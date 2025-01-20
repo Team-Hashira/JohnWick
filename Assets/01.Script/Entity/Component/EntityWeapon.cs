@@ -170,7 +170,6 @@ namespace Hashira.Entities.Components
             if (IsReloading) return;
             IsReloading = true;
             _currentReloadTime = time;
-            OnReloadEvent?.Invoke(time);
         }
 
         private void Update()
@@ -188,10 +187,12 @@ namespace Hashira.Entities.Components
             if (_currentReloadTime > 0)
             {
                 _currentReloadTime -= Time.deltaTime;
+                OnReloadEvent?.Invoke(_currentReloadTime);
                 if (_currentReloadTime < 0)
                 {
                     _currentReloadTime = 0;
                     IsReloading = false;
+                    OnReloadEvent?.Invoke(_currentReloadTime);
                     (CurrentWeapon as GunWeapon)?.Reload();
                 }
             }
