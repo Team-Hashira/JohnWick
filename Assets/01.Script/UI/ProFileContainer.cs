@@ -1,4 +1,3 @@
-using System;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Players;
@@ -16,6 +15,7 @@ namespace Hashira.UI
         [SerializeField] private TextMeshProUGUI _hpText;
 
         [Header("Weapon")]
+        [SerializeField] private ReloadContainer _reloadContainer; 
         [SerializeField] private Image _weaponImage;
         [SerializeField] private Slider _weaponLoadSlider;
         [SerializeField] private TextMeshProUGUI _weaponLoadText;

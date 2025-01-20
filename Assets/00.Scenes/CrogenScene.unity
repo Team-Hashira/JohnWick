@@ -1316,33 +1316,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d7bdf0ec43a78440b5d3a3448251fd6, type: 2}
   - {fileID: 11400000, guid: 309907a9c9bb1334c8122753c6aa9978, type: 2}
   poolingPairs:
-  - poolType: BulletHitEffect
-    prefab: {fileID: 7171291666861227977, guid: 6bb59100eaa657d44bebf8bcaec8b1bb, type: 3}
-    poolCount: 20
-  - poolType: BulletShootSparkleEffect
-    prefab: {fileID: 7171291666861227977, guid: 741a9a6e065c4cb4f9645a0a953c8866, type: 3}
-    poolCount: 20
-  - poolType: DoorBreak
-    prefab: {fileID: 7688809193365958300, guid: 220e2544c4368964db1aa090d8d496d3, type: 3}
-    poolCount: 20
-  - poolType: EntityDie
-    prefab: {fileID: 7171291666861227977, guid: 9a9325f24c7c2624490b97acac33221d, type: 3}
-    poolCount: 20
-  - poolType: HitBlood
-    prefab: {fileID: 7171291666861227977, guid: 0bcf156d5190ab84f8985dfb19ba06ce, type: 3}
-    poolCount: 20
-  - poolType: HitSparkleEffect
-    prefab: {fileID: 7171291666861227977, guid: 82b070fb2e05d7c4f8eec0b0c632821d, type: 3}
-    poolCount: 20
-  - poolType: LightBreakEffect
-    prefab: {fileID: 5433795387509247220, guid: 521fc1d0ac18ddd459e36a1bf3156faf, type: 3}
-    poolCount: 20
-  - poolType: HitBloodBack
-    prefab: {fileID: 7171291666861227977, guid: 33117ae2294937442b852d41e07a8b57, type: 3}
-    poolCount: 20
-  - poolType: SpreadWallBlood
-    prefab: {fileID: 6572880926036562658, guid: 18a2ff746d0e5f24ba2e235bfc9a1ba6, type: 3}
-    poolCount: 20
+  - poolType: WeaponItem
+    prefab: {fileID: 3881367526702418878, guid: c7d553f690003474bba5c87772154ad0, type: 3}
+    poolCount: 10
+  - poolType: WeaponPartsItem
+    prefab: {fileID: 5777761705006678540, guid: 7f355dda8bf8e9343bfaae3a74ce0b4d, type: 3}
+    poolCount: 10
 --- !u!1 &1322030620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,7 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageDataSO: {fileID: 11400000, guid: f8770378a3af8934b8f9d6f3258ac010, type: 2}
-  confineColliderPrefab: {fileID: 0}
+  _confineColliderPrefab: {fileID: 2945706858643288433, guid: 7764fc5b49aaca04ba41fe42e7df99cd, type: 3}
   _startPoint: {fileID: 962858240}
 --- !u!1 &2077433692
 GameObject:

@@ -7,21 +7,9 @@
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityItemDropper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityItemDropper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/ItemDropUtility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/ItemDropUtility.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Weapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/WeaponParts/WeaponParts.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/WeaponParts/WeaponParts.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/WeaponParts/WeaponPartsSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/WeaponParts/WeaponPartsSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Combat/ConfineCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Combat/ConfineCollider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/StageGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/StageGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlotIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/PartSlotIcon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlotIcon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/StatusWindow/WeaponSlotIcon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/StagePice/TestTileStage/Stage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/StagePice/TestTileStage/Stage.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/08.SO/UI/Perk.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/08.SO/UI/Perk/HighFoot.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/08.SO/UI/Perk/HighFoot.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/ConfineCollider.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/ConfineCollider.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +153,7 @@
       <workItem from="1737161999677" duration="887000" />
       <workItem from="1737172143346" duration="12581000" />
       <workItem from="1737242802386" duration="11113000" />
-      <workItem from="1737336100099" duration="7645000" />
+      <workItem from="1737336100099" duration="11343000" />
     </task>
     <servers />
   </component>
