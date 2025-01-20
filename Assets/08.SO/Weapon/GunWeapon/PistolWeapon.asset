@@ -20,7 +20,9 @@ MonoBehaviour:
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
-  <GrapOffset>k__BackingField: {x: 1, y: 0}
+  <GrapOffset>k__BackingField: {x: 0.623, y: 0.02, z: 0}
+  <RightHandOffset>k__BackingField: {x: -0.221, y: 0.013, z: 0}
+  <LeftHandOffset>k__BackingField: {x: -0.074, y: -0.01, z: 0}
   <GrapRotate>k__BackingField: 0
   partsEquipPosDict:
     _serializedList:
@@ -40,6 +42,9 @@ MonoBehaviour:
   - Name: "\uBC18\uB3D9"
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
     _baseValue: 25
+  - Name: "\uC7A5\uC804\uC18D\uB3C4"
+    elementSO: {fileID: 11400000, guid: e21207c15b4ae6347b7945e0a9607a2d, type: 2}
+    _baseValue: 0.5
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
   firePoint: {x: 0.292, y: 0.125, z: 0}
   cartridgeCaseParticlePoint: {x: -0.093, y: 0.125, z: 0}

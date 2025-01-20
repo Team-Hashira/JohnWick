@@ -1,8 +1,9 @@
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Core.AnimationSystem
 {
-    public class AnimHashSO : MonoBehaviour
+    [CreateAssetMenu(fileName = "AnimatorParamSO", menuName ="SO/Animation/ParamSO")]
+    public class AnimatorParamSO : ScriptableObject
     {
         public string paramName;
         public int hash;

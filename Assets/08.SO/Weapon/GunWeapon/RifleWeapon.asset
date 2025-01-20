@@ -20,7 +20,9 @@ MonoBehaviour:
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
-  <GrapOffset>k__BackingField: {x: 0.5, y: 0}
+  <GrapOffset>k__BackingField: {x: 0.68, y: -0.02, z: 0}
+  <RightHandOffset>k__BackingField: {x: -0.162, y: -0.026, z: 0}
+  <LeftHandOffset>k__BackingField: {x: -0.055, y: -0.038, z: 0}
   <GrapRotate>k__BackingField: 0
   partsEquipPosDict:
     _serializedList:

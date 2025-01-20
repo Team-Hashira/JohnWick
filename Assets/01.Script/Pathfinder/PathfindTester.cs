@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using Crogen.AttributeExtension;
 using UnityEngine;
 
@@ -30,3 +31,4 @@ namespace Hashira.Pathfind
         }
     }
 }
+#endif

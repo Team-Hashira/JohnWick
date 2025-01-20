@@ -1,6 +1,8 @@
 using Crogen.AttributeExtension;
+using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Pathfind;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +11,14 @@ using VHierarchy.Libs;
 namespace Hashira.Enemies
 {
     [RequireComponent(typeof(Pathfinder))]
-    [RequireComponent(typeof(EntityMover))]
-    public class EnemyPathfinder : MonoBehaviour, IEntityComponent
+    [RequireComponent(typeof(EnemyMover))]
+    public class EnemyPathfinder : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent
     {
         private Enemy _enemy;
-        private EntityMover _entityMover;
+        private EnemyMover _enemyMover;
+        private EntityStat _entityStat;
+        private EnemyIgnoreOneway _enemyIgnoreOneway;
+        private EntityRenderer _entityRenderer;
         private Pathfinder _pathfinder;
 
         private List<Node> _currentPath;
@@ -24,24 +29,40 @@ namespace Hashira.Enemies
         public float StopDistance { get; set; } = 1f;
 
         [SerializeField]
-        private Node _targetNode;
+        private StatElementSO _speedElementSO;
+        private StatElement _speedElement;
+
+        public event Action OnMoveEndEvent;
+
+        public Node TargetNode { get; private set; }
 
         public void Initialize(Entity entity)
         {
             _enemy = entity as Enemy;
-            _entityMover = entity.GetEntityComponent<EntityMover>();
+            _currentPath = new List<Node>();
+            _enemyMover = entity.GetEntityComponent<EnemyMover>();
+            _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
+            _enemyIgnoreOneway = entity.GetEntityComponent<EnemyIgnoreOneway>();
+            _entityStat = entity.GetEntityComponent<EntityStat>();
             _pathfinder = GetComponent<Pathfinder>();
         }
 
-        [Button("Test")]
-        private void Test()
+        public void AfterInit()
         {
-            PathfindAndMove(_targetNode);
+            _speedElement = _entityStat.StatDictionary[_speedElementSO];
         }
+
+        //[Button("Test")]
+        //private void Test()
+        //{
+        //    PathfindAndMove(_targetNode);
+        //}
 
         public void PathfindAndMove(Node targetNode)
         {
-            _currentPath = _pathfinder.FindPath(_entityMover.CurrentNode, targetNode);
+            _currentPath = _pathfinder.FindPath(_enemyMover.CurrentNode, targetNode);
+            TargetNode = targetNode;
+            Debug.Log(_currentPath.Count);
 #if UNITY_EDITOR
             Node prev = null;
             foreach (var node in _currentPath)
@@ -64,24 +85,26 @@ namespace Hashira.Enemies
         public void StopMove()
         {
             StopCoroutine(_moveCoroutine);
-            _entityMover.StopImmediately();
+            _enemyMover.StopImmediately();
         }
 
         private IEnumerator MoveCoroutine()
         {
             for (int i = 0; i < _currentPath.Count; i++)
             {
+                if (i == 0)
+                    continue;
                 Node currentNode = _currentPath[i];
                 float x = currentNode.transform.position.x - transform.position.x;
-                bool hasToJump = currentNode.nodeType == NodeType.Stair;
-                //if(hasToJump)
-                //    _enemy.GetComponent<Collider2D>().excludeLayers = _onewayPlatform;
-                //else
-                //    _enemy.GetComponent<Collider2D>().excludeLayers = 0; 
-                _entityMover.UnderJump(hasToJump);
+                float y = currentNode.transform.position.y - transform.position.y;
+                bool hasToJump = currentNode.NodeType == NodeType.Stair || currentNode.NodeType == NodeType.StairEnter;
+                _enemyMover.SetIgnoreOnewayPlayform(hasToJump);
+                _enemyIgnoreOneway.SetIgnoreOneway(!hasToJump);
+                if (_entityRenderer.FacingDirection != Mathf.Sign(x))
+                    _entityRenderer.Flip();
                 while (true)
                 {
-                    _entityMover.SetMovement(Mathf.Sign(x) * 10);
+                    _enemyMover.SetMovement(Mathf.Sign(x) * _speedElement.Value);
                     float distance = currentNode.transform.position.x - transform.position.x;
                     if (Mathf.Abs(distance) <= StopDistance)
                     {
@@ -90,6 +113,9 @@ namespace Hashira.Enemies
                     yield return null;
                 }
             }
+            OnMoveEndEvent?.Invoke();
         }
+
+        
     }
 }

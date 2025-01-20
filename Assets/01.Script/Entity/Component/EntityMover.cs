@@ -41,7 +41,7 @@ namespace Hashira.Entities
             _yMovement = 0;
             _xMovement = 0;
             _entity = entity;
-            _whatIsGround += _oneWayPlatform;
+            _whatIsGround |= _oneWayPlatform;
         }
 
         private void FixedUpdate()
@@ -73,7 +73,7 @@ namespace Hashira.Entities
             if (groundHits.Length > 0) _hitedGround = groundHits[0];
             IsGrounded = groundHits.Length > 0 && _yMovement < 0;
 
-            if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node)) 
+            if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node))
                 CurrentNode = node;
         }
 
@@ -117,9 +117,9 @@ namespace Hashira.Entities
         {
             int layerCheck = _whatIsGround & _oneWayPlatform;
             if (layerCheck != 0 && isUnderJump)
-                _whatIsGround -= _oneWayPlatform;
+                _whatIsGround &= ~(_oneWayPlatform);
             else if (isUnderJump == false)
-                _whatIsGround += _oneWayPlatform;
+                _whatIsGround |= _oneWayPlatform;
 
             foreach (var platformEffector in FindObjectsByType<PlatformEffector2D>(FindObjectsSortMode.None))
             {
@@ -127,8 +127,16 @@ namespace Hashira.Entities
             }
         }
 
+        public void SetIgnoreOnewayPlayform(bool isIgnore)
+        {
+            if (isIgnore)
+                _whatIsGround &= ~(_oneWayPlatform);
+            else
+                _whatIsGround |= _oneWayPlatform;
+        }
+
 #if UNITY_EDITOR
-        private void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireCube(transform.position, _groundCheckerSize);

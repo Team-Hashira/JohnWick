@@ -23,6 +23,7 @@ namespace Hashira.Entities.Interacts
         private float _descriptionOpenDelay = 0.5f;
         private float _holdStartTime = 0f;
         private bool _isHolding;
+        private Material _holdOutlineMat;
 
         protected Entity _entity;
         protected EntityWeapon _entityWeapon;
@@ -32,6 +33,8 @@ namespace Hashira.Entities.Interacts
             base.Awake();
             _ItemDataTrm = _itemData.transform.parent;
             _ComparisonItemDataTrm = _comparisonItemData.transform.parent;
+            _holdOutlineMat = _holdOutlineSprite.material;
+            _holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
             _ItemDataTrm.gameObject.SetActive(false);
             _ComparisonItemDataTrm.gameObject.SetActive(false);
         }
@@ -58,7 +61,7 @@ namespace Hashira.Entities.Interacts
             _isHolding = false;
             _ItemDataTrm.gameObject.SetActive(false);
             _ComparisonItemDataTrm.gameObject.SetActive(false);
-            _holdOutlineSprite.material.SetFloat(_FillAmountShaderHash, 0);
+            _holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
         }
 
         public void SetItem(ItemSO itemSO)
@@ -79,7 +82,7 @@ namespace Hashira.Entities.Interacts
             {
                 float amount = (Time.time - _holdStartTime) / _descriptionOpenDelay;
                 if (amount < 1)
-                    _holdOutlineSprite.material.SetFloat(_FillAmountShaderHash, amount);
+                    _holdOutlineMat.SetFloat(_FillAmountShaderHash, amount);
                 else if (_ItemDataTrm.gameObject.activeSelf == false)
                 {
                     SetItemData();
