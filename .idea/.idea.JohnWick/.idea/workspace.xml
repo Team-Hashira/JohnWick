@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/ProFileContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/ProFileContainer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Texture/Sprite/Entity/Grand_M_Hand-Sheet.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Texture/Sprite/Entity/Grand_M_Hand-Sheet.psd.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +149,7 @@
       <workItem from="1737161999677" duration="887000" />
       <workItem from="1737172143346" duration="12581000" />
       <workItem from="1737242802386" duration="11113000" />
-      <workItem from="1737336100099" duration="13022000" />
+      <workItem from="1737336100099" duration="13771000" />
     </task>
     <servers />
   </component>
