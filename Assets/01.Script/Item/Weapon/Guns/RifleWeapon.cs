@@ -34,8 +34,8 @@ namespace Hashira.Items.Weapons
 
         public override void UnEquip()
         {
-            base.UnEquip();
             _EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            base.UnEquip();
         }
 
         public override void Attack(int damage, bool isDown)
