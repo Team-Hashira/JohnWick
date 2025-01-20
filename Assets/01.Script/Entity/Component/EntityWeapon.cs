@@ -62,7 +62,8 @@ namespace Hashira.Entities.Components
 
         private void HandleReloadEvent()
         {
-            Reload(1f);
+            if (CurrentWeapon != null && CurrentWeapon is GunWeapon)
+                Reload(CurrentWeapon.StatDictionary["ReloadSpeed"].Value);
         }
 
         private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)

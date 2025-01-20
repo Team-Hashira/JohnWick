@@ -40,6 +40,7 @@ namespace Hashira.Entities.Components
             {
                 //End
                 _visualTrm.gameObject.SetActive(false);
+                _maxTime = 0;
             }
             else if (_maxTime < time)
             {
