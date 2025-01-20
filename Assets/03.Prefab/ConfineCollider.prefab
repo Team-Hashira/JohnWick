@@ -50,6 +50,7 @@ MonoBehaviour:
   _confineCollider: {fileID: 2230409455345673356}
   _sideColliderR: {fileID: 8259619828841868320}
   _sideColliderL: {fileID: 1226721521106966002}
+  _xOffset: 4
 --- !u!60 &2230409455345673356
 PolygonCollider2D:
   m_ObjectHideFlags: 0
