@@ -6,7 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Combat/ConfineCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Combat/ConfineCollider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Core/Manager/TimeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Core/Manager/TimeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/EndStagePice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/EndStagePiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/EndStagePice.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/EndStagePiece.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/StageClearFlag.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/StageClearFlag.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/StageDataSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/StageDataSO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/StageGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/StageGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/StagePice.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/StagePiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/StagePice.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/StagePiece.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/ConfineCollider.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/ConfineCollider.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/StagePice/TestTileStage/Stage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/StagePice/TestTileStage/Stage.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/Canvas.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +47,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4b365d59f3d348418313ffb8cd5cb25d31600/08/b63a7a6a/GUILayout.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/82a2fd073ee449928e161903460426d72ae00/f7/4ba0d1bd/ShortcutExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/01.Script/Combat/FadeController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/Combat/FollowTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/Effect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/01.Script/EffectSystem/EffectManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -150,7 +163,7 @@
       <workItem from="1737161999677" duration="887000" />
       <workItem from="1737172143346" duration="12581000" />
       <workItem from="1737242802386" duration="11113000" />
-      <workItem from="1737336100099" duration="21185000" />
+      <workItem from="1737336100099" duration="25141000" />
     </task>
     <servers />
   </component>

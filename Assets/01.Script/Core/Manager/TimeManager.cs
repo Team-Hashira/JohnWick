@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hashira
 {
-    public class TimeManager : MonoBehaviour
+    public static class TimeManager
     {
         private static float _lastTime = 0;
         
@@ -21,6 +21,7 @@ namespace Hashira
         public static void Pause()
         {
             _lastTime = Time;
+            Time = 0;
         }
 
         public static void Play()

@@ -14,10 +14,10 @@ namespace Hashira
         private ConfineCollider _confineCollider;
         [SerializeField] private Transform _startPoint;
 
-        private List<StagePice> _generatedStagePieceList;
+        private List<StagePiece> _generatedStagePieceList;
         private int _currentChapterIndex;
         private int _currentStageIndex;
-
+        public bool IsMovingStage { get; private set; }
         public int CurrentChapterIndex
         {
             get => _currentChapterIndex;
@@ -37,7 +37,6 @@ namespace Hashira
             get => _currentStageIndex;
             private set
             {
-
                 if (value >= _chapterSO[CurrentChapterIndex].Length)
                 {
                     _currentStageIndex = 0;
@@ -57,15 +56,14 @@ namespace Hashira
 
         private void Generate(StageDataSO stageDataSO)
         {
-            _confineCollider = Instantiate(_confineColliderPrefab);
-            _generatedStagePieceList = new List<StagePice>();
+            _generatedStagePieceList = new List<StagePiece>();
             
             foreach (var stagePieceData in stageDataSO.stagePiceDatas)
             {
                 int stageCount = stagePieceData.stagePices.Length;
                 int randomStageIndex = Random.Range(0, stageCount);
-                StagePice stagePiecePrefab = stagePieceData.stagePices[randomStageIndex];
-                StagePice stagePiece = Instantiate(stagePiecePrefab, transform);
+                StagePiece stagePiecePrefab = stagePieceData.stagePices[randomStageIndex];
+                StagePiece stagePiece = Instantiate(stagePiecePrefab, transform);
                 
                 Vector3 startPos;
                 if (_generatedStagePieceList.Count != 0)
@@ -81,30 +79,40 @@ namespace Hashira
             Vector2 min = new Vector2(_generatedStagePieceList[0].InPoint.x, _generatedStagePieceList[0].InPoint.y-100);
             Vector2 max = new Vector2(_generatedStagePieceList[^1].OutPoint.x, _generatedStagePieceList[^1].OutPoint.y+100);
             
+            _confineCollider = Instantiate(_confineColliderPrefab);
             _confineCollider.SetConfine(min, max);
+            _generatedStagePieceList[0].SetPlayerPosToSpawnPoint();
         }
 
         private void NextStage()
         {
-            try
-            {
-                // 다음 스테이지
-                Generate(_chapterSO[CurrentChapterIndex][++CurrentStageIndex]);
-            }
-            catch (Exception e)
-            {
-                // 다음 챕터
-                CurrentChapterIndex++;
-                CurrentStageIndex=0;
-                Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
-            }
+            ++CurrentStageIndex;
+            Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
         }
         
         public async void Clear()
         {
+            if (IsMovingStage == true) return;
+            TimeManager.Pause();
+            FadeController.Fade(true);
+            IsMovingStage = true;
             OnStageClearEvent?.Invoke();
-            await Task.Delay(3000);
+            
+            // TODO Screen Fade
+            await Task.Delay(2000);
+            
+            // All Destroy
+            foreach (var stagePiece in _generatedStagePieceList)
+                Destroy(stagePiece.gameObject);
+            Destroy(_confineCollider.gameObject);
+            
             NextStage();
+            await Task.Delay(2000);
+            IsMovingStage = false;
+            
+            FadeController.Fade(false);
+            TimeManager.Play();
+
         }
     }
 }
