@@ -31,7 +31,7 @@ namespace Hashira.Entities.Components
             _mover = _entity.GetEntityComponent<PlayerMover>();
             _renderer = _entity.GetEntityComponent<EntityRenderer>();
             _weapon = _entity.GetEntityComponent<EntityWeapon>();
-            _weapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvnet;
+            if (_weapon != null) _weapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvnet;
         }
 
         private void HandleCurrentWeaponChangedEvnet(Weapon weapon)
@@ -59,6 +59,10 @@ namespace Hashira.Entities.Components
                 SetParam(_MoveDirAnimationHash, moveDir);
             }
         }
+        public void Dispose()
+        {
+            if (_weapon != null) _weapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvnet;
+        }
 
         #region Param Func
         public void SetParam(int hash, float value) => Animator.SetFloat(hash, value);
@@ -66,10 +70,6 @@ namespace Hashira.Entities.Components
         public void SetParam(int hash, bool value) => Animator.SetBool(hash, value);
         public void SetParam(int hash) => Animator.SetTrigger(hash);
 
-        public void Dispose()
-        {
-            _weapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvnet;
-        }
         public void SetParam(AnimatorParamSO param, float value) => Animator.SetFloat(param.hash, value);
         public void SetParam(AnimatorParamSO param, int value) => Animator.SetInteger(param.hash, value);
         public void SetParam(AnimatorParamSO param, bool value) => Animator.SetBool(param.hash, value);
