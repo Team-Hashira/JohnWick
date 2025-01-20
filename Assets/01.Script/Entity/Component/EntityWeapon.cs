@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Hashira.Entities.Components
 {
-    public class EntityWeapon : MonoBehaviour, IEntityComponent, IEntityDisposeComponent
+    public class EntityWeapon : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IEntityDisposeComponent
     {
         [SerializeField] private WeaponSO[] _defaultWeapons;
 
@@ -46,12 +46,16 @@ namespace Hashira.Entities.Components
 
             WeaponIndex = 0;
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
-            HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
 
             _player = entity as Player;
             _player.InputReader.OnReloadEvent += HandleReloadEvent;
 
             _startYPos = transform.localPosition.y;
+        }
+
+        public void AfterInit()
+        {
+            OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
         private void Start()
