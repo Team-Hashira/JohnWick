@@ -356,7 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7272ff2cd5882bf4e9a3b447b8caa224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultWeapons: []
+  _defaultWeapons:
+  - {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
   <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
 --- !u!1 &2000908875141724941
