@@ -12,6 +12,8 @@ namespace Hashira.Entities.Components
 
         public float Recoil { get; private set; }
 
+        public bool IsReloading { get; private set; }
+        private float _currentReloadTime;
 
         public Weapon CurrentWeapon
         {
@@ -29,14 +31,14 @@ namespace Hashira.Entities.Components
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
-        public Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
-
         private float _startYPos;
         private SpriteRenderer _spriteRenderer;
+        
+        public readonly Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
         public event Action<Weapon> OnCurrentWeaponChanged;
-
+        public event Action<float> OnReloadEvent;
+        
         private Player _player;
-
         
         public void Initialize(Entity entity)
         {
@@ -55,15 +57,13 @@ namespace Hashira.Entities.Components
         private void Start()
         {
             foreach (var t in _defaultWeapons)
-            {
                 EquipWeapon(t.GetItemClass() as Weapon);
-            }
         }
 
         private void HandleReloadEvent()
         {
-            if (CurrentWeapon is GunWeapon gun)
-                gun?.Reload();
+            if (CurrentWeapon != null && CurrentWeapon is GunWeapon)
+                Reload(CurrentWeapon.StatDictionary["ReloadSpeed"].Value);
         }
 
         private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
@@ -73,6 +73,9 @@ namespace Hashira.Entities.Components
             VisualTrm.gameObject.SetActive(weapon != null);
 
             Recoil = 0;
+            _currentReloadTime = 0;
+            OnReloadEvent?.Invoke(0);
+            IsReloading = false;
 
             if (weapon != null)
             {
@@ -146,7 +149,10 @@ namespace Hashira.Entities.Components
         }
 
         public void Attack(int damage, bool isDown)
-            => CurrentWeapon?.Attack(damage, isDown);
+        {
+            if (IsReloading) return;
+            CurrentWeapon?.Attack(damage, isDown);
+        }
 
         public void LookTarget(Vector3 targetPos)
         {
@@ -160,6 +166,13 @@ namespace Hashira.Entities.Components
             Recoil = Mathf.Clamp(Recoil + value * 0.1f, 0, 10f);
         }
 
+        public void Reload(float time)
+        {
+            if (IsReloading) return;
+            IsReloading = true;
+            _currentReloadTime = time;
+        }
+
         private void Update()
         {
             CurrentWeapon?.WeaponUpdate();
@@ -170,6 +183,18 @@ namespace Hashira.Entities.Components
                 if (Recoil < 0)
                 {
                     Recoil = 0;
+                }
+            }
+            if (_currentReloadTime > 0)
+            {
+                _currentReloadTime -= Time.deltaTime;
+                OnReloadEvent?.Invoke(_currentReloadTime);
+                if (_currentReloadTime < 0)
+                {
+                    _currentReloadTime = 0;
+                    IsReloading = false;
+                    OnReloadEvent?.Invoke(_currentReloadTime);
+                    (CurrentWeapon as GunWeapon)?.Reload();
                 }
             }
         }

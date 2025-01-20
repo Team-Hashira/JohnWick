@@ -69,7 +69,7 @@ namespace Hashira.UI.StatusWindow
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
-                ItemDropUtility.DropWeapon(Parent.BaseWeapon.WeaponSO, pos);
+                ItemDropUtility.DroppedItem(Parent.BaseWeapon.WeaponSO, pos);
                 _entityWeapon.RemoveWeapon(Parent.SlotIndex);
             } 
             

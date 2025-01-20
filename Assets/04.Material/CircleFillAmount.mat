@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FillAmount: 0
+    - _FillAmount: 0.39
     - _Flip: 0
     - _Float: 3.141593
     - _Pi: 3.141593

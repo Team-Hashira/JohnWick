@@ -44,8 +44,13 @@ public class PoolManagerEditor : Editor
 					SelectPoolBase(i);
 				}
 
+				var temp = _poolManager.poolBaseList[i];
 				_poolManager.poolBaseList[i] = EditorGUILayout.ObjectField(_poolManager.poolBaseList[i], typeof(PoolCategorySO), false) as PoolCategorySO;
-
+				if (temp != _poolManager.poolBaseList[i])
+				{
+					EditorUtility.SetDirty(_poolManager.poolBaseList[i]);
+				}
+				
 				if (GUILayout.Button("New"))
 				{
 					var poolBase = ScriptableObject.CreateInstance<PoolCategorySO>();
@@ -78,11 +83,13 @@ public class PoolManagerEditor : Editor
 		{
             if(_poolManager.poolBaseList == null) _poolManager.poolBaseList = new List<PoolCategorySO>();
             _poolManager.poolBaseList.Add(null);
+            EditorUtility.SetDirty(_poolManager);
             SelectPoolBase(_poolManager.poolBaseList.Count - 1);
         }
         if (GUILayout.Button("-"))
         {
             _poolManager.poolBaseList.Remove(_currentSelectedPoolCategory);
+            EditorUtility.SetDirty(_poolManager);
             SelectPoolBase(_poolManager.poolBaseList.Count - 1);
         }
         GUILayout.Space(20);

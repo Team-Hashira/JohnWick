@@ -10,17 +10,10 @@ namespace Hashira.Items
     {
         private static GameObject _gameObject;
         
-        public static DroppedWeapon DropWeapon(WeaponSO weapon, Vector2 position)
+        public static DroppedItem DroppedItem<T>(T item, Vector2 position) where T : ItemSO
         {
-            var weaponItem = _gameObject.Pop(ItemPoolType.WeaponItem, position, Quaternion.identity) as DroppedWeapon;
-            if (weaponItem != null) weaponItem.SetItem(weapon.GetItemClass());
-            return weaponItem;
-        }
-
-        public static DroppedParts DropParts(WeaponPartsSO parts, Vector2 position)
-        {
-            var partsItem = _gameObject.Pop(ItemPoolType.WeaponPartsItem, position, Quaternion.identity) as DroppedParts;
-            if (partsItem != null) partsItem.SetItem(parts.GetItemClass());
+            var partsItem = _gameObject.Pop(item is WeaponSO ? ItemPoolType.WeaponItem : ItemPoolType.WeaponPartsItem, position, Quaternion.identity) as DroppedItem;
+            if (partsItem != null) partsItem.SetItem(item.GetItemClass());
             return partsItem;
         }
     }
