@@ -15,6 +15,8 @@ namespace Hashira.Entities.Components
         [field: SerializeField] public Animator Animator { get; private set; }
         [SerializeField] private Transform _rightHand;
         [SerializeField] private Transform _leftHand;
+        [SerializeField] private LimbSolver2D _rightHandSolver;
+        [SerializeField] private LimbSolver2D _leftHandSolver;
 
         private Entity _entity;
         private EntityMover _mover;
@@ -40,11 +42,13 @@ namespace Hashira.Entities.Components
             {
                 if (weapon == null)
                 {
-                    _rightHand.localPosition = Vector3.down * 5f;
-                    _leftHand.localPosition = Vector3.down * 5f;
+                    _rightHandSolver.weight = 0;
+                    _leftHandSolver.weight = 0;
                 }
                 else
                 {
+                    _rightHandSolver.weight = 1;
+                    _leftHandSolver.weight = 1;
                     _rightHand.localPosition = weapon.WeaponSO.RightHandOffset;
                     _leftHand.localPosition = weapon.WeaponSO.LeftHandOffset;
                 }
