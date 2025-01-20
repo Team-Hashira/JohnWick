@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/00.Scenes/CrogenScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Combat/ConfineCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Combat/ConfineCollider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Level/StageGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Level/StageGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/ConfineCollider.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/ConfineCollider.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Entity/Component/EntityWeapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/ReloadContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/ReloadContainer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +152,7 @@
       <workItem from="1737161999677" duration="887000" />
       <workItem from="1737172143346" duration="12581000" />
       <workItem from="1737242802386" duration="11113000" />
-      <workItem from="1737336100099" duration="11343000" />
+      <workItem from="1737336100099" duration="12706000" />
     </task>
     <servers />
   </component>

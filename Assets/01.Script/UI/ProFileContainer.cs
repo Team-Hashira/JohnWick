@@ -34,17 +34,14 @@ namespace Hashira.UI
             
             _playerHealth.OnHealthChangedEvent += HandleHpChange;
             _entityWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
-        }
-
-        private void Start()
-        {
-
+            _entityWeapon.OnReloadEvent += _reloadContainer.HandleReload;
         }
 
         private void OnDestroy()
         {
             _playerHealth.OnHealthChangedEvent -= HandleHpChange;
             _entityWeapon.OnCurrentWeaponChanged -= HandleWeaponChange;
+            _entityWeapon.OnReloadEvent -= _reloadContainer.HandleReload;
         }
 
         private void HandleHpChange(int lastValue, int newValue)
