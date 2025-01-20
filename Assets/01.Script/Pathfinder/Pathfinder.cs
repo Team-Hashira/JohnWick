@@ -50,7 +50,7 @@ namespace Hashira.Pathfind
                 open.Remove(current);
                 closed.Add(current);
 
-                foreach (Node neighbor in current.node.neighbors)
+                foreach (Node neighbor in current.node.Neighbors)
                 {
                     if (closed.Exists(x => x.node == neighbor))
                         continue;
@@ -106,12 +106,12 @@ namespace Hashira.Pathfind
 
         private float GetDistance(Node from, Node to)
         {
-            return Vector2.Distance(from.position, to.position);
+            return Vector2.Distance(from.transform.position, to.transform.position);
         }
 
         private float GetHeuristic(Node from, Node to)
         {
-            return Vector2.Distance(from.position, to.position);
+            return Vector2.Distance(from.transform.position, to.transform.position);
         }
 
         private NodeRecord GetLowestCostNode(List<NodeRecord> openList)

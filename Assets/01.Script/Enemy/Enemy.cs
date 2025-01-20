@@ -1,5 +1,7 @@
 using Crogen.CrogenPooling;
+using Hashira.Core.EventSystem;
 using Hashira.Entities;
+using Hashira.LatestFSM;
 using Hashira.Players;
 using System;
 using UnityEngine;
@@ -10,6 +12,10 @@ namespace Hashira.Enemies
     {
         protected EntityRenderer _entityRenderer;
         protected EntityHealth _entityHealth;
+        protected EntityStat _entityStat;
+
+        [field: SerializeField]
+        public GameEventChannelSO SoundEventChannel { get; private set; }
 
         //Test
         [SerializeField] private EffectPoolType _dieEffect;
@@ -21,8 +27,8 @@ namespace Hashira.Enemies
             base.Awake();
 
             _player = GameManager.Instance.Player;
-
-            GetEntityComponent<EntityPartCollider>().OnPartCollisionHitEvent += HandlePartsCollisionHitEvent;
+            var partCollider = GetEntityComponent<EntityPartCollider>();
+            partCollider.OnPartCollisionHitEvent += HandlePartsCollisionHitEvent;
             _entityHealth.OnDieEvent += HandleDieEvent;
         }
 
@@ -38,21 +44,19 @@ namespace Hashira.Enemies
 
             _entityRenderer = GetEntityComponent<EntityRenderer>();
             _entityHealth = GetEntityComponent<EntityHealth>();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-
-            _entityRenderer.LookTarget(_player.transform.position);
+            _entityStat = GetEntityComponent<EntityStat>();
         }
 
         private void HandlePartsCollisionHitEvent(EEntityPartType parts, RaycastHit2D raycastHit, Transform attackerTrm)
         {
-
-            if (parts == EEntityPartType.Head)
+            switch(parts)
             {
-                _entityRenderer.Blink(0.2f, DG.Tweening.Ease.InCirc);
+                case EEntityPartType.Head:
+                    _entityRenderer.Blink(0.2f, DG.Tweening.Ease.InCirc);
+                    break;
+                case EEntityPartType.Legs:
+                    _entityStat.StatDictionary["Speed"].AddModify("LegFracture", -3, Core.StatSystem.EModifyMode.Percnet);
+                    break;
             }
         }
     }

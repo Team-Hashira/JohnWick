@@ -47,7 +47,7 @@ namespace Hashira.Entities
                 Flip();
         }
 
-        private void Flip()
+        public void Flip()
         {
             FacingDirection *= -1;
             VisualTrm.localEulerAngles = new Vector3(0, ((FacingDirection > 0) ^ _onFlip) ? 0 : 180, 0);

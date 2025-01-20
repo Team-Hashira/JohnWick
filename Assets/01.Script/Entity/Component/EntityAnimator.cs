@@ -1,4 +1,5 @@
 using Hashira.Items.Weapons;
+using Hashira.Core.AnimationSystem;
 using Hashira.Players;
 using System;
 using UnityEngine;
@@ -69,6 +70,10 @@ namespace Hashira.Entities.Components
         {
             _weapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvnet;
         }
+        public void SetParam(AnimatorParamSO param, float value) => Animator.SetFloat(param.hash, value);
+        public void SetParam(AnimatorParamSO param, int value) => Animator.SetInteger(param.hash, value);
+        public void SetParam(AnimatorParamSO param, bool value) => Animator.SetBool(param.hash, value);
+        public void SetParam(AnimatorParamSO param) => Animator.SetTrigger(param.hash);
         #endregion
     }
 }
