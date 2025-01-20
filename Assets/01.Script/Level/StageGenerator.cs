@@ -1,33 +1,66 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Hashira.Combat;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Hashira
 {
-    public class StageGenerator : MonoBehaviour
+    public class StageGenerator : MonoSingleton<StageGenerator>
     {
-        [SerializeField] private StageDataSO _stageDataSO;
+        [SerializeField] private ChapterSO[] _chapterSO;
         [SerializeField] private ConfineCollider _confineColliderPrefab;
         private ConfineCollider _confineCollider;
         [SerializeField] private Transform _startPoint;
 
         private List<StagePice> _generatedStagePieceList;
+        private int _currentChapterIndex;
+        private int _currentStageIndex;
 
-        public event Action OnStageClearEvent;
-
-        private void Awake()
+        public int CurrentChapterIndex
         {
-            Generate();
+            get => _currentChapterIndex;
+            private set
+            {
+                if (value >= _chapterSO.Length)
+                {
+                    OnAllChaptersClearEvent?.Invoke();
+                    TimeManager.Pause();
+                }
+                _currentChapterIndex = value;
+            }
         }
 
-        public void Generate()
+        public int CurrentStageIndex
+        {
+            get => _currentStageIndex;
+            private set
+            {
+
+                if (value >= _chapterSO[CurrentChapterIndex].Length)
+                {
+                    _currentStageIndex = 0;
+                    ++CurrentChapterIndex;
+                    return;
+                }
+                _currentStageIndex = value;
+            }
+        }
+
+        public event Action OnStageClearEvent;
+        public event Action OnAllChaptersClearEvent;
+        private void Awake()
+        {
+            Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
+        }
+
+        private void Generate(StageDataSO stageDataSO)
         {
             _confineCollider = Instantiate(_confineColliderPrefab);
             _generatedStagePieceList = new List<StagePice>();
             
-            foreach (var stagePieceData in _stageDataSO.stagePiceDatas)
+            foreach (var stagePieceData in stageDataSO.stagePiceDatas)
             {
                 int stageCount = stagePieceData.stagePices.Length;
                 int randomStageIndex = Random.Range(0, stageCount);
@@ -46,14 +79,32 @@ namespace Hashira
             
             // Bound 가져오기
             Vector2 min = new Vector2(_generatedStagePieceList[0].InPoint.x, _generatedStagePieceList[0].InPoint.y-100);
-            Vector2 max = new Vector2(_generatedStagePieceList[^1].InPoint.x, _generatedStagePieceList[^1].InPoint.y+100);
+            Vector2 max = new Vector2(_generatedStagePieceList[^1].OutPoint.x, _generatedStagePieceList[^1].OutPoint.y+100);
             
             _confineCollider.SetConfine(min, max);
         }
 
-        public void Clear()
+        private void NextStage()
+        {
+            try
+            {
+                // 다음 스테이지
+                Generate(_chapterSO[CurrentChapterIndex][++CurrentStageIndex]);
+            }
+            catch (Exception e)
+            {
+                // 다음 챕터
+                CurrentChapterIndex++;
+                CurrentStageIndex=0;
+                Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
+            }
+        }
+        
+        public async void Clear()
         {
             OnStageClearEvent?.Invoke();
+            await Task.Delay(3000);
+            NextStage();
         }
     }
 }
