@@ -34,6 +34,8 @@ namespace Hashira.Enemies
 
         public event Action OnMoveEndEvent;
 
+        public Node TargetNode { get; private set; }
+
         public void Initialize(Entity entity)
         {
             _enemy = entity as Enemy;
@@ -59,6 +61,7 @@ namespace Hashira.Enemies
         public void PathfindAndMove(Node targetNode)
         {
             _currentPath = _pathfinder.FindPath(_enemyMover.CurrentNode, targetNode);
+            TargetNode = targetNode;
             Debug.Log(_currentPath.Count);
 #if UNITY_EDITOR
             Node prev = null;
@@ -89,6 +92,8 @@ namespace Hashira.Enemies
         {
             for (int i = 0; i < _currentPath.Count; i++)
             {
+                if (i == 0)
+                    continue;
                 Node currentNode = _currentPath[i];
                 float x = currentNode.transform.position.x - transform.position.x;
                 float y = currentNode.transform.position.y - transform.position.y;
