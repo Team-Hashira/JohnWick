@@ -1,6 +1,7 @@
 using Crogen.AttributeExtension;
 using Hashira.Entities;
 using Hashira.Pathfind;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,8 @@ namespace Hashira.Enemies
     public class EnemyPathfinder : MonoBehaviour, IEntityComponent
     {
         private Enemy _enemy;
-        private EntityMover _entityMover;
+        private EnemyMover _enemyMover;
+        private EntityRenderer _entityRenderer;
         private Pathfinder _pathfinder;
 
         private List<Node> _currentPath;
@@ -26,10 +28,14 @@ namespace Hashira.Enemies
         [SerializeField]
         private Node _targetNode;
 
+        public event Action OnMoveEndEvent;
+
         public void Initialize(Entity entity)
         {
             _enemy = entity as Enemy;
-            _entityMover = entity.GetEntityComponent<EntityMover>();
+            _currentPath = new List<Node>();
+            _enemyMover = entity.GetEntityComponent<EnemyMover>();
+            _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
             _pathfinder = GetComponent<Pathfinder>();
         }
 
@@ -41,7 +47,8 @@ namespace Hashira.Enemies
 
         public void PathfindAndMove(Node targetNode)
         {
-            _currentPath = _pathfinder.FindPath(_entityMover.CurrentNode, targetNode);
+            _currentPath = _pathfinder.FindPath(_enemyMover.CurrentNode, targetNode);
+            Debug.Log(_currentPath.Count);
 #if UNITY_EDITOR
             Node prev = null;
             foreach (var node in _currentPath)
@@ -64,7 +71,7 @@ namespace Hashira.Enemies
         public void StopMove()
         {
             StopCoroutine(_moveCoroutine);
-            _entityMover.StopImmediately();
+            _enemyMover.StopImmediately();
         }
 
         private IEnumerator MoveCoroutine()
@@ -73,15 +80,25 @@ namespace Hashira.Enemies
             {
                 Node currentNode = _currentPath[i];
                 float x = currentNode.transform.position.x - transform.position.x;
-                bool hasToJump = currentNode.NodeType == NodeType.Stair;
+                float y = currentNode.transform.position.y - transform.position.y;
+                if (y > 0)
+                {
+                    _enemyMover.UnderJump(false);
+                }
+                else
+                {
+                    bool hasToJump = currentNode.NodeType == NodeType.Stair;
+                    _enemyMover.UnderJump(hasToJump);
+                }
                 //if(hasToJump)
                 //    _enemy.GetComponent<Collider2D>().excludeLayers = _onewayPlatform;
                 //else
                 //    _enemy.GetComponent<Collider2D>().excludeLayers = 0; 
-                _entityMover.UnderJump(hasToJump);
+                if (_entityRenderer.FacingDirection != Mathf.Sign(x))
+                    _entityRenderer.Flip();
                 while (true)
                 {
-                    _entityMover.SetMovement(Mathf.Sign(x) * 10);
+                    _enemyMover.SetMovement(Mathf.Sign(x) * 10);
                     float distance = currentNode.transform.position.x - transform.position.x;
                     if (Mathf.Abs(distance) <= StopDistance)
                     {
@@ -90,6 +107,7 @@ namespace Hashira.Enemies
                     yield return null;
                 }
             }
+            OnMoveEndEvent?.Invoke();
         }
     }
 }

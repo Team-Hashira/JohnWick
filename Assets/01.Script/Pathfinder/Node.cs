@@ -13,7 +13,9 @@ namespace Hashira.Pathfind
 
     public class Node : MonoBehaviour
     {
+        [field: SerializeField]
         public NodeType NodeType { get; set; }
+        [field: SerializeField]
         public List<Node> Neighbors { get; private set; } = new List<Node>();
 
         public void SetupConnection(float nodeSpace)
