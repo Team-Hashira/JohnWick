@@ -8,12 +8,12 @@ using UnityEngine;
 
 public enum EWeaponPartsType
 {
-    Muzzle,             //ÃÑ±¸
-    Scope,              //½ºÄÚÇÁ
-    Grip,               //¼ÕÀâÀÌ 
+    Muzzle,             //ï¿½Ñ±ï¿½
+    Scope,              //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    Grip,               //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
     Magazine,           //ÅºÃ¢
-    CartridgeBelt,      //Åº¶ì
-    Stock,              //°³¸Ó¸®ÆÇ
+    CartridgeBelt,      //Åºï¿½ï¿½
+    Stock,              //ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½
 }
 
 namespace Hashira.Items.WeaponPartsSystem
@@ -26,6 +26,14 @@ namespace Hashira.Items.WeaponPartsSystem
 
         [SerializeField] private List<StatElement> _statList = new List<StatElement>();
         public StatDictionary StatDictionary { get; private set; }
+
+        private void OnValidate()
+        {
+            for (int i = 0; i < _statList.Count; i++)
+            {
+                _statList[i].Name = _statList[i].elementSO.displayName;
+            }
+        }
 
         private void OnEnable()
         {

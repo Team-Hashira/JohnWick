@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Hashira.Combat;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,10 +9,10 @@ namespace Hashira
     public class StageGenerator : MonoBehaviour
     {
         [SerializeField] private StageDataSO _stageDataSO;
-
+        [SerializeField] private ConfineCollider confineColliderPrefab;
         [SerializeField] private Transform _startPoint;
 
-        private List<StagePice> _generatedStagePiceList;
+        private List<StagePice> _generatedStagePieceList;
 
         public event Action OnStageClearEvent;
 
@@ -22,22 +23,22 @@ namespace Hashira
 
         public void Generate()
         {
-            _generatedStagePiceList = new List<StagePice>();
+            _generatedStagePieceList = new List<StagePice>();
             foreach (StagePiceData stagePiceData in _stageDataSO.stagePiceDatas)
             {
                 int stageCount = stagePiceData.stagePices.Length;
                 int randomStageIndex = Random.Range(0, stageCount);
-                StagePice stagePicePrefab = stagePiceData.stagePices[randomStageIndex];
-                StagePice stagePice = Instantiate(stagePicePrefab, transform);
+                StagePice stagePiecePrefab = stagePiceData.stagePices[randomStageIndex];
+                StagePice stagePiece = Instantiate(stagePiecePrefab, transform);
 
                 Vector3 startPos;
-                if (_generatedStagePiceList.Count != 0)
-                    startPos = _generatedStagePiceList[^1].OutPoint;
+                if (_generatedStagePieceList.Count != 0)
+                    startPos = _generatedStagePieceList[^1].OutPoint;
                 else
                     startPos = _startPoint.position;
 
-                stagePice.Init(startPos);
-                _generatedStagePiceList.Add(stagePice);
+                stagePiece.Init(startPos);
+                _generatedStagePieceList.Add(stagePiece);
             }
         }
 

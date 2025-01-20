@@ -29,15 +29,16 @@ namespace Hashira.UI
             _player = GameManager.Instance.Player;
             _weaponLoadText.text = "-";
             _weaponLoadSlider.value = 1;
+            _playerHealth = _player.GetEntityComponent<EntityHealth>();
+            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
+            
+            _playerHealth.OnHealthChangedEvent += HandleHpChange;
+            _entityWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
         }
 
         private void Start()
         {
-            _playerHealth = _player.GetEntityComponent<EntityHealth>();
-            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
 
-            _playerHealth.OnHealthChangedEvent += HandleHpChange;
-            _entityWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
         }
 
         private void OnDestroy()

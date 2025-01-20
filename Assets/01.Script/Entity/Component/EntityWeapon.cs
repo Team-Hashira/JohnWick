@@ -55,9 +55,7 @@ namespace Hashira.Entities.Components
         private void Start()
         {
             foreach (var t in _defaultWeapons)
-            {
                 EquipWeapon(t.GetItemClass() as Weapon);
-            }
         }
 
         private void HandleReloadEvent()

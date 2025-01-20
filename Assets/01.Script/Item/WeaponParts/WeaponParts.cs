@@ -13,7 +13,7 @@ namespace Hashira.Items.WeaponPartsSystem
 
         protected Weapon _weapon;
 
-        //°¡Àå Ã³À½ ¸¸µé¾îÁú ¶§ ÇÑ¹ø
+        //ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ñ¹ï¿½
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
@@ -26,13 +26,13 @@ namespace Hashira.Items.WeaponPartsSystem
             _weapon = weapon;
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].AddModify(WeaponPartsSO.itemName, stat.Value, EModifyMode.Add);
-            Debug.Log($"{WeaponPartsSO.itemDisplayName} ÀåÂø!");
+            Debug.Log($"{WeaponPartsSO.itemDisplayName} ï¿½ï¿½ï¿½ï¿½!");
         }
         public virtual void UnEquip()
         {
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].RemoveModify(WeaponPartsSO.itemName, EModifyMode.Add);
-            Debug.Log($"{WeaponPartsSO.itemDisplayName} ÀåÂøÇØÁ¦!");
+            Debug.Log($"{WeaponPartsSO.itemDisplayName} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
         }
         public virtual void PartsUpdate()
         {
