@@ -6,7 +6,7 @@ namespace Hashira
     public struct StagePiceData
     {
         [Header("StageRandomPice")]
-        public StagePice[] stagePices;
+        public StagePiece[] stagePices;
     }
 
     [CreateAssetMenu(fileName = "StageData", menuName = "SO/StageData")]

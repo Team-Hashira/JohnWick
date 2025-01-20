@@ -334,6 +334,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SoundEventChannel>k__BackingField: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
   _dieEffect: 3
+  _whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &6722688745115300717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,9 +394,11 @@ MonoBehaviour:
   _itemPercent:
     _serializedList:
     - Key: {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
+      Value: 20
+    - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
       Value: 50
     - Key: {fileID: 11400000, guid: a32961db1d2cfc447b0cd9916ce28136, type: 2}
-      Value: 50
+      Value: 20
 --- !u!114 &429067651371332017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +651,8 @@ MonoBehaviour:
   <Animator>k__BackingField: {fileID: 1970001383739666409}
   _rightHand: {fileID: 0}
   _leftHand: {fileID: 0}
+  _rightHandSolver: {fileID: 0}
+  _leftHandSolver: {fileID: 0}
 --- !u!1 &7571649777604683373
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,11 +23,12 @@ namespace Hashira.UI
             }
             else
             {
+                _canvasGroup.alpha = 1;   
                 if(_maxTime < time)
                     _maxTime = time;    
             }
             
-            _image.fillAmount = time/_maxTime;
+            _image.fillAmount = 1-time/_maxTime;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Crogen.AttributeExtension;
 using Hashira.Core.EventSystem;
 using UnityEngine;
@@ -8,6 +9,14 @@ namespace Hashira.Test
     {
         [SerializeField]
         private GameEventChannelSO _soundEventChannel;
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                GenerateSound();
+            }
+        }
 
         [Button("Generate", 20)]
         private void GenerateSound()
