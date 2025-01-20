@@ -68,9 +68,8 @@ namespace Hashira.Entities.Components
 
         private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
         {
-            //����� ���⿡ ���� Visual�� ����
             _spriteRenderer.sprite = weapon?.WeaponSO.itemSprite;
-            VisualTrm.gameObject.SetActive(weapon != null);
+            //VisualTrm.gameObject.SetActive(weapon != null);
 
             Recoil = 0;
             _currentReloadTime = 0;
