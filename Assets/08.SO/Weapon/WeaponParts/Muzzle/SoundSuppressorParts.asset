@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: SoundSuppressor
   itemDisplayName: "\uC18C\uC74C\uAE30"
   itemDescription: "\uC774\uAC83\uC740 \uC18C\uB9AC \uC5B5\uC81C\uAE30"
+  useCustomClass: 0
+  defaultClass: WeaponParts
   partsType: 0
   _statList:
   - Name: "\uACF5\uACA9\uB825"

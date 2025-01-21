@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: DotSight
   itemDisplayName: "\uB3C4\uD2B8 \uC0AC\uC774\uD2B8"
   itemDescription: "\uC774\uAC83\uC740 \uC810 \uBCF4\uC870 \uC870\uC900\uACBD"
+  useCustomClass: 0
+  defaultClass: WeaponParts
   partsType: 1
   _statList:
   - Name: "\uC815\uD655\uB3C4"

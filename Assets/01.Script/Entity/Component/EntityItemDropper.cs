@@ -1,6 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using Hashira.Items;
-using Hashira.Items.WeaponPartsSystem;
+using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
 using UnityEngine;
 

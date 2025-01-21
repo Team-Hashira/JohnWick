@@ -1,7 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities.Interacts;
 using Hashira.Items;
-using Hashira.Items.WeaponPartsSystem;
+using Hashira.Items.PartsSystem;
 using Hashira.UI.DragSystem;
 using UnityEngine;
 using UnityEngine.Serialization;

@@ -16,10 +16,10 @@ public enum EWeaponPartsType
     Stock,              //���Ӹ���
 }
 
-namespace Hashira.Items.WeaponPartsSystem
+namespace Hashira.Items.PartsSystem
 {
-    [CreateAssetMenu(fileName = "WeaponPartsSO", menuName = "SO/Weapon/Parts")]
-    public class WeaponPartsSO : ItemSO, IStatable
+    [CreateAssetMenu(fileName = "PartsSO", menuName = "SO/Weapon/Parts")]
+    public class PartsSO : ItemSO, IStatable
     { 
         [Header("==========Weapon parts setting==========")]
         public EWeaponPartsType partsType;
@@ -35,21 +35,9 @@ namespace Hashira.Items.WeaponPartsSystem
             }
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
-            string className = name;
-            try
-            {
-                Type type = Type.GetType("Hashira.Items.WeaponPartsSystem." + className);
-                WeaponParts findedWeaponParts = Activator.CreateInstance(type) as WeaponParts;
-                findedWeaponParts.Init(this);
-                _itemClass = findedWeaponParts;
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"{className} not found.\n" + 
-                                $"Error : {ex.ToString()}");
-            }
+            base.OnEnable();
             StatDictionary = new StatDictionary(_statList);
         }
     }
