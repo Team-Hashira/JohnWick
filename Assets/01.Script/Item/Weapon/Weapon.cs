@@ -1,6 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
-using Hashira.Items.WeaponPartsSystem;
+using Hashira.Items.PartsSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: Rifle
   itemDisplayName: "\uC18C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC791\uC740 \uCD1D"
+  useCustomClass: 1
+  defaultClass: 
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752

@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: Bat
   itemDisplayName: "\uC57C\uAD6C \uB9DD\uBC29\uC774"
   itemDescription: "\uD06C\uACE0 \uD0D0\uC2A4\uB7FD\uB2E4"
+  useCustomClass: 1
+  defaultClass: 
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752

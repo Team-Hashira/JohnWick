@@ -1,17 +1,15 @@
 using Crogen.CrogenPooling;
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
-using Hashira.Projectile;
-using System;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class RifleWeapon : GunWeapon
+    public class RifleGun : GunWeapon
     {
         private StatElement _attackSpeedStat;
         private float _lastFireTime;
-        
+
         private bool _isFiring;
         private int _damage;
         private float _maxTime;

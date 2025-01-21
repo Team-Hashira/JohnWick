@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class BatWeapon : MeleeWeapon
+    public class BatMelee : MeleeWeapon
     {
         private int _damage;
 
