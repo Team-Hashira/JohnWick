@@ -16,7 +16,7 @@ namespace Hashira.Entities.Interacts
         {
             base.Awake();
             if (_partsSO == null) return;
-            SetItem(_partsSO.GetItemClass());
+            SetItem(_partsSO);
         }
 
         public override void SetItem(Item item)

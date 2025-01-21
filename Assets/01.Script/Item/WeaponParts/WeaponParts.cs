@@ -26,13 +26,13 @@ namespace Hashira.Items.PartsSystem
             _weapon = weapon;
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].AddModify(WeaponPartsSO.itemName, stat.Value, EModifyMode.Add);
-            Debug.Log($"{WeaponPartsSO.itemDisplayName} ����!");
+            Debug.Log($"{WeaponPartsSO.itemDisplayName} Equip!");
         }
         public virtual void UnEquip()
         {
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].RemoveModify(WeaponPartsSO.itemName, EModifyMode.Add);
-            Debug.Log($"{WeaponPartsSO.itemDisplayName} ��������!");
+            Debug.Log($"{WeaponPartsSO.itemDisplayName} UnEquip!");
         }
         public virtual void PartsUpdate()
         {

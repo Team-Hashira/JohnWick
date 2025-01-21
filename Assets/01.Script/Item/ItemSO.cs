@@ -18,25 +18,32 @@ namespace Hashira.Items
         [TextArea]
         public string itemDescription;
 
-        public bool useItemClass;
-        public string isUseItemClass;
+        public bool useCustomClass;
+        public string defaultClass;
+
         protected Item _itemClass;
 
         public Item GetItemClass()
-        {
-            if (_itemClass != null)
-                return _itemClass.Clone() as Item;
-            else
-                return null;
-        }
+            => _itemClass?.Clone() as Item;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
+            if (useCustomClass == false && defaultClass == "") return;
+
             string thisTag = GetType().ToString().Replace("SO", "");
             int tagStartIdx = thisTag.LastIndexOf(".");                 //Namespace.Class
             string namespaceName = thisTag[..tagStartIdx];              //Namespace
-            string tagName = thisTag[++tagStartIdx..];                  //Class
-            string typeName = namespaceName + "." + itemName + tagName;  //Namespace.Item
+            string typeName;                                            
+            if (useCustomClass)
+            {
+                string tagName = thisTag[++tagStartIdx..];              //Class
+                typeName = namespaceName + "." + itemName + tagName;    //Namespace.Item
+            }
+            else
+            {
+                typeName = namespaceName + "." + defaultClass;          //Namespace.Default
+            }
+
             try
             {
                 Type type = Type.GetType(typeName);

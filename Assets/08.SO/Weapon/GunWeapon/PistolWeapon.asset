@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: Pistol
   itemDisplayName: "\uAD8C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC8FC\uBA39 \uCD1D"
+  useCustomClass: 1
+  defaultClass: 
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
@@ -52,3 +54,4 @@ MonoBehaviour:
   fireSpakleEffect: 1
   bulletSpeed: 200
   reloadDuration: 1
+  <MaxBulletAmount>k__BackingField: 10
