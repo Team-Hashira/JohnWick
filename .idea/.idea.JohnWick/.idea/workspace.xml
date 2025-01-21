@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="" />
+    <list default="true" id="db4abadf-1cdf-4a90-80d9-f227996ba520" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JohnWick/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/MeleeSO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/MeleeSO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/MeleeWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/Item/Weapon/Melees/MeleeWeapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Script/UI/ProFileContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Texture/Sprite/Item/Bat.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Texture/Sprite/Item/Bat.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/03.Prefab/UI/ProFileContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/03.Prefab/UI/ProFileContainer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/08.SO/Weapon/MeleeWeapon/BatWeapon.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/08.SO/Weapon/MeleeWeapon/BatWeapon.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/09.Font/PF스타더스트 SDF.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,7 +78,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "crogen",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -149,6 +159,7 @@
       <workItem from="1737172143346" duration="12581000" />
       <workItem from="1737242802386" duration="11113000" />
       <workItem from="1737336100099" duration="31492000" />
+      <workItem from="1737417966956" duration="3473000" />
     </task>
     <servers />
   </component>

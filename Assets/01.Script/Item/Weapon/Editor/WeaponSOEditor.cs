@@ -56,7 +56,7 @@ namespace Hashira.Items.Weapons.Editor
     }
     
     [CustomEditor(typeof(GunSO))]
-    public class WeaponSOEditor : UnityEditor.Editor
+    public class GunSOEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
@@ -64,6 +64,19 @@ namespace Hashira.Items.Weapons.Editor
             
             GUILayout.Label("==========Parts Position Preview=========");
             PartsPositionViewer.Draw(target as GunSO);
+        }
+    }
+    
+    [CustomEditor(typeof(MeleeSO))]
+    public class MeleeSOEditor : UnityEditor.Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+            
+            GUILayout.Label("==========Parts Position Preview=========");
+            
+                        
         }
     }
 }

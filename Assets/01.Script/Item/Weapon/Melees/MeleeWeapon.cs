@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
@@ -7,8 +8,8 @@ namespace Hashira.Items.Weapons
     public class MeleeWeapon : Weapon
     {
         public MeleeSO MeleeSO { get; private set; }
-        
         public event Action<int> OnAttackEvent;
+        protected float _currentTime = 0f;
         
         private void HandleDamageSuccessEvent()
         {
@@ -18,15 +19,19 @@ namespace Hashira.Items.Weapons
         public override void Attack(int damage, bool isDown)
         {
             base.Attack(damage, isDown);
-            
-            Debug.Log("1초 기다리고");
             AttackEnd();
         }
 
-        private async void AttackEnd()
+        private void AttackEnd()
         {
-            await Task.Delay(1000);
-            _EntityWeapon.WeaponChange(_EntityWeapon.OldWeaponIndex);
+            Sequence seq = DOTween.Sequence();
+            seq.Append(_EntityWeapon.VisualTrm.DORotate(new Vector3(0, 0, 90f), 0.2f));
+            seq.Append(_EntityWeapon.VisualTrm.DORotate(new Vector3(0, 0, -90f), MeleeSO.AttackDuration));
+            seq.Append(_EntityWeapon.VisualTrm.DORotate(Vector3.zero, MeleeSO.AttackAfterDelay));
+            seq.OnComplete(() =>
+            {
+                _EntityWeapon.WeaponChange(_EntityWeapon.OldWeaponIndex);
+            });
         }
         
         public override object Clone()
