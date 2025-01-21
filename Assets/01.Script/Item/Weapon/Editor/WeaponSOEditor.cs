@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Crogen.CrogenEditorExtension.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,17 +20,10 @@ namespace Hashira.Items.Weapons.Editor
             var originTexture = weaponSO.itemSprite.texture;
             Rect spriteRect = weaponSO.itemSprite.rect;
 
-            Texture2D croppedTexture = new Texture2D((int)spriteRect.width, (int)spriteRect.height);
-            croppedTexture.SetPixels(originTexture.GetPixels(
-                (int)spriteRect.x,
-                (int)spriteRect.y,
-                (int)spriteRect.width,
-                (int)spriteRect.height));
-            croppedTexture.Apply();
-            croppedTexture.filterMode = FilterMode.Point;
+            Texture2D texture = EditorTextureExtension.ConvertToTexture2D(originTexture, FilterMode.Point);
             GUILayout.Box(GUIContent.none, GUI.skin.window, GUILayout.Height(rectResize.height));
             Rect spaceRect = GUILayoutUtility.GetRect(new GUIContent("Preview"), GUI.skin.window, GUILayout.Height(rectResize.height));
-            GUI.DrawTexture(new Rect(spaceRect.x, spaceRect.y-spaceRect.height, spaceRect.width, spaceRect.height), croppedTexture, ScaleMode.ScaleToFit);
+            GUI.DrawTexture(new Rect(spaceRect.x, spaceRect.y-spaceRect.height, spaceRect.width, spaceRect.height), texture, ScaleMode.ScaleToFit);
             
             Vector2 partSlotResize = PartSlotSize * mul;
             
@@ -76,7 +70,15 @@ namespace Hashira.Items.Weapons.Editor
             
             GUILayout.Label("==========Parts Position Preview=========");
             
-                        
+            var inspectorWidth = EditorGUIUtility.currentViewWidth-25;
+            var mul = inspectorWidth * 0.6203f;
+            Rect boxRect = GUILayoutUtility.GetRect(GUIContent.none, GUI.skin.window, GUILayout.Height(mul));
+            GUILayout.Box(GUIContent.none, GUI.skin.window, GUILayout.Height(mul));
+            
+            var Player = GameObject.Find("Player");
+            var PlayerVisual = Player.transform.Find("VisualTrm/Visual/Body").GetComponent<SpriteRenderer>();
+            Rect rect = new Rect(boxRect.position, Vector3.one);
+            GUI.Box(rect, GUIContent.none);
         }
     }
 }
