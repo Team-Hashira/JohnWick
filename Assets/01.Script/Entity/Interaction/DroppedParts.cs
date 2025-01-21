@@ -1,7 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using Hashira.Items;
-using Hashira.Items.WeaponPartsSystem;
+using Hashira.Items.PartsSystem;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -9,7 +9,7 @@ namespace Hashira.Entities.Interacts
     public class DroppedParts : DroppedItem
     {
         [Header("==========DroppedParts setting==========")]
-        [SerializeField] private WeaponPartsSO _partsSO;
+        [SerializeField] private PartsSO _partsSO;
         private WeaponParts _parts;
 
         protected override void Awake()

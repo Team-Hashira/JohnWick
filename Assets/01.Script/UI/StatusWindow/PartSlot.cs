@@ -1,4 +1,4 @@
-using Hashira.Items.WeaponPartsSystem;
+using Hashira.Items.PartsSystem;
 using UnityEngine;
 
 namespace Hashira.UI.StatusWindow

@@ -1,10 +1,9 @@
 using Crogen.CrogenPooling;
-using Hashira.Projectile;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class PistolWeapon : GunWeapon
+    public class PistolGun : GunWeapon
     {
         public override void Attack(int damage, bool isDown)
         {

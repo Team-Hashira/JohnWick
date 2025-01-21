@@ -3,11 +3,11 @@ using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
 
-namespace Hashira.Items.WeaponPartsSystem
+namespace Hashira.Items.PartsSystem
 {
     public class WeaponParts : Item, IStatable
     {
-        public WeaponPartsSO WeaponPartsSO { get; private set; }
+        public PartsSO WeaponPartsSO { get; private set; }
 
         public StatDictionary StatDictionary => WeaponPartsSO.StatDictionary;
 
@@ -18,7 +18,7 @@ namespace Hashira.Items.WeaponPartsSystem
         {
             base.Init(itemSO);
 
-            WeaponPartsSO = itemSO as WeaponPartsSO;
+            WeaponPartsSO = itemSO as PartsSO;
         }
 
         public virtual void Equip(Weapon weapon)

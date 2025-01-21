@@ -1,6 +1,6 @@
 using Hashira.Items.Weapons;
 
-namespace Hashira.Items.WeaponPartsSystem
+namespace Hashira.Items.PartsSystem
 {
     public class DotSightParts : WeaponParts
     {

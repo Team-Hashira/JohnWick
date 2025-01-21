@@ -1,7 +1,7 @@
 using Hashira.Items.Weapons;
 using UnityEngine;
 
-namespace Hashira.Items.WeaponPartsSystem
+namespace Hashira.Items.PartsSystem
 {
     public class FlashSuppressorParts : WeaponParts
     {
