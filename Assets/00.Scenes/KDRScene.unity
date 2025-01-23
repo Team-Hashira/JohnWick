@@ -1851,7 +1851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolCategorySO: {fileID: 11400000, guid: 8d7bdf0ec43a78440b5d3a3448251fd6, type: 2}
   _poolablePrefab: {fileID: 3881367526702418878, guid: c7d553f690003474bba5c87772154ad0, type: 3}
-  _itemSO: {fileID: 11400000, guid: 302167e08903a994599eda549bb9ba0d, type: 2}
+  _itemSO: {fileID: 11400000, guid: 428fad33e14c0c940a0a788199ffcbc1, type: 2}
 --- !u!1 &2143123885
 GameObject:
   m_ObjectHideFlags: 0
