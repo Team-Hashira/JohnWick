@@ -44,7 +44,7 @@ MonoBehaviour:
     _baseValue: 1023
   - Name: "\uACF5\uACA9\uC18D\uB3C4"
     elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
-    _baseValue: 2
+    _baseValue: 0.5
   - Name: "\uC815\uD655\uB3C4"
     elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
     _baseValue: 90

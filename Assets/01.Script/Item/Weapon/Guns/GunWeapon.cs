@@ -42,7 +42,7 @@ namespace Hashira.Items.Weapons
         {
             if (BulletAmount <= 0) return false;
 
-            if (_lastFireTime + _attackSpeedStat.Value < Time.time)
+            if (_lastFireTime + 1 / _attackSpeedStat.Value < Time.time)
                 _lastFireTime = Time.time;
             else return false;
 

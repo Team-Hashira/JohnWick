@@ -16,3 +16,4 @@ MonoBehaviour:
   displayName: "\uACF5\uACA9\uC18D\uB3C4"
   minMaxValue: {x: 0, y: 100}
   statIcon: {fileID: 0}
+  isPreferLow: 0

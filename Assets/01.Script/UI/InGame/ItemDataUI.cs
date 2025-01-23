@@ -31,10 +31,10 @@ namespace Hashira.UI.InGame
                     if (statComparisonTarget != null &&
                         statComparisonTarget.StatDictionary.TryGetElement(stat.elementSO, out StatElement comparisonStat))
                     {
-                        bool isReverse = stat.elementSO.statName == "Speed";
+                        bool isPreferLow = stat.elementSO.isPreferLow;
                         bool isDefault = comparisonStat == null || comparisonStat.Value == stat.Value;
                         bool isDown = comparisonStat.Value > stat.Value;
-                        statStr += isDefault ? "" : ((isDown ^ isReverse) ? "<color=red>" : "<color=yellow>");
+                        statStr += isDefault ? "" : ((isDown ^ isPreferLow) ? "<color=red>" : "<color=yellow>");
                         statStr += $"{stat.elementSO.displayName} : {stat.Value}\n";
                         statStr += isDefault ? "" : "</color>";
                     }
