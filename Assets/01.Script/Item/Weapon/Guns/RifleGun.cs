@@ -7,18 +7,12 @@ namespace Hashira.Items.Weapons
 {
     public class RifleGun : GunWeapon
     {
-        private StatElement _attackSpeedStat;
         private float _lastFireTime;
 
         private bool _isFiring;
         private int _damage;
         private float _maxTime;
 
-        public override void Init(ItemSO itemSO)
-        {
-            base.Init(itemSO);
-            _attackSpeedStat = StatDictionary["AttackSpeed"];
-        }
 
         public override void Equip(EntityWeapon entityWeapon)
         {
@@ -79,11 +73,8 @@ namespace Hashira.Items.Weapons
 
         public override void WeaponUpdate()
         {
-            if (_isFiring && _lastFireTime + _attackSpeedStat.Value < Time.time)
-            {
-                if (Fire()) _lastFireTime = Time.time;
-                else _isFiring = false;
-            }
+            if (_isFiring) Fire();
+            else if (BulletAmount == 0) _isFiring = false;
         }
     }
 }

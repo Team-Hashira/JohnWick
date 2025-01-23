@@ -16,12 +16,16 @@ namespace Hashira.Items.Weapons
 
         private StatElement _precisionStat;
         private StatElement _recoilStat;
+        private StatElement _attackSpeedStat;
+
+        private float _lastFireTime;
 
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
             _precisionStat = StatDictionary["Precision"];
             _recoilStat = StatDictionary["Recoil"];
+            _attackSpeedStat = StatDictionary["AttackSpeed"];
         }
 
         private void HandleDamageSuccessEvent()
@@ -37,6 +41,11 @@ namespace Hashira.Items.Weapons
         protected virtual bool Fire()
         {
             if (BulletAmount <= 0) return false;
+
+            if (_lastFireTime + _attackSpeedStat.Value < Time.time)
+                _lastFireTime = Time.time;
+            else return false;
+
             BulletAmount--;
 
             OnFireEvent?.Invoke(BulletAmount);
