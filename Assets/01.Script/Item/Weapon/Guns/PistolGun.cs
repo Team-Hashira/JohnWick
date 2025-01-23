@@ -20,7 +20,8 @@ namespace Hashira.Items.Weapons
             if (base.Fire() == false) return false;
 
             Vector3 firePos = _EntityWeapon.VisualTrm.position + _EntityWeapon.transform.rotation * GunSO.firePoint;
-            CreateBullet(firePos);
+            Vector3 direction = CalculateRecoil(_EntityWeapon.transform.right);
+            CreateBullet(firePos, direction);
             //Effect
             _EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
             return true;
