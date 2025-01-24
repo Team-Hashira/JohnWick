@@ -20,6 +20,8 @@ namespace Hashira.Items.Weapons
 
         private float _lastFireTime;
 
+        public bool IsCanFire => _lastFireTime + 1 / _attackSpeedStat.Value < Time.time;
+
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
@@ -35,14 +37,14 @@ namespace Hashira.Items.Weapons
 
         protected void SpawnCartridgeCase()
         {
-            _EntityWeapon.CartridgeCaseParticle.Play();
+            EntityWeapon.CartridgeCaseParticle.Play();
         }
 
         protected virtual bool Fire()
         {
             if (BulletAmount <= 0) return false;
 
-            if (_lastFireTime + 1 / _attackSpeedStat.Value < Time.time)
+            if (IsCanFire)
                 _lastFireTime = Time.time;
             else return false;
 
@@ -58,15 +60,15 @@ namespace Hashira.Items.Weapons
         protected void CreateBullet(Vector3 firePos, Vector3 direction)
         {
             //Bullet
-            Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
+            Bullet bullet = EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
             bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage());
 
-            _EntityWeapon.ApplyRecoil(_recoilStat.Value);
+            EntityWeapon.ApplyRecoil(_recoilStat.Value);
         }
 
         protected Vector3 CalculateRecoil(Vector3 direction)
         {
-            float randomRecoil = Random.Range(-_EntityWeapon.Recoil, _EntityWeapon.Recoil);
+            float randomRecoil = Random.Range(-EntityWeapon.Recoil, EntityWeapon.Recoil);
             Vector3 targetDir = (Quaternion.Euler(0, 0, randomRecoil) * direction).normalized;
             return targetDir;
         }

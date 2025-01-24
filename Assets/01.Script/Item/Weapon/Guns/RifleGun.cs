@@ -17,8 +17,8 @@ namespace Hashira.Items.Weapons
         public override void Equip(EntityWeapon entityWeapon)
         {
             base.Equip(entityWeapon);
-            _EntityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
-            _EntityWeapon.OnReloadEvent += HandleReloadEvent;
+            EntityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
+            EntityWeapon.OnReloadEvent += HandleReloadEvent;
         }
 
         private void HandleReloadEvent(float time)
@@ -41,8 +41,8 @@ namespace Hashira.Items.Weapons
 
         public override void UnEquip()
         {
-            _EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
-            _EntityWeapon.OnReloadEvent -= HandleReloadEvent;
+            EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            EntityWeapon.OnReloadEvent -= HandleReloadEvent;
             base.UnEquip();
         }
 
@@ -62,17 +62,18 @@ namespace Hashira.Items.Weapons
 
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
 
-            Vector3 firePos = _EntityWeapon.VisualTrm.position + _EntityWeapon.transform.rotation * GunSO.firePoint;
-            Vector3 direction = CalculateRecoil(_EntityWeapon.transform.right);
+            Vector3 firePos = EntityWeapon.VisualTrm.position + EntityWeapon.transform.rotation * GunSO.firePoint;
+            Vector3 direction = CalculateRecoil(EntityWeapon.transform.right);
             CreateBullet(firePos, direction);
             //Effect
-            _EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
+            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
 
             return true;
         }
 
         public override void WeaponUpdate()
         {
+            base.WeaponUpdate();
             if (_isFiring) Fire();
             else if (BulletAmount == 0) _isFiring = false;
         }

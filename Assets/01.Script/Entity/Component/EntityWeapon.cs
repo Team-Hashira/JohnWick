@@ -35,6 +35,7 @@ namespace Hashira.Entities.Components
         public bool IsMeleeWeapon => WeaponIndex == 2; // TODO
         
         [field: SerializeField] public Transform VisualTrm { get; private set; }
+        [field: SerializeField] public LineRenderer LaserRenderer { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
         private float _startYPos;
@@ -127,7 +128,6 @@ namespace Hashira.Entities.Components
             //���� ������ ���⸦ ����
             Weapons[index]?.UnEquip();
             Weapons[index] = null;
-            Weapons[index]?.Equip(this);
             
             OnChangedWeaponEvents[index]?.Invoke(null);
             OnCurrentWeaponChanged?.Invoke(Weapons[index]);
