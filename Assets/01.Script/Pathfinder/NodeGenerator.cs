@@ -20,6 +20,7 @@ namespace Hashira.Pathfind
         private TileBase[] _stairTileBases;
         [SerializeField]
         private List<Node> _nodeList;
+        public List<Node> NodeList => _nodeList;
         private Vector3 _offset;
 
         [Header("Sound Setting")]
@@ -31,8 +32,7 @@ namespace Hashira.Pathfind
         private void Awake()
         {
             _soundEventChannel.AddListener<SoundGeneratedEvent>(HandleOnSoundGenerated);
-            GenerateNodes();
-            ConnectNodes();
+
         }
 
         private void HandleOnSoundGenerated(SoundGeneratedEvent evt)
@@ -134,7 +134,7 @@ namespace Hashira.Pathfind
                     }
                 }
             }
-            
+
             EditorUtility.SetDirty(this);
         }
 
@@ -148,8 +148,7 @@ namespace Hashira.Pathfind
         private void CreateNode(NodeType type, Vector3 position)
         {
             Node node = Instantiate(_nodePrefab, transform);
-            node.transform.position = position + _offset;
-            node.NodeType = type;
+            node.Initialize(this, position + _offset, type);
             _nodeList.Add(node);
         }
 

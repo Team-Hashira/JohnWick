@@ -19,7 +19,7 @@ namespace Hashira.Enemies
 
         public void SetIgnoreOneway(bool isIgnore)
         {
-            _onewayCollider.enabled = isIgnore;
+            _onewayCollider.enabled = !isIgnore;
         }
     }
 }
