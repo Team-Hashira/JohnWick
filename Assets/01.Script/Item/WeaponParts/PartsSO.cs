@@ -8,12 +8,13 @@ using UnityEngine;
 
 public enum EWeaponPartsType
 {
-    Muzzle,             //�ѱ�
-    Scope,              //������
-    Grip,               //������ 
-    Magazine,           //źâ
-    CartridgeBelt,      //ź��
-    Stock,              //���Ӹ���
+    Muzzle,             //총구
+    Scope,              //조준경
+    Grip,               //손잡이 
+    Magazine,           //탄창
+    CartridgeBelt,      //탄띠
+    Stock,              //개머리판
+    Side,               //사이드
 }
 
 namespace Hashira.Items.PartsSystem
