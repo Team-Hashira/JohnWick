@@ -16,3 +16,4 @@ MonoBehaviour:
   displayName: "\uBC18\uB3D9"
   minMaxValue: {x: -100, y: 100}
   statIcon: {fileID: 0}
+  isPreferLow: 1

@@ -1801,7 +1801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e216623b23e7fa44f9bdfa5ac1c45bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stageDataSO: {fileID: 11400000, guid: f8770378a3af8934b8f9d6f3258ac010, type: 2}
+  _chapterSO:
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
   _confineColliderPrefab: {fileID: 2945706858643288433, guid: 7764fc5b49aaca04ba41fe42e7df99cd, type: 3}
   _startPoint: {fileID: 962858240}
 --- !u!1 &2103816394
@@ -1850,7 +1851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolCategorySO: {fileID: 11400000, guid: 8d7bdf0ec43a78440b5d3a3448251fd6, type: 2}
   _poolablePrefab: {fileID: 3881367526702418878, guid: c7d553f690003474bba5c87772154ad0, type: 3}
-  _itemSO: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
+  _itemSO: {fileID: 11400000, guid: 428fad33e14c0c940a0a788199ffcbc1, type: 2}
 --- !u!1 &2143123885
 GameObject:
   m_ObjectHideFlags: 0

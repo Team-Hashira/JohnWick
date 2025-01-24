@@ -16,12 +16,16 @@ namespace Hashira.Items.Weapons
 
         private StatElement _precisionStat;
         private StatElement _recoilStat;
+        private StatElement _attackSpeedStat;
+
+        private float _lastFireTime;
 
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
             _precisionStat = StatDictionary["Precision"];
             _recoilStat = StatDictionary["Recoil"];
+            _attackSpeedStat = StatDictionary["AttackSpeed"];
         }
 
         private void HandleDamageSuccessEvent()
@@ -37,6 +41,11 @@ namespace Hashira.Items.Weapons
         protected virtual bool Fire()
         {
             if (BulletAmount <= 0) return false;
+
+            if (_lastFireTime + 1 / _attackSpeedStat.Value < Time.time)
+                _lastFireTime = Time.time;
+            else return false;
+
             BulletAmount--;
 
             OnFireEvent?.Invoke(BulletAmount);
@@ -46,15 +55,20 @@ namespace Hashira.Items.Weapons
             return true;
         }
 
-        protected void CreateBullet(Vector3 firePos)
+        protected void CreateBullet(Vector3 firePos, Vector3 direction)
         {
             //Bullet
             Bullet bullet = _EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
-            float randomRecoil = Random.Range(-_EntityWeapon.Recoil, _EntityWeapon.Recoil);
-            Vector3 targetDir = (Quaternion.Euler(0, 0, randomRecoil) * _EntityWeapon.transform.right).normalized;
-            bullet.Init(GunSO.WhatIsTarget, targetDir, GunSO.bulletSpeed, CalculateDamage());
+            bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage());
 
             _EntityWeapon.ApplyRecoil(_recoilStat.Value);
+        }
+
+        protected Vector3 CalculateRecoil(Vector3 direction)
+        {
+            float randomRecoil = Random.Range(-_EntityWeapon.Recoil, _EntityWeapon.Recoil);
+            Vector3 targetDir = (Quaternion.Euler(0, 0, randomRecoil) * direction).normalized;
+            return targetDir;
         }
 
         public override int CalculateDamage()

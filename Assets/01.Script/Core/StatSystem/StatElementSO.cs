@@ -10,5 +10,7 @@ namespace Hashira.Core.StatSystem
         public string displayName;
         public Vector2 minMaxValue;
         public Sprite statIcon;
+        [Tooltip("낮을 수록 좋은 값인가")]
+        public bool isPreferLow;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class PistolGun : GunWeapon
+    public class SniperGun : GunWeapon
     {
         public override void Attack(int damage, bool isDown)
         {
@@ -12,7 +12,7 @@ namespace Hashira.Items.Weapons
 
             if (Fire() == false) return;
 
-            CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
+            CameraManager.Instance.ShakeCamera(12, 12, 0.3f);
         }
 
         protected override bool Fire()
