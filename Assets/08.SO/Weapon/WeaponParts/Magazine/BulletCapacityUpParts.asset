@@ -10,20 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
-  m_Name: RecoilSuppressorParts
+  m_Name: BulletCapacityUpParts
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 1146665500, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
-  itemSprite: {fileID: 1146665500, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
-  itemName: RecoilSuppressor
-  itemDisplayName: "\uBCF4\uC815\uAE30"
-  itemDescription: "\uC774\uAC83\uC740 \uBC18\uB3D9 \uC5B5\uC81C\uAE30\n"
+  itemIcon: {fileID: 840248325, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
+  itemSprite: {fileID: 840248325, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
+  itemName: BulletCapacityUp
+  itemDisplayName: "\uB300\uC6A9\uB7C9 \uD0C4\uCC3D"
+  itemDescription: "\uC7A5\uD0C4 \uC218\uAC00 \uB300\uD3ED \uC0C1\uC2B9\uD558\uB294
+    \uD0C4\uCC3D\uC774\uB2E4."
   useCustomClass: 0
   defaultClass: 
-  partsType: 0
+  partsType: 3
   _statList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 20
-  - Name: "\uBC18\uB3D9"
-    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
-    _baseValue: -10
+    _baseValue: 10

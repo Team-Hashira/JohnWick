@@ -17,6 +17,8 @@ MonoBehaviour:
   itemName: AttackSpeedStock
   itemDisplayName: "\uC804\uC220 \uAC1C\uBA38\uB9AC\uD310"
   itemDescription: "\uBC18\uB3D9\uC744 \uC904\uC5EC\uC8FC\uB294 \uAC1C\uBA38\uB9AC\uD310\uC774\uB2E4."
+  useCustomClass: 0
+  defaultClass: 
   partsType: 5
   _statList:
   - Name: "\uACF5\uACA9\uB825"
@@ -24,4 +26,4 @@ MonoBehaviour:
     _baseValue: 20
   - Name: "\uBC18\uB3D9"
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
-    _baseValue: 10
+    _baseValue: -10
