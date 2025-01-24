@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2328926031320813470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7423746009153706033}
+  - component: {fileID: 1349321256866269246}
+  - component: {fileID: 8050867967781106964}
+  - component: {fileID: 3839553125823926166}
+  m_Layer: 9
+  m_Name: EnemyMover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7423746009153706033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328926031320813470}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1349321256866269246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328926031320813470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73373441bb86869489731c7c0ae46ef9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Rigidbody2D>k__BackingField: {fileID: 0}
+  _groundCheckerSize: {x: 0.64, y: 0.1}
+  _downDistance: 0.1
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  _oneWayPlatform:
+    serializedVersion: 2
+    m_Bits: 4096
+  _whatIsNode:
+    serializedVersion: 2
+    m_Bits: 8192
+  _edgeCheckerSize: {x: 0.16, y: 0.17}
+  _wallCheckerSize: {x: 0.09, y: 1.5}
+  _edgeCheckerOffset: {x: 0.5, y: -0.1}
+  _wallCheckerOffset: {x: 0.5, y: 0.73}
+--- !u!114 &8050867967781106964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328926031320813470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8775a858c0f8549a69fb752964324b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3839553125823926166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328926031320813470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a893bd832d4e38418b3c6128d7144c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onewayPlatform:
+    serializedVersion: 2
+    m_Bits: 4096
+  <StopDistance>k__BackingField: 0
+  _speedElementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
