@@ -24,6 +24,11 @@ namespace Hashira.Enemies
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
         }
 
+        //protected override void FixedUpdate()
+        //{
+        //    base.FixedUpdate();
+        //    Debug.Log(IsGrounded);
+        //}
 
         public bool IsOnEdge()
             => !Physics2D.OverlapBox(transform.position + new Vector3(_edgeCheckerOffset.x * _entityRenderer.FacingDirection, _edgeCheckerOffset.y), _edgeCheckerSize, 0, _whatIsGround);
