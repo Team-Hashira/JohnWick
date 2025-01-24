@@ -36,8 +36,8 @@ MonoBehaviour:
       Value: {x: -51.01, y: -46.27}
     - Key: 3
       Value: {x: 26.1, y: -46.27}
-    - Key: 5
-      Value: {x: -125.67, y: 0}
+    - Key: 4
+      Value: {x: -104.53, y: 9.9}
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}

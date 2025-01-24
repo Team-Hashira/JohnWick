@@ -30,6 +30,8 @@ MonoBehaviour:
     _serializedList:
     - Key: 0
       Value: {x: 108.13, y: 0}
+    - Key: 2
+      Value: {x: 39.7, y: -6.14}
     - Key: 1
       Value: {x: 0, y: 56.38}
     - Key: 3

@@ -26,7 +26,7 @@ namespace Hashira.Items.Weapons
         private async void AttackEnd()
         {
             await Task.Delay(1000);
-            _EntityWeapon.WeaponChange(_EntityWeapon.OldWeaponIndex);
+            EntityWeapon.WeaponChange(EntityWeapon.OldWeaponIndex);
         }
         
         public override object Clone()
