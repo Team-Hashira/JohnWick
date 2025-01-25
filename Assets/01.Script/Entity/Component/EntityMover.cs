@@ -1,6 +1,4 @@
-using Hashira.Core.StatSystem;
 using Hashira.Pathfind;
-using System;
 using UnityEngine;
 
 namespace Hashira.Entities

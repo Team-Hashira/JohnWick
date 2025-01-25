@@ -1,9 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.FSM;
-using System;
-using UnityEngine;
-using static UnityEditor.Rendering.FilterWindow;
 
 namespace Hashira.Players
 {

@@ -1,6 +1,4 @@
 using Hashira.Entities;
-using System.Collections;
-using UnityEngine;
 
 namespace Hashira.Players
 {
@@ -12,6 +10,6 @@ namespace Hashira.Players
             base.Initialize(entity);
         }
 
-        
+
     }
 }
