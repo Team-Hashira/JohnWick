@@ -60,7 +60,6 @@ namespace Hashira.Enemies
         {
             _currentPath = _pathfinder.FindPath(_enemyMover.CurrentNode, targetNode);
             TargetNode = targetNode;
-            Debug.Log(_currentPath.Count);
 #if UNITY_EDITOR
             Node prev = null;
             foreach (var node in _currentPath)
@@ -95,7 +94,6 @@ namespace Hashira.Enemies
                 Node currentNode = _currentPath[i];
                 float xDiff = Mathf.Sign(currentNode.transform.position.x - transform.position.x);
                 bool ignoreOneway = currentNode.NodeType == NodeType.Stair || currentNode.NodeType == NodeType.StairEnter;
-                Debug.Log(ignoreOneway);
                 _enemyMover.SetIgnoreOnewayPlayform(ignoreOneway);
                 _enemyIgnoreOneway.SetIgnoreOneway(ignoreOneway);
                 if (_entityRenderer.FacingDirection != xDiff)

@@ -2,7 +2,6 @@ using Crogen.AttributeExtension;
 using Hashira.Core.EventSystem;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -39,17 +38,23 @@ namespace Hashira.Pathfind
                 _nodeList.OrderBy(node => Vector3.Distance(evt.originPosition, node.transform.position)).ToList();
             foreach (Node node in sortedNodeList)
             {
-                float distance = Vector3.Distance(node.transform.position, evt.originPosition);
-                bool isWallOnBetween = Physics2D.Raycast(node.transform.position, evt.originPosition, distance, _whatIsGround);
+                Vector2 direction = evt.originPosition - node.transform.position;
+                float distance = direction.magnitude;
+                bool isWallOnBetween = Physics2D.Raycast(node.transform.position, direction.normalized, distance, _whatIsGround);
                 if (!isWallOnBetween)
                 {
                     var e = SoundEvents.NearbySoundPointEvent;
                     e.node = node;
                     e.loudness = evt.loudness;
                     _soundEventChannel.RaiseEvent(e);
-                    break;
+                    return;
                 }
             }
+            Debug.Log("소리 발생지로부터 가까운 노드를 찾지 못함.");
+            var ev = SoundEvents.NearbySoundPointEvent;
+            ev.node = sortedNodeList[0];
+            ev.loudness = evt.loudness;
+            _soundEventChannel.RaiseEvent(ev);
         }
 
         [Button("Initialize", 20)]
@@ -132,15 +137,12 @@ namespace Hashira.Pathfind
                     }
                 }
             }
-
-            EditorUtility.SetDirty(this);
         }
 
         [Button("Connect Nodes")]
         public void ConnectNodes()
         {
             _nodeList.ForEach(node => node.SetupConnection(1.5f));
-            EditorUtility.SetDirty(transform);
         }
 
         private void CreateNode(NodeType type, Vector3 position)
