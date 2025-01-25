@@ -1,32 +1,24 @@
 using Crogen.CrogenPooling;
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
-using Hashira.Projectile;
-using System;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class RifleWeapon : GunWeapon
+    public class RifleGun : GunWeapon
     {
-        private StatElement _attackSpeedStat;
         private float _lastFireTime;
-        
+
         private bool _isFiring;
         private int _damage;
         private float _maxTime;
 
-        public override void Init(ItemSO itemSO)
-        {
-            base.Init(itemSO);
-            _attackSpeedStat = StatDictionary["AttackSpeed"];
-        }
 
         public override void Equip(EntityWeapon entityWeapon)
         {
             base.Equip(entityWeapon);
-            _EntityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
-            _EntityWeapon.OnReloadEvent += HandleReloadEvent;
+            EntityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
+            EntityWeapon.OnReloadEvent += HandleReloadEvent;
         }
 
         private void HandleReloadEvent(float time)
@@ -49,8 +41,8 @@ namespace Hashira.Items.Weapons
 
         public override void UnEquip()
         {
-            _EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
-            _EntityWeapon.OnReloadEvent -= HandleReloadEvent;
+            EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            EntityWeapon.OnReloadEvent -= HandleReloadEvent;
             base.UnEquip();
         }
 
@@ -70,21 +62,20 @@ namespace Hashira.Items.Weapons
 
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
 
-            Vector3 firePos = _EntityWeapon.VisualTrm.position + _EntityWeapon.transform.rotation * GunSO.firePoint;
-            CreateBullet(firePos);
+            Vector3 firePos = EntityWeapon.VisualTrm.position + EntityWeapon.transform.rotation * GunSO.firePoint;
+            Vector3 direction = CalculateRecoil(EntityWeapon.transform.right);
+            CreateBullet(firePos, direction);
             //Effect
-            _EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
+            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
 
             return true;
         }
 
         public override void WeaponUpdate()
         {
-            if (_isFiring && _lastFireTime + _attackSpeedStat.Value < Time.time)
-            {
-                if (Fire()) _lastFireTime = Time.time;
-                else _isFiring = false;
-            }
+            base.WeaponUpdate();
+            if (_isFiring) Fire();
+            else if (BulletAmount == 0) _isFiring = false;
         }
     }
 }

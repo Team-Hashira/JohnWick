@@ -92,7 +92,7 @@ namespace Hashira.Entities.Interacts
 
         public virtual void SetItemData() { }
         public string OriginPoolType { get; set; }
-        public GameObject gameObject { get; set; }
+        GameObject IPoolingObject.gameObject { get; set; }
         public virtual void OnPop() {}
 
         public virtual void OnPush() {}

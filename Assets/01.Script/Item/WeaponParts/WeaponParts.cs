@@ -3,11 +3,11 @@ using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
 
-namespace Hashira.Items.WeaponPartsSystem
+namespace Hashira.Items.PartsSystem
 {
     public class WeaponParts : Item, IStatable
     {
-        public WeaponPartsSO WeaponPartsSO { get; private set; }
+        public PartsSO WeaponPartsSO { get; private set; }
 
         public StatDictionary StatDictionary => WeaponPartsSO.StatDictionary;
 
@@ -18,7 +18,7 @@ namespace Hashira.Items.WeaponPartsSystem
         {
             base.Init(itemSO);
 
-            WeaponPartsSO = itemSO as WeaponPartsSO;
+            WeaponPartsSO = itemSO as PartsSO;
         }
 
         public virtual void Equip(Weapon weapon)
@@ -26,13 +26,13 @@ namespace Hashira.Items.WeaponPartsSystem
             _weapon = weapon;
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].AddModify(WeaponPartsSO.itemName, stat.Value, EModifyMode.Add);
-            Debug.Log($"{WeaponPartsSO.itemDisplayName} ����!");
+            Debug.Log($"{WeaponPartsSO.itemDisplayName} Equip!");
         }
         public virtual void UnEquip()
         {
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].RemoveModify(WeaponPartsSO.itemName, EModifyMode.Add);
-            Debug.Log($"{WeaponPartsSO.itemDisplayName} ��������!");
+            Debug.Log($"{WeaponPartsSO.itemDisplayName} UnEquip!");
         }
         public virtual void PartsUpdate()
         {

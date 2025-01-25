@@ -62,7 +62,6 @@ namespace Hashira.Enemies
         {
             _currentPath = _pathfinder.FindPath(_enemyMover.CurrentNode, targetNode);
             TargetNode = targetNode;
-            Debug.Log(_currentPath.Count);
 #if UNITY_EDITOR
             Node prev = null;
             foreach (var node in _currentPath)
@@ -95,18 +94,17 @@ namespace Hashira.Enemies
                 if (i == 0)
                     continue;
                 Node currentNode = _currentPath[i];
-                float x = currentNode.transform.position.x - transform.position.x;
-                float y = currentNode.transform.position.y - transform.position.y;
-                bool hasToJump = currentNode.NodeType == NodeType.Stair || currentNode.NodeType == NodeType.StairEnter;
-                _enemyMover.SetIgnoreOnewayPlayform(hasToJump);
-                _enemyIgnoreOneway.SetIgnoreOneway(!hasToJump);
-                if (_entityRenderer.FacingDirection != Mathf.Sign(x))
+                float xDiff = Mathf.Sign(currentNode.transform.position.x - transform.position.x);
+                bool ignoreOneway = currentNode.NodeType == NodeType.Stair || currentNode.NodeType == NodeType.StairEnter;
+                _enemyMover.SetIgnoreOnewayPlayform(ignoreOneway);
+                _enemyIgnoreOneway.SetIgnoreOneway(ignoreOneway);
+                if (_entityRenderer.FacingDirection != xDiff)
                     _entityRenderer.Flip();
                 while (true)
                 {
-                    _enemyMover.SetMovement(Mathf.Sign(x) * _speedElement.Value);
-                    float distance = currentNode.transform.position.x - transform.position.x;
-                    if (Mathf.Abs(distance) <= StopDistance)
+                    _enemyMover.SetMovement(xDiff * _speedElement.Value);
+                    float sign = Mathf.Sign(currentNode.transform.position.x - transform.position.x);
+                    if (sign != xDiff)
                     {
                         break;
                     }
@@ -116,6 +114,6 @@ namespace Hashira.Enemies
             OnMoveEndEvent?.Invoke();
         }
 
-        
+
     }
 }

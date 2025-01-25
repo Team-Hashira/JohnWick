@@ -1,6 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
-using Hashira.Items.WeaponPartsSystem;
+using Hashira.Items.PartsSystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,7 @@ namespace Hashira.Items.Weapons
     public class Weapon : Item, IStatable
     {
         public WeaponSO WeaponSO { get; private set; }
-        protected EntityWeapon _EntityWeapon { get; private set; }
+        public EntityWeapon EntityWeapon { get; private set; }
 
         //Parts
         private readonly Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
@@ -47,7 +47,7 @@ namespace Hashira.Items.Weapons
         //����
         public virtual void Equip(EntityWeapon entityWeapon)
         {
-            _EntityWeapon = entityWeapon;
+            EntityWeapon = entityWeapon;
         }
         //������
         public virtual void WeaponUpdate()
@@ -60,7 +60,7 @@ namespace Hashira.Items.Weapons
         //��������
         public virtual void UnEquip()
         {
-            _EntityWeapon = null;
+            EntityWeapon = null;
         }
 
         public virtual void Attack(int damage, bool isDown)

@@ -3,6 +3,7 @@ using Hashira.Players;
 using System;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Hashira.Entities.Components
 {
@@ -34,6 +35,7 @@ namespace Hashira.Entities.Components
         public bool IsMeleeWeapon => WeaponIndex == 2; // TODO
         
         [field: SerializeField] public Transform VisualTrm { get; private set; }
+        [field: SerializeField] public LineRenderer LaserRenderer { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
         private float _startYPos;
@@ -43,7 +45,8 @@ namespace Hashira.Entities.Components
         public event Action<Weapon> OnCurrentWeaponChanged;
         public event Action<float> OnReloadEvent;
         
-        private Player _player;
+        private Entity _entity;
+        private EntityMover _mover;
 
         private int _oldWeaponIndex;
 
@@ -60,13 +63,15 @@ namespace Hashira.Entities.Components
         
         public void Initialize(Entity entity)
         {
+            _entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
 
             WeaponIndex = 0;
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
 
-            _player = entity as Player;
-            _player.InputReader.OnReloadEvent += HandleReloadEvent;
+            if (entity is Player player)
+                player.InputReader.OnReloadEvent += HandleReloadEvent;
+            _mover = entity.GetEntityComponent<EntityMover>(true);
 
             _startYPos = transform.localPosition.y;
         }
@@ -78,8 +83,8 @@ namespace Hashira.Entities.Components
 
         private void Start()
         {
-            foreach (var t in _defaultWeapons)
-                EquipWeapon(t.GetItemClass() as Weapon);
+            foreach (var weaponSO in _defaultWeapons)
+                EquipWeapon(weaponSO.GetItemClass() as Weapon);
         }
 
         private void HandleReloadEvent()
@@ -123,7 +128,6 @@ namespace Hashira.Entities.Components
             //���� ������ ���⸦ ����
             Weapons[index]?.UnEquip();
             Weapons[index] = null;
-            Weapons[index]?.Equip(this);
             
             OnChangedWeaponEvents[index]?.Invoke(null);
             OnCurrentWeaponChanged?.Invoke(Weapons[index]);
@@ -212,14 +216,12 @@ namespace Hashira.Entities.Components
         {
             CurrentWeapon?.WeaponUpdate();
 
-            if (Recoil > 0)
-            {
+            int defaultRecoil = (_mover.Velocity.x == 0 && _mover.IsGrounded) ? 0 : 1;
+            if (Recoil > defaultRecoil)
                 Recoil -= Time.deltaTime * 10f;
-                if (Recoil < 0)
-                {
-                    Recoil = 0;
-                }
-            }
+            if (Recoil < defaultRecoil) 
+                Recoil = defaultRecoil;
+
             if (_currentReloadTime > 0)
             {
                 _currentReloadTime -= Time.deltaTime;
@@ -236,7 +238,8 @@ namespace Hashira.Entities.Components
 
         public void Dispose()
         {
-            _player.InputReader.OnReloadEvent -= HandleReloadEvent;
+            if (_entity is Player player)
+                player.InputReader.OnReloadEvent -= HandleReloadEvent;
         }
     }
 }

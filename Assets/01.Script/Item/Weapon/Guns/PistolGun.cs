@@ -1,10 +1,9 @@
 using Crogen.CrogenPooling;
-using Hashira.Projectile;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class PistolWeapon : GunWeapon
+    public class PistolGun : GunWeapon
     {
         public override void Attack(int damage, bool isDown)
         {
@@ -20,10 +19,11 @@ namespace Hashira.Items.Weapons
         {
             if (base.Fire() == false) return false;
 
-            Vector3 firePos = _EntityWeapon.VisualTrm.position + _EntityWeapon.transform.rotation * GunSO.firePoint;
-            CreateBullet(firePos);
+            Vector3 firePos = EntityWeapon.VisualTrm.position + EntityWeapon.transform.rotation * GunSO.firePoint;
+            Vector3 direction = CalculateRecoil(EntityWeapon.transform.right);
+            CreateBullet(firePos, direction);
             //Effect
-            _EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
+            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
             return true;
         }
     }
