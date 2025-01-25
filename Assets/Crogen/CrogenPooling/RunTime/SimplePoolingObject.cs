@@ -30,10 +30,13 @@ public class SimplePoolingObject : MonoBehaviour, IPoolingObject
 
 	private void Update()
 	{
-		CurLifetime += Time.deltaTime;
-		if(CurLifetime > duration)
-		{
-			this.Push();
-		}
+		if (isAutoPush)
+        {
+            CurLifetime += Time.deltaTime;
+            if (CurLifetime > duration)
+            {
+                this.Push();
+            }
+        }
 	}
 }

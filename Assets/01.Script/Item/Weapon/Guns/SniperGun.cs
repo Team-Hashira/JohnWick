@@ -19,11 +19,11 @@ namespace Hashira.Items.Weapons
         {
             if (base.Fire() == false) return false;
 
-            Vector3 firePos = _EntityWeapon.VisualTrm.position + _EntityWeapon.transform.rotation * GunSO.firePoint;
-            Vector3 direction = CalculateRecoil(_EntityWeapon.transform.right);
+            Vector3 firePos = EntityWeapon.VisualTrm.position + EntityWeapon.transform.rotation * GunSO.firePoint;
+            Vector3 direction = CalculateRecoil(EntityWeapon.transform.right);
             CreateBullet(firePos, direction);
             //Effect
-            _EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, _EntityWeapon.transform.right));
+            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
             return true;
         }
     }
