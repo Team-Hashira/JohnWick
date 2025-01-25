@@ -37,4 +37,7 @@ MonoBehaviour:
   <AttackRange>k__BackingField: {x: 0, y: 0}
   <AttackDuration>k__BackingField: 0.2
   <AttackAfterDelay>k__BackingField: 0.3
+  <RotateMax>k__BackingField: 90
+  <RotateMin>k__BackingField: -90
+  <Stab>k__BackingField: 1
   <AttackEffect>k__BackingField: 0

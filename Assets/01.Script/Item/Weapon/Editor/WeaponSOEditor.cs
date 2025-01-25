@@ -17,10 +17,9 @@ namespace Hashira.Items.Weapons.Editor
             float widthOffset = 25f;
             Rect rectResize = new Rect(0, 0, 0, SlotRect.height/SlotRect.width * (inspectorWidth-widthOffset));
 
-            var originTexture = weaponSO.itemSprite.texture;
-            Rect spriteRect = weaponSO.itemSprite.rect;
+            var originSprite = weaponSO.itemSprite;
 
-            Texture2D texture = EditorTextureExtension.ConvertToTexture2D(originTexture, FilterMode.Point);
+            Texture2D texture = EditorTextureExtension.ConvertToTexture2D(originSprite, FilterMode.Point);
             GUILayout.Box(GUIContent.none, GUI.skin.window, GUILayout.Height(rectResize.height));
             Rect spaceRect = GUILayoutUtility.GetRect(new GUIContent("Preview"), GUI.skin.window, GUILayout.Height(rectResize.height));
             GUI.DrawTexture(new Rect(spaceRect.x, spaceRect.y-spaceRect.height, spaceRect.width, spaceRect.height), texture, ScaleMode.ScaleToFit);
@@ -78,7 +77,7 @@ namespace Hashira.Items.Weapons.Editor
             var Player = GameObject.Find("Player");
             var PlayerVisual = Player.transform.Find("VisualTrm/Visual/Body").GetComponent<SpriteRenderer>();
             Rect rect = new Rect(boxRect.position, Vector3.one);
-            GUI.Box(rect, GUIContent.none);
+            GUI.Box(boxRect, GUIContent.none);
         }
     }
 }

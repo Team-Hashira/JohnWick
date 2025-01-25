@@ -25,9 +25,17 @@ namespace Hashira.Items.Weapons
         private void AttackEnd()
         {
             Sequence seq = DOTween.Sequence();
-            seq.Append(_EntityWeapon.VisualTrm.DORotate(new Vector3(0, 0, 90f), 0.2f));
-            seq.Append(_EntityWeapon.VisualTrm.DORotate(new Vector3(0, 0, -90f), MeleeSO.AttackDuration));
-            seq.Append(_EntityWeapon.VisualTrm.DORotate(Vector3.zero, MeleeSO.AttackAfterDelay));
+            float oldPosX = _EntityWeapon.VisualTrm.localPosition.x;
+            
+            seq.Append(_EntityWeapon.VisualTrm.DORotate(new Vector3(0, 0, MeleeSO.RotateMax), 0.2f));
+            
+            // Real attack
+            seq.Append(_EntityWeapon.VisualTrm.DORotate(new Vector3(0, 0, MeleeSO.RotateMin), MeleeSO.AttackDuration))
+                .Join(_EntityWeapon.VisualTrm.DOLocalMoveX(MeleeSO.Stab, MeleeSO.AttackDuration));
+
+            seq.Append(_EntityWeapon.VisualTrm.DORotate(Vector3.zero, MeleeSO.AttackAfterDelay))
+                .Join(_EntityWeapon.VisualTrm.DOLocalMoveX(oldPosX, MeleeSO.AttackAfterDelay));
+                
             seq.OnComplete(() =>
             {
                 _EntityWeapon.WeaponChange(_EntityWeapon.OldWeaponIndex);
