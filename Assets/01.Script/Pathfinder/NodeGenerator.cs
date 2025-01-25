@@ -1,11 +1,7 @@
 using Crogen.AttributeExtension;
 using Hashira.Core.EventSystem;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -141,15 +137,12 @@ namespace Hashira.Pathfind
                     }
                 }
             }
-
-            EditorUtility.SetDirty(this);
         }
 
         [Button("Connect Nodes")]
         public void ConnectNodes()
         {
             _nodeList.ForEach(node => node.SetupConnection(1.5f));
-            EditorUtility.SetDirty(transform);
         }
 
         private void CreateNode(NodeType type, Vector3 position)
