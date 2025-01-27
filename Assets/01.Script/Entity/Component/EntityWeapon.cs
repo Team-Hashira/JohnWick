@@ -132,7 +132,7 @@ namespace Hashira.Entities.Components
             OnChangedWeaponEvents[index]?.Invoke(null);
             OnCurrentWeaponChanged?.Invoke(Weapons[index]);
         }
-        
+         
         public Weapon EquipWeapon(Weapon weapon)
         {
             //���� ������ ���⸦ ����
