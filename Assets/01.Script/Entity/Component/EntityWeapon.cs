@@ -187,7 +187,8 @@ namespace Hashira.Entities.Components
             if (IsReloading) return;
             if (isMelee)
             {
-                WeaponIndex = 2;
+				if (CurrentWeapon == null) return;
+				WeaponIndex = 2;
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
             }
             CurrentWeapon?.Attack(damage, isDown);
