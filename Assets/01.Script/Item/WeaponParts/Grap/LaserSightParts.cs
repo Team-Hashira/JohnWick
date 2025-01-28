@@ -32,7 +32,7 @@ namespace Hashira.Items.PartsSystem
         private void HandleCurrentWeaponChangedEvent(Weapon weapon)
         {
             bool isOn = weapon == _weapon;
-            bool isAnotherLaser = weapon.TryGetParts(EWeaponPartsType.Grip, out WeaponParts weaponParts) && weaponParts.WeaponPartsSO == WeaponPartsSO;
+            bool isAnotherLaser = weapon != null && weapon.TryGetParts(EWeaponPartsType.Grip, out WeaponParts weaponParts) && weaponParts.WeaponPartsSO == WeaponPartsSO;
             _lineRenderer.enabled = isOn || isAnotherLaser;
             if (isOn)
                 _lineRenderer.SetPosition(0, _laserOffset);

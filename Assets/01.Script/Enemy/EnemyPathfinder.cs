@@ -1,4 +1,3 @@
-using Crogen.AttributeExtension;
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Pathfind;
@@ -6,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using VHierarchy.Libs;
 
 namespace Hashira.Enemies
 {
