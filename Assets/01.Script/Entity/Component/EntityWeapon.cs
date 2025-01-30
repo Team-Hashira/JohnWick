@@ -140,8 +140,8 @@ namespace Hashira.Entities.Components
             if (weapon is MeleeWeapon meleeWeapon)
             {
                 int meleeIndex = 2;
-                
-                Weapon preMeleeWeapon = Weapons[meleeIndex];
+                transform.localEulerAngles = Vector3.zero;
+				Weapon preMeleeWeapon = Weapons[meleeIndex];
                 
                 Weapons[meleeIndex]?.UnEquip();
                 Weapons[meleeIndex] = meleeWeapon;
@@ -196,9 +196,12 @@ namespace Hashira.Entities.Components
 
         public void LookTarget(Vector3 targetPos)
         {
-            Facing = Mathf.Sign(targetPos.x - transform.position.x);
-            Vector3 dir = targetPos - transform.position;
-            transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan(dir.y / dir.x) * Mathf.Rad2Deg * Facing);
+            if (IsMeleeWeapon)
+				return;
+
+			Facing = Mathf.Sign(targetPos.x - transform.position.x);
+			Vector3 dir = targetPos - transform.position;
+			transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan(dir.y / dir.x) * Mathf.Rad2Deg * Facing);
         }
 
         public void ApplyRecoil(float value)
