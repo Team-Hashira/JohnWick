@@ -1,4 +1,3 @@
-using AYellowpaper.SerializedCollections;
 using Hashira.Core.StatSystem;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +12,6 @@ namespace Hashira.Items.Weapons
         [field: SerializeField] public Vector3 RightHandOffset { get; internal set; }
         [field: SerializeField] public Vector3 LeftHandOffset { get; internal set; }
         [field: SerializeField] public float GrapRotate { get; internal set; }
-        [Header("Parts")]
-        [Tooltip("Is local position")]
-        public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipPosDict
-            = new SerializedDictionary<EWeaponPartsType, Vector2>();
         [Header("Stat")]
         public List<StatElement> overrideStatElementList = new List<StatElement>();
         public StatBaseSO baseStat;

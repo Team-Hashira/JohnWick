@@ -2,6 +2,7 @@ using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
+using Hashira.Items.Weapons;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -32,19 +33,20 @@ namespace Hashira.Entities.Interacts
 
             EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
 
-            if (weaponHolder.CurrentWeapon == null) return;
-
-            WeaponParts weaponParts = weaponHolder.CurrentWeapon.EquipParts(_partsSO.partsType, _parts);
-            if (weaponParts != null) SetItem(weaponParts);
-            else this.Push();
+            if (weaponHolder.CurrentWeapon != null && weaponHolder.CurrentWeapon is GunWeapon gunWeapon)
+            {
+                WeaponParts weaponParts = gunWeapon.EquipParts(_partsSO.partsType, _parts);
+                if (weaponParts != null) SetItem(weaponParts);
+                else this.Push();
+            }
         }
 
         public override void SetItemData()
         {
             _ItemDataTrm.gameObject.SetActive(true);
             if (_entity.TryGetEntityComponent(out EntityWeapon entityWeapon) &&
-                entityWeapon.CurrentWeapon != null &&
-                entityWeapon.CurrentWeapon.TryGetParts(_partsSO.partsType, out WeaponParts comparisonParts))
+                entityWeapon.CurrentWeapon != null && entityWeapon.CurrentWeapon is GunWeapon gunWeapon &&
+                gunWeapon.TryGetParts(_partsSO.partsType, out WeaponParts comparisonParts))
             {
                 _ComparisonItemDataTrm.gameObject.SetActive(true);
                 _itemData.SetItem(_parts, comparisonParts.WeaponPartsSO);

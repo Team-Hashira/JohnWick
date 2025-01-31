@@ -3,6 +3,7 @@ using Hashira.Entities.Components;
 using Hashira.Items.PartsSystem;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
@@ -11,10 +12,6 @@ namespace Hashira.Items.Weapons
     {
         public WeaponSO WeaponSO { get; private set; }
         public EntityWeapon EntityWeapon { get; private set; }
-
-        //Parts
-        private readonly Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
-        public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
 
         //Stat
         private List<StatElement> _overrideStatElementList = new List<StatElement>();
@@ -28,7 +25,6 @@ namespace Hashira.Items.Weapons
             base.Init(itemSO);
 
             WeaponSO = itemSO as WeaponSO;
-            _partsSlotDictionary.Clear();
             if (WeaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
             else
             {
@@ -37,27 +33,15 @@ namespace Hashira.Items.Weapons
 
                 StatDictionary = new StatDictionary(_overrideStatElementList, _baseStat);
             }
-
-            foreach (EWeaponPartsType partsType in WeaponSO.partsEquipPosDict.Keys)
-            {
-                _partsSlotDictionary.Add(partsType, null);
-            }
         }
 
-        //����
         public virtual void Equip(EntityWeapon entityWeapon)
         {
             EntityWeapon = entityWeapon;
         }
-        //������
         public virtual void WeaponUpdate()
         {
-            foreach (WeaponParts parts in _partsSlotDictionary.Values)
-            {
-                parts?.PartsUpdate();
-            }
         }
-        //��������
         public virtual void UnEquip()
         {
             EntityWeapon = null;
@@ -67,42 +51,7 @@ namespace Hashira.Items.Weapons
         {
             _entityDamage = damage;
         }
-
         public virtual int CalculateDamage() { return _entityDamage + StatDictionary["AttackPower"].IntValue; }
 
-        public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
-        {
-            //���� �Ұ����ϸ� �״�� ��ȯ
-            if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return parts;
-
-            WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
-
-            //��ȯ
-            _partsSlotDictionary[eWeaponPartsType]?.UnEquip();
-            _partsSlotDictionary[eWeaponPartsType] = parts;
-            _partsSlotDictionary[eWeaponPartsType]?.Equip(this);
-
-            OnPartsChanged?.Invoke(eWeaponPartsType, parts);
-
-            return prevPartsSO;
-        }
-
-        public WeaponParts GetParts(EWeaponPartsType eWeaponPartsType)
-        {
-            if (_partsSlotDictionary.TryGetValue(eWeaponPartsType, out WeaponParts weaponParts))
-                return weaponParts;
-            else
-                return null;
-        }
-        public bool TryGetParts(EWeaponPartsType eWeaponPartsType, out WeaponParts weaponParts)
-        {
-            if (_partsSlotDictionary.TryGetValue(eWeaponPartsType, out WeaponParts parts))
-            {
-                weaponParts = parts;
-                return weaponParts != null;
-            }
-            weaponParts = null;
-            return false;
-        }
     }
 }

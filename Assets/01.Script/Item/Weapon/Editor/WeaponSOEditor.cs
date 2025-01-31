@@ -10,14 +10,14 @@ namespace Hashira.Items.Weapons.Editor
         private static readonly Rect SlotRect = new(0, 0, 420, 270);
         private static readonly Vector2 PartSlotSize = new(80, 80);
 
-        public static void Draw(WeaponSO weaponSO)
+        public static void Draw(GunSO gunSO)
         {
             float inspectorWidth = EditorGUIUtility.currentViewWidth;
             float mul = inspectorWidth / SlotRect.width;
             float widthOffset = 25f;
             Rect rectResize = new Rect(0, 0, 0, SlotRect.height/SlotRect.width * (inspectorWidth-widthOffset));
 
-            var originSprite = weaponSO.itemSprite;
+            var originSprite = gunSO.itemSprite;
 
             Texture2D texture = EditorTextureExtension.ConvertToTexture2D(originSprite, FilterMode.Point);
             GUILayout.Box(GUIContent.none, GUI.skin.window, GUILayout.Height(rectResize.height));
@@ -26,7 +26,7 @@ namespace Hashira.Items.Weapons.Editor
             
             Vector2 partSlotResize = PartSlotSize * mul;
             
-            foreach (var pair in weaponSO.partsEquipPosDict)
+            foreach (var pair in gunSO.partsEquipPosDict)
             {
                 Vector2 partSlotReposition = new Vector2(pair.Value.x, -pair.Value.y) * mul;
 
@@ -60,6 +60,7 @@ namespace Hashira.Items.Weapons.Editor
         }
     }
     
+    //이부분 필요 없을듯
     [CustomEditor(typeof(MeleeSO))]
     public class MeleeSOEditor : UnityEditor.Editor
     {

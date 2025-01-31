@@ -1,7 +1,10 @@
 using Crogen.CrogenPooling;
+using Hashira.Core.EventSystem;
 using Hashira.Core.StatSystem;
+using Hashira.Items.PartsSystem;
 using Hashira.Projectile;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +17,10 @@ namespace Hashira.Items.Weapons
         public event Action<int> OnFireEvent;
         public int BulletAmount { get; protected set; }
 
+        //Parts
+        private readonly Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
+        public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
+
         private StatElement _precisionStat;
         private StatElement _recoilStat;
         private StatElement _attackSpeedStat;
@@ -25,6 +32,7 @@ namespace Hashira.Items.Weapons
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
+
             _precisionStat = StatDictionary["Precision"];
             _recoilStat = StatDictionary["Recoil"];
             _attackSpeedStat = StatDictionary["AttackSpeed"];
@@ -49,6 +57,16 @@ namespace Hashira.Items.Weapons
             else return false;
 
             BulletAmount--;
+
+            //Soundgenerate
+            bool isEquipedSoundSuppressor = _partsSlotDictionary[EWeaponPartsType.Muzzle]?.WeaponPartsSO.itemName == "SoundSuppressor";
+            if (isEquipedSoundSuppressor == false)
+            {
+                SoundGeneratedEvent soundGenerated = SoundEvents.SoundGeneratedEvent;
+                soundGenerated.originPosition = EntityWeapon.transform.position;
+                soundGenerated.loudness = isEquipedSoundSuppressor ? 0 : 10;
+                EntityWeapon.GameEventChannelSO.RaiseEvent(soundGenerated);
+            }
 
             OnFireEvent?.Invoke(BulletAmount);
 
@@ -78,6 +96,47 @@ namespace Hashira.Items.Weapons
             return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(_precisionStat.Value, 100f - (100f - _precisionStat.Value) / 1.5f)) / 100);
         }
 
+        public override void WeaponUpdate()
+        {
+            base.WeaponUpdate();
+            foreach (WeaponParts parts in _partsSlotDictionary.Values)
+            {
+                parts?.PartsUpdate();
+            }
+        }
+
+        public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
+        {
+            if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return parts;
+
+            WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
+
+            _partsSlotDictionary[eWeaponPartsType]?.UnEquip();
+            _partsSlotDictionary[eWeaponPartsType] = parts;
+            _partsSlotDictionary[eWeaponPartsType]?.Equip(this);
+
+            OnPartsChanged?.Invoke(eWeaponPartsType, parts);
+
+            return prevPartsSO;
+        }
+        public WeaponParts GetParts(EWeaponPartsType eWeaponPartsType)
+        {
+            if (_partsSlotDictionary.TryGetValue(eWeaponPartsType, out WeaponParts weaponParts))
+                return weaponParts;
+            else
+                return null;
+        }
+        public bool TryGetParts(EWeaponPartsType eWeaponPartsType, out WeaponParts weaponParts)
+        {
+            if (_partsSlotDictionary.TryGetValue(eWeaponPartsType, out WeaponParts parts))
+            {
+                weaponParts = parts;
+                return weaponParts != null;
+            }
+            weaponParts = null;
+            return false;
+        }
+
         public void Reload()
         {
             BulletAmount = GunSO.MaxBulletAmount;
@@ -86,6 +145,11 @@ namespace Hashira.Items.Weapons
         public override object Clone()
         {
             GunSO = WeaponSO as GunSO;
+            _partsSlotDictionary.Clear();
+            foreach (EWeaponPartsType partsType in GunSO.partsEquipPosDict.Keys)
+            {
+                _partsSlotDictionary.Add(partsType, null);
+            }
             Reload();
             return base.Clone();
         }

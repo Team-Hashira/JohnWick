@@ -10,14 +10,15 @@ namespace Hashira.UI.StatusWindow
     {
         [SerializeField] private PartSlot _partSlotPrefab; 
         public Weapon BaseWeapon { get; set; }
+        public GunWeapon GunWeapon;
         [SerializeField] private WeaponSlotIcon _icon;
         private readonly List<PartSlot> _partSlotList = new();
         public int SlotIndex { get; set; }
 
         public void HandleWeaponChanged(Weapon weapon)
         {
-            if(BaseWeapon != null)
-                BaseWeapon.OnPartsChanged -= HandleParsChanged;
+            if(GunWeapon != null)
+                GunWeapon.OnPartsChanged -= HandleParsChanged;
             
             // 기존에 있던 UI 삭제
             foreach (var partSlot in _partSlotList)
@@ -26,21 +27,22 @@ namespace Hashira.UI.StatusWindow
             }
             _partSlotList.Clear();
             
+            BaseWeapon = weapon;
+            GunWeapon = BaseWeapon as GunWeapon;
+            _icon.Init(this);
+
             // 새로 추가
-            if (weapon != null)
+            if (GunWeapon != null)
             {
-                foreach (var posPair in weapon.WeaponSO.partsEquipPosDict)
+                foreach (var posPair in GunWeapon.GunSO.partsEquipPosDict)
                 {
                     var partSlot = AddPartSlot(posPair.Key, posPair.Value);
-                    partSlot.Init(this, weapon.GetParts(posPair.Key));
-                }    
+                    partSlot.Init(this, GunWeapon.GetParts(posPair.Key));
+                }
             }
-            
-            BaseWeapon = weapon;
-            _icon.Init(this);
-            
-            if(BaseWeapon != null)
-                BaseWeapon.OnPartsChanged += HandleParsChanged;
+
+            if (GunWeapon != null)
+                GunWeapon.OnPartsChanged += HandleParsChanged;
         }
 
         private void HandleParsChanged(EWeaponPartsType partsType, WeaponParts weaponParts)

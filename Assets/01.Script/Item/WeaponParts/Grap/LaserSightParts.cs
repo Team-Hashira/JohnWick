@@ -16,14 +16,14 @@ namespace Hashira.Items.PartsSystem
         private Transform _weaponVisual;
         private Vector3 _laserOffset;
 
-        public override void Equip(Weapon weapon)
+        public override void Equip(GunWeapon weapon)
         {
             base.Equip(weapon);
             _entityWeapon = weapon.EntityWeapon;
             _weaponVisual = _entityWeapon.VisualTrm;
             _lineRenderer = _entityWeapon.LaserRenderer;
 
-            _laserOffset = weapon.WeaponSO.partsEquipPosDict[EWeaponPartsType.Grip] / (1080 / 10 * 2); // (y해상도) / (카메라 y길이)
+            _laserOffset = weapon.GunSO.partsEquipPosDict[EWeaponPartsType.Grip] / (1080 / 10 * 2); // (y해상도) / (카메라 y길이)
 
             _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             HandleCurrentWeaponChangedEvent(_entityWeapon.CurrentWeapon);
@@ -32,8 +32,9 @@ namespace Hashira.Items.PartsSystem
         private void HandleCurrentWeaponChangedEvent(Weapon weapon)
         {
             bool isOn = weapon == _weapon;
-            bool isAnotherLaser = weapon != null && weapon.TryGetParts(EWeaponPartsType.Grip, out WeaponParts weaponParts) && weaponParts.WeaponPartsSO == WeaponPartsSO;
-            _lineRenderer.enabled = isOn || isAnotherLaser;
+            bool isHaveLaser = weapon != null && weapon is GunWeapon gunWeapon && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
+
+            _lineRenderer.enabled = isOn || isHaveLaser;
             if (isOn)
                 _lineRenderer.SetPosition(0, _laserOffset);
         }

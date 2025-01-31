@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using UnityEngine;
+using AYellowpaper.SerializedCollections;
 
 namespace Hashira.Items.Weapons
 {
@@ -15,5 +16,9 @@ namespace Hashira.Items.Weapons
         public float bulletSpeed = 200;
         public float reloadDuration = 1;
         [field: SerializeField] public int MaxBulletAmount { get; protected set; } = 10;
+        [Header("Parts")]
+        [Tooltip("Is local position")]
+        public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipPosDict
+            = new SerializedDictionary<EWeaponPartsType, Vector2>();
     }
 }

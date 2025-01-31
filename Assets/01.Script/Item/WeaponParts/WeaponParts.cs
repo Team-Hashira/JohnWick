@@ -21,7 +21,7 @@ namespace Hashira.Items.PartsSystem
             WeaponPartsSO = itemSO as PartsSO;
         }
 
-        public virtual void Equip(Weapon weapon)
+        public virtual void Equip(GunWeapon weapon)
         {
             _weapon = weapon;
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())

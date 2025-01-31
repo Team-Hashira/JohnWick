@@ -1,9 +1,9 @@
 using Hashira.Items.Weapons;
 using Hashira.Players;
+using Hashira.Core;
 using System;
-using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
+using Hashira.Core.EventSystem;
 
 namespace Hashira.Entities.Components
 {
@@ -21,7 +21,7 @@ namespace Hashira.Entities.Components
             get => Weapons[WeaponIndex];
             private set
             {
-                if(OldWeaponIndex != WeaponIndex)
+                if (OldWeaponIndex != WeaponIndex)
                     OldWeaponIndex = WeaponIndex;
                 Weapons[WeaponIndex] = value;
             }
@@ -33,18 +33,18 @@ namespace Hashira.Entities.Components
 
         // Melee Weapon
         public bool IsMeleeWeapon => WeaponIndex == 2; // TODO
-        
+
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [field: SerializeField] public LineRenderer LaserRenderer { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
         private float _startYPos;
         private SpriteRenderer _spriteRenderer;
-        
+
         public readonly Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
         public event Action<Weapon> OnCurrentWeaponChanged;
         public event Action<float> OnReloadEvent;
-        
+
         private Entity _entity;
         private EntityMover _mover;
 
@@ -60,7 +60,9 @@ namespace Hashira.Entities.Components
                     _oldWeaponIndex = value;
             }
         }
-        
+
+        public GameEventChannelSO GameEventChannelSO;
+
         public void Initialize(Entity entity)
         {
             _entity = entity;
@@ -128,11 +130,11 @@ namespace Hashira.Entities.Components
             //���� ������ ���⸦ ����
             Weapons[index]?.UnEquip();
             Weapons[index] = null;
-            
+
             OnChangedWeaponEvents[index]?.Invoke(null);
             OnCurrentWeaponChanged?.Invoke(Weapons[index]);
         }
-         
+
         public Weapon EquipWeapon(Weapon weapon)
         {
             //���� ������ ���⸦ ����
@@ -141,21 +143,21 @@ namespace Hashira.Entities.Components
             {
                 int meleeIndex = 2;
                 transform.localEulerAngles = Vector3.zero;
-				Weapon preMeleeWeapon = Weapons[meleeIndex];
-                
+                Weapon preMeleeWeapon = Weapons[meleeIndex];
+
                 Weapons[meleeIndex]?.UnEquip();
                 Weapons[meleeIndex] = meleeWeapon;
                 Weapons[meleeIndex]?.Equip(this);
-                
+
                 OnChangedWeaponEvents[meleeIndex]?.Invoke(meleeWeapon);
-                
+
                 return preMeleeWeapon;
             }
-            
+
             CurrentWeapon?.UnEquip();
             CurrentWeapon = weapon;
             CurrentWeapon?.Equip(this);
-            
+
             OnChangedWeaponEvents[WeaponIndex]?.Invoke(weapon);
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 
@@ -165,13 +167,13 @@ namespace Hashira.Entities.Components
 
         public void WeaponChange(int index)
         {
-            if(index > Weapons.Length - 1)
+            if (index > Weapons.Length - 1)
                 index = Weapons.Length - 1;
-            
+
             WeaponIndex = index;
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
-        
+
         public void WeaponSwap()
         {
             //빈 슬롯에 자동삽입 기능을 추가할 지 안정했기에 일단 주석
@@ -187,8 +189,8 @@ namespace Hashira.Entities.Components
             if (IsReloading) return;
             if (isMelee)
             {
-				if (CurrentWeapon == null) return;
-				WeaponIndex = 2;
+                if (CurrentWeapon == null) return;
+                WeaponIndex = 2;
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
             }
             CurrentWeapon?.Attack(damage, isDown);
@@ -197,11 +199,11 @@ namespace Hashira.Entities.Components
         public void LookTarget(Vector3 targetPos)
         {
             if (IsMeleeWeapon)
-				return;
+                return;
 
-			Facing = Mathf.Sign(targetPos.x - transform.position.x);
-			Vector3 dir = targetPos - transform.position;
-			transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan(dir.y / dir.x) * Mathf.Rad2Deg * Facing);
+            Facing = Mathf.Sign(targetPos.x - transform.position.x);
+            Vector3 dir = targetPos - transform.position;
+            transform.localEulerAngles = new Vector3(0, 0, Mathf.Atan(dir.y / dir.x) * Mathf.Rad2Deg * Facing);
         }
 
         public void ApplyRecoil(float value)
@@ -223,7 +225,7 @@ namespace Hashira.Entities.Components
             int defaultRecoil = (_mover.Velocity.x == 0 && _mover.IsGrounded) ? 0 : 1;
             if (Recoil > defaultRecoil)
                 Recoil -= Time.deltaTime * 10f;
-            if (Recoil < defaultRecoil) 
+            if (Recoil < defaultRecoil)
                 Recoil = defaultRecoil;
 
             if (_currentReloadTime > 0)

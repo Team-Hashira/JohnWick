@@ -59,7 +59,7 @@ namespace Hashira.UI.StatusWindow
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
                 ItemDropUtility.DroppedItem(Parent.BasePart.WeaponPartsSO, pos);
-                Parent.Parent.BaseWeapon.EquipParts(Parent.partType, null);
+                Parent.Parent.GunWeapon.EquipParts(Parent.partType, null);
                 SetToOriginTrm();
                 return;
             } 
@@ -67,15 +67,15 @@ namespace Hashira.UI.StatusWindow
             foreach (var result in raycastResult)
             {
                 if (!result.gameObject.TryGetComponent(out PartSlot slot)) continue;
-                if (Parent.Parent.BaseWeapon == null) break;
+                if (Parent.Parent.GunWeapon == null) break;
                 // 같은 종류가 아니면 교체 안됨
                 if (slot.partType != Parent.partType) break;
                 
                 var temp = slot.BasePart;
                 
                 // 데이터의 교체
-                slot.Parent.BaseWeapon?.EquipParts(slot.partType, Parent.BasePart);
-                Parent.Parent.BaseWeapon.EquipParts(Parent.partType, temp);
+                slot.Parent.GunWeapon?.EquipParts(slot.partType, Parent.BasePart);
+                Parent.Parent.GunWeapon.EquipParts(Parent.partType, temp);
                 
             }
 
