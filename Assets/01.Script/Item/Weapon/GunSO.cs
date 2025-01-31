@@ -15,7 +15,6 @@ namespace Hashira.Items.Weapons
         public EffectPoolType fireSpakleEffect = EffectPoolType.BulletShootSparkleEffect;
         public float bulletSpeed = 200;
         public float reloadDuration = 1;
-        [field: SerializeField] public int MaxBulletAmount { get; protected set; } = 10;
         [Header("Parts")]
         [Tooltip("Is local position")]
         public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipPosDict

@@ -26,6 +26,30 @@ MonoBehaviour:
   <RightHandOffset>k__BackingField: {x: -0.162, y: -0.026, z: 0}
   <LeftHandOffset>k__BackingField: {x: -0.055, y: -0.038, z: 0}
   <GrapRotate>k__BackingField: 0
+  overrideStatElementList:
+  - Name: "\uACF5\uACA9\uB825"
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 132
+  - Name: "\uACF5\uACA9\uC18D\uB3C4"
+    elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
+    _baseValue: 10
+  - Name: "\uC815\uD655\uB3C4"
+    elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
+    _baseValue: 80
+  - Name: "\uBC18\uB3D9"
+    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
+    _baseValue: 20
+  - Name: "\uD0C4\uCC3D \uC6A9\uB7C9"
+    elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
+    _baseValue: 30
+  baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
+  firePoint: {x: 0.639, y: 0.125, z: 0}
+  cartridgeCaseParticlePoint: {x: -0.121, y: 0.161, z: 0}
+  bullet: 0
+  fireSpakleEffect: 1
+  bulletSpeed: 200
+  reloadDuration: 1
+  <MaxBulletAmount>k__BackingField: 30
   partsEquipPosDict:
     _serializedList:
     - Key: 0
@@ -40,24 +64,3 @@ MonoBehaviour:
       Value: {x: -125.67, y: 0}
     - Key: 6
       Value: {x: 21.52, y: 17.4}
-  overrideStatElementList:
-  - Name: "\uACF5\uACA9\uB825"
-    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 132
-  - Name: "\uACF5\uACA9\uC18D\uB3C4"
-    elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
-    _baseValue: 10
-  - Name: "\uC815\uD655\uB3C4"
-    elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
-    _baseValue: 80
-  - Name: "\uBC18\uB3D9"
-    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
-    _baseValue: 20
-  baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  firePoint: {x: 0.639, y: 0.125, z: 0}
-  cartridgeCaseParticlePoint: {x: -0.121, y: 0.161, z: 0}
-  bullet: 0
-  fireSpakleEffect: 1
-  bulletSpeed: 200
-  reloadDuration: 1
-  <MaxBulletAmount>k__BackingField: 30

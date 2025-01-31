@@ -26,16 +26,6 @@ MonoBehaviour:
   <RightHandOffset>k__BackingField: {x: -0.221, y: 0.013, z: 0}
   <LeftHandOffset>k__BackingField: {x: -0.074, y: -0.01, z: 0}
   <GrapRotate>k__BackingField: 0
-  partsEquipPosDict:
-    _serializedList:
-    - Key: 0
-      Value: {x: 108.13, y: 0}
-    - Key: 2
-      Value: {x: 39.7, y: -6.14}
-    - Key: 1
-      Value: {x: 0, y: 56.38}
-    - Key: 3
-      Value: {x: -45.67, y: -59.93}
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
@@ -49,6 +39,9 @@ MonoBehaviour:
   - Name: "\uC7A5\uC804\uC18D\uB3C4"
     elementSO: {fileID: 11400000, guid: e21207c15b4ae6347b7945e0a9607a2d, type: 2}
     _baseValue: 0.5
+  - Name: "\uD0C4\uCC3D \uC6A9\uB7C9"
+    elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
+    _baseValue: 10
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
   firePoint: {x: 0.292, y: 0.125, z: 0}
   cartridgeCaseParticlePoint: {x: -0.093, y: 0.125, z: 0}
@@ -57,3 +50,13 @@ MonoBehaviour:
   bulletSpeed: 200
   reloadDuration: 1
   <MaxBulletAmount>k__BackingField: 10
+  partsEquipPosDict:
+    _serializedList:
+    - Key: 0
+      Value: {x: 108.13, y: 0}
+    - Key: 2
+      Value: {x: 39.7, y: -6.14}
+    - Key: 1
+      Value: {x: 0, y: 56.38}
+    - Key: 3
+      Value: {x: -45.67, y: -59.93}

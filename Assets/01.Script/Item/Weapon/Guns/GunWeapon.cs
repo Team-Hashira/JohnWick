@@ -24,6 +24,7 @@ namespace Hashira.Items.Weapons
         private StatElement _precisionStat;
         private StatElement _recoilStat;
         private StatElement _attackSpeedStat;
+        private StatElement _magazineCapacityStat;
 
         private float _lastFireTime;
 
@@ -36,6 +37,7 @@ namespace Hashira.Items.Weapons
             _precisionStat = StatDictionary["Precision"];
             _recoilStat = StatDictionary["Recoil"];
             _attackSpeedStat = StatDictionary["AttackSpeed"];
+            _magazineCapacityStat = StatDictionary["MagazineCapacity"];
         }
 
         private void HandleDamageSuccessEvent()
@@ -139,7 +141,7 @@ namespace Hashira.Items.Weapons
 
         public void Reload()
         {
-            BulletAmount = GunSO.MaxBulletAmount;
+            BulletAmount = _magazineCapacityStat.IntValue;
         }
 
         public override object Clone()

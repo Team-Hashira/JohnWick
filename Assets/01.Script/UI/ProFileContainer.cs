@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Hashira.UI
 {
-    public class ProFileContainer : MonoBehaviour
+    public class ProfileContainer : MonoBehaviour
     {
         [Header("HP")]
         [SerializeField] private Slider _hpSlider;
@@ -55,7 +55,7 @@ namespace Hashira.UI
         {
             if (_entityWeapon.CurrentWeapon is GunWeapon gunWeapon)
             {
-                HandleUseWeapon(gunWeapon.BulletAmount, gunWeapon.GunSO.MaxBulletAmount);
+                HandleUseWeapon(gunWeapon.BulletAmount, gunWeapon.StatDictionary["MagazineCapacity"].IntValue);
             }
             else if (_entityWeapon.CurrentWeapon is MeleeWeapon meleeWeapon)
             {

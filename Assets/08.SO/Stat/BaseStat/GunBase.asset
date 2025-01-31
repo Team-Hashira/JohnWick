@@ -28,9 +28,6 @@ MonoBehaviour:
   - Name: Recoil
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
     _baseValue: 5
-  - Name: Critical
-    elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
-    _baseValue: 0
-  - Name: CriticalDamage
-    elementSO: {fileID: 11400000, guid: 9bc29b520cc3efa4d8516ac876e5072c, type: 2}
+  - Name: MagazineCapacity
+    elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
     _baseValue: 0
