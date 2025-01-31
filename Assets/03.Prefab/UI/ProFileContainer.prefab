@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 1576597958147284835}
   - component: {fileID: 5012464828134610926}
   m_Layer: 5
-  m_Name: ProfileContainer
+  m_Name: ProFileContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   _hpSlider: {fileID: 8739987435851655928}
   _hpText: {fileID: 7048447612518908734}
   _reloadContainer: {fileID: 9162226892318761969}
-  _weaponImage: {fileID: 5268500140134709217}
+  _weaponIconImage: {fileID: 5268500140134709217}
   _weaponLoadSlider: {fileID: 7204078018050371516}
   _weaponLoadText: {fileID: 3088055048630351994}
 --- !u!1 &7120606580452645520

@@ -4,6 +4,7 @@ using Hashira.Players;
 using Hashira.Items.Weapons;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Hashira.UI
@@ -16,7 +17,7 @@ namespace Hashira.UI
 
         [Header("Weapon")]
         [SerializeField] private ReloadContainer _reloadContainer; 
-        [SerializeField] private Image _weaponImage;
+        [SerializeField] private Image _weaponIconImage;
         [SerializeField] private Slider _weaponLoadSlider;
         [SerializeField] private TextMeshProUGUI _weaponLoadText;
 
@@ -66,13 +67,13 @@ namespace Hashira.UI
         {
             if (weapon == null)
             {
-                _weaponImage.sprite = null;
-                _weaponImage.color = Color.clear;
+                _weaponIconImage.sprite = null;
+                _weaponIconImage.color = Color.clear;
             }
             else
             {
-                _weaponImage.sprite = weapon.WeaponSO.itemSprite;
-                _weaponImage.color = Color.white;
+                _weaponIconImage.sprite = weapon.WeaponSO.itemSprite;
+                _weaponIconImage.color = Color.white;
             }
         }
         

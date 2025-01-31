@@ -1,3 +1,5 @@
+using DG.Tweening;
+using Hashira.Entities.Components;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -15,17 +17,24 @@ namespace Hashira.Items.Weapons
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
         }
 
-        public override void Attack(int damage, bool isDown)
+		public override void Attack(int damage, bool isDown)
         {
             base.Attack(damage, isDown);
-            
-            Debug.Log("1초 기다리고");
-            AttackEnd();
+
+            Vector3 startRot = Vector3.forward * MeleeSO.RotateMax;
+			Vector3 endRot = Vector3.forward * MeleeSO.RotateMin;
+            float duration = MeleeSO.AttackDuration;
+            float afterDelay = MeleeSO.AttackAfterDelay;
+
+            Sequence seq = DOTween.Sequence();
+            seq.AppendCallback(()=>EntityWeapon.transform.localEulerAngles = startRot);
+            seq.Append(EntityWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutCubic));
+			seq.AppendInterval(afterDelay);
+			seq.OnComplete(() => AttackEnd());
         }
 
-        private async void AttackEnd()
+        private void AttackEnd()
         {
-            await Task.Delay(1000);
             EntityWeapon.WeaponChange(EntityWeapon.OldWeaponIndex);
         }
         
