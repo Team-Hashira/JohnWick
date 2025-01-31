@@ -10,13 +10,11 @@ namespace Hashira.Entities.Components
     [RequireComponent(typeof(Animator))]
     public class EntityAnimator : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDisposable
     {
-        private readonly static int _MoveDirAnimationHash = Animator.StringToHash("MoveDir");
-
         [field: SerializeField] public Animator Animator { get; private set; }
-        [SerializeField] private Transform _rightHand;
-        [SerializeField] private Transform _leftHand;
+        [SerializeField] private AnimatorParamSO _moveDirParamSO;
         [SerializeField] private LimbSolver2D _rightHandSolver;
         [SerializeField] private LimbSolver2D _leftHandSolver;
+        [SerializeField] private IKManager2D _ikManager;
 
         private Entity _entity;
         private EntityMover _mover;
@@ -38,7 +36,7 @@ namespace Hashira.Entities.Components
 
         private void HandleCurrentWeaponChangedEvnet(Weapon weapon)
         {
-            if (_rightHand != null && _leftHand != null)
+            if (_rightHandSolver != null && _leftHandSolver != null)
             {
                 if (weapon == null)
                 {
@@ -49,8 +47,8 @@ namespace Hashira.Entities.Components
                 {
                     _rightHandSolver.weight = 1;
                     _leftHandSolver.weight = 1;
-                    _rightHand.localPosition = weapon.WeaponSO.RightHandOffset;
-                    _leftHand.localPosition = weapon.WeaponSO.LeftHandOffset;
+                    _rightHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.RightHandOffset;
+                    _leftHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.LeftHandOffset;
                 }
             }
         }
@@ -60,7 +58,7 @@ namespace Hashira.Entities.Components
             if (_mover != null && _renderer != null)
             {
                 float moveDir = Mathf.Sign(_mover.Velocity.x) * _renderer.FacingDirection;
-                SetParam(_MoveDirAnimationHash, moveDir);
+                SetParam(_moveDirParamSO, moveDir);
             }
         }
         public void Dispose()
@@ -68,12 +66,7 @@ namespace Hashira.Entities.Components
             if (_weapon != null) _weapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvnet;
         }
 
-        #region Param Func
-        public void SetParam(int hash, float value) => Animator.SetFloat(hash, value);
-        public void SetParam(int hash, int value) => Animator.SetInteger(hash, value);
-        public void SetParam(int hash, bool value) => Animator.SetBool(hash, value);
-        public void SetParam(int hash) => Animator.SetTrigger(hash);
-
+        #region Param Funcs
         public void SetParam(AnimatorParamSO param, float value) => Animator.SetFloat(param.hash, value);
         public void SetParam(AnimatorParamSO param, int value) => Animator.SetInteger(param.hash, value);
         public void SetParam(AnimatorParamSO param, bool value) => Animator.SetBool(param.hash, value);

@@ -545,10 +545,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 5794213617825282337}
-  _rightHand: {fileID: 4579423966701143987}
-  _leftHand: {fileID: 2808298724860062244}
+  _moveDirParamSO: {fileID: 11400000, guid: 3e649f7feb87b6c4fa4bd17d2976b265, type: 2}
   _rightHandSolver: {fileID: 8461488507756509470}
   _leftHandSolver: {fileID: 7535375391874366536}
+  _ikManager: {fileID: 0}
 --- !u!114 &2111953203367332078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 8831168981273924249}
   - component: {fileID: 8898830313081796299}
   - component: {fileID: 5982051024445783654}
+  - component: {fileID: 7353663044124010347}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -991,6 +992,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54dcd01a549294341b69024cbaf9179d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7353663044124010347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478761898889932558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cbc73c8b57755f43888b102b1b1e7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateList:
+  - {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
+  - {fileID: 11400000, guid: 1395e0b62e9a9774ea89e9bd71816ab3, type: 2}
+  - {fileID: 11400000, guid: 3c1ed0d5cfb681d4887886785af66fb5, type: 2}
+  - {fileID: 11400000, guid: 53be9bf3325cdc542b782d3346ebf7f6, type: 2}
+  - {fileID: 11400000, guid: 96315cbc5bf2a2844b700b8fb50cbc43, type: 2}
+  _startState: {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
 --- !u!1 &6392075740364290283
 GameObject:
   m_ObjectHideFlags: 0
