@@ -1,31 +1,30 @@
-using Hashira.FSM;
-using UnityEngine;
+using Hashira.Entities;
+using Hashira.LatestFSM;
 
 namespace Hashira.Players
 {
     public class PlayerIdleState : PlayerGroundState
     {
-        public PlayerIdleState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+        public PlayerIdleState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-
         }
 
-        public override void Enter()
+        public override void OnEnter()
         {
-            base.Enter();
+            base.OnEnter();
 
             _entityMover.StopImmediately();
 
 
         }
 
-        public override void Update()
+        public override void OnUpdate()
         {
-            base.Update();
+            base.OnUpdate();
 
-            if (_owner.InputReader.XMovement != 0)
+            if (_player.InputReader.XMovement != 0)
             {
-                _stateMachine.ChangeState(EPlayerState.Walk);
+                _entityStateMachine.ChangeState("Walk");
             }
         }
     }

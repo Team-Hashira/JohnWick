@@ -1,33 +1,37 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
-using Hashira.FSM;
-using UnityEngine;
+using Hashira.LatestFSM;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Hashira.Players
 {
-    public class PlayerAirState : EntityState<Player>
+    public class PlayerAirState : EntityState
     {
         private StatElement _speedStat;
         protected EntityMover _entityMover;
 
-        public PlayerAirState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+        private Player _player;
+
+        public PlayerAirState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _entityMover = owner.GetEntityComponent<EntityMover>(true);
-            _speedStat = owner.GetEntityComponent<EntityStat>().StatDictionary["Speed"];
+            _player = entity as Player;
+            _entityMover = entity.GetEntityComponent<EntityMover>(true);
+            _speedStat = entity.GetEntityComponent<EntityStat>().StatDictionary["Speed"];
         }
 
-        public override void Update()
+        public override void OnUpdate()
         {
-            base.Update();
+            base.OnUpdate();
 
-            float movement = _owner.InputReader.XMovement;
+            float movement = _player.InputReader.XMovement;
             if (_speedStat != null)
                 movement *= _speedStat.Value;
 
             _entityMover.SetMovement(movement);
 
             if (_entityMover.IsGrounded == true)
-                _stateMachine.ChangeState(EPlayerState.Idle);
+                _entityStateMachine.ChangeState("Idle");
         }
     }
 }

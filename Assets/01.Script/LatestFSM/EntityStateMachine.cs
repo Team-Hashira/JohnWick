@@ -1,11 +1,7 @@
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.Rendering.DebugUI;
 
 namespace Hashira.LatestFSM
 {
@@ -13,8 +9,6 @@ namespace Hashira.LatestFSM
     {
         private Entity _entity;
 
-        [SerializeField]
-        private string _namespace;
         [SerializeField]
         private List<StateSO> _stateList;
         [SerializeField]

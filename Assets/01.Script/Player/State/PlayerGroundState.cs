@@ -1,41 +1,41 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
-using Hashira.FSM;
-using System;
-using UnityEngine;
+using Hashira.LatestFSM;
 
 namespace Hashira.Players
 {
-    public class PlayerGroundState : EntityState<Player>
+    public class PlayerGroundState : EntityState
     {
         protected EntityMover _entityMover;
         protected StatElement _jumpStat;
+        protected Player _player;
 
-        public PlayerGroundState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+        public PlayerGroundState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _entityMover = owner.GetEntityComponent<EntityMover>(true);
-            _jumpStat = owner.GetEntityComponent<EntityStat>().StatDictionary["JumpPower"];
+            _player = entity as Player;
+            _entityMover = entity.GetEntityComponent<EntityMover>(true);
+            _jumpStat = entity.GetEntityComponent<EntityStat>().StatDictionary["JumpPower"];
         }
 
-        public override void Enter()
+        public override void OnEnter()
         {
-            base.Enter();
+            base.OnEnter();
 
-            _owner.InputReader.OnJumpEvent += HandleJumpEvent;
-            _owner.InputReader.OnCrouchEvent += HandleCrouchEvent;
+            _player.InputReader.OnJumpEvent += HandleJumpEvent;
+            _player.InputReader.OnCrouchEvent += HandleCrouchEvent;
         }
 
         private void HandleDashEvent()
         {
-            _stateMachine.ChangeState(EPlayerState.Dash);
+            _entityStateMachine.ChangeState("Dash");
         }
 
         private void HandleCrouchEvent(bool isOn)
         {
             if (isOn)
-                _stateMachine.ChangeState(EPlayerState.Crouch);
+                _entityStateMachine.ChangeState("Crouch");
             else
-                _stateMachine.ChangeState(EPlayerState.Idle);
+                _entityStateMachine.ChangeState("Idle");
         }
 
         protected virtual void HandleJumpEvent()
@@ -43,21 +43,21 @@ namespace Hashira.Players
             _entityMover.Jump(_jumpStat == null ? 0 : _jumpStat.Value);
         }
 
-        public override void Update()
+        public override void OnUpdate()
         {
-            base.Update();
+            base.OnUpdate();
 
             if (_entityMover.IsGrounded == false)
-                _stateMachine.ChangeState(EPlayerState.Air);
+                _entityStateMachine.ChangeState("Air");
         }
 
-        public override void Exit()
+        public override void OnExit()
         {
-            base.Exit();
+            base.OnExit();
 
-            _owner.InputReader.OnJumpEvent -= HandleJumpEvent;
-            _owner.InputReader.OnCrouchEvent -= HandleCrouchEvent;
-            _owner.InputReader.OnDashEvent -= HandleDashEvent;
+            _player.InputReader.OnJumpEvent -= HandleJumpEvent;
+            _player.InputReader.OnCrouchEvent -= HandleCrouchEvent;
+            _player.InputReader.OnDashEvent -= HandleDashEvent;
         }
     }
 }

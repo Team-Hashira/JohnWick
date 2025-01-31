@@ -1,6 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
-using Hashira.FSM;
+using Hashira.LatestFSM;
 
 namespace Hashira.Players
 {
@@ -8,21 +8,21 @@ namespace Hashira.Players
     {
         private StatElement _speedStat;
 
-        public PlayerWalkState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+        public PlayerWalkState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _speedStat = owner.GetEntityComponent<EntityStat>().StatDictionary["Speed"];
+            _speedStat = entity.GetEntityComponent<EntityStat>().StatDictionary["Speed"];
         }
 
-        public override void Enter()
+        public override void OnEnter()
         {
-            base.Enter();
+            base.OnEnter();
         }
 
-        public override void Update()
+        public override void OnUpdate()
         {
-            base.Update();
+            base.OnUpdate();
 
-            float movement = _owner.InputReader.XMovement;
+            float movement = _player.InputReader.XMovement;
             if (movement != 0)
             {
                 if (_speedStat != null)
@@ -30,12 +30,12 @@ namespace Hashira.Players
                 _entityMover.SetMovement(movement);
             }
             else
-                _stateMachine.ChangeState(EPlayerState.Idle);
+                _entityStateMachine.ChangeState("Idle");
         }
 
-        public override void Exit()
+        public override void OnExit()
         {
-            base.Exit();
+            base.OnExit();
         }
     }
 }

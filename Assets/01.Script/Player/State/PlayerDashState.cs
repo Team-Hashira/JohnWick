@@ -1,51 +1,53 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
-using Hashira.FSM;
+using Hashira.LatestFSM;
 using UnityEngine;
 
 namespace Hashira.Players
 {
-    public class PlayerDashState : EntityState<Player>
+    public class PlayerDashState : EntityState
     {
         private StatElement _dashSpeedStat;
         private EntityMover _entityMover;
+        private Player _player;
 
-        float _dashStartTime;
-        float _dashDuration = 0.1f;
+        private float _dashStartTime;
+        private float _dashDuration = 0.1f;
 
-        public PlayerDashState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+        public PlayerDashState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _entityMover = owner.GetEntityComponent<EntityMover>(true);
-            _dashSpeedStat = owner.GetEntityComponent<EntityStat>().StatDictionary["DashSpeed"];
+            _player = entity as Player;
+            _entityMover = entity.GetEntityComponent<EntityMover>(true);
+            _dashSpeedStat = entity.GetEntityComponent<EntityStat>().StatDictionary["DashSpeed"];
         }
 
-        public override void Enter()
+        public override void OnEnter()
         {
-            base.Enter();
+            base.OnEnter();
             _dashStartTime = Time.time;
         }
 
-        public override void Update()
+        public override void OnUpdate()
         {
-            base.Update();
+            base.OnUpdate();
 
-            float movement = _owner.InputReader.XMovement;
+            float movement = _player.InputReader.XMovement;
             if (_dashSpeedStat != null)
                 movement *= _dashSpeedStat.Value;
             _entityMover.SetMovement(movement);
 
             if (_dashStartTime + _dashDuration < Time.time)
             {
-                if (_owner.InputReader.XMovement != 0)
-                    _stateMachine.ChangeState(EPlayerState.Walk);
+                if (_player.InputReader.XMovement != 0)
+                    _entityStateMachine.ChangeState("Walk");
                 else
-                    _stateMachine.ChangeState(EPlayerState.Idle);
+                    _entityStateMachine.ChangeState("Idle");
             }
         }
 
-        public override void Exit()
+        public override void OnExit()
         {
-            base.Exit();
+            base.OnExit();
         }
     }
 }

@@ -1,35 +1,36 @@
+using Hashira.Entities;
+using Hashira.LatestFSM;
 using System.Collections;
-using Hashira.FSM;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Hashira.Players
 {
     public class PlayerCrouchState : PlayerGroundState
     {
-        private readonly InputReaderSO _inputReader;
         private PlayerMover _playerMover;
-        public PlayerCrouchState(Player owner, StateMachine stateMachine, string animationName) : base(owner, stateMachine, animationName)
+
+        public PlayerCrouchState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _inputReader = owner.InputReader;
-            _playerMover = owner.GetEntityComponent<PlayerMover>();
+            _playerMover = entity.GetEntityComponent<PlayerMover>();
         }
 
-        public override void Enter()
+        public override void OnEnter()
         {
-            base.Enter();
+            base.OnEnter();
             _entityMover.StopImmediately();
-            _owner.VisualTrm.localScale = new Vector3(1f, 0.8f, 1f);
+            _player.VisualTrm.localScale = new Vector3(1f, 0.8f, 1f);
         }
 
-        public override void Exit()
+        public override void OnExit()
         {
-            base.Exit();
-            _owner.VisualTrm.localScale = new Vector3(1f, 1f, 1f);
+            base.OnExit();
+            _player.VisualTrm.localScale = new Vector3(1f, 1f, 1f);
         }
 
         protected override void HandleJumpEvent()
         {
-            _owner.StartCoroutine(UnderJumpCoroutime());
+            _player.StartCoroutine(UnderJumpCoroutime());
         }
 
         private IEnumerator UnderJumpCoroutime()

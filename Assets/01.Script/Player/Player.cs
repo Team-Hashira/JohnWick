@@ -1,28 +1,18 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
-using Hashira.FSM;
 using Hashira.Items.Weapons;
+using Hashira.LatestFSM;
 using UnityEngine;
 
 namespace Hashira.Players
 {
-    public enum EPlayerState
-    {
-        Idle,
-        Walk,
-        Dash,
-        Crouch,
-        Air
-    }
-
     public class Player : Entity
     {
         [field: SerializeField] public InputReaderSO InputReader { get; private set; }
         [field: SerializeField] public Transform VisualTrm { get; private set; }
 
-        protected StateMachine _stateMachine;
-
+        protected EntityStateMachine _stateMachine;
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
         protected EntityWeapon _weaponHolderCompo;
@@ -35,8 +25,6 @@ namespace Hashira.Players
         protected override void Awake()
         {
             base.Awake();
-
-            _stateMachine = new StateMachine(this, "Hashira.Players.");
 
             InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnInteractEvent += HandleInteractEvent;
@@ -55,7 +43,7 @@ namespace Hashira.Players
 
         private void HandleDashEvent()
         {
-            _stateMachine.ChangeState(EPlayerState.Dash);
+            _stateMachine.ChangeState("Dash");
         }
 
         private void HandleMeleeAttackEvent()
@@ -83,14 +71,13 @@ namespace Hashira.Players
             _renderCompo = GetEntityComponent<EntityRenderer>();
             _weaponHolderCompo = GetEntityComponent<EntityWeapon>();
             _interactor = GetEntityComponent<EntityInteractor>();
+            _stateMachine = GetEntityComponent<EntityStateMachine>();
             _damageStat = _statCompo.StatDictionary["AttackPower"];
         }
 
         protected override void Update()
         {
             base.Update();
-
-            _stateMachine.UpdateMachine();
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
