@@ -281,6 +281,7 @@ MonoBehaviour:
   <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <LaserRenderer>k__BackingField: {fileID: 6757663179075894244}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
+  GameEventChannelSO: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1 &1931901565199594802
 GameObject:
   m_ObjectHideFlags: 0
