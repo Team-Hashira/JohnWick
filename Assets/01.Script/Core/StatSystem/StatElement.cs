@@ -10,19 +10,52 @@ namespace Hashira.Core.StatSystem
         Percnet
     }
 
+    public struct StatModifier
+    {
+        private float _originValue;
+        private bool _canValueOverlap;
+
+        public int _overlapCount;
+        public EModifyMode Mode { get; private set; }
+        public float Value { get; private set; }
+
+        public StatModifier(float originValue, EModifyMode mode, bool canValueOverlap)
+        {
+            _originValue = originValue;
+            Mode = mode;
+            _overlapCount = 1;
+            _canValueOverlap = canValueOverlap;
+
+            Value = originValue;
+        }
+
+        public static StatModifier operator ++(StatModifier modifier)
+        {
+            modifier._overlapCount++;
+            if (modifier._canValueOverlap)
+                modifier.Value += modifier._originValue;
+            return modifier;
+        }
+        public static StatModifier operator --(StatModifier modifier)
+        {
+            modifier._overlapCount--;
+            if (modifier._canValueOverlap)
+                modifier.Value -= modifier._originValue;
+            return modifier;
+        }
+        public static implicit operator int(StatModifier modifier)
+        {
+            return modifier._overlapCount;
+        }
+    }
+
     [Serializable]
     public class StatElement
     {
         [HideInInspector] public string Name;
         public StatElementSO elementSO;
         [SerializeField] private float _baseValue;
-        private Dictionary<string, float> _addModifiers;
-        private Dictionary<string, float> _percentModifiers;
-        private Dictionary<EModifyMode, Dictionary<string, float>> _modifiers;
-
-        private Dictionary<string, int> _addModifiersOverlapCount;
-        private Dictionary<string, int> _percentModifiersOverlapCount;
-        private Dictionary<EModifyMode, Dictionary<string, int>> _modifierOverlaps;
+        private Dictionary<string, StatModifier> _modifiers;
 
         public event Action<float, float> OnValueChanged;
         public event Action<int, int> OnIntValueChanged;
@@ -38,34 +71,19 @@ namespace Hashira.Core.StatSystem
 
         private void SetDictionary()
         {
-            _addModifiers ??= new Dictionary<string, float>();
-            _percentModifiers ??= new Dictionary<string, float>();
-            _modifiers ??= new Dictionary<EModifyMode, Dictionary<string, float>>()
-            {
-                { EModifyMode.Add, _addModifiers },
-                { EModifyMode.Percnet, _percentModifiers }
-            };
-            _addModifiersOverlapCount ??= new Dictionary<string, int>();
-            _percentModifiersOverlapCount ??= new Dictionary<string, int>();
-            _modifierOverlaps ??= new Dictionary<EModifyMode, Dictionary<string, int>>()
-            {
-                { EModifyMode.Add, _addModifiersOverlapCount },
-                { EModifyMode.Percnet, _percentModifiersOverlapCount }
-            };
+            _modifiers ??= new Dictionary<string, StatModifier>();
         }
 
         private void SetValue()
         {
             float totalAddModifier = 0;
-            foreach (float addModifier in _addModifiers.Values)
-            {
-                totalAddModifier += addModifier;
-            }
-
             float totalPercentModifier = 0;
-            foreach (float percentModifier in _percentModifiers.Values)
+            foreach (StatModifier modifier in _modifiers.Values)
             {
-                totalPercentModifier += percentModifier;
+                if (modifier.Mode == EModifyMode.Add)
+                    totalAddModifier += modifier.Value;
+                else
+                    totalPercentModifier += modifier.Value;
             }
 
             float value = (_baseValue + totalAddModifier) * (1 + totalPercentModifier / 100);
@@ -82,37 +100,29 @@ namespace Hashira.Core.StatSystem
             IntValue = intValue;
         }
 
-        public void AddModify(string key, float modify, EModifyMode eModifyMode)
+        public void AddModify(string key, float value, EModifyMode eModifyMode, bool canValueOverlap = true)
         {
-            if (!_modifierOverlaps[eModifyMode].TryAdd(key, 1))
-                _modifierOverlaps[eModifyMode][key]++;
-
-            if (!_modifiers[eModifyMode].ContainsKey(key))
-                _modifiers[eModifyMode][key] = modify;
+            if (_modifiers.ContainsKey(key))
+                _modifiers[key]++;
+            else
+            {
+                StatModifier modifier = new StatModifier(value, eModifyMode, canValueOverlap);
+                _modifiers[key] = modifier;
+            }
 
             SetValue();
         }
         public void RemoveModify(string key, EModifyMode eModifyMode)
         {
-            if (_modifierOverlaps[eModifyMode].ContainsKey(key))
+            if (_modifiers.ContainsKey(key))
             {
-                _modifierOverlaps[eModifyMode][key]--;
-                if (_modifierOverlaps[eModifyMode][key] < 0)
-                    _modifierOverlaps[eModifyMode][key] = 0;
-            }
-            else
-                Debug.LogWarning($"[{key}]Key not found for statModifierOverlap");
-
-            if (_modifiers[eModifyMode].ContainsKey(key))
-            {
-                if (_modifierOverlaps[eModifyMode][key] == 0)
-                {
-                    _modifiers[eModifyMode].Remove(key);
-                }
+                _modifiers[key]--;
+                if (_modifiers[key] == 0)
+                    _modifiers.Remove(key);
+                SetValue();
             }
             else
                 Debug.LogWarning($"[{key}]Key not found for statModifier");
-            SetValue();
         }
     }
 }
