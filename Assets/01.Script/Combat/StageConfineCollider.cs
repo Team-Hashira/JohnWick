@@ -28,7 +28,7 @@ namespace Hashira.Combat
             _sideColliderR.offset = new Vector2(max.x-0.5f, 0);
             _sideColliderL.offset = new Vector2(min.x+0.5f, 0);
             
-            _cinemachineConfiner ??= FindFirstObjectByType<CinemachineConfiner2D>();
+            _cinemachineConfiner ??= FindFirstObjectByType<PlayerCamera>().CinemachineConfiner2D;
             _cinemachineConfiner.BoundingShape2D = _confineCollider;
         }
     }

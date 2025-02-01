@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 987299753}
   - component: {fileID: 987299756}
   - component: {fileID: 987299757}
+  - component: {fileID: 987299758}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -1021,6 +1022,20 @@ MonoBehaviour:
     MaxWindowSize: 0
     Padding: 0
   m_LegacyMaxWindowSize: -2
+--- !u!114 &987299758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987299751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d29877c78ef9c4c9bebc019759622c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CinemachineConfiner2D>k__BackingField: {fileID: 987299757}
+  <CinemachineVirtualCameraBase>k__BackingField: {fileID: 987299754}
 --- !u!223 &1111739332 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 5825091475942839344, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}

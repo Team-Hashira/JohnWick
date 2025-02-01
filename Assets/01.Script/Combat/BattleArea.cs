@@ -16,12 +16,17 @@ namespace Hashira.Combat
 		private int _enemyCount = 0;
 		private PolygonCollider2D _collider;
 
-		private CinemachineVirtualCameraBase _cam;
+		private CinemachineCamera _cam;
 
 		private void Awake()
 		{
-			_cam = GetComponentInChildren<CinemachineVirtualCameraBase>();
+			_cam = GetComponentInChildren<CinemachineCamera>();
 			_cam.Priority = -1;
+		}
+
+		private void Start()
+		{
+			_cam.Follow = FindFirstObjectByType<InternallyDividedPosition>().transform;
 		}
 
 		//private void Start()
@@ -63,8 +68,8 @@ namespace Hashira.Combat
 		{
 			if (collision.CompareTag("Player"))
 			{
-				_cam.Priority = 100;
-				if(_enemyCount > 0)
+				CameraManager.Instance.ChangeCamera(_cam);
+				if(_entityList.Count > 0)
 					StartBattle();
 			}
 		}
@@ -72,7 +77,7 @@ namespace Hashira.Combat
 		private void OnTriggerExit2D(Collider2D collision)
 		{
 			if (collision.CompareTag("Player"))
-			_cam.Priority = -1;
+				CameraManager.Instance.ChangeCamera("Player");
 		}
 	}
 }
