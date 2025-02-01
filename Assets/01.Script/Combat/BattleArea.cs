@@ -27,40 +27,27 @@ namespace Hashira.Combat
 		private void Start()
 		{
 			_cam.Follow = FindFirstObjectByType<InternallyDividedPosition>().transform;
+
+			_enemyCount = _entityList.Count;
+			foreach (var entity in _entityList)
+				entity.OnDieEvent += HandleCounting;
 		}
-
-		//private void Start()
-		//{
-		//	Vector2[] paths = _collider.GetPath(0);
-
-		//	for (int i = 0; i < paths.Length; i++)
-		//		paths[i] += (Vector2)transform.position;
-		//	_collider.SetPath(0, paths);
-		//	transform.SetParent(null);
-		//	transform.position = Vector3.zero;
-		//}
 
 		public void StartBattle()
 		{
-			_enemyCount = _entityList.Count;
-
-			foreach (var entity in _entityList)
-			{
-				entity.OnDieEvent += HandleCounting;
-			}
 			BattleStartEvent?.Invoke();
 		}
 
 		private void HandleCounting()
 		{
 			--_enemyCount;
+			Debug.Log("Á×¾ú´Ù´Ï±î?");
 			if(_enemyCount <= 0)
 				EndBattle();
 		}
 
 		public void EndBattle()
 		{
-
 			BattleEndEvent?.Invoke();
 		}
 
