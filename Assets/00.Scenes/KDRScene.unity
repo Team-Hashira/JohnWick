@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: _endPosition
       value: 
       objectReference: {fileID: 2032985428}
+    - target: {fileID: 2284118962154491198, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _isCreenEndPos
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -681,7 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isCreenStartPos: 0
   _startPosition: {fileID: 2365600500662696666}
-  _isCreenEndPos: 1
+  _isCreenEndPos: 0
   _endPosition: {fileID: 0}
   _amount: 0.32
 --- !u!1 &3300277106170878018
@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 7353663044124010347}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
