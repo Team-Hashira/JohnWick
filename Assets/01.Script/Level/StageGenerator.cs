@@ -10,8 +10,8 @@ namespace Hashira
     public class StageGenerator : MonoSingleton<StageGenerator>
     {
         [SerializeField] private ChapterSO[] _chapterSO;
-        [SerializeField] private ConfineCollider _confineColliderPrefab;
-        private ConfineCollider _confineCollider;
+        [SerializeField] private StageConfineCollider _confineColliderPrefab;
+        private StageConfineCollider _confineCollider;
         [SerializeField] private Transform _startPoint;
 
         private List<StagePiece> _generatedStagePieceList;

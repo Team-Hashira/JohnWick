@@ -75,6 +75,7 @@ namespace Hashira.Entities
         {
             _isDie = true;
             OnDieEvent?.Invoke();
-        }
+            OnDieEvent = null;
+		}
     }
 }
