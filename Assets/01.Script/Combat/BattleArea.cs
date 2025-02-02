@@ -39,8 +39,10 @@ namespace Hashira.Combat
 			Transform r = transform.Find("R");
 			Transform l = transform.Find("L");
 
-			r.transform.localPosition = new Vector3(polygonCollider.GetPath(0)[0].x+0.5f, 0, 0);
-			l.transform.localPosition = new Vector3(polygonCollider.GetPath(0)[1].x-0.5f, 0, 0);
+			if (r != null)
+				r.localPosition = new Vector3(polygonCollider.GetPath(0)[0].x+0.5f, 0, 0);
+			if (l != null) 
+				l.localPosition = new Vector3(polygonCollider.GetPath(0)[1].x-0.5f, 0, 0);
 		}
 
 		public void StartBattle()
