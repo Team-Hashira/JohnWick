@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: ReloadSupportParts
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 840248325, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
-  itemSprite: {fileID: 840248325, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
+  itemIcon: {fileID: -344291122, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemSprite: {fileID: -344291122, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: ReloadSupport
   itemDisplayName: "\uD035 \uB4DC\uB85C\uC6B0 \uD0C4\uCC3D"
   itemDescription: "\uC7AC\uC7A5\uC804 \uC18D\uB3C4\uB97C \uBE60\uB974\uAC8C\uD574\uC8FC\uB294

@@ -11,10 +11,13 @@ namespace Hashira.Entities
         private Entity _entity;
 
         [field: SerializeField] public Transform VisualTrm { get; private set; }
-        [SerializeField] private List<SpriteRenderer> _spriteRendererList;
+        [SerializeField] private List<GameObject> _armObject;
         [SerializeField] private bool _onFlip;
 
+        public List<SpriteRenderer> SpriteRendererList;
         public float FacingDirection { get; private set; }
+        public Vector3 UsualFacingTarget { get; private set; }
+        public bool isUsualFacing = true;
 
         private List<Tween> _blinkTweenList;
 
@@ -24,6 +27,14 @@ namespace Hashira.Entities
 
             _blinkTweenList = new List<Tween>();
             FacingDirection = 1;
+            isUsualFacing = true;
+
+            SetArmActive(true);
+        }
+
+        public void SetArmActive(bool active)
+        {
+            _armObject.ForEach(gameObject => gameObject.SetActive(active));
         }
 
         public void Blink(float duration, Ease ease = Ease.Linear)
@@ -34,11 +45,24 @@ namespace Hashira.Entities
             }
             _blinkTweenList.Clear();
 
-            _spriteRendererList.ForEach(renderer =>
+            SpriteRendererList.ForEach(renderer =>
             {
                 renderer.material.SetFloat(_BlinkShanderkHash, 1);
                 _blinkTweenList.Add(renderer.material.DOFloat(0, _BlinkShanderkHash, duration).SetEase(ease));
             });
+        }
+
+        private void Update()
+        {
+            if (isUsualFacing && UsualFacingTarget != Vector3.zero)
+            {
+                LookTarget(UsualFacingTarget);
+            }
+        }
+
+        public void SetUsualFacingTarget(Vector3 pos)
+        {
+            UsualFacingTarget = pos;
         }
 
         public void LookTarget(Vector3 pos)

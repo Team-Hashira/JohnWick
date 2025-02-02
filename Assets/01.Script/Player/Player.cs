@@ -11,6 +11,7 @@ namespace Hashira.Players
     {
         [field: SerializeField] public InputReaderSO InputReader { get; private set; }
         [field: SerializeField] public Transform VisualTrm { get; private set; }
+        [field: SerializeField] public ParticleSystem AfterImageParticle { get; private set; }
 
         protected EntityStateMachine _stateMachine;
         protected EntityRenderer _renderCompo;
@@ -43,7 +44,8 @@ namespace Hashira.Players
 
         private void HandleDashEvent()
         {
-            _stateMachine.ChangeState("Dash");
+            if (_stateMachine.CurrentStateName != "Rolling")
+                _stateMachine.ChangeState("Rolling");
         }
 
         private void HandleMeleeAttackEvent()
@@ -83,7 +85,7 @@ namespace Hashira.Players
             mousePos.z = 0;
             _weaponHolderCompo.LookTarget(mousePos);
 
-            _renderCompo.LookTarget(mousePos);
+            _renderCompo.SetUsualFacingTarget(mousePos);
         }
 
         protected override void OnDestroy()

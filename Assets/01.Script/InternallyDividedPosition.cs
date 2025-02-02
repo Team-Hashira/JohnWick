@@ -4,9 +4,9 @@ namespace Hashira
 {
     public class InternallyDividedPosition : MonoBehaviour
     {
-        [SerializeField] private bool _isCreenStartPos;
+        [SerializeField] private bool _isScreenStartPos;
         [SerializeField] private Transform _startPosition;
-        [SerializeField] private bool _isCreenEndPos;
+        [SerializeField] private bool _isScreenEndPos;
         [SerializeField] private Transform _endPosition;
         [Range(0, 1)]
         [SerializeField] private float _amount;
@@ -16,10 +16,10 @@ namespace Hashira
             Vector2 startPos;
             Vector2 endPos;
 
-            if (_isCreenStartPos) startPos = Camera.main.ScreenToWorldPoint(_startPosition.position);
+            if (_isScreenStartPos) startPos = Camera.main.ScreenToWorldPoint(_startPosition.position);
             else startPos = _startPosition.position;
 
-            if (_isCreenEndPos) endPos = Camera.main.ScreenToWorldPoint(_endPosition.position);
+            if (_isScreenEndPos) endPos = Camera.main.ScreenToWorldPoint(_endPosition.position);
             else endPos = _endPosition.position;
 
             transform.position = startPos * (1 - _amount) + endPos * _amount;

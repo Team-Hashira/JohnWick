@@ -1,13 +1,13 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.LatestFSM;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEngine.EventSystems.EventTrigger;
+using UnityEngine;
 
 namespace Hashira.Players
 {
     public class PlayerAirState : EntityState
     {
+        private readonly static int _LandingAnimationHash = Animator.StringToHash("Landing");
         private StatElement _speedStat;
         protected EntityMover _entityMover;
 
@@ -32,6 +32,12 @@ namespace Hashira.Players
 
             if (_entityMover.IsGrounded == true)
                 _entityStateMachine.ChangeState("Idle");
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+            _entityAnimator.SetParam(_LandingAnimationHash);
         }
     }
 }
