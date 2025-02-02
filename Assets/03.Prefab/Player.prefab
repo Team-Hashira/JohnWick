@@ -157,6 +157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1639676724265529031}
   - {fileID: 4079868125284432201}
   - {fileID: 4875200975589246218}
   - {fileID: 8152302228208947013}
@@ -281,6 +282,7 @@ MonoBehaviour:
   <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <LaserRenderer>k__BackingField: {fileID: 6757663179075894244}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
+  <DamageCaster>k__BackingField: {fileID: 0}
   GameEventChannelSO: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1 &1931901565199594802
 GameObject:
@@ -6230,6 +6232,82 @@ MonoBehaviour:
   pushEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &8143986469679495658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1639676724265529031}
+  - component: {fileID: 4866337716626628588}
+  - component: {fileID: 5812519987168116837}
+  m_Layer: 8
+  m_Name: MeleeAttackCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1639676724265529031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143986469679495658}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.131, y: 0.851, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2163975733565134096}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4866337716626628588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143986469679495658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3bd21fc361000479e0b5aa722e462d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excluded: 0
+  allocationCount: 12
+  _whatIsCastable:
+    serializedVersion: 2
+    m_Bits: 3840
+  _usingExcludeCast: 1
+  excludedDamageCasterList:
+  - {fileID: 5812519987168116837}
+  center: {x: 0, y: 0}
+  radius: 1.6
+--- !u!114 &5812519987168116837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143986469679495658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6481a3c94b541ce409c28ab0b2650c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excluded: 1
+  allocationCount: 30
+  _whatIsCastable:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _usingExcludeCast: 0
+  excludedDamageCasterList: []
+  center: {x: -2, y: 0}
+  size: {x: 4, y: 8}
 --- !u!1 &9071142068423302995
 GameObject:
   m_ObjectHideFlags: 0

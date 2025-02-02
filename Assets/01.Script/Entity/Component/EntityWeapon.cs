@@ -50,6 +50,8 @@ namespace Hashira.Entities.Components
 
         private int _oldWeaponIndex;
 
+        [field:SerializeField] public DamageCaster2D DamageCaster { get; private set; }
+
         public int OldWeaponIndex
         {
             get => _oldWeaponIndex;
@@ -191,7 +193,7 @@ namespace Hashira.Entities.Components
             {
                 if (CurrentWeapon == null) return;
                 WeaponIndex = 2;
-                OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
+				OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
             }
             CurrentWeapon?.Attack(damage, isDown);
         }

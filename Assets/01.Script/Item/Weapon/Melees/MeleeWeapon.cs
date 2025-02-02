@@ -23,6 +23,7 @@ namespace Hashira.Items.Weapons
             Sequence seq = DOTween.Sequence();
             seq.AppendCallback(()=>EntityWeapon.transform.localEulerAngles = startRot);
             seq.Append(EntityWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutCubic));
+            seq.JoinCallback(() => EntityWeapon.DamageCaster.CastDamage(damage));
 			seq.AppendInterval(afterDelay);
 			seq.OnComplete(() => AttackEnd());
         }

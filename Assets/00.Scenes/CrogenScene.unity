@@ -265,6 +265,17 @@ MonoBehaviour:
   enableX: 1
   enableY: 1
   enableZ: 0
+--- !u!114 &94480899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866337716626628588, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+  m_PrefabInstance: {fileID: 5457064906219075926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3bd21fc361000479e0b5aa722e462d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &124727383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,9 +1552,17 @@ PrefabInstance:
       value: 0.06274919
       objectReference: {fileID: 0}
     - target: {fileID: 1739164217382512514, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _damageCaster2D
+      value: 
+      objectReference: {fileID: 94480899}
+    - target: {fileID: 1739164217382512514, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: GameEventChannelSO
       value: 
       objectReference: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
+    - target: {fileID: 1739164217382512514, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: <DamageCaster>k__BackingField
+      value: 
+      objectReference: {fileID: 94480899}
     - target: {fileID: 2284118962154491198, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: _endPosition
       value: 
@@ -1600,9 +1619,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4478761898889932558, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 4866337716626628588, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _usingExcludeCast
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4875200975589246218, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1611,6 +1630,10 @@ PrefabInstance:
     - target: {fileID: 4875200975589246218, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5812519987168116837, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: excluded
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6234056162790490572, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalRotation.w
