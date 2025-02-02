@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: PistolWeapon
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: -986481565, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
-  itemSprite: {fileID: -986481565, guid: 953f57f30496bd44f8cb448ed8c5d78a, type: 3}
+  itemIcon: {fileID: 378148045, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemSprite: {fileID: 378148045, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: Pistol
   itemDisplayName: "\uAD8C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC8FC\uBA39 \uCD1D"
@@ -22,9 +22,9 @@ MonoBehaviour:
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
-  <GrapOffset>k__BackingField: {x: 0.623, y: 0.02, z: 0}
-  <RightHandOffset>k__BackingField: {x: -0.221, y: 0.013, z: 0}
-  <LeftHandOffset>k__BackingField: {x: -0.074, y: -0.01, z: 0}
+  <GrapOffset>k__BackingField: {x: 0.585, y: 0.065, z: 0}
+  <RightHandOffset>k__BackingField: {x: 0.35, y: -0.053, z: 0}
+  <LeftHandOffset>k__BackingField: {x: -0.014, y: -0.049, z: 0}
   <GrapRotate>k__BackingField: 0
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
@@ -43,13 +43,12 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
     _baseValue: 10
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  firePoint: {x: 0.292, y: 0.125, z: 0}
-  cartridgeCaseParticlePoint: {x: -0.093, y: 0.125, z: 0}
+  firePoint: {x: 0.28, y: 0.022, z: 0}
+  cartridgeCaseParticlePoint: {x: -0.083, y: 0.082, z: 0}
   bullet: 0
   fireSpakleEffect: 1
   bulletSpeed: 200
   reloadDuration: 1
-  <MaxBulletAmount>k__BackingField: 10
   partsEquipPosDict:
     _serializedList:
     - Key: 0

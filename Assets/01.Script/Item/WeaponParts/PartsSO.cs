@@ -14,7 +14,7 @@ public enum EWeaponPartsType
     Magazine,           //탄창
     CartridgeBelt,      //탄띠
     Stock,              //개머리판
-    Side,               //사이드
+    Side,               //사이드 
 }
 
 namespace Hashira.Items.PartsSystem

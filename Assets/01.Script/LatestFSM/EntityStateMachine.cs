@@ -18,6 +18,7 @@ namespace Hashira.LatestFSM
         private Dictionary<string, object> _shareVariableDict;
 
         public EntityState CurrentState { get; private set; }
+        public string CurrentStateName { get; private set; }
 
         public void Initialize(Entity entity)
         {
@@ -38,6 +39,7 @@ namespace Hashira.LatestFSM
             {
                 CurrentState?.OnExit();
                 CurrentState = entityState;
+                CurrentStateName = newState;
                 CurrentState.OnEnter();
             }
             else

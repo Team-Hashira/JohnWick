@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0f9ec8e00339847bd80442a3810075, type: 3}
-  m_Name: DashState
+  m_Name: RollingState
   m_EditorClassIdentifier: 
-  stateName: Dash
+  stateName: Rolling
   animatorParam: {fileID: 11400000, guid: 3ae3f7448c9cb4a49ab742f24230210e, type: 2}

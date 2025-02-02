@@ -25,12 +25,6 @@ MonoBehaviour:
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
     _baseValue: 10
-  - Name: Critical
-    elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
-    _baseValue: 0
-  - Name: CriticalDamage
-    elementSO: {fileID: 11400000, guid: 9bc29b520cc3efa4d8516ac876e5072c, type: 2}
-    _baseValue: 100
   - Name: JumpCount
     elementSO: {fileID: 11400000, guid: 32eebfd8fac02bb4e874d31eb75a797c, type: 2}
     _baseValue: 1

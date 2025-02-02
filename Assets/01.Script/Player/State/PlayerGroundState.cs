@@ -1,11 +1,13 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.LatestFSM;
+using UnityEngine;
 
 namespace Hashira.Players
 {
     public class PlayerGroundState : EntityState
     {
+        private readonly static int _JumpingAnimationHash = Animator.StringToHash("Jumping");
         protected EntityMover _entityMover;
         protected StatElement _jumpStat;
         protected Player _player;
@@ -48,7 +50,10 @@ namespace Hashira.Players
             base.OnUpdate();
 
             if (_entityMover.IsGrounded == false)
+            {
                 _entityStateMachine.ChangeState("Air");
+                _entityAnimator.SetParam(_JumpingAnimationHash);
+            }
         }
 
         public override void OnExit()
