@@ -67,7 +67,8 @@ namespace Hashira.Combat
 		{
 			if (collision.CompareTag("Player"))
 			{
-				CameraManager.Instance.ChangeCamera(_cam);
+				CameraManager.Instance?.ChangeCamera(_cam);
+				CameraManager.Instance?.ShakeCamera(0, 0, 0);
 				if(_enemyCount > 0)
 					StartBattle();
 			}
@@ -76,7 +77,10 @@ namespace Hashira.Combat
 		private void OnTriggerExit2D(Collider2D collision)
 		{
 			if (collision.CompareTag("Player"))
-				CameraManager.Instance.ChangeCamera("Player");
+			{
+				CameraManager.Instance?.ChangeCamera("Player");
+				CameraManager.Instance?.ShakeCamera(0, 0, 0);
+			}
 		}
 	}
 }
