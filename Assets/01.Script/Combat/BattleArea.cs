@@ -14,7 +14,6 @@ namespace Hashira.Combat
 
 		[SerializeField] private List<EntityHealth> _entityList;
 		private int _enemyCount = 0;
-		private PolygonCollider2D _collider;
 
 		private CinemachineCamera _cam;
 
@@ -31,6 +30,17 @@ namespace Hashira.Combat
 			_enemyCount = _entityList.Count;
 			foreach (var entity in _entityList)
 				entity.OnDieEvent += HandleCounting;
+		}
+
+		private void OnValidate()
+		{
+			PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
+
+			Transform r = transform.Find("R");
+			Transform l = transform.Find("L");
+
+			r.transform.localPosition = new Vector3(polygonCollider.GetPath(0)[0].x+0.5f, 0, 0);
+			l.transform.localPosition = new Vector3(polygonCollider.GetPath(0)[1].x-0.5f, 0, 0);
 		}
 
 		public void StartBattle()
@@ -56,7 +66,7 @@ namespace Hashira.Combat
 			if (collision.CompareTag("Player"))
 			{
 				CameraManager.Instance.ChangeCamera(_cam);
-				if(_entityList.Count > 0)
+				if(_enemyCount > 0)
 					StartBattle();
 			}
 		}

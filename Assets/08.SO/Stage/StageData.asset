@@ -22,6 +22,7 @@ MonoBehaviour:
     - {fileID: 3925408751688574332, guid: 199426addd0aa2e4da3ba3df47738a95, type: 3}
   - stagePices:
     - {fileID: 4290700035163809619, guid: 34a304abaf5f84d49a0566a0812fe05f, type: 3}
+    - {fileID: 4290700035163809619, guid: 420780b00518d4b4c9b37527db39ee14, type: 3}
   - stagePices:
     - {fileID: 4290700035163809619, guid: 54dfdfcc89b6e7647b0ec3ad65c3b065, type: 3}
   - stagePices:
