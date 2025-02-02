@@ -6242,7 +6242,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1639676724265529031}
   - component: {fileID: 4866337716626628588}
-  - component: {fileID: 5812519987168116837}
   m_Layer: 8
   m_Name: MeleeAttackCaster
   m_TagString: Untagged
@@ -6282,32 +6281,10 @@ MonoBehaviour:
   _whatIsCastable:
     serializedVersion: 2
     m_Bits: 3840
-  _usingExcludeCast: 1
-  excludedDamageCasterList:
-  - {fileID: 5812519987168116837}
-  center: {x: 0, y: 0}
-  radius: 1.6
---- !u!114 &5812519987168116837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8143986469679495658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6481a3c94b541ce409c28ab0b2650c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  excluded: 1
-  allocationCount: 30
-  _whatIsCastable:
-    serializedVersion: 2
-    m_Bits: 4294967295
   _usingExcludeCast: 0
   excludedDamageCasterList: []
-  center: {x: -2, y: 0}
-  size: {x: 4, y: 8}
+  center: {x: 0, y: 0}
+  radius: 1.6
 --- !u!1 &9071142068423302995
 GameObject:
   m_ObjectHideFlags: 0
