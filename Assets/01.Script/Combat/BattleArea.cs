@@ -2,6 +2,7 @@ using Hashira.Entities;
 using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -31,20 +32,24 @@ namespace Hashira.Combat
 			foreach (var entity in _entityList)
 				entity.OnDieEvent += HandleCounting;
 		}
-
-		private void OnValidate()
+#if UNITY_EDITOR
+		private void OnDrawGizmosSelected()
 		{
 			PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
 
 			Transform r = transform.Find("R");
 			Transform l = transform.Find("L");
 
-			if (r != null)
-				r.localPosition = new Vector3(polygonCollider.GetPath(0)[0].x+0.5f, 0, 0);
-			if (l != null) 
-				l.localPosition = new Vector3(polygonCollider.GetPath(0)[1].x-0.5f, 0, 0);
-		}
+			var colls = GetComponentsInChildren<BoxCollider2D>();
+			foreach (var coll in colls)
+				coll.size = new Vector2(1f, polygonCollider.GetPath(0)[0].y*2);
 
+			if (r != null)
+				r.localPosition = new Vector3(polygonCollider.GetPath(0)[0].x + 0.5f, 0, 0);
+			if (l != null)
+				l.localPosition = new Vector3(polygonCollider.GetPath(0)[1].x - 0.5f, 0, 0);
+		}
+#endif
 		public void StartBattle()
 		{
 			BattleStartEvent?.Invoke();
