@@ -58,7 +58,6 @@ namespace Hashira.Combat
 		private void HandleCounting()
 		{
 			--_enemyCount;
-			Debug.Log("Á×¾ú´Ù´Ï±î?");
 			if(_enemyCount <= 0)
 				EndBattle();
 		}

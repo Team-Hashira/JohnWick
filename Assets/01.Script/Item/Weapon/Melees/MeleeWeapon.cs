@@ -20,7 +20,10 @@ namespace Hashira.Items.Weapons
             float duration = MeleeSO.AttackDuration;
             float afterDelay = MeleeSO.AttackAfterDelay;
 
-            Sequence seq = DOTween.Sequence();
+			(EntityWeapon.DamageCaster as BoxDamageCaster2D).size = MeleeSO.AttackRangeSize;
+			(EntityWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
+
+			Sequence seq = DOTween.Sequence();
             seq.AppendCallback(()=>EntityWeapon.transform.localEulerAngles = startRot);
             seq.Append(EntityWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutCubic));
             seq.JoinCallback(() => EntityWeapon.DamageCaster.CastDamage(damage));

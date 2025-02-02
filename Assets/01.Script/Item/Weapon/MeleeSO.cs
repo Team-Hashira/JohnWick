@@ -6,7 +6,8 @@ namespace Hashira.Items.Weapons
     [CreateAssetMenu(fileName = "MeleeSO", menuName = "SO/Weapon/Melee")]
     public class MeleeSO : WeaponSO
     {
-        [field:SerializeField] public Vector2 AttackRange { get; private set; }
+        [field:SerializeField] public Vector2 AttackRangeOffset { get; private set; }
+        [field: SerializeField] public Vector2 AttackRangeSize { get; private set; } = Vector2.one;
         [field:SerializeField] public float AttackDuration { get; private set; }
         [field:SerializeField] public float AttackAfterDelay { get; private set; }
         [field:SerializeField] public float RotateMax { get; private set; }
