@@ -19,13 +19,11 @@ namespace Hashira.Players
         {
             base.OnEnter();
             _entityMover.StopImmediately();
-            _player.VisualTrm.localScale = new Vector3(1f, 0.8f, 1f);
         }
 
         public override void OnExit()
         {
             base.OnExit();
-            _player.VisualTrm.localScale = new Vector3(1f, 1f, 1f);
         }
 
         protected override void HandleJumpEvent()

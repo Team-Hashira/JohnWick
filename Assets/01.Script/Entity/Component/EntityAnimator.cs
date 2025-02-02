@@ -4,22 +4,34 @@ using Hashira.Players;
 using System;
 using UnityEngine;
 using UnityEngine.U2D.IK;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 namespace Hashira.Entities.Components
 {
+    public enum EAnimationTriggerType
+    {
+        Start,
+        Trigger,
+        End,
+    }
+
     [RequireComponent(typeof(Animator))]
     public class EntityAnimator : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDisposable
     {
         [field: SerializeField] public Animator Animator { get; private set; }
         [SerializeField] private AnimatorParamSO _moveDirParamSO;
+        [SerializeField] private AnimatorParamSO _yVelocityParamSO;
         [SerializeField] private LimbSolver2D _rightHandSolver;
         [SerializeField] private LimbSolver2D _leftHandSolver;
-        [SerializeField] private IKManager2D _ikManager;
 
         private Entity _entity;
         private EntityMover _mover;
         private EntityRenderer _renderer;
         private EntityWeapon _weapon;
+
+        private Dictionary<EAnimationTriggerType, int> _triggerDictionary = new();
+        public event Action<EAnimationTriggerType, int> OnAnimationTriggeredEvent;
 
         public void Initialize(Entity entity)
         {
@@ -53,12 +65,25 @@ namespace Hashira.Entities.Components
             }
         }
 
+        private void AnimationTrigger(EAnimationTriggerType eAnimationTriggerType)
+        {
+            if (_triggerDictionary.ContainsKey(eAnimationTriggerType))
+                _triggerDictionary[eAnimationTriggerType]++;
+            else
+                _triggerDictionary[eAnimationTriggerType] = 1;
+            OnAnimationTriggeredEvent?.Invoke(eAnimationTriggerType, _triggerDictionary[eAnimationTriggerType]);
+        }
+
+        public void ClearAnimationTriggerDictionary()
+            => _triggerDictionary.Clear();
+
         private void Update()
         {
             if (_mover != null && _renderer != null)
             {
-                float moveDir = Mathf.Sign(_mover.Velocity.x) * _renderer.FacingDirection;
-                SetParam(_moveDirParamSO, moveDir);
+                float xVelocity = Mathf.Sign(_mover.Velocity.x) * _renderer.FacingDirection;
+                SetParam(_moveDirParamSO, xVelocity);
+                SetParam(_yVelocityParamSO, _mover.Velocity.y);
             }
         }
         public void Dispose()
@@ -67,6 +92,11 @@ namespace Hashira.Entities.Components
         }
 
         #region Param Funcs
+        public void SetParam(int hash, float value) => Animator.SetFloat(hash, value);
+        public void SetParam(int hash, int value) => Animator.SetInteger(hash, value);
+        public void SetParam(int hash, bool value) => Animator.SetBool(hash, value);
+        public void SetParam(int hash) => Animator.SetTrigger(hash);
+
         public void SetParam(AnimatorParamSO param, float value) => Animator.SetFloat(param.hash, value);
         public void SetParam(AnimatorParamSO param, int value) => Animator.SetInteger(param.hash, value);
         public void SetParam(AnimatorParamSO param, bool value) => Animator.SetBool(param.hash, value);
