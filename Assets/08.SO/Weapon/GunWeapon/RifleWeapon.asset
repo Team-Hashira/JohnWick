@@ -67,7 +67,7 @@ MonoBehaviour:
     - Key: 1
       Value: {x: 0, y: 2}
     - Key: 2
-      Value: {x: 4, y: -2}
+      Value: {x: 3, y: -2}
     - Key: 3
       Value: {x: -2, y: -2}
     - Key: 5
