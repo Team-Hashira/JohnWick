@@ -8,7 +8,7 @@ namespace Hashira.Items.PartsSystem
 {
     public class PartsRenderer : MonoBehaviour
     {
-        [SerializeField] private SerializedDictionary<EWeaponPartsType, SpriteRenderer> _partsSpriteDictionary = new();
+        [field: SerializeField] public SerializedDictionary<EWeaponPartsType, SpriteRenderer> PartsSpriteDictionary { get; private set; } = new();
         [SerializeField] private int _pixelPerUnit = 16;
 
         private GunWeapon _currentWeapon;
@@ -24,19 +24,19 @@ namespace Hashira.Items.PartsSystem
 
             foreach (EWeaponPartsType partsType in Enum.GetValues(typeof(EWeaponPartsType)))
             {
-                _partsSpriteDictionary[partsType].sprite 
+                PartsSpriteDictionary[partsType].sprite 
                     = gun?.GetParts(partsType)?.WeaponPartsSO.partsSpriteDictionary[gun.GunSO];
                 if (gun != null && gun.GunSO.partsEquipPosDict.TryGetValue(partsType, out Vector2Int pos))
                 {
                     Vector2 partsPosition = pos;
-                    _partsSpriteDictionary[partsType].transform.localPosition = partsPosition / _pixelPerUnit;
+                    PartsSpriteDictionary[partsType].transform.localPosition = partsPosition / _pixelPerUnit;
                 }
             }
         }
 
         private void HandlePartsChangedEvnet(EWeaponPartsType type, WeaponParts parts)
         {
-            _partsSpriteDictionary[type].sprite = parts?.WeaponPartsSO.partsSpriteDictionary[_currentWeapon.GunSO];
+            PartsSpriteDictionary[type].sprite = parts?.WeaponPartsSO.partsSpriteDictionary[_currentWeapon.GunSO];
         }
     }
 }

@@ -55,4 +55,4 @@ MonoBehaviour:
   partsEquipPosDict:
     _serializedList:
     - Key: 4
-      Value: {x: -9, y: 0}
+      Value: {x: -9, y: 1}

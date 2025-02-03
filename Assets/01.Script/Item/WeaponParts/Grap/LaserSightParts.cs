@@ -23,7 +23,7 @@ namespace Hashira.Items.PartsSystem
             _weaponVisual = _entityWeapon.VisualTrm;
             _lineRenderer = _entityWeapon.LaserRenderer;
 
-            _laserOffset = weapon.GunSO.partsEquipUIPosDict[EWeaponPartsType.Grip] / (1080 / 10 * 2); // (y해상도) / (카메라 y길이)
+            _laserOffset = transform.localPosition - Vector3.up * 0.0315f;
 
             _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             HandleCurrentWeaponChangedEvent(_entityWeapon.CurrentWeapon);
@@ -35,15 +35,14 @@ namespace Hashira.Items.PartsSystem
             bool isHaveLaser = weapon != null && weapon is GunWeapon gunWeapon && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
 
             _lineRenderer.enabled = isOn || isHaveLaser;
-            if (isOn)
-                _lineRenderer.SetPosition(0, _laserOffset);
+            _lineRenderer.transform.localPosition = _laserOffset;
         }
 
         public override void PartsUpdate()
         {
             base.PartsUpdate();
             RaycastHit2D hit;
-            if (hit = Physics2D.Raycast(_weaponVisual.position + _weaponVisual.rotation * _laserOffset, _weaponVisual.right, 100, _WhatIsObstacle))
+            if (hit = Physics2D.Raycast(_lineRenderer.transform.position, _lineRenderer.transform.right, 100, _WhatIsObstacle))
                 _lineRenderer.SetPosition(1, Vector3.right * hit.distance);
             else
                 _lineRenderer.SetPosition(1, Vector3.right * 100);
