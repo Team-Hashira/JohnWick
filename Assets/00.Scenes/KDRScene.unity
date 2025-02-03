@@ -826,6 +826,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: lengthInSec
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: InitialModule.startRotationY.scalar
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

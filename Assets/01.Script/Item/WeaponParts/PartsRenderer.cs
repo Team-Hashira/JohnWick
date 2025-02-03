@@ -2,7 +2,6 @@ using AYellowpaper.SerializedCollections;
 using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 namespace Hashira.Items.PartsSystem
 {
@@ -24,7 +23,7 @@ namespace Hashira.Items.PartsSystem
 
             foreach (EWeaponPartsType partsType in Enum.GetValues(typeof(EWeaponPartsType)))
             {
-                PartsSpriteDictionary[partsType].sprite 
+                PartsSpriteDictionary[partsType].sprite
                     = gun?.GetParts(partsType)?.WeaponPartsSO.partsSpriteDictionary[gun.GunSO];
                 if (gun != null && gun.GunSO.partsEquipPosDict.TryGetValue(partsType, out Vector2Int pos))
                 {
