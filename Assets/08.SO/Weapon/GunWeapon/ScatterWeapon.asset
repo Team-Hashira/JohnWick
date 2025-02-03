@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: ScatterWeapon
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: -3398881287316399055, guid: b141040168b445a468e1af2a3643043c, type: 3}
-  itemSprite: {fileID: -3398881287316399055, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemDefaultSprite: {fileID: -3398881287316399055, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: Scatter
   itemDisplayName: "\uC0B0\uD0C4\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uBFCC\uB9AC\uB294 \uCD1D"
@@ -22,9 +21,9 @@ MonoBehaviour:
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
-  <GrapOffset>k__BackingField: {x: 0.584, y: 0.072, z: 0}
-  <RightHandOffset>k__BackingField: {x: 0.35, y: -0.053, z: 0}
-  <LeftHandOffset>k__BackingField: {x: 0.194, y: -0.064, z: 0}
+  <GrapOffset>k__BackingField: {x: 0.616, y: 0.028, z: 0}
+  <RightHandOffset>k__BackingField: {x: -0.117, y: -0.053, z: 0}
+  <LeftHandOffset>k__BackingField: {x: 0.154, y: -0.062, z: 0}
   <GrapRotate>k__BackingField: 0
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
@@ -43,17 +42,17 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
     _baseValue: 5
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  firePoint: {x: 0.656, y: 0.017, z: 0}
-  cartridgeCaseParticlePoint: {x: -0.092, y: 0.09, z: 0}
+  firePoint: {x: 0.62, y: 0.042, z: 0}
+  cartridgeCaseParticlePoint: {x: -0.101, y: 0.112, z: 0}
   bullet: 0
   fireSpakleEffect: 1
   bulletSpeed: 200
   reloadDuration: 1
+  partsEquipUIPosDict:
+    _serializedList:
+    - Key: 4
+      Value: {x: -86, y: 17}
   partsEquipPosDict:
     _serializedList:
     - Key: 4
-      Value: {x: -86.1, y: 17.9}
-    - Key: 1
-      Value: {x: 0, y: 48.8}
-    - Key: 2
-      Value: {x: -51.01, y: -46.27}
+      Value: {x: -9, y: 0}

@@ -23,7 +23,7 @@ namespace Hashira.Items.PartsSystem
             _weaponVisual = _entityWeapon.VisualTrm;
             _lineRenderer = _entityWeapon.LaserRenderer;
 
-            _laserOffset = weapon.GunSO.partsEquipPosDict[EWeaponPartsType.Grip] / (1080 / 10 * 2); // (y해상도) / (카메라 y길이)
+            _laserOffset = weapon.GunSO.partsEquipUIPosDict[EWeaponPartsType.Grip] / (1080 / 10 * 2); // (y해상도) / (카메라 y길이)
 
             _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             HandleCurrentWeaponChangedEvent(_entityWeapon.CurrentWeapon);

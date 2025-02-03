@@ -34,7 +34,7 @@ namespace Hashira.UI.StatusWindow
             // 새로 추가
             if (GunWeapon != null)
             {
-                foreach (var posPair in GunWeapon.GunSO.partsEquipPosDict)
+                foreach (var posPair in GunWeapon.GunSO.partsEquipUIPosDict)
                 {
                     var partSlot = AddPartSlot(posPair.Key, posPair.Value);
                     partSlot.Init(this, GunWeapon.GetParts(posPair.Key));

@@ -148,7 +148,7 @@ namespace Hashira.Items.Weapons
         {
             GunSO = WeaponSO as GunSO;
             _partsSlotDictionary.Clear();
-            foreach (EWeaponPartsType partsType in GunSO.partsEquipPosDict.Keys)
+            foreach (EWeaponPartsType partsType in GunSO.partsEquipUIPosDict.Keys)
             {
                 _partsSlotDictionary.Add(partsType, null);
             }
