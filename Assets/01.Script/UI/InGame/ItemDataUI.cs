@@ -17,7 +17,7 @@ namespace Hashira.UI.InGame
 
         public void SetItem(Item item, IStatable statComparisonTarget = null)
         {
-            _iconSprite.sprite = item.ItemSO.itemSprite;
+            _iconSprite.sprite = item.ItemSO.itemDefaultSprite;
             _itemNameText.text = item.ItemSO.itemDisplayName;
             _itemDescriptionText.text = item.ItemSO.itemDescription;
 

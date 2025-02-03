@@ -9,8 +9,7 @@ namespace Hashira.Items
     public abstract class ItemSO : ScriptableObject
     {
         [Header("==========Item setting==========")]
-        public Sprite itemIcon;
-        public Sprite itemSprite;
+        public Sprite itemDefaultSprite;
         [Tooltip("영어명")]
         public string itemName;
         [Tooltip("한글명")]

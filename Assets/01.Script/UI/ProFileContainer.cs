@@ -72,7 +72,7 @@ namespace Hashira.UI
             }
             else
             {
-                _weaponIconImage.sprite = weapon.WeaponSO.itemSprite;
+                _weaponIconImage.sprite = weapon.WeaponSO.itemDefaultSprite;
                 _weaponIconImage.color = Color.white;
             }
         }

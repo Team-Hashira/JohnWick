@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3cd03ed6644c944bc37d6e861e009c, type: 3}
   m_Name: BatWeapon
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 8647823593821616703, guid: 5b189a418187cec48abac989460b6982, type: 3}
-  itemSprite: {fileID: 8647823593821616703, guid: 5b189a418187cec48abac989460b6982, type: 3}
+  itemDefaultSprite: {fileID: 8647823593821616703, guid: 5b189a418187cec48abac989460b6982, type: 3}
   itemName: Bat
   itemDisplayName: "\uC57C\uAD6C \uB9DD\uBC29\uC774"
   itemDescription: "\uD06C\uACE0 \uD0D0\uC2A4\uB7FD\uB2E4"
@@ -26,13 +25,11 @@ MonoBehaviour:
   <RightHandOffset>k__BackingField: {x: -0.355, y: -0.315, z: 0}
   <LeftHandOffset>k__BackingField: {x: -0.045, y: -0.182, z: 0}
   <GrapRotate>k__BackingField: 0
-  partsEquipPosDict:
-    _serializedList: []
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 10
-  - Name: "\uCE58\uBA85\uD0C0 \uD655\uB960"
+  - Name: 
     elementSO: {fileID: 11400000, guid: 039bf9bc77204e142bd89bf588065561, type: 2}
     _baseValue: 30
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
