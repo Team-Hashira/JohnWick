@@ -51,6 +51,7 @@ namespace Hashira.Items.PartsSystem
         public override void UnEquip()
         {
             base.UnEquip();
+            if (_entityWeapon.CurrentWeapon == _weapon) _lineRenderer.enabled = false;
             _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
         }
     }
