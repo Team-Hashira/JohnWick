@@ -21,6 +21,7 @@ namespace Hashira.LatestFSM
 
         public virtual void OnEnter()
         {
+            _entityAnimator?.ClearAnimationTriggerDictionary();
             _entityAnimator?.SetParam(_stateSO.animatorParam, true);
         }
 

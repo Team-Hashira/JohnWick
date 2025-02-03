@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 953f57f30496bd44f8cb448ed8c5d78a
+guid: 5f631199911c0414288d848472f1a0d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1588940423964161631
-    second: gUN-Sheet_0
+      213: 13809136698538432
+    second: Grand_M_Hand-Sheet_0
   - first:
-      213: -3779084370785710850
-    second: gUN-Sheet_1
+      213: 121404464437307032
+    second: Grand_M_Hand-Sheet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -27,7 +27,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gUN-Sheet_0
+      name: Grand_M_Hand-Sheet_Old_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 31
-        height: 16
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,42 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aad16dccc69a68f49b7a7a884c9b4e09
-      internalID: 1588940423964161631
+      spriteID: 0e6a64ccea14dfd4aaf344188753c11d
+      internalID: -931678124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gUN-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 24
-        width: 7
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6dddaec8a00a16142a3d6957a172315c
-      internalID: 840248325
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gUN-Sheet_4
+      name: Grand_M_Hand-Sheet_Old_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,52 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af4557617d55f24479614a5a76a8289d
-      internalID: -986481565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gUN-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 10
-        width: 6
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cf34eb33cdd71c46a0a33f0cb916dc5
-      internalID: 1146665500
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: gUN-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 8
-        width: 8
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22dd7007a2f725e42926ce759cd48df8
-      internalID: -2088847164
+      spriteID: 1699fa4b1a4a778459d852a01737e28d
+      internalID: 457048772
       vertices: []
       indices: 
       edges: []
@@ -229,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 642138024b654bf4c9820a2bc037bf42
+    spriteID: e85732d29bf78264c91db5ac94aa9cc0
     internalID: 0
     vertices: []
     indices: 
@@ -239,14 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gUN-Sheet_0: 1588940423964161631
-      gUN-Sheet_1: -1335755398
-      gUN-Sheet_2: -2040163224
-      gUN-Sheet_3: 840248325
-      gUN-Sheet_4: -986481565
-      gUN-Sheet_5: 1146665500
-      gUN-Sheet_6: -2088847164
-      gUN-Sheet_7: -156656507
+      Grand_M_Hand-Sheet_Old_0: -931678124
+      Grand_M_Hand-Sheet_Old_1: 457048772
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

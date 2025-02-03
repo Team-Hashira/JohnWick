@@ -1,7 +1,6 @@
 using DG.Tweening;
 using Hashira.Entities.Components;
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
@@ -12,23 +11,22 @@ namespace Hashira.Items.Weapons
         
         public event Action<int> OnAttackEvent;
         
-        private void HandleDamageSuccessEvent()
-        {
-            CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
-        }
-
 		public override void Attack(int damage, bool isDown)
         {
             base.Attack(damage, isDown);
-
-            Vector3 startRot = Vector3.forward * MeleeSO.RotateMax;
+			CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
+			Vector3 startRot = Vector3.forward * MeleeSO.RotateMax;
 			Vector3 endRot = Vector3.forward * MeleeSO.RotateMin;
             float duration = MeleeSO.AttackDuration;
             float afterDelay = MeleeSO.AttackAfterDelay;
 
-            Sequence seq = DOTween.Sequence();
+			(EntityWeapon.DamageCaster as BoxDamageCaster2D).size = MeleeSO.AttackRangeSize;
+			(EntityWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
+
+			Sequence seq = DOTween.Sequence();
             seq.AppendCallback(()=>EntityWeapon.transform.localEulerAngles = startRot);
             seq.Append(EntityWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutCubic));
+            seq.JoinCallback(() => EntityWeapon.DamageCaster.CastDamage(damage));
 			seq.AppendInterval(afterDelay);
 			seq.OnComplete(() => AttackEnd());
         }

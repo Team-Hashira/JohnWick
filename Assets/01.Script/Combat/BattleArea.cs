@@ -2,6 +2,7 @@ using Hashira.Entities;
 using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,6 @@ namespace Hashira.Combat
 
 		[SerializeField] private List<EntityHealth> _entityList;
 		private int _enemyCount = 0;
-		private PolygonCollider2D _collider;
 
 		private CinemachineCamera _cam;
 
@@ -32,7 +32,24 @@ namespace Hashira.Combat
 			foreach (var entity in _entityList)
 				entity.OnDieEvent += HandleCounting;
 		}
+#if UNITY_EDITOR
+		private void OnDrawGizmosSelected()
+		{
+			PolygonCollider2D polygonCollider = GetComponent<PolygonCollider2D>();
 
+			Transform r = transform.Find("R");
+			Transform l = transform.Find("L");
+
+			var colls = GetComponentsInChildren<BoxCollider2D>();
+			foreach (var coll in colls)
+				coll.size = new Vector2(1f, polygonCollider.GetPath(0)[0].y*2);
+
+			if (r != null)
+				r.localPosition = new Vector3(polygonCollider.GetPath(0)[0].x + 0.5f, 0, 0);
+			if (l != null)
+				l.localPosition = new Vector3(polygonCollider.GetPath(0)[1].x - 0.5f, 0, 0);
+		}
+#endif
 		public void StartBattle()
 		{
 			BattleStartEvent?.Invoke();
@@ -41,7 +58,6 @@ namespace Hashira.Combat
 		private void HandleCounting()
 		{
 			--_enemyCount;
-			Debug.Log("Á×¾ú´Ù´Ï±î?");
 			if(_enemyCount <= 0)
 				EndBattle();
 		}
@@ -55,8 +71,9 @@ namespace Hashira.Combat
 		{
 			if (collision.CompareTag("Player"))
 			{
-				CameraManager.Instance.ChangeCamera(_cam);
-				if(_entityList.Count > 0)
+				CameraManager.Instance?.ChangeCamera(_cam);
+				CameraManager.Instance?.ShakeCamera(0, 0, 0);
+				if(_enemyCount > 0)
 					StartBattle();
 			}
 		}
@@ -64,7 +81,10 @@ namespace Hashira.Combat
 		private void OnTriggerExit2D(Collider2D collision)
 		{
 			if (collision.CompareTag("Player"))
-				CameraManager.Instance.ChangeCamera("Player");
+			{
+				CameraManager.Instance?.ChangeCamera("Player");
+				CameraManager.Instance?.ShakeCamera(0, 0, 0);
+			}
 		}
 	}
 }
