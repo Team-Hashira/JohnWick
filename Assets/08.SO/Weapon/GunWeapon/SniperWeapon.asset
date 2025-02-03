@@ -51,15 +51,15 @@ MonoBehaviour:
   partsEquipUIPosDict:
     _serializedList:
     - Key: 0
-      Value: {x: 99, y: 0}
+      Value: {x: 138.8, y: 0}
     - Key: 1
-      Value: {x: 0, y: 48}
+      Value: {x: 0, y: 73}
     - Key: 2
-      Value: {x: -51, y: -46}
+      Value: {x: -129.7, y: -71.3}
     - Key: 3
-      Value: {x: 26, y: -46}
+      Value: {x: -42.4, y: -71.3}
     - Key: 4
-      Value: {x: 8.46, y: -17.3}
+      Value: {x: -109.4, y: 38.6}
   partsEquipPosDict:
     _serializedList:
     - Key: 0

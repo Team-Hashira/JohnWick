@@ -51,7 +51,7 @@ MonoBehaviour:
   partsEquipUIPosDict:
     _serializedList:
     - Key: 4
-      Value: {x: -86, y: 17}
+      Value: {x: -138.8, y: 0}
   partsEquipPosDict:
     _serializedList:
     - Key: 4
