@@ -27,7 +27,7 @@ namespace Hashira.UI.StatusWindow
 
         public void Init(PartSlot partSlot)
         {
-            _image.sprite = partSlot.BasePart?.WeaponPartsSO.itemSprite;
+            _image.sprite = partSlot.BasePart?.WeaponPartsSO.itemDefaultSprite;
             _image.color = partSlot.BasePart != null ? Color.white : Color.clear;  
             Parent = partSlot;
         }
