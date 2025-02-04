@@ -18,9 +18,7 @@ namespace Hashira.Players
 		{
 			base.OnUpdate();
 			if(_entityHealth.IsKnockback == false)
-			{
 				_entityStateMachine.ChangeState("Idle");
-			}
 		}
 	}
 }

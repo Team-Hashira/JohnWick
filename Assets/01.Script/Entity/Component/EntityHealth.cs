@@ -113,18 +113,12 @@ namespace Hashira.Entities
             }
 		}
 
-        [Button]
-        public void KnockbackDebug()
-        {
-            OnKnockback(Vector2.right, 50);
-		}
-
 		public void OnKnockback(Vector2 hitDir, int damage)
         {
-            IsKnockback = true;
             _entityMover.StopImmediately(); 
 			_knockbackDirectionX = Mathf.Sign(-hitDir.x) * (damage / 10 / _entityMover.Rigidbody2D.mass);
 			_entityStateMachine.ChangeState("Hit");
+            IsKnockback = true;
 		}
 	}
 }
