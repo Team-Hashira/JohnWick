@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hashira.Combat
+namespace Hashira.Stage
 {
     public class BattleArea : MonoBehaviour
     {
