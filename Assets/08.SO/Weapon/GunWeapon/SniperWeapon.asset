@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: SniperWeapon
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
   itemDefaultSprite: {fileID: 1529148789356908722, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: Sniper
   itemDisplayName: "\uC800\uACA9\uCD1D"
@@ -63,12 +64,12 @@ MonoBehaviour:
   partsEquipPosDict:
     _serializedList:
     - Key: 0
-      Value: {x: 19, y: 2}
+      Value: {x: 22, y: 0}
     - Key: 1
-      Value: {x: 0, y: 3}
+      Value: {x: -2, y: 1}
     - Key: 2
-      Value: {x: 4, y: 0}
+      Value: {x: 3, y: -2}
     - Key: 3
-      Value: {x: -3, y: -1}
+      Value: {x: -3, y: -3}
     - Key: 4
-      Value: {x: 0, y: 1}
+      Value: {x: -1, y: -1}

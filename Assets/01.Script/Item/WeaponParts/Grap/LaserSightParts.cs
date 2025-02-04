@@ -14,7 +14,6 @@ namespace Hashira.Items.PartsSystem
         private LineRenderer _lineRenderer;
         private EntityWeapon _entityWeapon;
         private Transform _weaponVisual;
-        private Vector3 _laserOffset;
 
         public override void Equip(GunWeapon weapon)
         {
@@ -22,8 +21,6 @@ namespace Hashira.Items.PartsSystem
             _entityWeapon = weapon.EntityWeapon;
             _weaponVisual = _entityWeapon.VisualTrm;
             _lineRenderer = _entityWeapon.LaserRenderer;
-
-            _laserOffset = transform.localPosition - Vector3.up * 0.0315f;
 
             _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             HandleCurrentWeaponChangedEvent(_entityWeapon.CurrentWeapon);
@@ -34,8 +31,11 @@ namespace Hashira.Items.PartsSystem
             bool isOn = weapon == _weapon;
             bool isHaveLaser = weapon != null && weapon is GunWeapon gunWeapon && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
 
+            Debug.Log(isOn);
+            if (weapon is GunWeapon gunWeapon1)
+                Debug.Log(gunWeapon1.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO.name);
+
             _lineRenderer.enabled = isOn || isHaveLaser;
-            _lineRenderer.transform.localPosition = _laserOffset;
         }
 
         public override void PartsUpdate()

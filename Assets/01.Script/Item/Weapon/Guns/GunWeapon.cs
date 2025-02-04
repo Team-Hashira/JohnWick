@@ -61,7 +61,7 @@ namespace Hashira.Items.Weapons
             BulletAmount--;
 
             //Soundgenerate
-            bool isEquipedSoundSuppressor = _partsSlotDictionary[EWeaponPartsType.Muzzle]?.WeaponPartsSO.itemName == "SoundSuppressor";
+            bool isEquipedSoundSuppressor = _partsSlotDictionary.TryGetValue(EWeaponPartsType.Muzzle, out WeaponParts weaponParts) && weaponParts != null && weaponParts.WeaponPartsSO.itemName == "SoundSuppressor";
             if (isEquipedSoundSuppressor == false)
             {
                 SoundGeneratedEvent soundGenerated = SoundEvents.SoundGeneratedEvent;

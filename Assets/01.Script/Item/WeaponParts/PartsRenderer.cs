@@ -14,7 +14,6 @@ namespace Hashira.Items.PartsSystem
 
         public void SetGun(GunWeapon gun)
         {
-            Debug.Log("SetGun");
             if (_currentWeapon != null)
                 _currentWeapon.OnPartsChanged -= HandlePartsChangedEvnet;
             _currentWeapon = gun;
