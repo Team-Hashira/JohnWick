@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: SniperWeapon
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: 1529148789356908722, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemDefaultSprite: {fileID: 1529148789356908722, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: Sniper
   itemDisplayName: "\uC800\uACA9\uCD1D"
