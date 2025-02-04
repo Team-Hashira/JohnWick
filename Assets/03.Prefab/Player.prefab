@@ -1348,6 +1348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthStatSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
+  canKnockback: 1
+  knockbackTime: 0.2
 --- !u!114 &5982051024445783654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,6 +1380,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3c1ed0d5cfb681d4887886785af66fb5, type: 2}
   - {fileID: 11400000, guid: 53be9bf3325cdc542b782d3346ebf7f6, type: 2}
   - {fileID: 11400000, guid: 96315cbc5bf2a2844b700b8fb50cbc43, type: 2}
+  - {fileID: 11400000, guid: be980842f5cb9d84688accd90bbe333b, type: 2}
   _startState: {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
 --- !u!1 &5013786079428975925
 GameObject:

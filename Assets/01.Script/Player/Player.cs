@@ -36,9 +36,9 @@ namespace Hashira.Players
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
-        #region Handles
+		#region Handles
 
-        private void HandleInteractEvent(bool isDown)
+		private void HandleInteractEvent(bool isDown)
         {
             _interactor.Interact(isDown);
         }
@@ -81,9 +81,14 @@ namespace Hashira.Players
             _interactor = GetEntityComponent<EntityInteractor>();
             _stateMachine = GetEntityComponent<EntityStateMachine>();
             _damageStat = _statCompo.StatDictionary["AttackPower"];
-        }
+		}
 
-        protected override void Update()
+		protected override void AfterIntiialize()
+		{
+			base.AfterIntiialize();
+		}
+
+		protected override void Update()
         {
             base.Update();
 
@@ -97,7 +102,7 @@ namespace Hashira.Players
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            InputReader.OnDashEvent -= HandleDashEvent;
+			InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnInteractEvent -= HandleInteractEvent;
 
             InputReader.OnAttackEvent -= HandleAttackEvent;
