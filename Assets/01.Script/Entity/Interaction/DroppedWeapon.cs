@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using Hashira.Items;
+using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Hashira.Entities.Interacts
     {
         [Header("==========DroppedWeapon setting==========")]
         [SerializeField] private WeaponSO _weaponSO;
+        [SerializeField] private PartsRenderer _partsRenderer;
         private Weapon _weapon;
 
         protected override void Awake()
@@ -23,6 +25,7 @@ namespace Hashira.Entities.Interacts
         {
             _weapon = item as Weapon;
             _weaponSO = _weapon.WeaponSO;
+            _partsRenderer.SetGun(item as GunWeapon);
             base.SetItem(item);
         }
 
