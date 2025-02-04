@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075d9a2baad1659438f940c6adf1d148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyClearConditionals:
+  - isClear: 0
+    ClearEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    enemies: []
+  _areaClearConditionals: []
+  _otherClearConditionals: []

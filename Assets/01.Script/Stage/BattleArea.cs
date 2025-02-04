@@ -16,6 +16,8 @@ namespace Hashira.Stage
 		[SerializeField] private List<EntityHealth> _entityList;
 		private int _enemyCount = 0;
 
+		public event Action ClearEvent;
+
 		private CinemachineCamera _cam;
 
 		private void Awake()
@@ -53,6 +55,7 @@ namespace Hashira.Stage
 		public void StartBattle()
 		{
 			BattleStartEvent?.Invoke();
+			ClearEvent?.Invoke();
 		}
 
 		private void HandleCounting()
