@@ -24,6 +24,8 @@ namespace Hashira.Entities
 
         public bool IsGrounded { get; private set; }
 
+        [field: SerializeField] public int JumpCount { get; private set; } = 1;
+        private int _currentJumpCount = 0;
 
         [Header("Node Set")]
         [SerializeField]
@@ -71,7 +73,9 @@ namespace Hashira.Entities
             if (groundHits.Length > 0) _hitedGround = groundHits[0];
             IsGrounded = groundHits.Length > 0 && _yMovement < 0;
 
-            if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node))
+            if (IsGrounded) _currentJumpCount = 0;
+
+			if (nodeHits.Length > 0 && nodeHits[0].collider.TryGetComponent(out Node node))
                 CurrentNode = node;
         }
 
@@ -98,11 +102,15 @@ namespace Hashira.Entities
 
         public void Jump(float jumpPower)
         {
-            if (IsGrounded)
-                _yMovement = jumpPower;
-        }
+            if (_currentJumpCount >= JumpCount)
+                return;
 
-        public void StopImmediately(bool withYVelocity = false)
+            _yMovement = jumpPower;
+
+            ++_currentJumpCount;
+		}
+
+		public void StopImmediately(bool withYVelocity = false)
         {
             _xMovement = 0;
             Rigidbody2D.linearVelocityX = 0;

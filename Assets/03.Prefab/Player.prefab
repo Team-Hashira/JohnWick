@@ -233,15 +233,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overrideStatElementList:
-  - Name: 
+  - Name: JumpPower
     elementSO: {fileID: 11400000, guid: c54150478d1977442aed93f95a3b7e9f, type: 2}
     _baseValue: 15
-  - Name: 
+  - Name: DashSpeed
     elementSO: {fileID: 11400000, guid: 94d0fa0c7a683bc48b3f69f9c9401688, type: 2}
-    _baseValue: 35
-  - Name: 
+    _baseValue: 22
+  - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
-    _baseValue: 6
+    _baseValue: 9
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
 --- !u!1 &1168156252607547634
 GameObject:
@@ -6580,9 +6580,11 @@ MonoBehaviour:
   _oneWayPlatform:
     serializedVersion: 2
     m_Bits: 4096
+  <JumpCount>k__BackingField: 2
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 8192
+  dashDelay: 1
 --- !u!1 &7573086966961867391
 GameObject:
   m_ObjectHideFlags: 0

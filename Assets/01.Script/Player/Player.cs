@@ -18,6 +18,7 @@ namespace Hashira.Players
         protected EntityStat _statCompo;
         protected EntityWeapon _weaponHolderCompo;
         protected EntityInteractor _interactor;
+        protected PlayerMover _playerMover;
 
         private Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
 
@@ -44,8 +45,12 @@ namespace Hashira.Players
 
         private void HandleDashEvent()
         {
-            if (_stateMachine.CurrentStateName != "Rolling")
-                _stateMachine.ChangeState("Rolling");
+            if (_playerMover.CanDash == false) return;
+			if (_stateMachine.CurrentStateName != "Rolling")
+            {
+			    _playerMover.OnDash();
+				_stateMachine.ChangeState("Rolling");
+            }
         }
 
         private void HandleMeleeAttackEvent()
@@ -69,7 +74,8 @@ namespace Hashira.Players
         {
             base.InitializeComponent();
 
-            _statCompo = GetEntityComponent<EntityStat>();
+			_playerMover = GetEntityComponent<PlayerMover>();
+			_statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
             _weaponHolderCompo = GetEntityComponent<EntityWeapon>();
             _interactor = GetEntityComponent<EntityInteractor>();
