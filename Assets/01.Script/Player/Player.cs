@@ -45,7 +45,7 @@ namespace Hashira.Players
 
         private void HandleDashEvent()
         {
-            if (_playerMover.CanDash == false) return;
+            if (_playerMover.CanRolling == false) return;
 			if (_stateMachine.CurrentStateName != "Rolling")
             {
 			    _playerMover.OnDash();

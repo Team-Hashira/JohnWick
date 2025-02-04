@@ -6584,7 +6584,7 @@ MonoBehaviour:
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 8192
-  dashDelay: 1
+  rollingDelay: 0.3
 --- !u!1 &7573086966961867391
 GameObject:
   m_ObjectHideFlags: 0

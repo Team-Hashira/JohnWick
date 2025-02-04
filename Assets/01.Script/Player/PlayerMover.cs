@@ -6,13 +6,13 @@ namespace Hashira.Players
 {
     public class PlayerMover : EntityMover
     {
-        public bool CanDash => _currentDelayTime >= dashDelay;
-        public float dashDelay = 1;
+        public bool CanRolling => _currentDelayTime >= rollingDelay;
+        public float rollingDelay = 1;
         private float _currentDelayTime = 0;
 
 		private void Update()
 		{
-            if(_currentDelayTime < dashDelay)
+            if(_currentDelayTime < rollingDelay)
                 _currentDelayTime += Time.deltaTime;
 		}
 
