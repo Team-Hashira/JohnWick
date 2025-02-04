@@ -7,18 +7,23 @@ namespace Hashira.Stage
 	{
 		[SerializeField] private List<EnemyClearCondition> _enemyClearConditionalList;
 		[SerializeField] private List<AreaClearCondition> _areaClearConditionalList;
-		[SerializeField] private OtherClearCondition _otherClearConditional;
+		[SerializeField] private List<OtherClearCondition> _otherClearConditionalList;
 
 		private void Awake()
 		{
 			_enemyClearConditionalList.ForEach(condition => condition.Init());
 			_areaClearConditionalList.ForEach(condition => condition.Init());
-			_otherClearConditional.Init();
+			_otherClearConditionalList.ForEach(condition => condition.Init());
 		}
 
-		public void InvokeOtherClearConidition()
+		public void InvokeOtherClearConidition(int index)
 		{
-			_otherClearConditional.ClearEvent?.Invoke();
+			_otherClearConditionalList[index].Init();
+		}
+
+		public void InvokeAllOtherClearConidition()
+		{
+			_otherClearConditionalList.ForEach(condition => condition.Init());
 		}
 	}
 }
