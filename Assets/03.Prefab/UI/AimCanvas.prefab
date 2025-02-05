@@ -137,6 +137,9 @@ MonoBehaviour:
   _circleAim: {fileID: 5816113416353780045}
   _crossAim: {fileID: 1597461681061496222}
   _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _delayColor: {r: 1, g: 1, b: 0, a: 1}
+  _inactiveColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &3370841003547791665
 GameObject:
   m_ObjectHideFlags: 0

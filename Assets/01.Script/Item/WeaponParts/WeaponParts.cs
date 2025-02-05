@@ -26,7 +26,7 @@ namespace Hashira.Items.PartsSystem
         public virtual void Equip(GunWeapon weapon)
         {
             _weapon = weapon;
-            transform = _weapon.EntityWeapon.PartsRenderer.PartsSpriteDictionary[WeaponPartsSO.partsType].transform;
+            transform = _weapon.EntityWeapon.PartsRenderer[WeaponPartsSO.partsType].transform;
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].AddModify(WeaponPartsSO.itemName, stat.Value, EModifyMode.Add);
             Debug.Log($"{WeaponPartsSO.itemDisplayName} Equip!");

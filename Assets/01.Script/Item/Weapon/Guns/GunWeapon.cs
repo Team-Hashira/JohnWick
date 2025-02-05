@@ -26,6 +26,7 @@ namespace Hashira.Items.Weapons
         private StatElement _attackSpeedStat;
         private StatElement _magazineCapacityStat;
 
+        protected Vector3 _firePos;
         private float _lastFireTime;
 
         public bool IsCanFire => _lastFireTime + 1 / _attackSpeedStat.Value < Time.time;
@@ -58,6 +59,8 @@ namespace Hashira.Items.Weapons
                 _lastFireTime = Time.time;
             else return false;
 
+            CalculateFirePos();
+
             BulletAmount--;
 
             //Soundgenerate
@@ -77,10 +80,20 @@ namespace Hashira.Items.Weapons
             return true;
         }
 
-        protected void CreateBullet(Vector3 firePos, Vector3 direction)
+        private void CalculateFirePos()
+        {
+            SpriteRenderer spriteRenderer = EntityWeapon.PartsRenderer[EWeaponPartsType.Muzzle];
+            Vector3 muzzlePos = spriteRenderer.transform.position;
+            float muzzlePartsSize = spriteRenderer.sprite != null ?
+                spriteRenderer.sprite.rect.width / EntityWeapon.PartsRenderer.PixelPerUnit : 0;
+
+            _firePos = muzzlePos + spriteRenderer.transform.right * muzzlePartsSize;
+        }
+
+        protected void CreateBullet(Vector3 direction)
         {
             //Bullet
-            Bullet bullet = EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
+            Bullet bullet = EntityWeapon.gameObject.Pop(GunSO.bullet, _firePos, Quaternion.identity) as Bullet;
             bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage());
 
             EntityWeapon.ApplyRecoil(_recoilStat.Value);

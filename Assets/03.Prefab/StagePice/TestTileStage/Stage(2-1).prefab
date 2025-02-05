@@ -36452,18 +36452,18 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 18.999985, y: 26.249985, z: 0}
-      m_Extent: {x: 63.999985, y: 25.750015, z: 0}
+      m_Center: {x: 18.999985, y: -13.34375, z: 0}
+      m_Extent: {x: 63.999985, y: 7.65625, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
     m_FlipY: 0
     m_InitialTrim: 0
-  m_CastingOption: 2
+  m_CastingOption: 1
   m_PreviousTrimEdge: 0
   m_PreviousEdgeProcessing: 1
   m_PreviousShadowCastingSource: 2
-  m_PreviousShadowShape2DSource: {fileID: 0}
+  m_PreviousShadowShape2DSource: {fileID: 5842538436940348378}
   references:
     version: 2
     RefIds:

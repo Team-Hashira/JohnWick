@@ -17,15 +17,26 @@ namespace Hashira.Entities.Interacts
         protected override void Awake()
         {
             base.Awake();
+            _partsRenderer.Init();
+
             if (_weaponSO == null) return;
             SetItem(_weaponSO);
         }
 
         public override void SetItem(Item item)
         {
-            _weapon = item as Weapon;
-            _weaponSO = _weapon.WeaponSO;
-            _partsRenderer.SetGun(item as GunWeapon);
+            if (item is GunWeapon gunWeapon)
+            {
+                _weapon = gunWeapon;
+                _weaponSO = gunWeapon.GunSO;
+                _partsRenderer.SetGun(gunWeapon);
+            }
+            else if(item is MeleeWeapon meleeWeapon)
+            {
+                _weapon = meleeWeapon;
+                _weaponSO = meleeWeapon.MeleeSO;
+            }
+
             base.SetItem(item);
         }
 

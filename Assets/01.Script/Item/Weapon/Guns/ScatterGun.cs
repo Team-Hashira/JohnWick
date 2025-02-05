@@ -22,15 +22,14 @@ namespace Hashira.Items.Weapons
         {
             if (base.Fire() == false) return false;
 
-            Vector3 firePos = EntityWeapon.VisualTrm.position + EntityWeapon.transform.rotation * GunSO.firePoint;
             Vector3 direction = CalculateRecoil(EntityWeapon.transform.right);
             for (int i = 0; i < _bulletCount; i++)
             {
                 Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(-_scatterAngle, _scatterAngle));
-                CreateBullet(firePos, randomRotation * direction);
+                CreateBullet(randomRotation * direction);
             }
             //Effect
-            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
+            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, _firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
             return true;
         }
 

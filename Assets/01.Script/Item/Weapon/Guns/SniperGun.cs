@@ -18,12 +18,11 @@ namespace Hashira.Items.Weapons
         protected override bool Fire()
         {
             if (base.Fire() == false) return false;
-
-            Vector3 firePos = EntityWeapon.VisualTrm.position + EntityWeapon.transform.rotation * GunSO.firePoint;
+            
             Vector3 direction = CalculateRecoil(EntityWeapon.transform.right);
-            CreateBullet(firePos, direction);
+            CreateBullet(direction);
             //Effect
-            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
+            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, _firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
             return true;
         }
     }
