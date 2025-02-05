@@ -50,7 +50,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.2366424, b: 0.0141509175, a: 1}
-  m_Intensity: 5
+  m_Intensity: 4
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: e722013400000000779eea6eddd6b78423be148c1b93bf53
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 2.5
+  m_PointLightOuterRadius: 5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -104,24 +104,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.017464824
-      outSlope: -0.017464824
+      inSlope: -0.35628593
+      outSlope: -0.35628593
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.60658103
+      outWeight: 0.17980637
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -3.261596
-      outSlope: -3.261596
+      inSlope: -1.9037333
+      outSlope: -1.9037333
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.12276226
+      inWeight: 0.07468879
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _startInensity: 0
 --- !u!1 &7171291666861227977
 GameObject:
   m_ObjectHideFlags: 0

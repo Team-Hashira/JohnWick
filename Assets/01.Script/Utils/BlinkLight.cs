@@ -1,3 +1,4 @@
+using Doryu.CustomAttributes;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -9,13 +10,18 @@ namespace Hashira
         [SerializeField] private float _blinkDuration;
         [SerializeField] private AnimationCurve _intensityCurve;
         private float _currentTime;
-        private float _startInensity;
+        [SerializeField, Uncorrectable] private float _startInensity;
         private Light2D _light;
 
         private void Awake()
         {
             _light = GetComponent<Light2D>();
             _startInensity = _light.intensity;
+        }
+
+        private void OnEnable()
+        {
+            _currentTime = 0;
         }
 
         private void Update()
