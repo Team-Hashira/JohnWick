@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Stage
 {
     public class StageClearFlag : MonoBehaviour
     {

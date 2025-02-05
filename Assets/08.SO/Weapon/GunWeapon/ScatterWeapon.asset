@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: ScatterWeapon
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: -3398881287316399055, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemDefaultSprite: {fileID: -3398881287316399055, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: Scatter
   itemDisplayName: "\uC0B0\uD0C4\uCD1D"
@@ -51,7 +52,7 @@ MonoBehaviour:
   partsEquipUIPosDict:
     _serializedList:
     - Key: 4
-      Value: {x: -86, y: 17}
+      Value: {x: -138.8, y: 0}
   partsEquipPosDict:
     _serializedList:
     - Key: 4

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Stage
 {
     public class StagePiece : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Stage
 {
     [System.Serializable]
     public struct StagePiceData

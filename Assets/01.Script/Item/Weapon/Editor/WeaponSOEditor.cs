@@ -17,7 +17,9 @@ namespace Hashira.Items.Weapons.Editor
             float widthOffset = 25f;
             Rect rectResize = new Rect(0, 0, 0, SlotRect.height/SlotRect.width * (inspectorWidth-widthOffset));
 
-            var originSprite = gunSO.itemDefaultSprite;
+            if (gunSO.itemIcon) return;
+
+            var originSprite = gunSO.itemIcon;
 
             Texture2D texture = EditorTextureExtension.ConvertToTexture2D(originSprite, FilterMode.Point);
             GUILayout.Box(GUIContent.none, GUI.skin.window, GUILayout.Height(rectResize.height));

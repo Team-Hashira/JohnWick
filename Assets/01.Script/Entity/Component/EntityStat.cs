@@ -20,5 +20,12 @@ namespace Hashira.Entities
             _baseStat = Instantiate(_baseStat);
             StatDictionary = new StatDictionary(_overrideStatElementList, _baseStat);
         }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+		{
+            _overrideStatElementList.ForEach(e => e.Name = e.elementSO.statName);
+		}
+#endif 
     }
 }

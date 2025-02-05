@@ -9,7 +9,7 @@ namespace Hashira.Players
     public class PlayerRollingState : EntityState
     {
         private StatElement _dashSpeedStat;
-        private EntityMover _entityMover;
+        private PlayerMover _playerMover;
         private EntityRenderer _entityRenderer;
         private Player _player;
 
@@ -18,7 +18,7 @@ namespace Hashira.Players
         public PlayerRollingState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _player = entity as Player;
-            _entityMover = entity.GetEntityComponent<EntityMover>(true);
+            _playerMover = entity.GetEntityComponent<PlayerMover>(true);
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
             _dashSpeedStat = entity.GetEntityComponent<EntityStat>().StatDictionary["DashSpeed"];
         }
@@ -26,8 +26,8 @@ namespace Hashira.Players
         public override void OnEnter()
         {
             base.OnEnter();
-            if (_entityMover.Velocity.x != 0)
-                _moveDir = Mathf.Sign(_entityMover.Velocity.x);
+            if (_playerMover.Velocity.x != 0)
+                _moveDir = Mathf.Sign(_playerMover.Velocity.x);
             else
                 _moveDir = _entityRenderer.FacingDirection;
 
@@ -55,7 +55,7 @@ namespace Hashira.Players
         {
             base.OnUpdate();
 
-            _entityMover.SetMovement(_moveDir * 17f);
+			_playerMover.SetMovement(_moveDir * _dashSpeedStat.Value);
             _entityRenderer.LookTarget(_player.transform.position + Vector3.right * _moveDir * _entityRenderer.FacingDirection);
         }
 
