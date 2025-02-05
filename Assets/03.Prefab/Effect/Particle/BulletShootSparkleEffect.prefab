@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7436869858347249654}
   - component: {fileID: 5317060161915944175}
+  - component: {fileID: 8063872457126148700}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.2366424, b: 0.0141509175, a: 1}
-  m_Intensity: 1
+  m_Intensity: 5
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: e722013400000000779eea6eddd6b78423be148c1b93bf53
@@ -84,6 +85,43 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &8063872457126148700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956242306837587631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9cabf547178a1f47b723c854d02a819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blinkDuration: 0.25
+  _intensityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.017464824
+      outSlope: -0.017464824
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.60658103
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -3.261596
+      outSlope: -3.261596
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12276226
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7171291666861227977
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,8 +240,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.05
+      scalar: 0.25
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4990,7 +5028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAutoPush: 1
-  duration: 0.2
+  duration: 0.25
   popEvent:
     m_PersistentCalls:
       m_Calls:
