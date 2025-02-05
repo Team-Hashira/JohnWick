@@ -20,6 +20,8 @@ namespace Hashira.Stage
 
 		private CinemachineCamera _cam;
 
+		private CameraManager _cameraManager;
+
 		private void Awake()
 		{
 			_cam = GetComponentInChildren<CinemachineCamera>();
@@ -28,6 +30,7 @@ namespace Hashira.Stage
 
 		private void Start()
 		{
+			_cameraManager = CameraManager.Instance;
 			_cam.Follow = FindFirstObjectByType<InternallyDividedPosition>().transform;
 
 			_enemyCount = _entityList.Count;
@@ -74,8 +77,8 @@ namespace Hashira.Stage
 		{
 			if (collision.CompareTag("Player"))
 			{
-				CameraManager.Instance?.ChangeCamera(_cam);
-				CameraManager.Instance?.ShakeCamera(0, 0, 0);
+				_cameraManager?.ChangeCamera(_cam);
+				_cameraManager?.ShakeCamera(0, 0, 0);
 				if(_enemyCount > 0)
 					StartBattle();
 			}
@@ -85,8 +88,8 @@ namespace Hashira.Stage
 		{
 			if (collision.CompareTag("Player"))
 			{
-				CameraManager.Instance?.ChangeCamera("Player");
-				CameraManager.Instance?.ShakeCamera(0, 0, 0);
+				_cameraManager?.ChangeCamera("Player");
+				_cameraManager?.ShakeCamera(0, 0, 0);
 			}
 		}
 	}

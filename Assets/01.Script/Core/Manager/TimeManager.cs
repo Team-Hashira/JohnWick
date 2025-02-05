@@ -21,12 +21,12 @@ namespace Hashira
         public static void Pause()
         {
             _lastTime = Time;
-            Time = 0;
+			UnityEngine.Time.timeScale = 0;
         }
 
         public static void Play()
         {
-            Time = _lastTime;
+			UnityEngine.Time.timeScale = _lastTime;
         }
     }
 }

@@ -65,7 +65,6 @@ namespace Hashira.Entities
             OnHealthChangedEvent?.Invoke(prev, Health);
 
             Vector2 attackDir = raycastHit.point - (Vector2)transform.position;
-			attackDir.Normalize();
 
 			OnKnockback(attackDir, damage);
 
@@ -115,8 +114,9 @@ namespace Hashira.Entities
 
 		public void OnKnockback(Vector2 hitDir, int damage)
         {
-            _entityMover.StopImmediately(); 
-			_knockbackDirectionX = Mathf.Sign(-hitDir.x) * (damage / 10 / _entityMover.Rigidbody2D.mass);
+            _entityMover.StopImmediately();
+			hitDir.Normalize();
+			_knockbackDirectionX = -hitDir.x * (damage / 10 / _entityMover.Rigidbody2D.mass);
 			_entityStateMachine.ChangeState("Hit");
             IsKnockback = true;
 		}
