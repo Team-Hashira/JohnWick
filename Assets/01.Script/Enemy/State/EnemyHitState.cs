@@ -1,13 +1,13 @@
-﻿using Hashira.Entities;
+using Hashira.Entities;
 using Hashira.LatestFSM;
 
-namespace Hashira.Players
+namespace Hashira.Enemies
 {
-	public class PlayerHitState : EntityState
-	{
+    public class EnemyHitState : EntityState
+    {
 		private EntityHealth _entityHealth;
 
-		public PlayerHitState(Entity entity, StateSO stateSO) : base(entity, stateSO)
+		public EnemyHitState(Entity entity, StateSO stateSO) : base(entity, stateSO)
 		{
 			_entityHealth = entity.GetEntityComponent<EntityHealth>();
 		}
@@ -15,7 +15,7 @@ namespace Hashira.Players
 		public override void OnUpdate()
 		{
 			base.OnUpdate();
-			if(_entityHealth.IsKnockback == false)
+			if (_entityHealth.IsKnockback == false)
 				_entityStateMachine.ChangeState("Idle");
 		}
 	}
