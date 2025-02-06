@@ -3,6 +3,7 @@ using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
+using System;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -36,8 +37,16 @@ namespace Hashira.Entities.Interacts
                 _weapon = meleeWeapon;
                 _weaponSO = meleeWeapon.MeleeSO;
             }
+            if (_weapon is PistolGun gun)
+                gun.OnPartsChanged += Handle;
 
             base.SetItem(item);
+        }
+
+        private void Handle(EWeaponPartsType type, WeaponParts parts)
+        {
+            if (_weapon is PistolGun gun)
+                Debug.Log(parts);
         }
 
         public override void Interaction(Entity entity)
