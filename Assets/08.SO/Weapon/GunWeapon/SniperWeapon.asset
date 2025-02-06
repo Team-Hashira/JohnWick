@@ -22,8 +22,8 @@ MonoBehaviour:
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
-  <GrapOffset>k__BackingField: {x: 0.808, y: 0.085, z: 0}
-  <RightHandOffset>k__BackingField: {x: -0.247, y: -0.067, z: 0}
+  <GrapOffset>k__BackingField: {x: 0.837, y: 0.112, z: 0}
+  <RightHandOffset>k__BackingField: {x: -0.348, y: -0.13, z: 0}
   <LeftHandOffset>k__BackingField: {x: 0.058, y: -0.111, z: 0}
   <GrapRotate>k__BackingField: 0
   overrideStatElementList:
@@ -32,7 +32,7 @@ MonoBehaviour:
     _baseValue: 1023
   - Name: "\uACF5\uACA9\uC18D\uB3C4"
     elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
-    _baseValue: 0.5
+    _baseValue: 0.8
   - Name: "\uC815\uD655\uB3C4"
     elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
     _baseValue: 90
@@ -44,7 +44,7 @@ MonoBehaviour:
     _baseValue: 7
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
   firePoint: {x: 1.184, y: 0.063, z: 0}
-  cartridgeCaseParticlePoint: {x: -0.33, y: -0.021, z: 0}
+  cartridgeCaseParticlePoint: {x: -0.319, y: -0.033, z: 0}
   bullet: 0
   fireSpakleEffect: 1
   bulletSpeed: 1000
@@ -64,12 +64,12 @@ MonoBehaviour:
   partsEquipPosDict:
     _serializedList:
     - Key: 0
-      Value: {x: 19, y: 2}
+      Value: {x: 19, y: 0}
     - Key: 1
-      Value: {x: 0, y: 3}
+      Value: {x: -2, y: 1}
     - Key: 2
-      Value: {x: 4, y: 0}
+      Value: {x: 3, y: -2}
     - Key: 3
-      Value: {x: -3, y: -1}
+      Value: {x: -3, y: -3}
     - Key: 4
-      Value: {x: 0, y: 1}
+      Value: {x: -1, y: -1}

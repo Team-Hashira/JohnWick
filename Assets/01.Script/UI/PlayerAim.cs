@@ -17,6 +17,12 @@ namespace Hashira
         private RectTransform rectTransform;
         private EntityWeapon _playerWeapon;
 
+
+        [Header("Color setting")]
+        [SerializeField] private Color _defaultColor;
+        [SerializeField] private Color _delayColor;
+        [SerializeField] private Color _inactiveColor;
+
         private void Awake()
         {
             rectTransform = transform as RectTransform;
@@ -43,7 +49,8 @@ namespace Hashira
 
             SetSize(_playerWeapon.Recoil * 0.2f + 1);
             if (_playerWeapon.CurrentWeapon is GunWeapon gun)
-                SetColor(gun.IsCanFire && gun.BulletAmount > 0 ? Color.white : Color.red);
+                SetColor(gun.BulletAmount > 0 && !gun.EntityWeapon.IsReloading ? 
+                    (gun.IsCanFire ? _defaultColor : _delayColor) : _inactiveColor);
             else
                 SetColor(Color.white);
         }

@@ -72,6 +72,8 @@ namespace Hashira.Entities.Components
             _entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
 
+            PartsRenderer.Init();
+
             WeaponIndex = 0;
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
 
