@@ -12,7 +12,7 @@ namespace Hashira.Stage
     {
 		[SerializeField] private UnityEvent BattleStartEvent;
 		[SerializeField] private UnityEvent BattleEndEvent;
-
+		[SerializeField] private UnityEvent PlayerEnterEvent;
 		[SerializeField] private List<EntityHealth> _entityList;
 		private int _enemyCount = 0;
 
@@ -79,7 +79,8 @@ namespace Hashira.Stage
 			{
 				_cameraManager?.ChangeCamera(_cam);
 				_cameraManager?.ShakeCamera(0, 0, 0);
-				if(_enemyCount > 0)
+				PlayerEnterEvent?.Invoke();
+				if (_enemyCount > 0)
 					StartBattle();
 			}
 		}

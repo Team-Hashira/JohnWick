@@ -25,6 +25,12 @@ namespace Hashira.Entities.Components
         [SerializeField] private LimbSolver2D _rightHandSolver;
         [SerializeField] private LimbSolver2D _leftHandSolver;
 
+        [Header("-----IK Targets")]
+        [SerializeField] private Transform _targetEmptyR;
+        [SerializeField] private Transform _targetEmptyL;
+        [SerializeField] private Transform _targetWeaponR;
+        [SerializeField] private Transform _targetWeaponL;
+
         private Entity _entity;
         private EntityMover _mover;
         private EntityRenderer _renderer;
@@ -52,14 +58,15 @@ namespace Hashira.Entities.Components
             {
                 if (weapon == null)
                 {
-                    _rightHandSolver.weight = 0;
-                    _leftHandSolver.weight = 0;
-                }
+                    _rightHandSolver.GetChain(0).target = _targetEmptyR;
+					_leftHandSolver.GetChain(0).target = _targetEmptyL;
+				}
                 else
                 {
-                    _rightHandSolver.weight = 1;
-                    _leftHandSolver.weight = 1;
-                    _rightHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.RightHandOffset;
+					_rightHandSolver.GetChain(0).target = _targetWeaponR;
+					_leftHandSolver.GetChain(0).target = _targetWeaponL;
+
+					_rightHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.RightHandOffset;
                     _leftHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.LeftHandOffset;
                 }
             }
