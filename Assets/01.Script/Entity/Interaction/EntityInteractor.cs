@@ -1,4 +1,5 @@
 using Hashira.Entities.Interacts;
+using System.Linq;
 using UnityEngine;
 
 namespace Hashira.Entities
@@ -9,11 +10,10 @@ namespace Hashira.Entities
         public IInteractable Interactable { get; private set; }
         public IHoldInteractable HoldInteractable { get; private set; }
 
-        [SerializeField] private LayerMask _interactable;
+        [SerializeField] private LayerMask _whatIsInteractable;
         [SerializeField] private float _radius;
 
         private Entity _entity;
-        private Collider2D[] collider2Ds = new Collider2D[1];
 
         private bool _isClicked = false;
         private bool _isHolding = false;
@@ -47,9 +47,13 @@ namespace Hashira.Entities
 
         private void TargetInteractableUpdate()
         {
-            collider2Ds = Physics2D.OverlapCircleAll(transform.position, _radius, _interactable);
-            IInteractable interactable 
-                = collider2Ds.Length > 0 ? collider2Ds[0].GetComponent<IInteractable>() : null;
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, _radius, Vector2.zero, 0, _whatIsInteractable);
+            IInteractable interactable = null;
+            if (hits.Length > 0)
+            {
+                RaycastHit2D hit = hits.ToList().OrderBy(hit => (hit.transform.position - transform.position).sqrMagnitude).ToArray()[0];
+                interactable = hit.transform.GetComponent<IInteractable>();
+            }
 
             if (Interactable == interactable) return;
 

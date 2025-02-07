@@ -6208,7 +6208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9441fdf1fe67e489c75a6fcbbb2d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactable:
+  _whatIsInteractable:
     serializedVersion: 2
     m_Bits: 16384
   _radius: 1.2
