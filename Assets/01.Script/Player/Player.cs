@@ -2,7 +2,7 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using UnityEngine;
 
 namespace Hashira.Players

@@ -1,7 +1,7 @@
 using Hashira.Core.AnimationSystem;
 using UnityEngine;
 
-namespace Hashira.LatestFSM
+namespace Hashira.FSM
 {
     [CreateAssetMenu(fileName = "StateSO", menuName = "SO/FSM/StateSO")]
     public class StateSO : ScriptableObject
