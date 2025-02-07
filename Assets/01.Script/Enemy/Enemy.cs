@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Hashira.Enemies
 {
-    public class Enemy : Entity
+    public abstract class Enemy : Entity
     {
         protected EntityRenderer _entityRenderer;
         protected EntityHealth _entityHealth;
@@ -49,7 +49,7 @@ namespace Hashira.Enemies
             _entityStat = GetEntityComponent<EntityStat>();
         }
 
-        private void HandlePartsCollisionHitEvent(EEntityPartType parts, RaycastHit2D raycastHit, Transform attackerTrm)
+        protected virtual void HandlePartsCollisionHitEvent(EEntityPartType parts, RaycastHit2D raycastHit, Transform attackerTrm)
         {
             switch (parts)
             {
@@ -57,12 +57,12 @@ namespace Hashira.Enemies
                     _entityRenderer.Blink(0.2f, DG.Tweening.Ease.InCirc);
                     break;
                 case EEntityPartType.Legs:
-                    _entityStat.StatDictionary["Speed"].AddModify("LegFracture", -50f, Core.StatSystem.EModifyMode.Percnet);
+                    _entityStat.StatDictionary["Speed"].AddModify("LegFracture", -50f, Core.StatSystem.EModifyMode.Percnet, false);
                     break;
             }
         }
 
-        public Player DetectPlayer()
+        public virtual Player DetectPlayer()
         {
             Collider2D coll = Physics2D.OverlapCircle(transform.position, 5, _whatIsPlayer);
             if (coll == null)

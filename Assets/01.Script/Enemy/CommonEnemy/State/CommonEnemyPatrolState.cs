@@ -3,9 +3,9 @@ using Hashira.Entities;
 using Hashira.FSM;
 using UnityEngine;
 
-namespace Hashira.Enemies
+namespace Hashira.Enemies.CommonEnemy
 {
-    public class EnemyPatrolState : ListeningSoundState
+    public class CommonEnemyPatrolState : EnemyListeningSoundState
     {
         private EnemyMover _enemyMover;
         private EntityRenderer _entityRenderer;
@@ -13,7 +13,7 @@ namespace Hashira.Enemies
 
         private StatElement _speedElement;
 
-        public EnemyPatrolState(Entity entity, StateSO stateSO) : base(entity, stateSO)
+        public CommonEnemyPatrolState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();

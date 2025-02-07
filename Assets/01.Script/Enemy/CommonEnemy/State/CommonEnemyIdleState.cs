@@ -4,15 +4,16 @@ using Hashira.FSM;
 using System;
 using UnityEngine;
 
-namespace Hashira.Enemies
+namespace Hashira.Enemies.CommonEnemy
 {
-    public class EnemyIdleState : ListeningSoundState
+    public class CommonEnemyIdleState : EnemyListeningSoundState
     {
         private EnemyMover _enemyMover;
 
         private float _idleStartTime;
         private float _waitDelay = 2f;
-        public EnemyIdleState(Entity entity, StateSO stateSO) : base(entity, stateSO)
+
+        public CommonEnemyIdleState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
         }

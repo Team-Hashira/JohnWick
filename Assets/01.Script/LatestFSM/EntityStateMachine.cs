@@ -85,16 +85,16 @@ namespace Hashira.Entities.Components
 
             foreach (var state in _stateList)
             {
+                string className = $"{_entity.GetType().FullName}{state.stateName}State";
                 try
                 {
-                    string className = $"{_entity.GetType().FullName}{state.stateName}State";
                     Type t = Type.GetType(className);
                     EntityState entityState = Activator.CreateInstance(t, _entity, state) as EntityState;
                     _stateDictionary.Add(state.stateName, entityState);
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"Fail to Create State class({state.stateName}). : {ex.Message}");
+                    Debug.LogError($"Fail to Create State class({state.stateName}, {className}). : {ex.Message}");
                 }
             }
 
