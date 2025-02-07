@@ -18,7 +18,7 @@ namespace Hashira.Items.Weapons
         public int BulletAmount { get; protected set; }
 
         //Parts
-        private readonly Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
+        private Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary;
         public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
 
         private StatElement _precisionStat;
@@ -160,13 +160,15 @@ namespace Hashira.Items.Weapons
         public override object Clone()
         {
             GunSO = WeaponSO as GunSO;
-            _partsSlotDictionary.Clear();
+            Reload();
+            GunWeapon clonedGunWeapon = (GunWeapon)base.Clone();
+            clonedGunWeapon._partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
+            clonedGunWeapon._partsSlotDictionary.Clear();
             foreach (EWeaponPartsType partsType in GunSO.partsEquipUIPosDict.Keys)
             {
-                _partsSlotDictionary.Add(partsType, null);
+                clonedGunWeapon._partsSlotDictionary.Add(partsType, null);
             }
-            Reload();
-            return base.Clone();
+            return clonedGunWeapon;
         }
     }
 }

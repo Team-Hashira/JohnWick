@@ -31,10 +31,6 @@ namespace Hashira.Items.PartsSystem
             bool isOn = weapon == _weapon;
             bool isHaveLaser = weapon != null && weapon is GunWeapon gunWeapon && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
 
-            Debug.Log(isOn);
-            if (weapon is GunWeapon gunWeapon1)
-                Debug.Log(gunWeapon1.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO.name);
-
             _lineRenderer.enabled = isOn || isHaveLaser;
         }
 

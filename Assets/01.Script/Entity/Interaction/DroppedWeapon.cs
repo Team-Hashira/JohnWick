@@ -3,6 +3,7 @@ using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
+using System;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
