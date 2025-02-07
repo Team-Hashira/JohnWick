@@ -14,7 +14,7 @@ namespace Hashira.Object
         [field: SerializeField] public int MaxHealth { get; private set; } = 100;
         public int CurrentHealth { get; private set; }
 
-        [field: SerializeField] public int Resistivity { get; set; }
+        [field: SerializeField] public int Resistivity { get; set; } = 2;
 
         private void Awake()
 		{
