@@ -19,16 +19,11 @@ namespace Hashira.Enemies
 
         //Test
         [SerializeField] private EffectPoolType _dieEffect;
-        [SerializeField]
-        private LayerMask _whatIsPlayer;
-
-        private Player _player;
 
         protected override void Awake()
         {
             base.Awake();
 
-            _player = GameManager.Instance.Player;
             var partCollider = GetEntityComponent<EntityPartCollider>();
             partCollider.OnPartCollisionHitEvent += HandlePartsCollisionHitEvent;
             _entityHealth.OnDieEvent += HandleDieEvent;
@@ -62,14 +57,6 @@ namespace Hashira.Enemies
             }
         }
 
-        public virtual Player DetectPlayer()
-        {
-            Collider2D coll = Physics2D.OverlapCircle(transform.position, 5, _whatIsPlayer);
-            if (coll == null)
-                return null;
-            if (Mathf.Sign(coll.transform.position.x - transform.position.x) != _entityRenderer.FacingDirection)
-                return null;
-            return coll.GetComponent<Player>();
-        }
+        public abstract Player DetectPlayer();
     }
 }
