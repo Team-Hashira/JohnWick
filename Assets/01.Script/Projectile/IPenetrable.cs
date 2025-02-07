@@ -4,6 +4,6 @@ namespace Hashira
 {
     public interface IPenetrable
     {
-        public int Resistivity { get; }
+        public int Resistivity { get; set; }
     }
 }
