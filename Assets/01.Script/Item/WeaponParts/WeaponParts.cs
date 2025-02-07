@@ -11,8 +11,9 @@ namespace Hashira.Items.PartsSystem
 
         public StatDictionary StatDictionary => WeaponPartsSO.StatDictionary;
 
-        protected Weapon _weapon;
+        protected GunWeapon _weapon;
 
+        protected PartsRenderer _PartsRenderer { get; private set; }
         protected Transform transform;
 
         //���� ó�� ������� �� �ѹ�
@@ -26,13 +27,24 @@ namespace Hashira.Items.PartsSystem
         public virtual void Equip(GunWeapon weapon)
         {
             _weapon = weapon;
-            transform = _weapon.EntityWeapon.PartsRenderer[WeaponPartsSO.partsType].transform;
+            _weapon.OnPartsRendererChangedEvent += HandlePartsRendererChangedEvent;
+            HandlePartsRendererChangedEvent(weapon.PartsRenderer);
+
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].AddModify(WeaponPartsSO.itemName, stat.Value, EModifyMode.Add);
             Debug.Log($"{WeaponPartsSO.itemDisplayName} Equip!");
         }
+
+        protected virtual void HandlePartsRendererChangedEvent(PartsRenderer renderer)
+        {
+            _PartsRenderer = renderer;
+            transform = renderer[WeaponPartsSO.partsType].transform;
+        }
+
         public virtual void UnEquip()
         {
+            _weapon.OnPartsRendererChangedEvent -= HandlePartsRendererChangedEvent;
+
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
                 _weapon.StatDictionary[stat.elementSO].RemoveModify(WeaponPartsSO.itemName, EModifyMode.Add);
             Debug.Log($"{WeaponPartsSO.itemDisplayName} UnEquip!");

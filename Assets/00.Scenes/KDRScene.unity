@@ -778,6 +778,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2120810207}
     m_Modifications:
+    - target: {fileID: 1739164217382512514, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: <LaserRenderer>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -826,68 +830,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[0].sprite
+    - target: {fileID: 6390566644954204797, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: <LaserRenderer>k__BackingField
       value: 
-      objectReference: {fileID: -1692602791266001521, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[1].sprite
-      value: 
-      objectReference: {fileID: -6787405443297307643, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[2].sprite
-      value: 
-      objectReference: {fileID: -190677121643346117, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[3].sprite
-      value: 
-      objectReference: {fileID: 4916097155809899466, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[4].sprite
-      value: 
-      objectReference: {fileID: 5271889624537443452, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[5].sprite
-      value: 
-      objectReference: {fileID: 9175046331427096625, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[6].sprite
-      value: 
-      objectReference: {fileID: 1440380445977991567, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[7].sprite
-      value: 
-      objectReference: {fileID: -3066732471680652806, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[8].sprite
-      value: 
-      objectReference: {fileID: -8251149974174568967, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[9].sprite
-      value: 
-      objectReference: {fileID: 22417361499038543, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[10].sprite
-      value: 
-      objectReference: {fileID: 7898815170467164220, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 4595659203365036013, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: UVModule.sprites.Array.data[11].sprite
-      value: 
-      objectReference: {fileID: -8420696225271282906, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 6559738879112933502, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -9161520311057430004, guid: ea287116839a4364bbac9189daed5702, type: 3}
-    - target: {fileID: 6559738879112933502, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1721686647}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7752638044739874099, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
@@ -1933,6 +1882,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CinemachineConfiner2D>k__BackingField: {fileID: 1713861326}
   <CinemachineVirtualCameraBase>k__BackingField: {fileID: 1713861325}
+--- !u!120 &1721686647 stripped
+LineRenderer:
+  m_CorrespondingSourceObject: {fileID: 2809586258277877281, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+  m_PrefabInstance: {fileID: 651278449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1758512768
 PrefabInstance:
   m_ObjectHideFlags: 0

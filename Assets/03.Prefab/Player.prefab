@@ -575,7 +575,7 @@ SpriteRenderer:
   m_SortingLayerID: -2068326691
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1755459585, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
+  m_Sprite: {fileID: -9161520311057430004, guid: ea287116839a4364bbac9189daed5702, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7838,17 +7838,18 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 1175534781, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: -1261057957, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: -87629482, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: -1147419964, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: -510556093, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: 1968698924, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: -1083596183, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: -1797744724, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: 1930898488, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: -305776002, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
-    - sprite: {fileID: 1681980374, guid: 775ec9a13140bed44bf380fbb8e2449f, type: 3}
+    - sprite: {fileID: -1692602791266001521, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: -6787405443297307643, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: -190677121643346117, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: 4916097155809899466, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: 5271889624537443452, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: 9175046331427096625, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: 1440380445977991567, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: -3066732471680652806, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: -8251149974174568967, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: 22417361499038543, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: 7898815170467164220, guid: ea287116839a4364bbac9189daed5702, type: 3}
+    - sprite: {fileID: -8420696225271282906, guid: ea287116839a4364bbac9189daed5702, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

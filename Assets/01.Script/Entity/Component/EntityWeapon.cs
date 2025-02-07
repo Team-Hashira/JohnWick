@@ -36,7 +36,6 @@ namespace Hashira.Entities.Components
         public bool IsMeleeWeapon => WeaponIndex == 2; // TODO
 
         [field: SerializeField] public Transform VisualTrm { get; private set; }
-        [field: SerializeField] public LineRenderer LaserRenderer { get; private set; }
         [field: SerializeField] public PartsRenderer PartsRenderer { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
@@ -162,6 +161,10 @@ namespace Hashira.Entities.Components
                 OnChangedWeaponEvents[meleeIndex]?.Invoke(meleeWeapon);
 
                 return preMeleeWeapon;
+            }
+            else if (weapon is GunWeapon gunWeapon)
+            {
+                gunWeapon.SetPartsRenderer(PartsRenderer);
             }
 
             CurrentWeapon?.UnEquip();

@@ -30,6 +30,7 @@ namespace Hashira.Entities.Interacts
             {
                 _weapon = gunWeapon;
                 _weaponSO = gunWeapon.GunSO;
+                gunWeapon.SetPartsRenderer(_partsRenderer);
                 _partsRenderer.SetGun(gunWeapon);
             }
             else if(item is MeleeWeapon meleeWeapon)

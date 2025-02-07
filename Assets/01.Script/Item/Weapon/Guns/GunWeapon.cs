@@ -15,6 +15,7 @@ namespace Hashira.Items.Weapons
         public GunSO GunSO { get; private set; }
 
         public event Action<int> OnFireEvent;
+        public event Action<PartsRenderer> OnPartsRendererChangedEvent;
         public int BulletAmount { get; protected set; }
 
         //Parts
@@ -26,6 +27,8 @@ namespace Hashira.Items.Weapons
         private StatElement _attackSpeedStat;
         private StatElement _magazineCapacityStat;
         private StatElement _penetrationStat;
+
+        public PartsRenderer PartsRenderer { get; private set; }
 
         protected Vector3 _firePos;
         private float _lastFireTime;
@@ -41,6 +44,12 @@ namespace Hashira.Items.Weapons
             _attackSpeedStat = StatDictionary["AttackSpeed"];
             _magazineCapacityStat = StatDictionary["MagazineCapacity"];
             _penetrationStat = StatDictionary["Penetration"];
+        }
+
+        public void SetPartsRenderer(PartsRenderer partsRenderer)
+        {
+            PartsRenderer = partsRenderer;
+            OnPartsRendererChangedEvent?.Invoke(partsRenderer);
         }
 
         private void HandleDamageSuccessEvent()
@@ -87,7 +96,7 @@ namespace Hashira.Items.Weapons
             SpriteRenderer spriteRenderer = EntityWeapon.PartsRenderer[EWeaponPartsType.Muzzle];
             Vector3 muzzlePos = spriteRenderer.transform.position;
             float muzzlePartsSize = spriteRenderer.sprite != null ?
-                spriteRenderer.sprite.rect.width / EntityWeapon.PartsRenderer.PixelPerUnit : 0;
+                spriteRenderer.sprite.rect.width / PartsRenderer.PixelPerUnit : 0;
 
             _firePos = muzzlePos + spriteRenderer.transform.right * muzzlePartsSize;
         }

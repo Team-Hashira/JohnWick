@@ -8,7 +8,8 @@ namespace Hashira.Items.PartsSystem
     public class PartsRenderer : MonoBehaviour
     {
         private SerializedDictionary<EWeaponPartsType, SpriteRenderer> _partsSpriteDictionary = new();
-        [field: SerializeField] public int PixelPerUnit { get; private set; } = 16;
+        [field: SerializeField] public LineRenderer LaserRenderer { get; private set; }
+        public const int PixelPerUnit = 16;
 
         private GunWeapon _currentWeapon;
 
