@@ -233,9 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overrideStatElementList:
-  - Name: JumpPower
-    elementSO: {fileID: 11400000, guid: c54150478d1977442aed93f95a3b7e9f, type: 2}
-    _baseValue: 15
   - Name: DashSpeed
     elementSO: {fileID: 11400000, guid: 94d0fa0c7a683bc48b3f69f9c9401688, type: 2}
     _baseValue: 22
@@ -678,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2215638490737733662}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: 0.047023676, w: 0.99889374}
+  m_LocalRotation: {x: 0, y: -0, z: -0.1436552, w: 0.98962784}
   m_LocalPosition: {x: 0.2643, y: 0.0002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1177,7 +1174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5799809896364415126}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.03455892, w: -0.9994027}
+  m_LocalRotation: {x: -0, y: -0, z: 0.1996038, w: -0.9798767}
   m_LocalPosition: {x: 0.265, y: -0.0006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6162,6 +6159,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   <JumpCount>k__BackingField: 2
+  <JumpPower>k__BackingField: 15
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 8192

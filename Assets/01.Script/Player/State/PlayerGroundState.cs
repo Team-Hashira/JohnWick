@@ -9,14 +9,12 @@ namespace Hashira.Players
     {
         private readonly static int _JumpingAnimationHash = Animator.StringToHash("Jumping");
         protected EntityMover _entityMover;
-        protected StatElement _jumpStat;
         protected Player _player;
 
         public PlayerGroundState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _player = entity as Player;
             _entityMover = entity.GetEntityComponent<EntityMover>(true);
-            _jumpStat = entity.GetEntityComponent<EntityStat>().StatDictionary["JumpPower"];
         }
 
         public override void OnEnter()
@@ -42,7 +40,7 @@ namespace Hashira.Players
 
         protected virtual void HandleJumpEvent()
         {
-            _entityMover.Jump(_jumpStat == null ? 0 : _jumpStat.Value);
+            _entityMover.Jump();
         }
 
         public override void OnUpdate()

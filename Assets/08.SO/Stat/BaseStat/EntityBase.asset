@@ -25,6 +25,3 @@ MonoBehaviour:
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
     _baseValue: 10
-  - Name: JumpCount
-    elementSO: {fileID: 11400000, guid: 32eebfd8fac02bb4e874d31eb75a797c, type: 2}
-    _baseValue: 1

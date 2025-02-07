@@ -24,10 +24,11 @@ namespace Hashira.Entities
 
         public bool IsGrounded { get; private set; }
 
-        [field: SerializeField] public int JumpCount { get; private set; } = 1;
+        [field:SerializeField] public int JumpCount { get; private set; } = 1;
         private int _currentJumpCount = 0;
+        [field:SerializeField] public float JumpPower { get; private set; }
 
-        [Header("Node Set")]
+		[Header("Node Set")]
         [SerializeField]
         private LayerMask _whatIsNode;
         [field: Space(10)]
@@ -100,12 +101,12 @@ namespace Hashira.Entities
             _xMovement = xMovement;
         }
 
-        public void Jump(float jumpPower)
+        public void Jump()
         {
             if (_currentJumpCount >= JumpCount)
                 return;
 
-            _yMovement = jumpPower;
+            _yMovement = JumpPower;
 
             ++_currentJumpCount;
 		}
