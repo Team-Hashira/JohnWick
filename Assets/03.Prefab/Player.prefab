@@ -233,9 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overrideStatElementList:
-  - Name: JumpPower
-    elementSO: {fileID: 11400000, guid: c54150478d1977442aed93f95a3b7e9f, type: 2}
-    _baseValue: 15
   - Name: DashSpeed
     elementSO: {fileID: 11400000, guid: 94d0fa0c7a683bc48b3f69f9c9401688, type: 2}
     _baseValue: 22
@@ -6162,6 +6159,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   <JumpCount>k__BackingField: 2
+  <JumpPower>k__BackingField: 15
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 8192
