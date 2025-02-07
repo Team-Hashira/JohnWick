@@ -332,9 +332,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SoundEventChannel>k__BackingField: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
   _dieEffect: 0
+  _eye: {fileID: 0}
   _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &6722688745115300717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +390,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
   - {fileID: 11400000, guid: df30a348952a1794ba54c27626cf4824, type: 2}
   - {fileID: 11400000, guid: e4f2bc789d598414a8c695f705cf426b, type: 2}
+  - {fileID: 11400000, guid: be980842f5cb9d84688accd90bbe333b, type: 2}
   _startState: {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
 --- !u!114 &1950571421788683381
 MonoBehaviour:
