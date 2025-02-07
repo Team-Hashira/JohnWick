@@ -1,6 +1,7 @@
 using Hashira.Core.StatSystem;
 using System.Collections.Generic;
 using UnityEngine;
+using Doryu.CustomAttributes;
 
 namespace Hashira.Items.Weapons
 {
@@ -14,7 +15,7 @@ namespace Hashira.Items.Weapons
         [field: SerializeField] public float GrapRotate { get; internal set; }
         [Header("Stat")]
         public List<StatElement> overrideStatElementList = new List<StatElement>();
-        public StatBaseSO baseStat;
+        [VisibleInspectorSO] public StatBaseSO baseStat;
 
         private void OnValidate()
         {
