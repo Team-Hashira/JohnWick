@@ -141,7 +141,8 @@ namespace Hashira.Entities.Components
             Weapons[index] = null;
 
             OnChangedWeaponEvents[index]?.Invoke(null);
-            OnCurrentWeaponChanged?.Invoke(Weapons[index]);
+            if (IsMeleeWeapon == false && index == WeaponIndex)
+                OnCurrentWeaponChanged?.Invoke(Weapons[index]);
         }
 
         public Weapon EquipWeapon(Weapon weapon)
