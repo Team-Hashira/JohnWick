@@ -1,7 +1,9 @@
 using Crogen.CrogenPooling;
+using Crogen.AttributeExtension;
 using Hashira.Core.StatSystem;
 using System;
 using UnityEngine;
+using Hashira.LatestFSM;
 
 namespace Hashira.Entities
 {
@@ -20,7 +22,17 @@ namespace Hashira.Entities
         public event Action<int, int> OnHealthChangedEvent;
         public event Action OnDieEvent;
 
-        public void Initialize(Entity entity)
+        private EntityMover _entityMover;
+        private EntityStateMachine _entityStateMachine;
+
+        public bool canKnockback = true;
+        public bool IsKnockback { get; private set; }
+        [HideInInspectorByCondition(nameof(canKnockback))]
+        public float knockbackTime = 0.2f;
+        private float _currentknockbackTime = 0;
+        private float _knockbackDirectionX; 
+
+		public void Initialize(Entity entity)
         {
             _owner = entity;
         }
@@ -28,11 +40,14 @@ namespace Hashira.Entities
         public void AfterInit()
         {
             _maxHealth = _owner.GetEntityComponent<EntityStat>().StatDictionary[_healthStatSO];
-            _isInvincible = _maxHealth == null;
-            Health = MaxHealth;
-        }
+			_entityMover = _owner.GetEntityComponent<EntityMover>(true);
+			_entityStateMachine = _owner.GetEntityComponent<EntityStateMachine>();
 
-        public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm)
+			_isInvincible = _maxHealth == null;
+            Health = MaxHealth;
+		}
+
+		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm)
         {
             EEntityPartType hitPoint 
                 = _owner.GetEntityComponent<EntityPartCollider>().Hit(raycastHit.collider, raycastHit, attackerTrm);
@@ -49,7 +64,11 @@ namespace Hashira.Entities
                 Health = 0;
             OnHealthChangedEvent?.Invoke(prev, Health);
 
-            if (Health == 0) Die();
+            Vector2 attackDir = raycastHit.point - (Vector2)transform.position;
+
+			OnKnockback(attackDir, damage);
+
+			if (Health == 0) Die();
 
             return hitPoint;
         }
@@ -77,5 +96,29 @@ namespace Hashira.Entities
             OnDieEvent?.Invoke();
             OnDieEvent = null;
 		}
-    }
+
+		private void Update()
+		{
+			if (IsKnockback)
+            {
+				_entityMover.SetMovement(_knockbackDirectionX);
+
+				_currentknockbackTime += Time.deltaTime;
+                if( _currentknockbackTime > knockbackTime)
+                {
+                    _currentknockbackTime = 0;
+                    IsKnockback = false;
+				}
+            }
+		}
+
+		public void OnKnockback(Vector2 hitDir, int damage)
+        {
+            _entityMover.StopImmediately();
+			hitDir.Normalize();
+			_knockbackDirectionX = -hitDir.x * (damage / 10 / _entityMover.Rigidbody2D.mass);
+			_entityStateMachine.ChangeState("Hit");
+            IsKnockback = true;
+		}
+	}
 }

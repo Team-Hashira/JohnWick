@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: SoundSuppressorParts
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: -4191961853394108201, guid: b141040168b445a468e1af2a3643043c, type: 3}
-  itemSprite: {fileID: -4191961853394108201, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemDefaultSprite: {fileID: -1821816813, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: SoundSuppressor
   itemDisplayName: "\uC18C\uC74C\uAE30"
   itemDescription: "\uC774\uAC83\uC740 \uC18C\uB9AC \uC5B5\uC81C\uAE30"
   useCustomClass: 0
   defaultClass: WeaponParts
+  partsSpriteDictionary:
+    _serializedList:
+    - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
+      Value: {fileID: -1821816813, guid: b141040168b445a468e1af2a3643043c, type: 3}
+    - Key: {fileID: 11400000, guid: 428fad33e14c0c940a0a788199ffcbc1, type: 2}
+      Value: {fileID: -4191961853394108201, guid: b141040168b445a468e1af2a3643043c, type: 3}
+    - Key: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
+      Value: {fileID: -797657715, guid: b141040168b445a468e1af2a3643043c, type: 3}
   partsType: 0
   _statList:
   - Name: "\uACF5\uACA9\uB825"

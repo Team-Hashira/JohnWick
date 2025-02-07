@@ -18,7 +18,7 @@ namespace Hashira.Items.Weapons
         public int BulletAmount { get; protected set; }
 
         //Parts
-        private readonly Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
+        private Dictionary<EWeaponPartsType, WeaponParts> _partsSlotDictionary;
         public event Action<EWeaponPartsType, WeaponParts> OnPartsChanged;
 
         private StatElement _precisionStat;
@@ -26,6 +26,7 @@ namespace Hashira.Items.Weapons
         private StatElement _attackSpeedStat;
         private StatElement _magazineCapacityStat;
 
+        protected Vector3 _firePos;
         private float _lastFireTime;
 
         public bool IsCanFire => _lastFireTime + 1 / _attackSpeedStat.Value < Time.time;
@@ -58,10 +59,12 @@ namespace Hashira.Items.Weapons
                 _lastFireTime = Time.time;
             else return false;
 
+            CalculateFirePos();
+
             BulletAmount--;
 
             //Soundgenerate
-            bool isEquipedSoundSuppressor = _partsSlotDictionary[EWeaponPartsType.Muzzle]?.WeaponPartsSO.itemName == "SoundSuppressor";
+            bool isEquipedSoundSuppressor = _partsSlotDictionary.TryGetValue(EWeaponPartsType.Muzzle, out WeaponParts weaponParts) && weaponParts != null && weaponParts.WeaponPartsSO.itemName == "SoundSuppressor";
             if (isEquipedSoundSuppressor == false)
             {
                 SoundGeneratedEvent soundGenerated = SoundEvents.SoundGeneratedEvent;
@@ -77,10 +80,20 @@ namespace Hashira.Items.Weapons
             return true;
         }
 
-        protected void CreateBullet(Vector3 firePos, Vector3 direction)
+        private void CalculateFirePos()
+        {
+            SpriteRenderer spriteRenderer = EntityWeapon.PartsRenderer[EWeaponPartsType.Muzzle];
+            Vector3 muzzlePos = spriteRenderer.transform.position;
+            float muzzlePartsSize = spriteRenderer.sprite != null ?
+                spriteRenderer.sprite.rect.width / EntityWeapon.PartsRenderer.PixelPerUnit : 0;
+
+            _firePos = muzzlePos + spriteRenderer.transform.right * muzzlePartsSize;
+        }
+
+        protected void CreateBullet(Vector3 direction)
         {
             //Bullet
-            Bullet bullet = EntityWeapon.gameObject.Pop(GunSO.bullet, firePos, Quaternion.identity) as Bullet;
+            Bullet bullet = EntityWeapon.gameObject.Pop(GunSO.bullet, _firePos, Quaternion.identity) as Bullet;
             bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage());
 
             EntityWeapon.ApplyRecoil(_recoilStat.Value);
@@ -147,13 +160,15 @@ namespace Hashira.Items.Weapons
         public override object Clone()
         {
             GunSO = WeaponSO as GunSO;
-            _partsSlotDictionary.Clear();
-            foreach (EWeaponPartsType partsType in GunSO.partsEquipPosDict.Keys)
-            {
-                _partsSlotDictionary.Add(partsType, null);
-            }
             Reload();
-            return base.Clone();
+            GunWeapon clonedGunWeapon = (GunWeapon)base.Clone();
+            clonedGunWeapon._partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
+            clonedGunWeapon._partsSlotDictionary.Clear();
+            foreach (EWeaponPartsType partsType in GunSO.partsEquipUIPosDict.Keys)
+            {
+                clonedGunWeapon._partsSlotDictionary.Add(partsType, null);
+            }
+            return clonedGunWeapon;
         }
     }
 }

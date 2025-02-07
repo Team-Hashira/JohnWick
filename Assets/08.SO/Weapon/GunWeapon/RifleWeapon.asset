@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
   m_Name: RifleWeapon
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 1615449300746285909, guid: b141040168b445a468e1af2a3643043c, type: 3}
-  itemSprite: {fileID: 1615449300746285909, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemIcon: {fileID: 21300000, guid: b1306fb877166894e82184f3af52e8db, type: 3}
+  itemDefaultSprite: {fileID: 1615449300746285909, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: Rifle
   itemDisplayName: "\uC18C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC791\uC740 \uCD1D"
@@ -22,9 +22,9 @@ MonoBehaviour:
   <WhatIsTarget>k__BackingField:
     serializedVersion: 2
     m_Bits: 2752
-  <GrapOffset>k__BackingField: {x: 0.875, y: 0.045, z: 0}
-  <RightHandOffset>k__BackingField: {x: -0.416, y: -0.051, z: 0}
-  <LeftHandOffset>k__BackingField: {x: -0.041, y: -0.049, z: 0}
+  <GrapOffset>k__BackingField: {x: 0.654, y: 0.085, z: 0}
+  <RightHandOffset>k__BackingField: {x: -0.136, y: -0.104, z: 0}
+  <LeftHandOffset>k__BackingField: {x: 0.17, y: -0.107, z: 0}
   <GrapRotate>k__BackingField: 0
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
@@ -43,23 +43,33 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
     _baseValue: 30
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  firePoint: {x: 0.618, y: 0.056, z: 0}
-  cartridgeCaseParticlePoint: {x: -0.303, y: 0.091, z: 0}
+  firePoint: {x: 0.812, y: 0.002, z: 0}
+  cartridgeCaseParticlePoint: {x: -0.11, y: 0.029, z: 0}
   bullet: 0
   fireSpakleEffect: 1
   bulletSpeed: 200
   reloadDuration: 1
+  partsEquipUIPosDict:
+    _serializedList:
+    - Key: 0
+      Value: {x: 138.8, y: 0}
+    - Key: 1
+      Value: {x: 0, y: 73}
+    - Key: 2
+      Value: {x: 50.1, y: -73}
+    - Key: 3
+      Value: {x: -50.1, y: -73}
+    - Key: 5
+      Value: {x: -138.8, y: 0}
   partsEquipPosDict:
     _serializedList:
     - Key: 0
-      Value: {x: 121, y: 22.7}
+      Value: {x: 13, y: 0}
     - Key: 1
-      Value: {x: 0, y: 48.8}
+      Value: {x: 0, y: 2}
     - Key: 2
-      Value: {x: 68.3, y: -2.7}
+      Value: {x: 3, y: -2}
     - Key: 3
-      Value: {x: 26.1, y: -46.27}
+      Value: {x: -2, y: -2}
     - Key: 5
-      Value: {x: -125.67, y: 0}
-    - Key: 6
-      Value: {x: 21.52, y: 17.4}
+      Value: {x: 0, y: -6}

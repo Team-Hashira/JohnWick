@@ -17,7 +17,9 @@ namespace Hashira.Items.Weapons.Editor
             float widthOffset = 25f;
             Rect rectResize = new Rect(0, 0, 0, SlotRect.height/SlotRect.width * (inspectorWidth-widthOffset));
 
-            var originSprite = gunSO.itemSprite;
+            if (gunSO.itemIcon) return;
+
+            var originSprite = gunSO.itemIcon;
 
             Texture2D texture = EditorTextureExtension.ConvertToTexture2D(originSprite, FilterMode.Point);
             GUILayout.Box(GUIContent.none, GUI.skin.window, GUILayout.Height(rectResize.height));
@@ -26,7 +28,7 @@ namespace Hashira.Items.Weapons.Editor
             
             Vector2 partSlotResize = PartSlotSize * mul;
             
-            foreach (var pair in gunSO.partsEquipPosDict)
+            foreach (var pair in gunSO.partsEquipUIPosDict)
             {
                 Vector2 partSlotReposition = new Vector2(pair.Value.x, -pair.Value.y) * mul;
 

@@ -71,7 +71,7 @@ namespace Hashira.Entities.Interacts
         }
         public virtual void SetItem(Item item)
         {
-            _itemSprite.sprite = item.ItemSO?.itemIcon;
+            _itemSprite.sprite = item.ItemSO?.itemDefaultSprite;
             string itemName = item.ItemSO == null ? "" : item.ItemSO.itemDisplayName;
             _nameText.text = $"{itemName}";
         }

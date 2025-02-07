@@ -16,8 +16,9 @@ namespace Hashira.Items.Weapons
         public float bulletSpeed = 200;
         public float reloadDuration = 1;
         [Header("Parts")]
-        [Tooltip("Is local position")]
-        public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipPosDict
+        public SerializedDictionary<EWeaponPartsType, Vector2> partsEquipUIPosDict
             = new SerializedDictionary<EWeaponPartsType, Vector2>();
+        public SerializedDictionary<EWeaponPartsType, Vector2Int> partsEquipPosDict
+            = new SerializedDictionary<EWeaponPartsType, Vector2Int>();
     }
 }

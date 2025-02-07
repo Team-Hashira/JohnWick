@@ -4,6 +4,7 @@ using Hashira.Core;
 using System;
 using UnityEngine;
 using Hashira.Core.EventSystem;
+using Hashira.Items.PartsSystem;
 
 namespace Hashira.Entities.Components
 {
@@ -36,6 +37,7 @@ namespace Hashira.Entities.Components
 
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [field: SerializeField] public LineRenderer LaserRenderer { get; private set; }
+        [field: SerializeField] public PartsRenderer PartsRenderer { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
         private float _startYPos;
@@ -70,6 +72,8 @@ namespace Hashira.Entities.Components
             _entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
 
+            PartsRenderer.Init();
+
             WeaponIndex = 0;
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
 
@@ -99,8 +103,11 @@ namespace Hashira.Entities.Components
 
         private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
         {
-            _spriteRenderer.sprite = weapon?.WeaponSO.itemSprite;
+            _spriteRenderer.sprite = weapon?.WeaponSO.itemDefaultSprite;
             //VisualTrm.gameObject.SetActive(weapon != null);
+
+
+            PartsRenderer.SetGun(weapon as GunWeapon);
 
             Recoil = 0;
             _currentReloadTime = 0;
@@ -123,6 +130,7 @@ namespace Hashira.Entities.Components
                     CartridgeCaseParticle.transform.localPosition = gunSO.cartridgeCaseParticlePoint;
                     visualPosition.y = -gunSO.firePoint.y;
                 }
+
                 VisualTrm.localPosition = visualPosition;
             }
         }

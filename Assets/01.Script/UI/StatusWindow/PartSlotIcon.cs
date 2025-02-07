@@ -27,7 +27,7 @@ namespace Hashira.UI.StatusWindow
 
         public void Init(PartSlot partSlot)
         {
-            _image.sprite = partSlot.BasePart?.WeaponPartsSO.itemSprite;
+            _image.sprite = partSlot.BasePart?.WeaponPartsSO.itemDefaultSprite;
             _image.color = partSlot.BasePart != null ? Color.white : Color.clear;  
             Parent = partSlot;
         }
@@ -58,7 +58,7 @@ namespace Hashira.UI.StatusWindow
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
-                ItemDropUtility.DroppedItem(Parent.BasePart.WeaponPartsSO, pos);
+                ItemDropUtility.DroppedItem(Parent.BasePart, pos);
                 Parent.Parent.GunWeapon.EquipParts(Parent.partType, null);
                 SetToOriginTrm();
                 return;

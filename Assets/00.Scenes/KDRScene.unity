@@ -1734,6 +1734,7 @@ GameObject:
   - component: {fileID: 1713861328}
   - component: {fileID: 1713861327}
   - component: {fileID: 1713861326}
+  - component: {fileID: 1713861330}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -1855,6 +1856,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 587487585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713861330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713861324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d29877c78ef9c4c9bebc019759622c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CinemachineConfiner2D>k__BackingField: {fileID: 1713861326}
+  <CinemachineVirtualCameraBase>k__BackingField: {fileID: 1713861325}
 --- !u!1001 &1758512768
 PrefabInstance:
   m_ObjectHideFlags: 0

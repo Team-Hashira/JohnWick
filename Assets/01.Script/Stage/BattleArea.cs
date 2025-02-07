@@ -6,17 +6,21 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hashira.Combat
+namespace Hashira.Stage
 {
     public class BattleArea : MonoBehaviour
     {
 		[SerializeField] private UnityEvent BattleStartEvent;
 		[SerializeField] private UnityEvent BattleEndEvent;
-
+		[SerializeField] private UnityEvent PlayerEnterEvent;
 		[SerializeField] private List<EntityHealth> _entityList;
 		private int _enemyCount = 0;
 
+		public event Action ClearEvent;
+
 		private CinemachineCamera _cam;
+
+		private CameraManager _cameraManager;
 
 		private void Awake()
 		{
@@ -26,6 +30,7 @@ namespace Hashira.Combat
 
 		private void Start()
 		{
+			_cameraManager = CameraManager.Instance;
 			_cam.Follow = FindFirstObjectByType<InternallyDividedPosition>().transform;
 
 			_enemyCount = _entityList.Count;
@@ -53,6 +58,7 @@ namespace Hashira.Combat
 		public void StartBattle()
 		{
 			BattleStartEvent?.Invoke();
+			ClearEvent?.Invoke();
 		}
 
 		private void HandleCounting()
@@ -71,9 +77,10 @@ namespace Hashira.Combat
 		{
 			if (collision.CompareTag("Player"))
 			{
-				CameraManager.Instance?.ChangeCamera(_cam);
-				CameraManager.Instance?.ShakeCamera(0, 0, 0);
-				if(_enemyCount > 0)
+				_cameraManager?.ChangeCamera(_cam);
+				_cameraManager?.ShakeCamera(0, 0, 0);
+				PlayerEnterEvent?.Invoke();
+				if (_enemyCount > 0)
 					StartBattle();
 			}
 		}
@@ -82,8 +89,8 @@ namespace Hashira.Combat
 		{
 			if (collision.CompareTag("Player"))
 			{
-				CameraManager.Instance?.ChangeCamera("Player");
-				CameraManager.Instance?.ShakeCamera(0, 0, 0);
+				_cameraManager?.ChangeCamera("Player");
+				_cameraManager?.ShakeCamera(0, 0, 0);
 			}
 		}
 	}

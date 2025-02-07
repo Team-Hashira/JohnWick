@@ -18,6 +18,7 @@ namespace Hashira.Players
         protected EntityStat _statCompo;
         protected EntityWeapon _weaponHolderCompo;
         protected EntityInteractor _interactor;
+        protected PlayerMover _playerMover;
 
         private Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
 
@@ -35,17 +36,21 @@ namespace Hashira.Players
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
-        #region Handles
+		#region Handles
 
-        private void HandleInteractEvent(bool isDown)
+		private void HandleInteractEvent(bool isDown)
         {
             _interactor.Interact(isDown);
         }
 
         private void HandleDashEvent()
         {
-            if (_stateMachine.CurrentStateName != "Rolling")
-                _stateMachine.ChangeState("Rolling");
+            if (_playerMover.CanRolling == false) return;
+			if (_stateMachine.CurrentStateName != "Rolling")
+            {
+			    _playerMover.OnDash();
+				_stateMachine.ChangeState("Rolling");
+            }
         }
 
         private void HandleMeleeAttackEvent()
@@ -69,15 +74,21 @@ namespace Hashira.Players
         {
             base.InitializeComponent();
 
-            _statCompo = GetEntityComponent<EntityStat>();
+			_playerMover = GetEntityComponent<PlayerMover>();
+			_statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
             _weaponHolderCompo = GetEntityComponent<EntityWeapon>();
             _interactor = GetEntityComponent<EntityInteractor>();
             _stateMachine = GetEntityComponent<EntityStateMachine>();
             _damageStat = _statCompo.StatDictionary["AttackPower"];
-        }
+		}
 
-        protected override void Update()
+		protected override void AfterIntiialize()
+		{
+			base.AfterIntiialize();
+		}
+
+		protected override void Update()
         {
             base.Update();
 
@@ -91,7 +102,7 @@ namespace Hashira.Players
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            InputReader.OnDashEvent -= HandleDashEvent;
+			InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnInteractEvent -= HandleInteractEvent;
 
             InputReader.OnAttackEvent -= HandleAttackEvent;

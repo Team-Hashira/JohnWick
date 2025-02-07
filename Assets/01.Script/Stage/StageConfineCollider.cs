@@ -1,7 +1,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Hashira.Combat
+namespace Hashira.Stage
 {
     public class StageConfineCollider : MonoBehaviour
     {

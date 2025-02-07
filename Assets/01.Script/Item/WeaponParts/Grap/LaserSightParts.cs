@@ -14,7 +14,6 @@ namespace Hashira.Items.PartsSystem
         private LineRenderer _lineRenderer;
         private EntityWeapon _entityWeapon;
         private Transform _weaponVisual;
-        private Vector3 _laserOffset;
 
         public override void Equip(GunWeapon weapon)
         {
@@ -22,8 +21,6 @@ namespace Hashira.Items.PartsSystem
             _entityWeapon = weapon.EntityWeapon;
             _weaponVisual = _entityWeapon.VisualTrm;
             _lineRenderer = _entityWeapon.LaserRenderer;
-
-            _laserOffset = weapon.GunSO.partsEquipPosDict[EWeaponPartsType.Grip] / (1080 / 10 * 2); // (y해상도) / (카메라 y길이)
 
             _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             HandleCurrentWeaponChangedEvent(_entityWeapon.CurrentWeapon);
@@ -35,15 +32,13 @@ namespace Hashira.Items.PartsSystem
             bool isHaveLaser = weapon != null && weapon is GunWeapon gunWeapon && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
 
             _lineRenderer.enabled = isOn || isHaveLaser;
-            if (isOn)
-                _lineRenderer.SetPosition(0, _laserOffset);
         }
 
         public override void PartsUpdate()
         {
             base.PartsUpdate();
             RaycastHit2D hit;
-            if (hit = Physics2D.Raycast(_weaponVisual.position + _weaponVisual.rotation * _laserOffset, _weaponVisual.right, 100, _WhatIsObstacle))
+            if (hit = Physics2D.Raycast(_lineRenderer.transform.position, _lineRenderer.transform.right, 100, _WhatIsObstacle))
                 _lineRenderer.SetPosition(1, Vector3.right * hit.distance);
             else
                 _lineRenderer.SetPosition(1, Vector3.right * 100);
@@ -52,6 +47,7 @@ namespace Hashira.Items.PartsSystem
         public override void UnEquip()
         {
             base.UnEquip();
+            if (_entityWeapon.CurrentWeapon == _weapon) _lineRenderer.enabled = false;
             _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
         }
     }

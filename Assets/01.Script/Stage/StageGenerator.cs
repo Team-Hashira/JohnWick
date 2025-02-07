@@ -5,7 +5,7 @@ using Hashira.Combat;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Hashira
+namespace Hashira.Stage
 {
     public class StageGenerator : MonoSingleton<StageGenerator>
     {

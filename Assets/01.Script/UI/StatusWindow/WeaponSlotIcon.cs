@@ -38,7 +38,7 @@ namespace Hashira.UI.StatusWindow
 
         public void Init(IWeaponSlot gunWeaponSlot)
         {
-            _image.sprite = gunWeaponSlot.BaseWeapon?.WeaponSO.itemSprite;
+            _image.sprite = gunWeaponSlot.BaseWeapon?.WeaponSO.itemDefaultSprite;
             _image.color = gunWeaponSlot.BaseWeapon != null ? Color.white : Color.clear;  
             Parent = gunWeaponSlot;
         }
@@ -69,7 +69,7 @@ namespace Hashira.UI.StatusWindow
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
-                ItemDropUtility.DroppedItem(Parent.BaseWeapon.WeaponSO, pos);
+                ItemDropUtility.DroppedItem(Parent.BaseWeapon, pos);
                 _entityWeapon.RemoveWeapon(Parent.SlotIndex);
             } 
             

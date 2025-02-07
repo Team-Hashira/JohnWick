@@ -57,7 +57,7 @@ namespace Hashira.Enemies
                     _entityRenderer.Blink(0.2f, DG.Tweening.Ease.InCirc);
                     break;
                 case EEntityPartType.Legs:
-                    _entityStat.StatDictionary["Speed"].AddModify("LegFracture", -4, Core.StatSystem.EModifyMode.Add);
+                    _entityStat.StatDictionary["Speed"].AddModify("LegFracture", -50f, Core.StatSystem.EModifyMode.Percnet);
                     break;
             }
         }

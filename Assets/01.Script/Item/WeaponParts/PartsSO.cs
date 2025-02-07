@@ -1,5 +1,7 @@
+using AYellowpaper.SerializedCollections;
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
+using Hashira.Items.Weapons;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,6 @@ public enum EWeaponPartsType
     Magazine,           //탄창
     CartridgeBelt,      //탄띠
     Stock,              //개머리판
-    Side,               //사이드 
 }
 
 namespace Hashira.Items.PartsSystem
@@ -23,6 +24,7 @@ namespace Hashira.Items.PartsSystem
     public class PartsSO : ItemSO, IStatable
     { 
         [Header("==========Weapon parts setting==========")]
+        public SerializedDictionary<GunSO, Sprite> partsSpriteDictionary;
         public EWeaponPartsType partsType;
 
         [SerializeField] private List<StatElement> _statList = new List<StatElement>();

@@ -12,10 +12,7 @@ namespace Hashira.Players
         public override void OnEnter()
         {
             base.OnEnter();
-
             _entityMover.StopImmediately();
-
-
         }
 
         public override void OnUpdate()

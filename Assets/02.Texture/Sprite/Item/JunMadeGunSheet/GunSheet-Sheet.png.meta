@@ -145,12 +145,12 @@ TextureImporter:
       name: Shotgun_Gun
       rect:
         serializedVersion: 2
-        x: 5
-        y: 68
-        width: 21
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 64
+        width: 48
+        height: 16
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,10 +167,10 @@ TextureImporter:
       name: Shotgun_Hand
       rect:
         serializedVersion: 2
-        x: 720
-        y: 64
-        width: 48
-        height: 16
+        x: 732
+        y: 68
+        width: 8
+        height: 3
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,12 +189,12 @@ TextureImporter:
       name: AWM_Gun
       rect:
         serializedVersion: 2
-        x: 5
-        y: 51
-        width: 32
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 48
+        width: 48
+        height: 16
+      alignment: 9
+      pivot: {x: 0.375, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: AWM_ Magazine-Defult
       rect:
         serializedVersion: 2
-        x: 192
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 209
+        y: 51
+        width: 3
+        height: 2
+      alignment: 9
+      pivot: {x: 0.33333334, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: AWM_ Magazine-Quick
       rect:
         serializedVersion: 2
-        x: 240
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 257
+        y: 51
+        width: 3
+        height: 2
+      alignment: 9
+      pivot: {x: 0.33333334, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: AWM_ Magazine-Largee
       rect:
         serializedVersion: 2
-        x: 288
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 304
+        y: 50
+        width: 4
+        height: 3
+      alignment: 9
+      pivot: {x: 0.25, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,12 +277,12 @@ TextureImporter:
       name: AWM_Scope-RedDot
       rect:
         serializedVersion: 2
-        x: 336
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 352
+        y: 57
+        width: 4
+        height: 3
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: AWM_Grip-Laser
       rect:
         serializedVersion: 2
-        x: 384
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 408
+        y: 53
+        width: 3
+        height: 2
+      alignment: 9
+      pivot: {x: 0.33333334, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,12 +321,12 @@ TextureImporter:
       name: AWM_Muzzle-Fire
       rect:
         serializedVersion: 2
-        x: 576
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 612
+        y: 54
+        width: 7
+        height: 4
+      alignment: 9
+      pivot: {x: -0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,12 +343,12 @@ TextureImporter:
       name: AWM_Muzzle-Aim
       rect:
         serializedVersion: 2
-        x: 624
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 660
+        y: 54
+        width: 7
+        height: 4
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,12 +365,12 @@ TextureImporter:
       name: AWM_Muzzle-Sound
       rect:
         serializedVersion: 2
-        x: 672
-        y: 48
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 707
+        y: 54
+        width: 8
+        height: 4
+      alignment: 9
+      pivot: {x: -0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,10 +387,10 @@ TextureImporter:
       name: AWM_Hand
       rect:
         serializedVersion: 2
-        x: 720
-        y: 48
-        width: 48
-        height: 16
+        x: 734
+        y: 51
+        width: 9
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,12 +409,12 @@ TextureImporter:
       name: K2_Gun
       rect:
         serializedVersion: 2
-        x: 9
-        y: 36
-        width: 20
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 32
+        width: 48
+        height: 16
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.5625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -431,12 +431,12 @@ TextureImporter:
       name: K2_Stock-1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 53
+        y: 38
+        width: 5
+        height: 5
+      alignment: 9
+      pivot: {x: 1, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -453,12 +453,12 @@ TextureImporter:
       name: K2_Stock-2
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 101
+        y: 38
+        width: 5
+        height: 5
+      alignment: 9
+      pivot: {x: 1, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -475,12 +475,12 @@ TextureImporter:
       name: K2_Stock-3
       rect:
         serializedVersion: 2
-        x: 144
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 149
+        y: 38
+        width: 5
+        height: 5
+      alignment: 9
+      pivot: {x: 1, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -497,12 +497,12 @@ TextureImporter:
       name: K2_Magazine-Defult
       rect:
         serializedVersion: 2
-        x: 192
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 207
+        y: 35
+        width: 4
+        height: 4
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -519,12 +519,12 @@ TextureImporter:
       name: K2_Magazine-Quick
       rect:
         serializedVersion: 2
-        x: 240
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 255
+        y: 35
+        width: 4
+        height: 4
+      alignment: 9
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -541,12 +541,12 @@ TextureImporter:
       name: K2_Magazine-Large
       rect:
         serializedVersion: 2
-        x: 288
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 302
+        y: 34
+        width: 5
+        height: 5
+      alignment: 9
+      pivot: {x: -0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -563,12 +563,12 @@ TextureImporter:
       name: K2_Scope-RedDot
       rect:
         serializedVersion: 2
-        x: 336
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 348
+        y: 43
+        width: 4
+        height: 3
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -585,12 +585,12 @@ TextureImporter:
       name: K2_Grip-Laser
       rect:
         serializedVersion: 2
-        x: 384
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 402
+        y: 38
+        width: 5
+        height: 2
+      alignment: 9
+      pivot: {x: 0.6, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -607,12 +607,12 @@ TextureImporter:
       name: K2_Grip-Foregrip
       rect:
         serializedVersion: 2
-        x: 432
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 452
+        y: 36
+        width: 2
+        height: 4
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -629,12 +629,12 @@ TextureImporter:
       name: K2_Grip-Null
       rect:
         serializedVersion: 2
-        x: 480
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 499
+        y: 39
+        width: 3
+        height: 2
+      alignment: 9
+      pivot: {x: 0.33333334, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -651,12 +651,12 @@ TextureImporter:
       name: K2_Grip-Angled
       rect:
         serializedVersion: 2
-        x: 528
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 548
+        y: 37
+        width: 4
+        height: 3
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -673,12 +673,12 @@ TextureImporter:
       name: K2_Muzzle-Fire
       rect:
         serializedVersion: 2
-        x: 576
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 603
+        y: 40
+        width: 5
+        height: 2
+      alignment: 9
+      pivot: {x: -0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -695,12 +695,12 @@ TextureImporter:
       name: K2_Muzzle-Aim
       rect:
         serializedVersion: 2
-        x: 624
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 651
+        y: 40
+        width: 5
+        height: 2
+      alignment: 9
+      pivot: {x: -0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -717,12 +717,12 @@ TextureImporter:
       name: K2_Muzzle-Sound
       rect:
         serializedVersion: 2
-        x: 672
-        y: 32
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 699
+        y: 40
+        width: 5
+        height: 2
+      alignment: 9
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -739,10 +739,10 @@ TextureImporter:
       name: K2_Hand
       rect:
         serializedVersion: 2
-        x: 720
-        y: 32
-        width: 48
-        height: 16
+        x: 729
+        y: 37
+        width: 5
+        height: 2
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -761,12 +761,12 @@ TextureImporter:
       name: P1911_Gun
       rect:
         serializedVersion: 2
-        x: 9
-        y: 22
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 16
+        width: 48
+        height: 16
+      alignment: 9
+      pivot: {x: 0.27083334, y: 0.5625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -783,12 +783,12 @@ TextureImporter:
       name: P1911_Magazine-Defult
       rect:
         serializedVersion: 2
-        x: 192
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 201
+        y: 21
+        width: 3
+        height: 2
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -805,12 +805,12 @@ TextureImporter:
       name: P1911_Magazine-Quick
       rect:
         serializedVersion: 2
-        x: 240
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 249
+        y: 21
+        width: 3
+        height: 2
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -827,12 +827,12 @@ TextureImporter:
       name: P1911_Magazine-Large
       rect:
         serializedVersion: 2
-        x: 288
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 295
+        y: 18
+        width: 4
+        height: 6
+      alignment: 9
+      pivot: {x: 0.75, y: 0.6666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -849,12 +849,12 @@ TextureImporter:
       name: P1911_Scope-RedDot
       rect:
         serializedVersion: 2
-        x: 336
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 346
+        y: 27
+        width: 3
+        height: 2
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -871,12 +871,12 @@ TextureImporter:
       name: P1911_Grap-Laser
       rect:
         serializedVersion: 2
-        x: 384
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 399
+        y: 23
+        width: 2
+        height: 1
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -893,12 +893,12 @@ TextureImporter:
       name: P1911_Grap-Foregrip
       rect:
         serializedVersion: 2
-        x: 432
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 447
+        y: 21
+        width: 2
+        height: 3
+      alignment: 9
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -915,12 +915,12 @@ TextureImporter:
       name: P1911_Grap-Angled
       rect:
         serializedVersion: 2
-        x: 528
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 543
+        y: 22
+        width: 3
+        height: 3
+      alignment: 9
+      pivot: {x: 0.6666667, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -937,12 +937,12 @@ TextureImporter:
       name: P1911_Muzzle-Fire
       rect:
         serializedVersion: 2
-        x: 576
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 594
+        y: 25
+        width: 8
+        height: 3
+      alignment: 9
+      pivot: {x: -0, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -959,12 +959,12 @@ TextureImporter:
       name: P1911_Muzzle-Aim
       rect:
         serializedVersion: 2
-        x: 624
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 642
+        y: 25
+        width: 8
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -981,12 +981,12 @@ TextureImporter:
       name: P1911_Muzzle-Sound
       rect:
         serializedVersion: 2
-        x: 672
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 690
+        y: 25
+        width: 7
+        height: 3
+      alignment: 9
+      pivot: {x: 0, y: 0.33333334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1003,10 +1003,10 @@ TextureImporter:
       name: P1911_Hand
       rect:
         serializedVersion: 2
-        x: 720
-        y: 16
-        width: 48
-        height: 16
+        x: 728
+        y: 21
+        width: 5
+        height: 3
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1017,28 +1017,6 @@ TextureImporter:
       bones: []
       spriteID: 612f1c271462efa4daf40303ed1a3b67
       internalID: 390691384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: P1911_Grap-Null
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 16
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a291929516937e4dae57dd527c082dc
-      internalID: 223632536
       vertices: []
       indices: 
       edges: []
