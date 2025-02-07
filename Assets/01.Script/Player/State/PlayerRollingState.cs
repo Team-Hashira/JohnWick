@@ -1,7 +1,7 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using UnityEngine;
 
 namespace Hashira.Players

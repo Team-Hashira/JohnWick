@@ -1,5 +1,5 @@
 using Hashira.Entities;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using Hashira.Pathfind;
 using Hashira.Players;
 using System;

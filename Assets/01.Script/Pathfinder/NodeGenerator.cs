@@ -34,28 +34,50 @@ namespace Hashira.Pathfind
 
         private void HandleOnSoundGenerated(SoundGeneratedEvent evt)
         {
-            List<Node> sortedNodeList =
-                _nodeList.OrderBy(node => Vector3.Distance(evt.originPosition, node.transform.position)).ToList();
-            foreach (Node node in sortedNodeList)
+            Node closestNode = null;
+            Node bestNode = null;
+            float closestDistance = float.MaxValue;
+            float bestDistance = float.MaxValue;
+
+            foreach (Node node in _nodeList)
             {
-                Vector2 direction = evt.originPosition - node.transform.position;
-                float distance = direction.magnitude;
-                bool isWallOnBetween = Physics2D.Raycast(node.transform.position, direction.normalized, distance, _whatIsGround);
-                if (!isWallOnBetween)
+                float distance = Vector3.Distance(evt.originPosition, node.transform.position);
+
+                if (distance < closestDistance)
                 {
-                    var e = SoundEvents.NearbySoundPointEvent;
-                    e.node = node;
-                    e.loudness = evt.loudness;
-                    _soundEventChannel.RaiseEvent(e);
-                    return;
+                    closestNode = node;
+                    closestDistance = distance;
+                }
+
+                Vector2 direction = evt.originPosition - node.transform.position;
+                if (direction.sqrMagnitude < 0.0001f) //소리 발생지와 노드의 위치가 겹쳤을 경우의 예외처리
+                {
+                    bestNode = node;
+                    break;
+                }
+
+                if (!Physics2D.Raycast(node.transform.position, direction.normalized, direction.magnitude, _whatIsGround))
+                {
+                    if (distance < bestDistance)
+                    {
+                        bestNode = node;
+                        bestDistance = distance;
+                    }
                 }
             }
-            Debug.Log("소리 발생지로부터 가까운 노드를 찾지 못함.");
-            var ev = SoundEvents.NearbySoundPointEvent;
-            ev.node = sortedNodeList[0];
-            ev.loudness = evt.loudness;
-            _soundEventChannel.RaiseEvent(ev);
+
+            Node chosenNode = bestNode != null ? bestNode : closestNode;
+            if (bestNode == null)
+            {
+                Debug.Log("소리 발생지로부터 가까운 노드를 찾지 못함.");
+            }
+            var nearbySoundEvent = SoundEvents.NearbySoundPointEvent;
+            nearbySoundEvent.node = chosenNode;
+            nearbySoundEvent.loudness = evt.loudness;
+            _soundEventChannel.RaiseEvent(nearbySoundEvent);
         }
+
+
 
         [Button("Initialize", 20)]
         public void Initialize()

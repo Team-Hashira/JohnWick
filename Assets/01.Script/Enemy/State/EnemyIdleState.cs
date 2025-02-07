@@ -1,6 +1,6 @@
 using Hashira.Core.EventSystem;
 using Hashira.Entities;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using System;
 using UnityEngine;
 

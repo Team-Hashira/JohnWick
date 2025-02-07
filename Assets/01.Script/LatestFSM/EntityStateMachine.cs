@@ -1,9 +1,10 @@
 using Hashira.Entities;
+using Hashira.FSM;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hashira.LatestFSM
+namespace Hashira.Entities.Components
 {
     public class EntityStateMachine : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent
     {

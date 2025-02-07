@@ -1,5 +1,5 @@
 using Hashira.Entities;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using System.Collections;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
