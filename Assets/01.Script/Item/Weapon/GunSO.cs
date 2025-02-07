@@ -9,7 +9,6 @@ namespace Hashira.Items.Weapons
     public class GunSO : WeaponSO
     {
         [Header("==========Gun setting==========")]
-        public Vector3 firePoint;
         public Vector3 cartridgeCaseParticlePoint;
         public ProjectilePoolType bullet = ProjectilePoolType.Bullet;
         public EffectPoolType fireSpakleEffect = EffectPoolType.BulletShootSparkleEffect;

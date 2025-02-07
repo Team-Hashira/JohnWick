@@ -96,6 +96,7 @@ MonoBehaviour:
   _breakParticle: 2
   _spriteList: []
   <MaxHealth>k__BackingField: 800
+  <Resistivity>k__BackingField: 2
 --- !u!1 &5633176809641261812
 GameObject:
   m_ObjectHideFlags: 0

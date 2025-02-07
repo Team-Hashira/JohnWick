@@ -123,12 +123,12 @@ namespace Hashira.Entities.Components
 
                 Vector3 visualPosition = VisualTrm.localPosition;
                 visualPosition.x = weapon.WeaponSO.GrapOffset.x;
+                visualPosition.y = 0;
 
                 if (weapon is GunWeapon gun)
                 {
                     GunSO gunSO = gun.GunSO;
                     CartridgeCaseParticle.transform.localPosition = gunSO.cartridgeCaseParticlePoint;
-                    visualPosition.y = -gunSO.firePoint.y;
                 }
 
                 VisualTrm.localPosition = visualPosition;

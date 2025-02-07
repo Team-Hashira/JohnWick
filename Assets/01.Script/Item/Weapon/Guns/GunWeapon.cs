@@ -25,6 +25,7 @@ namespace Hashira.Items.Weapons
         private StatElement _recoilStat;
         private StatElement _attackSpeedStat;
         private StatElement _magazineCapacityStat;
+        private StatElement _penetrationStat;
 
         protected Vector3 _firePos;
         private float _lastFireTime;
@@ -39,6 +40,7 @@ namespace Hashira.Items.Weapons
             _recoilStat = StatDictionary["Recoil"];
             _attackSpeedStat = StatDictionary["AttackSpeed"];
             _magazineCapacityStat = StatDictionary["MagazineCapacity"];
+            _penetrationStat = StatDictionary["Penetration"];
         }
 
         private void HandleDamageSuccessEvent()
@@ -94,7 +96,7 @@ namespace Hashira.Items.Weapons
         {
             //Bullet
             Bullet bullet = EntityWeapon.gameObject.Pop(GunSO.bullet, _firePos, Quaternion.identity) as Bullet;
-            bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage());
+            bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue);
 
             EntityWeapon.ApplyRecoil(_recoilStat.Value);
         }
