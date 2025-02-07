@@ -778,10 +778,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2120810207}
     m_Modifications:
-    - target: {fileID: 1739164217382512514, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: <LaserRenderer>k__BackingField
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -830,13 +826,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6390566644954204797, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: <LaserRenderer>k__BackingField
-      value: 
-      objectReference: {fileID: 1721686647}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 7752638044739874099, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
@@ -1882,11 +1873,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CinemachineConfiner2D>k__BackingField: {fileID: 1713861326}
   <CinemachineVirtualCameraBase>k__BackingField: {fileID: 1713861325}
---- !u!120 &1721686647 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 2809586258277877281, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 651278449}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1758512768
 PrefabInstance:
   m_ObjectHideFlags: 0
