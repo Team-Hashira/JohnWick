@@ -32,7 +32,7 @@ namespace Hashira.Players
                 _moveDir = _entityRenderer.FacingDirection;
 
             var mainModule = _player.AfterImageParticle.main;
-            mainModule.startRotationY = -90 + 90 * _moveDir;
+            mainModule.startRotationY = (-90 + 90 * _moveDir) * Mathf.Deg2Rad;
             _player.AfterImageParticle.Play();
 
             _entityAnimator.OnAnimationTriggeredEvent += HandleAnimationTriggerEvent;
