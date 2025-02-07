@@ -1,15 +1,15 @@
 using Hashira.Core.EventSystem;
 using Hashira.Entities;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using UnityEngine;
 
 namespace Hashira.Enemies
 {
-    public abstract class ListeningSoundState : EntityState
+    public abstract class EnemyListeningSoundState : EntityState
     {
         private GameEventChannelSO _soundEventChannel;
         protected string _targetState = "Chase";
-        public ListeningSoundState(Entity entity, StateSO stateSO) : base(entity, stateSO)
+        public EnemyListeningSoundState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _soundEventChannel = (entity as Enemy)?.SoundEventChannel;
         }

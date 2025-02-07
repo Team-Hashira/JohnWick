@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Hashira.Object
 {
-    public class DoorObject : MonoBehaviour, IDamageable
+    public class DoorObject : MonoBehaviour, IDamageable, IPenetrable
     {
         [SerializeField] private EffectPoolType _breakParticle;
         [SerializeField] private List<Sprite> _spriteList;
@@ -14,7 +14,9 @@ namespace Hashira.Object
         [field: SerializeField] public int MaxHealth { get; private set; } = 100;
         public int CurrentHealth { get; private set; }
 
-		private void Awake()
+        [field: SerializeField] public int Resistivity { get; set; } = 2;
+
+        private void Awake()
 		{
 			_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 			CurrentHealth = MaxHealth;

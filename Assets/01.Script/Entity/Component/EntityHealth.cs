@@ -3,7 +3,7 @@ using Crogen.AttributeExtension;
 using Hashira.Core.StatSystem;
 using System;
 using UnityEngine;
-using Hashira.LatestFSM;
+using Hashira.Entities.Components;
 
 namespace Hashira.Entities
 {

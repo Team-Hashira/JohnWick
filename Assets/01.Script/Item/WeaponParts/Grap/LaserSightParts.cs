@@ -3,6 +3,7 @@ using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
 using System;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 namespace Hashira.Items.PartsSystem
@@ -20,16 +21,29 @@ namespace Hashira.Items.PartsSystem
             base.Equip(weapon);
             _entityWeapon = weapon.EntityWeapon;
             _weaponVisual = _entityWeapon.VisualTrm;
-            _lineRenderer = _entityWeapon.LaserRenderer;
+
+            Sprite sprite = WeaponPartsSO.partsSpriteDictionary[weapon.GunSO];
+            int pixelPerUnit = PartsRenderer.PixelPerUnit;
+            _lineRenderer.transform.localPosition 
+                = new Vector3((sprite.rect.width - sprite.pivot.x) / pixelPerUnit, -sprite.rect.height / pixelPerUnit / 2);
 
             _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             HandleCurrentWeaponChangedEvent(_entityWeapon.CurrentWeapon);
         }
 
+        protected override void HandlePartsRendererChangedEvent(PartsRenderer renderer)
+        {
+            base.HandlePartsRendererChangedEvent(renderer);
+
+            _lineRenderer = renderer.LaserRenderer;
+        }
+
         private void HandleCurrentWeaponChangedEvent(Weapon weapon)
         {
             bool isOn = weapon == _weapon;
-            bool isHaveLaser = weapon != null && weapon is GunWeapon gunWeapon && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
+            bool isHaveLaser 
+                = weapon != null && weapon is GunWeapon gunWeapon 
+                && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
 
             _lineRenderer.enabled = isOn || isHaveLaser;
         }

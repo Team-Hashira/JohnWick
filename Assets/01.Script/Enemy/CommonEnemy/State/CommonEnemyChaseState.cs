@@ -1,23 +1,23 @@
 using Hashira.Entities;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using Hashira.Pathfind;
 using Hashira.Players;
 using System;
 using UnityEngine;
 
-namespace Hashira.Enemies
+namespace Hashira.Enemies.CommonEnemy
 {
-    public class EnemyChaseState : EntityState
+    public class CommonEnemyChaseState : EntityState
     {
-        private Enemy _enemy;
+        private CommonEnemy _enemy;
         private EnemyPathfinder _enemyPathfinder;
 
         private Player _target;
         private EntityMover _targetMover;
 
-        public EnemyChaseState(Entity entity, StateSO stateSO) : base(entity, stateSO)
+        public CommonEnemyChaseState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _enemy = entity as Enemy;
+            _enemy = entity as CommonEnemy;
             _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
         }
 

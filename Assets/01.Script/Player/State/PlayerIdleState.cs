@@ -1,5 +1,5 @@
 using Hashira.Entities;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 
 namespace Hashira.Players
 {

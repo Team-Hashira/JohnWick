@@ -31,3 +31,6 @@ MonoBehaviour:
   - Name: MagazineCapacity
     elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
     _baseValue: 0
+  - Name: Penetration
+    elementSO: {fileID: 11400000, guid: 5b9bf81b7c848594ea76655dc9939382, type: 2}
+    _baseValue: 0

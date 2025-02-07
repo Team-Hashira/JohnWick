@@ -257,7 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5116424602048337280}
   - component: {fileID: 6464342731088211561}
-  - component: {fileID: 3360532895883302812}
+  - component: {fileID: 3158429162950815345}
   - component: {fileID: 6722688745115300717}
   - component: {fileID: 3673250076483303631}
   - component: {fileID: 1299947100969411918}
@@ -318,7 +318,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3360532895883302812
+--- !u!114 &3158429162950815345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,11 +327,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4577189607160717441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23ab4722c14bdf438907eb1e1f6bcd1, type: 3}
+  m_Script: {fileID: 11500000, guid: f54a421dc9dbc7a41b3a2b18ac92ee9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <SoundEventChannel>k__BackingField: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
-  _dieEffect: 3
+  _dieEffect: 0
   _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
@@ -348,6 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthStatSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
+  canKnockback: 1
+  knockbackTime: 0.2
 --- !u!114 &3673250076483303631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbc73c8b57755f43888b102b1b1e7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _namespace: Hashira.Enemies.Enemy
   _stateList:
   - {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
   - {fileID: 11400000, guid: df30a348952a1794ba54c27626cf4824, type: 2}
@@ -445,7 +446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overrideStatElementList:
-  - Name: 
+  - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
     _baseValue: 15
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
@@ -574,9 +575,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <VisualTrm>k__BackingField: {fileID: 7853605878701836433}
-  _spriteRendererList:
-  - {fileID: 4274513627107304624}
+  _armObject: []
   _onFlip: 0
+  SpriteRendererList: []
+  isUsualFacing: 1
 --- !u!114 &5832433263680074038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,10 +592,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 1970001383739666409}
-  _rightHand: {fileID: 0}
-  _leftHand: {fileID: 0}
+  _moveDirParamSO: {fileID: 0}
+  _yVelocityParamSO: {fileID: 0}
   _rightHandSolver: {fileID: 0}
   _leftHandSolver: {fileID: 0}
+  _targetEmptyR: {fileID: 0}
+  _targetEmptyL: {fileID: 0}
+  _targetWeaponR: {fileID: 0}
+  _targetWeaponL: {fileID: 0}
 --- !u!1 &7092230649704684037
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +655,8 @@ MonoBehaviour:
   _oneWayPlatform:
     serializedVersion: 2
     m_Bits: 4096
+  <JumpCount>k__BackingField: 1
+  <JumpPower>k__BackingField: 0
   _whatIsNode:
     serializedVersion: 2
     m_Bits: 8192

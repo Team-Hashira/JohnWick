@@ -2,7 +2,7 @@ using Hashira.Entities;
 using Hashira.Entities.Components;
 using UnityEngine;
 
-namespace Hashira.LatestFSM
+namespace Hashira.FSM
 {
     public abstract class EntityState
     {

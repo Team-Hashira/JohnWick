@@ -1173,6 +1173,9 @@ MonoBehaviour:
   - poolType: SpreadWallBlood
     prefab: {fileID: 6572880926036562658, guid: 18a2ff746d0e5f24ba2e235bfc9a1ba6, type: 3}
     poolCount: 20
+  - poolType: LandingSmoke
+    prefab: {fileID: 2303994125148999489, guid: 9afa21dc182e59e49ae0882f2b31a169, type: 3}
+    poolCount: 20
 --- !u!1001 &1326080384
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
+using Crogen.CrogenPooling;
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
-using Hashira.LatestFSM;
+using Hashira.FSM;
 using UnityEngine;
 
 namespace Hashira.Players
@@ -39,7 +40,10 @@ namespace Hashira.Players
             _entityMover.SetMovement(movement);
 
             if (_entityMover.IsGrounded == true)
+            {
+                _player.gameObject.Pop(EffectPoolType.LandingSmoke, _player.transform.position, Quaternion.identity);
                 _entityStateMachine.ChangeState("Idle");
+            }
         }
 
 		public override void OnExit()
