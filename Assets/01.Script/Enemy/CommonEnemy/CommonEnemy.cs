@@ -27,9 +27,14 @@ namespace Hashira.Enemies.CommonEnemy
 
                 float facingAngle = _entityRenderer.FacingDirection == 1 ? 0 : 180;
                 float minAngle = facingAngle - 30;
-                float maxAngle = -facingAngle + 30;
+                float maxAngle = facingAngle + 30;
 
-                if(minAngle <= angle && angle <= maxAngle)
+                if (minAngle < -180) 
+                    minAngle += 360;
+                if (maxAngle > 180) 
+                    maxAngle -= 360;
+
+                if (minAngle <= angle && angle <= maxAngle)
                 {
                     return coll.GetComponent<Player>();
                 }

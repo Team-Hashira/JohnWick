@@ -25,9 +25,14 @@ namespace Hashira.Enemies.CommonEnemy
         {
             base.OnEnter();
             Node targetNode = _entityStateMachine.GetShareVariable<Node>("TargetNode");
-            _enemyPathfinder.PathfindAndMove(targetNode);
+            if (targetNode != null)
+                _enemyPathfinder.PathfindAndMove(targetNode);
+            else
+            {
+                _target = _entityStateMachine.GetShareVariable<Player>("Target"); // 없으면 null임.
+                _targetMover = _target?.GetEntityComponent<PlayerMover>();
+            }
             _enemyPathfinder.OnMoveEndEvent += HandleOnMoveEndEvent;
-            _target = _entityStateMachine.GetShareVariable<Player>("Target"); // 없으면 null임.
         }
 
         public override void OnUpdate()
