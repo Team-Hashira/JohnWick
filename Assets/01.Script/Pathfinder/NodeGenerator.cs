@@ -35,7 +35,6 @@ namespace Hashira.Pathfind
 
         private void HandleOnSoundGenerated(SoundGeneratedEvent evt)
         {
-            Debug.Log($"{evt.originPosition} 에서 소리 발생!");
             Node closestNode = null;
             Node bestNode = null;
             float closestDistance = float.MaxValue;

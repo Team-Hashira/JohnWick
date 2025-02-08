@@ -24,15 +24,17 @@ namespace Hashira.Enemies.CommonEnemy
         public override void OnEnter()
         {
             base.OnEnter();
-            Node targetNode = _entityStateMachine.GetShareVariable<Node>("TargetNode");
-            if (targetNode != null)
-                _enemyPathfinder.PathfindAndMove(targetNode);
-            else
+            _target = _entityStateMachine.GetShareVariable<Player>("Target");
+            if (_target != null)
             {
-                _target = _entityStateMachine.GetShareVariable<Player>("Target"); // 없으면 null임.
                 _targetMover = _target?.GetEntityComponent<PlayerMover>();
             }
-            _enemyPathfinder.OnMoveEndEvent += HandleOnMoveEndEvent;
+            else // Target이 null일 경우엔 무조건 TargetNode가 넘어옴.
+            {
+                Node targetNode = _entityStateMachine.GetShareVariable<Node>("TargetNode");
+                _enemyPathfinder.PathfindAndMove(targetNode);
+                _enemyPathfinder.OnMoveEndEvent += HandleOnMoveEndEvent;
+            }
         }
 
         public override void OnUpdate()
@@ -45,6 +47,7 @@ namespace Hashira.Enemies.CommonEnemy
                 {
                     _target = target;
                     _targetMover = target.GetEntityComponent<EntityMover>(true);
+                    _enemyPathfinder.OnMoveEndEvent -= HandleOnMoveEndEvent;
                 }
             }
             else
@@ -52,6 +55,13 @@ namespace Hashira.Enemies.CommonEnemy
                 if (_enemyPathfinder.TargetNode != _targetMover.CurrentNode)
                     _enemyPathfinder.PathfindAndMove(_targetMover.CurrentNode);
             }
+        }
+
+        public override void OnExit()
+        {
+            if (_target == null)
+                _enemyPathfinder.OnMoveEndEvent -= HandleOnMoveEndEvent;
+            base.OnExit();
         }
 
         private void HandleOnMoveEndEvent()

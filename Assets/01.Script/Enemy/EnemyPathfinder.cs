@@ -23,8 +23,6 @@ namespace Hashira.Enemies
         private Coroutine _moveCoroutine;
         [SerializeField]
         private LayerMask _onewayPlatform;
-        [field: SerializeField]
-        public float StopDistance { get; set; } = 1f;
 
         [SerializeField]
         private StatElementSO _speedElementSO;

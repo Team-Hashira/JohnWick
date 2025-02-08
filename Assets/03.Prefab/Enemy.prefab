@@ -485,7 +485,7 @@ MonoBehaviour:
   _overrideStatElementList:
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
-    _baseValue: 15
+    _baseValue: 5
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
 --- !u!1 &6939146755433511591
 GameObject:
@@ -688,7 +688,7 @@ MonoBehaviour:
   _downDistance: 0.1
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2240
   _oneWayPlatform:
     serializedVersion: 2
     m_Bits: 4096

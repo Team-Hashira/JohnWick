@@ -24,15 +24,14 @@ namespace Hashira.Enemies.CommonEnemy
             if (!Physics2D.Raycast(_eye.transform.position, direction, distance, _whatIsGround))
             {
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                if (angle < 0)
+                    angle += 360f;
 
                 float facingAngle = _entityRenderer.FacingDirection == 1 ? 0 : 180;
                 float minAngle = facingAngle - 30;
                 float maxAngle = facingAngle + 30;
 
-                if (minAngle < -180) 
-                    minAngle += 360;
-                if (maxAngle > 180) 
-                    maxAngle -= 360;
+                Debug.Log($"{minAngle} {maxAngle} {angle}");
 
                 if (minAngle <= angle && angle <= maxAngle)
                 {
