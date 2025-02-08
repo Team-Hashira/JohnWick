@@ -169,6 +169,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.64, y: 1.55719}
   m_EdgeRadius: 0
+--- !u!1 &2031177200908759879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2378339240444442323}
+  m_Layer: 9
+  m_Name: Eye
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2378339240444442323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031177200908759879}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.381, y: 0.263, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5116424602048337280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3943164103365389383
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +320,7 @@ Transform:
   - {fileID: 2437719687901919316}
   - {fileID: 2957526661068514215}
   - {fileID: 7401030140014525307}
+  - {fileID: 2378339240444442323}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6464342731088211561
@@ -332,9 +364,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <SoundEventChannel>k__BackingField: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
   _dieEffect: 0
+  _eye: {fileID: 2378339240444442323}
   _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 2240
 --- !u!114 &6722688745115300717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +422,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
   - {fileID: 11400000, guid: df30a348952a1794ba54c27626cf4824, type: 2}
   - {fileID: 11400000, guid: e4f2bc789d598414a8c695f705cf426b, type: 2}
+  - {fileID: 11400000, guid: be980842f5cb9d84688accd90bbe333b, type: 2}
   _startState: {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
 --- !u!114 &1950571421788683381
 MonoBehaviour:
@@ -448,7 +485,7 @@ MonoBehaviour:
   _overrideStatElementList:
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
-    _baseValue: 15
+    _baseValue: 5
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
 --- !u!1 &6939146755433511591
 GameObject:
@@ -651,7 +688,7 @@ MonoBehaviour:
   _downDistance: 0.1
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2240
   _oneWayPlatform:
     serializedVersion: 2
     m_Bits: 4096

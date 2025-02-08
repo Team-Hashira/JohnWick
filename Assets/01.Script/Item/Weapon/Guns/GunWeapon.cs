@@ -81,7 +81,7 @@ namespace Hashira.Items.Weapons
                 SoundGeneratedEvent soundGenerated = SoundEvents.SoundGeneratedEvent;
                 soundGenerated.originPosition = EntityWeapon.transform.position;
                 soundGenerated.loudness = isEquipedSoundSuppressor ? 0 : 10;
-                EntityWeapon.GameEventChannelSO.RaiseEvent(soundGenerated);
+                EntityWeapon.SoundEventChannel.RaiseEvent(soundGenerated);
             }
 
             OnFireEvent?.Invoke(BulletAmount);
