@@ -38,7 +38,7 @@ namespace Hashira.Entities.Components
         private float _startYPos;
         private SpriteRenderer _spriteRenderer;
 
-        public readonly Action<Weapon>[] OnChangedWeaponEvents = new Action<Weapon>[3];
+        public Action<Weapon>[] OnChangedWeaponEvents {  get; private set; }
         public event Action<Weapon> OnCurrentWeaponChanged;
         public event Action<float> OnReloadEvent;
 
@@ -55,6 +55,8 @@ namespace Hashira.Entities.Components
             base.Initialize(entity);
             _entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
+
+            OnChangedWeaponEvents = new Action<Weapon>[_defaultWeapons.Length];
 
             PartsRenderer.Init();
 
@@ -164,7 +166,6 @@ namespace Hashira.Entities.Components
             Weapons[weaponIndex]?.Equip(this);
 
             OnChangedWeaponEvents[weaponIndex]?.Invoke(gunWeapon);
-            Debug.Log(weaponIndex + " " + WeaponIndex);
             if (weaponIndex == WeaponIndex)
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 

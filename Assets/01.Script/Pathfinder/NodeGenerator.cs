@@ -30,7 +30,6 @@ namespace Hashira.Pathfind
         private void Awake()
         {
             _soundEventChannel.AddListener<SoundGeneratedEvent>(HandleOnSoundGenerated);
-
         }
 
         private void HandleOnSoundGenerated(SoundGeneratedEvent evt)
@@ -234,6 +233,11 @@ namespace Hashira.Pathfind
                     return true;
             }
             return false;
+        }
+
+        private void OnDestroy()
+        {
+            _soundEventChannel.RemoveListener<SoundGeneratedEvent>(HandleOnSoundGenerated);
         }
     }
 }

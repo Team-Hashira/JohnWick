@@ -31,7 +31,7 @@ namespace Hashira.Entities.Components
         private float _startYPos;
         private SpriteRenderer _spriteRenderer;
 
-        public readonly Action<MeleeWeapon>[] OnChangedWeaponEvents = new Action<MeleeWeapon>[3];
+        public Action<MeleeWeapon>[] OnChangedWeaponEvents { get; private set; }
         public event Action<MeleeWeapon> OnCurrentWeaponChanged;
         public event Action<float> OnReloadEvent;
 
@@ -48,6 +48,8 @@ namespace Hashira.Entities.Components
             base.Initialize(entity);
             _entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
+
+            OnChangedWeaponEvents = new Action<MeleeWeapon>[_defaultWeapons.Length];
 
             WeaponIndex = 0;
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
