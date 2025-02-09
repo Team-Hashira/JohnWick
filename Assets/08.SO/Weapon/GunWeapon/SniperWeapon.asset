@@ -23,8 +23,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2752
   <GrapOffset>k__BackingField: {x: 0.837, y: 0.112, z: 0}
-  <RightHandOffset>k__BackingField: {x: -0.348, y: -0.13, z: 0}
-  <LeftHandOffset>k__BackingField: {x: 0.058, y: -0.111, z: 0}
+  <RightHandOffset>k__BackingField: {x: -0.423, y: -0.13, z: 0}
+  <LeftHandOffset>k__BackingField: {x: 0.065, y: -0.111, z: 0}
   <GrapRotate>k__BackingField: 0
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
@@ -46,7 +46,6 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: 5b9bf81b7c848594ea76655dc9939382, type: 2}
     _baseValue: 5
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  firePoint: {x: 1.184, y: 0.063, z: 0}
   cartridgeCaseParticlePoint: {x: -0.319, y: -0.033, z: 0}
   bullet: 0
   fireSpakleEffect: 1
