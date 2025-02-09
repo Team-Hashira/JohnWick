@@ -159,6 +159,19 @@ namespace Hashira.Items.Weapons
 
             return prevPartsSO;
         }
+        public WeaponParts UnEquipParts(EWeaponPartsType eWeaponPartsType)
+        {
+            if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return null;
+
+            WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
+
+            _partsSlotDictionary[eWeaponPartsType]?.UnEquip();
+            _partsSlotDictionary[eWeaponPartsType] = null;
+
+            OnPartsChanged?.Invoke(eWeaponPartsType, null);
+
+            return prevPartsSO;
+        }
         public WeaponParts GetParts(EWeaponPartsType eWeaponPartsType)
         {
             if (_partsSlotDictionary.TryGetValue(eWeaponPartsType, out WeaponParts weaponParts))

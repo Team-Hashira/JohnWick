@@ -70,12 +70,14 @@ namespace Hashira.UI.StatusWindow
                 if (Parent.Parent.GunWeapon == null) break;
                 // 같은 종류가 아니면 교체 안됨
                 if (slot.partType != Parent.partType) break;
-                
-                var temp = slot.BasePart;
-                
+
+                // 데이터 추출
+                WeaponParts targetPart = slot.Parent.GunWeapon?.UnEquipParts(Parent.partType);
+                WeaponParts basePart = Parent.Parent.GunWeapon.UnEquipParts(Parent.partType);
+
                 // 데이터의 교체
-                slot.Parent.GunWeapon?.EquipParts(slot.partType, Parent.BasePart);
-                Parent.Parent.GunWeapon.EquipParts(Parent.partType, temp);
+                slot.Parent.GunWeapon?.EquipParts(Parent.partType, basePart);
+                Parent.Parent.GunWeapon.EquipParts(Parent.partType, targetPart);
                 
             }
 

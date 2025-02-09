@@ -52,6 +52,7 @@ namespace Hashira.Items.PartsSystem
         {
             base.PartsUpdate();
             RaycastHit2D hit;
+
             if (_entityWeapon.IsMeleeWeaponMode)
                 _lineRenderer.SetPosition(1, Vector3.zero);
             else if (hit = Physics2D.Raycast(_lineRenderer.transform.position, _lineRenderer.transform.right, 100, _WhatIsObstacle))
