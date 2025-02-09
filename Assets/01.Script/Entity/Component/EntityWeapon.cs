@@ -89,26 +89,9 @@ namespace Hashira.Entities.Components
             OnChangedWeaponEvents[index]?.Invoke(null);
         }
 
-        public virtual Weapon EquipWeapon(Weapon weapon, int index = -1)
+        public virtual Weapon EquipWeapon(Weapon weapon, int index)
         {
-            int weaponIndex = 0;
-            if (index == -1)
-            {
-                bool hasNullSlot = false;
-                for (int i = 0; i < Weapons.Length; i++)
-                {
-                    if (Weapons[i] == null)
-                    {
-                        weaponIndex = i;
-                        hasNullSlot = true;
-                        break;
-                    }
-                }
-                if (hasNullSlot == false)
-                    weaponIndex = WeaponIndex;
-            }
-            else
-                weaponIndex = index >= Weapons.Length ? Weapons.Length - 1 : index;
+            int weaponIndex = GetIndex(index);
             Weapon prevGunWeapon = Weapons[weaponIndex];
 
             Weapons[weaponIndex]?.UnEquip();
@@ -118,6 +101,21 @@ namespace Hashira.Entities.Components
             OnChangedWeaponEvents[weaponIndex]?.Invoke(weapon);
 
             return prevGunWeapon;
+        }
+
+        protected int GetIndex(int index)
+        {
+            if (index == -1)
+            {
+                for (int i = 0; i < Weapons.Length; i++)
+                {
+                    if (Weapons[i] == null)
+                        return i;
+                }
+                return WeaponIndex;
+            }
+            else
+                return index >= Weapons.Length ? Weapons.Length - 1 : index;
         }
 
         public void WeaponChange(int index)

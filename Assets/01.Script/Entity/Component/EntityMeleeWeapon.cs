@@ -51,12 +51,12 @@ namespace Hashira.Entities.Components
             }
         }
 
-        public override Weapon EquipWeapon(Weapon meleeWeapon, int index = -1)
+        public override Weapon EquipWeapon(Weapon weapon, int index = -1)
         {
-            if (index == WeaponIndex)
-                OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
+            if (GetIndex(index) == WeaponIndex)
+                OnCurrentWeaponChanged?.Invoke(weapon);
 
-            return base.EquipWeapon(meleeWeapon, index);
+            return base.EquipWeapon(weapon, index);
         }
 
         public override void Attack(int damage, bool isDown)

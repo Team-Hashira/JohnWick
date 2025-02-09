@@ -75,14 +75,14 @@ namespace Hashira.Entities.Components
                 OnCurrentWeaponChanged?.Invoke(Weapons[index]);
         }
 
-        public override Weapon EquipWeapon(Weapon gunWeapon, int index = -1)
+        public override Weapon EquipWeapon(Weapon weapon, int index = -1)
         {
-            (gunWeapon as GunWeapon)?.SetPartsRenderer(PartsRenderer);
+            (weapon as GunWeapon)?.SetPartsRenderer(PartsRenderer);
 
-            if (IsMeleeWeaponMode == false && index == WeaponIndex)
-                OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
+            if (IsMeleeWeaponMode == false && GetIndex(index) == WeaponIndex)
+                OnCurrentWeaponChanged?.Invoke(weapon);
 
-            return base.EquipWeapon(gunWeapon, index);
+            return base.EquipWeapon(weapon, index);
         }
 
         public override void Attack(int damage, bool isDown)
