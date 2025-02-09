@@ -1591,22 +1591,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6339434395270153247, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.998349
-      objectReference: {fileID: 0}
-    - target: {fileID: 6339434395270153247, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.057440273
-      objectReference: {fileID: 0}
-    - target: {fileID: 7055267881555325084, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8708241
-      objectReference: {fileID: 0}
-    - target: {fileID: 7055267881555325084, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.49159467
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

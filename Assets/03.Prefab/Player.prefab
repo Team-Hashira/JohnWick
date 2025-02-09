@@ -291,7 +291,7 @@ MonoBehaviour:
   <PartsRenderer>k__BackingField: {fileID: 6390566644954204797}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
   <DamageCaster>k__BackingField: {fileID: 7303574054439739381}
-  GameEventChannelSO: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
+  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1 &1423544538406165356
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2215638490737733662}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0.55689603, w: 0.8305822}
+  m_LocalRotation: {x: 0, y: -0, z: -0.49159467, w: 0.8708241}
   m_LocalPosition: {x: 0.2643, y: 0.0002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1173,7 +1173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5799809896364415126}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.0720699, w: -0.9973996}
+  m_LocalRotation: {x: -0, y: -0, z: 0.057440273, w: -0.998349}
   m_LocalPosition: {x: 0.265, y: -0.0006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
