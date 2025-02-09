@@ -166,7 +166,7 @@ namespace Hashira.Entities.Components
                 weaponIndex = index >= Weapons.Length ? Weapons.Length - 1 : index;
             GunWeapon prevGunWeapon = Weapons[weaponIndex];
 
-            gunWeapon.SetPartsRenderer(PartsRenderer);
+            gunWeapon?.SetPartsRenderer(PartsRenderer);
 
             Weapons[weaponIndex]?.UnEquip();
             Weapons[weaponIndex] = gunWeapon;
