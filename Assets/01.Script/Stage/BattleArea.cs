@@ -11,9 +11,13 @@ namespace Hashira.Stage
 {
     public class BattleArea : MonoBehaviour
     {
+		[SerializeField] private GameObject _rObject;
+		[SerializeField] private GameObject _lObject;
+
 		[SerializeField] private UnityEvent BattleStartEvent;
 		[SerializeField] private UnityEvent BattleEndEvent;
 		[SerializeField] private UnityEvent PlayerEnterEvent;
+		[SerializeField] private UnityEvent PlayerExitEvent;
 		[SerializeField] private List<EntityHealth> _entityList;
 
 		[SerializeField] private Vector2 _size = new Vector2(17.78f, 10.05f);
@@ -37,6 +41,7 @@ namespace Hashira.Stage
 		private void SetSize()
 		{
 			_polygonCollider ??= GetComponent<PolygonCollider2D>();
+			_cam ??= GetComponentInChildren<CinemachineCamera>();
 
 			Vector2[] sizes = new Vector2[4];
 
@@ -47,8 +52,8 @@ namespace Hashira.Stage
 
 			_polygonCollider.SetPath(0, sizes);
 
-			Transform r = transform.Find("R");
-			Transform l = transform.Find("L");
+			Transform r = _rObject.transform;
+			Transform l = _lObject.transform;
 
 			var colls = GetComponentsInChildren<BoxCollider2D>();
 			foreach (var coll in colls)
@@ -59,6 +64,7 @@ namespace Hashira.Stage
 			if (l != null)
 				l.localPosition = new Vector3(_polygonCollider.GetPath(0)[1].x - 0.5f, 0, 0);
 
+			_cam.GetComponent<CinemachineConfiner2D>().InvalidateBoundingShapeCache();
 			EditorUtility.SetDirty(_polygonCollider);
 		}
 #endif
@@ -75,6 +81,8 @@ namespace Hashira.Stage
 
 		public void StartBattle()
 		{
+			_rObject?.SetActive(true);
+			_lObject?.SetActive(true);
 			BattleStartEvent?.Invoke();
 			ClearEvent?.Invoke();
 		}
@@ -88,6 +96,8 @@ namespace Hashira.Stage
 
 		public void EndBattle()
 		{
+			_rObject?.SetActive(false);
+			_lObject?.SetActive(false);
 			BattleEndEvent?.Invoke();
 		}
 
@@ -109,6 +119,7 @@ namespace Hashira.Stage
 			{
 				_cameraManager?.ChangeCamera("Player");
 				_cameraManager?.ShakeCamera(0, 0, 0);
+				PlayerExitEvent?.Invoke();
 			}
 		}
 	}
