@@ -102,7 +102,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  PlayerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _entityList: []
+  _size: {x: 17.78, y: 10.05}
 --- !u!60 &7309131911804856430
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -230,7 +234,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 20.1}
   m_EdgeRadius: 0
 --- !u!1 &2780748435022925419
 GameObject:
@@ -308,7 +312,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 20.1}
   m_EdgeRadius: 0
 --- !u!1 &7608370297881701951
 GameObject:
