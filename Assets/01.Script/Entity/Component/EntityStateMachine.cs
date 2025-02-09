@@ -59,6 +59,17 @@ namespace Hashira.Entities.Components
             return default(T);
         }
 
+        public bool TryGetShareVariable<T>(string key, out T variable)
+        {
+            variable = default(T);
+            if (_shareVariableDict.ContainsKey(key))
+            {
+                variable = (T)_shareVariableDict[key];
+                return true;
+            }
+            return false;
+        }
+
         public void SetShareVariable(string key, object value)
         {
             if (_shareVariableDict.ContainsKey(key))

@@ -1,6 +1,7 @@
 using Hashira.Core.EventSystem;
 using Hashira.Entities;
 using Hashira.FSM;
+using Hashira.Players;
 using System;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Hashira.Enemies.CommonEnemy
 {
     public class CommonEnemyIdleState : EnemyListeningSoundState
     {
+        private CommonEnemy _enemy;
         private EnemyMover _enemyMover;
 
         private float _idleStartTime;
@@ -16,6 +18,7 @@ namespace Hashira.Enemies.CommonEnemy
         public CommonEnemyIdleState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
+            _enemy = entity as CommonEnemy;
         }
 
         public override void OnEnter()
@@ -31,6 +34,12 @@ namespace Hashira.Enemies.CommonEnemy
             if (_idleStartTime + _waitDelay < Time.time)
             {
                 _entityStateMachine.ChangeState("Patrol");
+            }
+            Player player = _enemy.DetectPlayer();
+            if (player != null)
+            {
+                _entityStateMachine.SetShareVariable("Target", player);
+                _entityStateMachine.ChangeState("Chase");
             }
         }
 

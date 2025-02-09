@@ -2,6 +2,7 @@ using Crogen.AttributeExtension;
 using Hashira.Core.EventSystem;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -108,7 +109,6 @@ namespace Hashira.Pathfind
             Initialize();
             _offset = new Vector2(0.5f, -0.5f) + -(Vector2)_groundTilemap.transform.position;
             BoundsInt groundBounds = _groundTilemap.cellBounds;
-            BoundsInt oneWayBounds = _oneWayTilemap.cellBounds;
 
             for (int x = groundBounds.xMin; x <= groundBounds.xMax; x++)
             {
@@ -145,6 +145,8 @@ namespace Hashira.Pathfind
                 }
             }
 
+            if (_oneWayTilemap == null) return;
+            BoundsInt oneWayBounds = _oneWayTilemap.cellBounds;
             for (int x = oneWayBounds.xMin; x <= oneWayBounds.xMax; x++)
             {
                 for (int y = oneWayBounds.yMin; y <= oneWayBounds.yMax; y++)
@@ -159,6 +161,8 @@ namespace Hashira.Pathfind
                     }
                 }
             }
+
+            EditorUtility.SetDirty(this);
         }
 
         [Button("Connect Nodes")]
