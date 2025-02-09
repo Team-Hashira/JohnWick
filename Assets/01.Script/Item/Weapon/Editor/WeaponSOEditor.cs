@@ -69,18 +69,6 @@ namespace Hashira.Items.Weapons.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            
-            GUILayout.Label("==========Parts Position Preview=========");
-            
-            var inspectorWidth = EditorGUIUtility.currentViewWidth-25;
-            var mul = inspectorWidth * 0.6203f;
-            Rect boxRect = GUILayoutUtility.GetRect(GUIContent.none, GUI.skin.window, GUILayout.Height(mul));
-            GUILayout.Box(GUIContent.none, GUI.skin.window, GUILayout.Height(mul));
-            
-            var Player = GameObject.Find("Player");
-            var PlayerVisual = Player.transform.Find("VisualTrm/Visual/Body").GetComponent<SpriteRenderer>();
-            Rect rect = new Rect(boxRect.position, Vector3.one);
-            GUI.Box(boxRect, GUIContent.none);
         }
     }
 }

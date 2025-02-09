@@ -31,7 +31,6 @@ namespace Hashira.Entities
 		[Header("Node Set")]
         [SerializeField]
         private LayerMask _whatIsNode;
-        [field: Space(10)]
         public Node CurrentNode { get; private set; }
 
         public virtual void Initialize(Entity entity)
@@ -69,7 +68,7 @@ namespace Hashira.Entities
             RaycastHit2D[] groundHits = Physics2D.BoxCastAll((Vector2)transform.position,
                 _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsGround);
             RaycastHit2D[] nodeHits = Physics2D.BoxCastAll((Vector2)transform.position,
-                _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsNode);
+                new Vector2(_groundCheckerSize.x, 10), 0, Vector2.down, 10, _whatIsNode);
 
             if (groundHits.Length > 0) _hitedGround = groundHits[0];
             IsGrounded = groundHits.Length > 0 && _yMovement < 0;

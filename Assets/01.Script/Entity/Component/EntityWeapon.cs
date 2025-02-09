@@ -64,7 +64,7 @@ namespace Hashira.Entities.Components
             }
         }
 
-        public GameEventChannelSO GameEventChannelSO;
+        public GameEventChannelSO SoundEventChannel;
 
         public void Initialize(Entity entity)
         {
@@ -208,6 +208,10 @@ namespace Hashira.Entities.Components
 				OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
             }
             CurrentWeapon?.Attack(damage, isDown);
+            var evt = SoundEvents.SoundGeneratedEvent;
+            evt.originPosition = transform.position;
+            evt.loudness = 10;
+            SoundEventChannel.RaiseEvent(evt);
         }
 
         public void LookTarget(Vector3 targetPos)

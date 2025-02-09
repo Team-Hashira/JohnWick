@@ -1,12 +1,15 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.FSM;
+using Hashira.Players;
 using UnityEngine;
 
 namespace Hashira.Enemies.CommonEnemy
 {
     public class CommonEnemyPatrolState : EnemyListeningSoundState
     {
+        private CommonEnemy _enemy;
+
         private EnemyMover _enemyMover;
         private EntityRenderer _entityRenderer;
         private EntityStat _entityStat;
@@ -19,6 +22,7 @@ namespace Hashira.Enemies.CommonEnemy
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
             _speedElement = _entityStat?.StatDictionary["Speed"];
+            _enemy = entity as CommonEnemy;
         }
 
         public override void OnEnter()
@@ -36,6 +40,12 @@ namespace Hashira.Enemies.CommonEnemy
                 return;
             }
             _enemyMover.SetMovement(_entityRenderer.FacingDirection * _speedElement.Value);
+            Player player = _enemy.DetectPlayer();
+            if (player != null)
+            {
+                _entityStateMachine.SetShareVariable("Target", player);
+                _entityStateMachine.ChangeState("Chase");
+            }
         }
     }
 }
