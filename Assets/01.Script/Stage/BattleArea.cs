@@ -1,3 +1,4 @@
+using Crogen.AttributeExtension;
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,8 @@ namespace Hashira.Stage
 		}
 
 #if UNITY_EDITOR
-		private void OnValidate()
+		[Button]
+		private void SetSize()
 		{
 			_polygonCollider ??= GetComponent<PolygonCollider2D>();
 
