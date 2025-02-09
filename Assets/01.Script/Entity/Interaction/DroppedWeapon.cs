@@ -65,23 +65,9 @@ namespace Hashira.Entities.Interacts
         public override void SetItemData()
         {
             _ItemDataTrm.gameObject.SetActive(true);
-            if (_entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon))
+            if (_weapon is GunWeapon && _entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon))
             {
-                if (_weapon is MeleeWeapon)
-                {
-                    if (entityWeapon.Weapons[2] != null)
-                    {
-                        _ComparisonItemDataTrm.gameObject.SetActive(true);
-                        _itemData.SetItem(_weapon, entityWeapon.Weapons[2]);
-                        _comparisonItemData.SetItem(entityWeapon.Weapons[2]);
-                    }
-                    else
-                    {
-                        _ComparisonItemDataTrm.gameObject.SetActive(false);
-                        _itemData.SetItem(_weapon);
-                    }
-                }
-                else if (entityWeapon.CurrentWeapon != null)
+                if (entityWeapon.CurrentWeapon != null)
                 {
                     _ComparisonItemDataTrm.gameObject.SetActive(true);
                     _itemData.SetItem(_weapon, entityWeapon.CurrentWeapon);
@@ -93,8 +79,23 @@ namespace Hashira.Entities.Interacts
                     _itemData.SetItem(_weapon);
                 }
             }
+            else if (_weapon is MeleeWeapon && _entity.TryGetEntityComponent(out EntityMeleeWeapon entityMeleeWeapon))
+            {
+                if (entityMeleeWeapon.CurrentWeapon != null)
+                {
+                    _ComparisonItemDataTrm.gameObject.SetActive(true);
+                    _itemData.SetItem(_weapon, entityMeleeWeapon.CurrentWeapon);
+                    _comparisonItemData.SetItem(entityMeleeWeapon.CurrentWeapon);
+                }
+                else
+                {
+                    _ComparisonItemDataTrm.gameObject.SetActive(false);
+                    _itemData.SetItem(_weapon);
+                }
+            }
             else
             {
+                _ComparisonItemDataTrm.gameObject.SetActive(false);
                 _itemData.SetItem(_weapon);
             }
         }

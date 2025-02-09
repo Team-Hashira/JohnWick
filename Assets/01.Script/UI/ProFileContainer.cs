@@ -55,7 +55,7 @@ namespace Hashira.UI
         {
             if (_entityGunWeapon.CurrentWeapon != null)
             {
-                GunWeapon gunWeapon = _entityGunWeapon.CurrentWeapon;
+                GunWeapon gunWeapon = _entityGunWeapon.CurrentWeapon as GunWeapon;
                 HandleUseWeapon(gunWeapon.BulletAmount, gunWeapon.StatDictionary["MagazineCapacity"].IntValue);
             }
             else

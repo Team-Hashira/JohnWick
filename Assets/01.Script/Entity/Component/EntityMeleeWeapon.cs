@@ -1,4 +1,3 @@
-using Hashira.Core.EventSystem;
 using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
@@ -9,47 +8,19 @@ namespace Hashira.Entities.Components
     {
         [SerializeField] private MeleeSO[] _defaultWeapons;
 
-        public MeleeWeapon CurrentWeapon
-        {
-            get => Weapons[WeaponIndex];
-            private set => Weapons[WeaponIndex] = value;
-        }
-
-        public int WeaponIndex { get; private set; } = 0;
-        public MeleeWeapon[] Weapons { get; private set; }
-
-        [field: SerializeField] public Transform VisualTrm { get; private set; }
-
-        private float _startYPos;
-        private SpriteRenderer _spriteRenderer;
-
-        public Action<MeleeWeapon>[] OnChangedWeaponEvents { get; private set; }
-        public event Action<MeleeWeapon> OnCurrentWeaponChanged;
-        public event Action<float> OnReloadEvent;
-
-        private Entity _entity;
         private EntityMover _mover;
         public EntityGunWeapon GunWaepon { get; private set; }
 
         [field: SerializeField] public DamageCaster2D DamageCaster { get; private set; }
 
-        public GameEventChannelSO SoundEventChannel;
-
         public override void Initialize(Entity entity)
         {
             base.Initialize(entity);
-            _entity = entity;
-            _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
 
-            OnChangedWeaponEvents = new Action<MeleeWeapon>[_defaultWeapons.Length];
-
-            WeaponIndex = 0;
-            OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
+            OnChangedWeaponEvents = new Action<Weapon>[_defaultWeapons.Length];
 
             _mover = entity.GetEntityComponent<EntityMover>(true);
             GunWaepon = entity.GetEntityComponent<EntityGunWeapon>();
-
-            _startYPos = transform.localPosition.y;
         }
 
         public override void AfterInit()
@@ -65,106 +36,29 @@ namespace Hashira.Entities.Components
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
-        private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
+        public override void RemoveWeapon(int index)
         {
-            _spriteRenderer.sprite = weapon?.WeaponSO.itemDefaultSprite;
+            base.RemoveWeapon(index);
 
-            if (weapon != null)
-            {
-                Vector3 position = transform.localPosition;
-                position.y = _startYPos + weapon.WeaponSO.GrapOffset.y;
-                transform.localPosition = position;
-                VisualTrm.localEulerAngles = new Vector3(0, 0, weapon.WeaponSO.GrapRotate);
-
-                Vector3 visualPosition = VisualTrm.localPosition;
-                visualPosition.x = weapon.WeaponSO.GrapOffset.x;
-                visualPosition.y = 0;
-
-                VisualTrm.localPosition = visualPosition;
-            }
-        }
-
-        public void RemoveWeapon(int index)
-        {
-            Weapons[index]?.UnEquip();
-            Weapons[index] = null;
-
-            for (int i = 0; i < Weapons.Length; i++)
-            {
-                WeaponIndex++; 
-                if (WeaponIndex >= Weapons.Length) WeaponIndex = 0;
-                if (Weapons[WeaponIndex] != null) break;
-            }
-
-            OnChangedWeaponEvents[index]?.Invoke(null);
             if (index == WeaponIndex)
             {
                 OnCurrentWeaponChanged?.Invoke(Weapons[index]);
 
                 if (GunWaepon != null)
-                    GunWaepon.EquipWeapon(GunWaepon.CurrentWeapon, GunWaepon.WeaponIndex);
+                    GunWaepon.EquipWeapon(GunWaepon.CurrentWeapon as GunWeapon, GunWaepon.WeaponIndex);
             }
         }
 
-        public MeleeWeapon EquipWeapon(MeleeWeapon meleeWeapon, int index = -1)
+        public override Weapon EquipWeapon(Weapon meleeWeapon, int index = -1)
         {
-            transform.localEulerAngles = Vector3.zero;
-            int weaponIndex = 0;
-            if (index == -1)
-            {
-                bool hasNullSlot = false;
-                for (int i = 0; i < Weapons.Length; i++)
-                {
-                    if (Weapons[i] == null)
-                    {
-                        weaponIndex = i;
-                        hasNullSlot = true;
-                        break;
-                    }
-                }
-                if (hasNullSlot == false)
-                    weaponIndex = WeaponIndex;
-            }
-            else
-                weaponIndex = index >= Weapons.Length ? Weapons.Length - 1 : index;
-            MeleeWeapon prevMeleeWeapon = Weapons[weaponIndex];
-
-            Weapons[weaponIndex]?.UnEquip();
-            Weapons[weaponIndex] = meleeWeapon;
-            Weapons[weaponIndex]?.Equip(this);
-
-            OnChangedWeaponEvents[weaponIndex]?.Invoke(meleeWeapon);
-            if (weaponIndex == WeaponIndex)
+            if (index == WeaponIndex)
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 
-            return prevMeleeWeapon;
-        }
-
-        public void WeaponChange(int index)
-        {
-            if (index >= Weapons.Length)
-                index = Weapons.Length - 1;
-
-            WeaponIndex = index;
-            OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
-        }
-
-        public void WeaponSwap()
-        {
-            for (int i = 0; i < Weapons.Length; i++)
-            {
-                WeaponIndex++;
-                if (WeaponIndex >= Weapons.Length) WeaponIndex = 0;
-                if (CurrentWeapon != null) break;
-            }
-
-            OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
+            return base.EquipWeapon(meleeWeapon, index);
         }
 
         public override void Attack(int damage, bool isDown)
         {
-            base.Attack(damage, isDown);
-            Debug.Log("근접공격");
             if (CurrentWeapon == null) return;
 
             HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
@@ -172,22 +66,7 @@ namespace Hashira.Entities.Components
             if (GunWaepon != null)
                 GunWaepon.IsMeleeWeapon = true;
 
-            CurrentWeapon?.Attack(damage, isDown);
-
-            var evt = SoundEvents.SoundGeneratedEvent;
-            evt.originPosition = transform.position;
-            evt.loudness = 10;
-            SoundEventChannel.RaiseEvent(evt);
-        }
-
-        private void Update()
-        {
-            CurrentWeapon?.WeaponUpdate();
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
+            base.Attack(damage, isDown);
         }
     }
 }
