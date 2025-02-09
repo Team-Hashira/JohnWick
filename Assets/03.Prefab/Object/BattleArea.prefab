@@ -48,61 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f65a220b08ee56499eda19113b83d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rObject: {fileID: 2780748435022925419}
+  _lObject: {fileID: 1767297810488346343}
   BattleStartEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2780748435022925419}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1767297810488346343}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   BattleEndEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2780748435022925419}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1767297810488346343}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  PlayerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _entityList: []
+  _size: {x: 17.78, y: 10.05}
 --- !u!60 &7309131911804856430
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -230,7 +188,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 20.1}
   m_EdgeRadius: 0
 --- !u!1 &2780748435022925419
 GameObject:
@@ -308,7 +266,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 20}
+  m_Size: {x: 1, y: 20.1}
   m_EdgeRadius: 0
 --- !u!1 &7608370297881701951
 GameObject:
