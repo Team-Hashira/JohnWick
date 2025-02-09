@@ -1,12 +1,8 @@
 using Hashira.Core.EventSystem;
-using Hashira.Entities;
-using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
-using Hashira.Players;
 using System;
-using System.Linq;
 using UnityEngine;
-    
+
 namespace Hashira.Entities.Components
 {
     public class EntityMeleeWeapon : EntityWeapon
@@ -21,10 +17,6 @@ namespace Hashira.Entities.Components
 
         public int WeaponIndex { get; private set; } = 0;
         public MeleeWeapon[] Weapons { get; private set; }
-        public float Facing { get; private set; }
-
-        // Melee Weapon
-        public bool IsMeleeWeapon => WeaponIndex == 2; // TODO
 
         [field: SerializeField] public Transform VisualTrm { get; private set; }
 
@@ -69,6 +61,8 @@ namespace Hashira.Entities.Components
                 if (_defaultWeapons[i] == null) continue;
                 EquipWeapon(_defaultWeapons[i].GetItemClass() as MeleeWeapon, i);
             }
+
+            OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
         private void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
@@ -95,8 +89,15 @@ namespace Hashira.Entities.Components
             Weapons[index]?.UnEquip();
             Weapons[index] = null;
 
+            for (int i = 0; i < Weapons.Length; i++)
+            {
+                WeaponIndex++; 
+                if (WeaponIndex >= Weapons.Length) WeaponIndex = 0;
+                if (Weapons[WeaponIndex] != null) break;
+            }
+
             OnChangedWeaponEvents[index]?.Invoke(null);
-            if (IsMeleeWeapon == false && index == WeaponIndex)
+            if (index == WeaponIndex)
                 OnCurrentWeaponChanged?.Invoke(Weapons[index]);
         }
 
@@ -173,7 +174,7 @@ namespace Hashira.Entities.Components
             evt.loudness = 10;
             SoundEventChannel.RaiseEvent(evt);
         }
-         
+
         private void Update()
         {
             CurrentWeapon?.WeaponUpdate();

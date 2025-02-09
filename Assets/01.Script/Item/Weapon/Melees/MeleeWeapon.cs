@@ -14,8 +14,6 @@ namespace Hashira.Items.Weapons
 
         private Sequence animationSeq;
 
-
-
         public override void Attack(int damage, bool isDown)
         {
             base.Attack(damage, isDown);

@@ -6,6 +6,7 @@ using UnityEngine;
 using Hashira.Core.EventSystem;
 using Hashira.Items.PartsSystem;
 using System.Linq;
+using UnityEngine.UI;
 
 namespace Hashira.Entities.Components
 {
@@ -73,10 +74,6 @@ namespace Hashira.Entities.Components
         public override void AfterInit()
         {
             base.AfterInit();
-        }
-
-        private void Start()
-        {
             Weapons = new GunWeapon[_defaultWeapons.Length];
             for (int i = 0; i < _defaultWeapons.Length; i++)
             {
@@ -84,6 +81,10 @@ namespace Hashira.Entities.Components
                 EquipWeapon(_defaultWeapons[i].GetItemClass() as GunWeapon, i);
             }
 
+        }
+
+        private void Start()
+        {
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
@@ -127,9 +128,15 @@ namespace Hashira.Entities.Components
 
         public void RemoveWeapon(int index)
         {
-            //���� ������ ���⸦ ����
             Weapons[index]?.UnEquip();
             Weapons[index] = null;
+
+            for (int i = 0; i < Weapons.Length; i++)
+            {
+                WeaponIndex++;
+                if (WeaponIndex >= Weapons.Length) WeaponIndex = 0;
+                if (Weapons[WeaponIndex] != null) break;
+            }
 
             OnChangedWeaponEvents[index]?.Invoke(null);
             if (IsMeleeWeapon == false && index == WeaponIndex)
