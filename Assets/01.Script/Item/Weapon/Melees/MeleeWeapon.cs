@@ -11,8 +11,12 @@ namespace Hashira.Items.Weapons
         public EntityMeleeWeapon EntityMeleeWeapon { get; private set; }
 
         public event Action<int> OnAttackEvent;
-        
-		public override void Attack(int damage, bool isDown)
+
+        private Sequence animationSeq;
+
+
+
+        public override void Attack(int damage, bool isDown)
         {
             base.Attack(damage, isDown);
 			CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
@@ -24,12 +28,13 @@ namespace Hashira.Items.Weapons
 			(EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).size = MeleeSO.AttackRangeSize;
 			(EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
 
-			Sequence seq = DOTween.Sequence();
-            seq.AppendCallback(()=>EntityMeleeWeapon.transform.localEulerAngles = startRot);
-            seq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutCubic));
-            seq.JoinCallback(() => EntityMeleeWeapon.DamageCaster.CastDamage(damage));
-			seq.AppendInterval(afterDelay);
-			seq.OnComplete(() => AttackEnd());
+            if (animationSeq != null && animationSeq.IsActive()) animationSeq.Kill();
+            animationSeq = DOTween.Sequence();
+            animationSeq.AppendCallback(()=>EntityMeleeWeapon.transform.localEulerAngles = startRot);
+            animationSeq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutCubic));
+            animationSeq.JoinCallback(() => EntityMeleeWeapon.DamageCaster.CastDamage(damage));
+            animationSeq.AppendInterval(afterDelay);
+            animationSeq.AppendCallback(() => AttackEnd());
         }
 
         public override void Equip(EntityWeapon entityWeapon)

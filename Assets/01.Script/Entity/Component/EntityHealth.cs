@@ -49,8 +49,12 @@ namespace Hashira.Entities
 
 		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm)
         {
-            EEntityPartType hitPoint 
-                = _owner.GetEntityComponent<EntityPartCollider>().Hit(raycastHit.collider, raycastHit, attackerTrm);
+            EEntityPartType hitPoint;
+            if (_owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
+                hitPoint = entityPartCollider.Hit(raycastHit.collider, raycastHit, attackerTrm);
+            else
+                hitPoint = EEntityPartType.Body;
+
             if (_isDie) return hitPoint;
 
             int prev = Health;

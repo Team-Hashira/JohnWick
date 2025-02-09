@@ -1163,11 +1163,11 @@ MonoBehaviour:
   allocationCount: 12
   _whatIsCastable:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 3584
   _usingExcludeCast: 0
   excludedDamageCasterList: []
-  center: {x: 0.5, y: 0}
-  size: {x: 1, y: 1.43}
+  center: {x: 0.75, y: 0}
+  size: {x: 1.5, y: 2}
 --- !u!1 &5799809896364415126
 GameObject:
   m_ObjectHideFlags: 0

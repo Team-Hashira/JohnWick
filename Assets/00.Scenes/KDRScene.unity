@@ -912,14 +912,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2120810207}
     m_Modifications:
-    - target: {fileID: 1158730817504752871, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: _defaultWeapons.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158730817504752871, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      propertyPath: '_defaultWeapons.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -968,14 +960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1739164217382512514, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1168156252607547634, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 651278455}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
 --- !u!114 &651278450 stripped
 MonoBehaviour:
@@ -993,45 +981,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
   m_PrefabInstance: {fileID: 651278449}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &651278452 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7028462452996302252, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 651278449}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &651278453 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1168156252607547634, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 651278449}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &651278454 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7303574054439739381, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 651278449}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6481a3c94b541ce409c28ab0b2650c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &651278455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651278453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ae5041d01ab7e54e9bd0f01a51ac428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _defaultWeapons:
-  - {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
-  - {fileID: 0}
-  <VisualTrm>k__BackingField: {fileID: 651278452}
-  <DamageCaster>k__BackingField: {fileID: 651278454}
-  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1001 &827844421
 PrefabInstance:
   m_ObjectHideFlags: 0
