@@ -31,8 +31,8 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 80
   baseStat: {fileID: 11400000, guid: aa5611e607c5c4c4291f1c0f288f02ef, type: 2}
-  <AttackRangeOffset>k__BackingField: {x: 0.5, y: 0}
-  <AttackRangeSize>k__BackingField: {x: 1, y: 1.43}
+  <AttackRangeOffset>k__BackingField: {x: 1, y: 0}
+  <AttackRangeSize>k__BackingField: {x: 1.5, y: 2}
   <AttackDuration>k__BackingField: 0.24
   <AttackAfterDelay>k__BackingField: 0.15
   <RotateMax>k__BackingField: 90

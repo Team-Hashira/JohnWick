@@ -17,7 +17,7 @@ namespace Hashira.Items.Weapons
         public override void Attack(int damage, bool isDown)
         {
             base.Attack(damage, isDown);
-			CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
+
 			Vector3 startRot = Vector3.forward * MeleeSO.RotateMax;
 			Vector3 endRot = Vector3.forward * MeleeSO.RotateMin;
             float duration = MeleeSO.AttackDuration;
@@ -29,8 +29,8 @@ namespace Hashira.Items.Weapons
             if (animationSeq != null && animationSeq.IsActive()) animationSeq.Kill();
             animationSeq = DOTween.Sequence();
             animationSeq.AppendCallback(()=>EntityMeleeWeapon.transform.localEulerAngles = startRot);
-            animationSeq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutCubic));
-            animationSeq.JoinCallback(() => EntityMeleeWeapon.DamageCaster.CastDamage(damage));
+            animationSeq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.InOutBack));
+            animationSeq.InsertCallback(duration / 2, () => EntityMeleeWeapon.DamageCaster.CastDamage(damage, knockbackPower: 15));
             animationSeq.AppendInterval(afterDelay);
             animationSeq.AppendCallback(() => AttackEnd());
         }
