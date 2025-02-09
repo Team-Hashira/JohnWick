@@ -173,7 +173,7 @@ namespace Hashira.Entities.Components
             Weapons[weaponIndex]?.Equip(this);
 
             OnChangedWeaponEvents[weaponIndex]?.Invoke(gunWeapon);
-            if (weaponIndex == WeaponIndex)
+            if (IsMeleeWeapon == false && weaponIndex == WeaponIndex)
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 
             return prevGunWeapon;
