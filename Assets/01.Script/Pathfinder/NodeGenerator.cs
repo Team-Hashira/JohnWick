@@ -41,6 +41,7 @@ namespace Hashira.Pathfind
 
             foreach (Node node in _nodeList)
             {
+                if (node == null) continue;
                 float distance = Vector3.Distance(evt.originPosition, node.transform.position);
 
                 if (distance < closestDistance)
