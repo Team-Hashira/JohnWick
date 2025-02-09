@@ -12,6 +12,10 @@ namespace Hashira.Entities.Components
 
         public EntityGunWeapon GunWaepon { get; private set; }
 
+        private float _meleeAttackCooltime = 0.5f;
+        private float _lastMeleeAttackTime;
+
+
         public override void Initialize(Entity entity)
         {
             base.Initialize(entity);
@@ -58,6 +62,9 @@ namespace Hashira.Entities.Components
         public override void Attack(int damage, bool isDown)
         {
             if (CurrentWeapon == null) return;
+            if (_lastMeleeAttackTime + _meleeAttackCooltime > Time.time) return;
+
+            _lastMeleeAttackTime = Time.time;
 
             HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
 
