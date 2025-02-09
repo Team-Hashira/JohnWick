@@ -50,7 +50,7 @@ namespace Hashira.Items.Weapons
         private void AttackEnd()
         {
             EntityGunWeapon entityGunWeapon = EntityMeleeWeapon.GunWaepon;
-            entityGunWeapon.IsMeleeWeapon = false;
+            entityGunWeapon.IsMeleeWeaponMode = false;
             entityGunWeapon.EquipWeapon(entityGunWeapon.CurrentWeapon, entityGunWeapon.WeaponIndex);
         }
         

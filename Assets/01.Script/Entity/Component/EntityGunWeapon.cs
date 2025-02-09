@@ -10,25 +10,20 @@ namespace Hashira.Entities.Components
     {
         [SerializeField] private GunSO[] _defaultWeapons;
 
-        public float Recoil { get; private set; }
-
-        public bool IsReloading { get; private set; }
-        private float _currentReloadTime;
-
-        public float Facing { get; private set; }
-
-        // Melee Weapon
-        public bool IsMeleeWeapon; // TODO
-
         [field: SerializeField] public PartsRenderer PartsRenderer { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
+
+        public float Recoil { get; private set; }
+        public bool IsReloading { get; private set; }
+        public float Facing { get; private set; }
+
+        private float _currentReloadTime;
+
+        public bool IsMeleeWeaponMode;
 
         public event Action<float> OnReloadEvent;
 
         private Player _player;
-        private EntityMover _mover;
-
-        [field: SerializeField] public DamageCaster2D DamageCaster { get; private set; }
 
         public override void Initialize(Entity entity)
         {
@@ -39,8 +34,6 @@ namespace Hashira.Entities.Components
             PartsRenderer.Init();
 
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
-
-            _mover = entity.GetEntityComponent<EntityMover>(true);
         }
 
         public override void AfterInit()
@@ -78,7 +71,7 @@ namespace Hashira.Entities.Components
         {
             base.RemoveWeapon(index);
 
-            if (IsMeleeWeapon == false && index == WeaponIndex)
+            if (IsMeleeWeaponMode == false && index == WeaponIndex)
                 OnCurrentWeaponChanged?.Invoke(Weapons[index]);
         }
 
@@ -86,7 +79,7 @@ namespace Hashira.Entities.Components
         {
             (gunWeapon as GunWeapon)?.SetPartsRenderer(PartsRenderer);
 
-            if (IsMeleeWeapon == false && index == WeaponIndex)
+            if (IsMeleeWeaponMode == false && index == WeaponIndex)
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 
             return base.EquipWeapon(gunWeapon, index);
@@ -100,7 +93,7 @@ namespace Hashira.Entities.Components
 
         public void LookTarget(Vector3 targetPos)
         {
-            if (IsMeleeWeapon)
+            if (IsMeleeWeaponMode)
                 return;
 
             Facing = Mathf.Sign(targetPos.x - transform.position.x);

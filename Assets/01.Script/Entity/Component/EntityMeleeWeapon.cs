@@ -8,10 +8,9 @@ namespace Hashira.Entities.Components
     {
         [SerializeField] private MeleeSO[] _defaultWeapons;
 
-        private EntityMover _mover;
-        public EntityGunWeapon GunWaepon { get; private set; }
-
         [field: SerializeField] public DamageCaster2D DamageCaster { get; private set; }
+
+        public EntityGunWeapon GunWaepon { get; private set; }
 
         public override void Initialize(Entity entity)
         {
@@ -19,7 +18,6 @@ namespace Hashira.Entities.Components
 
             OnChangedWeaponEvents = new Action<Weapon>[_defaultWeapons.Length];
 
-            _mover = entity.GetEntityComponent<EntityMover>(true);
             GunWaepon = entity.GetEntityComponent<EntityGunWeapon>();
         }
 
@@ -64,7 +62,7 @@ namespace Hashira.Entities.Components
             HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
 
             if (GunWaepon != null)
-                GunWaepon.IsMeleeWeapon = true;
+                GunWaepon.IsMeleeWeaponMode = true;
 
             base.Attack(damage, isDown);
         }

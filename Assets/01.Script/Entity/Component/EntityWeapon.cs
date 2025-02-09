@@ -13,15 +13,16 @@ namespace Hashira.Entities.Components
             protected set => Weapons[WeaponIndex] = value;
         }
 
+        [field: SerializeField] public Transform VisualTrm { get; private set; }
+
         public int WeaponIndex { get; protected set; } = 0;
         public Weapon[] Weapons { get; protected set; }
 
-        protected Entity _entity;
-
-        [field: SerializeField] public Transform VisualTrm { get; private set; }
-
         protected float _startYPos;
         protected SpriteRenderer _spriteRenderer;
+
+        protected Entity _entity;
+        protected EntityMover _mover;
 
         public Action<Weapon>[] OnChangedWeaponEvents;
         public Action<Weapon> OnCurrentWeaponChanged;
@@ -36,6 +37,8 @@ namespace Hashira.Entities.Components
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
 
             _startYPos = transform.localPosition.y;
+
+            _mover = entity.GetEntityComponent<EntityMover>(true);
         }
 
         public virtual void AfterInit()
