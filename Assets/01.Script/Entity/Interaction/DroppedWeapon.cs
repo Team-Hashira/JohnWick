@@ -46,8 +46,18 @@ namespace Hashira.Entities.Interacts
         {
             base.Interaction(entity);
 
-            EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
-            Weapon weapon = weaponHolder.EquipWeapon(_weapon);
+            Weapon weapon = null;
+            if (_weapon is GunWeapon gunWeapon)
+            {
+                EntityGunWeapon weaponHolder = entity.GetEntityComponent<EntityGunWeapon>();
+                weapon = weaponHolder?.EquipWeapon(gunWeapon);
+            }
+            else if (_weapon is MeleeWeapon meleeWeapon)
+            {
+                EntityMeleeWeapon weaponHolder = entity.GetEntityComponent<EntityMeleeWeapon>();
+                weapon = weaponHolder?.EquipWeapon(meleeWeapon);
+            }
+
             if (weapon != null) SetItem(weapon);
             else this.Push();
         }
@@ -55,7 +65,7 @@ namespace Hashira.Entities.Interacts
         public override void SetItemData()
         {
             _ItemDataTrm.gameObject.SetActive(true);
-            if (_entity.TryGetEntityComponent(out EntityWeapon entityWeapon))
+            if (_entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon))
             {
                 if (_weapon is MeleeWeapon)
                 {

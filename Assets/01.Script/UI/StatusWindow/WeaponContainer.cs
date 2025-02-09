@@ -8,14 +8,14 @@ namespace Hashira.UI.StatusWindow
     {
         private IWeaponSlot[] _slots;
         private Player _player;
-        private EntityWeapon _entityWeapon;
+        private EntityGunWeapon _entityWeapon;
             
         private void Awake()
         {
             _slots = GetComponentsInChildren<IWeaponSlot>();
             _player = GameManager.Instance.Player;
             
-            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
+            _entityWeapon = _player.GetEntityComponent<EntityGunWeapon>();
 
             for (var i = 0; i < _entityWeapon.OnChangedWeaponEvents.Length; i++)
             {

@@ -16,11 +16,12 @@ namespace Hashira.Players
         protected EntityStateMachine _stateMachine;
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
-        protected EntityWeapon _weaponHolderCompo;
+        protected EntityGunWeapon _weaponGunHolderCompo;
+        protected EntityMeleeWeapon _weaponMeleeHolderCompo;
         protected EntityInteractor _interactor;
         protected PlayerMover _playerMover;
 
-        private Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
+        private Weapon CurrentWeapon => _weaponGunHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
 
@@ -55,17 +56,17 @@ namespace Hashira.Players
 
         private void HandleMeleeAttackEvent()
         {
-            _weaponHolderCompo?.Attack(_damageStat.IntValue, true, true);
+            _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true);
         }
 
         private void HandleAttackEvent(bool isDown)
         {
-            _weaponHolderCompo?.Attack(_damageStat.IntValue, isDown);
+            _weaponGunHolderCompo?.Attack(_damageStat.IntValue, isDown);
         }
 
         private void HandleWeaponSwapEvent()
         {
-            _weaponHolderCompo.WeaponSwap();
+            _weaponGunHolderCompo.WeaponSwap();
         }
 
         #endregion
@@ -77,7 +78,8 @@ namespace Hashira.Players
 			_playerMover = GetEntityComponent<PlayerMover>();
 			_statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
-            _weaponHolderCompo = GetEntityComponent<EntityWeapon>();
+            _weaponGunHolderCompo = GetEntityComponent<EntityGunWeapon>();
+            _weaponMeleeHolderCompo = GetEntityComponent<EntityMeleeWeapon>();
             _interactor = GetEntityComponent<EntityInteractor>();
             _stateMachine = GetEntityComponent<EntityStateMachine>();
             _damageStat = _statCompo.StatDictionary["AttackPower"];
@@ -94,7 +96,7 @@ namespace Hashira.Players
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
-            _weaponHolderCompo.LookTarget(mousePos);
+            _weaponGunHolderCompo.LookTarget(mousePos);
 
             _renderCompo.SetUsualFacingTarget(mousePos);
         }

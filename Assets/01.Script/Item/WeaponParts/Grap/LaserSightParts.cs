@@ -13,13 +13,13 @@ namespace Hashira.Items.PartsSystem
         private static LayerMask _WhatIsObstacle = LayerMask.GetMask("Ground", "Enemy", "Object");
 
         private LineRenderer _lineRenderer;
-        private EntityWeapon _entityWeapon;
+        private EntityGunWeapon _entityWeapon;
         private Transform _weaponVisual;
 
         public override void Equip(GunWeapon weapon)
         {
             base.Equip(weapon);
-            _entityWeapon = weapon.EntityWeapon;
+            _entityWeapon = weapon.EntityGunWeapon;
             _weaponVisual = _entityWeapon.VisualTrm;
 
             Sprite sprite = WeaponPartsSO.partsSpriteDictionary[weapon.GunSO];

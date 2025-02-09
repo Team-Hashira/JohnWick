@@ -20,7 +20,7 @@ namespace Hashira.UI.StatusWindow
         public IWeaponSlot Parent { get; private set; }
         [SerializeField] private Image _image;
 
-        private EntityWeapon _entityWeapon;
+        private EntityGunWeapon _entityWeapon;
 
         private Player _player;
         
@@ -33,7 +33,7 @@ namespace Hashira.UI.StatusWindow
 
         private void Start()
         {
-            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
+            _entityWeapon = _player.GetEntityComponent<EntityGunWeapon>();
         }
 
         public void Init(IWeaponSlot gunWeaponSlot)
