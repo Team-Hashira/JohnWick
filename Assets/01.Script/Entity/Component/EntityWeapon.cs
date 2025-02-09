@@ -9,13 +9,13 @@ namespace Hashira.Entities.Components
     {
         public Weapon CurrentWeapon
         {
-            get => Weapons[WeaponIndex];
-            protected set => Weapons[WeaponIndex] = value;
+            get => Weapons[CurrentIndex];
+            protected set => Weapons[CurrentIndex] = value;
         }
 
         [field: SerializeField] public Transform VisualTrm { get; private set; }
 
-        public int WeaponIndex { get; protected set; } = 0;
+        public int CurrentIndex { get; protected set; } = 0;
         public Weapon[] Weapons { get; protected set; }
 
         protected float _startYPos;
@@ -33,7 +33,7 @@ namespace Hashira.Entities.Components
         {
             _entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
-            WeaponIndex = 0;
+            CurrentIndex = 0;
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
 
             _startYPos = transform.localPosition.y;
@@ -82,9 +82,9 @@ namespace Hashira.Entities.Components
 
             for (int i = 0; i < Weapons.Length; i++)
             {
-                WeaponIndex++;
-                if (WeaponIndex >= Weapons.Length) WeaponIndex = 0;
-                if (Weapons[WeaponIndex] != null) break;
+                CurrentIndex++;
+                if (CurrentIndex >= Weapons.Length) CurrentIndex = 0;
+                if (Weapons[CurrentIndex] != null) break;
             }
             OnChangedWeaponEvents[index]?.Invoke(null);
         }
@@ -92,13 +92,14 @@ namespace Hashira.Entities.Components
         public virtual Weapon EquipWeapon(Weapon weapon, int index)
         {
             int weaponIndex = GetIndex(index);
-            Weapon prevGunWeapon = Weapons[weaponIndex];
+            if (index == -1) CurrentIndex = weaponIndex;
+            Weapon prevGunWeapon = CurrentWeapon;
 
-            Weapons[weaponIndex]?.UnEquip();
-            Weapons[weaponIndex] = weapon;
-            Weapons[weaponIndex]?.Equip(this);
+            CurrentWeapon?.UnEquip();
+            CurrentWeapon = weapon;
+            CurrentWeapon?.Equip(this);
 
-            OnChangedWeaponEvents[weaponIndex]?.Invoke(weapon);
+            OnChangedWeaponEvents[CurrentIndex]?.Invoke(weapon);
 
             return prevGunWeapon;
         }
@@ -112,7 +113,7 @@ namespace Hashira.Entities.Components
                     if (Weapons[i] == null)
                         return i;
                 }
-                return WeaponIndex;
+                return CurrentIndex;
             }
             else
                 return index >= Weapons.Length ? Weapons.Length - 1 : index;
@@ -123,7 +124,7 @@ namespace Hashira.Entities.Components
             if (index >= Weapons.Length)
                 index = Weapons.Length - 1;
 
-            WeaponIndex = index;
+            CurrentIndex = index;
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
@@ -131,8 +132,8 @@ namespace Hashira.Entities.Components
         {
             for (int i = 0; i < Weapons.Length; i++)
             {
-                WeaponIndex++;
-                if (WeaponIndex >= Weapons.Length) WeaponIndex = 0;
+                CurrentIndex++;
+                if (CurrentIndex >= Weapons.Length) CurrentIndex = 0;
                 if (CurrentWeapon != null) break;
             }
 

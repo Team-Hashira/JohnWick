@@ -42,18 +42,18 @@ namespace Hashira.Entities.Components
         {
             base.RemoveWeapon(index);
 
-            if (index == WeaponIndex)
+            if (index == CurrentIndex)
             {
                 OnCurrentWeaponChanged?.Invoke(Weapons[index]);
 
                 if (GunWaepon != null)
-                    GunWaepon.EquipWeapon(GunWaepon.CurrentWeapon as GunWeapon, GunWaepon.WeaponIndex);
+                    GunWaepon.EquipWeapon(GunWaepon.CurrentWeapon as GunWeapon, GunWaepon.CurrentIndex);
             }
         }
 
         public override Weapon EquipWeapon(Weapon weapon, int index = -1)
         {
-            if (GetIndex(index) == WeaponIndex)
+            if (index == CurrentIndex || index == -1)
                 OnCurrentWeaponChanged?.Invoke(weapon);
 
             return base.EquipWeapon(weapon, index);

@@ -71,7 +71,7 @@ namespace Hashira.Entities.Components
         {
             base.RemoveWeapon(index);
 
-            if (IsMeleeWeaponMode == false && index == WeaponIndex)
+            if (IsMeleeWeaponMode == false && index == CurrentIndex)
                 OnCurrentWeaponChanged?.Invoke(Weapons[index]);
         }
 
@@ -79,7 +79,7 @@ namespace Hashira.Entities.Components
         {
             (weapon as GunWeapon)?.SetPartsRenderer(PartsRenderer);
 
-            if (IsMeleeWeaponMode == false && GetIndex(index) == WeaponIndex)
+            if (IsMeleeWeaponMode == false && (index == CurrentIndex || index == -1))
                 OnCurrentWeaponChanged?.Invoke(weapon);
 
             return base.EquipWeapon(weapon, index);

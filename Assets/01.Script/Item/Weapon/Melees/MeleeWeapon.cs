@@ -51,7 +51,7 @@ namespace Hashira.Items.Weapons
         {
             EntityGunWeapon entityGunWeapon = EntityMeleeWeapon.GunWaepon;
             entityGunWeapon.IsMeleeWeaponMode = false;
-            entityGunWeapon.EquipWeapon(entityGunWeapon.CurrentWeapon, entityGunWeapon.WeaponIndex);
+            entityGunWeapon.EquipWeapon(entityGunWeapon.CurrentWeapon, entityGunWeapon.CurrentIndex);
         }
         
         public override object Clone()
