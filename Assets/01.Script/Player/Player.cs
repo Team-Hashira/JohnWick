@@ -2,6 +2,8 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
+using System;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace Hashira.Players
@@ -25,9 +27,12 @@ namespace Hashira.Players
         protected StatElement _damageStat;
 
         [Header("=====Stamina setting=====")]
-        [SerializeField] private float _stamina;
-        [SerializeField] private float _recoveryStamina;
+        [field: SerializeField] public float MaxStamina { get; private set; }
+        [SerializeField] private float _staminaRecoverySpeed;
+        [SerializeField] private float _staminaRecoveryDelay;
+        private float _lastStaminaUsedTime;
         private float _currentStamina;
+        public event Action<float, float> OnStaminaChangedEvent;
 
         [Header("=====Layer setting=====")]
         [SerializeField] private LayerMask _whatIsTarget;
@@ -44,8 +49,12 @@ namespace Hashira.Players
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
+        }
 
-            _currentStamina = _stamina;
+        private void Start()
+        {
+            _currentStamina = MaxStamina;
+            OnStaminaChangedEvent?.Invoke(_currentStamina, _currentStamina);
         }
 
         #region Handles
@@ -60,8 +69,15 @@ namespace Hashira.Players
             if (_playerMover.CanRolling == false) return;
             if (_stateMachine.CurrentStateName != "Rolling")
             {
-                _playerMover.OnDash();
-                _stateMachine.ChangeState("Rolling");
+                if (TryUseStamina(20))
+                {
+                    _playerMover.OnDash();
+                    _stateMachine.ChangeState("Rolling");
+                }
+                else
+                {
+                    Debug.Log("스테미나 부족!");
+                }
             }
         }
 
@@ -100,6 +116,18 @@ namespace Hashira.Players
         {
             base.AfterIntiialize();
         }
+        
+        public bool TryUseStamina(float usedValue)
+        {
+            if (IsCanUseStamina(usedValue) == false) return false;
+            float prevStamina = _currentStamina;
+            _currentStamina -= usedValue;
+            _lastStaminaUsedTime = Time.time;
+            OnStaminaChangedEvent?.Invoke(prevStamina, _currentStamina);
+            return true;
+        }
+        public bool IsCanUseStamina(float usedValue)
+            => _currentStamina >= usedValue;
 
         protected override void Update()
         {
@@ -110,6 +138,18 @@ namespace Hashira.Players
             _weaponGunHolderCompo.LookTarget(mousePos);
 
             _renderCompo.SetUsualFacingTarget(mousePos);
+
+
+            if (_currentStamina < MaxStamina && _lastStaminaUsedTime + _staminaRecoveryDelay < Time.time)
+            {
+                float prevStamina = _currentStamina;
+                _currentStamina += Time.deltaTime * _staminaRecoverySpeed;
+                if (_currentStamina > MaxStamina)
+                {
+                    _currentStamina = MaxStamina;
+                }
+                OnStaminaChangedEvent?.Invoke(prevStamina, _currentStamina);
+            }
         }
 
         protected override void OnDestroy()

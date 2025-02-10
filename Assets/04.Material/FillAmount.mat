@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CircleFillAmount
-  m_Shader: {fileID: -6465566751694194690, guid: 642f36dff81f6e748b192e9b39b16b58, type: 3}
+  m_Name: FillAmount
+  m_Shader: {fileID: -6465566751694194690, guid: d131ed7835b379a40a03180015571e6f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -41,15 +41,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FillAmount: 0.313
+    - _FillAmount: 1
     - _Flip: 0
-    - _Float: 3.141593
-    - _Pi: 3.141593
-    - _Rotation: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &2963716356209674687
+--- !u!114 &7635463519869739856
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
