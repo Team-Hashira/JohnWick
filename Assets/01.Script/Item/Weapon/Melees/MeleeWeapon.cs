@@ -14,9 +14,9 @@ namespace Hashira.Items.Weapons
 
         private Sequence animationSeq;
 
-        public override void Attack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
-            base.Attack(damage, isDown);
+            base.Attack(damage, isDown, whatIsTarget);
 
 			Vector3 startRot = Vector3.forward * MeleeSO.RotateMax;
 			Vector3 endRot = Vector3.forward * MeleeSO.RotateMin;

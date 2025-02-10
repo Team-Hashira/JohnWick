@@ -8,9 +8,9 @@ namespace Hashira.Items.Weapons
         private static int _bulletCount = 5;
         private static int _scatterAngle = 5;
 
-        public override void Attack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
-            base.Attack(damage, isDown);
+            base.Attack(damage, isDown, whatIsTarget);
             if (isDown == false) return;
 
             if (Fire() == false) return;

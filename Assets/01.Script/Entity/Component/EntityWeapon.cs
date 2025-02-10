@@ -65,9 +65,9 @@ namespace Hashira.Entities.Components
             }
         }
 
-        public virtual void Attack(int damage, bool isDown)
+        public virtual void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
-            CurrentWeapon?.Attack(damage, isDown);
+            CurrentWeapon?.Attack(damage, isDown, whatIsTarget);
 
             var evt = SoundEvents.SoundGeneratedEvent;
             evt.originPosition = transform.position;

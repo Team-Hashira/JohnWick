@@ -119,7 +119,7 @@ namespace Hashira.Items.Weapons
         {
             //Bullet
             Bullet bullet = EntityGunWeapon.gameObject.Pop(GunSO.bullet, _firePos, Quaternion.identity) as Bullet;
-            bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue);
+            bullet.Init(_whatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue);
 
             EntityGunWeapon.ApplyRecoil(_recoilStat.Value);
         }

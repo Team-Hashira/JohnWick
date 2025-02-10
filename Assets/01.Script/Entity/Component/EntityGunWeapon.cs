@@ -85,10 +85,10 @@ namespace Hashira.Entities.Components
             return base.EquipWeapon(weapon, index);
         }
 
-        public override void Attack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             if (IsReloading) return;
-            base.Attack(damage, isDown);
+            base.Attack(damage, isDown, whatIsTarget);
         }
 
         public void LookTarget(Vector3 targetPos)

@@ -24,6 +24,10 @@ namespace Hashira.Players
 
         protected StatElement _damageStat;
 
+        [Header("=====Layer setting=====")]
+        [SerializeField] private LayerMask _whatIsTarget;
+        [SerializeField] private LayerMask _whatIsObstacle;
+
         protected override void Awake()
         {
             base.Awake();
@@ -56,12 +60,12 @@ namespace Hashira.Players
 
         private void HandleMeleeAttackEvent()
         {
-            _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true);
+            _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget);
         }
 
         private void HandleAttackEvent(bool isDown)
         {
-            _weaponGunHolderCompo?.Attack(_damageStat.IntValue, isDown);
+            _weaponGunHolderCompo?.Attack(_damageStat.IntValue, isDown, _whatIsTarget | _whatIsObstacle);
         }
 
         private void HandleWeaponSwapEvent()

@@ -31,9 +31,9 @@ namespace Hashira.Items.Weapons
                 .gameObject.GetComponent<ParticleSystem>();
         }
 
-        public override void Attack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
-            base.Attack(damage, isDown);
+            base.Attack(damage, isDown, whatIsTarget);
 
             //휘두르는 이펙트?
         }
