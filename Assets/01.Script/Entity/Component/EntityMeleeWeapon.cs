@@ -53,7 +53,7 @@ namespace Hashira.Entities.Components
 
         public override Weapon EquipWeapon(Weapon weapon, int index = -1)
         {
-            if (index == CurrentIndex || index == -1)
+            if (GunWaepon == null && (index == CurrentIndex || index == -1))
                 OnCurrentWeaponChanged?.Invoke(weapon);
 
             return base.EquipWeapon(weapon, index);

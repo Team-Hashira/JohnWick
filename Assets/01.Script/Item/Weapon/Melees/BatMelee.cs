@@ -40,8 +40,8 @@ namespace Hashira.Items.Weapons
 
         public override void UnEquip()
         {
-            base.UnEquip();
             EntityMeleeWeapon.DamageCaster.OnDamageCastSuccessEvent -= HandleDamageCastSuccessEvent;
+            base.UnEquip();
         }
     }
 }

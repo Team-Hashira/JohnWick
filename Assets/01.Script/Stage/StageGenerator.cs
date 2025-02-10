@@ -26,7 +26,7 @@ namespace Hashira.Stage
                 if (value >= _chapterSO.Length)
                 {
                     OnAllChaptersClearEvent?.Invoke();
-                    TimeManager.Pause();
+                    TimeManager.SetTimeScale(0);
                 }
                 _currentChapterIndex = value;
             }
@@ -93,7 +93,7 @@ namespace Hashira.Stage
         public async void Clear()
         {
             if (IsMovingStage == true) return;
-            TimeManager.Pause();
+            TimeManager.SetTimeScale(0);
             FadeController.Fade(true);
             IsMovingStage = true;
             OnStageClearEvent?.Invoke();
@@ -111,7 +111,7 @@ namespace Hashira.Stage
             IsMovingStage = false;
             
             FadeController.Fade(false);
-            TimeManager.Play();
+            TimeManager.UndoTimeScale();
 
         }
     }
