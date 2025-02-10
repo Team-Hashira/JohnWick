@@ -96,7 +96,7 @@ namespace Hashira.Entities.Components
 
             foreach (var state in _stateList)
             {
-                string stateName = state.ifClassNameIsDifferent ? state.stateName : state.className;
+                string stateName = state.ifClassNameIsDifferent ? state.className : state.stateName;
                 string className = $"{_entity.GetType().FullName}{stateName}State";
                 try
                 {
