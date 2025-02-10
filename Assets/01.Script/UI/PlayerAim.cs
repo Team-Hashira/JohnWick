@@ -49,7 +49,7 @@ namespace Hashira
 
             SetSize(_playerWeapon.Recoil * 0.2f + 1);
             if (_playerWeapon.CurrentWeapon is GunWeapon gun && gun != null)
-                SetColor(gun.BulletAmount > 0 && !_playerWeapon.IsReloading ? 
+                SetColor(gun.BulletAmount > 0 && !_playerWeapon.IsReloading && _playerWeapon.gameObject.activeSelf ? 
                     (gun.IsCanFire ? _defaultColor : _delayColor) : _inactiveColor);
             else
                 SetColor(Color.white);

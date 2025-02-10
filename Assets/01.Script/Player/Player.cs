@@ -24,9 +24,13 @@ namespace Hashira.Players
 
         protected StatElement _damageStat;
 
+        [Header("=====Stamina setting=====")]
+        [SerializeField] private float _stamina;
+        [SerializeField] private float _recoveryStamina;
+        private float _currentStamina;
+
         [Header("=====Layer setting=====")]
         [SerializeField] private LayerMask _whatIsTarget;
-        [SerializeField] private LayerMask _whatIsProjectile;
         [SerializeField] private LayerMask _whatIsObstacle;
 
         protected override void Awake()
@@ -40,6 +44,8 @@ namespace Hashira.Players
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
+
+            _currentStamina = _stamina;
         }
 
         #region Handles
