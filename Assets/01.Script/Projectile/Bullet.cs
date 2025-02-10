@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Combat;
 using Hashira.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Hashira.Projectile
 {
-    public class Bullet : PushLifetime
+    public class Bullet : PushLifetime, IParryingable
     {
         [SerializeField] private ProjectileCollider2D _projectileCollider;
         [SerializeField] private TrailRenderer _trailRenderer;
@@ -24,6 +25,9 @@ namespace Hashira.Projectile
         private SpriteRenderer _spriteRenderer;
 
         private List<Collider2D> _penetratedColliderList = new List<Collider2D>();
+
+        public bool IsParryingable { get; set; }
+        public Transform Owner { get; set; }
 
         private void Awake()
         {
@@ -46,7 +50,7 @@ namespace Hashira.Projectile
                 if (hit.transform.TryGetComponent(out IDamageable damageable))
                 {
                     int damage = CalculatePenetration(_damage, _penetration - _currentPenetration);
-                    EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, 4f);
+                    EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
 
                     if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                     {
@@ -106,7 +110,7 @@ namespace Hashira.Projectile
             return CalculatePenetration(damage * 0.8f, penetratedCount - 1);
         }
 
-        public void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration)
+        public void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner)
         {
             _damage = damage;
             _speed = speed;
@@ -114,8 +118,10 @@ namespace Hashira.Projectile
             _currentPenetration = penetration;
             _whatIsTarget = whatIsTarget;
             transform.right = direction;
+            Owner = owner;
             _spriteRenderer.enabled = true;
             _trailRenderer.enabled = true;
+            IsParryingable = true;
             _penetratedColliderList = new List<Collider2D>();
         }
 
@@ -129,6 +135,15 @@ namespace Hashira.Projectile
         {
             base.DelayDie();
             _trailRenderer.enabled = false;
+        }
+
+        public void Parrying(LayerMask whatIsNewTargetLayer, Transform owner)
+        {
+            if (IsParryingable == false) return;
+
+            IsParryingable = false;
+            Owner = owner;
+            transform.localEulerAngles += new Vector3(0, 180 ,0);
         }
     }
 }

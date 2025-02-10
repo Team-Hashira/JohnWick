@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Combat;
 using Hashira.Entities.Components;
 using System;
 using UnityEngine;
@@ -8,7 +9,6 @@ namespace Hashira.Items.Weapons
     public class BatMelee : MeleeWeapon
     {
         private int _damage;
-
 
         public override void Equip(EntityWeapon entityWeapon)
         {

@@ -13,7 +13,7 @@ public abstract class DamageCaster2D : MonoBehaviour
 	public List<DamageCaster2D> excludedDamageCasterList;
 
 	public event Action OnCasterEvent;
-	public event Action OnCasterSuccessEvent;
+	public event Action<RaycastHit2D> OnCasterSuccessEvent;
 	public event Action<RaycastHit2D> OnDamageCastSuccessEvent;
 
 	protected Vector2 GetFinalCenter(Vector2 center)
@@ -29,9 +29,9 @@ public abstract class DamageCaster2D : MonoBehaviour
 		_raycastHits = new RaycastHit2D[allocationCount];
 	}
 
-	public abstract void CastOverlap(Vector2 moveTo = default);
+	public abstract RaycastHit2D[] CastOverlap(Vector2 moveTo = default);
 
-	public virtual void CastDamage(int damage, Vector2 moveTo = default, float knockbackPower = 0)
+	public virtual void CastDamage(int damage, Vector2 moveTo = default, Vector2 knockback = default)
 	{
 		CastOverlap(moveTo);
 
@@ -49,11 +49,11 @@ public abstract class DamageCaster2D : MonoBehaviour
 			}
 			else
             {
-                OnCasterSuccessEvent?.Invoke();
+                OnCasterSuccessEvent?.Invoke(_raycastHits[i]);
             }
             if (_raycastHits[i].transform.TryGetComponent(out IDamageable damageable))
 			{
-				damageable.ApplyDamage(damage, _raycastHits[i], transform, knockbackPower);
+				damageable.ApplyDamage(damage, _raycastHits[i], transform, knockback);
                 OnDamageCastSuccessEvent?.Invoke(_raycastHits[i]);
             }
 		}

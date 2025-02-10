@@ -47,7 +47,7 @@ namespace Hashira.Entities
             Health = MaxHealth;
 		}
 
-		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, float knockbackPower = 0)
+		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default)
         {
             EEntityPartType hitPoint;
             if (_owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
@@ -68,9 +68,9 @@ namespace Hashira.Entities
                 Health = 0;
             OnHealthChangedEvent?.Invoke(prev, Health);
 
-            Vector2 attackDir = (raycastHit.transform.position - transform.position).normalized;
+            //Vector2 attackDir = (raycastHit.transform.position - transform.position).normalized;
 
-			OnKnockback(attackDir, knockbackPower);
+			OnKnockback(knockback.normalized, knockback.magnitude);
 
 			if (Health == 0) Die();
 
