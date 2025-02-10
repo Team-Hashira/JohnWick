@@ -41,7 +41,7 @@ namespace Hashira.UI.StatusWindow
 
         public void Init(IWeaponSlot gunWeaponSlot)
         {
-            _image.sprite = gunWeaponSlot.BaseWeapon?.WeaponSO.itemDefaultSprite;
+            _image.sprite = gunWeaponSlot.BaseWeapon?.WeaponSO.itemIcon;
             _image.color = gunWeaponSlot.BaseWeapon != null ? Color.white : Color.clear;  
             Parent = gunWeaponSlot;
         }
