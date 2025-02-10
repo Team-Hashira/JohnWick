@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Combat;
 using Hashira.Entities.Components;
 using System;
 using UnityEngine;
@@ -14,6 +15,13 @@ namespace Hashira.Items.Weapons
         {
             base.Equip(entityWeapon);
             EntityMeleeWeapon.DamageCaster.OnDamageCastSuccessEvent += HandleDamageCastSuccessEvent;
+            EntityMeleeWeapon.DamageCaster.OnCasterSuccessEvent += HandleCasterSuccessEvent;
+        }
+
+        private void HandleCasterSuccessEvent(RaycastHit2D hit)
+        {
+            if (hit.transform.TryGetComponent(out IParryingable parryingable))
+                parryingable.Parrying(_whatIsTarget, EntityMeleeWeapon.Entity.transform);
         }
 
         private void HandleDamageCastSuccessEvent(RaycastHit2D hit)

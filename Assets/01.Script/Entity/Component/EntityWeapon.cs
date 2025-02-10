@@ -21,7 +21,7 @@ namespace Hashira.Entities.Components
         protected float _startYPos;
         protected SpriteRenderer _spriteRenderer;
 
-        protected Entity _entity;
+        public Entity Entity { get; private set; }
         protected EntityMover _mover;
 
         public Action<Weapon>[] OnChangedWeaponEvents;
@@ -31,7 +31,7 @@ namespace Hashira.Entities.Components
 
         public virtual void Initialize(Entity entity)
         {
-            _entity = entity;
+            Entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
             CurrentIndex = 0;
             OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;

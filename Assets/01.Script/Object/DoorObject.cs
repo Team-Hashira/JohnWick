@@ -22,7 +22,7 @@ namespace Hashira.Object
 			CurrentHealth = MaxHealth;
 		}
 
-		public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm, float knockbackPower = 0)
+		public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default)
         {
 			CurrentHealth -= value;
 

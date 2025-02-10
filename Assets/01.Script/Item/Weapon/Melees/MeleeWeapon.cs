@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Hashira.Entities;
 using Hashira.Entities.Components;
 using System;
 using UnityEngine;
@@ -26,11 +27,13 @@ namespace Hashira.Items.Weapons
 			(EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).size = MeleeSO.AttackRangeSize;
 			(EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
 
+            Vector2 attackDir = (EntityMeleeWeapon.DamageCaster.transform.position - EntityMeleeWeapon.Entity.transform.position).normalized;
+
             if (animationSeq != null && animationSeq.IsActive()) animationSeq.Kill();
             animationSeq = DOTween.Sequence();
             animationSeq.AppendCallback(()=>EntityMeleeWeapon.transform.localEulerAngles = startRot);
             animationSeq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.InOutBack));
-            animationSeq.InsertCallback(duration / 2, () => EntityMeleeWeapon.DamageCaster.CastDamage(damage, knockbackPower: 15));
+            animationSeq.InsertCallback(duration / 2, () => EntityMeleeWeapon.DamageCaster.CastDamage(damage, knockback: attackDir * 15f));
             animationSeq.AppendInterval(afterDelay);
             animationSeq.AppendCallback(() => AttackEnd());
         }
