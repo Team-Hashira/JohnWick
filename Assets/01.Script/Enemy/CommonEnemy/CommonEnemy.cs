@@ -15,6 +15,7 @@ namespace Hashira.Enemies.CommonEnemy
         [SerializeField]
         private LayerMask _whatIsGround;
 
+
         private StatElement _fovElement;
         private StatElement _sightElement;
         private StatElement _attackRangeElement;
