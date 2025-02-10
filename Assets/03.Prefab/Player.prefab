@@ -248,7 +248,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8152302228208947013}
-  - component: {fileID: 1739164217382512514}
+  - component: {fileID: 1158730817504752871}
+  - component: {fileID: 9044624719610803174}
   m_Layer: 8
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -272,7 +273,7 @@ Transform:
   - {fileID: 7028462452996302252}
   m_Father: {fileID: 2958880839669307362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1739164217382512514
+--- !u!114 &1158730817504752871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,15 +282,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1168156252607547634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7272ff2cd5882bf4e9a3b447b8caa224, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fa0986049cb63545bd8d4606cd69f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultWeapons:
   - {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
-  - {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
+  - {fileID: 0}
+  IsMeleeWeapon: 0
   <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <PartsRenderer>k__BackingField: {fileID: 6390566644954204797}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
+  <DamageCaster>k__BackingField: {fileID: 7303574054439739381}
+  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
+--- !u!114 &9044624719610803174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168156252607547634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae5041d01ab7e54e9bd0f01a51ac428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultWeapons:
+  - {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
+  <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <DamageCaster>k__BackingField: {fileID: 7303574054439739381}
   SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1 &1423544538406165356
@@ -1144,11 +1163,11 @@ MonoBehaviour:
   allocationCount: 12
   _whatIsCastable:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 3584
   _usingExcludeCast: 0
   excludedDamageCasterList: []
-  center: {x: 0.5, y: 0}
-  size: {x: 1, y: 1.43}
+  center: {x: 0.75, y: 0}
+  size: {x: 1.5, y: 2}
 --- !u!1 &5799809896364415126
 GameObject:
   m_ObjectHideFlags: 0

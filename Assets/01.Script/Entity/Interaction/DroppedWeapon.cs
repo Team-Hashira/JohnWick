@@ -46,8 +46,18 @@ namespace Hashira.Entities.Interacts
         {
             base.Interaction(entity);
 
-            EntityWeapon weaponHolder = entity.GetEntityComponent<EntityWeapon>();
-            Weapon weapon = weaponHolder.EquipWeapon(_weapon);
+            Weapon weapon = null;
+            if (_weapon is GunWeapon gunWeapon)
+            {
+                EntityGunWeapon weaponHolder = entity.GetEntityComponent<EntityGunWeapon>();
+                weapon = weaponHolder?.EquipWeapon(gunWeapon);
+            }
+            else if (_weapon is MeleeWeapon meleeWeapon)
+            {
+                EntityMeleeWeapon weaponHolder = entity.GetEntityComponent<EntityMeleeWeapon>();
+                weapon = weaponHolder?.EquipWeapon(meleeWeapon);
+            }
+
             if (weapon != null) SetItem(weapon);
             else this.Push();
         }
@@ -55,23 +65,9 @@ namespace Hashira.Entities.Interacts
         public override void SetItemData()
         {
             _ItemDataTrm.gameObject.SetActive(true);
-            if (_entity.TryGetEntityComponent(out EntityWeapon entityWeapon))
+            if (_weapon is GunWeapon && _entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon))
             {
-                if (_weapon is MeleeWeapon)
-                {
-                    if (entityWeapon.Weapons[2] != null)
-                    {
-                        _ComparisonItemDataTrm.gameObject.SetActive(true);
-                        _itemData.SetItem(_weapon, entityWeapon.Weapons[2]);
-                        _comparisonItemData.SetItem(entityWeapon.Weapons[2]);
-                    }
-                    else
-                    {
-                        _ComparisonItemDataTrm.gameObject.SetActive(false);
-                        _itemData.SetItem(_weapon);
-                    }
-                }
-                else if (entityWeapon.CurrentWeapon != null)
+                if (entityWeapon.CurrentWeapon != null)
                 {
                     _ComparisonItemDataTrm.gameObject.SetActive(true);
                     _itemData.SetItem(_weapon, entityWeapon.CurrentWeapon);
@@ -83,8 +79,23 @@ namespace Hashira.Entities.Interacts
                     _itemData.SetItem(_weapon);
                 }
             }
+            else if (_weapon is MeleeWeapon && _entity.TryGetEntityComponent(out EntityMeleeWeapon entityMeleeWeapon))
+            {
+                if (entityMeleeWeapon.CurrentWeapon != null)
+                {
+                    _ComparisonItemDataTrm.gameObject.SetActive(true);
+                    _itemData.SetItem(_weapon, entityMeleeWeapon.CurrentWeapon);
+                    _comparisonItemData.SetItem(entityMeleeWeapon.CurrentWeapon);
+                }
+                else
+                {
+                    _ComparisonItemDataTrm.gameObject.SetActive(false);
+                    _itemData.SetItem(_weapon);
+                }
+            }
             else
             {
+                _ComparisonItemDataTrm.gameObject.SetActive(false);
                 _itemData.SetItem(_weapon);
             }
         }

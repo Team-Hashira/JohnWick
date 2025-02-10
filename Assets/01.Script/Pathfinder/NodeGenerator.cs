@@ -30,7 +30,6 @@ namespace Hashira.Pathfind
         private void Awake()
         {
             _soundEventChannel.AddListener<SoundGeneratedEvent>(HandleOnSoundGenerated);
-
         }
 
         private void HandleOnSoundGenerated(SoundGeneratedEvent evt)
@@ -42,6 +41,7 @@ namespace Hashira.Pathfind
 
             foreach (Node node in _nodeList)
             {
+                if (node == null) continue;
                 float distance = Vector3.Distance(evt.originPosition, node.transform.position);
 
                 if (distance < closestDistance)
@@ -234,6 +234,11 @@ namespace Hashira.Pathfind
                     return true;
             }
             return false;
+        }
+
+        private void OnDestroy()
+        {
+            _soundEventChannel.RemoveListener<SoundGeneratedEvent>(HandleOnSoundGenerated);
         }
     }
 }

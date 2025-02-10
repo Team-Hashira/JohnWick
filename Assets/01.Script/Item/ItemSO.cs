@@ -3,6 +3,7 @@ using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
+using Doryu.CustomAttributes;
 
 namespace Hashira.Items
 {
@@ -21,6 +22,7 @@ namespace Hashira.Items
         public string itemDescription;
 
         public bool useCustomClass;
+        [ToggleField("useCustomClass", false)]
         public string defaultClass;
 
         protected Item _itemClass;

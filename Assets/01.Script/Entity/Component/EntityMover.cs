@@ -23,6 +23,7 @@ namespace Hashira.Entities
         public Vector2 Velocity { get; private set; }
 
         public bool IsGrounded { get; private set; }
+        public bool isManualMove = true;
 
         [field:SerializeField] public int JumpCount { get; private set; } = 1;
         private int _currentJumpCount = 0;
@@ -41,6 +42,7 @@ namespace Hashira.Entities
             _yMovement = 0;
             _xMovement = 0;
             _entity = entity;
+            isManualMove = true;
             _whatIsGround |= _oneWayPlatform;
         }
 
@@ -95,13 +97,15 @@ namespace Hashira.Entities
             Rigidbody2D.linearVelocity = Velocity;
         }
 
-        public void SetMovement(float xMovement)
+        public void SetMovement(float xMovement, bool isForcedMove = false)
         {
+            if (isManualMove == false && isForcedMove == false) return;
             _xMovement = xMovement;
         }
 
         public void Jump()
         {
+            if (isManualMove == false) return;
             if (_currentJumpCount >= JumpCount)
                 return;
 
@@ -112,6 +116,7 @@ namespace Hashira.Entities
 
 		public void StopImmediately(bool withYVelocity = false)
         {
+            if (isManualMove == false) return;
             _xMovement = 0;
             Rigidbody2D.linearVelocityX = 0;
 
@@ -121,6 +126,7 @@ namespace Hashira.Entities
 
         public void UnderJump(bool isUnderJump)
         {
+            if (isManualMove == false) return;
             int layerCheck = _whatIsGround & _oneWayPlatform;
             if (layerCheck != 0 && isUnderJump)
                 _whatIsGround &= ~(_oneWayPlatform);

@@ -2,6 +2,7 @@ using System;
 using Hashira.Entities.Components;
 using Hashira.Entities.Interacts;
 using Hashira.Items;
+using Hashira.Items.Weapons;
 using Hashira.Players;
 using Hashira.UI.DragSystem;
 using UnityEngine;
@@ -20,7 +21,8 @@ namespace Hashira.UI.StatusWindow
         public IWeaponSlot Parent { get; private set; }
         [SerializeField] private Image _image;
 
-        private EntityWeapon _entityWeapon;
+        private EntityGunWeapon _entityGunWeapon;
+        private EntityMeleeWeapon _entityMeleeWeapon;
 
         private Player _player;
         
@@ -33,7 +35,8 @@ namespace Hashira.UI.StatusWindow
 
         private void Start()
         {
-            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
+            _entityGunWeapon = _player.GetEntityComponent<EntityGunWeapon>();
+            _entityMeleeWeapon = _player.GetEntityComponent<EntityMeleeWeapon>();
         }
 
         public void Init(IWeaponSlot gunWeaponSlot)
@@ -70,7 +73,10 @@ namespace Hashira.UI.StatusWindow
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
                 ItemDropUtility.DroppedItem(Parent.BaseWeapon, pos);
-                _entityWeapon.RemoveWeapon(Parent.SlotIndex);
+                if (Parent.SlotIndex < _entityGunWeapon.Weapons.Length)
+                    _entityGunWeapon.RemoveWeapon(Parent.SlotIndex);
+                else
+                    _entityMeleeWeapon.RemoveWeapon(Parent.SlotIndex - _entityGunWeapon.Weapons.Length);
             } 
             
             SetToOriginTrm();

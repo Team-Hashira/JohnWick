@@ -15,7 +15,7 @@ namespace Hashira
         private float _startCircleSize;
 
         private RectTransform rectTransform;
-        private EntityWeapon _playerWeapon;
+        private EntityGunWeapon _playerWeapon;
 
 
         [Header("Color setting")]
@@ -37,7 +37,7 @@ namespace Hashira
 
         private void Start()
         {
-            _playerWeapon = GameManager.Instance.Player.GetEntityComponent<EntityWeapon>();
+            _playerWeapon = GameManager.Instance.Player.GetEntityComponent<EntityGunWeapon>();
         }
 
         private void Update()
@@ -48,8 +48,8 @@ namespace Hashira
             }
 
             SetSize(_playerWeapon.Recoil * 0.2f + 1);
-            if (_playerWeapon.CurrentWeapon is GunWeapon gun)
-                SetColor(gun.BulletAmount > 0 && !gun.EntityWeapon.IsReloading ? 
+            if (_playerWeapon.CurrentWeapon is GunWeapon gun && gun != null)
+                SetColor(gun.BulletAmount > 0 && !_playerWeapon.IsReloading ? 
                     (gun.IsCanFire ? _defaultColor : _delayColor) : _inactiveColor);
             else
                 SetColor(Color.white);
