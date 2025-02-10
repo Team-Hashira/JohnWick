@@ -1,3 +1,5 @@
+using Hashira.Core.StatSystem;
+using Hashira.Entities;
 using Hashira.Players;
 using UnityEngine;
 
@@ -13,9 +15,22 @@ namespace Hashira.Enemies.CommonEnemy
         [SerializeField]
         private LayerMask _whatIsGround;
 
+        private StatElement _fovElement;
+        private StatElement _sightElement;
+        private StatElement _attackRangeElement;
+
+        protected override void AfterIntiialize()
+        {
+            base.AfterIntiialize();
+            _fovElement = _entityStat.StatDictionary["FieldOfView"];
+            _sightElement = _entityStat.StatDictionary["Sight"];
+            _attackRangeElement = _entityStat.StatDictionary["AttackRange"];
+        }
+
+
         public override Player DetectPlayer()
         {
-            Collider2D coll = Physics2D.OverlapCircle(transform.position, 5, _whatIsPlayer);
+            Collider2D coll = Physics2D.OverlapCircle(transform.position, _sightElement.Value, _whatIsPlayer);
             if (coll == null)
                 return null;
             Vector3 direction = coll.transform.position - _eye.transform.position;
@@ -28,10 +43,8 @@ namespace Hashira.Enemies.CommonEnemy
                     angle += 360f;
 
                 float facingAngle = _entityRenderer.FacingDirection == 1 ? 0 : 180;
-                float minAngle = facingAngle - 30;
-                float maxAngle = facingAngle + 30;
-
-                Debug.Log($"{minAngle} {maxAngle} {angle}");
+                float minAngle = facingAngle - _fovElement.Value;
+                float maxAngle = facingAngle + _fovElement.Value;
 
                 if (minAngle <= angle && angle <= maxAngle)
                 {
@@ -39,6 +52,14 @@ namespace Hashira.Enemies.CommonEnemy
                 }
             }
             return null;
+        }
+
+        public override bool IsTargetOnAttackRange(Transform target)
+        {
+            float distanceSqr = (transform.position - target.position).sqrMagnitude;
+            float attackRangeSqr = _attackRangeElement.Value * _attackRangeElement.Value;
+
+            return distanceSqr < attackRangeSqr;
         }
     }
 }

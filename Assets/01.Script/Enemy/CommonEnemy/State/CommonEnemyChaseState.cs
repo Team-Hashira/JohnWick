@@ -52,6 +52,11 @@ namespace Hashira.Enemies.CommonEnemy
             }
             else
             {
+                if(_enemy.IsTargetOnAttackRange(_target.transform))
+                {
+                    _entityStateMachine.ChangeState("Attack");
+                    return;
+                }
                 if (_enemyPathfinder.TargetNode != _targetMover.CurrentNode)
                     _enemyPathfinder.PathfindAndMove(_targetMover.CurrentNode);
             }
