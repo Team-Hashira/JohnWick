@@ -29,7 +29,7 @@ public abstract class DamageCaster2D : MonoBehaviour
 		_raycastHits = new RaycastHit2D[allocationCount];
 	}
 
-	public abstract void CastOverlap(Vector2 moveTo = default);
+	public abstract RaycastHit2D[] CastOverlap(Vector2 moveTo = default);
 
 	public virtual void CastDamage(int damage, Vector2 moveTo = default, Vector2 knockback = default)
 	{

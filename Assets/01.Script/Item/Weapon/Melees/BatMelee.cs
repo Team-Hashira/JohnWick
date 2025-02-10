@@ -10,18 +10,10 @@ namespace Hashira.Items.Weapons
     {
         private int _damage;
 
-
         public override void Equip(EntityWeapon entityWeapon)
         {
             base.Equip(entityWeapon);
             EntityMeleeWeapon.DamageCaster.OnDamageCastSuccessEvent += HandleDamageCastSuccessEvent;
-            EntityMeleeWeapon.DamageCaster.OnCasterSuccessEvent += HandleCasterSuccessEvent;
-        }
-
-        private void HandleCasterSuccessEvent(RaycastHit2D hit)
-        {
-            if (hit.transform.TryGetComponent(out IParryingable parryingable))
-                parryingable.Parrying(_whatIsTarget, EntityMeleeWeapon.Entity.transform);
         }
 
         private void HandleDamageCastSuccessEvent(RaycastHit2D hit)

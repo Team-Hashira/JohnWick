@@ -17,11 +17,13 @@ public class BoxDamageCaster2D : DamageCaster2D
 		return finalVec;
 	}
 
-	public override void CastOverlap(Vector2 moveTo = default)
+	public override RaycastHit2D[] CastOverlap(Vector2 moveTo = default)
 	{
         _raycastHits = Physics2D.BoxCastAll(transform.position + transform.rotation * GetFinalCenter(center),
 			GetScaledSize(size), transform.rotation.z, moveTo.normalized, moveTo.magnitude, _whatIsCastable);
-	}
+		return _raycastHits;
+
+    }
 
 	private void OnDrawGizmos()
 	{
