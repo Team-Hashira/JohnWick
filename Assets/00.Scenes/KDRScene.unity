@@ -960,6 +960,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8831168981273924249, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _whatIsTarget.m_Bits
+      value: 1536
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831168981273924249, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _whatIsObstacle.m_Bits
+      value: 6336
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

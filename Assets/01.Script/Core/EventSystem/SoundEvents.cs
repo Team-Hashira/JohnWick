@@ -20,6 +20,7 @@ namespace Hashira.Core.EventSystem
     public class NearbySoundPointEvent : GameEvent
     {
         public Node node;
+        public Vector3 originPosition;
         public float loudness;
     }
 }

@@ -5,9 +5,9 @@ namespace Hashira.Items.Weapons
 {
     public class SniperGun : GunWeapon
     {
-        public override void Attack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
-            base.Attack(damage, isDown);
+            base.Attack(damage, isDown, whatIsTarget);
             if (isDown == false) return;
 
             if (Fire() == false) return;

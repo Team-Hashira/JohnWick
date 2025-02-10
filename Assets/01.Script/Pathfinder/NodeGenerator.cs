@@ -73,6 +73,7 @@ namespace Hashira.Pathfind
                 Debug.Log("소리 발생지로부터 가까운 노드를 찾지 못함.");
             }
             var nearbySoundEvent = SoundEvents.NearbySoundPointEvent;
+            nearbySoundEvent.originPosition = evt.originPosition;
             nearbySoundEvent.node = chosenNode;
             nearbySoundEvent.loudness = evt.loudness;
             _soundEventChannel.RaiseEvent(nearbySoundEvent);

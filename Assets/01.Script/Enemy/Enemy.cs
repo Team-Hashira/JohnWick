@@ -58,5 +58,6 @@ namespace Hashira.Enemies
         }
 
         public abstract Player DetectPlayer();
+        public abstract bool IsTargetOnAttackRange(Transform target);
     }
 }
