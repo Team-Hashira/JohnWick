@@ -17,7 +17,7 @@ namespace Hashira.Items.Weapons.Editor
             float widthOffset = 25f;
             Rect rectResize = new Rect(0, 0, 0, SlotRect.height/SlotRect.width * (inspectorWidth-widthOffset));
 
-            if (gunSO.itemIcon) return;
+            if (gunSO.itemIcon == null) return;
 
             var originSprite = gunSO.itemIcon;
 
