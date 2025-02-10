@@ -49,7 +49,7 @@ namespace Hashira.Items.Weapons.Editor
 
 				GUI.color = Color.cyan;
                 {
-                    GUI.Box(new Rect(partSlotReposition, partSlotResize), new GUIContent(pair.Key.ToString()), GUI.skin.window);
+                    GUI.Box(new Rect(partSlotReposition, partSlotResize), new GUIContent(pair.Key.ToString()), GUI.skin.box);
                 }
                 GUI.color = Color.white;
             }
