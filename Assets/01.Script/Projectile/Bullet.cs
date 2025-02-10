@@ -141,6 +141,7 @@ namespace Hashira.Projectile
         {
             if (IsParryingable == false) return;
 
+            _whatIsTarget = whatIsNewTargetLayer;
             IsParryingable = false;
             Owner = owner;
             transform.localEulerAngles += new Vector3(0, 180 ,0);

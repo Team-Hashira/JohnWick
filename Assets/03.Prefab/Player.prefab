@@ -285,15 +285,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa0986049cb63545bd8d4606cd69f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
+  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
   _defaultWeapons:
   - {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
   - {fileID: 0}
-  IsMeleeWeapon: 0
-  <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <PartsRenderer>k__BackingField: {fileID: 6390566644954204797}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
-  <DamageCaster>k__BackingField: {fileID: 7303574054439739381}
-  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
+  IsMeleeWeaponMode: 0
 --- !u!114 &9044624719610803174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,11 +305,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae5041d01ab7e54e9bd0f01a51ac428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
+  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
   _defaultWeapons:
   - {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
-  <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
   <DamageCaster>k__BackingField: {fileID: 7303574054439739381}
-  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1 &1423544538406165356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,6 +1067,15 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
   <VisualTrm>k__BackingField: {fileID: 2163975733565134096}
   <AfterImageParticle>k__BackingField: {fileID: 4595659203365036013}
+  _whatIsTarget:
+    serializedVersion: 2
+    m_Bits: 512
+  _whatIsProjectile:
+    serializedVersion: 2
+    m_Bits: 1024
+  _whatIsObstacle:
+    serializedVersion: 2
+    m_Bits: 6336
 --- !u!114 &8898830313081796299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6176,6 +6184,7 @@ MonoBehaviour:
   _oneWayPlatform:
     serializedVersion: 2
     m_Bits: 4096
+  isManualMove: 1
   <JumpCount>k__BackingField: 2
   <JumpPower>k__BackingField: 15
   _whatIsNode:

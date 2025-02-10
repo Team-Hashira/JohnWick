@@ -26,6 +26,7 @@ namespace Hashira.Players
 
         [Header("=====Layer setting=====")]
         [SerializeField] private LayerMask _whatIsTarget;
+        [SerializeField] private LayerMask _whatIsProjectile;
         [SerializeField] private LayerMask _whatIsObstacle;
 
         protected override void Awake()
