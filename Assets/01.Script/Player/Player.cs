@@ -60,7 +60,7 @@ namespace Hashira.Players
 
         private void HandleMeleeAttackEvent()
         {
-            _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget);
+            _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
         }
 
         private void HandleAttackEvent(bool isDown)

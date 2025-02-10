@@ -2,6 +2,7 @@ using Hashira.Enemies;
 using Hashira.Entities;
 using UnityEngine;
 using UnityEngine.Events;
+using Hashira.Stage.Area;
 
 namespace Hashira.Stage
 {
@@ -40,16 +41,16 @@ namespace Hashira.Stage
 	[System.Serializable]
 	public class AreaClearCondition : ClearCondition
 	{
-		public BattleArea battleArea;
+		public Area.Area area;
 
 		public override void Init()
 		{
-			battleArea.ClearEvent += HandleClear;
+			area.ClearEvent.AddListener(HandleClear);
 		}
 
 		private void HandleClear()
 		{
-			battleArea.ClearEvent -= HandleClear;
+			area.ClearEvent.AddListener(HandleClear);
 			ClearEvent?.Invoke();
 		}
 	}

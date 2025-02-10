@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 3673250076483303631}
   - component: {fileID: 1299947100969411918}
   - component: {fileID: 1950571421788683381}
+  - component: {fileID: -8122256011459516143}
   m_Layer: 9
   m_Name: CommonEnemyGun
   m_TagString: Untagged
@@ -491,6 +492,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onewayCollider: {fileID: 8035442780029362497}
   _commonCollider: {fileID: 5358014117577791514}
+--- !u!114 &-8122256011459516143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4577189607160717441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3315faeb51f56cb4aa9817cb5b3227c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5768742588983172555
 GameObject:
   m_ObjectHideFlags: 0

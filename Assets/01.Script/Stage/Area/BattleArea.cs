@@ -7,24 +7,20 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Hashira.Stage
+namespace Hashira.Stage.Area
 {
-    public class BattleArea : MonoBehaviour
-    {
+    public class BattleArea : Area
+	{
 		[SerializeField] private GameObject _rObject;
 		[SerializeField] private GameObject _lObject;
 
 		[SerializeField] private UnityEvent BattleStartEvent;
-		[SerializeField] private UnityEvent BattleEndEvent;
-		[SerializeField] private UnityEvent PlayerEnterEvent;
-		[SerializeField] private UnityEvent PlayerExitEvent;
 		[SerializeField] private List<EntityHealth> _entityList;
 
 		[SerializeField] private Vector2 _size = new Vector2(17.78f, 10.05f);
 
 		private int _enemyCount = 0;
 
-		public event Action ClearEvent;
 
 		private CinemachineCamera _cam;
 		private CameraManager _cameraManager;
@@ -98,7 +94,7 @@ namespace Hashira.Stage
 		{
 			_rObject?.SetActive(false);
 			_lObject?.SetActive(false);
-			BattleEndEvent?.Invoke();
+			ClearEvent?.Invoke();
 		}
 
 		private void OnTriggerEnter2D(Collider2D collision)
