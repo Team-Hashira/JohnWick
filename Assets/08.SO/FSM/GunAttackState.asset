@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: GunAttackState
   m_EditorClassIdentifier: 
   stateName: Attack
+  ifClassNameIsDifferent: 1
+  className: GunAttack
   animatorParam: {fileID: 11400000, guid: 59351dde5a2d9be49b269e29b7a60479, type: 2}
