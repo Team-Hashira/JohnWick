@@ -46,11 +46,11 @@ namespace Hashira.Items.Weapons
             base.UnEquip();
         }
 
-        public override void Attack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             if (BulletAmount <= 0) return;
 
-            base.Attack(damage, isDown);
+            base.Attack(damage, isDown, whatIsTarget);
             _isFiring = isDown;
             _damage = damage;
         }

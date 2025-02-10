@@ -59,7 +59,7 @@ namespace Hashira.Entities.Components
             return base.EquipWeapon(weapon, index);
         }
 
-        public override void Attack(int damage, bool isDown)
+        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             if (CurrentWeapon == null) return;
             if (_lastMeleeAttackTime + _meleeAttackCooltime > Time.time) return;
@@ -71,7 +71,7 @@ namespace Hashira.Entities.Components
             if (GunWaepon != null)
                 GunWaepon.IsMeleeWeaponMode = true;
 
-            base.Attack(damage, isDown);
+            base.Attack(damage, isDown, whatIsTarget);
         }
     }
 }

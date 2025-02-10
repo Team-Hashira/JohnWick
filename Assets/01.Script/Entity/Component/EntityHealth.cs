@@ -121,7 +121,7 @@ namespace Hashira.Entities
         {
             _entityMover.StopImmediately();
             _entityMover.isManualMove = false;
-			_knockbackDirectionX = Mathf.Sign(-hitDir.x) * (knockbackPower / _entityMover.Rigidbody2D.mass);
+			_knockbackDirectionX = Mathf.Sign(hitDir.x) * (knockbackPower / _entityMover.Rigidbody2D.mass);
 			_entityStateMachine.ChangeState("Hit");
             IsKnockback = true;
 		}

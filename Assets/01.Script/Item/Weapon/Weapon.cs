@@ -19,6 +19,7 @@ namespace Hashira.Items.Weapons
         public EntityWeapon EntityWeapon { get; private set; }
 
         private int _entityDamage;
+        protected LayerMask _whatIsTarget;
 
         public override void Init(ItemSO itemSO)
         {
@@ -47,9 +48,10 @@ namespace Hashira.Items.Weapons
             EntityWeapon = null;
         }
 
-        public virtual void Attack(int damage, bool isDown)
+        public virtual void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             _entityDamage = damage;
+            _whatIsTarget = whatIsTarget;
         }
         public virtual int CalculateDamage() { return _entityDamage + StatDictionary["AttackPower"].IntValue; }
 

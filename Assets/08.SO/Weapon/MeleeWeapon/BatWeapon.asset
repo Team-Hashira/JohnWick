@@ -19,9 +19,6 @@ MonoBehaviour:
   itemDescription: "\uD06C\uACE0 \uD0D0\uC2A4\uB7FD\uB2E4"
   useCustomClass: 1
   defaultClass: 
-  <WhatIsTarget>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 2752
   <GrapOffset>k__BackingField: {x: 0.585, y: 0.098, z: 0}
   <RightHandOffset>k__BackingField: {x: -0.355, y: -0.315, z: 0}
   <LeftHandOffset>k__BackingField: {x: -0.045, y: -0.182, z: 0}
