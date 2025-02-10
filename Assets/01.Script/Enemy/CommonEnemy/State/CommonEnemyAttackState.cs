@@ -34,7 +34,7 @@ namespace Hashira.Enemies.CommonEnemy
         {
             if (trigger.HasFlag(EAnimationTrigger.Attack))
             {
-                _entityWeapon.Attack(_attackPowerElement.IntValue, false);
+                //_entityWeapon.Attack(_attackPowerElement.IntValue, false);
             }
             if (trigger.HasFlag(EAnimationTrigger.End))
             {
