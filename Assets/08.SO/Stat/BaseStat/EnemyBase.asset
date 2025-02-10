@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed9b17438a6c3c47945e9045002a83e, type: 3}
+  m_Name: EnemyBase
+  m_EditorClassIdentifier: 
+  _statElements:
+  - Name: Health
+    elementSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
+    _baseValue: 1000
+  - Name: AttackPower
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 100
+  - Name: Defense
+    elementSO: {fileID: 11400000, guid: 51a8954ad1e5c564caa6ec2e3a9b88cc, type: 2}
+    _baseValue: 100
+  - Name: Speed
+    elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
+    _baseValue: 10
+  - Name: FieldOfView
+    elementSO: {fileID: 11400000, guid: 716401084645e5b459a667648b423fce, type: 2}
+    _baseValue: 30
+  - Name: SIght
+    elementSO: {fileID: 11400000, guid: fe2eaca9165154e4fa77fe5b9e3233ba, type: 2}
+    _baseValue: 5
+  - Name: Hearing
+    elementSO: {fileID: 11400000, guid: 4ff2cf6ee04a992409f357654c7db01e, type: 2}
+    _baseValue: 3
