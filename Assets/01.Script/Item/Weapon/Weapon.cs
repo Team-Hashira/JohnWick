@@ -11,12 +11,12 @@ namespace Hashira.Items.Weapons
     public class Weapon : Item, IStatable
     {
         public WeaponSO WeaponSO { get; private set; }
-        public EntityWeapon EntityWeapon { get; private set; }
 
         //Stat
         private List<StatElement> _overrideStatElementList = new List<StatElement>();
         private StatBaseSO _baseStat;
         public StatDictionary StatDictionary { get; private set; }
+        public EntityWeapon EntityWeapon { get; private set; }
 
         private int _entityDamage;
 

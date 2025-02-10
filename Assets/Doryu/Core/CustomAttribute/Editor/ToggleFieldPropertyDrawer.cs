@@ -25,7 +25,7 @@ namespace Doryu.CustomAttributes
             {
                 if (toggleProperty.propertyType == SerializedPropertyType.Boolean)
                 {
-                    isEnabled = toggleProperty.boolValue;
+                    isEnabled = toggleProperty.boolValue == toggleField.BoolValue;
                 }
                 else if (toggleProperty.propertyType == SerializedPropertyType.Enum)
                 {
@@ -111,7 +111,7 @@ namespace Doryu.CustomAttributes
             {
                 if (toggleProperty.propertyType == SerializedPropertyType.Boolean)
                 {
-                    isEnabled = toggleProperty.boolValue;
+                    isEnabled = toggleProperty.boolValue == toggleField.BoolValue;
                 }
                 else if (toggleProperty.propertyType == SerializedPropertyType.Enum)
                 {

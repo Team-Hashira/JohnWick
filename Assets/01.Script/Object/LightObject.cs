@@ -14,7 +14,7 @@ namespace Hashira.Object
 
         [field: SerializeField] public int Resistivity { get; set; } = 1;
 
-        public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm)
+        public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm, float knockbackPower = 0)
         {
             _light.enabled = false;
             _collider.enabled = false;

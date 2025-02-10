@@ -14,10 +14,13 @@ namespace Hashira.UI.StatusWindow
         [SerializeField] private WeaponSlotIcon _icon;
         private readonly List<PartSlot> _partSlotList = new();
         public int SlotIndex { get; set; }
+        private RectTransform _rectTransform;
 
-        public void HandleWeaponChanged(Weapon weapon)
+		public void HandleWeaponChanged(Weapon weapon)
         {
-            if(GunWeapon != null)
+            _rectTransform ??= transform as RectTransform;
+
+			if (GunWeapon != null)
                 GunWeapon.OnPartsChanged -= HandleParsChanged;
             
             // 기존에 있던 UI 삭제
@@ -53,7 +56,8 @@ namespace Hashira.UI.StatusWindow
         
         private PartSlot AddPartSlot(EWeaponPartsType partType, Vector2 position)
         {
-            PartSlot partSlot = Instantiate(_partSlotPrefab, transform);
+            position = new Vector2(_rectTransform.sizeDelta.x/2 * position.x, _rectTransform.sizeDelta.y/2 * position.y);
+			PartSlot partSlot = Instantiate(_partSlotPrefab, transform);
             partSlot.partType = partType;
             
             // 위치 조정

@@ -11,14 +11,16 @@ namespace Doryu.CustomAttributes
     {
         public string PropertyName { get; private set; }
         public int EnumValue { get; private set; }
+        public bool BoolValue { get; private set; }
 
         /// <summary>
         /// Shown when bool is true.
         /// </summary>
         /// <param name="boolProperty">BoolProperty variable name</param>
-        public ToggleFieldAttribute(string boolProperty)
+        public ToggleFieldAttribute(string boolProperty, bool boolValue = true)
         {
             PropertyName = boolProperty;
+            BoolValue = boolValue;
         }
         /// <summary>
         /// Shown when enumProperty value equals enumValue.
@@ -28,7 +30,7 @@ namespace Doryu.CustomAttributes
         public ToggleFieldAttribute(string enumProperty, int enumValue)
         {
             PropertyName = enumProperty;
-            EnumValue = Convert.ToInt32(enumValue);
+            EnumValue = enumValue;
         }
     }
 }

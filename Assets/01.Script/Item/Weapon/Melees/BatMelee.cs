@@ -1,3 +1,6 @@
+using Crogen.CrogenPooling;
+using Hashira.Entities.Components;
+using System;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
@@ -6,11 +9,39 @@ namespace Hashira.Items.Weapons
     {
         private int _damage;
 
+
+        public override void Equip(EntityWeapon entityWeapon)
+        {
+            base.Equip(entityWeapon);
+            EntityMeleeWeapon.DamageCaster.OnDamageCastSuccessEvent += HandleDamageCastSuccessEvent;
+        }
+
+        private void HandleDamageCastSuccessEvent(RaycastHit2D hit)
+        {
+            CameraManager.Instance.ShakeCamera(10, 10, 0.2f);
+
+            //Effect
+            ParticleSystem wallBloodEffect = EntityMeleeWeapon.gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, EntityMeleeWeapon.transform.parent.rotation)
+                .gameObject.GetComponent<ParticleSystem>();
+            var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+            limitVelocityOverLifetimeModule.dampen = 0.9f;
+
+            //Effect
+            ParticleSystem bloodBackEffect = EntityMeleeWeapon.gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, EntityMeleeWeapon.transform.parent.rotation)
+                .gameObject.GetComponent<ParticleSystem>();
+        }
+
         public override void Attack(int damage, bool isDown)
         {
             base.Attack(damage, isDown);
-            Debug.Log("이거 근접 공격하는 고에요");
-            CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
+
+            //휘두르는 이펙트?
+        }
+
+        public override void UnEquip()
+        {
+            base.UnEquip();
+            EntityMeleeWeapon.DamageCaster.OnDamageCastSuccessEvent -= HandleDamageCastSuccessEvent;
         }
     }
 }

@@ -2,7 +2,6 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
-using Hashira.FSM;
 using UnityEngine;
 
 namespace Hashira.Players
@@ -16,11 +15,12 @@ namespace Hashira.Players
         protected EntityStateMachine _stateMachine;
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
-        protected EntityWeapon _weaponHolderCompo;
+        protected EntityGunWeapon _weaponGunHolderCompo;
+        protected EntityMeleeWeapon _weaponMeleeHolderCompo;
         protected EntityInteractor _interactor;
         protected PlayerMover _playerMover;
 
-        private Weapon CurrentWeapon => _weaponHolderCompo.CurrentWeapon;
+        private Weapon CurrentWeapon => _weaponGunHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
 
@@ -31,14 +31,15 @@ namespace Hashira.Players
             InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnInteractEvent += HandleInteractEvent;
 
+            InputReader.OnReloadEvent += _weaponGunHolderCompo.Reload;
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
-		#region Handles
+        #region Handles
 
-		private void HandleInteractEvent(bool isDown)
+        private void HandleInteractEvent(bool isDown)
         {
             _interactor.Interact(isDown);
         }
@@ -46,26 +47,26 @@ namespace Hashira.Players
         private void HandleDashEvent()
         {
             if (_playerMover.CanRolling == false) return;
-			if (_stateMachine.CurrentStateName != "Rolling")
+            if (_stateMachine.CurrentStateName != "Rolling")
             {
-			    _playerMover.OnDash();
-				_stateMachine.ChangeState("Rolling");
+                _playerMover.OnDash();
+                _stateMachine.ChangeState("Rolling");
             }
         }
 
         private void HandleMeleeAttackEvent()
         {
-            _weaponHolderCompo?.Attack(_damageStat.IntValue, true, true);
+            _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true);
         }
 
         private void HandleAttackEvent(bool isDown)
         {
-            _weaponHolderCompo?.Attack(_damageStat.IntValue, isDown);
+            _weaponGunHolderCompo?.Attack(_damageStat.IntValue, isDown);
         }
 
         private void HandleWeaponSwapEvent()
         {
-            _weaponHolderCompo.WeaponSwap();
+            _weaponGunHolderCompo.WeaponSwap();
         }
 
         #endregion
@@ -74,27 +75,28 @@ namespace Hashira.Players
         {
             base.InitializeComponent();
 
-			_playerMover = GetEntityComponent<PlayerMover>();
-			_statCompo = GetEntityComponent<EntityStat>();
+            _playerMover = GetEntityComponent<PlayerMover>();
+            _statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
-            _weaponHolderCompo = GetEntityComponent<EntityWeapon>();
+            _weaponGunHolderCompo = GetEntityComponent<EntityGunWeapon>();
+            _weaponMeleeHolderCompo = GetEntityComponent<EntityMeleeWeapon>();
             _interactor = GetEntityComponent<EntityInteractor>();
             _stateMachine = GetEntityComponent<EntityStateMachine>();
             _damageStat = _statCompo.StatDictionary["AttackPower"];
-		}
+        }
 
-		protected override void AfterIntiialize()
-		{
-			base.AfterIntiialize();
-		}
+        protected override void AfterIntiialize()
+        {
+            base.AfterIntiialize();
+        }
 
-		protected override void Update()
+        protected override void Update()
         {
             base.Update();
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
-            _weaponHolderCompo.LookTarget(mousePos);
+            _weaponGunHolderCompo.LookTarget(mousePos);
 
             _renderCompo.SetUsualFacingTarget(mousePos);
         }
@@ -102,9 +104,10 @@ namespace Hashira.Players
         protected override void OnDestroy()
         {
             base.OnDestroy();
-			InputReader.OnDashEvent -= HandleDashEvent;
+            InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnInteractEvent -= HandleInteractEvent;
 
+            InputReader.OnReloadEvent -= _weaponGunHolderCompo.Reload;
             InputReader.OnAttackEvent -= HandleAttackEvent;
             InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
             InputReader.OnWeaponSwapEvent -= HandleWeaponSwapEvent;

@@ -17,8 +17,8 @@ namespace Hashira.Items.Weapons
         public override void Equip(EntityWeapon entityWeapon)
         {
             base.Equip(entityWeapon);
-            EntityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
-            EntityWeapon.OnReloadEvent += HandleReloadEvent;
+            EntityGunWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
+            EntityGunWeapon.OnReloadEvent += HandleReloadEvent;
         }
 
         private void HandleReloadEvent(float time)
@@ -41,8 +41,8 @@ namespace Hashira.Items.Weapons
 
         public override void UnEquip()
         {
-            EntityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
-            EntityWeapon.OnReloadEvent -= HandleReloadEvent;
+            EntityGunWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            EntityGunWeapon.OnReloadEvent -= HandleReloadEvent;
             base.UnEquip();
         }
 
@@ -62,10 +62,10 @@ namespace Hashira.Items.Weapons
 
             CameraManager.Instance.ShakeCamera(8, 10, 0.15f);
 
-            Vector3 direction = CalculateRecoil(EntityWeapon.transform.right);
+            Vector3 direction = CalculateRecoil(EntityGunWeapon.transform.right);
             CreateBullet(direction);
             //Effect
-            EntityWeapon.gameObject.Pop(GunSO.fireSpakleEffect, _firePos, Quaternion.LookRotation(Vector3.back, EntityWeapon.transform.right));
+            EntityGunWeapon.gameObject.Pop(GunSO.fireSpakleEffect, _firePos, Quaternion.LookRotation(Vector3.back, EntityGunWeapon.transform.right));
 
             return true;
         }

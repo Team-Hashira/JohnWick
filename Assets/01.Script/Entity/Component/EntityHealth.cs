@@ -47,10 +47,14 @@ namespace Hashira.Entities
             Health = MaxHealth;
 		}
 
-		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm)
+		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, float knockbackPower = 0)
         {
-            EEntityPartType hitPoint 
-                = _owner.GetEntityComponent<EntityPartCollider>().Hit(raycastHit.collider, raycastHit, attackerTrm);
+            EEntityPartType hitPoint;
+            if (_owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
+                hitPoint = entityPartCollider.Hit(raycastHit.collider, raycastHit, attackerTrm);
+            else
+                hitPoint = EEntityPartType.Body;
+
             if (_isDie) return hitPoint;
 
             int prev = Health;
@@ -64,9 +68,9 @@ namespace Hashira.Entities
                 Health = 0;
             OnHealthChangedEvent?.Invoke(prev, Health);
 
-            Vector2 attackDir = raycastHit.point - (Vector2)transform.position;
+            Vector2 attackDir = (raycastHit.transform.position - transform.position).normalized;
 
-			OnKnockback(attackDir, damage);
+			OnKnockback(attackDir, knockbackPower);
 
 			if (Health == 0) Die();
 
@@ -101,22 +105,23 @@ namespace Hashira.Entities
 		{
 			if (IsKnockback)
             {
-				_entityMover.SetMovement(_knockbackDirectionX);
+				_entityMover.SetMovement(_knockbackDirectionX, true);
 
 				_currentknockbackTime += Time.deltaTime;
                 if( _currentknockbackTime > knockbackTime)
                 {
                     _currentknockbackTime = 0;
                     IsKnockback = false;
-				}
+                    _entityMover.isManualMove = true;
+                }
             }
 		}
 
-		public void OnKnockback(Vector2 hitDir, int damage)
+		public void OnKnockback(Vector2 hitDir, float knockbackPower)
         {
             _entityMover.StopImmediately();
-			hitDir.Normalize();
-			_knockbackDirectionX = -hitDir.x * (damage / 10 / _entityMover.Rigidbody2D.mass);
+            _entityMover.isManualMove = false;
+			_knockbackDirectionX = Mathf.Sign(-hitDir.x) * (knockbackPower / _entityMover.Rigidbody2D.mass);
 			_entityStateMachine.ChangeState("Hit");
             IsKnockback = true;
 		}

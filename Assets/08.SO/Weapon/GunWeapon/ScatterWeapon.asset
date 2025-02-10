@@ -43,7 +43,6 @@ MonoBehaviour:
     elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
     _baseValue: 5
   baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
-  firePoint: {x: 0.62, y: 0.042, z: 0}
   cartridgeCaseParticlePoint: {x: -0.101, y: 0.112, z: 0}
   bullet: 0
   fireSpakleEffect: 1
@@ -52,7 +51,7 @@ MonoBehaviour:
   partsEquipUIPosDict:
     _serializedList:
     - Key: 4
-      Value: {x: -138.8, y: 0}
+      Value: {x: -0.72, y: 0}
   partsEquipPosDict:
     _serializedList:
     - Key: 4

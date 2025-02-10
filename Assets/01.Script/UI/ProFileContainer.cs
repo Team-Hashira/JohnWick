@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-
+ 
 namespace Hashira.UI
 {
     public class ProfileContainer : MonoBehaviour
@@ -23,7 +23,7 @@ namespace Hashira.UI
 
         private Player _player;
         private EntityHealth _playerHealth;
-        private EntityWeapon _entityWeapon;
+        private EntityGunWeapon _entityGunWeapon;
             
         private void Awake()
         {
@@ -31,18 +31,18 @@ namespace Hashira.UI
             _weaponLoadText.text = "-";
             _weaponLoadSlider.value = 1;
             _playerHealth = _player.GetEntityComponent<EntityHealth>();
-            _entityWeapon = _player.GetEntityComponent<EntityWeapon>();
+            _entityGunWeapon = _player.GetEntityComponent<EntityGunWeapon>();
             
             _playerHealth.OnHealthChangedEvent += HandleHpChange;
-            _entityWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
-            _entityWeapon.OnReloadEvent += _reloadContainer.HandleReload;
+            _entityGunWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
+            _entityGunWeapon.OnReloadEvent += _reloadContainer.HandleReload;
         }
 
         private void OnDestroy()
         {
             _playerHealth.OnHealthChangedEvent -= HandleHpChange;
-            _entityWeapon.OnCurrentWeaponChanged -= HandleWeaponChange;
-            _entityWeapon.OnReloadEvent -= _reloadContainer.HandleReload;
+            _entityGunWeapon.OnCurrentWeaponChanged -= HandleWeaponChange;
+            _entityGunWeapon.OnReloadEvent -= _reloadContainer.HandleReload;
         }
 
         private void HandleHpChange(int lastValue, int newValue)
@@ -53,11 +53,12 @@ namespace Hashira.UI
 
         private void Update()
         {
-            if (_entityWeapon.CurrentWeapon is GunWeapon gunWeapon)
+            if (_entityGunWeapon.CurrentWeapon != null)
             {
+                GunWeapon gunWeapon = _entityGunWeapon.CurrentWeapon as GunWeapon;
                 HandleUseWeapon(gunWeapon.BulletAmount, gunWeapon.StatDictionary["MagazineCapacity"].IntValue);
             }
-            else if (_entityWeapon.CurrentWeapon is MeleeWeapon meleeWeapon)
+            else
             {
                 HandleUseWeapon(-1, -1);
             }

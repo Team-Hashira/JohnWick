@@ -34,7 +34,7 @@ namespace Hashira.Entities.Components
         private Entity _entity;
         private EntityMover _mover;
         private EntityRenderer _renderer;
-        private EntityWeapon _weapon;
+        private EntityGunWeapon _weapon;
 
         private Dictionary<EAnimationTriggerType, int> _triggerDictionary = new();
         public event Action<EAnimationTriggerType, int> OnAnimationTriggeredEvent;
@@ -48,7 +48,7 @@ namespace Hashira.Entities.Components
         {
             _mover = _entity.GetEntityComponent<PlayerMover>();
             _renderer = _entity.GetEntityComponent<EntityRenderer>();
-            _weapon = _entity.GetEntityComponent<EntityWeapon>();
+            _weapon = _entity.GetEntityComponent<EntityGunWeapon>();
             if (_weapon != null) _weapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvnet;
         }
 

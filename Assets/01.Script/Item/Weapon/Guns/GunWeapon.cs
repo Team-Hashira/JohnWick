@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Core.EventSystem;
 using Hashira.Core.StatSystem;
+using Hashira.Entities.Components;
 using Hashira.Items.PartsSystem;
 using Hashira.Projectile;
 using System;
@@ -13,8 +14,10 @@ namespace Hashira.Items.Weapons
     public class GunWeapon : Weapon
     {
         public GunSO GunSO { get; private set; }
+        public EntityGunWeapon EntityGunWeapon { get; private set; }
 
         public event Action<int> OnFireEvent;
+        public event Action<PartsRenderer> OnPartsRendererChangedEvent;
         public int BulletAmount { get; protected set; }
 
         //Parts
@@ -26,6 +29,8 @@ namespace Hashira.Items.Weapons
         private StatElement _attackSpeedStat;
         private StatElement _magazineCapacityStat;
         private StatElement _penetrationStat;
+
+        public PartsRenderer PartsRenderer { get; private set; }
 
         protected Vector3 _firePos;
         private float _lastFireTime;
@@ -43,6 +48,12 @@ namespace Hashira.Items.Weapons
             _penetrationStat = StatDictionary["Penetration"];
         }
 
+        public void SetPartsRenderer(PartsRenderer partsRenderer)
+        {
+            PartsRenderer = partsRenderer;
+            OnPartsRendererChangedEvent?.Invoke(partsRenderer);
+        }
+
         private void HandleDamageSuccessEvent()
         {
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
@@ -50,7 +61,19 @@ namespace Hashira.Items.Weapons
 
         protected void SpawnCartridgeCase()
         {
-            EntityWeapon.CartridgeCaseParticle.Play();
+            EntityGunWeapon.CartridgeCaseParticle.Play();
+        }
+
+        public override void Equip(EntityWeapon entityWeapon)
+        {
+            base.Equip(entityWeapon);
+            EntityGunWeapon = entityWeapon as EntityGunWeapon;
+        }
+
+        public override void UnEquip()
+        {
+            base.UnEquip();
+            EntityGunWeapon = null;
         }
 
         protected virtual bool Fire()
@@ -70,9 +93,9 @@ namespace Hashira.Items.Weapons
             if (isEquipedSoundSuppressor == false)
             {
                 SoundGeneratedEvent soundGenerated = SoundEvents.SoundGeneratedEvent;
-                soundGenerated.originPosition = EntityWeapon.transform.position;
+                soundGenerated.originPosition = EntityGunWeapon.transform.position;
                 soundGenerated.loudness = isEquipedSoundSuppressor ? 0 : 10;
-                EntityWeapon.SoundEventChannel.RaiseEvent(soundGenerated);
+                EntityGunWeapon.SoundEventChannel.RaiseEvent(soundGenerated);
             }
 
             OnFireEvent?.Invoke(BulletAmount);
@@ -84,10 +107,10 @@ namespace Hashira.Items.Weapons
 
         private void CalculateFirePos()
         {
-            SpriteRenderer spriteRenderer = EntityWeapon.PartsRenderer[EWeaponPartsType.Muzzle];
+            SpriteRenderer spriteRenderer = EntityGunWeapon.PartsRenderer[EWeaponPartsType.Muzzle];
             Vector3 muzzlePos = spriteRenderer.transform.position;
             float muzzlePartsSize = spriteRenderer.sprite != null ?
-                spriteRenderer.sprite.rect.width / EntityWeapon.PartsRenderer.PixelPerUnit : 0;
+                spriteRenderer.sprite.rect.width / PartsRenderer.PixelPerUnit : 0;
 
             _firePos = muzzlePos + spriteRenderer.transform.right * muzzlePartsSize;
         }
@@ -95,15 +118,15 @@ namespace Hashira.Items.Weapons
         protected void CreateBullet(Vector3 direction)
         {
             //Bullet
-            Bullet bullet = EntityWeapon.gameObject.Pop(GunSO.bullet, _firePos, Quaternion.identity) as Bullet;
+            Bullet bullet = EntityGunWeapon.gameObject.Pop(GunSO.bullet, _firePos, Quaternion.identity) as Bullet;
             bullet.Init(GunSO.WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue);
 
-            EntityWeapon.ApplyRecoil(_recoilStat.Value);
+            EntityGunWeapon.ApplyRecoil(_recoilStat.Value);
         }
 
         protected Vector3 CalculateRecoil(Vector3 direction)
         {
-            float randomRecoil = Random.Range(-EntityWeapon.Recoil, EntityWeapon.Recoil);
+            float randomRecoil = Random.Range(-EntityGunWeapon.Recoil, EntityGunWeapon.Recoil);
             Vector3 targetDir = (Quaternion.Euler(0, 0, randomRecoil) * direction).normalized;
             return targetDir;
         }
@@ -133,6 +156,19 @@ namespace Hashira.Items.Weapons
             _partsSlotDictionary[eWeaponPartsType]?.Equip(this);
 
             OnPartsChanged?.Invoke(eWeaponPartsType, parts);
+
+            return prevPartsSO;
+        }
+        public WeaponParts UnEquipParts(EWeaponPartsType eWeaponPartsType)
+        {
+            if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return null;
+
+            WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
+
+            _partsSlotDictionary[eWeaponPartsType]?.UnEquip();
+            _partsSlotDictionary[eWeaponPartsType] = null;
+
+            OnPartsChanged?.Invoke(eWeaponPartsType, null);
 
             return prevPartsSO;
         }
