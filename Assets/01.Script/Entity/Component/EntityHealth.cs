@@ -26,6 +26,7 @@ namespace Hashira.Entities
         private EntityStateMachine _entityStateMachine;
 
         public bool canKnockback = true;
+        public bool IsEvasion { get; set; }
         public bool IsKnockback { get; private set; }
         [HideInInspectorByCondition(nameof(canKnockback))]
         public float knockbackTime = 0.2f;
@@ -125,5 +126,5 @@ namespace Hashira.Entities
 			_entityStateMachine.ChangeState("Hit");
             IsKnockback = true;
 		}
-	}
+    }
 }

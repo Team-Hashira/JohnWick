@@ -15,6 +15,7 @@ namespace Hashira.Object
         public int CurrentHealth { get; private set; }
 
         [field: SerializeField] public int Resistivity { get; set; } = 2;
+        public bool IsEvasion { get; set; }
 
         private void Awake()
 		{

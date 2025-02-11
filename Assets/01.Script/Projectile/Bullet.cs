@@ -43,13 +43,13 @@ namespace Hashira.Projectile
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             bool isHit = _projectileCollider.CheckCollision(_whatIsTarget, out RaycastHit2D[] hits, movement);
             RaycastHit2D hit = hits.ToList().FirstOrDefault(hit => _penetratedColliderList.Contains(hit.collider) == false);
-            if (isHit && hit != default)
+            if (isHit && hit != default && (hit.transform.TryGetComponent(out IDamageable damageable) == false || damageable.IsEvasion == false))
             {
                 //Move
                 transform.position += transform.right * hit.distance;
 
                 //Damage
-                if (hit.transform.TryGetComponent(out IDamageable damageable))
+                if (damageable != null)
                 {
                     int damage = CalculatePenetration(_damage, _penetration - _currentPenetration);
                     EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
