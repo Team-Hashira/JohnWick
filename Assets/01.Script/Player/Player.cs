@@ -38,6 +38,7 @@ namespace Hashira.Players
         [SerializeField] private LayerMask _whatIsTarget;
         [SerializeField] private LayerMask _whatIsObstacle;
 
+        private float _slowTimeScale = 0.1f;
         private float _chargingParryingStartDelay = 0.15f;
         private float _lastRightClickTime;
         private bool _isRightMousePress;
@@ -99,8 +100,12 @@ namespace Hashira.Players
                 {
                     TimeManager.UndoTimeScale();
                     _isChargingParrying = false;
+                    _weaponMeleeHolderCompo?.ChargeAttack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
                 }
-                _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
+                else
+                {
+                    _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
+                }
             }
         }
 
@@ -174,7 +179,7 @@ namespace Hashira.Players
                 _lastRightClickTime + _chargingParryingStartDelay < Time.time)
             {
                 _isChargingParrying = true;
-                TimeManager.SetTimeScale(0.1f);
+                TimeManager.SetTimeScale(_slowTimeScale);
             }
             if (_isChargingParrying)
             {

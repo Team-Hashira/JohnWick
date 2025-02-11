@@ -163,12 +163,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06361314023bec94dae944b5775f2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 0.1
+  _delay: 1
   _whatIsTarget:
     serializedVersion: 2
     m_Bits: 6592
   _damage: 200
-  _speed: 200
+  _speed: 50
 --- !u!1001 &184570551
 PrefabInstance:
   m_ObjectHideFlags: 0

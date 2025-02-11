@@ -23,6 +23,7 @@ namespace Hashira.Projectile
         private int _currentPenetration;
         private LayerMask _whatIsTarget;
         private SpriteRenderer _spriteRenderer;
+        private BoxCollider2D _collider;
 
         private List<Collider2D> _penetratedColliderList = new List<Collider2D>();
 
@@ -32,6 +33,7 @@ namespace Hashira.Projectile
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _collider = GetComponent<BoxCollider2D>();
         }
 
         private void FixedUpdate()
@@ -121,6 +123,7 @@ namespace Hashira.Projectile
             Owner = owner;
             _spriteRenderer.enabled = true;
             _trailRenderer.enabled = true;
+            _collider.enabled = true;
             IsParryingable = true;
             _penetratedColliderList = new List<Collider2D>();
         }
@@ -129,6 +132,7 @@ namespace Hashira.Projectile
         {
             base.Die();
             _spriteRenderer.enabled = false;
+            _collider.enabled = false;
         }
 
         public override void DelayDie()
@@ -137,14 +141,27 @@ namespace Hashira.Projectile
             _trailRenderer.enabled = false;
         }
 
-        public void Parrying(LayerMask whatIsNewTargetLayer, Transform owner)
+        public void Parrying(LayerMask whatIsNewTargetLayer, Transform owner, bool isChargedParrying)
         {
             if (IsParryingable == false) return;
+
+            Quaternion effectRotation = transform.rotation * Quaternion.Euler(0, 0, -90);
+            gameObject.Pop(EffectPoolType.HitSparkleEffect, transform.position, effectRotation);
+
+            if (isChargedParrying)
+            {
+                CameraManager.Instance.ShakeCamera(15, 11, 0.25f);
+                _damage *= 10;
+                _speed *= 10;
+                gameObject.Pop(EffectPoolType.HitSparkleEffect, transform.position, effectRotation);
+            }
+            else
+                CameraManager.Instance.ShakeCamera(4, 4, 0.15f);
 
             _whatIsTarget = whatIsNewTargetLayer;
             IsParryingable = false;
             Owner = owner;
-            transform.localEulerAngles += new Vector3(0, 180 ,0);
+            transform.localEulerAngles += new Vector3(0, 180, 0);
         }
     }
 }
