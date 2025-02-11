@@ -72,8 +72,8 @@ namespace Hashira.Items.Weapons
 
         public override void UnEquip()
         {
-            base.UnEquip();
             EntityGunWeapon = null;
+            base.UnEquip();
         }
 
         protected virtual bool Fire()

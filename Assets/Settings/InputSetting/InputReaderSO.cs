@@ -10,10 +10,10 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public Controls.PlayerActions PlayerActions { get; private set; }
     public Controls.UIActions UIActions { get; private set; }
     public Controls.SystemActions SystemActions { get; private set; }
-    
+
     #region Actions
 
-    public event Action OnMeleeAttackEvent;
+    public event Action<bool> OnMeleeAttackEvent;
     public event Action<bool> OnInteractEvent;
     public event Action OnJumpEvent;
     public event Action OnDashEvent;
@@ -23,6 +23,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action<bool> OnAttackEvent;
     public event Action OnStatusWindowEnableEvent;
     public event Action<bool> OnClickEvent;
+
     #endregion
 
     #region Values
@@ -72,7 +73,9 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public void OnMeleeAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
-            OnMeleeAttackEvent?.Invoke();
+            OnMeleeAttackEvent?.Invoke(true);
+        else if (context.canceled)
+            OnMeleeAttackEvent?.Invoke(false);
     }
 
     public void OnInteract(InputAction.CallbackContext context)

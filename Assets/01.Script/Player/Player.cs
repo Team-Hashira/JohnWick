@@ -38,6 +38,11 @@ namespace Hashira.Players
         [SerializeField] private LayerMask _whatIsTarget;
         [SerializeField] private LayerMask _whatIsObstacle;
 
+        private float _chargingParryingStartDelay = 0.15f;
+        private float _lastRightClickTime;
+        private bool _isRightMousePress;
+        private bool _isChargingParrying;
+
         protected override void Awake()
         {
             base.Awake();
@@ -81,9 +86,22 @@ namespace Hashira.Players
             }
         }
 
-        private void HandleMeleeAttackEvent()
+        private void HandleMeleeAttackEvent(bool isDown)
         {
-            _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
+            _isRightMousePress = isDown;
+            if (isDown)
+            {
+                _lastRightClickTime = Time.time;
+            }
+            else
+            {
+                if (_isChargingParrying)
+                {
+                    TimeManager.UndoTimeScale();
+                    _isChargingParrying = false;
+                }
+                _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
+            }
         }
 
         private void HandleAttackEvent(bool isDown)
@@ -149,6 +167,18 @@ namespace Hashira.Players
                     _currentStamina = MaxStamina;
                 }
                 OnStaminaChangedEvent?.Invoke(prevStamina, _currentStamina);
+            }
+
+
+            if (_isRightMousePress && _isChargingParrying  == false && 
+                _lastRightClickTime + _chargingParryingStartDelay < Time.time)
+            {
+                _isChargingParrying = true;
+                TimeManager.SetTimeScale(0.1f);
+            }
+            if (_isChargingParrying)
+            {
+                //Â÷Â¡Áß...
             }
         }
 

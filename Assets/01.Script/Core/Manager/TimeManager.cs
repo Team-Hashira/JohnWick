@@ -1,14 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira
 {
     public static class TimeManager
     {
-        private static float _lastTime = 0;
+        private static Stack<float> _timeScaleChangedStack = new();
         
-        public static float Time 
+        public static float TimeScale
         {
-            get => UnityEngine.Time.timeScale;
+            get => Time.timeScale;
             set
             {
                 if (Mathf.Approximately(0, value))
@@ -18,15 +19,27 @@ namespace Hashira
             }
         }
         
-        public static void Pause()
+        public static void SetTimeScale(float value)
         {
-            _lastTime = Time;
-			UnityEngine.Time.timeScale = 0;
+            _timeScaleChangedStack.Push(TimeScale);
+			Time.timeScale = value;
+            Time.fixedDeltaTime = 0.002f * Time.timeScale;
         }
 
-        public static void Play()
+        public static void UndoTimeScale()
         {
-			UnityEngine.Time.timeScale = _lastTime;
+            if (_timeScaleChangedStack.Count == 0) return;
+			Time.timeScale = _timeScaleChangedStack.Pop();
+            Time.fixedDeltaTime = 0.002f * Time.timeScale;
+        }
+
+        public static void ResetTimeScale()
+        {
+            while (_timeScaleChangedStack.Count > 0)
+            {
+                Time.timeScale = _timeScaleChangedStack.Pop();
+                Time.fixedDeltaTime = 0.002f * Time.timeScale;
+            }
         }
     }
 }
