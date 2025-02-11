@@ -5,6 +5,7 @@ using Hashira.Items.Weapons;
 using System;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Hashira.Players
 {
@@ -101,6 +102,8 @@ namespace Hashira.Players
                     TimeManager.UndoTimeScale();
                     _isChargingParrying = false;
                     _weaponMeleeHolderCompo?.ChargeAttack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
+                    if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
+                        chromaticAberration.active = false;
                 }
                 else
                 {
@@ -179,6 +182,11 @@ namespace Hashira.Players
                 _lastRightClickTime + _chargingParryingStartDelay < Time.time)
             {
                 _isChargingParrying = true;
+                if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
+                {
+                    chromaticAberration.active = true;
+                    chromaticAberration.intensity.value = 1f;
+                }
                 TimeManager.SetTimeScale(_slowTimeScale);
             }
             if (_isChargingParrying)

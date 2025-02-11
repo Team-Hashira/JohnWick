@@ -674,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Player>k__BackingField: {fileID: 651278450}
+  <Volume>k__BackingField: {fileID: 1493844892}
 --- !u!1 &558232224
 GameObject:
   m_ObjectHideFlags: 0
