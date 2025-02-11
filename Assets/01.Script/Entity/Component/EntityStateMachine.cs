@@ -2,6 +2,7 @@ using Hashira.Entities;
 using Hashira.FSM;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace Hashira.Entities.Components
@@ -103,13 +104,15 @@ namespace Hashira.Entities.Components
                     Type t = Type.GetType(className);
                     EntityState entityState = Activator.CreateInstance(t, _entity, state) as EntityState;
                     _stateDictionary.Add(state.stateName, entityState);
-                }
+                }   
                 catch (Exception ex)
                 {
-                    Debug.LogError($"Fail to Create State class({state.stateName}, {className}). : {ex.Message}");
+                    if (ex is TargetInvocationException)
+                        Debug.LogError($"Fail to Create State class({state.stateName}, {className}). : {ex.InnerException.Message}\nStackTrace : {ex.InnerException.StackTrace}");
+                    else
+                        Debug.LogError($"Fail to Create State class({state.stateName}, {className}). : {ex.Message}");
                 }
             }
-
             ChangeState(_startState.stateName);
         }
     }

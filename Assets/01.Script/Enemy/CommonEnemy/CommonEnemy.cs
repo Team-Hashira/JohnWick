@@ -10,8 +10,8 @@ namespace Hashira.Enemies.CommonEnemy
         [Header("Detect Player Setting")]
         [SerializeField]
         private Transform _eye;
-        [SerializeField]
-        private LayerMask _whatIsPlayer;
+        [field: SerializeField]
+        public LayerMask WhatIsPlayer { get; private set; }
         [SerializeField]
         private LayerMask _whatIsGround;
 
@@ -31,13 +31,13 @@ namespace Hashira.Enemies.CommonEnemy
 
         public override Player DetectPlayer()
         {
-            Collider2D coll = Physics2D.OverlapCircle(transform.position, _sightElement.Value, _whatIsPlayer);
+            Collider2D coll = Physics2D.OverlapCircle(transform.position, _sightElement.Value, WhatIsPlayer);
             if (coll == null)
                 return null;
             Vector3 direction = coll.transform.position - _eye.transform.position;
             float distance = direction.magnitude;
             direction.Normalize();
-            if (!Physics2D.Raycast(_eye.transform.position, direction, distance, _whatIsGround))
+            //if (!Physics2D.Raycast(_eye.transform.position, direction, distance, _whatIsGround))
             {
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 if (angle < 0)
@@ -58,7 +58,7 @@ namespace Hashira.Enemies.CommonEnemy
         public override bool IsTargetOnAttackRange(Transform target)
         {
             float distanceSqr = (transform.position - target.position).sqrMagnitude;
-            float attackRangeSqr = _attackRangeElement.Value * _attackRangeElement.Value;
+            float attackRangeSqr = 25f;
 
             return distanceSqr < attackRangeSqr;
         }

@@ -79,8 +79,10 @@ namespace Hashira.Enemies
 
         public void StopMove()
         {
-            StopCoroutine(_moveCoroutine);
+            if (_moveCoroutine != null)
+                StopCoroutine(_moveCoroutine);
             _enemyMover.StopImmediately();
+            Debug.Log("ดิพฦ");
         }
 
         private IEnumerator MoveCoroutine()
@@ -91,7 +93,7 @@ namespace Hashira.Enemies
                     continue;
                 Node currentNode = _currentPath[i];
                 float xDiff = Mathf.Sign(currentNode.transform.position.x - transform.position.x);
-                bool ignoreOneway = currentNode.NodeType == NodeType.Stair || currentNode.NodeType == NodeType.StairEnter;
+                bool ignoreOneway = currentNode.NodeType != NodeType.OneWay;
                 _enemyMover.SetIgnoreOnewayPlayform(ignoreOneway);
                 _enemyIgnoreOneway.SetIgnoreOneway(ignoreOneway);
                 if (_entityRenderer.FacingDirection != xDiff)

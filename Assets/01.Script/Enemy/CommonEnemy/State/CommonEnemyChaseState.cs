@@ -46,6 +46,7 @@ namespace Hashira.Enemies.CommonEnemy
                 if (target != null)
                 {
                     _target = target;
+                    _entityStateMachine.SetShareVariable("Target", target);
                     _targetMover = target.GetEntityComponent<EntityMover>(true);
                     _enemyPathfinder.OnMoveEndEvent -= HandleOnMoveEndEvent;
                 }

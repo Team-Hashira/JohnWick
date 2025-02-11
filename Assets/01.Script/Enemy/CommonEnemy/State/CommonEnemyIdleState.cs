@@ -10,21 +10,21 @@ namespace Hashira.Enemies.CommonEnemy
     public class CommonEnemyIdleState : EnemyListeningSoundState
     {
         private CommonEnemy _enemy;
-        private EnemyMover _enemyMover;
+        private EnemyPathfinder _enemyPathfinder;
 
         private float _idleStartTime;
         private float _waitDelay = 2f;
 
         public CommonEnemyIdleState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
-            _enemyMover = entity.GetEntityComponent<EnemyMover>();
+            _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
             _enemy = entity as CommonEnemy;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
-            _enemyMover.StopImmediately();
+            _enemyPathfinder.StopMove();
             _idleStartTime = Time.time;
         }
 

@@ -27,10 +27,10 @@ MonoBehaviour:
     _baseValue: 10
   - Name: FieldOfView
     elementSO: {fileID: 11400000, guid: 716401084645e5b459a667648b423fce, type: 2}
-    _baseValue: 30
-  - Name: SIght
+    _baseValue: 360
+  - Name: Sight
     elementSO: {fileID: 11400000, guid: fe2eaca9165154e4fa77fe5b9e3233ba, type: 2}
     _baseValue: 5
   - Name: Hearing
     elementSO: {fileID: 11400000, guid: 4ff2cf6ee04a992409f357654c7db01e, type: 2}
-    _baseValue: 3
+    _baseValue: 100
