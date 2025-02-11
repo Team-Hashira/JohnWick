@@ -13,6 +13,7 @@ namespace Hashira.Object
         [SerializeField] private EffectPoolType _breakEffect;
 
         [field: SerializeField] public int Resistivity { get; set; } = 1;
+        public bool IsEvasion { get; set; }
 
         public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default)
         {

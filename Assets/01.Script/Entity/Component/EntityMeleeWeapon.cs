@@ -1,5 +1,6 @@
 using Hashira.Items.Weapons;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hashira.Entities.Components
@@ -15,6 +16,7 @@ namespace Hashira.Entities.Components
         private float _meleeAttackCooltime = 0.5f;
         private float _lastMeleeAttackTime;
 
+        public bool IsCharged { get; private set; }
 
         public override void Initialize(Entity entity)
         {
@@ -72,6 +74,20 @@ namespace Hashira.Entities.Components
                 GunWaepon.IsMeleeWeaponMode = true;
 
             base.Attack(damage, isDown, whatIsTarget);
+        }
+
+        public void ChargeAttack(int damage, bool isDown, LayerMask whatIsTarget)
+        {
+            if (CurrentWeapon == null) return;
+
+            HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
+
+            if (GunWaepon != null)
+                GunWaepon.IsMeleeWeaponMode = true;
+            
+            IsCharged = true;
+            base.Attack(damage, isDown, whatIsTarget);
+            IsCharged = false;
         }
     }
 }

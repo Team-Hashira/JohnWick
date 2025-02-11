@@ -17,6 +17,7 @@ namespace Hashira.Items.Weapons
         private Sequence animationSeq;
 
         private bool _onParrying;
+        private bool _isCharged;
 
         public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
@@ -28,6 +29,7 @@ namespace Hashira.Items.Weapons
             float afterDelay = MeleeSO.AttackAfterDelay;
 
             _onParrying = true;
+            _isCharged = EntityMeleeWeapon.IsCharged;
 
             (EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).size = MeleeSO.AttackRangeSize;
 			(EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
@@ -36,10 +38,14 @@ namespace Hashira.Items.Weapons
 
             if (animationSeq != null && animationSeq.IsActive()) animationSeq.Kill();
             animationSeq = DOTween.Sequence();
-            animationSeq.AppendCallback(()=>EntityMeleeWeapon.transform.localEulerAngles = startRot);
-            animationSeq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.InOutBack));
-            animationSeq.InsertCallback(duration / 2, () => EntityMeleeWeapon.DamageCaster.CastDamage(damage, knockback: attackDir * 15f));
-            animationSeq.AppendCallback(() => _onParrying = false);
+            animationSeq.AppendCallback(() => EntityMeleeWeapon.transform.localEulerAngles = startRot);
+            animationSeq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutBack));
+            animationSeq.InsertCallback(duration / 5, () => EntityMeleeWeapon.DamageCaster.CastDamage(damage, knockback: attackDir * 15f));
+            animationSeq.InsertCallback(duration / 2, () =>
+            {
+                _onParrying = false;
+                _isCharged = false;
+            });
             animationSeq.AppendInterval(afterDelay);
             animationSeq.AppendCallback(() => AttackEnd());
         }
@@ -60,7 +66,7 @@ namespace Hashira.Items.Weapons
                 {
                     Transform owner = EntityMeleeWeapon.Entity.transform;
                     if (hit.transform.TryGetComponent(out IParryingable parryingable) && parryingable.Owner != owner)
-                        parryingable.Parrying(_whatIsTarget, owner);
+                        parryingable.Parrying(_whatIsTarget, owner, _isCharged);
                 }
             }
         }

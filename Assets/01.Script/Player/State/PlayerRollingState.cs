@@ -10,6 +10,7 @@ namespace Hashira.Players
     {
         private StatElement _dashSpeedStat;
         private PlayerMover _playerMover;
+        private EntityHealth _entityHealth;
         private EntityRenderer _entityRenderer;
         private Player _player;
 
@@ -20,6 +21,7 @@ namespace Hashira.Players
             _player = entity as Player;
             _playerMover = entity.GetEntityComponent<PlayerMover>(true);
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
+            _entityHealth = entity.GetEntityComponent<EntityHealth>();
             _dashSpeedStat = entity.GetEntityComponent<EntityStat>().StatDictionary["DashSpeed"];
         }
 
@@ -38,6 +40,8 @@ namespace Hashira.Players
             _entityAnimator.OnAnimationTriggeredEvent += HandleAnimationTriggerEvent;
             _entityRenderer.SetArmActive(false);
             _entityRenderer.isUsualFacing = false;
+
+            _entityHealth.IsEvasion = true;
         }
 
         private void HandleAnimationTriggerEvent(EAnimationTriggerType type, int count)
@@ -64,6 +68,7 @@ namespace Hashira.Players
             base.OnExit();
             _entityAnimator.OnAnimationTriggeredEvent -= HandleAnimationTriggerEvent;
             _entityRenderer.SetArmActive(true);
+            _entityHealth.IsEvasion = false;
             _entityRenderer.isUsualFacing = true;
         }
     }

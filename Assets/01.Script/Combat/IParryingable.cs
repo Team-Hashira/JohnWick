@@ -6,6 +6,6 @@ namespace Hashira.Combat
     {
         public Transform Owner { get; set; }
         public bool IsParryingable { get; set; }
-        public void Parrying(LayerMask whatIsNewTargetLayer, Transform owner);
+        public void Parrying(LayerMask whatIsNewTargetLayer, Transform owner, bool isChargedParrying);
     }
 }
