@@ -107,6 +107,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SprintToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f409ede-b9da-4c9b-b952-d3b1b6ca63dc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -316,6 +325,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c34c6e7f-6d7a-4f49-8d13-5a697875c7b1"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""SprintToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1002,6 +1022,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_WeaponSwap = m_Player.FindAction("WeaponSwap", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
+        m_Player_SprintToggle = m_Player.FindAction("SprintToggle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_StatusWindowEnable = m_UI.FindAction("StatusWindowEnable", throwIfNotFound: true);
@@ -1096,6 +1117,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_WeaponSwap;
     private readonly InputAction m_Player_Reload;
+    private readonly InputAction m_Player_SprintToggle;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -1109,6 +1131,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @WeaponSwap => m_Wrapper.m_Player_WeaponSwap;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
+        public InputAction @SprintToggle => m_Wrapper.m_Player_SprintToggle;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1145,6 +1168,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @SprintToggle.started += instance.OnSprintToggle;
+            @SprintToggle.performed += instance.OnSprintToggle;
+            @SprintToggle.canceled += instance.OnSprintToggle;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1176,6 +1202,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @SprintToggle.started -= instance.OnSprintToggle;
+            @SprintToggle.performed -= instance.OnSprintToggle;
+            @SprintToggle.canceled -= instance.OnSprintToggle;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1429,6 +1458,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnWeaponSwap(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnSprintToggle(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

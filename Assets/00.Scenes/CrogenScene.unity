@@ -773,6 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Player>k__BackingField: {fileID: 594139399}
+  <Volume>k__BackingField: {fileID: 0}
 --- !u!1 &727948802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1669,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1442627410}
     m_Modifications:
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElementList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElementList.Array.data[2].Name
+      value: SprintSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElementList.Array.data[2].elementSO
+      value: 
+      objectReference: {fileID: 11400000, guid: bacfa96d89f0d914e9059f5a2abdf4ec, type: 2}
+    - target: {fileID: 60309785952840756, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _overrideStatElementList.Array.data[2]._baseValue
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

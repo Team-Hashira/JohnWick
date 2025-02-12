@@ -23,18 +23,20 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action<bool> OnAttackEvent;
     public event Action OnStatusWindowEnableEvent;
     public event Action<bool> OnClickEvent;
+    public event Action<bool> OnSprintToggleEvent;
 
-    #endregion
+	#endregion
 
-    #region Values
+	#region Values
 
-    public Vector2 MousePosition { get; private set; }
+	public Vector2 MousePosition { get; private set; }
     public float XMovement { get; private set; }
     public string InteractKey { get; private set; }
+    public bool IsSprint { get; private set; }
 
-    #endregion
+	#endregion
 
-    private void OnEnable()
+	private void OnEnable()
     {
         if (_controls == null)
         {
@@ -184,4 +186,9 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     {
         MousePosition = context.ReadValue<Vector2>();
     }
+
+	public void OnSprintToggle(InputAction.CallbackContext context)
+	{
+        OnSprintToggleEvent?.Invoke(IsSprint=!IsSprint);
+	}
 }
