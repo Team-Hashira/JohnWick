@@ -6,10 +6,12 @@ namespace Hashira.Players
 {
 	public class PlayerRunState : PlayerGroundState
 	{
+		private PlayerMover _playerMover;
 		private StatElement _sprintSpeedStat;
 
 		public PlayerRunState(Entity entity, StateSO stateSO) : base(entity, stateSO)
 		{
+			_playerMover = entity.GetEntityComponent<PlayerMover>();
 			_sprintSpeedStat = entity.GetEntityComponent<EntityStat>().StatDictionary["SprintSpeed"];
 		}
 
@@ -31,6 +33,9 @@ namespace Hashira.Players
 			}
 			else
 				_entityStateMachine.ChangeState("Idle");
+
+			if(!_playerMover.IsSprint)
+				_entityStateMachine.ChangeState("Walk");
 		}
 
 		public override void OnExit()

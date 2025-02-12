@@ -33,5 +33,10 @@ namespace Hashira.TargetPoint
 			_targetPointContentDictionary.Remove(trm);
 			targetPoint.Push();
 		}
+
+		private void OnDestroy()
+		{
+			_targetPointContentDictionary.Clear();
+		}
 	}
 }

@@ -237,7 +237,10 @@ MonoBehaviour:
     _baseValue: 22
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
-    _baseValue: 9
+    _baseValue: 8
+  - Name: SprintSpeed
+    elementSO: {fileID: 11400000, guid: bacfa96d89f0d914e9059f5a2abdf4ec, type: 2}
+    _baseValue: 13
   _baseStat: {fileID: 11400000, guid: 70f48abbb626b254494c3311421d2ced, type: 2}
 --- !u!1 &1168156252607547634
 GameObject:

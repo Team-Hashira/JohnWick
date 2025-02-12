@@ -9,6 +9,7 @@ namespace Hashira.Players
         public bool CanRolling => _currentDelayTime >= rollingDelay;
         public float rollingDelay = 1;
         private float _currentDelayTime = 0;
+		public bool IsSprint { get; private set; } = false;
 
 		private void Update()
 		{
@@ -25,5 +26,10 @@ namespace Hashira.Players
         {
             _currentDelayTime = 0;
 		}
-    }
+
+		public void OnSprintToggle()
+		{
+			IsSprint = !IsSprint;
+		}
+	}
 }

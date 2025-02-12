@@ -51,14 +51,15 @@ namespace Hashira.Players
 
             InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnInteractEvent += HandleInteractEvent;
+			InputReader.OnSprintToggleEvent += HandleSprintToggle;
 
-            InputReader.OnReloadEvent += _weaponGunHolderCompo.Reload;
+			InputReader.OnReloadEvent += _weaponGunHolderCompo.Reload;
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
-        private void Start()
+		private void Start()
         {
             _currentStamina = MaxStamina;
             OnStaminaChangedEvent?.Invoke(_currentStamina, _currentStamina);
@@ -71,7 +72,13 @@ namespace Hashira.Players
             _interactor.Interact(isDown);
         }
 
-        private void HandleDashEvent()
+		private void HandleSprintToggle()
+        {
+            _playerMover.OnSprintToggle();
+			_stateMachine.ChangeState(_playerMover.IsSprint ? "Run" : "Walk");
+		}
+
+		private void HandleDashEvent()
         {
             if (_playerMover.CanRolling == false) return;
             if (_stateMachine.CurrentStateName != "Rolling")
@@ -200,6 +207,7 @@ namespace Hashira.Players
             base.OnDestroy();
             InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnInteractEvent -= HandleInteractEvent;
+            InputReader.OnSprintToggleEvent -= HandleSprintToggle;
 
             InputReader.OnReloadEvent -= _weaponGunHolderCompo.Reload;
             InputReader.OnAttackEvent -= HandleAttackEvent;

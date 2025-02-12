@@ -11,7 +11,7 @@ namespace Hashira.TargetPoint
 
 		private void OnDisable()
 		{
-			TargetPointManager.Instance.CloseTargetPoint(transform);
+			TargetPointManager.Instance?.CloseTargetPoint(transform);
 		}
 	}
 }
