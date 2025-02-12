@@ -16,10 +16,8 @@ MonoBehaviour:
   stagePiceDatas:
   - stagePices:
     - {fileID: 4290700035163809619, guid: 96f33ab8da3e13d4b93dca553dfa4342, type: 3}
-    - {fileID: 4290700035163809619, guid: eebbf55a3d0ec4f4cb4d6bcaf50a8e7f, type: 3}
   - stagePices:
     - {fileID: 4290700035163809619, guid: 36fd66de3d9ceee449e590e95f48999f, type: 3}
-    - {fileID: 3925408751688574332, guid: 199426addd0aa2e4da3ba3df47738a95, type: 3}
   - stagePices:
     - {fileID: 4290700035163809619, guid: 34a304abaf5f84d49a0566a0812fe05f, type: 3}
     - {fileID: 4290700035163809619, guid: 420780b00518d4b4c9b37527db39ee14, type: 3}
