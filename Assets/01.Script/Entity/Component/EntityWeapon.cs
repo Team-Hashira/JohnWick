@@ -23,11 +23,10 @@ namespace Hashira.Entities.Components
 
         public Entity Entity { get; private set; }
         protected EntityMover _mover;
+        protected EntitySoundGenerator _soundGenerator;
 
-        public Action<Weapon>[] OnChangedWeaponEvents;
+		public Action<Weapon>[] OnChangedWeaponEvents;
         public Action<Weapon> OnCurrentWeaponChanged;
-
-        public GameEventChannelSO SoundEventChannel;
 
         public virtual void Initialize(Entity entity)
         {
@@ -39,7 +38,9 @@ namespace Hashira.Entities.Components
             _startYPos = transform.localPosition.y;
 
             _mover = entity.GetEntityComponent<EntityMover>(true);
-        }
+			_soundGenerator = entity.GetEntityComponent<EntitySoundGenerator>(true);
+
+		}
 
         public virtual void AfterInit()
         {
@@ -68,12 +69,8 @@ namespace Hashira.Entities.Components
         public virtual void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             CurrentWeapon?.Attack(damage, isDown, whatIsTarget);
-
-            var evt = SoundEvents.SoundGeneratedEvent;
-            evt.originPosition = transform.position;
-            evt.loudness = 10;
-            SoundEventChannel.RaiseEvent(evt);
-        }
+            _soundGenerator.SoundGenerate(10);
+		}
 
         public virtual void RemoveWeapon(int index)
         {

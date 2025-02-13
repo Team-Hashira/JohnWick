@@ -1,3 +1,4 @@
+using Hashira.Core.EventSystem;
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
@@ -23,7 +24,7 @@ namespace Hashira.Players
         protected EntityInteractor _interactor;
         protected PlayerMover _playerMover;
 
-        private Weapon CurrentWeapon => _weaponGunHolderCompo.CurrentWeapon;
+		private Weapon CurrentWeapon => _weaponGunHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
 

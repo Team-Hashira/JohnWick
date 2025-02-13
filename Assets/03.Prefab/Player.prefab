@@ -289,7 +289,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
-  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
   _defaultWeapons:
   - {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
   - {fileID: 0}
@@ -309,7 +308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <VisualTrm>k__BackingField: {fileID: 7028462452996302252}
-  SoundEventChannel: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
   _defaultWeapons:
   - {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
   <DamageCaster>k__BackingField: {fileID: 7303574054439739381}
@@ -1087,6 +1085,7 @@ GameObject:
   - component: {fileID: 8898830313081796299}
   - component: {fileID: 5982051024445783654}
   - component: {fileID: 7353663044124010347}
+  - component: {fileID: 4729772507334177322}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1263,6 +1262,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be980842f5cb9d84688accd90bbe333b, type: 2}
   - {fileID: 11400000, guid: 8ca7e78fb7196c947a53f235b4cef2b6, type: 2}
   _startState: {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
+--- !u!114 &4729772507334177322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478761898889932558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce827d23719c9347bc000e1ce765341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SoundEventChannel>k__BackingField: {fileID: 11400000, guid: b09b9346a0b1c7e49bd8d33ecb691b6a, type: 2}
 --- !u!1 &5013786079428975925
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ namespace Hashira.Items.Weapons
     {
         public GunSO GunSO { get; private set; }
         public EntityGunWeapon EntityGunWeapon { get; private set; }
+        public EntitySoundGenerator EntitySoundGenerator { get; private set; }
 
         public event Action<int> OnFireEvent;
         public event Action<PartsRenderer> OnPartsRendererChangedEvent;
@@ -46,7 +47,7 @@ namespace Hashira.Items.Weapons
             _attackSpeedStat = StatDictionary["AttackSpeed"];
             _magazineCapacityStat = StatDictionary["MagazineCapacity"];
             _penetrationStat = StatDictionary["Penetration"];
-        }
+		}
 
         public void SetPartsRenderer(PartsRenderer partsRenderer)
         {
@@ -68,7 +69,9 @@ namespace Hashira.Items.Weapons
         {
             base.Equip(entityWeapon);
             EntityGunWeapon = entityWeapon as EntityGunWeapon;
-        }
+			EntitySoundGenerator = entityWeapon.Entity.GetEntityComponent<EntitySoundGenerator>();
+
+		}
 
         public override void UnEquip()
         {
@@ -95,7 +98,7 @@ namespace Hashira.Items.Weapons
                 SoundGeneratedEvent soundGenerated = SoundEvents.SoundGeneratedEvent;
                 soundGenerated.originPosition = EntityGunWeapon.transform.position;
                 soundGenerated.loudness = isEquipedSoundSuppressor ? 0 : 10;
-                EntityGunWeapon.SoundEventChannel.RaiseEvent(soundGenerated);
+				EntitySoundGenerator.SoundEventChannel.RaiseEvent(soundGenerated);
             }
 
             OnFireEvent?.Invoke(BulletAmount);
