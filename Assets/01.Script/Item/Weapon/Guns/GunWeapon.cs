@@ -35,7 +35,7 @@ namespace Hashira.Items.Weapons
         protected Vector3 _firePos;
         private float _lastFireTime;
 
-        public bool IsCanFire => _lastFireTime + 1 / _attackSpeedStat.Value < Time.time;
+        public bool IsCanFire => _lastFireTime + 1 / _attackSpeedStat.Value < Time.time && EntityGunWeapon.IsStuck == false;
 
         public override void Init(ItemSO itemSO)
         {

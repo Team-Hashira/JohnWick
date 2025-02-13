@@ -829,6 +829,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2120810207}
     m_Modifications:
+    - target: {fileID: 1158730817504752871, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _whatIsObstacle.m_Bits
+      value: 2240
+      objectReference: {fileID: 0}
     - target: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -873,6 +877,10 @@ PrefabInstance:
       propertyPath: _endPosition
       value: 
       objectReference: {fileID: 2032985428}
+    - target: {fileID: 3300277106170878018, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 4478761898889932558, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_Name
       value: Player
