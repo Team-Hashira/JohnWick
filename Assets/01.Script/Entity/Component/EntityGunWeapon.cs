@@ -13,8 +13,11 @@ namespace Hashira.Entities.Components
         [field: SerializeField] public PartsRenderer PartsRenderer { get; private set; }
         [field: SerializeField] public ParticleSystem CartridgeCaseParticle { get; internal set; }
 
+        [SerializeField] private LayerMask _whatIsObstacle;
+
         public float Recoil { get; private set; }
         public bool IsReloading { get; private set; }
+        public bool IsStuck { get; private set; } //
         public float Facing { get; private set; }
 
         private float _currentReloadTime;
@@ -24,6 +27,8 @@ namespace Hashira.Entities.Components
         public event Action<float> OnReloadEvent;
 
         private Player _player;
+
+        private Bounds _visualBounds;
 
         public override void Initialize(Entity entity)
         {
@@ -65,6 +70,10 @@ namespace Hashira.Entities.Components
 
             if (weapon != null && weapon is GunWeapon gun)
                 CartridgeCaseParticle.transform.localPosition = gun.GunSO.cartridgeCaseParticlePoint;
+
+
+
+            _visualBounds = _spriteRenderer.bounds;
         }
 
         public override void RemoveWeapon(int index)
@@ -138,6 +147,22 @@ namespace Hashira.Entities.Components
                     (CurrentWeapon as GunWeapon)?.Reload();
                 }
             }
+
+            if (Physics2D.OverlapBox(VisualTrm.position, new Vector2(1f, 0.2f), VisualTrm.eulerAngles.z, _whatIsObstacle))
+            {
+                IsStuck = true;
+            }
+            else
+            {
+                IsStuck = false;
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.matrix = VisualTrm.localToWorldMatrix;
+            Gizmos.DrawWireCube(Vector2.zero, new Vector2(1f, 0.2f));
         }
     }
 }
