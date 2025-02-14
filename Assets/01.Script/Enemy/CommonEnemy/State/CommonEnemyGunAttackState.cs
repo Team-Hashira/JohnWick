@@ -53,7 +53,7 @@ namespace Hashira.Enemies.CommonEnemy
             {
                 if (_lastAttackTime + 1.5f < Time.time)
                 {
-                    _entityGunWeapon.Attack(1, false, _commonEnemy.WhatIsPlayer);
+                    _entityGunWeapon.Attack(1, true, _commonEnemy.WhatIsPlayer);
                     _lastAttackTime = Time.time;
                 }
             }
