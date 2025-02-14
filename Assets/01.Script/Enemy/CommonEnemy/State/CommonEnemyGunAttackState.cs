@@ -12,6 +12,7 @@ namespace Hashira.Enemies.CommonEnemy
         private CommonEnemy _commonEnemy;
         private Player _target;
 
+        private EntityRenderer _entityRenderer;
         private EntityGunWeapon _entityGunWeapon;
         private EntityStat _entityStat;
         private EnemyPathfinder _enemyPathfinder;
@@ -25,6 +26,7 @@ namespace Hashira.Enemies.CommonEnemy
         {
             _commonEnemy = entity as CommonEnemy;
 
+            _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
             _entityGunWeapon = entity.GetEntityComponent<EntityGunWeapon>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
             _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
@@ -45,14 +47,14 @@ namespace Hashira.Enemies.CommonEnemy
         public override void OnUpdate()
         {
             base.OnUpdate();
-            _entityGunWeapon.LookTarget(_target.transform.position);   
+
+            _entityGunWeapon.LookTarget(_target.transform.position);
             if (_commonEnemy.IsTargetOnAttackRange(_target.transform))
             {
                 if (_lastAttackTime + 1.5f < Time.time)
                 {
-                    _entityGunWeapon.Attack(_attackPowerElement.IntValue, false, _commonEnemy.WhatIsPlayer);
+                    _entityGunWeapon.Attack(1, false, _commonEnemy.WhatIsPlayer);
                     _lastAttackTime = Time.time;
-                    Debug.Log("АјАн");
                 }
             }
             else

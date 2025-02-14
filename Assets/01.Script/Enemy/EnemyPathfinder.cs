@@ -82,7 +82,6 @@ namespace Hashira.Enemies
             if (_moveCoroutine != null)
                 StopCoroutine(_moveCoroutine);
             _enemyMover.StopImmediately();
-            Debug.Log("ดิพฦ");
         }
 
         private IEnumerator MoveCoroutine()
