@@ -1,4 +1,5 @@
 using Hashira.Pathfind;
+using System;
 using UnityEngine;
 
 namespace Hashira.Core.EventSystem
@@ -24,13 +25,14 @@ namespace Hashira.Core.EventSystem
         public float loudness;
     }
 
+    [Flags]
     public enum ESoundSource
     {
-        Player,
-        Enemy,
-        Gun,
-        FootStep,
-        Melee,
-        Nature,
+        Player = 1,
+        Enemy = 1 << 1,
+        Gun = 1 << 2,
+        FootStep = 1 << 3,
+        Melee = 1 << 4,
+        Nature = 1 << 5,
     }
 }
