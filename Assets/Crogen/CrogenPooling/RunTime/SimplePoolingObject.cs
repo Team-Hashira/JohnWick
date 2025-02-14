@@ -19,13 +19,13 @@ public class SimplePoolingObject : MonoBehaviour, IPoolingObject
 
 	public void OnPop()
     {
-        CurLifetime = 0f;
         popEvent?.Invoke();
 	}
 
 	public void OnPush()
 	{
 		pushEvent?.Invoke();
+		CurLifetime = 0f;
 	}
 
 	private void Update()

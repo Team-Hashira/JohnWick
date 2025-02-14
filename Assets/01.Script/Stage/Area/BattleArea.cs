@@ -80,7 +80,6 @@ namespace Hashira.Stage.Area
 			_rObject?.SetActive(true);
 			_lObject?.SetActive(true);
 			BattleStartEvent?.Invoke();
-			ClearEvent?.Invoke();
 		}
 
 		private void HandleCounting()
