@@ -1,11 +1,9 @@
-using Hashira.Core.EventSystem;
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
 using Hashira.TargetPoint;
 using System;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -25,7 +23,7 @@ namespace Hashira.Players
         protected EntityInteractor _interactor;
         protected PlayerMover _playerMover;
 
-		private Weapon CurrentWeapon => _weaponGunHolderCompo.CurrentWeapon;
+        private Weapon CurrentWeapon => _weaponGunHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
 
@@ -53,15 +51,15 @@ namespace Hashira.Players
 
             InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnInteractEvent += HandleInteractEvent;
-			InputReader.OnSprintToggleEvent += HandleSprintToggle;
+            InputReader.OnSprintToggleEvent += HandleSprintToggle;
 
-			InputReader.OnReloadEvent += _weaponGunHolderCompo.Reload;
+            InputReader.OnReloadEvent += _weaponGunHolderCompo.Reload;
             InputReader.OnAttackEvent += HandleAttackEvent;
             InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
-		private void Start()
+        private void Start()
         {
             TargetPointManager.Instance.ShowTargetPoint(transform, Color.cyan);
 
@@ -69,25 +67,25 @@ namespace Hashira.Players
             OnStaminaChangedEvent?.Invoke(_currentStamina, _currentStamina);
         }
 
-		private void OnDisable()
-		{
+        private void OnDisable()
+        {
             TargetPointManager.Instance.CloseTargetPoint(transform);
-		}
+        }
 
-		#region Handles
+        #region Handles
 
-		private void HandleInteractEvent(bool isDown)
+        private void HandleInteractEvent(bool isDown)
         {
             _interactor.Interact(isDown);
         }
 
-		private void HandleSprintToggle()
+        private void HandleSprintToggle()
         {
             _playerMover.OnSprintToggle();
-			_stateMachine.ChangeState(_playerMover.IsSprint ? "Run" : "Walk");
-		}
+            _stateMachine.ChangeState(_playerMover.IsSprint ? "Run" : "Walk");
+        }
 
-		private void HandleDashEvent()
+        private void HandleDashEvent()
         {
             if (_playerMover.CanRolling == false) return;
             if (_stateMachine.CurrentStateName != "Rolling")
@@ -158,7 +156,7 @@ namespace Hashira.Players
         {
             base.AfterIntiialize();
         }
-        
+
         public bool TryUseStamina(float usedValue)
         {
             if (IsCanUseStamina(usedValue) == false) return false;
@@ -194,7 +192,7 @@ namespace Hashira.Players
             }
 
 
-            if (_isRightMousePress && _isChargingParrying  == false && 
+            if (_isRightMousePress && _isChargingParrying == false &&
                 _lastRightClickTime + _chargingParryingStartDelay < Time.time)
             {
                 _isChargingParrying = true;

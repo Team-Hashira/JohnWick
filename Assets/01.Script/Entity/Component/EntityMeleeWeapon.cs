@@ -1,6 +1,5 @@
 using Hashira.Items.Weapons;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hashira.Entities.Components
@@ -84,7 +83,7 @@ namespace Hashira.Entities.Components
 
             if (GunWaepon != null)
                 GunWaepon.IsMeleeWeaponMode = true;
-            
+
             IsCharged = true;
             base.Attack(damage, isDown, whatIsTarget);
             IsCharged = false;
