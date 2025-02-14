@@ -78,6 +78,7 @@ namespace Hashira.Pathfind
             nearbySoundEvent.originPosition = evt.originPosition;
             nearbySoundEvent.node = chosenNode;
             nearbySoundEvent.loudness = evt.loudness;
+            nearbySoundEvent.soundSource = evt.soundSource;
             _soundEventChannel.RaiseEvent(nearbySoundEvent);
         }
 

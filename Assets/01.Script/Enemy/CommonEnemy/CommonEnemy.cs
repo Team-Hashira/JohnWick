@@ -58,7 +58,7 @@ namespace Hashira.Enemies.CommonEnemy
         public override bool IsTargetOnAttackRange(Transform target)
         {
             float distanceSqr = (transform.position - target.position).sqrMagnitude;
-            float attackRangeSqr = 25f;
+            float attackRangeSqr = _attackRangeElement.Value * _attackRangeElement.Value;
 
             return distanceSqr < attackRangeSqr;
         }

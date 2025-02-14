@@ -11,16 +11,26 @@ namespace Hashira.Core.EventSystem
 
     public class SoundGeneratedEvent : GameEvent
     {
-        public Transform origin;
+        public ESoundSource soundSource;
         public Vector3 originPosition;
         public float loudness;
-        public bool isContinuous;
     }
 
     public class NearbySoundPointEvent : GameEvent
     {
         public Node node;
+        public ESoundSource soundSource;
         public Vector3 originPosition;
         public float loudness;
+    }
+
+    public enum ESoundSource
+    {
+        Player,
+        Enemy,
+        Gun,
+        FootStep,
+        Melee,
+        Nature,
     }
 }
