@@ -23,7 +23,7 @@ TagManager:
   - OnlyOneway
   - IgnoreOneway
   - Weapon
-  - 
+  - OnlyMapVisable
   - 
   - 
   - 

@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef843ff4ebdeee344a631d7c1ad9917f, type: 3}
   m_Name: Other
   m_EditorClassIdentifier: 
-  pairs:
-  - poolType: TargetPointContent
-    prefab: {fileID: 6129048889849185246, guid: 73cc4943271d45e45ab5c5ea9316e3e2, type: 3}
-    poolCount: 15
+  pairs: []

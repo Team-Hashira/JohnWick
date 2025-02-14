@@ -236,7 +236,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 362689
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: b03c663cf70d58b4692f65dc3b150089, type: 2}
   m_TargetDisplay: 0
@@ -574,7 +574,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 262135
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1366,7 +1366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parentCanvas: {fileID: 2090804284}
-  _targetPointContentPoolType: 0
+  _targetPointContentPoolType: 1
+  _targetPointSignPoolType: 2
 --- !u!1 &1970071376
 GameObject:
   m_ObjectHideFlags: 0

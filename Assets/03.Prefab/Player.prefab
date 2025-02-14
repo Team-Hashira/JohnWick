@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8033035454733294151}
   - component: {fileID: 8461488507756509470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right_Arm_LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2808298724860062244}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Target_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,6 +294,9 @@ MonoBehaviour:
   - {fileID: 0}
   <PartsRenderer>k__BackingField: {fileID: 6390566644954204797}
   <CartridgeCaseParticle>k__BackingField: {fileID: 256740920506850395}
+  _whatIsObstacle:
+    serializedVersion: 2
+    m_Bits: 0
   IsMeleeWeaponMode: 0
 --- !u!114 &9044624719610803174
 MonoBehaviour:
@@ -320,7 +323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8514883898259509943}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TargetEmpty_R
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -351,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4237097937689801153}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TargetEmpty_L
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -568,7 +571,7 @@ GameObject:
   - component: {fileID: 5794213617825282337}
   - component: {fileID: 7786038165239120326}
   - component: {fileID: 2111953203367332078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7055267881555325084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left_Arm_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 604855907415602142}
   - component: {fileID: 7535375391874366536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left_Arm_LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4579423966701143987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Target_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1337,7 +1340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6339434395270153247}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right_Arm_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1370,7 +1373,7 @@ GameObject:
   - component: {fileID: 5581552866811617440}
   - component: {fileID: 256740920506850395}
   - component: {fileID: 2796049145615511611}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CartridgeCaseParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6259,7 +6262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1156589872763374611}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11421,6 +11424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right_Arm
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.344
@@ -11481,9 +11488,21 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -2068326691
       objectReference: {fileID: 0}
+    - target: {fileID: 386791141387813222, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 804321300388119682, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_Name
       value: Arm02
+      objectReference: {fileID: 0}
+    - target: {fileID: 804321300388119682, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297364353584691495, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3397854877161082569, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_SortingLayer
@@ -11524,6 +11543,10 @@ PrefabInstance:
     - target: {fileID: 8462792922189227698, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_Name
       value: Arm01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8462792922189227698, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11571,6 +11594,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7028462452996302252}
     m_Modifications:
+    - target: {fileID: 259933838944043991, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2596254671752815505, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3538458016739685771, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3837357181958345619, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3910309438265309715, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11614,6 +11653,22 @@ PrefabInstance:
     - target: {fileID: 7062713163355406569, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
       propertyPath: m_Name
       value: PartsRenderer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062713163355406569, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257288149713926831, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8682434084295403378, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810751538177682807, guid: 488430e3d726e034fa9c1f24df8f474e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11718,6 +11773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Left_Arm
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.808
@@ -11778,9 +11837,21 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -2068326691
       objectReference: {fileID: 0}
+    - target: {fileID: 386791141387813222, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 804321300388119682, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_Name
       value: Arm02
+      objectReference: {fileID: 0}
+    - target: {fileID: 804321300388119682, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3297364353584691495, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3397854877161082569, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_SortingLayer
@@ -11813,6 +11884,10 @@ PrefabInstance:
     - target: {fileID: 8462792922189227698, guid: 732a028d57325d341b118456bfd904f0, type: 3}
       propertyPath: m_Name
       value: Arm01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8462792922189227698, guid: 732a028d57325d341b118456bfd904f0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

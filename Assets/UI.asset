@@ -16,3 +16,9 @@ MonoBehaviour:
   - poolType: DamageText
     prefab: {fileID: 7743946384142480928, guid: 8aef5cd9b893c0d4b85dffbe60a153a0, type: 3}
     poolCount: 30
+  - poolType: TargetPointContent
+    prefab: {fileID: 6129048889849185246, guid: 73cc4943271d45e45ab5c5ea9316e3e2, type: 3}
+    poolCount: 30
+  - poolType: TargetPointMapSign
+    prefab: {fileID: 3171226481966633437, guid: e86cc7d5e3af2ea40959eac1bf9526e7, type: 3}
+    poolCount: 30

@@ -3,6 +3,7 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
+using Hashira.TargetPoint;
 using System;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -62,13 +63,20 @@ namespace Hashira.Players
 
 		private void Start()
         {
+            TargetPointManager.Instance.ShowTargetPoint(transform, Color.cyan);
+
             _currentStamina = MaxStamina;
             OnStaminaChangedEvent?.Invoke(_currentStamina, _currentStamina);
         }
 
-        #region Handles
+		private void OnDisable()
+		{
+            TargetPointManager.Instance.CloseTargetPoint(transform);
+		}
 
-        private void HandleInteractEvent(bool isDown)
+		#region Handles
+
+		private void HandleInteractEvent(bool isDown)
         {
             _interactor.Interact(isDown);
         }
