@@ -10,23 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
-  m_Name: AccuracyStockParts
+  m_Name: RecollStockParts
   m_EditorClassIdentifier: 
-  itemDefaultSprite: {fileID: -1383780308380809755, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemIcon: {fileID: 0}
+  itemDefaultSprite: {fileID: 1501838756, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: AttackSpeedStock
-  itemDisplayName: "\uC9C1\uC120\uD615 \uAC1C\uBA38\uB9AC\uD310"
-  itemDescription: "\uC815\uD655\uB3C4\uB97C \uC62C\uB824\uC8FC\uB294 \uAC1C\uBA38\uB9AC\uD310\uC774\uB2E4.\n"
+  itemDisplayName: "\uC804\uC220 \uAC1C\uBA38\uB9AC\uD310"
+  itemDescription: "\uBC18\uB3D9\uC744 \uC904\uC5EC\uC8FC\uB294 \uAC1C\uBA38\uB9AC\uD310\uC774\uB2E4."
   useCustomClass: 0
-  defaultClass: 
+  defaultClass: WeaponParts
   partsSpriteDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
-      Value: {fileID: -1383780308380809755, guid: b141040168b445a468e1af2a3643043c, type: 3}
+      Value: {fileID: -4664686815677748851, guid: b141040168b445a468e1af2a3643043c, type: 3}
   partsType: 5
   _statList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 20
-  - Name: "\uC815\uD655\uB3C4"
-    elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
-    _baseValue: 8
+  - Name: "\uBC18\uB3D9"
+    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
+    _baseValue: -10

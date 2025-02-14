@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
-  m_Name: ReloadSupportParts
+  m_Name: DamageUpParts
   m_EditorClassIdentifier: 
-  itemDefaultSprite: {fileID: -344291122, guid: b141040168b445a468e1af2a3643043c, type: 3}
-  itemName: ReloadSupport
-  itemDisplayName: "\uD035 \uB4DC\uB85C\uC6B0 \uD0C4\uCC3D"
-  itemDescription: "\uC7AC\uC7A5\uC804 \uC18D\uB3C4\uB97C \uBE60\uB974\uAC8C\uD574\uC8FC\uB294
-    \uD0C4\uCC3D\uC774\uB2E4.\n"
+  itemIcon: {fileID: 0}
+  itemDefaultSprite: {fileID: -510654537, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemName: DamageUp
+  itemDisplayName: "\uAD00\uD615\uD0C4\uCC3D"
+  itemDescription: "\uACF5\uACA9\uB825\uC774 \uC18C\uD3ED \uB354 \uC0C1\uC2B9\uD558\uB294
+    \uD0C4\uCC3D\uC774\uB2E4."
   useCustomClass: 0
-  defaultClass: 
+  defaultClass: WeaponParts
   partsSpriteDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
-      Value: {fileID: -344291122, guid: b141040168b445a468e1af2a3643043c, type: 3}
+      Value: {fileID: -510654537, guid: b141040168b445a468e1af2a3643043c, type: 3}
     - Key: {fileID: 11400000, guid: 428fad33e14c0c940a0a788199ffcbc1, type: 2}
-      Value: {fileID: 4725828467234241019, guid: b141040168b445a468e1af2a3643043c, type: 3}
+      Value: {fileID: 6070045408746157392, guid: b141040168b445a468e1af2a3643043c, type: 3}
     - Key: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
-      Value: {fileID: 1027846586, guid: b141040168b445a468e1af2a3643043c, type: 3}
+      Value: {fileID: -1071702382, guid: b141040168b445a468e1af2a3643043c, type: 3}
   partsType: 3
   _statList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 10
-  - Name: "\uC7A5\uC804\uC18D\uB3C4"
-    elementSO: {fileID: 11400000, guid: e21207c15b4ae6347b7945e0a9607a2d, type: 2}
-    _baseValue: 10
+    _baseValue: 30
+  - Name: "\uACF5\uACA9\uC18D\uB3C4"
+    elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
+    _baseValue: 5

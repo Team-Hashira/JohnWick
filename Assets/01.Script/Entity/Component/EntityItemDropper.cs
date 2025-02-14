@@ -19,7 +19,7 @@ namespace Hashira.Entities.Components
             foreach (var itemPair in _itemPercent)
             {
                 sum += itemPair.Value;
-                if (lastSum <= percent && percent < sum)
+                if (percent <= sum)
                 {
                     ItemDropUtility.DroppedItem(itemPair.Key.GetItemClass(), _entity.transform.position);
                     return;

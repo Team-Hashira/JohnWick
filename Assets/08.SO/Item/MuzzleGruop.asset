@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5607d6e8ae34a8542b7ba747535ebc7f, type: 3}
+  m_Name: MuzzleGruop
+  m_EditorClassIdentifier: 
+  itemSOs:
+  - {fileID: 11400000, guid: e480aaef75ac7f547ad7ce61dbd774a5, type: 2}
+  - {fileID: 11400000, guid: 2910724fa529df34cb176588275a17aa, type: 2}
+  - {fileID: 11400000, guid: a32961db1d2cfc447b0cd9916ce28136, type: 2}
