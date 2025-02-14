@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    [CreateAssetMenu(fileName = "MeleeSO", menuName = "SO/Weapon/Melee")]
+    [CreateAssetMenu(fileName = "MeleeSO", menuName = "SO/Item/Weapon/Melee")]
     public class MeleeSO : WeaponSO
     {
         [field:SerializeField] public Vector2 AttackRangeOffset { get; private set; }

@@ -10,20 +10,17 @@ namespace Hashira.Entities.Interacts
 {
     public class DroppedItem : KeyInteractObject, IHoldInteractable, IPoolingObject
     {
-        private readonly static int _FillAmountShaderHash = Shader.PropertyToID("_FillAmount");
-
         [Header("==========DroppedItem setting==========")]
-        [SerializeField] protected SpriteRenderer _itemSprite;
-        [SerializeField] protected SpriteRenderer _holdOutlineSprite;
         [SerializeField] protected ItemDataUI _itemData;
         [SerializeField] protected ItemDataUI _comparisonItemData;
         protected Transform _ItemDataTrm;
         protected Transform _ComparisonItemDataTrm;
 
+        public Rigidbody2D Rigidbody2D { get; protected set; }
+
         private float _descriptionOpenDelay = 0.5f;
         private float _holdStartTime = 0f;
         private bool _isHolding;
-        private Material _holdOutlineMat;
 
         protected Entity _entity;
         protected EntityGunWeapon _entityWeapon;
@@ -31,10 +28,9 @@ namespace Hashira.Entities.Interacts
         protected override void Awake()
         {
             base.Awake();
+            Rigidbody2D = GetComponent<Rigidbody2D>();
             _ItemDataTrm = _itemData.transform.parent;
             _ComparisonItemDataTrm = _comparisonItemData.transform.parent;
-            _holdOutlineMat = _holdOutlineSprite.material;
-            _holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
             _ItemDataTrm.gameObject.SetActive(false);
             _ComparisonItemDataTrm.gameObject.SetActive(false);
         }
