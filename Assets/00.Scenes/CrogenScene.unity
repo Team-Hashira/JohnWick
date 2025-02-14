@@ -1366,7 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parentCanvas: {fileID: 2090804284}
-  _targetPointContentPoolType: 0
+  _targetPointContentPoolType: 1
 --- !u!1 &1970071376
 GameObject:
   m_ObjectHideFlags: 0
