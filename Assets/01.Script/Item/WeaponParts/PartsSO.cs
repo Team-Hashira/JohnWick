@@ -20,7 +20,7 @@ public enum EWeaponPartsType
 
 namespace Hashira.Items.PartsSystem
 {
-    [CreateAssetMenu(fileName = "PartsSO", menuName = "SO/Weapon/Parts")]
+    [CreateAssetMenu(fileName = "PartsSO", menuName = "SO/Item/Parts")]
     public class PartsSO : ItemSO, IStatable
     { 
         [Header("==========Weapon parts setting==========")]
