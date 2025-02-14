@@ -23,6 +23,7 @@ namespace Hashira.Entities.Components
 
         private void TriggerAction(EAnimationTrigger trigger)
         {
+            Debug.Log("¾‗ÀÌ");
             OnAnimationTriggeredEvent?.Invoke(trigger);
         }
     }
