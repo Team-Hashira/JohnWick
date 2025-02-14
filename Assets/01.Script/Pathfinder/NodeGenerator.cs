@@ -2,7 +2,9 @@ using Crogen.AttributeExtension;
 using Hashira.Core.EventSystem;
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -163,7 +165,9 @@ namespace Hashira.Pathfind
                 }
             }
 
+#if UNITY_EDITOR
             EditorUtility.SetDirty(this);
+#endif
         }
 
         [Button("Connect Nodes")]
