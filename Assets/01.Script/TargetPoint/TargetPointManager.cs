@@ -8,7 +8,7 @@ namespace Hashira.TargetPoint
 	public class TargetPointManager : MonoSingleton<TargetPointManager>
 	{
 		[SerializeField] private Transform _parentCanvas;
-		[SerializeField] private OtherPoolType _targetPointContentPoolType = OtherPoolType.TargetPointContent;
+		[SerializeField] private UIPoolType _targetPointContentPoolType = UIPoolType.TargetPointContent;
 		private Dictionary<Transform, TargetPointContent> _targetPointContentDictionary = new Dictionary<Transform, TargetPointContent>();
 
 		public void ShowTargetPoint(Transform trm, Color color)
