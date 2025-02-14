@@ -69,7 +69,8 @@ namespace Hashira.Players
 
         private void OnDisable()
         {
-            TargetPointManager.Instance?.CloseTargetPoint(transform);
+            if (TargetPointManager.Instance != null)
+                TargetPointManager.Instance.CloseTargetPoint(transform);
         }
 
         #region Handles

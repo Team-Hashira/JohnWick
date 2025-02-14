@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: RecoilSuppressorParts
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
   itemDefaultSprite: {fileID: -1370634941, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: RecoilSuppressor
   itemDisplayName: "\uBCF4\uC815\uAE30"
   itemDescription: "\uC774\uAC83\uC740 \uBC18\uB3D9 \uC5B5\uC81C\uAE30\n"
   useCustomClass: 0
-  defaultClass: 
+  defaultClass: WeaponParts
   partsSpriteDictionary:
     _serializedList:
     - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
