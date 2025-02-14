@@ -26,7 +26,6 @@ namespace Hashira.TargetPoint.UI
 		private Transform _playerTrm;
 
 		[SerializeField] private Image _image;
-		[SerializeField] private TextMeshProUGUI _distanceText;
 		private RectTransform _rectTransform;
 
 		private void Awake()
@@ -59,12 +58,10 @@ namespace Hashira.TargetPoint.UI
 			if(pos.x < minX || pos.x > maxX || pos.y < minY || pos.y > maxY)
 			{
 				_image.enabled = true;
-				_distanceText.enabled = true;
 			}
 			else
 			{
 				_image.enabled = false;
-				_distanceText.enabled = false;
 			}
 
 			pos.x = Mathf.Clamp(pos.x, minX, maxX);
@@ -72,8 +69,6 @@ namespace Hashira.TargetPoint.UI
 
 			Vector2 dir = (originPos - pos).normalized;
 			_rectTransform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90);
-
-			_distanceText.text = $"{(int)Vector3.Distance(targetTrasform.position, _playerTrm.position)}m";
 
 			_image.transform.position = pos;
 		}

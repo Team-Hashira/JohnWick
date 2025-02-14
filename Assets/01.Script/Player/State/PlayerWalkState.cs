@@ -1,5 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
+using Hashira.Entities.Components;
 using Hashira.FSM;
 
 namespace Hashira.Players
@@ -30,7 +31,8 @@ namespace Hashira.Players
                 if (_speedStat != null)
                     movement *= _speedStat.Value;
                 _entityMover.SetMovement(movement);
-            }
+
+			}
             else
                 _entityStateMachine.ChangeState("Idle");
 
