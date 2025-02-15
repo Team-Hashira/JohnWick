@@ -56673,8 +56673,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 18.999985, y: 1, z: 0}
-      m_Extent: {x: 63.999985, y: 22, z: 0}
+      m_Center: {x: 18.999985, y: 0.99998474, z: 0}
+      m_Extent: {x: 63.999985, y: 21.999985, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
@@ -57688,7 +57688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1037714541107535228
 Transform:
   m_ObjectHideFlags: 0
