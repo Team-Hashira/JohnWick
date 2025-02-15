@@ -15,7 +15,7 @@ MonoBehaviour:
   stageName: "\uC9C0\uD558\uCCA0"
   stagePiceDatas:
   - stagePices:
-    - {fileID: 5052925877727492471, guid: 2fdb7c6ae90e52045b3412e3ce887269, type: 3}
+    - {fileID: 2381375549164584253, guid: 2fdb7c6ae90e52045b3412e3ce887269, type: 3}
   - stagePices:
     - {fileID: 2838240787304443735, guid: deb01322fcd1ca7408f495fc90b4635d, type: 3}
   - stagePices:
