@@ -5,7 +5,7 @@ using AYellowpaper.SerializedCollections;
 
 namespace Hashira.Items.Weapons
 {
-    [CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Weapon/Gun")]
+    [CreateAssetMenu(fileName = "WeaponSO", menuName = "SO/Item/Weapon/Gun")]
     public class GunSO : WeaponSO
     {
         [Header("==========Gun setting==========")]

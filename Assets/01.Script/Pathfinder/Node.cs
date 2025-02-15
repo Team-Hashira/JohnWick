@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 namespace Hashira.Pathfind
@@ -52,7 +54,9 @@ namespace Hashira.Pathfind
                 }
                 Neighbors.Add(node);
             }
+#if UNITY_EDITOR
             EditorUtility.SetDirty(this);
+#endif
         }
     }
 }

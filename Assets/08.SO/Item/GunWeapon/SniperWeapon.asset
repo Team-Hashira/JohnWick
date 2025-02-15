@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92b8d250393de1a478747c8f1dfef2ce, type: 3}
+  m_Name: SniperWeapon
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 1529148789356908722, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemDefaultSprite: {fileID: 1529148789356908722, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemName: Sniper
+  itemDisplayName: "\uC800\uACA9\uCD1D"
+  itemDescription: "\uC774\uAC83\uC740 \uBA40\uB9AC\uAC00\uB294 \uCD1D"
+  useCustomClass: 1
+  defaultClass: 
+  <WhatIsTarget>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 2752
+  <GrapOffset>k__BackingField: {x: 0.837, y: 0.112, z: 0}
+  <RightHandOffset>k__BackingField: {x: -0.423, y: -0.13, z: 0}
+  <LeftHandOffset>k__BackingField: {x: 0.065, y: -0.111, z: 0}
+  <GrapRotate>k__BackingField: 0
+  overrideStatElementList:
+  - Name: "\uACF5\uACA9\uB825"
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 1023
+  - Name: "\uACF5\uACA9\uC18D\uB3C4"
+    elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
+    _baseValue: 0.8
+  - Name: "\uC815\uD655\uB3C4"
+    elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
+    _baseValue: 90
+  - Name: "\uBC18\uB3D9"
+    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
+    _baseValue: 100
+  - Name: "\uD0C4\uCC3D \uC6A9\uB7C9"
+    elementSO: {fileID: 11400000, guid: f9441795e47ed464cadf91b550bf1323, type: 2}
+    _baseValue: 7
+  - Name: "\uAD00\uD1B5\uB825"
+    elementSO: {fileID: 11400000, guid: 5b9bf81b7c848594ea76655dc9939382, type: 2}
+    _baseValue: 5
+  baseStat: {fileID: 11400000, guid: cbdba415f6d98cc4fb1675197d4bbfae, type: 2}
+  cartridgeCaseParticlePoint: {x: -0.319, y: -0.033, z: 0}
+  bullet: 0
+  fireSpakleEffect: 1
+  bulletSpeed: 1000
+  reloadDuration: 1
+  partsEquipUIPosDict:
+    _serializedList:
+    - Key: 0
+      Value: {x: 1, y: 0}
+    - Key: 1
+      Value: {x: 0, y: 1}
+    - Key: 2
+      Value: {x: -1, y: -1}
+    - Key: 3
+      Value: {x: 0.08, y: -1}
+    - Key: 4
+      Value: {x: -1, y: 1}
+  partsEquipPosDict:
+    _serializedList:
+    - Key: 0
+      Value: {x: 19, y: 0}
+    - Key: 1
+      Value: {x: -2, y: 1}
+    - Key: 2
+      Value: {x: 3, y: -2}
+    - Key: 3
+      Value: {x: -3, y: -3}
+    - Key: 4
+      Value: {x: -1, y: -1}

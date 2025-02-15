@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
+  m_Name: LaserSightParts
+  m_EditorClassIdentifier: 
+  itemDefaultSprite: {fileID: 2782361571930338662, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  itemName: LaserSight
+  itemDisplayName: "\uB808\uC774\uC800 \uC0AC\uC774\uD2B8"
+  itemDescription: "\uB808\uC774\uC800\uB85C \uC870\uC900\uC744 \uBCF4\uC870\uD558\uB294
+    \uD30C\uCE20\uC785\uB2C8\uB2E4"
+  useCustomClass: 1
+  defaultClass: 
+  partsSpriteDictionary:
+    _serializedList:
+    - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
+      Value: {fileID: 82946020, guid: b141040168b445a468e1af2a3643043c, type: 3}
+    - Key: {fileID: 11400000, guid: 428fad33e14c0c940a0a788199ffcbc1, type: 2}
+      Value: {fileID: 2782361571930338662, guid: b141040168b445a468e1af2a3643043c, type: 3}
+    - Key: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
+      Value: {fileID: 1095585360, guid: b141040168b445a468e1af2a3643043c, type: 3}
+  partsType: 2
+  _statList:
+  - Name: "\uC815\uD655\uB3C4"
+    elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
+    _baseValue: 10
+  - Name: "\uACF5\uACA9\uB825"
+    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+    _baseValue: 10

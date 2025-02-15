@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Hashira.Combat;
-using Hashira.Entities;
 using Hashira.Entities.Components;
 using System;
 using UnityEngine;
@@ -23,8 +22,8 @@ namespace Hashira.Items.Weapons
         {
             base.Attack(damage, isDown, whatIsTarget);
 
-			Vector3 startRot = Vector3.forward * MeleeSO.RotateMax;
-			Vector3 endRot = Vector3.forward * MeleeSO.RotateMin;
+            Vector3 startRot = Vector3.forward * MeleeSO.RotateMax;
+            Vector3 endRot = Vector3.forward * MeleeSO.RotateMin;
             float duration = MeleeSO.AttackDuration;
             float afterDelay = MeleeSO.AttackAfterDelay;
 
@@ -32,7 +31,7 @@ namespace Hashira.Items.Weapons
             _isCharged = EntityMeleeWeapon.IsCharged;
 
             (EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).size = MeleeSO.AttackRangeSize;
-			(EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
+            (EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
 
             Vector2 attackDir = (EntityMeleeWeapon.DamageCaster.transform.position - EntityMeleeWeapon.Entity.transform.position).normalized;
 
@@ -83,7 +82,7 @@ namespace Hashira.Items.Weapons
             entityGunWeapon.IsMeleeWeaponMode = false;
             entityGunWeapon.EquipWeapon(entityGunWeapon.CurrentWeapon, entityGunWeapon.CurrentIndex);
         }
-        
+
         public override object Clone()
         {
             MeleeSO = WeaponSO as MeleeSO;

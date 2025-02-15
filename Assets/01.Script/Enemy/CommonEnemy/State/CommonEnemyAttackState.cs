@@ -9,16 +9,18 @@ namespace Hashira.Enemies.CommonEnemy
 {
     public class CommonEnemyAttackState : EntityState
     {
+        private EnemyPathfinder _enemyPathfinder;
         private EntityAnimationTrigger _entityAnimationTrigger;
-        private EntityWeapon _entityWeapon;
+        private DamageCaster2D _damageCaster;
         private EntityStat _entityStat;
 
         private StatElement _attackPowerElement;
 
         public CommonEnemyAttackState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
+            _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
             _entityAnimationTrigger = entity.GetEntityComponent<EntityAnimationTrigger>();
-            _entityWeapon = entity.GetEntityComponent<EntityWeapon>();
+            _damageCaster = entity.GetEntityComponent<EntityRenderer>().VisualTrm.Find("DamageCaster").GetComponent<DamageCaster2D>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
 
             _attackPowerElement = _entityStat.StatDictionary["AttackPower"];
@@ -28,18 +30,26 @@ namespace Hashira.Enemies.CommonEnemy
         {
             base.OnEnter();
             _entityAnimationTrigger.OnAnimationTriggeredEvent += HandleOnAnimationTriggered;
+            _enemyPathfinder.StopMove();
         }
 
         private void HandleOnAnimationTriggered(EAnimationTrigger trigger)
         {
-            if (trigger.HasFlag(EAnimationTrigger.Attack))
+            Debug.Log("¾öÁØ½Ä");
+            if (trigger == EAnimationTrigger.Attack)
             {
-                //_entityWeapon.Attack(_attackPowerElement.IntValue, false);
+                _damageCaster.CastDamage(_attackPowerElement.IntValue);
             }
-            if (trigger.HasFlag(EAnimationTrigger.End))
+            if (trigger == EAnimationTrigger.End)
             {
                 _entityStateMachine.ChangeState("Chase");
             }
+        }
+
+        public override void OnExit()
+        {
+            _entityAnimationTrigger.OnAnimationTriggeredEvent -= HandleOnAnimationTriggered;
+            base.OnExit();
         }
     }
 }
