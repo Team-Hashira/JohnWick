@@ -19,9 +19,6 @@ MonoBehaviour:
   itemDescription: "\uC774\uAC83\uC740 \uC791\uC740 \uCD1D"
   useCustomClass: 1
   defaultClass: 
-  <WhatIsTarget>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 2752
   <GrapOffset>k__BackingField: {x: 0.654, y: 0.085, z: 0}
   <RightHandOffset>k__BackingField: {x: -0.136, y: -0.104, z: 0}
   <LeftHandOffset>k__BackingField: {x: 0.17, y: -0.107, z: 0}
@@ -71,4 +68,4 @@ MonoBehaviour:
     - Key: 3
       Value: {x: -2, y: -2}
     - Key: 5
-      Value: {x: 0, y: -6}
+      Value: {x: -6, y: 0}
