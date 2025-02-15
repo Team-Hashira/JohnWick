@@ -6330,6 +6330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4188e2b15322842949811c6729172b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Collider2D>k__BackingField: {fileID: 3659791351898874512}
   <Rigidbody2D>k__BackingField: {fileID: 3887808363589502260}
   _groundCheckerSize: {x: 0.725, y: 0.1}
   _downDistance: 0.1

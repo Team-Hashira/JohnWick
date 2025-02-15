@@ -1,10 +1,12 @@
 using Hashira.Pathfind;
 using UnityEngine;
+using System.Linq;
 
 namespace Hashira.Entities
 {
     public class EntityMover : MonoBehaviour, IEntityComponent
     {
+        [field: SerializeField] public Collider2D Collider2D { get; private set; }
         [field: SerializeField] public Rigidbody2D Rigidbody2D { get; private set; }
 
         [Header("Ground check setting")]
@@ -23,6 +25,7 @@ namespace Hashira.Entities
         public Vector2 Velocity { get; private set; }
 
         public bool IsGrounded { get; private set; }
+        public bool IsOneWayPlatform { get; private set; }
         public bool isManualMove = true;
 
         [field:SerializeField] public int JumpCount { get; private set; } = 1;
@@ -69,11 +72,14 @@ namespace Hashira.Entities
         {
             RaycastHit2D[] groundHits = Physics2D.BoxCastAll((Vector2)transform.position,
                 _groundCheckerSize, 0, Vector2.down, _downDistance, _whatIsGround);
+
             RaycastHit2D[] nodeHits = Physics2D.BoxCastAll((Vector2)transform.position,
                 new Vector2(_groundCheckerSize.x, 10), 0, Vector2.down, 10, _whatIsNode);
 
             if (groundHits.Length > 0) _hitedGround = groundHits[0];
             IsGrounded = groundHits.Length > 0 && _yMovement < 0;
+
+			if (groundHits.Length > 0) IsOneWayPlatform = groundHits[0].transform.gameObject.GetComponent<PlatformEffector2D>();
 
             if (IsGrounded) _currentJumpCount = 0;
 
@@ -126,17 +132,17 @@ namespace Hashira.Entities
 
         public void UnderJump(bool isUnderJump)
         {
+            if (IsOneWayPlatform == false) return;
             if (isManualMove == false) return;
+
             int layerCheck = _whatIsGround & _oneWayPlatform;
             if (layerCheck != 0 && isUnderJump)
                 _whatIsGround &= ~(_oneWayPlatform);
             else if (isUnderJump == false)
                 _whatIsGround |= _oneWayPlatform;
 
-            foreach (var platformEffector in FindObjectsByType<PlatformEffector2D>(FindObjectsSortMode.None))
-            {
-                platformEffector.rotationalOffset = isUnderJump ? 180 : 0;
-            }
+			Collider2D.isTrigger = isUnderJump;
+            Debug.Log(Collider2D.isTrigger);
         }
 
         public void SetIgnoreOnewayPlayform(bool isIgnore)

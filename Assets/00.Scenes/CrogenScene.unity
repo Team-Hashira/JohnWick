@@ -1741,6 +1741,10 @@ PrefabInstance:
       propertyPath: _endPosition
       value: 
       objectReference: {fileID: 771890490}
+    - target: {fileID: 4016720954160572029, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: <Collider2D>k__BackingField
+      value: 
+      objectReference: {fileID: 5457064906219075927}
     - target: {fileID: 4478761898889932558, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1750,6 +1754,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+--- !u!61 &5457064906219075927 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3659791351898874512, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+  m_PrefabInstance: {fileID: 5457064906219075926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7775178497468531974
 PrefabInstance:
   m_ObjectHideFlags: 0
