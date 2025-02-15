@@ -15,15 +15,8 @@ MonoBehaviour:
   stageName: "\uC9C0\uD558\uCCA0"
   stagePiceDatas:
   - stagePices:
-    - {fileID: 4290700035163809619, guid: 96f33ab8da3e13d4b93dca553dfa4342, type: 3}
+    - {fileID: 5052925877727492471, guid: 2fdb7c6ae90e52045b3412e3ce887269, type: 3}
   - stagePices:
-    - {fileID: 4290700035163809619, guid: 36fd66de3d9ceee449e590e95f48999f, type: 3}
+    - {fileID: 2838240787304443735, guid: deb01322fcd1ca7408f495fc90b4635d, type: 3}
   - stagePices:
-    - {fileID: 4290700035163809619, guid: 34a304abaf5f84d49a0566a0812fe05f, type: 3}
-    - {fileID: 4290700035163809619, guid: 420780b00518d4b4c9b37527db39ee14, type: 3}
-  - stagePices:
-    - {fileID: 4290700035163809619, guid: 54dfdfcc89b6e7647b0ec3ad65c3b065, type: 3}
-    - {fileID: 4290700035163809619, guid: 7495714696044ca49afaf854f1296530, type: 3}
-  - stagePices:
-    - {fileID: 4290700035163809619, guid: 0fa3b2c2ceb0e6c409c0a320bd6dce16, type: 3}
-    - {fileID: 4290700035163809619, guid: cfa9c006ac868dc41bcae89adb8b4ab3, type: 3}
+    - {fileID: 8663533705895706499, guid: bb1e84ae0dc19a54580882e337178c2b, type: 3}
