@@ -40,10 +40,10 @@ namespace Hashira.Stage.Area
 
 			Vector2[] sizes = new Vector2[4];
 
-			sizes[0] = _battleSize;
-			sizes[1] = new Vector2(-_battleSize.x, _battleSize.y);
-			sizes[2] = -_battleSize;
-			sizes[3] = new Vector2(_battleSize.x, -_battleSize.y);
+			sizes[0] = _cameraMovableSize;
+			sizes[1] = new Vector2(-_cameraMovableSize.x, _cameraMovableSize.y);
+			sizes[2] = -_cameraMovableSize;
+			sizes[3] = new Vector2(_cameraMovableSize.x, -_cameraMovableSize.y);
 
 			_polygonCollider.SetPath(0, sizes);
 
@@ -51,13 +51,13 @@ namespace Hashira.Stage.Area
 			Transform l = _lObject.transform;
 
 			var colls = GetComponentsInChildren<BoxCollider2D>();
-			foreach (var coll in colls)
-				coll.size = new Vector2(1f, _polygonCollider.GetPath(0)[0].y * 2);
+			for (int i = 0; i < colls.Length; i++)
+				colls[i].size = new Vector2(1f, _battleSize.y * 2);
 
 			if (r != null)
-				r.localPosition = new Vector3(_polygonCollider.GetPath(0)[0].x + 0.5f, 0, 0);
+				r.localPosition = new Vector3(_battleSize.x + 0.5f, 0, 0);
 			if (l != null)
-				l.localPosition = new Vector3(_polygonCollider.GetPath(0)[1].x - 0.5f, 0, 0);
+				l.localPosition = new Vector3(_battleSize.x - 0.5f, 0, 0);
 
 			_cam.GetComponent<CinemachineConfiner2D>().InvalidateBoundingShapeCache();
 			EditorUtility.SetDirty(_polygonCollider);
@@ -70,8 +70,8 @@ namespace Hashira.Stage.Area
 			_cam.Follow = FindFirstObjectByType<InternallyDividedPosition>().transform;
 
 			_enemyCount = _entityList.Count;
-			foreach (var entity in _entityList)
-				entity.OnDieEvent += HandleCounting;
+			for (int i = 0; i < _enemyCount; i++)
+				_entityList[i].OnDieEvent += HandleCounting;
 		}
 
 		public void StartBattle()

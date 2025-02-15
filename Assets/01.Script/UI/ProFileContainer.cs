@@ -47,7 +47,7 @@ namespace Hashira.UI
 
         private void HandleHpChange(int lastValue, int newValue)
         {
-            _hpSlider.value = (float)_playerHealth.MaxHealth / newValue;
+            _hpSlider.value = newValue/(float)_playerHealth.MaxHealth;
             _hpText.text = $"{newValue}/{_playerHealth.MaxHealth}";
         }
 
