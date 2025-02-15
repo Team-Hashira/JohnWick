@@ -34,9 +34,6 @@ MonoBehaviour:
   - Name: Hearing
     elementSO: {fileID: 11400000, guid: 4ff2cf6ee04a992409f357654c7db01e, type: 2}
     _baseValue: 100
-  - Name: Hearing
-    elementSO: {fileID: 11400000, guid: 4ff2cf6ee04a992409f357654c7db01e, type: 2}
-    _baseValue: 100
-  - Name: Hearing
+  - Name: AttackRange
     elementSO: {fileID: 11400000, guid: 6f732283a8eb625498d1e8653b0235af, type: 2}
     _baseValue: 5
