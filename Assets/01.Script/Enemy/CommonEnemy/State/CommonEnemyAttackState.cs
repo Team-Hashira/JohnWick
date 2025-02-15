@@ -10,7 +10,6 @@ namespace Hashira.Enemies.CommonEnemy
     public class CommonEnemyAttackState : EntityState
     {
         private EnemyPathfinder _enemyPathfinder;
-        private EntityAnimationTrigger _entityAnimationTrigger;
         private DamageCaster2D _damageCaster;
         private EntityStat _entityStat;
 
@@ -19,7 +18,6 @@ namespace Hashira.Enemies.CommonEnemy
         public CommonEnemyAttackState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
-            _entityAnimationTrigger = entity.GetEntityComponent<EntityAnimationTrigger>();
             _damageCaster = entity.GetEntityComponent<EntityRenderer>().VisualTrm.Find("DamageCaster").GetComponent<DamageCaster2D>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
 
@@ -29,18 +27,17 @@ namespace Hashira.Enemies.CommonEnemy
         public override void OnEnter()
         {
             base.OnEnter();
-            _entityAnimationTrigger.OnAnimationTriggeredEvent += HandleOnAnimationTriggered;
+            _entityAnimator.OnAnimationTriggeredEvent += HandleOnAnimationTriggered;
             _enemyPathfinder.StopMove();
         }
 
-        private void HandleOnAnimationTriggered(EAnimationTrigger trigger)
+        private void HandleOnAnimationTriggered(EAnimationTriggerType trigger, int hash)
         {
-            Debug.Log("엄준식");
-            if (trigger == EAnimationTrigger.Attack)
+            if (trigger == EAnimationTriggerType.Trigger)
             {
                 _damageCaster.CastDamage(_attackPowerElement.IntValue);
             }
-            if (trigger == EAnimationTrigger.End)
+            if (trigger == EAnimationTriggerType.End)
             {
                 _entityStateMachine.ChangeState("Chase");
             }
@@ -48,7 +45,8 @@ namespace Hashira.Enemies.CommonEnemy
 
         public override void OnExit()
         {
-            _entityAnimationTrigger.OnAnimationTriggeredEvent -= HandleOnAnimationTriggered;
+            Debug.Log("나가기");
+            _entityAnimator.OnAnimationTriggeredEvent -= HandleOnAnimationTriggered;
             base.OnExit();
         }
     }
