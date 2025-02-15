@@ -2322,6 +2322,7 @@ MonoBehaviour:
   _chapterSO:
   - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
   - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
   _confineColliderPrefab: {fileID: 2945706858643288433, guid: 7764fc5b49aaca04ba41fe42e7df99cd, type: 3}
   _startPoint: {fileID: 1922978163}
 --- !u!4 &1934674211
