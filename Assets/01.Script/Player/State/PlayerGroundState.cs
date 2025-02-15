@@ -8,16 +8,18 @@ namespace Hashira.Players
     public class PlayerGroundState : EntityState
     {
         private readonly static int _JumpingAnimationHash = Animator.StringToHash("Jumping");
-        protected EntityMover _entityMover;
-        protected Player _player;
+        protected PlayerMover _playerMover;
+		protected EntityRenderer _entityRenderer;
+		protected Player _player;
 
         public PlayerGroundState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _player = entity as Player;
-            _entityMover = entity.GetEntityComponent<EntityMover>(true);
-        }
+			_playerMover = entity.GetEntityComponent<PlayerMover>(true);
+			_entityRenderer = entity.GetEntityComponent<EntityRenderer>();
+		}
 
-        public override void OnEnter()
+		public override void OnEnter()
         {
             base.OnEnter();
 
@@ -40,14 +42,14 @@ namespace Hashira.Players
 
         protected virtual void HandleJumpEvent()
         {
-            _entityMover.Jump();
+            _playerMover.Jump();
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
 
-            if (_entityMover.IsGrounded == false)
+            if (_playerMover.IsGrounded == false)
             {
                 _entityStateMachine.ChangeState("Air");
                 _entityAnimator.SetParam(_JumpingAnimationHash);

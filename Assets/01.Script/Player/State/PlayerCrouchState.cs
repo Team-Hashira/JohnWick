@@ -2,7 +2,6 @@ using Hashira.Entities;
 using Hashira.FSM;
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Hashira.Players
 {
@@ -18,7 +17,7 @@ namespace Hashira.Players
         public override void OnEnter()
         {
             base.OnEnter();
-            _entityMover.StopImmediately();
+			_playerMover.StopImmediately();
         }
 
         public override void OnExit()
