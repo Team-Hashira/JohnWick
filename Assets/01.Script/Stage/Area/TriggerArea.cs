@@ -10,11 +10,16 @@ namespace Hashira.Stage.Area
         public LayerMask whatIsTarget;
         public Vector2 size = Vector2.one;
 
+		public bool isOnlyOnce = true;
+		private bool isTrigged = false;
+
 		public void FixedUpdate()
 		{
 			if (Physics2D.OverlapBox(transform.position, size, transform.eulerAngles.z, whatIsTarget))
 			{
-				Event?.Invoke();
+				isTrigged = true;
+				if (isOnlyOnce && isTrigged) 
+					Event?.Invoke();
 			}
 		}
 
