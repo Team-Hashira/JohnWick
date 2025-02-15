@@ -18,8 +18,9 @@ namespace Hashira.Stage.Area
 			if (Physics2D.OverlapBox(transform.position, size, transform.eulerAngles.z, whatIsTarget))
 			{
 				isTrigged = true;
-				if (isOnlyOnce && isTrigged) 
-					Event?.Invoke();
+				if (isOnlyOnce && isTrigged) return;
+
+				Event?.Invoke();
 			}
 		}
 
