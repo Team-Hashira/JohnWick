@@ -1,6 +1,5 @@
 using Crogen.AttributeExtension;
 using Hashira.Entities;
-using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEditor;
@@ -17,8 +16,8 @@ namespace Hashira.Stage.Area
 		[SerializeField] private UnityEvent BattleStartEvent;
 		[SerializeField] private List<EntityHealth> _entityList;
 
-		[SerializeField] private Vector2 _size = new Vector2(17.78f, 10.05f);
-
+		[SerializeField] private Vector2 _battleSize = new Vector2(17.78f, 10.05f);
+		[SerializeField] private Vector2 _cameraMovableSize = new Vector2(17.78f, 10.05f);
 		private int _enemyCount = 0;
 
 
@@ -41,10 +40,10 @@ namespace Hashira.Stage.Area
 
 			Vector2[] sizes = new Vector2[4];
 
-			sizes[0] = _size;
-			sizes[1] = new Vector2(-_size.x, _size.y);
-			sizes[2] = -_size;
-			sizes[3] = new Vector2(_size.x, -_size.y);
+			sizes[0] = _battleSize;
+			sizes[1] = new Vector2(-_battleSize.x, _battleSize.y);
+			sizes[2] = -_battleSize;
+			sizes[3] = new Vector2(_battleSize.x, -_battleSize.y);
 
 			_polygonCollider.SetPath(0, sizes);
 
