@@ -12,7 +12,7 @@ namespace Hashira.UI
     public class ProfileContainer : MonoBehaviour
     {
         [Header("HP")]
-        [SerializeField] private Slider _hpSlider;
+        [SerializeField] private Image _hpSlider;
         [SerializeField] private TextMeshProUGUI _hpText;
 
         [Header("Weapon")]
@@ -20,6 +20,7 @@ namespace Hashira.UI
         [SerializeField] private Image _weaponIconImage;
         [SerializeField] private Slider _weaponLoadSlider;
         [SerializeField] private TextMeshProUGUI _weaponLoadText;
+        [SerializeField] private TextMeshProUGUI _weaponSlotNumberText;
 
         private Player _player;
         private EntityHealth _playerHealth;
@@ -47,7 +48,7 @@ namespace Hashira.UI
 
         private void HandleHpChange(int lastValue, int newValue)
         {
-            _hpSlider.value = newValue/(float)_playerHealth.MaxHealth;
+            _hpSlider.fillAmount = newValue/(float)_playerHealth.MaxHealth;
             _hpText.text = $"{newValue}/{_playerHealth.MaxHealth}";
         }
 
@@ -66,7 +67,10 @@ namespace Hashira.UI
 
         private void HandleWeaponChange(Weapon weapon)
         {
-            if (weapon == null)
+
+            _weaponSlotNumberText.text = _entityGunWeapon.CurrentIndex.ToString();
+
+			if (weapon == null)
             {
                 _weaponIconImage.sprite = null;
                 _weaponIconImage.color = Color.clear;
