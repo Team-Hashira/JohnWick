@@ -44,8 +44,6 @@ namespace Hashira.Entities.Interacts
 
         public override void Interaction(Entity entity)
         {
-            base.Interaction(entity);
-
             Weapon weapon = null;
             if (_weapon is GunWeapon gunWeapon)
             {
@@ -59,8 +57,10 @@ namespace Hashira.Entities.Interacts
             }
 
             if (weapon != null) ItemDropUtility.DroppedItem(weapon, entity.transform.position);
-            OnInteractionSuccesEvent?.Invoke();
+            InteractionSucces();
             this.Push();
+
+            base.Interaction(entity);
         }
 
         public override void SetItemData()

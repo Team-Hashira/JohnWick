@@ -9,7 +9,7 @@ namespace Hashira.Items.PartsSystem
     {
         private int _grenadeDelay = 3;
         private int _fireCount = 0;
-        private float _speed = 100;
+        private float _speed = 30;
         private int _damage = 1000;
 
         public override void Equip(GunWeapon weapon)
@@ -25,7 +25,6 @@ namespace Hashira.Items.PartsSystem
             if (_fireCount == _grenadeDelay)
             {
                 _fireCount = 0;
-                Debug.Log("히히 유탄발사~!");
                 Grenade grenade = transform.gameObject.Pop(ProjectilePoolType.Grenade, transform.position, transform.rotation) as Grenade;
                 grenade.Init(_weapon.WhatIsTarget, transform.right, _speed, _damage, 0, transform);
             }
