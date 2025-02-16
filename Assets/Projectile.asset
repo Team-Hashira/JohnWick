@@ -16,3 +16,6 @@ MonoBehaviour:
   - poolType: Bullet
     prefab: {fileID: 2714320040144927719, guid: 40e74f823ad969d488df489f138e3a4b, type: 3}
     poolCount: 20
+  - poolType: Grenade
+    prefab: {fileID: 8758296232323932894, guid: 46db1d2e063a20844a21de34eda49618, type: 3}
+    poolCount: 20

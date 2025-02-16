@@ -5,16 +5,21 @@ namespace Hashira.Combat
     public class FollowTarget : MonoBehaviour
     {
         public Vector3 offset;
-        public Transform target;
+        public Transform _target;
 
         [Header("Enable Axis")]
         public bool enableX = true;
         public bool enableY = true;
         public bool enableZ = true;
 
+        private void Awake()
+        {
+            _target = GameManager.Instance.Player.transform;
+        }
+
         private void LateUpdate()
         {
-            Vector3 targetPos = target.position + offset;
+            Vector3 targetPos = _target.position + offset;
 
             targetPos = new Vector3(
                 enableX ? targetPos.x : transform.position.x, 
