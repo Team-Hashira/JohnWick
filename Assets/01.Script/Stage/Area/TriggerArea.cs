@@ -17,8 +17,8 @@ namespace Hashira.Stage.Area
 
 		protected void Invoke()
 		{
-			isTrigged = true;
 			if (isOnlyOnce && isTrigged) return;
+			isTrigged = true;
 
 			Event?.Invoke();
 		}
