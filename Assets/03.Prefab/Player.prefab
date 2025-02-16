@@ -6531,7 +6531,7 @@ MonoBehaviour:
   _emotionDictionary:
     _serializedList:
     - Key: 2
-      Value: {fileID: 5316577475085910651, guid: 77240e70ef7b53d4d801a9978f4b06d1, type: 3}
+      Value: {fileID: 4035803457448101565, guid: bd14a0f656e5a1543bc754ef7f6ce7a6, type: 3}
 --- !u!1 &8740362595302837857
 GameObject:
   m_ObjectHideFlags: 0
