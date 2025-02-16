@@ -74,6 +74,7 @@ namespace Hashira.Entities.Interacts
         {
             _itemSprite.sprite = item.ItemSO?.itemDefaultSprite;
             Color color = ItemUtility.ItemRatingColorDict[item.ItemSO.itemRating];
+            _nameText.color = color;
             color.a = 0.8f;
             _itemLightRenderer.color = color;
             Collider.radius = _itemSprite.sprite.pivot.y / _itemSprite.sprite.pixelsPerUnit;
