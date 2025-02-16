@@ -25,7 +25,7 @@ namespace Hashira.Items.PartsSystem
             if (_fireCount == _grenadeDelay)
             {
                 _fireCount = 0;
-                Grenade grenade = transform.gameObject.Pop(ProjectilePoolType.Grenade, transform.position, transform.rotation) as Grenade;
+                Grenade grenade = transform.gameObject.Pop(ProjectilePoolType.Grenade, _weapon.FirePos, transform.rotation) as Grenade;
                 grenade.Init(_weapon.WhatIsTarget, transform.right, _speed, _damage, 0, transform);
             }
         }

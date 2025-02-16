@@ -8,6 +8,7 @@ namespace Hashira.Projectiles
 {
     public class Projectile : PushLifetime
     {
+        [SerializeField] protected bool _canMultipleAttacks;
         [SerializeField] protected ProjectileCollider2D _projectileCollider;
         [SerializeField] protected TrailRenderer _trailRenderer;
         [SerializeField] protected EffectPoolType _hitEffect;
@@ -19,6 +20,8 @@ namespace Hashira.Projectiles
         protected LayerMask _whatIsTarget;
         protected SpriteRenderer _spriteRenderer;
         protected BoxCollider2D _collider;
+
+        protected List<ProjectileModifier> _projectileModifiers;
 
         protected List<Collider2D> _penetratedColliderList = new List<Collider2D>();
 
@@ -34,65 +37,69 @@ namespace Hashira.Projectiles
 
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             bool isHit = _projectileCollider.CheckCollision(_whatIsTarget, out RaycastHit2D[] hits, movement);
-            RaycastHit2D hit = hits.ToList().FirstOrDefault(hit => _penetratedColliderList.Contains(hit.collider) == false);
-            if (isHit && hit != default && (hit.transform.TryGetComponent(out IDamageable damageable) == false || damageable.IsEvasion == false))
+            List<RaycastHit2D> newHitList = hits.Where(hit => _penetratedColliderList.Contains(hit.collider) == false).ToList();
+            if (_canMultipleAttacks == false && newHitList.Count > 1)
+                newHitList = new List<RaycastHit2D>() { newHitList[0] };
+
+            if (isHit && newHitList.Count > 0)
             {
-                //Move
-                transform.position += transform.right * hit.distance;
-
+                float movedDistance = 0;
                 //Damage
-                if (damageable != null)
+                newHitList.ForEach(hit =>
                 {
-                    int damage = CalculatePenetration(_damage, _penetration - _currentPenetration);
-                    EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
+                    //Move
+                    transform.position += transform.right * (hit.distance - movedDistance);
+                    movedDistance += hit.distance;
 
-                    if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
+
+                    if (hit.transform.TryGetComponent(out IDamageable damageable))
                     {
-                        //Effect
-                        ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
-                            .gameObject.GetComponent<ParticleSystem>();
-                        var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+                        int damage = CalculatePenetration(_damage, _penetration - _currentPenetration);
+                        EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
 
-                        //Effect
-                        ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
-                            .gameObject.GetComponent<ParticleSystem>();
-
-                        if (parts == EEntityPartType.Head)
+                        if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                         {
                             //Effect
-                            gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
-                            limitVelocityOverLifetimeModule.dampen = 0.6f;
-                        }
-                        else
-                        {
-                            limitVelocityOverLifetimeModule.dampen = 0.9f;
+                            ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
+                                .gameObject.GetComponent<ParticleSystem>();
+                            var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+
+                            //Effect
+                            ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
+                                .gameObject.GetComponent<ParticleSystem>();
+
+                            if (parts == EEntityPartType.Head)
+                            {
+                                //Effect
+                                gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
+                                limitVelocityOverLifetimeModule.dampen = 0.6f;
+                            }
+                            else
+                            {
+                                limitVelocityOverLifetimeModule.dampen = 0.9f;
+                            }
                         }
                     }
-
-                    //Effect
-                    gameObject.Pop(_hitEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, -hit.normal));
-                }
-                else
-                {
-                    //Effect
-                    gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
-                }
-
-                // Penetration
-                if (hit.transform.TryGetComponent(out IPenetrable penetrable))
-                {
-                    _currentPenetration -= penetrable.Resistivity;
-                    if (_currentPenetration > 0)
+                    else
                     {
+                        //Effect
+                        gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
+                    }
 
-                        _penetratedColliderList.Add(hit.collider);
+                    // Penetration
+                    if (hit.transform.TryGetComponent(out IPenetrable penetrable))
+                    {
+                        _currentPenetration -= penetrable.Resistivity;
+                        if (_currentPenetration > 0)
+                        {
+                            _penetratedColliderList.Add(hit.collider);
+                        }
+                        else
+                            Die();
                     }
                     else
                         Die();
-                }
-                else
-                    Die();
-
+                });
             }
             else
                 transform.position += movement;
@@ -104,7 +111,7 @@ namespace Hashira.Projectiles
             return CalculatePenetration(damage * 0.8f, penetratedCount - 1);
         }
 
-        public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner)
+        public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = null)
         {
             _damage = damage;
             _speed = speed;
@@ -116,6 +123,10 @@ namespace Hashira.Projectiles
             _trailRenderer.enabled = true;
             _collider.enabled = true;
             _penetratedColliderList = new List<Collider2D>();
+
+            _projectileModifiers = projectileModifiers;
+            _projectileModifiers ??= new List<ProjectileModifier>();
+            _projectileModifiers.ForEach(modifire => modifire.OnCreated(this));
         }
 
         public override void Die()

@@ -65,7 +65,7 @@ namespace Hashira.Items.Weapons
             Vector3 direction = CalculateRecoil(EntityGunWeapon.transform.right);
             CreateBullet(direction);
             //Effect
-            EntityGunWeapon.gameObject.Pop(GunSO.fireSpakleEffect, _firePos, Quaternion.LookRotation(Vector3.back, EntityGunWeapon.transform.right));
+            EntityGunWeapon.gameObject.Pop(GunSO.fireSpakleEffect, FirePos, Quaternion.LookRotation(Vector3.back, EntityGunWeapon.transform.right));
 
             return true;
         }
