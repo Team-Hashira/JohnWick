@@ -1,6 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Items.Weapons;
-using Hashira.Projectile;
+using Hashira.Projectiles;
 using UnityEngine;
 
 namespace Hashira.Items.PartsSystem

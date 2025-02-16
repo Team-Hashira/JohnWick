@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hashira.Projectile
+namespace Hashira.Projectiles
 {
     public class ProjectileBoxCollider2D : ProjectileCollider2D
     {

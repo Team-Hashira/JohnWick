@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hashira.Projectile
+namespace Hashira.Projectiles
 {
     public abstract class ProjectileCollider2D : MonoBehaviour
     {

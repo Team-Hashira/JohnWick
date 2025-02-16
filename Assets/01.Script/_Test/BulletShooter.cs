@@ -1,5 +1,5 @@
 using Crogen.CrogenPooling;
-using Hashira.Projectile;
+using Hashira.Projectiles;
 using UnityEngine;
 
 namespace Hashira
