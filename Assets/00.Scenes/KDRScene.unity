@@ -1099,6 +1099,10 @@ PrefabInstance:
       propertyPath: _endPosition
       value: 
       objectReference: {fileID: 2032985428}
+    - target: {fileID: 4016720954160572029, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      propertyPath: _whatIsGround.m_Bits
+      value: 2240
+      objectReference: {fileID: 0}
     - target: {fileID: 4478761898889932558, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
       propertyPath: m_Name
       value: Player
