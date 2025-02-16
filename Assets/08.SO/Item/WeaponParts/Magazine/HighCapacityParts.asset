@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
-  m_Name: BulletCapacityUpParts
+  m_Name: HighCapacityParts
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 0}
   itemDefaultSprite: {fileID: -1057668103, guid: b141040168b445a468e1af2a3643043c, type: 3}
-  itemName: BulletCapacityUp
+  itemName: HighCapacity
   itemDisplayName: "\uB300\uC6A9\uB7C9 \uD0C4\uCC3D"
-  itemDescription: "\uC7A5\uD0C4 \uC218\uAC00 \uB300\uD3ED \uC0C1\uC2B9\uD558\uB294
-    \uD0C4\uCC3D\uC774\uB2E4."
-  useCustomClass: 0
+  itemDescription: "\uC7A5\uD0C4 \uC218\uAC00 \uB300\uD3ED \uC0C1\uC2B9\uD558\uACE0,
+    3\uBC88 \uC3E0\uB54C\uB9C8\uB2E4 \uC720\uD0C4\uC744 \uB0B4\uBCF4\uB0C5\uB2C8\uB2E4."
+  itemRating: 2
+  useCustomClass: 1
   defaultClass: WeaponParts
   partsSpriteDictionary:
     _serializedList:

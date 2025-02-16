@@ -17,11 +17,9 @@ MonoBehaviour:
   itemName: Sniper
   itemDisplayName: "\uC800\uACA9\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uBA40\uB9AC\uAC00\uB294 \uCD1D"
+  itemRating: 3
   useCustomClass: 1
   defaultClass: 
-  <WhatIsTarget>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 2752
   <GrapOffset>k__BackingField: {x: 0.837, y: 0.112, z: 0}
   <RightHandOffset>k__BackingField: {x: -0.423, y: -0.13, z: 0}
   <LeftHandOffset>k__BackingField: {x: 0.065, y: -0.111, z: 0}

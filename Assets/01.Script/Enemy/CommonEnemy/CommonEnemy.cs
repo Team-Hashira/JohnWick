@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace Hashira.Enemies.CommonEnemy
 {
-    public class CommonEnemy : Enemy
+    public class CommonEnemy : Enemy, IPenetrable
     {
         [Header("Detect Player Setting")]
         [SerializeField]
         private Transform _eye;
         [field: SerializeField]
         public LayerMask WhatIsPlayer { get; private set; }
+        [field: SerializeField] public int Resistivity { get; set; } = 3; // KDR
+
         [SerializeField]
         private LayerMask _whatIsGround;
 

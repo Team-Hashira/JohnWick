@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: LaserSightParts
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
   itemDefaultSprite: {fileID: 2782361571930338662, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: LaserSight
   itemDisplayName: "\uB808\uC774\uC800 \uC0AC\uC774\uD2B8"
   itemDescription: "\uB808\uC774\uC800\uB85C \uC870\uC900\uC744 \uBCF4\uC870\uD558\uB294
     \uD30C\uCE20\uC785\uB2C8\uB2E4"
+  itemRating: 2
   useCustomClass: 1
   defaultClass: 
   partsSpriteDictionary:
@@ -35,3 +37,6 @@ MonoBehaviour:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 10
+  - Name: "\uBC18\uB3D9"
+    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
+    _baseValue: -10

@@ -17,6 +17,7 @@ MonoBehaviour:
   itemName: Rifle
   itemDisplayName: "\uC18C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC791\uC740 \uCD1D"
+  itemRating: 2
   useCustomClass: 1
   defaultClass: 
   <GrapOffset>k__BackingField: {x: 0.654, y: 0.085, z: 0}

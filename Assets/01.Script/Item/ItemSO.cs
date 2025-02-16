@@ -14,7 +14,6 @@ namespace Hashira.Items
         Rare,
         Epic,
         Legendary,
-        Mythic
     }
 
     public abstract class ItemSO : ScriptableObject
