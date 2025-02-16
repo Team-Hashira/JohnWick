@@ -37,3 +37,6 @@ MonoBehaviour:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 10
+  - Name: "\uBC18\uB3D9"
+    elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
+    _baseValue: -10
