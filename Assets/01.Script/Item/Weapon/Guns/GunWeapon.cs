@@ -148,6 +148,7 @@ namespace Hashira.Items.Weapons
             }
         }
 
+
         public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
         {
             if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return parts;

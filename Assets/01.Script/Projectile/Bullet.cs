@@ -17,7 +17,7 @@ namespace Hashira.Projectile
         [SerializeField] private EffectPoolType _bloodEffect;
         [SerializeField] private EffectPoolType _bloodBackEffect;
         [SerializeField] private EffectPoolType _wallBloodEffect;
-        private float _speed;
+        protected float _speed;
         private int _damage;
         private int _penetration;
         private int _currentPenetration;
@@ -36,7 +36,7 @@ namespace Hashira.Projectile
             _collider = GetComponent<BoxCollider2D>();
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             if (_isDead) return;
 
@@ -112,7 +112,7 @@ namespace Hashira.Projectile
             return CalculatePenetration(damage * 0.8f, penetratedCount - 1);
         }
 
-        public void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner)
+        public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner)
         {
             _damage = damage;
             _speed = speed;
