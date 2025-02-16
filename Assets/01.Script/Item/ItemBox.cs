@@ -3,6 +3,7 @@ using Hashira.Entities.Interacts;
 using Hashira.Items;
 using UnityEngine;
 using Doryu.CustomAttributes;
+using Crogen.CrogenPooling;
 
 namespace Hashira
 {
@@ -45,7 +46,7 @@ namespace Hashira
 				Item item = itemSO.GetItemClass();
 				DroppedItem droppedItem = ItemDropUtility.DroppedItem(item, transform.position);
 
-                float percent = (float)i / (_itemCount - 1);
+                float percent = (i + 0.5f) / _itemCount;
 
                 float min = -_gap * _itemCount * 0.5f, max = _gap * _itemCount * 0.5f;
 
@@ -68,9 +69,9 @@ namespace Hashira
             {
                 for (int i = 0; i < _droppedItems.Length; i++)
                 {
-                    if (_droppedItems[i] == false) continue;
+                    if (_droppedItems[i].gameObject.activeSelf == false) continue;
 
-                    Destroy(_droppedItems[i].gameObject);
+                    _droppedItems[i].Push();
 				}
 
                 Destroy(gameObject);

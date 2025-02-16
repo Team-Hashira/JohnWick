@@ -22,6 +22,8 @@ namespace Hashira.Entities.Interacts
         public Rigidbody2D Rigidbody2D { get; protected set; }
         public CircleCollider2D Collider { get; protected set; }
 
+        public Action OnInteractionSuccesEvent { get; protected set; }
+
         private float _descriptionOpenDelay = 0.5f;
         private float _holdStartTime = 0f;
         private bool _isHolding;

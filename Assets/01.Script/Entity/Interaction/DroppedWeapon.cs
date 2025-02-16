@@ -58,8 +58,9 @@ namespace Hashira.Entities.Interacts
                 weapon = weaponHolder?.EquipWeapon(meleeWeapon);
             }
 
-            if (weapon != null) SetItem(weapon);
-            else this.Push();
+            if (weapon != null) ItemDropUtility.DroppedItem(weapon, entity.transform.position);
+            OnInteractionSuccesEvent?.Invoke();
+            this.Push();
         }
 
         public override void SetItemData()
