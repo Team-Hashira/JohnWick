@@ -19,7 +19,7 @@ namespace Hashira.Items.PartsSystem
             _weaponVisual = _entityWeapon.VisualTrm;
 
             Sprite sprite = WeaponPartsSO.partsSpriteDictionary[weapon.GunSO];
-            int pixelPerUnit = PartsRenderer.PixelPerUnit;
+            float pixelPerUnit = sprite.pixelsPerUnit;
             _lineRenderer.transform.localPosition
                 = new Vector3((sprite.rect.width - sprite.pivot.x) / pixelPerUnit, -sprite.rect.height / pixelPerUnit / 2);
 
