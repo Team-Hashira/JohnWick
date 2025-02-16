@@ -1,5 +1,6 @@
 using Hashira.Core.EventSystem;
 using Hashira.Entities;
+using Hashira.Entities.Components;
 using Hashira.FSM;
 using Hashira.Players;
 using System;
@@ -11,6 +12,7 @@ namespace Hashira.Enemies.CommonEnemy
     {
         private CommonEnemy _enemy;
         private EnemyPathfinder _enemyPathfinder;
+        private EntityEmoji _entityEmoji;
 
         private float _idleStartTime;
         private float _waitDelay = 2f;
@@ -18,6 +20,7 @@ namespace Hashira.Enemies.CommonEnemy
         public CommonEnemyIdleState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
+            _entityEmoji = entity.GetEntityComponent<EntityEmoji>();
             _enemy = entity as CommonEnemy;
         }
 
@@ -38,6 +41,7 @@ namespace Hashira.Enemies.CommonEnemy
             Player player = _enemy.DetectPlayer();
             if (player != null)
             {
+                _entityEmoji?.ShowEmoji(EEmotion.Surprise, 1f);
                 _entityStateMachine.SetShareVariable("Target", player);
                 _entityStateMachine.ChangeState("Chase");
             }

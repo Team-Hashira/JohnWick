@@ -1,5 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
+using Hashira.Entities.Components;
 using Hashira.FSM;
 using Hashira.Players;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Hashira.Enemies.CommonEnemy
         private EnemyMover _enemyMover;
         private EntityRenderer _entityRenderer;
         private EntityStat _entityStat;
+        private EntityEmoji _entityEmoji;
 
         private StatElement _speedElement;
 
@@ -21,6 +23,7 @@ namespace Hashira.Enemies.CommonEnemy
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
+            _entityEmoji = entity.GetEntityComponent<EntityEmoji>();
             _speedElement = _entityStat?.StatDictionary["Speed"];
             _enemy = entity as CommonEnemy;
         }
@@ -43,6 +46,7 @@ namespace Hashira.Enemies.CommonEnemy
             Player player = _enemy.DetectPlayer();
             if (player != null)
             {
+                _entityEmoji?.ShowEmoji(EEmotion.Surprise, 1f);
                 _entityStateMachine.SetShareVariable("Target", player);
                 _entityStateMachine.ChangeState("Chase");
             }
