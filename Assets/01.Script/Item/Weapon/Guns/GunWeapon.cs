@@ -33,8 +33,10 @@ namespace Hashira.Items.Weapons
 
         public PartsRenderer PartsRenderer { get; private set; }
 
-        protected Vector3 _firePos;
+        public Vector3 FirePos { get; private set; }
         private float _lastFireTime;
+
+        private List<ProjectileModifier> _projectileModifiers = new List<ProjectileModifier>();
 
         public bool IsCanFire => _lastFireTime + 1 / _attackSpeedStat.Value < Time.time && EntityGunWeapon.IsStuck == false;
 
@@ -115,14 +117,14 @@ namespace Hashira.Items.Weapons
             float muzzlePartsSize = spriteRenderer.sprite != null ?
                 spriteRenderer.sprite.rect.width / spriteRenderer.sprite.pixelsPerUnit : 0;
 
-            _firePos = muzzlePos + spriteRenderer.transform.right * muzzlePartsSize;
+            FirePos = muzzlePos + spriteRenderer.transform.right * muzzlePartsSize;
         }
 
         protected void CreateBullet(Vector3 direction)
         {
             //Bullet
-            Bullet bullet = EntityGunWeapon.gameObject.Pop(GunSO.bullet, _firePos, Quaternion.identity) as Bullet;
-            bullet.Init(WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue, EntityGunWeapon.Entity.transform);
+            Bullet bullet = EntityGunWeapon.gameObject.Pop(GunSO.bullet, FirePos, Quaternion.identity) as Bullet;
+            bullet.Init(WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue, EntityGunWeapon.Entity.transform, _projectileModifiers);
 
             EntityGunWeapon.ApplyRecoil(_recoilStat.Value);
         }
@@ -192,6 +194,15 @@ namespace Hashira.Items.Weapons
             }
             weaponParts = null;
             return false;
+        }
+
+        public void AddProjectileModifier(ProjectileModifier projectileModifier)
+        {
+            _projectileModifiers.Add(projectileModifier);
+        }
+        public void RemoveProjectileModifier(ProjectileModifier projectileModifier)
+        {
+            _projectileModifiers.Remove(projectileModifier);
         }
 
         public void Reload()

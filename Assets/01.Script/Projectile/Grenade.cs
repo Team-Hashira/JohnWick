@@ -1,9 +1,11 @@
 using Crogen.CrogenPooling;
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    public class Grenade : Bullet
+    public class Grenade : Projectile
     {
         private Vector3 _direction;
         private float _minMaxAngle = 10f;
@@ -11,9 +13,9 @@ namespace Hashira.Projectiles
         private float _rotateSpeed = 150f;
         private bool _isUp;
 
-        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner)
+        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default)
         {
-            base.Init(whatIsTarget, direction, speed, damage, penetration, owner);
+            base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers);
             _angle = Random.Range(-_minMaxAngle, _minMaxAngle);
             _isUp = false;
             _direction = direction;

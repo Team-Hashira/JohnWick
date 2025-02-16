@@ -1,5 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Combat;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Projectiles
@@ -9,9 +10,9 @@ namespace Hashira.Projectiles
         public bool IsParryingable { get; set; }
         public Transform Owner { get; set; }
 
-        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner)
+        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default)
         {
-            base.Init(whatIsTarget, direction, speed, damage, penetration, owner);
+            base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers);
             Owner = owner;
             IsParryingable = true;
         }
