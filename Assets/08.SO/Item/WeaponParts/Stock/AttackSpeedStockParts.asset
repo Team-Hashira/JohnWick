@@ -17,6 +17,7 @@ MonoBehaviour:
   itemName: AttackSpeedStock
   itemDisplayName: "\uC911\uB7C9\uD615 \uAC1C\uBA38\uB9AC\uD310"
   itemDescription: "\uC5F0\uC0AC\uC18D\uB3C4\uAC00 \uBE68\uB77C\uC9C0\uB294 \uAC1C\uBA38\uB9AC\uD310\uC774\uB2E4."
+  itemRating: 2
   useCustomClass: 0
   defaultClass: WeaponParts
   partsSpriteDictionary:

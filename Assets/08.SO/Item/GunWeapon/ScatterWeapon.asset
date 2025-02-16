@@ -17,11 +17,9 @@ MonoBehaviour:
   itemName: Scatter
   itemDisplayName: "\uC0B0\uD0C4\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uBFCC\uB9AC\uB294 \uCD1D"
+  itemRating: 1
   useCustomClass: 1
   defaultClass: 
-  <WhatIsTarget>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 2752
   <GrapOffset>k__BackingField: {x: 0.616, y: 0.028, z: 0}
   <RightHandOffset>k__BackingField: {x: -0.117, y: -0.053, z: 0}
   <LeftHandOffset>k__BackingField: {x: 0.154, y: -0.062, z: 0}
