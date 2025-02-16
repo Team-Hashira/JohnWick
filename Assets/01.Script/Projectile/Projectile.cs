@@ -44,6 +44,8 @@ namespace Hashira.Projectiles
             if (isHit && newHitList.Count > 0)
             {
                 float movedDistance = 0;
+                bool isAnyHit = false;
+
                 //Damage
                 newHitList.ForEach(hit =>
                 {
@@ -51,40 +53,48 @@ namespace Hashira.Projectiles
                     transform.position += transform.right * (hit.distance - movedDistance);
                     movedDistance += hit.distance;
 
-
                     if (hit.transform.TryGetComponent(out IDamageable damageable))
                     {
-                        int damage = CalculatePenetration(_damage, _penetration - _currentPenetration);
-                        EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
-
-                        if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
+                        if (damageable.IsEvasion == false)
                         {
-                            //Effect
-                            ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
-                                .gameObject.GetComponent<ParticleSystem>();
-                            var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+                            int damage = CalculatePenetration(_damage, _penetration - _currentPenetration);
+                            EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
 
-                            //Effect
-                            ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
-                                .gameObject.GetComponent<ParticleSystem>();
-
-                            if (parts == EEntityPartType.Head)
+                            if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                             {
                                 //Effect
-                                gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
-                                limitVelocityOverLifetimeModule.dampen = 0.6f;
+                                ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
+                                    .gameObject.GetComponent<ParticleSystem>();
+                                var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+
+                                //Effect
+                                ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
+                                    .gameObject.GetComponent<ParticleSystem>();
+
+                                if (parts == EEntityPartType.Head)
+                                {
+                                    //Effect
+                                    gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
+                                    limitVelocityOverLifetimeModule.dampen = 0.6f;
+                                }
+                                else
+                                {
+                                    limitVelocityOverLifetimeModule.dampen = 0.9f;
+                                }
                             }
-                            else
-                            {
-                                limitVelocityOverLifetimeModule.dampen = 0.9f;
-                            }
+
+                            isAnyHit = true;
+                            _projectileModifiers.ForEach(modifire => modifire.OnHited(hit));
                         }
                     }
                     else
                     {
                         //Effect
                         gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
+                        isAnyHit = true;
+                        _projectileModifiers.ForEach(modifire => modifire.OnHited(hit));
                     }
+
 
                     // Penetration
                     if (hit.transform.TryGetComponent(out IPenetrable penetrable))
@@ -100,6 +110,9 @@ namespace Hashira.Projectiles
                     else
                         Die();
                 });
+
+                if (isAnyHit == false)
+                    transform.position += movement;
             }
             else
                 transform.position += movement;

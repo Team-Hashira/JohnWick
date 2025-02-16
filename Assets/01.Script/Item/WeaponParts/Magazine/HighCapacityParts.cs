@@ -12,11 +12,20 @@ namespace Hashira.Items.PartsSystem
         private float _speed = 30;
         private int _damage = 1000;
 
+        private TestProjectileModifier _testProjectileModifier;
+
+        public override object Clone()
+        {
+            _testProjectileModifier = new TestProjectileModifier();
+            return base.Clone();
+        }
+
         public override void Equip(GunWeapon weapon)
         {
             base.Equip(weapon);
             _fireCount = 0;
             _weapon.OnFireEvent += HandleFireEvent;
+            _weapon.AddProjectileModifier(_testProjectileModifier);
         }
 
         private void HandleFireEvent(int bulletAmount)
@@ -34,6 +43,7 @@ namespace Hashira.Items.PartsSystem
         {
             base.UnEquip();
             _weapon.OnFireEvent -= HandleFireEvent;
+            _weapon.RemoveProjectileModifier(_testProjectileModifier);
         }
     }
 }
