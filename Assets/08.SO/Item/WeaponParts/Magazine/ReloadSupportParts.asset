@@ -18,6 +18,7 @@ MonoBehaviour:
   itemDisplayName: "\uD035 \uB4DC\uB85C\uC6B0 \uD0C4\uCC3D"
   itemDescription: "\uC7AC\uC7A5\uC804 \uC18D\uB3C4\uB97C \uBE60\uB974\uAC8C\uD574\uC8FC\uB294
     \uD0C4\uCC3D\uC774\uB2E4.\n"
+  itemRating: 1
   useCustomClass: 0
   defaultClass: WeaponParts
   partsSpriteDictionary:
@@ -32,7 +33,7 @@ MonoBehaviour:
   _statList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 10
+    _baseValue: 20
   - Name: "\uC7A5\uC804\uC18D\uB3C4"
     elementSO: {fileID: 11400000, guid: e21207c15b4ae6347b7945e0a9607a2d, type: 2}
     _baseValue: -0.2

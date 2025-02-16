@@ -18,6 +18,7 @@ MonoBehaviour:
   itemDisplayName: "\uAD00\uD615\uD0C4\uCC3D"
   itemDescription: "\uACF5\uACA9\uB825\uC774 \uC18C\uD3ED \uB354 \uC0C1\uC2B9\uD558\uB294
     \uD0C4\uCC3D\uC774\uB2E4."
+  itemRating: 1
   useCustomClass: 0
   defaultClass: WeaponParts
   partsSpriteDictionary:

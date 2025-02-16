@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Core;
 using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
@@ -14,6 +15,7 @@ namespace Hashira.Entities.Interacts
         [Header("==========DroppedItem setting==========")]
         [SerializeField] protected ItemDataUI _itemData;
         [SerializeField] protected ItemDataUI _comparisonItemData;
+        [SerializeField] protected SpriteRenderer _itemLightRenderer;
         protected Transform _ItemDataTrm;
         protected Transform _ComparisonItemDataTrm;
 
@@ -71,6 +73,9 @@ namespace Hashira.Entities.Interacts
         public virtual void SetItem(Item item)
         {
             _itemSprite.sprite = item.ItemSO?.itemDefaultSprite;
+            Color color = ItemUtility.ItemRatingColorDict[item.ItemSO.itemRating];
+            color.a = 0.8f;
+            _itemLightRenderer.color = color;
             Collider.radius = _itemSprite.sprite.pivot.y / _itemSprite.sprite.pixelsPerUnit;
             string itemName = item.ItemSO == null ? "" : item.ItemSO.itemDisplayName;
             _nameText.text = $"{itemName}";

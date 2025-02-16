@@ -109,6 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a613eae86d1b90141a769891500c27f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &3605469127908599948 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1654626304800732954, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}
+  m_PrefabInstance: {fileID: 2665949328929660822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5777761705006678540 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8417756992034856346, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}
@@ -134,6 +139,7 @@ MonoBehaviour:
   _holdOutlineSprite: {fileID: 7512942849638832934}
   _itemData: {fileID: 2728221148228787060}
   _comparisonItemData: {fileID: 1411902181023380490}
+  _itemLightRenderer: {fileID: 3605469127908599948}
   _partsSO: {fileID: 0}
 --- !u!212 &7512942849638832934 stripped
 SpriteRenderer:

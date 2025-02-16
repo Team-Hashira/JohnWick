@@ -50,7 +50,7 @@ namespace Hashira.Items.PartsSystem
                 {
                     Vector2 partsPosition = pos;
                     spriteRenderer.transform.localPosition 
-                        = partsPosition / SpriteUtility.CommonPixelPerUnit;
+                        = partsPosition / ItemUtility.CommonPixelPerUnit;
                 }
             }
         }
