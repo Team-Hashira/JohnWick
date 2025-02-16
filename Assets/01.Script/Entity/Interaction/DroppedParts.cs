@@ -36,8 +36,9 @@ namespace Hashira.Entities.Interacts
             if (weaponHolder.CurrentWeapon != null && weaponHolder.CurrentWeapon is GunWeapon gunWeapon)
             {
                 WeaponParts weaponParts = gunWeapon.EquipParts(_partsSO.partsType, _parts);
-                if (weaponParts != null) SetItem(weaponParts);
-                else this.Push();
+                if (weaponParts != null) ItemDropUtility.DroppedItem(weaponParts, entity.transform.position);
+                OnInteractionSuccesEvent?.Invoke();
+                this.Push();
             }
         }
 
