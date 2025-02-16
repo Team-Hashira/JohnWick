@@ -55,7 +55,7 @@ namespace Hashira.Enemies.CommonEnemy
             {
                 if(_enemy.IsTargetOnAttackRange(_target.transform))
                 {
-                    _entityStateMachine.ChangeState("Attack");
+                    _entityStateMachine.DelayedChangeState("Attack");
                     return;
                 }
                 if (_enemyPathfinder.TargetNode != _targetMover.CurrentNode)
@@ -67,6 +67,7 @@ namespace Hashira.Enemies.CommonEnemy
         {
             if (_target == null)
                 _enemyPathfinder.OnMoveEndEvent -= HandleOnMoveEndEvent;
+            Debug.Log("Chase ≈ª√‚");
             base.OnExit();
         }
 

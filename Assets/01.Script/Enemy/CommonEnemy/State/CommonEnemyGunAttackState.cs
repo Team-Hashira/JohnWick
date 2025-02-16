@@ -47,7 +47,7 @@ namespace Hashira.Enemies.CommonEnemy
         public override void OnUpdate()
         {
             base.OnUpdate();
-
+            _entityRenderer.LookTarget(_target.transform.position);
             _entityGunWeapon.LookTarget(_target.transform.position);
             if (_commonEnemy.IsTargetOnAttackRange(_target.transform))
             {

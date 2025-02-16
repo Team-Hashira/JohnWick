@@ -6,7 +6,7 @@ namespace Hashira.Stage.Area
 	{
 		public void FixedUpdate()
 		{
-			if (Physics2D.OverlapBox(transform.position, size, transform.eulerAngles.z, whatIsTarget))
+			if (Physics2D.OverlapBox(transform.position, size, 0, whatIsTarget))
 				Invoke();
 		}
 	}

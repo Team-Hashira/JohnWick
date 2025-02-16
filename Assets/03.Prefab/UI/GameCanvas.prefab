@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &928311978583323576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,11 +368,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -392,11 +392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 502.4
+      value: 502.40002
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 133.51
+      value: 133.51001
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -428,11 +428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 30
+      value: 270.6
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 103.2
       objectReference: {fileID: 0}
     - target: {fileID: 1576597958147284835, guid: 9efb92e361a431c498bba3639cd181b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

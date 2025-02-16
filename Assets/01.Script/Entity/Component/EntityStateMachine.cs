@@ -1,6 +1,7 @@
 using Hashira.Entities;
 using Hashira.FSM;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
@@ -50,6 +51,21 @@ namespace Hashira.Entities.Components
                 return;
             }
         }
+
+        /// <summary>
+        /// 한프레임 쉬고 ChangeState를 호출해주는 함수입니다.
+        /// </summary>
+        /// <param name="newState"></param>
+        public void DelayedChangeState(string newState)
+        {
+            IEnumerator DelayCoroutine()
+            {
+                yield return null;
+                ChangeState(newState);
+            }
+            StartCoroutine(DelayCoroutine());
+        }
+
 
         public T GetShareVariable<T>(string key)
         {
@@ -104,7 +120,7 @@ namespace Hashira.Entities.Components
                     Type t = Type.GetType(className);
                     EntityState entityState = Activator.CreateInstance(t, _entity, state) as EntityState;
                     _stateDictionary.Add(state.stateName, entityState);
-                }   
+                }
                 catch (Exception ex)
                 {
                     if (ex is TargetInvocationException)
