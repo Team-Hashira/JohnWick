@@ -1,8 +1,7 @@
 using Crogen.CrogenPooling;
-using Hashira.Projectile;
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Projectiles
 {
     public class Grenade : Bullet
     {

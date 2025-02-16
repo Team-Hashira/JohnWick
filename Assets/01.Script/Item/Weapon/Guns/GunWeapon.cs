@@ -3,7 +3,7 @@ using Hashira.Core.EventSystem;
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
 using Hashira.Items.PartsSystem;
-using Hashira.Projectile;
+using Hashira.Projectiles;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

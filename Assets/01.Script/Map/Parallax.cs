@@ -7,6 +7,8 @@ namespace Hashira
         //[SerializeField] private Vector2 _weight;
 
         [SerializeField] private float _depth;
+        
+        private Transform _followTarget;
 
         private Vector3 _originPosition;
 
