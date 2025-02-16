@@ -65,7 +65,7 @@ namespace Hashira.Items.Weapons
                 {
                     Transform owner = EntityMeleeWeapon.Entity.transform;
                     if (hit.transform.TryGetComponent(out IParryingable parryingable) && parryingable.Owner != owner)
-                        parryingable.Parrying(_whatIsTarget, owner, _isCharged);
+                        parryingable.Parrying(WhatIsTarget, owner, _isCharged);
                 }
             }
         }
