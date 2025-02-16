@@ -3,31 +3,31 @@ using UnityEngine.Events;
 
 namespace Hashira.Stage.Area
 {
-    public class TriggerArea : MonoBehaviour
+    public abstract class TriggerArea : MonoBehaviour
     {
 		public UnityEvent Event;
 
-        public LayerMask whatIsTarget;
-        public Vector2 size = Vector2.one;
+		public LayerMask whatIsTarget;
+		public Vector2 size = Vector2.one;
 
 		public bool isOnlyOnce = true;
-		private bool isTrigged = false;
+		protected bool isTrigged = false;
 
-		public void FixedUpdate()
+		[SerializeField] protected Color _gizmosColor = Color.white;
+
+		protected void Invoke()
 		{
-			if (Physics2D.OverlapBox(transform.position, size, transform.eulerAngles.z, whatIsTarget))
-			{
-				isTrigged = true;
-				if (isOnlyOnce && isTrigged) return;
+			isTrigged = true;
+			if (isOnlyOnce && isTrigged) return;
 
-				Event?.Invoke();
-			}
+			Event?.Invoke();
 		}
 
 		private void OnDrawGizmos()
 		{
-			var origin = Gizmos.matrix;
+			Gizmos.color = _gizmosColor;
 			Gizmos.DrawWireCube(transform.position, size);
+			Gizmos.color = Color.white;
 		}
 	}
 }
