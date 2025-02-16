@@ -43,3 +43,6 @@ MonoBehaviour:
   - poolType: LandingSmoke
     prefab: {fileID: 2303994125148999489, guid: 9afa21dc182e59e49ae0882f2b31a169, type: 3}
     poolCount: 20
+  - poolType: BoomFire
+    prefab: {fileID: 8201632537294854824, guid: b25b528edf579c944976c324ce3b384b, type: 3}
+    poolCount: 20
