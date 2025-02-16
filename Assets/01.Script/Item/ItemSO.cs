@@ -7,6 +7,16 @@ using Doryu.CustomAttributes;
 
 namespace Hashira.Items
 {
+    public enum EItemRating
+    {
+        Common,
+        UnCommon,
+        Rare,
+        Epic,
+        Legendary,
+        Mythic
+    }
+
     public abstract class ItemSO : ScriptableObject
     {
         [Header("==========Item setting==========")]
@@ -20,6 +30,7 @@ namespace Hashira.Items
         public string itemDisplayName;
         [TextArea]
         public string itemDescription;
+        public EItemRating itemRating;
 
         public bool useCustomClass;
         [ToggleField("useCustomClass", false)]

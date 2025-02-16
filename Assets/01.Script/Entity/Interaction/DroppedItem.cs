@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
 using Hashira.Items;
+using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
 using Hashira.UI.InGame;
 using System;
@@ -17,6 +18,7 @@ namespace Hashira.Entities.Interacts
         protected Transform _ComparisonItemDataTrm;
 
         public Rigidbody2D Rigidbody2D { get; protected set; }
+        public CircleCollider2D Collider { get; protected set; }
 
         private float _descriptionOpenDelay = 0.5f;
         private float _holdStartTime = 0f;
@@ -29,6 +31,7 @@ namespace Hashira.Entities.Interacts
         {
             base.Awake();
             Rigidbody2D = GetComponent<Rigidbody2D>();
+            Collider = GetComponent<CircleCollider2D>();
             _ItemDataTrm = _itemData.transform.parent;
             _ComparisonItemDataTrm = _comparisonItemData.transform.parent;
             _ItemDataTrm.gameObject.SetActive(false);
@@ -68,6 +71,7 @@ namespace Hashira.Entities.Interacts
         public virtual void SetItem(Item item)
         {
             _itemSprite.sprite = item.ItemSO?.itemDefaultSprite;
+            Collider.radius = _itemSprite.sprite.pivot.y / _itemSprite.sprite.pixelsPerUnit;
             string itemName = item.ItemSO == null ? "" : item.ItemSO.itemDisplayName;
             _nameText.text = $"{itemName}";
         }

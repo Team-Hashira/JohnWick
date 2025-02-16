@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using Hashira.Core;
 using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
@@ -9,7 +10,6 @@ namespace Hashira.Items.PartsSystem
     {
         private SerializedDictionary<EWeaponPartsType, SpriteRenderer> _partsSpriteDictionary = new();
         [field: SerializeField] public LineRenderer LaserRenderer { get; private set; }
-        public const int PixelPerUnit = 16;
 
         private GunWeapon _currentWeapon;
 
@@ -43,12 +43,14 @@ namespace Hashira.Items.PartsSystem
 
             foreach (EWeaponPartsType partsType in Enum.GetValues(typeof(EWeaponPartsType)))
             {
-                _partsSpriteDictionary[partsType].sprite
+                SpriteRenderer spriteRenderer = _partsSpriteDictionary[partsType];
+                spriteRenderer.sprite
                     = gun?.GetParts(partsType)?.WeaponPartsSO.partsSpriteDictionary[gun.GunSO];
                 if (gun != null && gun.GunSO.partsEquipPosDict.TryGetValue(partsType, out Vector2Int pos))
                 {
                     Vector2 partsPosition = pos;
-                    _partsSpriteDictionary[partsType].transform.localPosition = partsPosition / PixelPerUnit;
+                    spriteRenderer.transform.localPosition 
+                        = partsPosition / SpriteUtility.CommonPixelPerUnit;
                 }
             }
         }

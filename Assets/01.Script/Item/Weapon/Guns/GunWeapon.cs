@@ -113,7 +113,7 @@ namespace Hashira.Items.Weapons
             SpriteRenderer spriteRenderer = EntityGunWeapon.PartsRenderer[EWeaponPartsType.Muzzle];
             Vector3 muzzlePos = spriteRenderer.transform.position;
             float muzzlePartsSize = spriteRenderer.sprite != null ?
-                spriteRenderer.sprite.rect.width / PartsRenderer.PixelPerUnit : 0;
+                spriteRenderer.sprite.rect.width / spriteRenderer.sprite.pixelsPerUnit : 0;
 
             _firePos = muzzlePos + spriteRenderer.transform.right * muzzlePartsSize;
         }
