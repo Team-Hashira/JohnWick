@@ -1,9 +1,6 @@
-using Hashira.Entities.Components;
-using System.Linq;
+using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 namespace Hashira.Entities.Interacts
 {
@@ -20,6 +17,10 @@ namespace Hashira.Entities.Interacts
 
         protected Material _holdOutlineMat;
 
+        public event Action OnInteractionEvent;
+
+        public bool CanInteraction { get; set; } = true;
+
         protected virtual void Awake()
         {
             _keyGuideObject.SetActive(false);
@@ -29,17 +30,20 @@ namespace Hashira.Entities.Interacts
 
         public virtual void Interaction(Entity entity)
         {
-
-        }
+            if (CanInteraction == false) return;
+            OnInteractionEvent?.Invoke();
+			OnInteractionEvent = null;
+		}
 
         public virtual void OffInteractable()
         {
-            _keyGuideObject.SetActive(false);
+			_keyGuideObject.SetActive(false);
         }
 
         public virtual void OnInteractable()
         {
-            _keyText.text = _inputReader.InteractKey;
+			if (CanInteraction == false) return;
+			_keyText.text = _inputReader.InteractKey;
             _keyGuideObject.SetActive(true);
         }
     }

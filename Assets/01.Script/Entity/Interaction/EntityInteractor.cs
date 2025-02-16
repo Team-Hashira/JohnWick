@@ -51,7 +51,13 @@ namespace Hashira.Entities
             IInteractable interactable = null;
             if (hits.Length > 0)
             {
-                RaycastHit2D hit = hits.ToList().OrderBy(hit => (hit.transform.position - transform.position).sqrMagnitude).ToArray()[0];
+                RaycastHit2D hit = hits.ToList()
+                    .Where(hit => 
+                    {
+                        hit.transform.TryGetComponent(out IInteractable interactable);
+                        return interactable.CanInteraction;
+                    })
+                    .OrderBy(hit => (hit.transform.position - transform.position).sqrMagnitude).ToArray()[0];
                 interactable = hit.transform.GetComponent<IInteractable>();
             }
 

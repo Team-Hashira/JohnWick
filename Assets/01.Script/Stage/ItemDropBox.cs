@@ -13,6 +13,8 @@ namespace Hashira.Stage
 		[SerializeField] private Vector2 _dropOffset;
 		[SerializeField] private UnityEvent OpenEvent;
 
+		public bool CanInteraction { get; set; } = true;
+
 		private bool _isInteractable = true;
 
 		private bool _isOpen = false;

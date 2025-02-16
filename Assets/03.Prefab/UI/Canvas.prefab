@@ -277,21 +277,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7042647141873436127}
     m_Modifications:
-    - target: {fileID: 2066269131013417922, guid: 165015920502303418f48b63c10735d4, type: 3}
-      propertyPath: m_Name
-      value: ProfileContainer
-      objectReference: {fileID: 0}
     - target: {fileID: 2130599337032169495, guid: 165015920502303418f48b63c10735d4, type: 3}
       propertyPath: m_Name
       value: GameCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952086822897396875, guid: 165015920502303418f48b63c10735d4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952086822897396875, guid: 165015920502303418f48b63c10735d4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3388761868632855257, guid: 165015920502303418f48b63c10735d4, type: 3}
       propertyPath: m_Pivot.x
@@ -373,16 +361,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3462007550697339494, guid: 165015920502303418f48b63c10735d4, type: 3}
+    - target: {fileID: 8693419312947519745, guid: 165015920502303418f48b63c10735d4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3462007550697339494, guid: 165015920502303418f48b63c10735d4, type: 3}
+    - target: {fileID: 8693419312947519745, guid: 165015920502303418f48b63c10735d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7469459376507281911, guid: 165015920502303418f48b63c10735d4, type: 3}
-      propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
