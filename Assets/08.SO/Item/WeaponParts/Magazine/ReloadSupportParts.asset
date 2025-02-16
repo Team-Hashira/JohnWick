@@ -15,7 +15,7 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemDefaultSprite: {fileID: -344291122, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: ReloadSupport
-  itemDisplayName: "\uD035 \uB4DC\uB85C\uC6B0 \uD0C4\uCC3D"
+  itemDisplayName: "\uC608\uD615 \uD0C4\uCC3D"
   itemDescription: "\uC7AC\uC7A5\uC804 \uC18D\uB3C4\uB97C \uBE60\uB974\uAC8C\uD574\uC8FC\uB294
     \uD0C4\uCC3D\uC774\uB2E4.\n"
   itemRating: 1
