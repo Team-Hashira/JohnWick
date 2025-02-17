@@ -12,6 +12,7 @@ namespace Hashira.Projectiles
         private static Dictionary<EntityHealth, IPoolingObject> _markedEntityHealthList = new Dictionary<EntityHealth, IPoolingObject>();
         public int damage = 500;
 
+        //한글 주석 테스트
         public override void OnCreated(Projectile projectile)
         {
             base.OnCreated(projectile);
