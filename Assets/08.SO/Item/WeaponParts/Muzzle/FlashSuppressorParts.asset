@@ -16,9 +16,10 @@ MonoBehaviour:
   itemDefaultSprite: {fileID: 1295986232, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: FlashSuppressor
   itemDisplayName: "\uC18C\uC5FC\uAE30"
-  itemDescription: "\uC774\uAC83\uC740 \uBD88\uAF43 \uC5B5\uC81C\uAE30"
+  itemDescription: "\uBD88\uAF43\uC744 \uC5B5\uC81C\uD558\uACE0 \uCD1D\uC54C\uC5D0
+    \uADF8 \uD798\uC744 \uB2F4\uC2B5\uB2C8\uB2E4."
   itemRating: 0
-  useCustomClass: 0
+  useCustomClass: 1
   defaultClass: WeaponParts
   partsSpriteDictionary:
     _serializedList:
