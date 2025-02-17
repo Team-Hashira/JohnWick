@@ -30,13 +30,13 @@ namespace Hashira.Enemies.SiegeEnemy
             _vigilantStartTime = Time.time;
             Vector3 soundPos = _entityStateMachine.GetShareVariable<Vector3>("SoundPosition");
             _entityRenderer.LookTarget(soundPos);
-            //_entityEmoji?.ShowEmoji(EEmotion.QuestionMark);
+            _entityEmoji?.ShowEmoji(EEmotion.Question, 3f);
         }
 
         public override void OnUpdate()
         {
             base.OnUpdate();
-            if(_vigilantStartTime + _vigilantTime < Time.time)
+            if (_vigilantStartTime + _vigilantTime < Time.time)
             {
                 _entityStateMachine.ChangeState("Recon");
             }
