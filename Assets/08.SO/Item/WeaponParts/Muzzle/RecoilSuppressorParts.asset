@@ -36,7 +36,7 @@ MonoBehaviour:
     _baseValue: 20
   - Name: "\uBC18\uB3D9"
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
-    _baseValue: -10
+    _baseValue: -6
   - Name: "\uAD00\uD1B5\uB825"
     elementSO: {fileID: 11400000, guid: 5b9bf81b7c848594ea76655dc9939382, type: 2}
     _baseValue: 4

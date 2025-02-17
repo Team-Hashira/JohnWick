@@ -48,7 +48,7 @@ namespace Hashira.Entities
             Health = MaxHealth;
 		}
 
-		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default)
+		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, bool isFixedDamage = false)
         {
             EEntityPartType hitPoint;
             if (_owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
@@ -60,7 +60,7 @@ namespace Hashira.Entities
 
             int prev = Health;
             bool isHead = hitPoint == EEntityPartType.Head;
-            int finalDamage = isHead ? damage * 2 : damage;
+            int finalDamage = (isHead && isFixedDamage == false) ? damage * 2 : damage;
             DamageText damageText = gameObject.Pop(UIPoolType.DamageText, raycastHit.point, Quaternion.identity)
                                     .gameObject.GetComponent<DamageText>();
             damageText.Init(finalDamage, isHead ? Color.yellow : Color.white);
