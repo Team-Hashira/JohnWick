@@ -40,7 +40,15 @@ namespace Hashira.Items.Weapons
             animationSeq = DOTween.Sequence();
             animationSeq.AppendCallback(() => EntityMeleeWeapon.transform.localEulerAngles = startRot);
             animationSeq.Append(EntityMeleeWeapon.transform.DOLocalRotate(endRot, duration).SetEase(Ease.OutBack));
-            animationSeq.InsertCallback(duration / 5, () => EntityMeleeWeapon.DamageCaster.CastDamage(damage, knockback: attackDir * 15f));
+            animationSeq.InsertCallback(duration / 5, () =>
+            {
+                EntityMeleeWeapon.DamageCaster.CastDamage(damage, knockback: attackDir * 15f);
+
+                //ÈÖµÎ¸£´Â ÀÌÆåÆ®
+                Vector3 effectPos = EntityMeleeWeapon.Entity.transform.position + EntityMeleeWeapon.transform.right * 0.85f + Vector3.up * 0.2f;
+                GameObject effectObj = EntityMeleeWeapon.transform.gameObject.Pop(EffectPoolType.MeleeAttackEffect, effectPos, Quaternion.identity).gameObject;
+                effectObj.transform.localScale = new Vector3(Mathf.Sign(EntityMeleeWeapon.transform.right.x), 1, 1);
+            });
             animationSeq.InsertCallback(duration / 2, () =>
             {
                 _onParrying = false;

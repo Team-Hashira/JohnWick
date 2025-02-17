@@ -38,11 +38,6 @@ namespace Hashira.Items.Weapons
         public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             base.Attack(damage, isDown, whatIsTarget);
-
-            //휘두르는 이펙트
-            Vector3 effectPos = EntityMeleeWeapon.transform.position + EntityMeleeWeapon.transform.right * 0.85f + Vector3.up * -0.3f;
-            GameObject effectObj = EntityMeleeWeapon.transform.gameObject.Pop(EffectPoolType.MeleeAttackEffect, effectPos, Quaternion.identity).gameObject;
-            effectObj.transform.localScale = new Vector3(Mathf.Sign(EntityMeleeWeapon.transform.right.x), 1, 1);
         }
 
         public override void UnEquip()
