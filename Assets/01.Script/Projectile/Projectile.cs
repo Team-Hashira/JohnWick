@@ -59,7 +59,7 @@ namespace Hashira.Projectiles
                             OnHitedDamageable(hit, damageable);
 
                             isAnyHit = true;
-                            _projectileModifiers.ForEach(modifire => modifire.OnHitedDamageable(hit, damageable));
+                            _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, damageable));
                         }
                     }
                     else
@@ -67,7 +67,7 @@ namespace Hashira.Projectiles
                         OnHited(hit);
 
                         isAnyHit = true;
-                        _projectileModifiers.ForEach(modifire => modifire.OnHited(hit));
+                        _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, null));
                     }
 
 
@@ -124,7 +124,7 @@ namespace Hashira.Projectiles
 
             _projectileModifiers = projectileModifiers;
             _projectileModifiers ??= new List<ProjectileModifier>();
-            _projectileModifiers.ForEach(modifire => modifire.OnCreated(this));
+            _projectileModifiers.ForEach(modifire => modifire.OnProjectileCreate(this));
         }
 
         public override void Die()

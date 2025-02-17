@@ -5,17 +5,15 @@ namespace Hashira.Projectiles
     public class ProjectileModifier
     {
         protected Projectile _projectile;
-        public virtual void OnCreated(Projectile projectile)
+        //총알이 생겨날 당시
+        public virtual void OnProjectileCreate(Projectile projectile)
         {
             _projectile = projectile;
         }
-        public virtual void OnHited(RaycastHit2D hit)
+        //총알이 충돌시
+        public virtual void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
 
-        }
-        public virtual void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
-        {
-            OnHited(hit);
         }
     }
 }

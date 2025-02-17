@@ -11,14 +11,8 @@ namespace Hashira
         public int ignitionLevel;
         public float ignitionDuration;
 
-        public override void OnCreated(Projectile projectile)
+        public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
-            base.OnCreated(projectile);
-        }
-
-        public override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
-        {
-            base.OnHitedDamageable(hit, damageable);
             if (damageable is EntityHealth entityHealth)
             {
                 EffectManager.Instance.AddEffect<Ignition>(entityHealth.Owner, ignitionLevel, ignitionDuration);

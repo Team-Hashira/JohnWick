@@ -12,16 +12,16 @@ namespace Hashira.Projectiles
         private static Dictionary<EntityHealth, IPoolingObject> _markedEntityHealthList = new Dictionary<EntityHealth, IPoolingObject>();
         public int damage = 500;
 
-        //한글 주석 테스트
-        public override void OnCreated(Projectile projectile)
+        public override void OnProjectileCreate(Projectile projectile)
         {
-            base.OnCreated(projectile);
+            base.OnProjectileCreate(projectile);
         }
 
-        public override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
+        public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
-            base.OnHitedDamageable(hit, damageable);
-            if (damageable is EntityHealth entityHealth && entityHealth.Owner != GameManager.Instance.Player && _markedEntityHealthList.ContainsKey(entityHealth) == false)
+            base.OnProjectileHit(hit, damageable);
+            if (damageable != null && damageable is EntityHealth entityHealth && 
+                entityHealth.Owner != GameManager.Instance.Player && _markedEntityHealthList.ContainsKey(entityHealth) == false)
             {
                 entityHealth.OnDieEvent += HandleDieEvent;
                 IPoolingObject mark = _projectile.gameObject.Pop(OtherPoolType.LaserMark, entityHealth.Owner.transform);
