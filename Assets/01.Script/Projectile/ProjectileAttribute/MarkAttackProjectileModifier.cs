@@ -20,7 +20,7 @@ namespace Hashira.Projectiles
         public override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnHitedDamageable(hit, damageable);
-            if (damageable is EntityHealth entityHealth && _markedEntityHealthList.ContainsKey(entityHealth) == false)
+            if (damageable is EntityHealth entityHealth && entityHealth.Owner != GameManager.Instance.Player && _markedEntityHealthList.ContainsKey(entityHealth) == false)
             {
                 entityHealth.OnDieEvent += HandleDieEvent;
                 IPoolingObject mark = _projectile.gameObject.Pop(OtherPoolType.LaserMark, entityHealth.Owner.transform);
