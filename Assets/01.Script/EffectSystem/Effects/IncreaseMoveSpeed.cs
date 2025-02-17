@@ -1,4 +1,5 @@
 using Hashira.Core.StatSystem;
+using UnityEngine;
 
 namespace Hashira.EffectSystem.Effects
 {
@@ -8,7 +9,7 @@ namespace Hashira.EffectSystem.Effects
         public override void Enable()
         {
             base.Enable();
-            _speedStatElement = _playerStat.StatDictionary["Speed"];
+            _speedStatElement = entityStat.StatDictionary["Speed"];
             _speedStatElement.AddModify("IncreaseMoveSpeed", 10.0f * level, EModifyMode.Percnet);
             //TODO 여기에 이펙트
         }
@@ -16,6 +17,7 @@ namespace Hashira.EffectSystem.Effects
         public override void Update()
         {
             base.Update();
+            Debug.Log("dfdf");
         }
 
         public override void Disable()
