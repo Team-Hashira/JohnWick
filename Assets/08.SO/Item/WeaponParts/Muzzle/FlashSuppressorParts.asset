@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: FlashSuppressorParts
   m_EditorClassIdentifier: 
+  itemIcon: {fileID: 0}
   itemDefaultSprite: {fileID: 1295986232, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: FlashSuppressor
   itemDisplayName: "\uC18C\uC5FC\uAE30"
   itemDescription: "\uC774\uAC83\uC740 \uBD88\uAF43 \uC5B5\uC81C\uAE30"
+  itemRating: 0
   useCustomClass: 0
   defaultClass: WeaponParts
   partsSpriteDictionary:
@@ -33,4 +35,4 @@ MonoBehaviour:
     _baseValue: 20
   - Name: "\uBC18\uB3D9"
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
-    _baseValue: -8
+    _baseValue: -3

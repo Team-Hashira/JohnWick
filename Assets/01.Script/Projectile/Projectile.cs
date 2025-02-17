@@ -14,7 +14,7 @@ namespace Hashira.Projectiles
         [SerializeField] protected EffectPoolType _hitEffect;
         [SerializeField] protected EffectPoolType _spakleEffect;
         protected float _speed;
-        protected int _damage;
+        public int Damage { get; protected set; }
         protected int _penetration;
         protected int _currentPenetration;
         protected LayerMask _whatIsTarget;
@@ -24,6 +24,7 @@ namespace Hashira.Projectiles
         protected List<ProjectileModifier> _projectileModifiers;
 
         protected List<Collider2D> _penetratedColliderList = new List<Collider2D>();
+        public Transform Owner { get; set; }
 
         protected virtual void Awake()
         {
@@ -57,7 +58,7 @@ namespace Hashira.Projectiles
                     {
                         if (damageable.IsEvasion == false)
                         {
-                            int damage = CalculatePenetration(_damage, _penetration - _currentPenetration);
+                            int damage = CalculatePenetration(Damage, _penetration - _currentPenetration);
                             EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
 
                             if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
@@ -84,7 +85,7 @@ namespace Hashira.Projectiles
                             }
 
                             isAnyHit = true;
-                            _projectileModifiers.ForEach(modifire => modifire.OnHited(hit));
+                            _projectileModifiers.ForEach(modifire => modifire.OnHitedDamageable(hit, damageable));
                         }
                     }
                     else
@@ -126,7 +127,7 @@ namespace Hashira.Projectiles
 
         public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = null)
         {
-            _damage = damage;
+            Damage = damage;
             _speed = speed;
             _penetration = penetration;
             _currentPenetration = penetration;
@@ -136,6 +137,7 @@ namespace Hashira.Projectiles
             _trailRenderer.enabled = true;
             _collider.enabled = true;
             _penetratedColliderList = new List<Collider2D>();
+            Owner = owner;
 
             _projectileModifiers = projectileModifiers;
             _projectileModifiers ??= new List<ProjectileModifier>();

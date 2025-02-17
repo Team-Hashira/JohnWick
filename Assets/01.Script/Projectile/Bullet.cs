@@ -8,7 +8,6 @@ namespace Hashira.Projectiles
     public class Bullet : Projectile, IParryingable
     {
         public bool IsParryingable { get; set; }
-        public Transform Owner { get; set; }
 
         public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default)
         {
@@ -27,7 +26,7 @@ namespace Hashira.Projectiles
             if (isChargedParrying)
             {
                 CameraManager.Instance.ShakeCamera(15, 11, 0.25f);
-                _damage *= 10;
+                Damage *= 10;
                 _speed *= 10;
                 gameObject.Pop(EffectPoolType.HitSparkleEffect, transform.position, effectRotation);
             }
