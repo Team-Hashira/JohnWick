@@ -10,7 +10,7 @@ namespace Hashira.EffectSystem
     public class EffectManager : MonoSingleton<EffectManager>
     {
         [SerializeField] private List<EffectUIDataSO> _effectUIDataSOList = new List<EffectUIDataSO>();
-        private readonly Dictionary<Entity, List<Effect>> _effectDict = new Dictionary<Entity, List<Effect>>();
+        private Dictionary<Entity, List<Effect>> _effectDict = new Dictionary<Entity, List<Effect>>();
 
         public event Action<Effect> EffectAddedEvent;
         public event Action<Effect> EffectRemovedEvent;
@@ -67,10 +67,20 @@ namespace Hashira.EffectSystem
 			removeEffect.Disable();
 		}
 
+        private void InitEffectDict()
+        {
+			_effectDict = _effectDict.Where(x => x.Key != null).ToDictionary(x=>x.Key, x=>x.Value);
+		}
+
 		private void Update()
         {
             foreach (var effectList in _effectDict)
             {
+                if (effectList.Key == null)
+                {
+                    InitEffectDict();
+                    return;
+				}
 				for (int i = 0; i < effectList.Value.Count; i++)
 				{
 					var effect = effectList.Value[i];
