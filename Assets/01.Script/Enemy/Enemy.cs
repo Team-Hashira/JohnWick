@@ -102,6 +102,12 @@ namespace Hashira.Enemies
             return null;
         }
 
+        public virtual bool IsWallBetweenTarget(Transform target)
+        {
+            Vector3 direction = target.position - _eye.transform.position;
+            return Physics2D.Raycast(transform.position, direction.normalized, direction.magnitude, _whatIsGround);
+        }
+
         public virtual bool IsTargetOnAttackRange(Transform target)
         {
             float distanceSqr = (transform.position - target.position).sqrMagnitude;

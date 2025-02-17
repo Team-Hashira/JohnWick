@@ -34,7 +34,7 @@ namespace Hashira.Enemies.CommonEnemy
             _attackSpeedElement = _entityStat.StatDictionary["AttackSpeed"];
             _attackPowerElement = _entityStat.StatDictionary["AttackPower"];
 
-            _lastAttackTime = 1.5f;
+            _lastAttackTime = -1.5f;
         }
 
         public override void OnEnter()
