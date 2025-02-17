@@ -5470,7 +5470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5116424602048337280
 Transform:
   m_ObjectHideFlags: 0
@@ -5542,7 +5542,7 @@ MonoBehaviour:
     m_Bits: 256
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 2240
+    m_Bits: 2241
   <Resistivity>k__BackingField: 3
 --- !u!114 &6722688745115300717
 MonoBehaviour:
