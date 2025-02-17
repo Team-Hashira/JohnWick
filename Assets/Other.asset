@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef843ff4ebdeee344a631d7c1ad9917f, type: 3}
   m_Name: Other
   m_EditorClassIdentifier: 
-  pairs: []
+  pairs:
+  - poolType: LaserMark
+    prefab: {fileID: 4368402855624174704, guid: 20114f0776196bb4ea412ce3e1a569aa, type: 3}
+    poolCount: 10

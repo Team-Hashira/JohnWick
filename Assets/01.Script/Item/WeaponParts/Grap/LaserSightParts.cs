@@ -1,5 +1,8 @@
+using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
+using Hashira.Projectiles;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Items.PartsSystem
@@ -12,9 +15,18 @@ namespace Hashira.Items.PartsSystem
         private EntityGunWeapon _entityWeapon;
         private Transform _weaponVisual;
 
+        private MarkAttackProjectileModifier _markAttackProjectileModifier;
+
+        public override object Clone()
+        {
+            _markAttackProjectileModifier = new MarkAttackProjectileModifier();
+            return base.Clone();
+        }
+
         public override void Equip(GunWeapon weapon)
         {
             base.Equip(weapon);
+            _weapon.AddProjectileModifier(_markAttackProjectileModifier);
             _entityWeapon = weapon.EntityGunWeapon;
             _weaponVisual = _entityWeapon.VisualTrm;
 
@@ -60,6 +72,7 @@ namespace Hashira.Items.PartsSystem
         public override void UnEquip()
         {
             base.UnEquip();
+            _weapon.RemoveProjectileModifier(_markAttackProjectileModifier);
             if (_entityWeapon.CurrentWeapon == _weapon) _lineRenderer.enabled = false;
             _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
         }

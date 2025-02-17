@@ -25,7 +25,7 @@ namespace Hashira.Entities
         public Entity Owner {  get; private set; }
         private StatElement _maxHealth;
         private bool _isInvincible;
-        private bool _isDie;
+        public bool IsDie { get; private set; }
 
         public int MaxHealth => _maxHealth.IntValue;
         public event Action<int, int> OnHealthChangedEvent;
@@ -66,7 +66,7 @@ namespace Hashira.Entities
                 if (hitPoint == EEntityPartType.Head && attackType == EAttackType.Default) attackType = EAttackType.HeadShot;
             }
 
-            if (_isDie) return hitPoint;
+            if (IsDie) return hitPoint;
 
             int prev = Health;
             int finalDamage = CalculateDamage(damage, hitPoint, attackType);
@@ -102,7 +102,7 @@ namespace Hashira.Entities
 
         public void ApplyRecovery(int recovery)
         {
-            if (_isDie) return;
+            if (IsDie) return;
 
             int prev = Health;
             Health += recovery;
@@ -113,13 +113,13 @@ namespace Hashira.Entities
 
         public void Resurrection()
         {
-            _isDie = false;
+            IsDie = false;
             ApplyRecovery(MaxHealth);
         }
 
         public void Die()
         {
-            _isDie = true;
+            IsDie = true;
             OnDieEvent?.Invoke();
             OnDieEvent = null;
 		}
