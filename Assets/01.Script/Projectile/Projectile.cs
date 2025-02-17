@@ -56,7 +56,7 @@ namespace Hashira.Projectiles
                     {
                         if (damageable.IsEvasion == false)
                         {
-                            OnHitedDamageable(hit, damageable);
+                            OnHited(hit, damageable);
 
                             isAnyHit = true;
                             _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, damageable));
@@ -64,7 +64,7 @@ namespace Hashira.Projectiles
                     }
                     else
                     {
-                        OnHited(hit);
+                        OnHited(hit, null);
 
                         isAnyHit = true;
                         _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, null));
@@ -99,14 +99,7 @@ namespace Hashira.Projectiles
             return CalculatePenetration(damage * 0.8f, penetratedCount - 1);
         }
 
-        protected virtual void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
-        {
-            OnHited(hit);
-        }
-        protected virtual void OnHited(RaycastHit2D hit)
-        {
-
-        }
+        protected virtual void OnHited(RaycastHit2D hit, IDamageable damageable) { }
 
         public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = null)
         {

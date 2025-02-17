@@ -17,11 +17,9 @@ MonoBehaviour:
   itemName: Pistol
   itemDisplayName: "\uAD8C\uCD1D"
   itemDescription: "\uC774\uAC83\uC740 \uC8FC\uBA39 \uCD1D"
+  itemRating: 0
   useCustomClass: 1
   defaultClass: 
-  <WhatIsTarget>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 2752
   <GrapOffset>k__BackingField: {x: 0.513, y: 0.061, z: 0}
   <RightHandOffset>k__BackingField: {x: -0.0891, y: -0.053, z: 0}
   <LeftHandOffset>k__BackingField: {x: 0.156, y: -0.063, z: 0}
@@ -46,7 +44,7 @@ MonoBehaviour:
   cartridgeCaseParticlePoint: {x: -0.08, y: 0.086, z: 0}
   bullet: 0
   fireSpakleEffect: 1
-  bulletSpeed: 200
+  bulletSpeed: 100
   reloadDuration: 1
   partsEquipUIPosDict:
     _serializedList:
