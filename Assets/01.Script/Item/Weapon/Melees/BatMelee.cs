@@ -23,15 +23,15 @@ namespace Hashira.Items.Weapons
 
             if (hit.transform.TryGetComponent(out Entity entity))
             {
-                //Effect
-                ParticleSystem wallBloodEffect = EntityMeleeWeapon.gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, EntityMeleeWeapon.transform.parent.rotation)
-                    .gameObject.GetComponent<ParticleSystem>();
-                var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
-                limitVelocityOverLifetimeModule.dampen = 0.9f;
+                ////Effect
+                //ParticleSystem wallBloodEffect = EntityMeleeWeapon.gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, EntityMeleeWeapon.transform.parent.rotation)
+                //    .gameObject.GetComponent<ParticleSystem>();
+                //var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+                //limitVelocityOverLifetimeModule.dampen = 0.9f;
 
-                //Effect
-                ParticleSystem bloodBackEffect = EntityMeleeWeapon.gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, EntityMeleeWeapon.transform.parent.rotation)
-                    .gameObject.GetComponent<ParticleSystem>();
+                ////Effect
+                //ParticleSystem bloodBackEffect = EntityMeleeWeapon.gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, EntityMeleeWeapon.transform.parent.rotation)
+                //    .gameObject.GetComponent<ParticleSystem>();
             }
         }
 
@@ -39,7 +39,10 @@ namespace Hashira.Items.Weapons
         {
             base.Attack(damage, isDown, whatIsTarget);
 
-            //휘두르는 이펙트?
+            //휘두르는 이펙트
+            Vector3 effectPos = EntityMeleeWeapon.transform.position + EntityMeleeWeapon.transform.right * 0.85f + Vector3.up * -0.3f;
+            GameObject effectObj = EntityMeleeWeapon.transform.gameObject.Pop(EffectPoolType.MeleeAttackEffect, effectPos, Quaternion.identity).gameObject;
+            effectObj.transform.localScale = new Vector3(Mathf.Sign(EntityMeleeWeapon.transform.right.x), 1, 1);
         }
 
         public override void UnEquip()

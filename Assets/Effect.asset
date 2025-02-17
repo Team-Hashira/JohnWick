@@ -49,3 +49,6 @@ MonoBehaviour:
   - poolType: SoundEffect
     prefab: {fileID: 5115054747967181027, guid: d698eb5fba544484e8324253d4711fc9, type: 3}
     poolCount: 20
+  - poolType: MeleeAttackEffect
+    prefab: {fileID: 4274427982390344803, guid: f3b83b2dce9c32a4e8ea3be80f65dd3d, type: 3}
+    poolCount: 20
