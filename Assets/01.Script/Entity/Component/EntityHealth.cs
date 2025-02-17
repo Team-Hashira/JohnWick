@@ -13,7 +13,7 @@ namespace Hashira.Entities
 
         [SerializeField] private StatElementSO _healthStatSO;
 
-        private Entity _owner;
+        public Entity Owner {  get; private set; }
         private StatElement _maxHealth;
         private bool _isInvincible;
         private bool _isDie;
@@ -35,14 +35,14 @@ namespace Hashira.Entities
 
 		public void Initialize(Entity entity)
         {
-            _owner = entity;
+            Owner = entity;
         }
 
         public void AfterInit()
         {
-            _maxHealth = _owner.GetEntityComponent<EntityStat>().StatDictionary[_healthStatSO];
-			_entityMover = _owner.GetEntityComponent<EntityMover>(true);
-			_entityStateMachine = _owner.GetEntityComponent<EntityStateMachine>();
+            _maxHealth = Owner.GetEntityComponent<EntityStat>().StatDictionary[_healthStatSO];
+			_entityMover = Owner.GetEntityComponent<EntityMover>(true);
+			_entityStateMachine = Owner.GetEntityComponent<EntityStateMachine>();
 
 			_isInvincible = _maxHealth == null;
             Health = MaxHealth;
@@ -51,7 +51,7 @@ namespace Hashira.Entities
 		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, bool isFixedDamage = false)
         {
             EEntityPartType hitPoint;
-            if (raycastHit != default && _owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
+            if (raycastHit != default && Owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
                 hitPoint = entityPartCollider.Hit(raycastHit.collider, raycastHit, attackerTrm);
             else
                 hitPoint = EEntityPartType.Body;
@@ -61,7 +61,7 @@ namespace Hashira.Entities
             int prev = Health;
             bool isHead = hitPoint == EEntityPartType.Head;
             int finalDamage = (isHead && isFixedDamage == false) ? damage * 2 : damage;
-            Vector3 textPos = raycastHit != default ? raycastHit.point : _owner.transform.position;
+            Vector3 textPos = raycastHit != default ? raycastHit.point : Owner.transform.position;
             DamageText damageText = gameObject.Pop(UIPoolType.DamageText, textPos, Quaternion.identity)
                                     .gameObject.GetComponent<DamageText>();
             damageText.Init(finalDamage, isHead ? Color.yellow : Color.white);

@@ -1,11 +1,11 @@
 using Hashira.Entities;
 using UnityEngine;
 
-namespace Hashira.EffectSystem
+namespace Hashira.EffectSystem.Effects
 {
     public class Ignition : Effect
     {
-        private int _damage = 20;
+        private readonly int[] _damage = { 20, 30, 50 };
         private float _damageDelay = 1f;
         private float _lastDamageTime;
 
@@ -22,7 +22,7 @@ namespace Hashira.EffectSystem
             if (_lastDamageTime + _damageDelay < Time.time)
             {
                 _lastDamageTime = Time.time;
-                entity.GetEntityComponent<EntityHealth>().ApplyDamage(_damage, new RaycastHit2D(), null);
+                entity.GetEntityComponent<EntityHealth>().ApplyDamage(_damage[level < 3 ? level : 2], new RaycastHit2D(), null);
             }
         }
 

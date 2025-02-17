@@ -1,4 +1,5 @@
 using Hashira.EffectSystem;
+using Hashira.EffectSystem.Effects;
 using Hashira.Entities;
 using Hashira.Projectiles;
 using UnityEngine;
@@ -18,9 +19,9 @@ namespace Hashira
         public override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnHitedDamageable(hit, damageable);
-            if (damageable is Entity entity)
+            if (damageable is EntityHealth entityHealth)
             {
-                EffectManager.Instance.AddEffect<Ignition>(entity, ignitionLevel, ignitionDuration);
+                EffectManager.Instance.AddEffect<Ignition>(entityHealth.Owner, ignitionLevel, ignitionDuration);
             }
         }
     }
