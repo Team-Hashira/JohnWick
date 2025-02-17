@@ -11,8 +11,6 @@ namespace Hashira.Projectiles
         [SerializeField] protected bool _canMultipleAttacks;
         [SerializeField] protected ProjectileCollider2D _projectileCollider;
         [SerializeField] protected TrailRenderer _trailRenderer;
-        [SerializeField] protected EffectPoolType _hitEffect;
-        [SerializeField] protected EffectPoolType _spakleEffect;
         protected float _speed;
         public int Damage { get; protected set; }
         protected int _penetration;
@@ -58,31 +56,7 @@ namespace Hashira.Projectiles
                     {
                         if (damageable.IsEvasion == false)
                         {
-                            int damage = CalculatePenetration(Damage, _penetration - _currentPenetration);
-                            EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
-
-                            if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
-                            {
-                                //Effect
-                                ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
-                                    .gameObject.GetComponent<ParticleSystem>();
-                                var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
-
-                                //Effect
-                                ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
-                                    .gameObject.GetComponent<ParticleSystem>();
-
-                                if (parts == EEntityPartType.Head)
-                                {
-                                    //Effect
-                                    gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
-                                    limitVelocityOverLifetimeModule.dampen = 0.6f;
-                                }
-                                else
-                                {
-                                    limitVelocityOverLifetimeModule.dampen = 0.9f;
-                                }
-                            }
+                            OnHitedDamageable(hit, damageable);
 
                             isAnyHit = true;
                             _projectileModifiers.ForEach(modifire => modifire.OnHitedDamageable(hit, damageable));
@@ -90,8 +64,8 @@ namespace Hashira.Projectiles
                     }
                     else
                     {
-                        //Effect
-                        gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
+                        OnHited(hit);
+
                         isAnyHit = true;
                         _projectileModifiers.ForEach(modifire => modifire.OnHited(hit));
                     }
@@ -123,6 +97,15 @@ namespace Hashira.Projectiles
         {
             if (penetratedCount == 0) return Mathf.CeilToInt(damage);
             return CalculatePenetration(damage * 0.8f, penetratedCount - 1);
+        }
+
+        protected virtual void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
+        {
+            OnHited(hit);
+        }
+        protected virtual void OnHited(RaycastHit2D hit)
+        {
+
         }
 
         public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = null)

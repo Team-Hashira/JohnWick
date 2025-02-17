@@ -13,12 +13,21 @@ namespace Hashira.Projectiles
         private float _rotateSpeed = 150f;
         private bool _isUp;
 
+        [SerializeField] private CircleDamageCaster2D _circleDamageCaster;
+
         public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default)
         {
             base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers);
             _angle = Random.Range(-_minMaxAngle, _minMaxAngle);
             _isUp = false;
             _direction = direction;
+        }
+
+        protected override void OnHited(RaycastHit2D hit)
+        {
+            base.OnHited(hit);
+            _circleDamageCaster.SetLayerMask(_whatIsTarget);
+            _circleDamageCaster.CastDamage(Damage, Vector2.zero, transform.right);
         }
 
         protected override void FixedUpdate()

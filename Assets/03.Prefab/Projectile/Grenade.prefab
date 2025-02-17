@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2660806589085077476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1531972120683412294}
+  - component: {fileID: 8462662091325190925}
+  m_Layer: 10
+  m_Name: DamageCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1531972120683412294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2660806589085077476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3369376462046353360}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8462662091325190925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2660806589085077476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3bd21fc361000479e0b5aa722e462d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excluded: 0
+  allocationCount: 32
+  _whatIsCastable:
+    serializedVersion: 2
+    m_Bits: 0
+  _usingExcludeCast: 0
+  excludedDamageCasterList: []
+  center: {x: 0, y: 0}
+  radius: 7.37
 --- !u!1 &2886854461176573074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4864,10 +4917,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.809, y: 0.019, z: 0}
   m_LocalScale: {x: 0.15, y: 0.07, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4713546018626560638}
   - {fileID: 8544737713021675097}
+  - {fileID: 1531972120683412294}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8843389198121419652
@@ -4939,13 +4993,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 2
   _dieDelay: 0.4
+  _canMultipleAttacks: 0
   _projectileCollider: {fileID: 8337595389387369156}
   _trailRenderer: {fileID: 6873679078009121952}
-  _hitEffect: 0
-  _spakleEffect: 5
-  _bloodEffect: 4
-  _bloodBackEffect: 7
-  _wallBloodEffect: 8
+  _circleDamageCaster: {fileID: 0}
 --- !u!114 &8337595389387369156
 MonoBehaviour:
   m_ObjectHideFlags: 0
