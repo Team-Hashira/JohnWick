@@ -1,4 +1,6 @@
+using Crogen.CrogenPooling;
 using Hashira.Core.EventSystem;
+using Hashira.VFX;
 using UnityEngine;
 
 namespace Hashira.Entities.Components
@@ -15,12 +17,18 @@ namespace Hashira.Entities.Components
 			_entity = entity;
 		}
 
-		public void SoundGenerate(float loudness)
+		public void SoundGenerate(float loudness, Vector3 offset = default)
 		{
 			var evt = SoundEvents.SoundGeneratedEvent;
-			evt.originPosition = transform.position;
+			evt.originPosition = transform.position + offset;
 			evt.loudness = loudness;
 			SoundEventChannel.RaiseEvent(evt);
+
+			SoundEffect soudnEffect = gameObject.Pop(
+				EffectPoolType.SoundEffect, 
+				evt.originPosition, 
+				Quaternion.identity) as SoundEffect;
+			soudnEffect.Init(loudness/2);
 		}
     }
 }
