@@ -6,12 +6,18 @@ public class CircleDamageCaster2D : DamageCaster2D
 {
     [Header("BoxCaster2D")]
     public Vector2 center;
+    public bool isLocalScale = true;
     public float radius = 1f;
 
     private float GetScaledSize(float radius)
     {
-        float finalRadius = Mathf.Max(transform.lossyScale.x * radius, transform.lossyScale.y * radius);
-        
+        float finalRadius;
+        if (isLocalScale)
+            finalRadius = Mathf.Max(transform.lossyScale.x * radius, transform.lossyScale.y * radius);
+        else
+            finalRadius = radius;
+
+
         return finalRadius;
     }
     
