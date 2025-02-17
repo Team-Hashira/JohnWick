@@ -1,5 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Combat;
+using Hashira.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,53 @@ namespace Hashira.Projectiles
     public class Bullet : Projectile, IParryingable
     {
         public bool IsParryingable { get; set; }
-        public Transform Owner { get; set; }
+        [SerializeField] protected EffectPoolType _hitEffect;
+        [SerializeField] protected EffectPoolType _spakleEffect;
 
         public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default)
         {
             base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers);
             Owner = owner;
             IsParryingable = true;
+        }
+
+        protected override void OnHited(RaycastHit2D hit)
+        {
+            base.OnHited(hit);
+
+            //Effect
+            gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
+
+        }
+
+        protected override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
+        {
+            base.OnHitedDamageable(hit, damageable);
+            int damage = CalculatePenetration(Damage, _penetration - _currentPenetration);
+            EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
+
+            if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
+            {
+                ////Effect
+                //ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
+                //    .gameObject.GetComponent<ParticleSystem>();
+                //var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+
+                ////Effect
+                //ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
+                //    .gameObject.GetComponent<ParticleSystem>();
+
+                //if (parts == EEntityPartType.Head)
+                //{
+                //    //Effect
+                //    gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
+                //    limitVelocityOverLifetimeModule.dampen = 0.6f;
+                //}
+                //else
+                //{
+                //    limitVelocityOverLifetimeModule.dampen = 0.9f;
+                //}
+            }
         }
 
         public void Parrying(LayerMask whatIsNewTargetLayer, Transform owner, bool isChargedParrying)
@@ -27,7 +68,7 @@ namespace Hashira.Projectiles
             if (isChargedParrying)
             {
                 CameraManager.Instance.ShakeCamera(15, 11, 0.25f);
-                _damage *= 10;
+                Damage *= 10;
                 _speed *= 10;
                 gameObject.Pop(EffectPoolType.HitSparkleEffect, transform.position, effectRotation);
             }

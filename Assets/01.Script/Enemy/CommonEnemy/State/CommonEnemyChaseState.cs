@@ -67,7 +67,6 @@ namespace Hashira.Enemies.CommonEnemy
         {
             if (_target == null)
                 _enemyPathfinder.OnMoveEndEvent -= HandleOnMoveEndEvent;
-            Debug.Log("Chase ≈ª√‚");
             base.OnExit();
         }
 

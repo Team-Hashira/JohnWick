@@ -13,5 +13,9 @@ namespace Hashira.Projectiles
         {
 
         }
+        public virtual void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
+        {
+            OnHited(hit);
+        }
     }
 }

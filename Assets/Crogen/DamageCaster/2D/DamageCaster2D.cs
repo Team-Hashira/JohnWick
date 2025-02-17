@@ -29,6 +29,11 @@ public abstract class DamageCaster2D : MonoBehaviour
 		_raycastHits = new RaycastHit2D[allocationCount];
 	}
 
+	public void SetLayerMask(LayerMask layerMask)
+	{
+		_whatIsCastable = layerMask;
+    }
+
 	public abstract RaycastHit2D[] CastOverlap(Vector2 moveTo = default);
 
 	public virtual void CastDamage(int damage, Vector2 moveTo = default, Vector2 knockback = default)

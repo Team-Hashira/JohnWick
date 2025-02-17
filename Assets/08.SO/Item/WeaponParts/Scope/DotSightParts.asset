@@ -18,7 +18,7 @@ MonoBehaviour:
   itemDisplayName: "\uB3C4\uD2B8 \uC0AC\uC774\uD2B8"
   itemDescription: "\uC774\uAC83\uC740 \uC810 \uBCF4\uC870 \uC870\uC900\uACBD"
   itemRating: 1
-  useCustomClass: 0
+  useCustomClass: 1
   defaultClass: WeaponParts
   partsSpriteDictionary:
     _serializedList:
@@ -28,6 +28,8 @@ MonoBehaviour:
       Value: {fileID: -2114675250065158034, guid: b141040168b445a468e1af2a3643043c, type: 3}
     - Key: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
       Value: {fileID: 1929572395, guid: b141040168b445a468e1af2a3643043c, type: 3}
+    - Key: {fileID: 11400000, guid: 302167e08903a994599eda549bb9ba0d, type: 2}
+      Value: {fileID: -62582977, guid: b141040168b445a468e1af2a3643043c, type: 3}
   partsType: 1
   _statList:
   - Name: "\uACF5\uACA9\uB825"

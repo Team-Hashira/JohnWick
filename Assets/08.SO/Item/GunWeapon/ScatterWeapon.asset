@@ -50,7 +50,11 @@ MonoBehaviour:
     _serializedList:
     - Key: 4
       Value: {x: -0.72, y: 0}
+    - Key: 1
+      Value: {x: -0.29, y: 0.38}
   partsEquipPosDict:
     _serializedList:
     - Key: 4
       Value: {x: -9, y: 1}
+    - Key: 1
+      Value: {x: 0, y: 2}
