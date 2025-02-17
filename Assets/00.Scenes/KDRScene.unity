@@ -864,7 +864,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effectUIDataSOList:
-  - {fileID: 11400000, guid: 2a423cf986ad6724685270936fe42238, type: 2}
   - {fileID: 11400000, guid: 1f0ce721247d9ad4f8c126e03c9c0caa, type: 2}
 --- !u!1 &587487584
 GameObject:
