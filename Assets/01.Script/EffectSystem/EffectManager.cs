@@ -76,6 +76,9 @@ namespace Hashira.EffectSystem
 					var effect = effectList.Value[i];
 
 					effect.Update();
+
+                    if (effect.duration < 0) continue;
+
 					effect.currentTime += Time.deltaTime;
 					if (effect.currentTime >= effect.duration)
 					{

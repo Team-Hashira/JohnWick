@@ -1,6 +1,5 @@
 using Crogen.CrogenPooling;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hashira.VFX
