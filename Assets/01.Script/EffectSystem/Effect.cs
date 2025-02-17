@@ -11,16 +11,18 @@ namespace Hashira.EffectSystem
         public float duration;
         public float currentTime = 0;
         public int level;
+
         public EntityEffector baseEffector;
         public EffectUIDataSO effectUIDataSO;
-        protected readonly Player _player = GameManager.Instance.Player;
-        protected EntityStat _playerStat;
+        public Entity entity;
+		public EntityStat entityStat;
+
         public event Action<float, float> CoolTimeEvent;
 
         public virtual void Enable()
         {
-            _playerStat = _player.GetEntityComponent<EntityStat>();
-        }
+
+		}
 
         public virtual void Update()
         {

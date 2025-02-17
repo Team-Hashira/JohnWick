@@ -52,7 +52,6 @@ namespace Hashira.UI.Effect
             effectSlot.effectBase.CoolTimeEvent += effectSlot.HandleCoolTime;
             
             _currentSlots.Add(effectSlot);   
-            effect.Enable();
         }
         
         private void RemoveEffectUI(EffectSystem.Effect effect)
@@ -62,7 +61,6 @@ namespace Hashira.UI.Effect
             if (effectSlot != null)
             {
                 _currentSlots.Remove(effectSlot);
-                effect.Disable();
                 Destroy(effectSlot.gameObject);
             }
             else

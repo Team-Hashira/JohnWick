@@ -83,7 +83,11 @@ namespace Hashira.Items.Weapons
 
         protected virtual bool Fire()
         {
-            if (BulletAmount <= 0) return false;
+            if (BulletAmount <= 0)
+            {
+                EntityGunWeapon.Reload();
+                return false;
+            }
 
             if (IsCanFire)
                 _lastFireTime = Time.time;

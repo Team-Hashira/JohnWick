@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using Hashira.Entities;
 
 public abstract class DamageCaster2D : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public abstract class DamageCaster2D : MonoBehaviour
 
 	public abstract RaycastHit2D[] CastOverlap(Vector2 moveTo = default);
 
-	public virtual void CastDamage(int damage, Vector2 moveTo = default, Vector2 knockback = default)
+	public virtual void CastDamage(int damage, Vector2 moveTo = default, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
 	{
 		CastOverlap(moveTo);
 
@@ -58,7 +59,7 @@ public abstract class DamageCaster2D : MonoBehaviour
             }
             if (_raycastHits[i].transform.TryGetComponent(out IDamageable damageable))
 			{
-				damageable.ApplyDamage(damage, _raycastHits[i], transform, knockback);
+				damageable.ApplyDamage(damage, _raycastHits[i], transform, knockback, attackType);
                 OnDamageCastSuccessEvent?.Invoke(_raycastHits[i]);
             }
 		}

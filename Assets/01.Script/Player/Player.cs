@@ -4,6 +4,7 @@ using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
 using Hashira.TargetPoint;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -45,11 +46,16 @@ namespace Hashira.Players
         private bool _isRightMousePress;
         private bool _isChargingParrying;
 
-        protected override void Awake()
+		private EntityHealth _entityHealth;
+
+		protected override void Awake()
         {
             base.Awake();
 
-            InputReader.OnDashEvent += HandleDashEvent;
+			_entityHealth = GetEntityComponent<EntityHealth>();
+
+			_entityHealth.OnHealthChangedEvent += HandleHealthChange;
+			InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnInteractEvent += HandleInteractEvent;
             InputReader.OnSprintToggleEvent += HandleSprintToggle;
 
@@ -59,7 +65,7 @@ namespace Hashira.Players
             InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
-        private void Start()
+		private void Start()
         {
             TargetPointManager.Instance.ShowTargetPoint(transform, Color.cyan);
 
@@ -73,9 +79,31 @@ namespace Hashira.Players
                 TargetPointManager.Instance.CloseTargetPoint(transform);
         }
 
-        #region Handles
+		#region Handles
 
-        private void HandleInteractEvent(bool isDown)
+		private void HandleHealthChange(int old, int cur)
+		{
+            if(old > cur)
+            {
+                CameraManager.Instance.ShakeCamera(5, 5, 0.3f);
+                StartCoroutine(HitScreenEffectCoroutine());
+            }
+		}
+
+        private IEnumerator HitScreenEffectCoroutine()
+        {
+			if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
+            {
+                if (chromaticAberration.active == false)
+                {
+                    chromaticAberration.active = true;
+                    yield return new WaitForSeconds(0.1f);
+					chromaticAberration.active = false;
+				}
+			}
+		}
+
+		private void HandleInteractEvent(bool isDown)
         {
             _interactor.Interact(isDown);
         }
@@ -213,7 +241,9 @@ namespace Hashira.Players
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            InputReader.OnDashEvent -= HandleDashEvent;
+
+			_entityHealth.OnHealthChangedEvent -= HandleHealthChange;
+			InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnInteractEvent -= HandleInteractEvent;
             InputReader.OnSprintToggleEvent -= HandleSprintToggle;
 

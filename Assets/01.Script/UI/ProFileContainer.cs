@@ -4,7 +4,6 @@ using Hashira.Players;
 using Hashira.Items.Weapons;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
  
 namespace Hashira.UI

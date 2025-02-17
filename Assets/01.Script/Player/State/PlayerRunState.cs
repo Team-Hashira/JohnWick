@@ -11,6 +11,9 @@ namespace Hashira.Players
 		private EntitySoundGenerator _soundGenerator;
 		private StatElement _sprintSpeedStat;
 
+		private float _curTime = 0;
+		private readonly float _soundDelay = 0.1f;
+
 		public PlayerRunState(Entity entity, StateSO stateSO) : base(entity, stateSO)
 		{
 			_soundGenerator = entity.GetEntityComponent<EntitySoundGenerator>();
@@ -25,7 +28,7 @@ namespace Hashira.Players
 		public override void OnUpdate()
 		{
 			base.OnUpdate();
-
+			_curTime += Time.deltaTime;
 			float movement = _player.InputReader.XMovement;
 			float look = _entityRenderer.FacingDirection;
 
@@ -34,9 +37,8 @@ namespace Hashira.Players
 				if (_sprintSpeedStat != null)
 					movement *= _sprintSpeedStat.Value;
 				_playerMover.SetMovement(movement);
-
-				float loudness = 1f;
-				_soundGenerator.SoundGenerate(loudness);
+				if(_curTime > _soundDelay)
+					OnSoundGenerate();
 			}
 			else
 				_entityStateMachine.ChangeState("Idle");
@@ -45,8 +47,16 @@ namespace Hashira.Players
 				_entityStateMachine.ChangeState("Walk");
 		}
 
+		private void OnSoundGenerate()
+		{
+			_curTime = 0;
+			float loudness = 2f;
+			_soundGenerator.SoundGenerate(loudness, new Vector3(0, -0.75f));
+		}
+
 		public override void OnExit()
 		{
+			_curTime = 0;
 			base.OnExit();
 		}
 	}

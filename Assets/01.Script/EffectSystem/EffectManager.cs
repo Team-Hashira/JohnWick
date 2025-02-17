@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hashira.EffectSystem.Effects;
 using Hashira.Entities;
 using UnityEngine;
 
@@ -9,68 +10,94 @@ namespace Hashira.EffectSystem
     public class EffectManager : MonoSingleton<EffectManager>
     {
         [SerializeField] private List<EffectUIDataSO> _effectUIDataSOList = new List<EffectUIDataSO>();
-        private readonly List<Effect> _effectList = new List<Effect>();
+        private Dictionary<Entity, List<Effect>>[] _effectDictionaries = new Dictionary<Entity, List<Effect>>[10];
 
         public event Action<Effect> EffectAddedEvent;
         public event Action<Effect> EffectRemovedEvent;
 
-        public void AddEffect<T>(EntityEffector baseEffector, int level, float duration) where T : Effect, new()
+        public void AddEffect<T>(Entity entity, int level, float duration) where T : Effect, new()
         {
             T effect = new T()
             {
                 name = typeof(T).Name,
                 duration = duration,
                 level = level,
-                effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x=>x.name == typeof(T).Name),
-                baseEffector = baseEffector
+                effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == typeof(T).Name),
+                entity = entity,
+				entityStat = entity.GetEntityComponent<EntityStat>()
             };
-            
-            _effectList.Add(effect);
+
+            _effectDictionaries[level].TryAdd(entity, new List<Effect>());
+
+            _effectDictionaries[level][entity].Add(effect);
             
             EffectAddedEvent?.Invoke(effect);
-        }
+			effect.Enable();
+		}
 
-        public void RemoveEffect<T>(EntityEffector baseEffector) where T : Effect
+		public void RemoveEffect<T>(Entity entity, int level) where T : Effect
         {
-            Effect removeEffect = _effectList.FirstOrDefault(x=>x.name==typeof(T).Name);
+            Effect removeEffect = _effectDictionaries[level][entity].FirstOrDefault(x=>x.name==typeof(T).Name);
 
             if (removeEffect != null)
             {
-                _effectList.Remove(removeEffect);
+                _effectDictionaries[level][entity].Remove(removeEffect);
                 
                 EffectRemovedEvent?.Invoke(removeEffect);
             }
             else
                 Debug.Log($"Effect {typeof(T).Name} was not found");
-        }
-        
-        public void RemoveEffect(EntityEffector baseEffector, Type effectType)
+
+			removeEffect.Disable();
+		}
+
+		public void RemoveEffect(Entity entity, Type effectType, int level)
         {
-            Effect removeEffect = _effectList.FirstOrDefault(x=>x.name==effectType.Name);
+            Effect removeEffect = _effectDictionaries[level][entity].FirstOrDefault(x=>x.name==effectType.Name);
 
             if (removeEffect != null)
             {
-                _effectList.Remove(removeEffect);
+                _effectDictionaries[level][entity].Remove(removeEffect);
                 
                 EffectRemovedEvent?.Invoke(removeEffect);
             }
             else
                 Debug.Log($"Effect {effectType.Name} was not found");
-        }
-        
-        private void Update()
+
+			removeEffect.Disable();
+		}
+
+        private void InitEffectDict(int level)
         {
-            for (int i = 0; i < _effectList.Count; i++)
+			_effectDictionaries[level] = _effectDictionaries[level].Where(x => x.Key != null).ToDictionary(x=>x.Key, x=>x.Value);
+		}
+
+		private void Update()
+        {
+            for (int level = 0; level < _effectDictionaries.Length; level++)
             {
-                var effect = _effectList[i];
-                
-                effect.Update();
-                effect.currentTime += Time.deltaTime;
-                if (effect.currentTime >= effect.duration)
-                {
-                    RemoveEffect(effect.baseEffector, effect.GetType());
-                }
-            }
+				foreach (var effectList in _effectDictionaries[level])
+				{
+					if (effectList.Key == null)
+					{
+						InitEffectDict(level);
+						return;
+					}
+
+                    foreach (var effect in effectList.Value)
+                    {
+						effect.Update();
+
+						if (effect.duration < 0) continue;
+
+						effect.currentTime += Time.deltaTime;
+						if (effect.currentTime >= effect.duration)
+						{
+							RemoveEffect(effect.entity, effect.GetType(), level);
+						}
+					}
+				}
+			}
         }
     }
 }

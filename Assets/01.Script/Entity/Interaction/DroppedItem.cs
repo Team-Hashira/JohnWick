@@ -4,6 +4,7 @@ using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
+using Hashira.Stage;
 using Hashira.UI.InGame;
 using System;
 using UnityEngine;
@@ -73,7 +74,7 @@ namespace Hashira.Entities.Interacts
         public virtual void SetItem(Item item)
         {
             _itemSprite.sprite = item.ItemSO?.itemDefaultSprite;
-            Color color = ItemUtility.ItemRatingColorDict[item.ItemSO.itemRating];
+            Color color = Core.VisualUtility.ItemRatingColorDict[item.ItemSO.itemRating];
             _nameText.color = color;
             color.a = 0.8f;
             _itemLightRenderer.color = color;
@@ -99,7 +100,10 @@ namespace Hashira.Entities.Interacts
         public virtual void SetItemData() { }
         public string OriginPoolType { get; set; }
         GameObject IPoolingObject.gameObject { get; set; }
-        public virtual void OnPop() {}
+        public virtual void OnPop() 
+        {
+            StageGenerator.Instance.AddPoolingObject(this);
+        }
 
         public virtual void OnPush() {}
     }

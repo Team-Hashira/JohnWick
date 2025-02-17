@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: 0}
-  target: {fileID: 256296941}
+  _target: {fileID: 0}
   enableX: 1
   enableY: 1
   enableZ: 0
@@ -678,7 +678,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000e7220134ddd6b784779eea6e1b93bf5323be148c
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Player>k__BackingField: {fileID: 594139399}
-  <Volume>k__BackingField: {fileID: 0}
+  <Volume>k__BackingField: {fileID: 191554987}
 --- !u!1 &727948802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1117,12 @@ MonoBehaviour:
     poolCount: 20
   - poolType: LandingSmoke
     prefab: {fileID: 2303994125148999489, guid: 9afa21dc182e59e49ae0882f2b31a169, type: 3}
+    poolCount: 20
+  - poolType: BoomFire
+    prefab: {fileID: 8201632537294854824, guid: b25b528edf579c944976c324ce3b384b, type: 3}
+    poolCount: 20
+  - poolType: SoundEffect
+    prefab: {fileID: 5115054747967181027, guid: d698eb5fba544484e8324253d4711fc9, type: 3}
     poolCount: 20
 --- !u!1 &1442627409
 GameObject:

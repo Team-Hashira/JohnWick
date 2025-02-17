@@ -52,7 +52,8 @@ MonoBehaviour:
   _usingExcludeCast: 0
   excludedDamageCasterList: []
   center: {x: 0, y: 0}
-  radius: 7.37
+  isLocalScale: 0
+  radius: 1
 --- !u!1 &2886854461176573074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4996,7 +4997,7 @@ MonoBehaviour:
   _canMultipleAttacks: 0
   _projectileCollider: {fileID: 8337595389387369156}
   _trailRenderer: {fileID: 6873679078009121952}
-  _circleDamageCaster: {fileID: 0}
+  _circleDamageCaster: {fileID: 8462662091325190925}
 --- !u!114 &8337595389387369156
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,3 +46,6 @@ MonoBehaviour:
   - poolType: BoomFire
     prefab: {fileID: 8201632537294854824, guid: b25b528edf579c944976c324ce3b384b, type: 3}
     poolCount: 20
+  - poolType: SoundEffect
+    prefab: {fileID: 5115054747967181027, guid: d698eb5fba544484e8324253d4711fc9, type: 3}
+    poolCount: 20

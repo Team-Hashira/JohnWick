@@ -8,7 +8,6 @@ public class CameraManager : MonoSingleton<CameraManager>
 {
     [SerializeField] private SerializedDictionary<string, CinemachineCamera> _cameraDictionary = new SerializedDictionary<string, CinemachineCamera>();
 
-
     private CinemachineVirtualCameraBase _currentCamera;
     public CinemachineVirtualCameraBase currentCamera 
     {
@@ -41,6 +40,10 @@ public class CameraManager : MonoSingleton<CameraManager>
         set => _currentMultiChannel = value;
     }
 
+    public void MoveToPlayerPositionimmediately()
+    {
+        currentCamera.ForceCameraPosition(currentCamera.Follow.position, Quaternion.identity);
+	}
 
     public void ChangeCamera(CinemachineCamera camera)
     {
