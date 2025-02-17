@@ -74,7 +74,7 @@ namespace Hashira.Entities.Interacts
         public virtual void SetItem(Item item)
         {
             _itemSprite.sprite = item.ItemSO?.itemDefaultSprite;
-            Color color = ItemUtility.ItemRatingColorDict[item.ItemSO.itemRating];
+            Color color = Core.VisualUtility.ItemRatingColorDict[item.ItemSO.itemRating];
             _nameText.color = color;
             color.a = 0.8f;
             _itemLightRenderer.color = color;
