@@ -1,7 +1,7 @@
+using Crogen.CrogenPooling;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Hashira.Combat;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,9 +15,12 @@ namespace Hashira.Stage
         [SerializeField] private Transform _startPoint;
 
         private List<StagePiece> _generatedStagePieceList;
+        private List<IPoolingObject> _stagePoolingObjectList = new List<IPoolingObject>();
+
         private int _currentChapterIndex;
         private int _currentStageIndex;
         public bool IsMovingStage { get; private set; }
+
         public int CurrentChapterIndex
         {
             get => _currentChapterIndex;
@@ -31,7 +34,6 @@ namespace Hashira.Stage
                 _currentChapterIndex = value;
             }
         }
-
         public int CurrentStageIndex
         {
             get => _currentStageIndex;
@@ -49,6 +51,7 @@ namespace Hashira.Stage
 
         public event Action OnStageClearEvent;
         public event Action OnAllChaptersClearEvent;
+
         private void Awake()
         {
             Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
@@ -87,7 +90,24 @@ namespace Hashira.Stage
         private void NextStage()
         {
             ++CurrentStageIndex;
-            Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
+            CameraManager.Instance.MoveToPlayerPositionimmediately();
+            DestroyAllPoolingObjects();
+			Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
+        }
+
+        public void AddPoolingObject(IPoolingObject poolingObject)
+        {
+            _stagePoolingObjectList.Add(poolingObject);
+        }
+
+        private void DestroyAllPoolingObjects()
+        {
+            foreach (var poolingObject in _stagePoolingObjectList)
+            {
+                poolingObject.Push();
+            }
+
+            _stagePoolingObjectList.Clear();
         }
         
         public async void Clear()
