@@ -10,7 +10,7 @@ namespace Hashira.EffectSystem
     public class EffectManager : MonoSingleton<EffectManager>
     {
         [SerializeField] private List<EffectUIDataSO> _effectUIDataSOList = new List<EffectUIDataSO>();
-        private Dictionary<Entity, List<Effect>> _effectDict = new Dictionary<Entity, List<Effect>>();
+        private Dictionary<Entity, List<Effect>>[] _effectDictionaries = new Dictionary<Entity, List<Effect>>[10];
 
         public event Action<Effect> EffectAddedEvent;
         public event Action<Effect> EffectRemovedEvent;
@@ -27,21 +27,21 @@ namespace Hashira.EffectSystem
 				entityStat = entity.GetEntityComponent<EntityStat>()
             };
 
-            _effectDict.TryAdd(entity, new List<Effect>());
+            _effectDictionaries[level].TryAdd(entity, new List<Effect>());
 
-            _effectDict[entity].Add(effect);
+            _effectDictionaries[level][entity].Add(effect);
             
             EffectAddedEvent?.Invoke(effect);
 			effect.Enable();
 		}
 
-		public void RemoveEffect<T>(Entity entity) where T : Effect
+		public void RemoveEffect<T>(Entity entity, int level) where T : Effect
         {
-            Effect removeEffect = _effectDict[entity].FirstOrDefault(x=>x.name==typeof(T).Name);
+            Effect removeEffect = _effectDictionaries[level][entity].FirstOrDefault(x=>x.name==typeof(T).Name);
 
             if (removeEffect != null)
             {
-                _effectDict[entity].Remove(removeEffect);
+                _effectDictionaries[level][entity].Remove(removeEffect);
                 
                 EffectRemovedEvent?.Invoke(removeEffect);
             }
@@ -51,13 +51,13 @@ namespace Hashira.EffectSystem
 			removeEffect.Disable();
 		}
 
-		public void RemoveEffect(Entity entity, Type effectType)
+		public void RemoveEffect(Entity entity, Type effectType, int level)
         {
-            Effect removeEffect = _effectDict[entity].FirstOrDefault(x=>x.name==effectType.Name);
+            Effect removeEffect = _effectDictionaries[level][entity].FirstOrDefault(x=>x.name==effectType.Name);
 
             if (removeEffect != null)
             {
-                _effectDict[entity].Remove(removeEffect);
+                _effectDictionaries[level][entity].Remove(removeEffect);
                 
                 EffectRemovedEvent?.Invoke(removeEffect);
             }
@@ -67,32 +67,34 @@ namespace Hashira.EffectSystem
 			removeEffect.Disable();
 		}
 
-        private void InitEffectDict()
+        private void InitEffectDict(int level)
         {
-			_effectDict = _effectDict.Where(x => x.Key != null).ToDictionary(x=>x.Key, x=>x.Value);
+			_effectDictionaries[level] = _effectDictionaries[level].Where(x => x.Key != null).ToDictionary(x=>x.Key, x=>x.Value);
 		}
 
 		private void Update()
         {
-            foreach (var effectList in _effectDict)
+            for (int level = 0; level < _effectDictionaries.Length; level++)
             {
-                if (effectList.Key == null)
-                {
-                    InitEffectDict();
-                    return;
-				}
-				for (int i = 0; i < effectList.Value.Count; i++)
+				foreach (var effectList in _effectDictionaries[level])
 				{
-					var effect = effectList.Value[i];
-
-					effect.Update();
-
-                    if (effect.duration < 0) continue;
-
-					effect.currentTime += Time.deltaTime;
-					if (effect.currentTime >= effect.duration)
+					if (effectList.Key == null)
 					{
-						RemoveEffect(effect.entity, effect.GetType());
+						InitEffectDict(level);
+						return;
+					}
+
+                    foreach (var effect in effectList.Value)
+                    {
+						effect.Update();
+
+						if (effect.duration < 0) continue;
+
+						effect.currentTime += Time.deltaTime;
+						if (effect.currentTime >= effect.duration)
+						{
+							RemoveEffect(effect.entity, effect.GetType(), level);
+						}
 					}
 				}
 			}
