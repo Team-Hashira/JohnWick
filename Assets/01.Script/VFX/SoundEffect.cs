@@ -44,7 +44,7 @@ namespace Hashira.VFX
 			{
 				percent = curTime / duration;
 				_spriteRenderer.material.SetFloat(_sizeValueID, EaseOutExpo(percent));
-				_spriteRenderer.material.SetFloat(_alphaValueID, EaseInExpo(percent));
+				_spriteRenderer.material.SetFloat(_alphaValueID, EaseOutExpo(1-percent));
 				curTime += Time.deltaTime;
 
 				yield return null;

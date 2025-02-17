@@ -69,7 +69,8 @@ namespace Hashira.Entities.Components
         public virtual void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             CurrentWeapon?.Attack(damage, isDown, whatIsTarget);
-            _soundGenerator.SoundGenerate(10);
+            if(isDown)
+                _soundGenerator.SoundGenerate(10);
 		}
 
         public virtual void RemoveWeapon(int index)

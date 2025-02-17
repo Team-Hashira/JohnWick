@@ -12,7 +12,7 @@ namespace Hashira.Players
 		private StatElement _sprintSpeedStat;
 
 		private float _curTime = 0;
-		private readonly float _soundDelay = 0.2f;
+		private readonly float _soundDelay = 0.1f;
 
 		public PlayerRunState(Entity entity, StateSO stateSO) : base(entity, stateSO)
 		{
