@@ -5573,12 +5573,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemPercent:
     _serializedList:
-    - Key: {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
-      Value: 20
-    - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
-      Value: 50
     - Key: {fileID: 11400000, guid: a32961db1d2cfc447b0cd9916ce28136, type: 2}
-      Value: 20
+      Value: 10
+    - Key: {fileID: 11400000, guid: 9ca8108867d97864fa0de9dca63ca0f2, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: 2910724fa529df34cb176588275a17aa, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: c8a87850ac2b8154c8721013f1da3cbc, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: 05fa8b127fa25114b9fc998ff01832ad, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: 97419decf28605f42aadce5254686a57, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: e480aaef75ac7f547ad7ce61dbd774a5, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: 0fd4e931604446643b0a5f3a57edf6b5, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: 31e039e920bb75b47ba29bd23029c863, type: 2}
+      Value: 10
+    - Key: {fileID: 11400000, guid: 7a88dea890187c34784863caacd00f86, type: 2}
+      Value: 10
 --- !u!114 &1299947100969411918
 MonoBehaviour:
   m_ObjectHideFlags: 0
