@@ -10,7 +10,7 @@ namespace Hashira.Projectiles
         public override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnHitedDamageable(hit, damageable);
-            EEntityPartType parts = damageable.ApplyDamage(doubleAttackDamage, hit, _projectile.transform);
+            EEntityPartType parts = damageable.ApplyDamage(doubleAttackDamage, hit, _projectile.transform, attackType: EAttackType.Fixed);
         }
     }
 }

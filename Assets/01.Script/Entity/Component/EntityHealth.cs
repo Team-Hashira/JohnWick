@@ -4,16 +4,25 @@ using Hashira.Core.StatSystem;
 using System;
 using UnityEngine;
 using Hashira.Entities.Components;
+using Hashira.Core;
 
 namespace Hashira.Entities
 {
+    public enum EAttackType
+    {
+        Default,
+        HeadShot,
+        Fixed,
+        Fire,
+    }
+
     public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDamageable, IRecoverable
     {
         public int Health { get; private set; }
 
         [SerializeField] private StatElementSO _healthStatSO;
 
-        private Entity _owner;
+        public Entity Owner {  get; private set; }
         private StatElement _maxHealth;
         private bool _isInvincible;
         private bool _isDie;
@@ -35,47 +44,60 @@ namespace Hashira.Entities
 
 		public void Initialize(Entity entity)
         {
-            _owner = entity;
+            Owner = entity;
         }
 
         public void AfterInit()
         {
-            _maxHealth = _owner.GetEntityComponent<EntityStat>().StatDictionary[_healthStatSO];
-			_entityMover = _owner.GetEntityComponent<EntityMover>(true);
-			_entityStateMachine = _owner.GetEntityComponent<EntityStateMachine>();
+            _maxHealth = Owner.GetEntityComponent<EntityStat>().StatDictionary[_healthStatSO];
+			_entityMover = Owner.GetEntityComponent<EntityMover>(true);
+			_entityStateMachine = Owner.GetEntityComponent<EntityStateMachine>();
 
 			_isInvincible = _maxHealth == null;
             Health = MaxHealth;
 		}
 
-		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, bool isFixedDamage = false)
+		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
         {
-            EEntityPartType hitPoint;
-            if (_owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
+            EEntityPartType hitPoint = EEntityPartType.Body;
+            if (raycastHit != default && Owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
+            {
                 hitPoint = entityPartCollider.Hit(raycastHit.collider, raycastHit, attackerTrm);
-            else
-                hitPoint = EEntityPartType.Body;
+                if (hitPoint == EEntityPartType.Head && attackType == EAttackType.Default) attackType = EAttackType.HeadShot;
+            }
 
             if (_isDie) return hitPoint;
 
             int prev = Health;
-            bool isHead = hitPoint == EEntityPartType.Head;
-            int finalDamage = (isHead && isFixedDamage == false) ? damage * 2 : damage;
-            DamageText damageText = gameObject.Pop(UIPoolType.DamageText, raycastHit.point, Quaternion.identity)
-                                    .gameObject.GetComponent<DamageText>();
-            damageText.Init(finalDamage, isHead ? Color.yellow : Color.white);
+            int finalDamage = CalculateDamage(damage, hitPoint, attackType);
+
+            Vector3 textPos = raycastHit != default ? raycastHit.point : Owner.transform.position;
+            CreateDamageText(finalDamage, textPos, attackType);
+
             Health -= finalDamage;
             if (Health < 0)
                 Health = 0;
             OnHealthChangedEvent?.Invoke(prev, Health);
-
-            //Vector2 attackDir = (raycastHit.transform.position - transform.position).normalized;
 
 			OnKnockback(knockback.normalized, knockback.magnitude);
 
 			if (Health == 0) Die();
 
             return hitPoint;
+        }
+
+        private void CreateDamageText(int damage, Vector3 textPos, EAttackType attackType)
+        {
+            Color color = VisualUtility.AttackTypeColorDict[attackType];
+
+            DamageText damageText = gameObject.Pop(UIPoolType.DamageText, textPos, Quaternion.identity) .gameObject.GetComponent<DamageText>();
+            damageText.Init(damage, color);
+        }
+
+        private int CalculateDamage(int damage, EEntityPartType entityPartType, EAttackType attackType)
+        {
+            int finalDamage = attackType == EAttackType.HeadShot ? damage * 2 : damage;
+            return finalDamage;
         }
 
         public void ApplyRecovery(int recovery)
