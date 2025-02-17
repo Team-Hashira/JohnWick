@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <VisualTrm>k__BackingField: {fileID: 8187486069442738600}
   _defaultWeapons:
-  - {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
+  - {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
   <PartsRenderer>k__BackingField: {fileID: 1120091758999464865}
   <CartridgeCaseParticle>k__BackingField: {fileID: 8282094813522668176}
   _whatIsObstacle:
@@ -6298,6 +6298,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d964bed2a9a537048895da9660a22de1, type: 2}
   - {fileID: 11400000, guid: 84e94146cfe35bc4a9bf2cea8afeed65, type: 2}
   - {fileID: 11400000, guid: 05df4b1a0c1fd454d885d18350ae6733, type: 2}
+  - {fileID: 11400000, guid: be980842f5cb9d84688accd90bbe333b, type: 2}
   _startState: {fileID: 11400000, guid: d964bed2a9a537048895da9660a22de1, type: 2}
 --- !u!114 &3550559870442471026
 MonoBehaviour:

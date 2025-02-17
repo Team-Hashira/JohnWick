@@ -53,6 +53,7 @@ namespace Hashira.Enemies.SiegeEnemy
                 if (_lastAttackTime + 1.5f < Time.time)
                 {
                     _entityGunWeapon.Attack(1, true, _siegeEnemy.WhatIsPlayer);
+                    _entityGunWeapon.Attack(1, false, _siegeEnemy.WhatIsPlayer);
                     _lastAttackTime = Time.time;
                 }
             }
