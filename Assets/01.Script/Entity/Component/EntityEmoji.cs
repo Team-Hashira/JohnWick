@@ -8,7 +8,8 @@ namespace Hashira.Entities.Components
         Happy,
         Sad, 
         Surprise,
-    }
+		Question
+	}
 
     public class EntityEmoji : MonoBehaviour, IEntityComponent
     {
