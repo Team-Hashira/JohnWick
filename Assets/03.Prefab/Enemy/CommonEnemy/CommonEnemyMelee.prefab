@@ -501,12 +501,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemPercent:
     _serializedList:
-    - Key: {fileID: 11400000, guid: 9f132cea9b94794459dd787b17573d9a, type: 2}
-      Value: 20
+    - Key: {fileID: 11400000, guid: 481d56e0a8c992f498bd9c9f208dd339, type: 2}
+      Value: 25
     - Key: {fileID: 11400000, guid: 4c6c2673bfa242c46806e8355d942639, type: 2}
-      Value: 50
-    - Key: {fileID: 11400000, guid: a32961db1d2cfc447b0cd9916ce28136, type: 2}
-      Value: 20
+      Value: 25
+    - Key: {fileID: 11400000, guid: 428fad33e14c0c940a0a788199ffcbc1, type: 2}
+      Value: 25
+    - Key: {fileID: 11400000, guid: 302167e08903a994599eda549bb9ba0d, type: 2}
+      Value: 25
 --- !u!114 &1299947100969411918
 MonoBehaviour:
   m_ObjectHideFlags: 0

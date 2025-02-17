@@ -15,12 +15,11 @@ namespace Hashira.Enemies.SiegeEnemy
             _entityHealth = entity.GetEntityComponent<EntityHealth>();
         }
 
-        public override void OnExit()
+        public override void OnEnter()
         {
-            base.OnExit();
+            base.OnEnter();
             _enemyMover.StopImmediately();
         }
-
         public override void OnUpdate()
         {
             base.OnUpdate();
@@ -28,6 +27,11 @@ namespace Hashira.Enemies.SiegeEnemy
             {
                 _entityStateMachine.ChangeState("Attack");
             }
+        }
+        public override void OnExit()
+        {
+            _enemyMover.StopImmediately();
+            base.OnExit();
         }
     }
 }
