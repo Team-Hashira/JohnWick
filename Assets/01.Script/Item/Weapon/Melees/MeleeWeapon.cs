@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using DG.Tweening;
 using Hashira.Combat;
 using Hashira.Entities.Components;
@@ -33,7 +34,7 @@ namespace Hashira.Items.Weapons
             (EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).size = MeleeSO.AttackRangeSize;
             (EntityMeleeWeapon.DamageCaster as BoxDamageCaster2D).center = MeleeSO.AttackRangeOffset;
 
-            Vector2 attackDir = (EntityMeleeWeapon.DamageCaster.transform.position - EntityMeleeWeapon.Entity.transform.position).normalized;
+            Vector2 attackDir = EntityMeleeWeapon.transform.right;
 
             if (animationSeq != null && animationSeq.IsActive()) animationSeq.Kill();
             animationSeq = DOTween.Sequence();

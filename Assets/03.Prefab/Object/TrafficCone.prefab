@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3875217762222562040}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TrafficCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 672958531650193264}
   - component: {fileID: 5935185415875923004}
   - component: {fileID: 3068637701152030750}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

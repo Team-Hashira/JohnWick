@@ -198,6 +198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StockItemBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -926,6 +930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagazineItemBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1077,6 +1085,10 @@ PrefabInstance:
     - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
       propertyPath: m_Name
       value: ScopeItemBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1656,6 +1668,12 @@ MonoBehaviour:
   - poolType: BoomFire
     prefab: {fileID: 8201632537294854824, guid: b25b528edf579c944976c324ce3b384b, type: 3}
     poolCount: 20
+  - poolType: SoundEffect
+    prefab: {fileID: 5115054747967181027, guid: d698eb5fba544484e8324253d4711fc9, type: 3}
+    poolCount: 20
+  - poolType: MeleeAttackEffect
+    prefab: {fileID: 4274427982390344803, guid: f3b83b2dce9c32a4e8ea3be80f65dd3d, type: 3}
+    poolCount: 20
 --- !u!1 &1357776679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,6 +1949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GripItemBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2045,6 +2067,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunItemBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2123,6 +2149,10 @@ PrefabInstance:
     - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
       propertyPath: m_Name
       value: MuzzleItemBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8766958319155356515, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,6 +8,11 @@ namespace Hashira.Enemies
 {
     public abstract class EnemyListeningSoundState : EntityState
     {
+        public enum EInfoDeliveryType
+        {
+            Node = 1,
+            Position = 1 << 1,
+        }
         private GameEventChannelSO _soundEventChannel;
         private EntityStat _entityStat;
 
@@ -38,6 +43,7 @@ namespace Hashira.Enemies
             {
                 _entityStateMachine.SetShareVariable("TargetNode", evt.node);
                 _entityStateMachine.SetShareVariable("Loudness", evt.loudness);
+                _entityStateMachine.SetShareVariable("SoundPosition", evt.originPosition);
                 _entityStateMachine.ChangeState(_targetState);
             }
         }

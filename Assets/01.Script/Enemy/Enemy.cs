@@ -1,5 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Core.EventSystem;
+using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.FSM;
 using Hashira.Players;
@@ -20,6 +21,20 @@ namespace Hashira.Enemies
         //Test
         [SerializeField] private EffectPoolType _dieEffect;
 
+        [Header("Detect Player Setting")]
+        [SerializeField]
+        private Transform _eye;
+        [field: SerializeField]
+        public LayerMask WhatIsPlayer { get; private set; }
+
+        [SerializeField]
+        private LayerMask _whatIsGround;
+
+
+        private StatElement _fovElement;
+        private StatElement _sightElement;
+        private StatElement _attackRangeElement;
+
         protected override void Awake()
         {
             base.Awake();
@@ -27,6 +42,10 @@ namespace Hashira.Enemies
             var partCollider = GetEntityComponent<EntityPartCollider>();
             partCollider.OnPartCollisionHitEvent += HandlePartsCollisionHitEvent;
             _entityHealth.OnDieEvent += HandleDieEvent;
+
+            _fovElement = _entityStat.StatDictionary["FieldOfView"];
+            _sightElement = _entityStat.StatDictionary["Sight"];
+            _attackRangeElement = _entityStat.StatDictionary["AttackRange"];
         }
 
         private void HandleDieEvent()
@@ -57,7 +76,44 @@ namespace Hashira.Enemies
             }
         }
 
-        public abstract Player DetectPlayer();
-        public abstract bool IsTargetOnAttackRange(Transform target);
+        public virtual Player DetectPlayer()
+        {
+            Collider2D coll = Physics2D.OverlapCircle(transform.position, _sightElement.Value, WhatIsPlayer);
+            if (coll == null)
+                return null;
+            Vector3 direction = coll.transform.position - _eye.transform.position;
+            float distance = direction.magnitude;
+            direction.Normalize();
+            //if (!Physics2D.Raycast(_eye.transform.position, direction, distance, _whatIsGround))
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                if (angle < 0)
+                    angle += 360f;
+
+                float facingAngle = _entityRenderer.FacingDirection == 1 ? 0 : 180;
+                float minAngle = facingAngle - _fovElement.Value;
+                float maxAngle = facingAngle + _fovElement.Value;
+
+                if (minAngle <= angle && angle <= maxAngle)
+                {
+                    return coll.GetComponent<Player>();
+                }
+            }
+            return null;
+        }
+
+        public virtual bool IsWallBetweenTarget(Transform target)
+        {
+            Vector3 direction = target.position - _eye.transform.position;
+            return Physics2D.Raycast(transform.position, direction.normalized, direction.magnitude, _whatIsGround);
+        }
+
+        public virtual bool IsTargetOnAttackRange(Transform target)
+        {
+            float distanceSqr = (transform.position - target.position).sqrMagnitude;
+            float attackRangeSqr = _attackRangeElement.Value * _attackRangeElement.Value;
+
+            return distanceSqr < attackRangeSqr;
+        }
     }
 }
