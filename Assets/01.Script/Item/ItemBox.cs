@@ -14,6 +14,8 @@ namespace Hashira
         [SerializeField, ToggleField("_isRandomItem", true)] private ItemGroupSO _itemGroup;
         [SerializeField] private string objectName;
 
+        [Space(25)]
+        [SerializeField] private Sprite _openedSprite;
         [SerializeField] private int _itemCount = 1;
         [SerializeField] private int _getableCount = 1;
         [SerializeField] private float _gap = 1.0f;
@@ -21,12 +23,15 @@ namespace Hashira
         private int _currentGetableCount = 0;
         private DroppedItem[] _droppedItems;
 
+        private SpriteRenderer _spriteRenderer;
 
         protected override void Awake()
         {
             base.Awake();
             Initialized();
-        }
+
+			_spriteRenderer = GetComponent<SpriteRenderer>();
+		}
 
         public void Initialized()
         {
@@ -59,6 +64,7 @@ namespace Hashira
 			}
 
             CanInteraction = false;
+            _spriteRenderer.sprite = _openedSprite;
 		}
 
         private void HandleSelectComplate()
