@@ -15,6 +15,14 @@ namespace Hashira.EffectSystem
         public event Action<Effect> EffectAddedEvent;
         public event Action<Effect> EffectRemovedEvent;
 
+        private void Awake()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                _effectDictionaries[i] = new Dictionary<Entity, List<Effect>>();
+            }
+        }
+
         public void AddEffect<T>(Entity entity, int level, float duration) where T : Effect, new()
         {
             T effect = new T()
