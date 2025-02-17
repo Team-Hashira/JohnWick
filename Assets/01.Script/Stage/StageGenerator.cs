@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Hashira.Combat;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -87,7 +86,8 @@ namespace Hashira.Stage
         private void NextStage()
         {
             ++CurrentStageIndex;
-            Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
+            CameraManager.Instance.MoveToPlayerPositionimmediately();
+			Generate(_chapterSO[CurrentChapterIndex][CurrentStageIndex]);
         }
         
         public async void Clear()
