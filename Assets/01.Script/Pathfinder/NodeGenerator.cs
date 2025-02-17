@@ -111,7 +111,7 @@ namespace Hashira.Pathfind
         public void GenerateNodes()
         {
             Initialize();
-            _offset = new Vector2(0.5f, -0.5f) + -(Vector2)_groundTilemap.transform.position;
+            _offset = new Vector2(0.5f, -0.5f) + (Vector2)_groundTilemap.transform.position;
             BoundsInt groundBounds = _groundTilemap.cellBounds;
 
             for (int x = groundBounds.xMin; x <= groundBounds.xMax; x++)
