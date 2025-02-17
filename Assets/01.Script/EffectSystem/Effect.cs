@@ -1,7 +1,5 @@
 using System;
 using Hashira.Entities;
-using Hashira.Players;
-using UnityEngine;
 
 namespace Hashira.EffectSystem
 {
@@ -11,6 +9,20 @@ namespace Hashira.EffectSystem
         public float duration;
         public float currentTime = 0;
         public int level;
+        public bool isCounting = false;
+        public bool isLoop = false;
+
+        public int maxCount = 10;
+        protected int _count = 0;
+        public int Count 
+        { 
+            get => _count;
+            set 
+            { 
+                _count = value;
+                OnCounting(_count);
+            }
+        }
 
         public EntityEffector baseEffector;
         public EffectUIDataSO effectUIDataSO;
@@ -32,6 +44,11 @@ namespace Hashira.EffectSystem
         public virtual void Disable()
         {
             
+        }
+
+        public virtual void OnCounting(int count)
+        {
+
         }
     }
 }
