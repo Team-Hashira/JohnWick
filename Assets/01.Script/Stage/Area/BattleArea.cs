@@ -13,6 +13,9 @@ namespace Hashira.Stage.Area
 		[SerializeField] private GameObject _rObject;
 		[SerializeField] private GameObject _lObject;
 
+		[SerializeField] private GameObject _rEnemyOnlyCollider;
+		[SerializeField] private GameObject _lEnemyOnlyCollider;
+
 		[SerializeField] private UnityEvent BattleStartEvent;
 		[SerializeField] private List<EntityHealth> _entityList;
 
@@ -53,6 +56,14 @@ namespace Hashira.Stage.Area
 			var colls = GetComponentsInChildren<BoxCollider2D>();
 			for (int i = 0; i < colls.Length; i++)
 				colls[i].size = new Vector2(1f, _battleSize.y * 2);
+
+			if (r != null)
+				r.localPosition = new Vector3(_battleSize.x + 0.5f, 0, 0);
+			if (l != null)
+				l.localPosition = new Vector3(_battleSize.x - 0.5f, 0, 0);
+
+			r = _rEnemyOnlyCollider.transform;
+			l = _lEnemyOnlyCollider.transform;
 
 			if (r != null)
 				r.localPosition = new Vector3(_battleSize.x + 0.5f, 0, 0);
