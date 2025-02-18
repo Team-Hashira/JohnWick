@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hashira.EffectSystem.Effects
 {
-    public class IncreaseMoveSpeed : Effect, ICoolTimeEffect, ILoopEffect
+    public class IncreaseMoveSpeed : Effect, ICoolTimeEffect
     {
         private StatElement _speedStatElement;
 
@@ -35,11 +35,6 @@ namespace Hashira.EffectSystem.Effects
 
         public void OnTimeOut()
         {
-        }
-
-        public void Reset()
-        {
-            Time = 0;
         }
     }
 }

@@ -24,6 +24,9 @@ namespace Hashira.UI.Effect
 
         private void Update()
         {
+            gameObject.SetActive(EffectManager.Instance.IsMaxLevelEffect(effectBase.entity,
+                effectBase.GetType(), effectBase.level));
+            
             {
                 if (effectBase is ICoolTimeEffect coolTimeEffect)
                 {

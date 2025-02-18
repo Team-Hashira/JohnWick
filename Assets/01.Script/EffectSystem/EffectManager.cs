@@ -11,6 +11,7 @@ namespace Hashira.EffectSystem
     {
         [SerializeField] private List<EffectUIDataSO> _effectUIDataSOList = new List<EffectUIDataSO>();
         private Dictionary<Entity, List<Effect>>[] _effectDictionaries = new Dictionary<Entity, List<Effect>>[10];
+        private Dictionary<Entity, Dictionary<Type, int>> _maxLevelEffectDictionary = new Dictionary<Entity, Dictionary<Type, int>>();
 
         public event Action<Effect> EffectAddedEvent;
         public event Action<Effect> EffectRemovedEvent;
@@ -34,6 +35,8 @@ namespace Hashira.EffectSystem
 				entityStat = entity.GetEntityComponent<EntityStat>()
             };
 
+            SetMaxLevelEffects(entity, typeof(T), level);
+
             _effectDictionaries[level].TryAdd(entity, new List<Effect>());
 
             _effectDictionaries[level][entity].Add(effect);
@@ -51,9 +54,12 @@ namespace Hashira.EffectSystem
                 removeEffect.Disable();
                 EffectRemovedEvent?.Invoke(removeEffect);
                 _effectDictionaries[level][entity].Remove(removeEffect);
+                Debug.Log(_effectDictionaries[level][entity].Count);
             }
             else
                 Debug.Log($"Effect {typeof(T).Name} was not found");
+
+            SetMaxLevelEffects(entity, typeof(T), -1, false);
         }
 
 		public void RemoveEffect(Entity entity, Type effectType, int level)
@@ -69,7 +75,37 @@ namespace Hashira.EffectSystem
             else
                 Debug.Log($"Effect {effectType.Name} was not found");
 
-		}
+            SetMaxLevelEffects(entity, effectType, -1, false);
+        }
+
+        private void SetMaxLevelEffects(Entity entity, Type type, int level, bool isAdded = true)
+        {
+            _maxLevelEffectDictionary.TryAdd(entity, new Dictionary<Type, int>());
+            _maxLevelEffectDictionary[entity].TryAdd(type, -1);
+
+            if (_maxLevelEffectDictionary[entity][type] < level && isAdded)
+            {
+                _maxLevelEffectDictionary[entity][type] = level;
+            }
+
+            if (isAdded == false)
+            {
+                for (int i = _effectDictionaries.Length-1; i >= 0 ; i--) 
+                {
+                    var effect = _effectDictionaries[i][entity].FirstOrDefault(x=>x.GetType() == type);
+                    if (effect != null)
+                    {
+                        _maxLevelEffectDictionary[entity][type] = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public bool IsMaxLevelEffect(Entity entity, Type type, int level)
+        {
+            return _maxLevelEffectDictionary[entity][type] == level;
+        }
 
 		private void Update()
         {
@@ -88,7 +124,7 @@ namespace Hashira.EffectSystem
 
         private void UpdateEffects()
         {
-            for (int level = 0; level < _effectDictionaries.Length; level++)
+            for (int level = _effectDictionaries.Length-1; level >= 0; level--)
             {
                 foreach (var effectList in _effectDictionaries[level])
                 {
@@ -100,7 +136,8 @@ namespace Hashira.EffectSystem
 
                     foreach (var effect in effectList.Value)
                     {
-                        effect?.Update();
+                        if (IsMaxLevelEffect(effect.entity, effect.GetType(), level) == false) continue;
+                        effect.Update();
                         EffectInterfaceLogic(effect);
                     }
                 }
