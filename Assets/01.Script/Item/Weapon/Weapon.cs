@@ -53,11 +53,7 @@ namespace Hashira.Items.Weapons
                 List<StatElement> overrideStatElementList = new List<StatElement>();
                 foreach (StatElement statElement in WeaponSO.overrideStatElementList)
                 {
-                    StatElement newElement = new StatElement();
-                    newElement.elementSO = statElement.elementSO;
-                    //newElement._baseValue = statElement._baseValue;
-                    newElement.Initialize();
-                    overrideStatElementList.Add(newElement);
+                    overrideStatElementList.Add((StatElement)statElement.Clone());
                 }
 
                 clonedWeapon.StatDictionary = new StatDictionary(overrideStatElementList, baseStat);
