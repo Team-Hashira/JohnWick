@@ -137,8 +137,8 @@ namespace Hashira.EffectSystem
                     foreach (var effect in effectList.Value)
                     {
                         if (IsMaxLevelEffect(effect.entity, effect.GetType(), level) == false) continue;
-                        effect.Update();
                         EffectInterfaceLogic(effect);
+                        effect.Update();
                     }
                 }
             }
