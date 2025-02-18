@@ -6,7 +6,7 @@ namespace Hashira.Items.Weapons
     public class ScatterGun : GunWeapon
     {
         private static int _bulletCount = 5;
-        private static int _scatterAngle = 5;
+        private static int _scatterAngle = 8;
 
         public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
