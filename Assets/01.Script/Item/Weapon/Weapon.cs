@@ -55,7 +55,7 @@ namespace Hashira.Items.Weapons
                 {
                     StatElement newElement = new StatElement();
                     newElement.elementSO = statElement.elementSO;
-                    newElement.baseValue = statElement.baseValue;
+                    //newElement._baseValue = statElement._baseValue;
                     newElement.Initialize();
                     overrideStatElementList.Add(newElement);
                 }
