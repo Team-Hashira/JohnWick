@@ -38,8 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Sky
     uniqueID: 872489703
+    locked: 0
+  - name: Background
+    uniqueID: 2380843039
+    locked: 0
+  - name: NearBackground
+    uniqueID: 2458592207
     locked: 0
   - name: Default
     uniqueID: 0
@@ -53,11 +59,14 @@ TagManager:
   - name: Entity
     uniqueID: 2226640605
     locked: 0
+  - name: Effect
+    uniqueID: 2350169635
+    locked: 0
   - name: Ground
     uniqueID: 768304355
     locked: 0
-  - name: Effect
-    uniqueID: 2350169635
+  - name: TopEffect
+    uniqueID: 3972435881
     locked: 0
   - name: UI
     uniqueID: 1405063963

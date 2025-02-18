@@ -28,9 +28,9 @@ namespace Hashira
         {
             _currentTime += Time.deltaTime;
             if (_currentTime < _blinkDuration)
-            {
                 _light.intensity = _startInensity * _intensityCurve.Evaluate(_currentTime / _blinkDuration);
-            }
+            else if ( _currentTime > _blinkDuration)
+                _light.intensity = _startInensity * _intensityCurve.Evaluate(1);
         }
     }
 }

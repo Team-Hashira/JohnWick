@@ -19,42 +19,41 @@ namespace Hashira.Projectiles
             IsParryingable = true;
         }
 
-        protected override void OnHited(RaycastHit2D hit)
+        protected override void OnHited(RaycastHit2D hit, IDamageable damageable)
         {
-            base.OnHited(hit);
-
-            //Effect
-            gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
-
-        }
-
-        protected override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
-        {
-            base.OnHitedDamageable(hit, damageable);
-            int damage = CalculatePenetration(Damage, _penetration - _currentPenetration);
-            EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
-
-            if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
+            base.OnHited(hit, damageable);
+            if (damageable != null)
             {
-                ////Effect
-                //ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
-                //    .gameObject.GetComponent<ParticleSystem>();
-                //var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
+                int damage = CalculatePenetration(Damage, _penetration - _currentPenetration);
+                EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
 
-                ////Effect
-                //ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
-                //    .gameObject.GetComponent<ParticleSystem>();
+                if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
+                {
+                    ////Effect
+                    //ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
+                    //    .gameObject.GetComponent<ParticleSystem>();
+                    //var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
 
-                //if (parts == EEntityPartType.Head)
-                //{
-                //    //Effect
-                //    gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
-                //    limitVelocityOverLifetimeModule.dampen = 0.6f;
-                //}
-                //else
-                //{
-                //    limitVelocityOverLifetimeModule.dampen = 0.9f;
-                //}
+                    ////Effect
+                    //ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
+                    //    .gameObject.GetComponent<ParticleSystem>();
+
+                    //if (parts == EEntityPartType.Head)
+                    //{
+                    //    //Effect
+                    //    gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
+                    //    limitVelocityOverLifetimeModule.dampen = 0.6f;
+                    //}
+                    //else
+                    //{
+                    //    limitVelocityOverLifetimeModule.dampen = 0.9f;
+                    //}
+                }
+            }
+            else
+            {
+                //Effect
+                gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
             }
         }
 

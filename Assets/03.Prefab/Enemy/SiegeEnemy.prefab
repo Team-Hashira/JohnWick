@@ -6245,7 +6245,7 @@ MonoBehaviour:
     m_Bits: 256
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 2241
   <Resistivity>k__BackingField: 3
 --- !u!114 &4301028805623548849
 MonoBehaviour:

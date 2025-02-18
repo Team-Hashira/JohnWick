@@ -44,7 +44,7 @@ MonoBehaviour:
   cartridgeCaseParticlePoint: {x: -0.11, y: 0.029, z: 0}
   bullet: 0
   fireSpakleEffect: 1
-  bulletSpeed: 200
+  bulletSpeed: 100
   reloadDuration: 1
   partsEquipUIPosDict:
     _serializedList:

@@ -7,10 +7,13 @@ namespace Hashira.Projectiles
     {
         public int doubleAttackDamage = 100;
 
-        public override void OnHitedDamageable(RaycastHit2D hit, IDamageable damageable)
+        public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
-            base.OnHitedDamageable(hit, damageable);
-            EEntityPartType parts = damageable.ApplyDamage(doubleAttackDamage, hit, _projectile.transform, attackType: EAttackType.Fixed);
+            base.OnProjectileHit(hit, damageable);
+            if (damageable != null)
+            {
+                damageable.ApplyDamage(doubleAttackDamage, hit, _projectile.transform, attackType: EAttackType.Fixed);
+            }
         }
     }
 }
