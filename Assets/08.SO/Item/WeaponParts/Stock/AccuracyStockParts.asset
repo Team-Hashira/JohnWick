@@ -17,6 +17,7 @@ MonoBehaviour:
   itemName: AttackSpeedStock
   itemDisplayName: "\uC9C1\uC120\uD615 \uAC1C\uBA38\uB9AC\uD310"
   itemDescription: "\uC815\uD655\uB3C4\uB97C \uC62C\uB824\uC8FC\uB294 \uAC1C\uBA38\uB9AC\uD310\uC774\uB2E4.\n"
+  itemRating: 0
   useCustomClass: 0
   defaultClass: WeaponParts
   partsSpriteDictionary:
@@ -27,7 +28,7 @@ MonoBehaviour:
   _statList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 20
+    _baseValue: 8
   - Name: "\uC815\uD655\uB3C4"
     elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
     _baseValue: 8

@@ -15,13 +15,13 @@ MonoBehaviour:
   _statElements:
   - Name: Health
     elementSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
-    _baseValue: 1000
+    _baseValue: 100
   - Name: AttackPower
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 100
+    _baseValue: 10
   - Name: Defense
     elementSO: {fileID: 11400000, guid: 51a8954ad1e5c564caa6ec2e3a9b88cc, type: 2}
-    _baseValue: 100
+    _baseValue: 10
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
     _baseValue: 10
