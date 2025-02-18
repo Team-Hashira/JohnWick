@@ -38,8 +38,10 @@ namespace Hashira.Stage.Area
 		[Button]
 		private void SetSize()
 		{
-			_polygonCollider ??= GetComponent<PolygonCollider2D>();
+			var polygonCollider = GetComponent<PolygonCollider2D>();
 			_cam ??= GetComponentInChildren<CinemachineCamera>();
+
+			Debug.Assert(polygonCollider != null, "PolygonCollider is null!");
 
 			Vector2[] sizes = new Vector2[4];
 
@@ -48,7 +50,7 @@ namespace Hashira.Stage.Area
 			sizes[2] = -_cameraMovableSize;
 			sizes[3] = new Vector2(_cameraMovableSize.x, -_cameraMovableSize.y);
 
-			_polygonCollider.SetPath(0, sizes);
+			polygonCollider.SetPath(0, sizes);
 
 			Transform r = _rObject.transform;
 			Transform l = _lObject.transform;
@@ -60,7 +62,7 @@ namespace Hashira.Stage.Area
 			if (r != null)
 				r.localPosition = new Vector3(_battleSize.x + 0.5f, 0, 0);
 			if (l != null)
-				l.localPosition = new Vector3(_battleSize.x - 0.5f, 0, 0);
+				l.localPosition = new Vector3(-_battleSize.x - 0.5f, 0, 0);
 
 			r = _rEnemyOnlyCollider.transform;
 			l = _lEnemyOnlyCollider.transform;
@@ -68,10 +70,10 @@ namespace Hashira.Stage.Area
 			if (r != null)
 				r.localPosition = new Vector3(_battleSize.x + 0.5f, 0, 0);
 			if (l != null)
-				l.localPosition = new Vector3(_battleSize.x - 0.5f, 0, 0);
+				l.localPosition = new Vector3(-_battleSize.x - 0.5f, 0, 0);
 
 			_cam.GetComponent<CinemachineConfiner2D>().InvalidateBoundingShapeCache();
-			EditorUtility.SetDirty(_polygonCollider);
+			EditorUtility.SetDirty(polygonCollider);
 		}
 #endif
 

@@ -61,8 +61,8 @@ MonoBehaviour:
       m_Calls: []
   _rObject: {fileID: 2780748435022925419}
   _lObject: {fileID: 1767297810488346343}
-  _rEnemyOnlyCollider: {fileID: 0}
-  _lEnemyOnlyCollider: {fileID: 0}
+  _rEnemyOnlyCollider: {fileID: 8432156329848017458}
+  _lEnemyOnlyCollider: {fileID: 6774001659603960769}
   BattleStartEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -292,7 +292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2385532847080914357
 Transform:
   m_ObjectHideFlags: 0
@@ -504,7 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3558663136909037456
 Transform:
   m_ObjectHideFlags: 0

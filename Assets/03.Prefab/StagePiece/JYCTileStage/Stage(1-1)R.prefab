@@ -129624,9 +129624,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleArea
       objectReference: {fileID: 0}
+    - target: {fileID: 2385532847080914357, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.28
+      objectReference: {fileID: 0}
     - target: {fileID: 4260344562198276857, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.5
+      value: -18.28
       objectReference: {fileID: 0}
     - target: {fileID: 4260344562198276857, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -129634,23 +129638,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7309131911804856430, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: 21
+      value: 17.78
       objectReference: {fileID: 0}
     - target: {fileID: 7309131911804856430, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: -21
+      value: -17.78
       objectReference: {fileID: 0}
     - target: {fileID: 7309131911804856430, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -21
+      value: -17.78
       objectReference: {fileID: 0}
     - target: {fileID: 7309131911804856430, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 21
+      value: 17.78
       objectReference: {fileID: 0}
     - target: {fileID: 7545220992574033188, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.5
+      value: 18.28
       objectReference: {fileID: 0}
     - target: {fileID: 7545220992574033188, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -130213,9 +130217,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleArea (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2385532847080914357, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558663136909037456, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4260344562198276857, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.5
+      value: -15.5
       objectReference: {fileID: 0}
     - target: {fileID: 4260344562198276857, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -130261,6 +130273,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7757962487773591554, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
+      propertyPath: m_Size.y
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 7867602179498980360, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 66.8
@@ -130300,6 +130316,14 @@ PrefabInstance:
     - target: {fileID: 7867602179498980360, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084218637167998984, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
+      propertyPath: m_Size.y
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416997006115096670, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
+      propertyPath: Lens.OrthographicSize
+      value: 6.3
       objectReference: {fileID: 0}
     - target: {fileID: 9126951844044897314, guid: c2337449d4e4f9e40a29d7a9890ae1c2, type: 3}
       propertyPath: _battleSize.x
