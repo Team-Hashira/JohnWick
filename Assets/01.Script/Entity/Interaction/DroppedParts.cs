@@ -3,6 +3,7 @@ using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
+using Hashira.UI.InGame;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -47,19 +48,16 @@ namespace Hashira.Entities.Interacts
 
         public override void SetItemData()
         {
-            _ItemDataTrm.gameObject.SetActive(true);
+            base.SetItemData();
             if (_entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon) &&
                 entityWeapon.CurrentWeapon != null && entityWeapon.CurrentWeapon is GunWeapon gunWeapon &&
                 gunWeapon.TryGetParts(_partsSO.partsType, out WeaponParts comparisonParts))
             {
-                _ComparisonItemDataTrm.gameObject.SetActive(true);
-                _itemData.SetItem(_parts, comparisonParts.WeaponPartsSO);
-                _comparisonItemData.SetItem(comparisonParts);
+                _itemDataController.SetItem(_parts, comparisonParts);
             }
             else
             {
-                _ComparisonItemDataTrm.gameObject.SetActive(false);
-                _itemData.SetItem(_parts);
+                _itemDataController.SetItem(_parts);
             }
         }
     }

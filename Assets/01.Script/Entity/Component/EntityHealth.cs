@@ -88,7 +88,7 @@ namespace Hashira.Entities
 
         private void CreateDamageText(int damage, Vector3 textPos, EAttackType attackType)
         {
-            Color color = VisualUtility.AttackTypeColorDict[attackType];
+            Color color = EnumUtility.AttackTypeColorDict[attackType];
 
             DamageText damageText = gameObject.Pop(UIPoolType.DamageText, textPos, Quaternion.identity) .gameObject.GetComponent<DamageText>();
             damageText.Init(damage, color);

@@ -1,7 +1,5 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
-using Hashira.Items.PartsSystem;
-using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,27 +11,16 @@ namespace Hashira.Items.Weapons
         public WeaponSO WeaponSO { get; private set; }
 
         //Stat
-        private List<StatElement> _overrideStatElementList = new List<StatElement>();
-        private StatBaseSO _baseStat;
         public StatDictionary StatDictionary { get; private set; }
         public EntityWeapon EntityWeapon { get; private set; }
 
         private int _entityDamage;
-        public LayerMask WhatIsTarget {  get; private set; }
+        public LayerMask WhatIsTarget { get; private set; }
 
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
-
-            WeaponSO = itemSO as WeaponSO;
-            if (WeaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
-            else
-            {
-                _baseStat = GameObject.Instantiate(WeaponSO.baseStat);
-                _overrideStatElementList = WeaponSO.overrideStatElementList;
-
-                StatDictionary = new StatDictionary(_overrideStatElementList, _baseStat);
-            }
+            WeaponSO = ItemSO as WeaponSO;
         }
 
         public virtual void Equip(EntityWeapon entityWeapon)
@@ -55,5 +42,28 @@ namespace Hashira.Items.Weapons
         }
         public virtual int CalculateDamage() { return _entityDamage + StatDictionary["AttackPower"].IntValue; }
 
+        public override object Clone()
+        {
+            Weapon clonedWeapon = (Weapon)base.Clone();
+
+            if (WeaponSO.baseStat == null) Debug.LogError("BaseStat is null with WeaponSO");
+            else
+            {
+                StatBaseSO baseStat = GameObject.Instantiate(WeaponSO.baseStat);
+                List<StatElement> overrideStatElementList = new List<StatElement>();
+                foreach (StatElement statElement in WeaponSO.overrideStatElementList)
+                {
+                    StatElement newElement = new StatElement();
+                    newElement.elementSO = statElement.elementSO;
+                    newElement.baseValue = statElement.baseValue;
+                    newElement.Initialize();
+                    overrideStatElementList.Add(newElement);
+                }
+
+                clonedWeapon.StatDictionary = new StatDictionary(overrideStatElementList, baseStat);
+            }
+
+            return clonedWeapon;
+        }
     }
 }

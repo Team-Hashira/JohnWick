@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Hashira.Core
 {
-    public static class VisualUtility
+    public static class EnumUtility
     {
-        public const float CommonPixelPerUnit = 16f;
+        public const float CommonPixelPerUnit = 16f; //임시
         public static readonly Dictionary<EItemRating, Color> ItemRatingColorDict 
             = new Dictionary<EItemRating, Color>()
             {
@@ -24,6 +24,16 @@ namespace Hashira.Core
                 { EAttackType.HeadShot, new Color(1, 1, 0, 1)},
                 { EAttackType.Fixed, new Color(0.5f, 0.5f, 0.5f, 1)},
                 { EAttackType.Fire, new Color(1, 0, 0, 1)},
+            };
+        public static readonly Dictionary<EWeaponPartsType, string> WeaponPartsTypeNameDict
+            = new Dictionary<EWeaponPartsType, string>()
+            {
+                { EWeaponPartsType.CartridgeBelt, "탄띠" },
+                { EWeaponPartsType.Grip, "손잡이"},
+                { EWeaponPartsType.Magazine, "탄창"},
+                { EWeaponPartsType.Muzzle, "총구"},
+                { EWeaponPartsType.Scope, "조준경"},
+                { EWeaponPartsType.Stock, "개머리판"},
             };
     }
 }
