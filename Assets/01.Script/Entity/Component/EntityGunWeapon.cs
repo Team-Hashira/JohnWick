@@ -80,6 +80,7 @@ namespace Hashira.Entities.Components
         {
             bool isCurrentWeapon = index == CurrentIndex;
             base.RemoveWeapon(index);
+
             if (IsMeleeWeaponMode == false && isCurrentWeapon)
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }

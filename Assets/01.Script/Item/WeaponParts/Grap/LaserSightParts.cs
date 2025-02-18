@@ -1,8 +1,6 @@
-using Hashira.Entities;
 using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
 using Hashira.Projectiles;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Items.PartsSystem
@@ -48,12 +46,11 @@ namespace Hashira.Items.PartsSystem
 
         private void HandleCurrentWeaponChangedEvent(Weapon weapon)
         {
-            bool isOn = weapon == _weapon;
             bool isHaveLaser
                 = weapon != null && weapon is GunWeapon gunWeapon
                 && gunWeapon.GetParts(EWeaponPartsType.Grip)?.WeaponPartsSO == WeaponPartsSO;
 
-            _lineRenderer.enabled = isOn || isHaveLaser;
+            _lineRenderer.enabled = isHaveLaser;
         }
 
         public override void PartsUpdate()
