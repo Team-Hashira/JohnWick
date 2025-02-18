@@ -15,7 +15,7 @@ namespace Hashira
         {
             if (damageable is EntityHealth entityHealth)
             {
-                EffectManager.Instance.AddEffect<Ignition>(entityHealth.Owner, ignitionLevel, ignitionDuration);
+                EffectManager.Instance.AddEffect<Ignition>(entityHealth.Owner, ignitionLevel);
             }
         }
     }

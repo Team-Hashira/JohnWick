@@ -3,11 +3,14 @@ using UnityEngine;
 
 namespace Hashira.EffectSystem.Effects
 {
-    public class Ignition : Effect
+    public class Ignition : Effect, ICoolTimeEffect
     {
         private readonly int[] _damage = { 20, 30, 50 };
         private float _damageDelay = 0.5f;
         private float _lastDamageTime;
+
+        float ICoolTimeEffect.Duration { get; set; } = 5;
+        float ICoolTimeEffect.Time { get; set; }
 
         public override void Enable()
         {
@@ -29,6 +32,11 @@ namespace Hashira.EffectSystem.Effects
         public override void Disable()
         {
             base.Disable();
+        }
+
+        public void OnTimeOut()
+        {
+
         }
     }
 }

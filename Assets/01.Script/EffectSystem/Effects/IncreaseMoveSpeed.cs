@@ -3,9 +3,13 @@ using UnityEngine;
 
 namespace Hashira.EffectSystem.Effects
 {
-    public class IncreaseMoveSpeed : Effect
+    public class IncreaseMoveSpeed : Effect, ICoolTimeEffect
     {
         private StatElement _speedStatElement;
+
+        public float Duration { get; set; } = 5;
+        public float Time { get; set; }
+
         public override void Enable()
         {
             base.Enable();
@@ -17,7 +21,9 @@ namespace Hashira.EffectSystem.Effects
         public override void Update()
         {
             base.Update();
-            Debug.Log("dfdf");
+            if(Input.GetKeyDown(KeyCode.H))
+            {
+            }
         }
 
         public override void Disable()
@@ -25,6 +31,10 @@ namespace Hashira.EffectSystem.Effects
             base.Disable();
             _speedStatElement.RemoveModify("IncreaseMoveSpeed", EModifyMode.Percnet);
             //TODO 여기에 이펙트
+        }
+
+        public void OnTimeOut()
+        {
         }
     }
 }
