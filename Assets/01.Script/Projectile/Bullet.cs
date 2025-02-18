@@ -12,9 +12,9 @@ namespace Hashira.Projectiles
         [SerializeField] protected EffectPoolType _hitEffect;
         [SerializeField] protected EffectPoolType _spakleEffect;
 
-        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default)
+        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default, AnimationCurve damageOverDistance = null)
         {
-            base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers);
+            base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers, damageOverDistance);
             Owner = owner;
             IsParryingable = true;
         }
@@ -24,8 +24,9 @@ namespace Hashira.Projectiles
             base.OnHited(hit, damageable);
             if (damageable != null)
             {
-                int damage = CalculatePenetration(Damage, _penetration - _currentPenetration);
-                EEntityPartType parts = damageable.ApplyDamage(damage, hit, transform, transform.right * 4);
+                int damage = CalculateDamage(Damage);
+                int penetrationDamage = CalculatePenetration(CalculateDamage(damage), _penetration - _currentPenetration);
+                EEntityPartType parts = damageable.ApplyDamage(penetrationDamage, hit, transform, transform.right * 4);
 
                 if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                 {
