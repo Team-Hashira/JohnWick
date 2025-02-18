@@ -94,6 +94,11 @@ namespace Hashira.Projectiles
             }
             else
                 transform.position += movement;
+
+            if (_damageOverDistance.keys[^1].time < Vector3.Distance(_spawnPos, transform.position) && _isDead == false)
+            {
+                Die();
+            }
         }
 
         public virtual int CalculateDamage(float damage)
