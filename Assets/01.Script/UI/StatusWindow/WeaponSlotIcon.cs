@@ -72,11 +72,12 @@ namespace Hashira.UI.StatusWindow
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
-                ItemDropUtility.DroppedItem(Parent.BaseWeapon, pos);
+                Weapon dropWeapon = Parent.BaseWeapon;
                 if (Parent.SlotIndex < _entityGunWeapon.Weapons.Length)
                     _entityGunWeapon.RemoveWeapon(Parent.SlotIndex);
                 else
                     _entityMeleeWeapon.RemoveWeapon(Parent.SlotIndex - _entityGunWeapon.Weapons.Length);
+                ItemDropUtility.DroppedItem(dropWeapon, pos);
             } 
             
             SetToOriginTrm();

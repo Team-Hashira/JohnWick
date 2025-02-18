@@ -14,11 +14,7 @@ namespace Hashira.Entities.Interacts
     public class DroppedItem : KeyInteractObject, IHoldInteractable, IPoolingObject
     {
         [Header("==========DroppedItem setting==========")]
-        [SerializeField] protected ItemDataUI _itemData;
-        [SerializeField] protected ItemDataUI _comparisonItemData;
         [SerializeField] protected SpriteRenderer _itemLightRenderer;
-        protected Transform _ItemDataTrm;
-        protected Transform _ComparisonItemDataTrm;
 
         public Rigidbody2D Rigidbody2D { get; protected set; }
         public CircleCollider2D Collider { get; protected set; }
@@ -29,16 +25,13 @@ namespace Hashira.Entities.Interacts
 
         protected Entity _entity;
         protected EntityGunWeapon _entityWeapon;
+        protected ItemDataUIController _itemDataController;
 
         protected override void Awake()
         {
             base.Awake();
             Rigidbody2D = GetComponent<Rigidbody2D>();
             Collider = GetComponent<CircleCollider2D>();
-            _ItemDataTrm = _itemData.transform.parent;
-            _ComparisonItemDataTrm = _comparisonItemData.transform.parent;
-            _ItemDataTrm.gameObject.SetActive(false);
-            _ComparisonItemDataTrm.gameObject.SetActive(false);
         }
 
         public void HoldInteractionStart(Entity entity)
@@ -59,10 +52,9 @@ namespace Hashira.Entities.Interacts
         public void HoldInteractionEnd()
         {
             _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            UIManager.Instance.PopupUIActive<ItemDataUIController>(EPopupUIName.ItemDataUI, false);
             _entity = null;
             _isHolding = false;
-            _ItemDataTrm.gameObject.SetActive(false);
-            _ComparisonItemDataTrm.gameObject.SetActive(false);
             _holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
         }
 
@@ -74,7 +66,7 @@ namespace Hashira.Entities.Interacts
         public virtual void SetItem(Item item)
         {
             _itemSprite.sprite = item.ItemSO?.itemDefaultSprite;
-            Color color = Core.VisualUtility.ItemRatingColorDict[item.ItemSO.itemRating];
+            Color color = Core.EnumUtility.ItemRatingColorDict[item.ItemSO.itemRating];
             _nameText.color = color;
             color.a = 0.8f;
             _itemLightRenderer.color = color;
@@ -90,14 +82,17 @@ namespace Hashira.Entities.Interacts
                 float amount = (Time.time - _holdStartTime) / _descriptionOpenDelay;
                 if (amount < 1)
                     _holdOutlineMat.SetFloat(_FillAmountShaderHash, amount);
-                else if (_ItemDataTrm.gameObject.activeSelf == false)
+                else if (true)
                 {
                     SetItemData();
                 }
             }
         }
 
-        public virtual void SetItemData() { }
+        public virtual void SetItemData()
+        {
+            _itemDataController = UIManager.Instance.PopupUIActive<ItemDataUIController>(EPopupUIName.ItemDataUI, true)[0];
+        }
         public string OriginPoolType { get; set; }
         GameObject IPoolingObject.gameObject { get; set; }
         public virtual void OnPop() 
