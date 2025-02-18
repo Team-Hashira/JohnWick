@@ -37,20 +37,12 @@ namespace Hashira.UI.Effect
             //만약 같은 종류의 효과를 만나면
             if (oldEffectSlot != null)
             {
-                //레벨이 높은 것을 적용하고
-                if (effect.level >= oldEffectSlot.effectBase.level)
-                    oldEffectSlot.effectBase = effect;
-                //레벨이 낮은 것이 나중에 들어왔다면 현재 효과의 현재 지속 시간 초기화
-                else
-                    oldEffectSlot.effectBase.currentTime = oldEffectSlot.effectBase.duration;
-
+                oldEffectSlot.effectBase = effect;
                 return;
             }
             
             EffectSlot effectSlot = Instantiate(_effectSlotPrefab, transform);
             effectSlot.Init(effect);
-            effectSlot.effectBase.CoolTimeEvent += effectSlot.HandleCoolTime;
-            
             _currentSlots.Add(effectSlot);   
         }
         

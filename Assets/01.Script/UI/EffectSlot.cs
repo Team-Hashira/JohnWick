@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using Hashira.EffectSystem;
 using UnityEngine.UI;
 
 namespace Hashira.UI.Effect
@@ -16,26 +17,37 @@ namespace Hashira.UI.Effect
 
         public void Init(EffectSystem.Effect effectBase)
         {
+            //여기서 다른 UI 정보들까지 싹 다 초기화
             this.effectBase = effectBase;
             _iconImage.sprite = effectBase.effectUIDataSO.icon;
-            //여기서 다른 UI 정보들까지 싹 다 초기화
-            effectBase.CoolTimeEvent += HandleCoolTime;
         }
 
-        private void OnDestroy()
+        private void Update()
         {
-            effectBase.CoolTimeEvent -= HandleCoolTime;
+            {
+                if (effectBase is ICoolTimeEffect coolTimeEffect)
+                {
+                    _coolTimeGauge.fillAmount = coolTimeEffect.Time / coolTimeEffect.Duration;
+                }
+            }
+
+            if (effectBase is ICountingEffect countingEffect)
+            {
+                // 0은 그리지 않음
+                if (countingEffect.Count == 0) _coolTimeText.text = string.Empty;
+                else _coolTimeText.text = (countingEffect.Count).ToString();
+                return;
+            }
+
+            {
+                if(effectBase is ICoolTimeEffect coolTimeEffect)
+                    _coolTimeText.text = (coolTimeEffect.Duration - coolTimeEffect.Time).ToString("0.0");
+            }
         }
 
-        public void HandleCoolTime(float currentCoolTime, float duration)
-        {
-            _coolTimeGauge.fillAmount = currentCoolTime / duration;
-            _coolTimeText.text = (duration-currentCoolTime).ToString("0.0");
-        }
-        
         public bool Equals(EffectSystem.Effect target)
         {
-            return effectBase.name.Equals(target.name);
+            return effectBase.name.Equals(target.name) && effectBase.level.Equals(target.level);
         }
     }
 }
