@@ -231,6 +231,14 @@ namespace Hashira.Items.Weapons
             clonedGunWeapon.StatElementsSetting();
             clonedGunWeapon.Reload();
 
+            foreach (EWeaponPartsType weaponPartsType in clonedGunWeapon.GunSO.defaultParts.Keys)
+            {
+                PartsSO partsSO = clonedGunWeapon.GunSO.defaultParts[weaponPartsType];
+                WeaponParts weaponParts = (WeaponParts)partsSO.GetItemClass();
+
+                clonedGunWeapon.EquipParts(weaponPartsType, weaponParts);
+            }
+
             return clonedGunWeapon;
         }
     }

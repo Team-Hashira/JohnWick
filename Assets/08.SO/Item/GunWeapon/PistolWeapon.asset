@@ -46,6 +46,10 @@ MonoBehaviour:
   fireSpakleEffect: 1
   bulletSpeed: 100
   reloadDuration: 1
+  defaultParts:
+    _serializedList:
+    - Key: 3
+      Value: {fileID: 11400000, guid: 7a88dea890187c34784863caacd00f86, type: 2}
   partsEquipUIPosDict:
     _serializedList:
     - Key: 0
