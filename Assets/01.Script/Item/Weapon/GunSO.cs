@@ -15,6 +15,8 @@ namespace Hashira.Items.Weapons
         public EffectPoolType fireSpakleEffect = EffectPoolType.BulletShootSparkleEffect;
         public float bulletSpeed = 200;
         public float reloadDuration = 1;
+        [Header("DistanceDamage")]
+        public AnimationCurve damageOverDistance;
         [Header("Parts")]
         public SerializedDictionary<EWeaponPartsType, PartsSO> defaultParts
             = new SerializedDictionary<EWeaponPartsType, PartsSO>();
