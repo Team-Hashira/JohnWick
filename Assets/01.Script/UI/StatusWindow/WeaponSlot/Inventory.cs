@@ -1,10 +1,8 @@
 using Hashira.Items.PartsSystem;
-using System;
-using UnityEngine;
 
 namespace Hashira.UI.StatusWindow
 {
-    public class Inventory : MonoBehaviour
+    public class Inventory : MonoSingleton<Inventory>
     {
         private PartSlot[] slots;
         private WeaponParts[] weaponParts = new WeaponParts[20];
@@ -31,9 +29,21 @@ namespace Hashira.UI.StatusWindow
             for (int i = 0;i < weaponParts.Length; i++)
             {
                 weaponParts[i] = slots[i].BasePart;
-                Debug.Log(weaponParts[i]);
             }
-            Debug.Log("----------------------------------");
         }
+
+        public bool AddPart(WeaponParts part)
+        {
+            for (int i = 0; i < weaponParts.Length; i++)
+            {
+                if (weaponParts[i] == null)
+                {
+                    slots[i].EquipParts(part.WeaponPartsSO.partsType, part);
+                    return true;
+                }
+            }
+
+            return false;
+        }    
     }
 }

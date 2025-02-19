@@ -9,7 +9,7 @@ public class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_Instance == null)
             {
-                _Instance = FindFirstObjectByType<T>();
+                _Instance = FindFirstObjectByType<T>(FindObjectsInactive.Include);
             }
             return _Instance;
         }

@@ -3,7 +3,7 @@ using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
-using Hashira.UI.InGame;
+using Hashira.UI.StatusWindow;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -42,6 +42,14 @@ namespace Hashira.Entities.Interacts
                     if (weaponParts != null) ItemDropUtility.DroppedItem(weaponParts, entity.transform.position);
                     InteractionSucces();
                     this.Push();
+                }
+                else
+                {
+                    if (Inventory.Instance.AddPart(weaponParts))
+                    {
+                        InteractionSucces();
+                        this.Push();
+                    }
                 }
             }
         }

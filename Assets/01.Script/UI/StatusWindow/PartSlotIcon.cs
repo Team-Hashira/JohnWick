@@ -58,7 +58,7 @@ namespace Hashira.UI.StatusWindow
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
                 ItemDropUtility.DroppedItem(PartSlot.BasePart, pos);
-                PartSlot.WeaponSlot.GunWeapon.EquipParts(PartSlot.partType, null);
+                PartSlot.EquipParts(PartSlot.partType, null);
                 SetToOriginTrm();
                 return;
             } 
