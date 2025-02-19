@@ -8,14 +8,14 @@ namespace Hashira
 {
     public class IgnitionProjectileModifier : ProjectileModifier
     {
-        public int ignitionLevel;
+        public int ignitionDamage;
         public float ignitionDuration;
 
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
             if (damageable is EntityHealth entityHealth)
             {
-                EffectManager.Instance.AddEffect<Ignition>(entityHealth.Owner, ignitionLevel);
+                EffectManager.Instance.AddEffect<Ignition>(entityHealth.Owner, ignitionDamage);
             }
         }
     }
