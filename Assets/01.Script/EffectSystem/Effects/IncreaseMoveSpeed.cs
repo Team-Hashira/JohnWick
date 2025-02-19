@@ -13,8 +13,9 @@ namespace Hashira.EffectSystem.Effects
         public override void Enable()
         {
             base.Enable();
+            maxActiveCount = 4;
             _speedStatElement = entityStat.StatDictionary["Speed"];
-            _speedStatElement.AddModify("IncreaseMoveSpeed", 10.0f * level, EModifyMode.Percnet);
+            _speedStatElement.AddModify("IncreaseMoveSpeed", 30.0f, EModifyMode.Percnet);
             //TODO 여기에 이펙트
         }
 

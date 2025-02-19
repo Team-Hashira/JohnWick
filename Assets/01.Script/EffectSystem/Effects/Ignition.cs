@@ -25,7 +25,8 @@ namespace Hashira.EffectSystem.Effects
             if (_lastDamageTime + _damageDelay < Time.time)
             {
                 _lastDamageTime = Time.time;
-                entity.GetEntityComponent<EntityHealth>().ApplyDamage(_damage[level <= 3 ? level - 1 : 2], default, null, attackType: EAttackType.Fire);
+               // 이거 오류 나서 주석 처리해놓을께 레벨없이 이거 수정 부탁(2024-02-19(수)/최영환)
+               // entity.GetEntityComponent<EntityHealth>().ApplyDamage(_damage[level <= 3 ? level - 1 : 2], default, null, attackType: EAttackType.Fire);
             }
         }
 

@@ -1,10 +1,8 @@
-using Crogen.CrogenPooling;
 using Hashira.Entities.Interacts;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.UI.DragSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
@@ -12,12 +10,12 @@ namespace Hashira.UI.StatusWindow
     public class PartSlotIcon : MonoBehaviour, IDraggableObject
     {
         [SerializeField] private DroppedParts _droppedPartsPrefab;
-        public bool CanDrag => Parent.BasePart != null;
+        public bool CanDrag => PartSlot.BasePart != null;
         public Vector2 DragStartPosition { get; set; }
         public Vector2 DragEndPosition { get; set; }
         
         public RectTransform RectTransform { get; set; }
-        public PartSlot Parent { get; private set; }
+        public PartSlot PartSlot { get; private set; }
         [SerializeField] private Image _image;
         
         private void Awake()
@@ -29,13 +27,13 @@ namespace Hashira.UI.StatusWindow
         {
             _image.sprite = partSlot.BasePart?.WeaponPartsSO.itemDefaultSprite;
             _image.color = partSlot.BasePart != null ? Color.white : Color.clear;  
-            Parent = partSlot;
+            PartSlot = partSlot;
         }
         
         public void OnDragStart()
         {
-            Parent.transform.SetAsLastSibling();
-            Parent.transform.parent.SetAsLastSibling();
+            PartSlot.transform.SetAsLastSibling();
+            PartSlot.transform.parent.SetAsLastSibling();
         }
 
         public void OnDragging(Vector2 curPos)
@@ -48,7 +46,8 @@ namespace Hashira.UI.StatusWindow
 
         public void OnDragEnd(Vector2 curPos)
         {
-            if (Parent.BasePart == null)
+            // 없으면 움직이면 안됨
+            if (PartSlot.BasePart == null)
             {
                 SetToOriginTrm();
                 return;
@@ -58,27 +57,32 @@ namespace Hashira.UI.StatusWindow
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
-                ItemDropUtility.DroppedItem(Parent.BasePart, pos);
-                Parent.Parent.GunWeapon.EquipParts(Parent.partType, null);
+                ItemDropUtility.DroppedItem(PartSlot.BasePart, pos);
+                PartSlot.EquipParts(PartSlot.partType, null);
                 SetToOriginTrm();
                 return;
             } 
                 
             foreach (var result in raycastResult)
             {
-                if (!result.gameObject.TryGetComponent(out PartSlot slot)) continue;
-                if (Parent.Parent.GunWeapon == null) break;
-                // 같은 종류가 아니면 교체 안됨
-                if (slot.partType != Parent.partType) break;
+                // PartSlot에 놓지 않으면 건너뛰기
+                if (result.gameObject.TryGetComponent(out PartSlot slot) == false) continue;
+                if (PartSlot.isAllType == false && PartSlot.WeaponSlot.GunWeapon == null) break;
+
+                // 모든 타입을 받을 수 없으면
+                if(slot.isAllType == false)
+                {
+                    // 같은 종류가 아니면 교체 안됨
+                    if (slot.partType != PartSlot.partType) break;
+                }
 
                 // 데이터 추출
-                WeaponParts targetPart = slot.Parent.GunWeapon?.UnEquipParts(Parent.partType);
-                WeaponParts basePart = Parent.Parent.GunWeapon.UnEquipParts(Parent.partType);
+                WeaponParts targetPart = slot.UnEquipParts(PartSlot.partType);
+                WeaponParts basePart = PartSlot.UnEquipParts(PartSlot.partType);
 
                 // 데이터의 교체
-                slot.Parent.GunWeapon?.EquipParts(Parent.partType, basePart);
-                Parent.Parent.GunWeapon.EquipParts(Parent.partType, targetPart);
-                
+                slot.EquipParts(PartSlot.partType, basePart);
+                PartSlot.EquipParts(PartSlot.partType, targetPart);
             }
 
             SetToOriginTrm();
@@ -90,7 +94,7 @@ namespace Hashira.UI.StatusWindow
             // 원위치
             RectTransform.anchoredPosition = Vector2.zero;
             transform.eulerAngles = Vector3.zero;
-            Init(Parent);
+            Init(PartSlot);
         }
     }
 }

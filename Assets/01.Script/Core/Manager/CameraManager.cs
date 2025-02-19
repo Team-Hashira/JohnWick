@@ -47,6 +47,9 @@ public class CameraManager : MonoSingleton<CameraManager>
 
     public void ChangeCamera(CinemachineCamera camera)
     {
+        currentMultiChannel.AmplitudeGain = 0;
+        currentMultiChannel.FrequencyGain = 0;
+
         currentCamera.Priority = 10;
         currentCamera = camera;
         currentCamera.Priority = 11;
@@ -54,6 +57,9 @@ public class CameraManager : MonoSingleton<CameraManager>
     }
     public void ChangeCamera(string cameraName)
     {
+        currentMultiChannel.AmplitudeGain = 0;
+        currentMultiChannel.FrequencyGain = 0;
+
         currentCamera.Priority = 10;
         currentCamera = _cameraDictionary[cameraName];
         currentCamera.Priority = 11;

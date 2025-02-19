@@ -5,7 +5,7 @@ namespace Hashira.EffectSystem
     public abstract class Effect
     {
         public string name;
-        public int level;
+        public static int maxActiveCount = 1;
 
         public EntityEffector baseEffector;
         public EffectUIDataSO effectUIDataSO;

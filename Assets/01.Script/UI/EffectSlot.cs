@@ -24,9 +24,6 @@ namespace Hashira.UI.Effect
 
         private void Update()
         {
-            gameObject.SetActive(EffectManager.Instance.IsMaxLevelEffect(effectBase.entity,
-                effectBase.GetType(), effectBase.level));
-            
             {
                 if (effectBase is ICoolTimeEffect coolTimeEffect)
                 {
@@ -50,7 +47,7 @@ namespace Hashira.UI.Effect
 
         public bool Equals(EffectSystem.Effect target)
         {
-            return effectBase.name.Equals(target.name) && effectBase.level.Equals(target.level);
+            return effectBase.name.Equals(target.name);
         }
     }
 }

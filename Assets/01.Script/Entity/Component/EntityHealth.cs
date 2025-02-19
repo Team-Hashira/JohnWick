@@ -136,6 +136,7 @@ namespace Hashira.Entities
                     _currentknockbackTime = 0;
                     IsKnockback = false;
                     _entityMover.isManualMove = true;
+                    _entityMover.StopImmediately();
                 }
             }
 		}
