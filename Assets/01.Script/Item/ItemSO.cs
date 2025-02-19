@@ -7,7 +7,7 @@ using Doryu.CustomAttributes;
 
 namespace Hashira.Items
 {
-    public enum EItemRating
+    public enum EItemRank
     {
         Common,
         UnCommon,
@@ -19,17 +19,17 @@ namespace Hashira.Items
     public abstract class ItemSO : ScriptableObject
     {
         [Header("==========Item setting==========")]
-        [Tooltip("UI¿¡ »ç¿ëÇÏ´Â°Å")]
+        [Tooltip("UIì— ì‚¬ìš©í•˜ëŠ”ê±°")]
         public Sprite itemIcon;
-        [Tooltip("ÀÎ°ÔÀÓ¿¡ »ç¿ëÇÏ´Â°Å")]
+        [Tooltip("ì¸ê²Œì„ì— ì‚¬ìš©í•˜ëŠ”ê±°")]
         public Sprite itemDefaultSprite;
-        [Tooltip("¿µ¾î¸í")]
+        [Tooltip("ì˜ì–´ëª…")]
         public string itemName;
-        [Tooltip("ÇÑ±Û¸í")]
+        [Tooltip("í•œê¸€ëª…")]
         public string itemDisplayName;
         [TextArea]
         public string itemDescription;
-        public EItemRating itemRating;
+        public EItemRank itemRating;
 
         public bool useCustomClass;
         [ToggleField("useCustomClass", false)]

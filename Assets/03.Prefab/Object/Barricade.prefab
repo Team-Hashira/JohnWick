@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8034740389179391181}
   - component: {fileID: 165455515393659519}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barricade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

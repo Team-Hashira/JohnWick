@@ -8,14 +8,14 @@ namespace Hashira.Core
     public static class EnumUtility
     {
         public const float CommonPixelPerUnit = 16f; //임시
-        public static readonly Dictionary<EItemRating, Color> ItemRatingColorDict 
-            = new Dictionary<EItemRating, Color>()
+        public static readonly Dictionary<EItemRank, Color> ItemRatingColorDict 
+            = new Dictionary<EItemRank, Color>()
             {
-                { EItemRating.Common, new Color(1, 1, 1, 1)},
-                { EItemRating.UnCommon, new Color(0, 1, 0, 1)},
-                { EItemRating.Rare, new Color(0, 0, 1, 1)},
-                { EItemRating.Epic, new Color(1, 0, 1, 1)},
-                { EItemRating.Legendary, new Color(1, 1, 0, 1)},
+                { EItemRank.Common, new Color(1, 1, 1, 1)},
+                { EItemRank.UnCommon, new Color(0, 1, 0, 1)},
+                { EItemRank.Rare, new Color(0, 0, 1, 1)},
+                { EItemRank.Epic, new Color(1, 0, 1, 1)},
+                { EItemRank.Legendary, new Color(1, 1, 0, 1)},
             };
         public static readonly Dictionary<EAttackType, Color> AttackTypeColorDict 
             = new Dictionary<EAttackType, Color>()
