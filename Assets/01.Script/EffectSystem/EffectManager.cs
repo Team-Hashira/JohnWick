@@ -36,19 +36,20 @@ namespace Hashira.EffectSystem
             EffectAddedEvent?.Invoke(effect);
 		}
 
-        public void AddEffect<T>(Entity entity, T effect) where T : Effect, new()
+        public void AddEffect(Entity entity, Effect effect)
         {
-            effect.name = typeof(T).Name;
-            effect.effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == typeof(T).Name);
+            Type type = effect.GetType();
+            effect.name = type.Name;
+            effect.effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == type.Name);
             effect.entity = entity;
             effect.entityStat = entity.GetEntityComponent<EntityStat>();
 
             _effectDictionary.TryAdd(entity, new Dictionary<Type, List<Effect>>());
-            _effectDictionary[entity].TryAdd(typeof(T), new List<Effect>());
+            _effectDictionary[entity].TryAdd(type, new List<Effect>());
 
-            if (IsCanAddEffect(_effectDictionary[entity][typeof(T)]) == false) return;
+            if (IsCanAddEffect(_effectDictionary[entity][type]) == false) return;
 
-            _effectDictionary[entity][typeof(T)].Add(effect);
+            _effectDictionary[entity][type].Add(effect);
 
             effect.Enable();
             EffectAddedEvent?.Invoke(effect);
@@ -82,7 +83,22 @@ namespace Hashira.EffectSystem
                 Debug.Log($"Effect {effectType.Name} was not found");
         }
 
-		private void Update()
+        public void RemoveEffect(Entity entity, Effect effect)
+        {
+            Type type = effect.GetType();
+
+            if (effect != null)
+            {
+                effect.Disable();
+                EffectRemovedEvent?.Invoke(effect);
+                _effectDictionary[entity][type].Remove(effect);
+            }
+            else
+                Debug.Log($"Effect {type.Name} was not found");
+        }
+
+
+        private void Update()
         {
             if (Input.GetKeyUp(KeyCode.Alpha1))
             {
