@@ -48,6 +48,8 @@ public class CameraManager : MonoSingleton<CameraManager>
     public void ChangeCamera(CinemachineCamera camera)
     {
         currentCamera.Priority = 10;
+        currentMultiChannel.AmplitudeGain = 0;
+        currentMultiChannel.FrequencyGain = 0;
         currentCamera = camera;
         currentCamera.Priority = 11;
         currentMultiChannel = currentCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
@@ -55,6 +57,8 @@ public class CameraManager : MonoSingleton<CameraManager>
     public void ChangeCamera(string cameraName)
     {
         currentCamera.Priority = 10;
+        currentMultiChannel.AmplitudeGain = 0;
+        currentMultiChannel.FrequencyGain = 0;
         currentCamera = _cameraDictionary[cameraName];
         currentCamera.Priority = 11;
         currentMultiChannel = currentCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
