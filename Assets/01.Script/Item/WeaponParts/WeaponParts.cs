@@ -31,7 +31,10 @@ namespace Hashira.Items.PartsSystem
             HandlePartsRendererChangedEvent(weapon.PartsRenderer);
 
             foreach (StatElement stat in WeaponPartsSO.StatDictionary.GetElements())
+            {
                 _weapon.StatDictionary[stat.elementSO].AddModify(WeaponPartsSO.itemName, stat.Value, EModifyMode.Add);
+                Debug.Log(WeaponPartsSO.itemName + stat.Value);
+            }
             Debug.Log($"{WeaponPartsSO.itemDisplayName} Equip!");
         }
 

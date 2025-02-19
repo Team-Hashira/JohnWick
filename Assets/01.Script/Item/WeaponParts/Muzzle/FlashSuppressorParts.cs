@@ -10,8 +10,7 @@ namespace Hashira.Items.PartsSystem
         public override object Clone()
         {
             _ignitionProjectileModifier = new IgnitionProjectileModifier();
-            _ignitionProjectileModifier.ignitionDamage = 30;
-            _ignitionProjectileModifier.ignitionDuration = 5;
+            _ignitionProjectileModifier.Setup(20, 0.5f, 5f);
             return base.Clone();
         }
 

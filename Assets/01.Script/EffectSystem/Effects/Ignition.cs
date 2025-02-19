@@ -5,12 +5,19 @@ namespace Hashira.EffectSystem.Effects
 {
     public class Ignition : Effect, ICoolTimeEffect
     {
-        public int damage;
+        private int _damage;
         private float _damageDelay = 0.5f;
         private float _lastDamageTime;
 
         float ICoolTimeEffect.Duration { get; set; } = 5;
         float ICoolTimeEffect.Time { get; set; }
+
+        public void Setup(int damage, float damageDelay, float duration)
+        {
+            _damage = damage;
+            _damageDelay = damageDelay;
+            (this as ICoolTimeEffect).Duration = duration;
+        }
 
         public override void Enable()
         {
@@ -25,8 +32,7 @@ namespace Hashira.EffectSystem.Effects
             if (_lastDamageTime + _damageDelay < Time.time)
             {
                 _lastDamageTime = Time.time;
-               // 이거 오류 나서 주석 처리해놓을께 레벨없이 이거 수정 부탁(2024-02-19(수)/최영환)
-               // entity.GetEntityComponent<EntityHealth>().ApplyDamage(_damage[level <= 3 ? level - 1 : 2], default, null, attackType: EAttackType.Fire);
+               entity.GetEntityComponent<EntityHealth>().ApplyDamage(_damage, default, null, attackType: EAttackType.Fire);
             }
         }
 
