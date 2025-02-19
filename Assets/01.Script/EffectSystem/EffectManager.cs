@@ -15,7 +15,7 @@ namespace Hashira.EffectSystem
         public event Action<Effect> EffectAddedEvent;
         public event Action<Effect> EffectRemovedEvent;
 
-        public void AddEffect<T>(Entity entity, int level) where T : Effect, new()
+        public void AddEffect<T>(Entity entity) where T : Effect, new()
         {
             T effect = new T()
             {
@@ -36,7 +36,25 @@ namespace Hashira.EffectSystem
             EffectAddedEvent?.Invoke(effect);
 		}
 
-		public void RemoveEffect<T>(Entity entity) where T : Effect
+        public void AddEffect<T>(Entity entity, T effect) where T : Effect, new()
+        {
+            effect.name = typeof(T).Name;
+            effect.effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == typeof(T).Name);
+            effect.entity = entity;
+            effect.entityStat = entity.GetEntityComponent<EntityStat>();
+
+            _effectDictionary.TryAdd(entity, new Dictionary<Type, List<Effect>>());
+            _effectDictionary[entity].TryAdd(typeof(T), new List<Effect>());
+
+            if (IsCanAddEffect(_effectDictionary[entity][typeof(T)]) == false) return;
+
+            _effectDictionary[entity][typeof(T)].Add(effect);
+
+            effect.Enable();
+            EffectAddedEvent?.Invoke(effect);
+        }
+
+        public void RemoveEffect<T>(Entity entity) where T : Effect
         {
             Effect removeEffect = _effectDictionary[entity][typeof(T)].FirstOrDefault(x=>x.name==typeof(T).Name);
 
@@ -68,12 +86,12 @@ namespace Hashira.EffectSystem
         {
             if (Input.GetKeyUp(KeyCode.Alpha1))
             {
-                AddEffect<IncreaseMoveSpeed>(GameManager.Instance.Player, 1);
+                AddEffect<IncreaseMoveSpeed>(GameManager.Instance.Player);
             }
 
             if (Input.GetKeyUp(KeyCode.Alpha2))
             {
-                AddEffect<IncreaseMoveSpeed>(GameManager.Instance.Player, 2);
+                AddEffect<IncreaseMoveSpeed>(GameManager.Instance.Player);
             }
 
             UpdateEffects();
