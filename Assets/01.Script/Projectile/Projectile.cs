@@ -39,7 +39,14 @@ namespace Hashira.Projectiles
 
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             bool isHit = _projectileCollider.CheckCollision(_whatIsTarget, out RaycastHit2D[] hits, movement);
-            List<RaycastHit2D> newHitList = hits.Where(hit => _penetratedColliderList.Contains(hit.collider) == false).ToList();
+            List<RaycastHit2D> newHitList = new List<RaycastHit2D>();
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (_penetratedColliderList.Contains(hits[i].collider) == false)
+                {
+                    newHitList.Add(hits[i]);
+                }
+            }
             if (_canMultipleAttacks == false && newHitList.Count > 1)
                 newHitList = new List<RaycastHit2D>() { newHitList[0] };
 
