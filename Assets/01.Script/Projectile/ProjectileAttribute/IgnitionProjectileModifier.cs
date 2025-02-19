@@ -11,11 +11,20 @@ namespace Hashira
         public int ignitionDamage;
         public float ignitionDuration;
 
+        private Ignition _ignition = new Ignition();
+
+        public override void OnProjectileCreate(Projectile projectile)
+        {
+            base.OnProjectileCreate(projectile);
+            _ignition = new Ignition();
+            _ignition.damage = 10;
+        }
+
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
             if (damageable is EntityHealth entityHealth)
             {
-                EffectManager.Instance.AddEffect<Ignition>(entityHealth.Owner, ignitionDamage);
+                //EffectManager.Instance.AddEffect(entityHealth.Owner, _ignition);
             }
         }
     }

@@ -5,7 +5,7 @@ namespace Hashira.EffectSystem.Effects
 {
     public class Ignition : Effect, ICoolTimeEffect
     {
-        private readonly int[] _damage = { 20, 30, 50 };
+        public int damage;
         private float _damageDelay = 0.5f;
         private float _lastDamageTime;
 
