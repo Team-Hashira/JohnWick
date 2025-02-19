@@ -32,15 +32,6 @@ namespace Hashira.UI.Effect
 
         private void AddEffectUI(EffectSystem.Effect effect)
         {
-            EffectSlot oldEffectSlot = _currentSlots.FirstOrDefault(x => x.Equals(effect));
-
-            //만약 같은 종류의 효과를 만나면
-            if (oldEffectSlot != null)
-            {
-                oldEffectSlot.effectBase = effect;
-                return;
-            }
-            
             EffectSlot effectSlot = Instantiate(_effectSlotPrefab, transform);
             effectSlot.Init(effect);
             _currentSlots.Add(effectSlot);   

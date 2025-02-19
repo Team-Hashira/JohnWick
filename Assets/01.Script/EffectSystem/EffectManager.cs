@@ -10,101 +10,58 @@ namespace Hashira.EffectSystem
     public class EffectManager : MonoSingleton<EffectManager>
     {
         [SerializeField] private List<EffectUIDataSO> _effectUIDataSOList = new List<EffectUIDataSO>();
-        private Dictionary<Entity, List<Effect>>[] _effectDictionaries = new Dictionary<Entity, List<Effect>>[10];
-        private Dictionary<Entity, Dictionary<Type, int>> _maxLevelEffectDictionary = new Dictionary<Entity, Dictionary<Type, int>>();
+        private Dictionary<Entity, Dictionary<Type, List<Effect>>> _effectDictionary = new Dictionary<Entity, Dictionary<Type, List<Effect>>>();
 
         public event Action<Effect> EffectAddedEvent;
         public event Action<Effect> EffectRemovedEvent;
-
-        private void Awake()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                _effectDictionaries[i] = new Dictionary<Entity, List<Effect>>();
-            }
-        }
 
         public void AddEffect<T>(Entity entity, int level) where T : Effect, new()
         {
             T effect = new T()
             {
                 name = typeof(T).Name,
-                level = level,
                 effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == typeof(T).Name),
                 entity = entity,
 				entityStat = entity.GetEntityComponent<EntityStat>()
             };
 
-            SetMaxLevelEffects(entity, typeof(T), level);
+            _effectDictionary.TryAdd(entity, new Dictionary<Type, List<Effect>>());
+            _effectDictionary[entity].TryAdd(typeof(T), new List<Effect>());
 
-            _effectDictionaries[level].TryAdd(entity, new List<Effect>());
+            if (IsCanAddEffect(_effectDictionary[entity][typeof(T)]) == false) return;
 
-            _effectDictionaries[level][entity].Add(effect);
+            _effectDictionary[entity][typeof(T)].Add(effect);
             
 			effect.Enable();
             EffectAddedEvent?.Invoke(effect);
 		}
 
-		public void RemoveEffect<T>(Entity entity, int level) where T : Effect
+		public void RemoveEffect<T>(Entity entity) where T : Effect
         {
-            Effect removeEffect = _effectDictionaries[level][entity].FirstOrDefault(x=>x.name==typeof(T).Name);
+            Effect removeEffect = _effectDictionary[entity][typeof(T)].FirstOrDefault(x=>x.name==typeof(T).Name);
 
             if (removeEffect != null)
             {
                 removeEffect.Disable();
                 EffectRemovedEvent?.Invoke(removeEffect);
-                _effectDictionaries[level][entity].Remove(removeEffect);
-                Debug.Log(_effectDictionaries[level][entity].Count);
+                _effectDictionary[entity][typeof(T)].Remove(removeEffect);
             }
             else
                 Debug.Log($"Effect {typeof(T).Name} was not found");
-
-            SetMaxLevelEffects(entity, typeof(T), -1, false);
         }
 
-		public void RemoveEffect(Entity entity, Type effectType, int level)
+		public void RemoveEffect(Entity entity, Type effectType)
         {
-            Effect removeEffect = _effectDictionaries[level][entity].FirstOrDefault(x=>x.name==effectType.Name);
+            Effect removeEffect = _effectDictionary[entity][effectType].FirstOrDefault(x=>x.name==effectType.Name);
 
             if (removeEffect != null)
             {
 			    removeEffect.Disable();
                 EffectRemovedEvent?.Invoke(removeEffect);
-                _effectDictionaries[level][entity].Remove(removeEffect);
+                _effectDictionary[entity][effectType].Remove(removeEffect);
             }
             else
                 Debug.Log($"Effect {effectType.Name} was not found");
-
-            SetMaxLevelEffects(entity, effectType, -1, false);
-        }
-
-        private void SetMaxLevelEffects(Entity entity, Type type, int level, bool isAdded = true)
-        {
-            _maxLevelEffectDictionary.TryAdd(entity, new Dictionary<Type, int>());
-            _maxLevelEffectDictionary[entity].TryAdd(type, -1);
-
-            if (_maxLevelEffectDictionary[entity][type] < level && isAdded)
-            {
-                _maxLevelEffectDictionary[entity][type] = level;
-            }
-
-            if (isAdded == false)
-            {
-                for (int i = _effectDictionaries.Length-1; i >= 0 ; i--) 
-                {
-                    var effect = _effectDictionaries[i][entity].FirstOrDefault(x=>x.GetType() == type);
-                    if (effect != null)
-                    {
-                        _maxLevelEffectDictionary[entity][type] = i;
-                        break;
-                    }
-                }
-            }
-        }
-
-        public bool IsMaxLevelEffect(Entity entity, Type type, int level)
-        {
-            return _maxLevelEffectDictionary[entity][type] == level;
         }
 
 		private void Update()
@@ -124,19 +81,27 @@ namespace Hashira.EffectSystem
 
         private void UpdateEffects()
         {
-            for (int level = _effectDictionaries.Length-1; level >= 0; level--)
+            foreach (var effectList in _effectDictionary)
             {
-                foreach (var effectList in _effectDictionaries[level])
+                // Entity가 죽었을 때 체크
+                if (effectList.Key == null)
                 {
-                    if (effectList.Key == null)
-                    {
-                        InitEffectDict(level);
-                        return;
-                    }
+                    InitEffectDict();
+                    return;
+                }
 
-                    foreach (var effect in effectList.Value)
+                foreach (var effectPair in effectList.Value)
+                {
+                    for (var j = 0; j < effectPair.Value.Count; j++)
                     {
-                        if (IsMaxLevelEffect(effect.entity, effect.GetType(), level) == false) continue;
+                        var effect = effectPair.Value[j];
+                        // 버프가 수명이 다해서 없어질 때 체크
+                        if (effect == null)
+                        {
+                            InitEffectDict();
+                            return;
+                        }
+
                         EffectInterfaceLogic(effect);
                         effect.Update();
                     }
@@ -144,11 +109,17 @@ namespace Hashira.EffectSystem
             }
         }
 
-        private void InitEffectDict(int level)
+        private void InitEffectDict()
         {
-            _effectDictionaries[level] = _effectDictionaries[level]
+            _effectDictionary = _effectDictionary
                 .Where(x => x.Key != null)
                 .ToDictionary(x => x.Key, x => x.Value);
+        }
+
+        private bool IsCanAddEffect(List<Effect> effectList)
+        {
+            if (Effect.maxActiveCount < 0) return true;
+            return Effect.maxActiveCount > effectList.Count;
         }
 
         private void EffectInterfaceLogic(Effect effect)
@@ -184,7 +155,7 @@ namespace Hashira.EffectSystem
                 return;
             }
 
-            RemoveEffect(effect.entity, effect.GetType(), effect.level);
+            RemoveEffect(effect.entity, effect.GetType());
         }
     }
 }
