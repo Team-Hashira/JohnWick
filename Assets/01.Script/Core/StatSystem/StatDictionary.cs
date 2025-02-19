@@ -7,35 +7,35 @@ namespace Hashira.Core.StatSystem
     {
         public Dictionary<string, StatElement> statElementList;
 
-        public StatDictionary(List<StatElement> overrideStatElementList, StatBaseSO baseStat)
+        public StatDictionary(List<StatElement> overrideStatElementList, StatBaseSO baseStat, bool isUseClamp = true)
         {
             statElementList = new Dictionary<string, StatElement>();
-            //¿À¹ö·¦¿¡ ÀÖ´Â°Å ¸ÕÀú ³Ö±â
+            //ì˜¤ë²„ë©ì— ìˆëŠ”ê±° ë¨¼ì € ë„£ê¸°
             foreach (StatElement statElement in overrideStatElementList)
             {
                 if (statElement.elementSO == null) continue;
 
-                statElement.Initialize();
+                statElement.Initialize(isUseClamp);
                 statElementList.Add(statElement.elementSO.statName, statElement);
             }
-            //¹èÀÌ½º¿¡ ÀÖ´Â°Å ³Ö±â
+            //ë°°ì´ìŠ¤ì— ìˆëŠ”ê±° ë„£ê¸°
             foreach (StatElement statElement in baseStat.GetStatElements())
             {
                 if (statElement.elementSO == null) continue;
                 if (statElementList.ContainsKey(statElement.elementSO.statName)) continue;
 
-                statElement.Initialize();
+                statElement.Initialize(isUseClamp);
                 statElementList.Add(statElement.elementSO.statName, statElement);
             }
         }
-        public StatDictionary(List<StatElement> overrideStatElementList)
+        public StatDictionary(List<StatElement> overrideStatElementList, bool isUseClamp = true)
         {
             statElementList = new Dictionary<string, StatElement>();
             foreach (StatElement statElement in overrideStatElementList)
             {
                 if (statElement.elementSO == null) continue;
 
-                statElement.Initialize();
+                statElement.Initialize(isUseClamp);
                 statElementList.Add(statElement.elementSO.statName, statElement);
             }
         }

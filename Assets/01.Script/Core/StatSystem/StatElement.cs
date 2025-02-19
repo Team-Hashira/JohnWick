@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace Hashira.Core.StatSystem
@@ -63,8 +64,14 @@ namespace Hashira.Core.StatSystem
         public float Value { get; private set; }
         public int IntValue { get; private set; }
 
-        public void Initialize()
+        private bool _isUseClamp;
+        private bool _isUseModifier;
+
+        public void Initialize(bool isUseClamp = true, bool isUseModifier = true)
         {
+            _isUseClamp = isUseClamp;
+            _isUseModifier = isUseModifier;
+            
             SetDictionary();
             SetValue();
         }
@@ -78,17 +85,20 @@ namespace Hashira.Core.StatSystem
         {
             float totalAddModifier = 0;
             float totalPercentModifier = 0;
-            foreach (StatModifier modifier in _modifiers.Values)
+            if (_isUseModifier)
             {
-                if (modifier.Mode == EModifyMode.Add)
-                    totalAddModifier += modifier.Value;
-                else
-                    totalPercentModifier += modifier.Value;
+                foreach (StatModifier modifier in _modifiers.Values)
+                {
+                    if (modifier.Mode == EModifyMode.Add)
+                        totalAddModifier += modifier.Value;
+                    else
+                        totalPercentModifier += modifier.Value;
+                }
             }
 
             float value = (_baseValue + totalAddModifier) * (1 + totalPercentModifier / 100);
 
-            if (elementSO != null)
+            if (elementSO != null && _isUseClamp)
                 value = Mathf.Clamp(value, elementSO.minMaxValue.x, elementSO.minMaxValue.y);
 
             int intValue = Mathf.CeilToInt(value);

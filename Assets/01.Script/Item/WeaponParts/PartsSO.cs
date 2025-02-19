@@ -41,7 +41,7 @@ namespace Hashira.Items.PartsSystem
         protected override void OnEnable()
         {
             base.OnEnable();
-            StatDictionary = new StatDictionary(_statList);
+            StatDictionary = new StatDictionary(_statList, false);
         }
     }
 }

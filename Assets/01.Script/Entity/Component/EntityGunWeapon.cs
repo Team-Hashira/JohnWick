@@ -122,7 +122,7 @@ namespace Hashira.Entities.Components
             if (CurrentWeapon != null && CurrentWeapon is GunWeapon)
             {
                 IsReloading = true;
-                _currentReloadTime = CurrentWeapon.StatDictionary["ReloadSpeed"].Value;
+                _currentReloadTime = 1 / CurrentWeapon.StatDictionary["ReloadSpeed"].Value;
             }
         }
 
