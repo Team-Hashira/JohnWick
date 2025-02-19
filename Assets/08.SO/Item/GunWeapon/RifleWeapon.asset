@@ -27,13 +27,13 @@ MonoBehaviour:
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 132
+    _baseValue: 54
   - Name: "\uACF5\uACA9\uC18D\uB3C4"
     elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
     _baseValue: 10
   - Name: "\uC815\uD655\uB3C4"
     elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
-    _baseValue: 80
+    _baseValue: 70
   - Name: "\uBC18\uB3D9"
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
     _baseValue: 20
@@ -46,6 +46,12 @@ MonoBehaviour:
   fireSpakleEffect: 1
   bulletSpeed: 100
   reloadDuration: 1
+  defaultParts:
+    _serializedList:
+    - Key: 5
+      Value: {fileID: 11400000, guid: 0fd4e931604446643b0a5f3a57edf6b5, type: 2}
+    - Key: 3
+      Value: {fileID: 11400000, guid: 7a88dea890187c34784863caacd00f86, type: 2}
   partsEquipUIPosDict:
     _serializedList:
     - Key: 0

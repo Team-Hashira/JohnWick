@@ -1,27 +1,48 @@
+using Hashira.Core;
 using Hashira.Core.StatSystem;
 using Hashira.Items;
+using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
 using System.Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Hashira.UI.InGame
 {
     public class ItemDataUI : MonoBehaviour
     {
-        [SerializeField] protected SpriteRenderer[] _backgroundSprites;
-        [SerializeField] protected SpriteRenderer _iconSprite;
-        [SerializeField] protected TextMeshPro _itemNameText;
-        [SerializeField] protected TextMeshPro _itemDescriptionText;
-        [SerializeField] protected TextMeshPro _itemStatText;
+        [SerializeField] protected Image _iconSprite;
+        [SerializeField] protected TextMeshProUGUI _itemNameText;
+        [SerializeField] protected TextMeshProUGUI _itemTypeText;
+        [SerializeField] protected TextMeshProUGUI _itemDescriptionText;
+        [SerializeField] protected TextMeshProUGUI _itemStatText;
+        [SerializeField] protected Transform _equipableGunImageTrm;
+        [SerializeField] protected Image _equipableGunImage;
 
         public void SetItem(Item item, IStatable statComparisonTarget = null)
         {
+            for (int i = 0; i < _equipableGunImageTrm.childCount; i++)
+                Destroy(_equipableGunImageTrm.GetChild(i).gameObject);
+
             _iconSprite.sprite = item.ItemSO.itemDefaultSprite;
             _itemNameText.text = item.ItemSO.itemDisplayName;
             _itemDescriptionText.text = item.ItemSO.itemDescription;
+            if (item is GunWeapon gunWeapon)
+                _itemTypeText.text = "원거리무기";
+            else if (item is MeleeWeapon meleeWeapon)
+                _itemTypeText.text = "근접무기";
+            else if (item is WeaponParts weaponParts)
+            {
+                foreach (var gunSO in weaponParts.WeaponPartsSO.partsSpriteDictionary.Keys)
+                {
+                    Image image = Instantiate(_equipableGunImage, _equipableGunImageTrm);
+                    image.sprite = gunSO.itemIcon;
+                }
+                _itemTypeText.text = EnumUtility.WeaponPartsTypeNameDict[weaponParts.WeaponPartsSO.partsType];
+            }
 
-            int statCount = 0;
+
             string statStr = "";
 
             if (item is IStatable itemStat)
@@ -41,42 +62,9 @@ namespace Hashira.UI.InGame
                     else
                         statStr += $"{stat.elementSO.displayName} : {stat.Value}\n";
                 }
-
-                statCount = itemStat.StatDictionary.GetElements().Length;
             }
 
             _itemStatText.text = statStr;
-            SetHeight(4.7f + statCount * 0.55f);
-        }
-
-        private void SetHeight(float height)
-        {
-            float yTop = height / 2;
-            float yBottom = -height / 2;
-            //Icon
-            Vector3 iconPos = _iconSprite.transform.localPosition;
-            iconPos.y = yTop - 1.2f;
-            _iconSprite.transform.localPosition = iconPos;
-            //Name
-            Vector3 namePos = _itemNameText.transform.localPosition;
-            namePos.y = yTop - 1.2f;
-            _itemNameText.transform.localPosition = namePos;
-            //Stat
-            Vector3 statPos = _itemStatText.transform.localPosition;
-            statPos.y = yTop - 1.95f;
-            _itemStatText.transform.localPosition = statPos;
-
-            //Description
-            Vector3 descriptionPos = _itemDescriptionText.transform.parent.localPosition;
-            descriptionPos.y = yBottom + 1.4f;
-            _itemDescriptionText.transform.parent.localPosition = descriptionPos;
-
-            foreach (SpriteRenderer sprite in _backgroundSprites)
-            {
-                Vector2 size = sprite.size;
-                size.y = height;
-                sprite.size = size;
-            }
         }
     }
 }

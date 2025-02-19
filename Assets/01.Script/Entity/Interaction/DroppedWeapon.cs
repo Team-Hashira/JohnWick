@@ -3,7 +3,9 @@ using Hashira.Entities.Components;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
+using Hashira.UI.InGame;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Entities.Interacts
@@ -65,39 +67,20 @@ namespace Hashira.Entities.Interacts
 
         public override void SetItemData()
         {
-            _ItemDataTrm.gameObject.SetActive(true);
+            base.SetItemData();
+            ItemDataUIController itemDataController
+                = UIManager.Instance.PopupUIActive<ItemDataUIController>(EPopupUIName.ItemDataUI, true)[0];
             if (_weapon is GunWeapon && _entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon))
             {
-                if (entityWeapon.CurrentWeapon != null)
-                {
-                    _ComparisonItemDataTrm.gameObject.SetActive(true);
-                    _itemData.SetItem(_weapon, entityWeapon.CurrentWeapon);
-                    _comparisonItemData.SetItem(entityWeapon.CurrentWeapon);
-                }
-                else
-                {
-                    _ComparisonItemDataTrm.gameObject.SetActive(false);
-                    _itemData.SetItem(_weapon);
-                }
+                itemDataController.SetItem(_weapon, entityWeapon.CurrentWeapon);
             }
             else if (_weapon is MeleeWeapon && _entity.TryGetEntityComponent(out EntityMeleeWeapon entityMeleeWeapon))
             {
-                if (entityMeleeWeapon.CurrentWeapon != null)
-                {
-                    _ComparisonItemDataTrm.gameObject.SetActive(true);
-                    _itemData.SetItem(_weapon, entityMeleeWeapon.CurrentWeapon);
-                    _comparisonItemData.SetItem(entityMeleeWeapon.CurrentWeapon);
-                }
-                else
-                {
-                    _ComparisonItemDataTrm.gameObject.SetActive(false);
-                    _itemData.SetItem(_weapon);
-                }
+                itemDataController.SetItem(_weapon, entityMeleeWeapon.CurrentWeapon);
             }
             else
             {
-                _ComparisonItemDataTrm.gameObject.SetActive(false);
-                _itemData.SetItem(_weapon);
+                itemDataController.SetItem(_weapon);
             }
         }
     }

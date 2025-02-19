@@ -17,6 +17,7 @@ namespace Hashira.Enemies.CommonEnemy
         public override void OnEnter()
         {
             base.OnEnter();
+            _entityStateMachine.SetShareVariable("Target", GameManager.Instance.Player);
 			_enemyPathfinder.StopMove();
         }
 
@@ -24,7 +25,7 @@ namespace Hashira.Enemies.CommonEnemy
 		{
 			base.OnUpdate();
 			if (_entityHealth.IsKnockback == false)
-				_entityStateMachine.ChangeState("Idle");
+				_entityStateMachine.ChangeState("Chase");
 		}
 	}
 }

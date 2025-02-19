@@ -467,10 +467,10 @@ MonoBehaviour:
   _eye: {fileID: 2378339240444442323}
   <WhatIsPlayer>k__BackingField:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 2241
+    m_Bits: 526529
   <Resistivity>k__BackingField: 3
 --- !u!114 &6722688745115300717
 MonoBehaviour:

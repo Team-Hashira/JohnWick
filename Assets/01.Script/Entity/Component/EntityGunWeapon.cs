@@ -78,10 +78,11 @@ namespace Hashira.Entities.Components
 
         public override void RemoveWeapon(int index)
         {
+            bool isCurrentWeapon = index == CurrentIndex;
             base.RemoveWeapon(index);
 
-            if (IsMeleeWeaponMode == false && index == CurrentIndex)
-                OnCurrentWeaponChanged?.Invoke(Weapons[index]);
+            if (IsMeleeWeaponMode == false && isCurrentWeapon)
+                OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
         public override Weapon EquipWeapon(Weapon weapon, int index = -1)

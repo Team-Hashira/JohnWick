@@ -32,7 +32,7 @@ MonoBehaviour:
   _statList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 20
+    _baseValue: 10
   - Name: "\uC815\uD655\uB3C4"
     elementSO: {fileID: 11400000, guid: a1f69024189f58a48a93864aeaaaf3b4, type: 2}
     _baseValue: 5

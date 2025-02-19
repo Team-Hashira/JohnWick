@@ -50,7 +50,7 @@ namespace Hashira.Core.StatSystem
     }
 
     [Serializable]
-    public class StatElement
+    public class StatElement : ICloneable
     {
         [HideInInspector] public string Name;
         public StatElementSO elementSO;
@@ -123,6 +123,13 @@ namespace Hashira.Core.StatSystem
             }
             else
                 Debug.LogWarning($"[{key}]Key not found for statModifier");
+        }
+
+        public object Clone()
+        {
+            StatElement clonedStatElement = (StatElement)MemberwiseClone();
+            clonedStatElement._modifiers = new Dictionary<string, StatModifier>();
+            return clonedStatElement;
         }
     }
 }

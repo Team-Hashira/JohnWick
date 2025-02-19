@@ -43,13 +43,8 @@ namespace Hashira.Items.Weapons
         public override void Init(ItemSO itemSO)
         {
             base.Init(itemSO);
-
-            _precisionStat = StatDictionary["Precision"];
-            _recoilStat = StatDictionary["Recoil"];
-            _attackSpeedStat = StatDictionary["AttackSpeed"];
-            _magazineCapacityStat = StatDictionary["MagazineCapacity"];
-            _penetrationStat = StatDictionary["Penetration"];
-		}
+            GunSO = WeaponSO as GunSO;
+        }
 
         public void SetPartsRenderer(PartsRenderer partsRenderer)
         {
@@ -128,7 +123,7 @@ namespace Hashira.Items.Weapons
         {
             //Bullet
             Bullet bullet = EntityGunWeapon.gameObject.Pop(GunSO.bullet, FirePos, Quaternion.identity) as Bullet;
-            bullet.Init(WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue, EntityGunWeapon.Entity.transform, _projectileModifiers);
+            bullet.Init(WhatIsTarget, direction, GunSO.bulletSpeed, CalculateDamage(), _penetrationStat.IntValue, EntityGunWeapon.Entity.transform, _projectileModifiers, GunSO.damageOverDistance);
 
             EntityGunWeapon.ApplyRecoil(_recoilStat.Value);
         }
@@ -214,10 +209,17 @@ namespace Hashira.Items.Weapons
             BulletAmount = _magazineCapacityStat.IntValue;
         }
 
+        private void StatElementsSetting()
+        {
+            _precisionStat = StatDictionary["Precision"];
+            _recoilStat = StatDictionary["Recoil"];
+            _attackSpeedStat = StatDictionary["AttackSpeed"];
+            _magazineCapacityStat = StatDictionary["MagazineCapacity"];
+            _penetrationStat = StatDictionary["Penetration"];
+        }
+
         public override object Clone()
         {
-            GunSO = WeaponSO as GunSO;
-            Reload();
             GunWeapon clonedGunWeapon = (GunWeapon)base.Clone();
             clonedGunWeapon._partsSlotDictionary = new Dictionary<EWeaponPartsType, WeaponParts>();
             clonedGunWeapon._partsSlotDictionary.Clear();
@@ -225,6 +227,18 @@ namespace Hashira.Items.Weapons
             {
                 clonedGunWeapon._partsSlotDictionary.Add(partsType, null);
             }
+
+            clonedGunWeapon.StatElementsSetting();
+            clonedGunWeapon.Reload();
+
+            foreach (EWeaponPartsType weaponPartsType in clonedGunWeapon.GunSO.defaultParts.Keys)
+            {
+                PartsSO partsSO = clonedGunWeapon.GunSO.defaultParts[weaponPartsType];
+                WeaponParts weaponParts = (WeaponParts)partsSO.GetItemClass();
+
+                clonedGunWeapon.EquipParts(weaponPartsType, weaponParts);
+            }
+
             return clonedGunWeapon;
         }
     }

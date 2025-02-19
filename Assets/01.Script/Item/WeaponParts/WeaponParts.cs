@@ -38,7 +38,7 @@ namespace Hashira.Items.PartsSystem
         protected virtual void HandlePartsRendererChangedEvent(PartsRenderer renderer)
         {
             _PartsRenderer = renderer;
-            transform = renderer[WeaponPartsSO.partsType].transform;
+            transform = renderer?[WeaponPartsSO.partsType].transform;
         }
 
         public virtual void UnEquip()

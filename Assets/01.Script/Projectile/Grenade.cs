@@ -1,5 +1,4 @@
 using Crogen.CrogenPooling;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +14,9 @@ namespace Hashira.Projectiles
 
         [SerializeField] private CircleDamageCaster2D _circleDamageCaster;
 
-        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default)
+        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default, AnimationCurve damageOverDistance = null)
         {
-            base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers);
+            base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers, damageOverDistance);
             _angle = Random.Range(-_minMaxAngle, _minMaxAngle);
             _isUp = false;
             _direction = direction;

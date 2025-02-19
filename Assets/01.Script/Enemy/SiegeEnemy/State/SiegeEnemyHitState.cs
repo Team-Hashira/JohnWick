@@ -18,6 +18,7 @@ namespace Hashira.Enemies.SiegeEnemy
         public override void OnEnter()
         {
             base.OnEnter();
+            _entityStateMachine.SetShareVariable("SoundPosition", GameManager.Instance.Player.transform.position);
             _enemyMover.StopImmediately();
         }
         public override void OnUpdate()
@@ -25,7 +26,7 @@ namespace Hashira.Enemies.SiegeEnemy
             base.OnUpdate();
             if (!_entityHealth.IsKnockback)
             {
-                _entityStateMachine.ChangeState("Attack");
+                _entityStateMachine.ChangeState("Vigilant");
             }
         }
         public override void OnExit()
