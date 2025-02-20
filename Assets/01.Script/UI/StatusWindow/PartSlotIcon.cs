@@ -38,7 +38,7 @@ namespace Hashira.UI.StatusWindow
 
         public void OnDragging(Vector2 curPos)
         {
-            var raycastResult = DragController.GetUIUnderCursor();
+            var raycastResult = DragSystem.UIMouseController.GetUIUnderCursor();
             if(raycastResult.Count > 1)
                 _image.color = raycastResult[1].gameObject.name.Equals("BlackSolid") ? Color.red : Color.white;
             transform.eulerAngles = new Vector3(0f, 0f, Mathf.Sin(Time.time * 25) * 10f);
@@ -53,7 +53,7 @@ namespace Hashira.UI.StatusWindow
                 return;
             }
             
-            var raycastResult = DragController.GetUIUnderCursor();
+            var raycastResult = DragSystem.UIMouseController.GetUIUnderCursor();
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;

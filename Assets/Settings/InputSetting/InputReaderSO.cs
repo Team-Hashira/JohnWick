@@ -24,6 +24,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action OnStatusWindowEnableEvent;
     public event Action<bool> OnClickEvent;
     public event Action OnSprintToggleEvent;
+    public event Action<Vector2> OnMouseMoveEvent;
 
 	#endregion
 
@@ -181,9 +182,10 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 
     #endregion
 
-    public void OnOnMouseMove(InputAction.CallbackContext context)
+    public void OnMouseMove(InputAction.CallbackContext context)
     {
         MousePosition = context.ReadValue<Vector2>();
+        OnMouseMoveEvent?.Invoke(MousePosition);
     }
 
 	public void OnSprintToggle(InputAction.CallbackContext context)

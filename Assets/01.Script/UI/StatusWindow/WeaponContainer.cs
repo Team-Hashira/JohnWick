@@ -13,7 +13,6 @@ namespace Hashira.UI.StatusWindow
 
         private int _meleeWeaponIndex;
 
-
         private void Awake()
         {
             _slots = GetComponentsInChildren<IWeaponSlot>();

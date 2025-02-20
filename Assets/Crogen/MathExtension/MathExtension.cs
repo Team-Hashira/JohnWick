@@ -45,4 +45,11 @@ public static class MathExtension
             vec = vec.normalized * max;
         return vec;
     }
+
+    public static Vector3 AbsVector(Vector3 vec)
+    {
+        vec.x = Mathf.Abs(vec.x);
+        vec.y = Mathf.Abs(vec.y);
+        return vec;
+    }
 }

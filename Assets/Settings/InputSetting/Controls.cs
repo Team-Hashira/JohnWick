@@ -924,7 +924,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ""id"": ""26453c13-5279-4653-a008-3accd007e53d"",
             ""actions"": [
                 {
-                    ""name"": ""OnMouseMove"",
+                    ""name"": ""MouseMove"",
                     ""type"": ""Value"",
                     ""id"": ""8e042ca4-6e9e-4401-b860-1ef1050bced2"",
                     ""expectedControlType"": ""Vector2"",
@@ -941,7 +941,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""OnMouseMove"",
+                    ""action"": ""MouseMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1039,7 +1039,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_UI_StatusTapMoveToSide = m_UI.FindAction("StatusTapMoveToSide", throwIfNotFound: true);
         // System
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
-        m_System_OnMouseMove = m_System.FindAction("OnMouseMove", throwIfNotFound: true);
+        m_System_MouseMove = m_System.FindAction("MouseMove", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -1360,12 +1360,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     // System
     private readonly InputActionMap m_System;
     private List<ISystemActions> m_SystemActionsCallbackInterfaces = new List<ISystemActions>();
-    private readonly InputAction m_System_OnMouseMove;
+    private readonly InputAction m_System_MouseMove;
     public struct SystemActions
     {
         private @Controls m_Wrapper;
         public SystemActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @OnMouseMove => m_Wrapper.m_System_OnMouseMove;
+        public InputAction @MouseMove => m_Wrapper.m_System_MouseMove;
         public InputActionMap Get() { return m_Wrapper.m_System; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1375,16 +1375,16 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_SystemActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_SystemActionsCallbackInterfaces.Add(instance);
-            @OnMouseMove.started += instance.OnOnMouseMove;
-            @OnMouseMove.performed += instance.OnOnMouseMove;
-            @OnMouseMove.canceled += instance.OnOnMouseMove;
+            @MouseMove.started += instance.OnMouseMove;
+            @MouseMove.performed += instance.OnMouseMove;
+            @MouseMove.canceled += instance.OnMouseMove;
         }
 
         private void UnregisterCallbacks(ISystemActions instance)
         {
-            @OnMouseMove.started -= instance.OnOnMouseMove;
-            @OnMouseMove.performed -= instance.OnOnMouseMove;
-            @OnMouseMove.canceled -= instance.OnOnMouseMove;
+            @MouseMove.started -= instance.OnMouseMove;
+            @MouseMove.performed -= instance.OnMouseMove;
+            @MouseMove.canceled -= instance.OnMouseMove;
         }
 
         public void RemoveCallbacks(ISystemActions instance)
@@ -1477,6 +1477,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     }
     public interface ISystemActions
     {
-        void OnOnMouseMove(InputAction.CallbackContext context);
+        void OnMouseMove(InputAction.CallbackContext context);
     }
 }
