@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Hashira.UI.DragSystem
 {
-    public class UIMouseController : MonoBehaviour
+    public class UIMouseController : MonoSingleton<UIMouseController>
     {
         public Canvas canvas;
         [SerializeField] private InputReaderSO _inputReader;
@@ -15,7 +15,6 @@ namespace Hashira.UI.DragSystem
         private IDraggableObject _currentDragObject;
         private ISelectableObject _selectableObject;
         public bool IsDragging { get; private set; } = false;
-
 
         private void Awake()
         {
@@ -104,6 +103,12 @@ namespace Hashira.UI.DragSystem
             if (_currentDragObject == null) return;
             _currentDragObject.RectTransform.position = MousePosition;
             _currentDragObject.OnDragging(MousePosition);
+        }
+
+        public void ResetDrag()
+        {
+            _currentDragObject = null;
+            IsDragging = false;
         }
     }
 }

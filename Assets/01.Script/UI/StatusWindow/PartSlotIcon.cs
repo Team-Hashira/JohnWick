@@ -23,13 +23,19 @@ namespace Hashira.UI.StatusWindow
             RectTransform = transform as RectTransform;
         }
 
+        private void OnDisable()
+        {
+            SetToOriginTrm();
+            UIMouseController.Instance.ResetDrag();
+        }
+
         public void Init(PartSlot partSlot)
         {
             _image.sprite = partSlot.BasePart?.WeaponPartsSO.itemDefaultSprite;
             _image.color = partSlot.BasePart != null ? Color.white : Color.clear;  
             PartSlot = partSlot;
         }
-        
+
         public void OnDragStart()
         {
             PartSlot.transform.SetAsLastSibling();
