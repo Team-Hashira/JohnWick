@@ -67,10 +67,10 @@ namespace Hashira.UI.DragSystem
                 if (selectableObject != null) break;
             }
 
-            if (selectableObject == null)
+            if (selectableObject != _selectableObject)
             {
                 _selectableObject?.OnSelectEnd();
-                _selectableObject = null;
+                _selectableObject = selectableObject;
                 return;
             }
 
