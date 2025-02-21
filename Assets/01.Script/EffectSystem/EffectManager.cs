@@ -11,93 +11,180 @@ namespace Hashira.EffectSystem
     public class EffectManager : MonoSingleton<EffectManager>
     {
         [SerializeField] private List<EffectUIDataSO> _effectUIDataSOList = new List<EffectUIDataSO>();
-        private Dictionary<Entity, Dictionary<Type, List<Effect>>> _effectDictionary = new Dictionary<Entity, Dictionary<Type, List<Effect>>>();
+        private Dictionary<EntityEffector, Dictionary<Type, List<Effect>>> _effectDictionary = new Dictionary<EntityEffector, Dictionary<Type, List<Effect>>>();
 
-        public event Action<Effect> EffectAddedEvent;
-        public event Action<Effect> EffectRemovedEvent;
-
-        public void AddEffect<T>(Entity entity) where T : Effect, new()
+        public void AddEffect<T>(EntityEffector entityEffector) where T : Effect, new()
         {
             T effect = new T()
             {
                 name = typeof(T).Name,
                 effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == typeof(T).Name),
-                entity = entity,
-				entityStat = entity.GetEntityComponent<EntityStat>()
+                entityEffector = entityEffector,
+                entityStat = entityEffector.Entity.GetEntityComponent<EntityStat>()
             };
 
-            _effectDictionary.TryAdd(entity, new Dictionary<Type, List<Effect>>());
-            _effectDictionary[entity].TryAdd(typeof(T), new List<Effect>());
+            _effectDictionary.TryAdd(entityEffector, new Dictionary<Type, List<Effect>>());
+            _effectDictionary[entityEffector].TryAdd(typeof(T), new List<Effect>());
 
-            if (IsCanAddEffect(entity, effect) == false) return;
+            if (IsCanAddEffect(entityEffector, effect) == false) return;
 
-            _effectDictionary[entity][typeof(T)].Add(effect);
-            
-			effect.Enable();
-            EffectAddedEvent?.Invoke(effect);
-		}
+            _effectDictionary[entityEffector][typeof(T)].Add(effect);
 
-        public void AddEffect<T>(Entity entity, T effect) where T : Effect
+            effect.Enable();
+            entityEffector.EffectAddedEvent?.Invoke(effect);
+        }
+        public void AddEffect<T>(EntityEffector entityEffector, T effect) where T : Effect
         {
             Type type = typeof(T);
             effect.name = type.Name;
             effect.effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == type.Name);
-            effect.entity = entity;
-            effect.entityStat = entity.GetEntityComponent<EntityStat>();
+            effect.entityEffector = entityEffector;
+            effect.entityStat = entityEffector.Entity.GetEntityComponent<EntityStat>();
 
-            _effectDictionary.TryAdd(entity, new Dictionary<Type, List<Effect>>());
-            _effectDictionary[entity].TryAdd(type, new List<Effect>());
+            _effectDictionary.TryAdd(entityEffector, new Dictionary<Type, List<Effect>>());
+            _effectDictionary[entityEffector].TryAdd(type, new List<Effect>());
 
-            if (IsCanAddEffect(entity, effect) == false) return;
+            if (IsCanAddEffect(entityEffector, effect) == false) return;
 
-            _effectDictionary[entity][type].Add(effect);
+            _effectDictionary[entityEffector][type].Add(effect);
 
             effect.Enable();
-            EffectAddedEvent?.Invoke(effect);
+            entityEffector.EffectAddedEvent?.Invoke(effect);
         }
 
-        public void RemoveEffect<T>(Entity entity) where T : Effect
+        public void AddEffect<T>(Entity entity) where T : Effect, new()
         {
-            Effect removeEffect = _effectDictionary[entity][typeof(T)].FirstOrDefault(x=>x.name==typeof(T).Name);
+            EntityEffector entityEffector = entity.GetEntityComponent<EntityEffector>();
+            Debug.Assert(entityEffector != null, "EntityEffector is null!");
+
+            T effect = new T()
+            {
+                name = typeof(T).Name,
+                effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == typeof(T).Name),
+                entityEffector = entityEffector,
+                entityStat = entityEffector.Entity.GetEntityComponent<EntityStat>()
+            };
+
+            _effectDictionary.TryAdd(entityEffector, new Dictionary<Type, List<Effect>>());
+            _effectDictionary[entityEffector].TryAdd(typeof(T), new List<Effect>());
+
+            if (IsCanAddEffect(entityEffector, effect) == false) return;
+
+            _effectDictionary[entityEffector][typeof(T)].Add(effect);
+
+            effect.Enable();
+            entityEffector.EffectAddedEvent?.Invoke(effect);
+        }
+        public void AddEffect(Entity entity, Effect effect)
+        {
+            EntityEffector entityEffector = entity.GetEntityComponent<EntityEffector>();
+            Debug.Assert(entityEffector != null, "EntityEffector is null!");
+
+            Type type = effect.GetType();
+            effect.name = type.Name;
+            effect.effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == type.Name);
+            effect.entityEffector = entityEffector;
+            effect.entityStat = entityEffector.Entity.GetEntityComponent<EntityStat>();
+
+            _effectDictionary.TryAdd(entityEffector, new Dictionary<Type, List<Effect>>());
+            _effectDictionary[entityEffector].TryAdd(type, new List<Effect>());
+
+            if (IsCanAddEffect(entityEffector, effect) == false) return;
+
+            _effectDictionary[entityEffector][type].Add(effect);
+
+            effect.Enable();
+            entityEffector.EffectAddedEvent?.Invoke(effect);
+        }
+
+        public void RemoveEffect<T>(EntityEffector entityEffector) where T : Effect
+        {
+            Effect removeEffect = _effectDictionary[entityEffector][typeof(T)].FirstOrDefault(x=>x.name==typeof(T).Name);
 
             if (removeEffect != null)
             {
                 removeEffect.Disable();
-                EffectRemovedEvent?.Invoke(removeEffect);
-                _effectDictionary[entity][typeof(T)].Remove(removeEffect);
+                entityEffector.EffectRemovedEvent?.Invoke(removeEffect);
+                _effectDictionary[entityEffector][typeof(T)].Remove(removeEffect);
             }
             else
                 Debug.Log($"Effect {typeof(T).Name} was not found");
         }
-
-		public void RemoveEffect(Entity entity, Type effectType)
+		public void RemoveEffect(EntityEffector entityEffector, Type effectType)
         {
-            Effect removeEffect = _effectDictionary[entity][effectType].FirstOrDefault(x=>x.name==effectType.Name);
+            Effect removeEffect = _effectDictionary[entityEffector][effectType].FirstOrDefault(x=>x.name==effectType.Name);
 
             if (removeEffect != null)
             {
 			    removeEffect.Disable();
-                EffectRemovedEvent?.Invoke(removeEffect);
-                _effectDictionary[entity][effectType].Remove(removeEffect);
+                entityEffector.EffectRemovedEvent?.Invoke(removeEffect);
+                _effectDictionary[entityEffector][effectType].Remove(removeEffect);
             }
             else
                 Debug.Log($"Effect {effectType.Name} was not found");
         }
-
-        public void RemoveEffect(Entity entity, Effect effect)
+        public void RemoveEffect(EntityEffector entityEffector, Effect effect)
         {
             Type type = effect.GetType();
 
             if (effect != null)
             {
                 effect.Disable();
-                EffectRemovedEvent?.Invoke(effect);
-                _effectDictionary[entity][type].Remove(effect);
+                entityEffector.EffectRemovedEvent?.Invoke(effect);
+                _effectDictionary[entityEffector][type].Remove(effect);
             }
             else
                 Debug.Log($"Effect {type.Name} was not found");
         }
 
+        public void RemoveEffect<T>(Entity entity) where T : Effect
+        {
+            EntityEffector entityEffector = entity.GetEntityComponent<EntityEffector>();
+            Debug.Assert(entityEffector != null, "EntityEffector is null!");
+
+            Effect removeEffect = _effectDictionary[entityEffector][typeof(T)].FirstOrDefault(x => x.name == typeof(T).Name);
+
+            if (removeEffect != null)
+            {
+                removeEffect.Disable();
+                entityEffector.EffectRemovedEvent?.Invoke(removeEffect);
+                _effectDictionary[entityEffector][typeof(T)].Remove(removeEffect);
+            }
+            else
+                Debug.Log($"Effect {typeof(T).Name} was not found");
+        }
+        public void RemoveEffect(Entity entity, Type effectType)
+        {
+            EntityEffector entityEffector = entity.GetEntityComponent<EntityEffector>();
+            Debug.Assert(entityEffector != null, "EntityEffector is null!");
+
+            Effect removeEffect = _effectDictionary[entityEffector][effectType].FirstOrDefault(x => x.name == effectType.Name);
+
+            if (removeEffect != null)
+            {
+                removeEffect.Disable();
+                entityEffector.EffectRemovedEvent?.Invoke(removeEffect);
+                _effectDictionary[entityEffector][effectType].Remove(removeEffect);
+            }
+            else
+                Debug.Log($"Effect {effectType.Name} was not found");
+        }
+        public void RemoveEffect(Entity entity, Effect effect)
+        {
+            EntityEffector entityEffector = entity.GetEntityComponent<EntityEffector>();
+            Debug.Assert(entityEffector != null, "EntityEffector is null!");
+
+            Type type = effect.GetType();
+
+            if (effect != null)
+            {
+                effect.Disable();
+                entityEffector.EffectRemovedEvent?.Invoke(effect);
+                _effectDictionary[entityEffector][type].Remove(effect);
+            }
+            else
+                Debug.Log($"Effect {type.Name} was not found");
+        }
 
         private void Update()
         {
@@ -151,10 +238,10 @@ namespace Hashira.EffectSystem
                 .ToDictionary(x => x.Key, x => x.Value);
         }
 
-        private bool IsCanAddEffect<T>(Entity entity, T effect) where T : Effect
+        private bool IsCanAddEffect<T>(EntityEffector entityEffector, T effect) where T : Effect
         {
             if (effect.MaxActiveCount < 0) return true;
-            return effect.MaxActiveCount > _effectDictionary[entity][typeof(T)].Count;
+            return effect.MaxActiveCount > _effectDictionary[entityEffector][typeof(T)].Count;
         }
 
         private void EffectInterfaceLogic(Effect effect)
@@ -190,7 +277,7 @@ namespace Hashira.EffectSystem
                 return;
             }
 
-            RemoveEffect(effect.entity, effect.GetType());
+            RemoveEffect(effect.entityEffector, effect.GetType());
         }
     }
 }

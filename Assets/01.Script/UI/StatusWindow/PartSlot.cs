@@ -1,4 +1,3 @@
-using Hashira.Core.StatSystem;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
