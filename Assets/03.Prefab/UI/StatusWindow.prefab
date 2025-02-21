@@ -245,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iconImage: {fileID: 8025807385782495790}
   _itemNameText: {fileID: 1968738171976420229}
+  _itemTypeText: {fileID: 8126890542416964036}
   _descriptionText: {fileID: 6696495985616451052}
   _statusNameText: {fileID: 5723900040579796061}
   _statusValueText: {fileID: 5136383647908297431}

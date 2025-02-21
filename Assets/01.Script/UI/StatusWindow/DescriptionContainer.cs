@@ -13,6 +13,7 @@ namespace Hashira.UI.StatusWindow
     {
         [SerializeField] private Image _iconImage;
         [SerializeField] private TextMeshProUGUI _itemNameText;
+        [SerializeField] private TextMeshProUGUI _itemTypeText;
         [SerializeField] private TextMeshProUGUI _descriptionText;
         [SerializeField] private TextMeshProUGUI _statusNameText;
         [SerializeField] private TextMeshProUGUI _statusValueText;
@@ -20,8 +21,6 @@ namespace Hashira.UI.StatusWindow
         private Player _player;
         private EntityStat _entityStat;
         
-        private StatElement[] _statElement;
-
         private void Awake()
         {
             _player = GameManager.Instance.Player;
@@ -32,20 +31,46 @@ namespace Hashira.UI.StatusWindow
             _entityStat = _player.GetEntityComponent<EntityStat>();
         }
 
+        private void OnEnable()
+        {
+            if (UIMouseController.Instance != null)
+                UIMouseController.Instance.CanSelect = true;
+
+            StatElement[] statElements = _entityStat.StatDictionary.GetElements();
+            SetStatusText(statElements);
+        }
+
+        private void OnDisable()
+        {
+            if (UIMouseController.Instance != null)
+                UIMouseController.Instance.CanSelect = false;
+        }
+
         private void LateUpdate()
         {
-            ISelectableObject selectableObject = UIMouseController.Instance.GetCurrentSelectedObject();
+            ISelectableObject selectableObject = UIMouseController.Instance.CurrentSelectedObject;
 
             if (selectableObject is ISlot slot == false) return;
             if (slot.Item == null) return;
 
-            ItemSO itemSO = slot.Item.ItemSO;
+            Item item = slot.Item;
+            ItemSO itemSO = item.ItemSO;
 
             _iconImage.sprite = itemSO.itemIcon;
             _itemNameText.text = itemSO.itemDisplayName;
+            _itemTypeText.text = itemSO.itemDisplayName;
             _descriptionText.text = itemSO.itemDescription;
 
-            StatElement[] statElements = _entityStat.StatDictionary.GetElements();
+            if (item is IStatable statable)
+            {
+                Debug.Log(itemSO.ToString());
+                StatElement[] statElements = statable.StatDictionary.GetElements();
+                SetStatusText(statElements);
+            }
+        }
+
+        private void SetStatusText(StatElement[] statElements)
+        {
             _statusNameText.text = string.Empty;
             _statusValueText.text = string.Empty;
 

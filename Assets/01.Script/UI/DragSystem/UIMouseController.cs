@@ -13,10 +13,20 @@ namespace Hashira.UI.DragSystem
         private static EventSystem _eventSystem;           // EventSystem 오브젝트
         private static Vector2 MousePosition { get; set; } 
         private IDraggableObject _currentDragObject;
-        private ISelectableObject _selectableObject;
+        private ISelectableObject _currentSelectedObject;
+        public ISelectableObject CurrentSelectedObject
+        {
+            get
+            {
+                if (CanSelect == false)
+                    _currentSelectedObject = null;
+                return _currentSelectedObject;
+            }
+        }
+
         public bool IsDragging { get; private set; } = false;
 
-        public bool CanSelect { get; private set; } = true;
+        public bool CanSelect { get; set; } = true;
         public bool CanDrag { get; private set; } = true;
 
         private void Awake()
@@ -73,24 +83,18 @@ namespace Hashira.UI.DragSystem
                 if (selectableObject != null) break;
             }
 
-            if (selectableObject != _selectableObject)
+            if (selectableObject != _currentSelectedObject)
             {
-                _selectableObject?.OnSelectEnd();
-                _selectableObject = selectableObject;
+                _currentSelectedObject?.OnSelectEnd();
+                _currentSelectedObject = selectableObject;
                 return;
             }
 
-            if (_selectableObject == null)
+            if (_currentSelectedObject == null)
             {
-                _selectableObject = selectableObject;
-                _selectableObject?.OnSelectStart();
+                _currentSelectedObject = selectableObject;
+                _currentSelectedObject?.OnSelectStart();
             }
-        }
-
-        public ISelectableObject GetCurrentSelectedObject()
-        {
-            if ( CanSelect == false) return null;
-            return _selectableObject;
         }
 
         public static List<RaycastResult> GetUIUnderCursor()
