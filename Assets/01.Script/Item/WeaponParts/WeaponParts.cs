@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Hashira.Items.PartsSystem
 {
-    public class WeaponParts : Item, IStatable
+    public class WeaponParts : Item
     {
         public PartsSO WeaponPartsSO { get; private set; }
 
-        public StatDictionary StatDictionary => WeaponPartsSO.StatDictionary;
-
+        public override StatDictionary StatDictionary => WeaponPartsSO.StatDictionary;
+         
         protected GunWeapon _weapon;
 
         protected PartsRenderer _PartsRenderer { get; private set; }

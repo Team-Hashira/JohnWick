@@ -6,12 +6,10 @@ using UnityEngine;
 
 namespace Hashira.Items.Weapons
 {
-    public class Weapon : Item, IStatable
+    public class Weapon : Item
     {
         public WeaponSO WeaponSO { get; private set; }
 
-        //Stat
-        public StatDictionary StatDictionary { get; private set; }
         public EntityWeapon EntityWeapon { get; private set; }
 
         private int _entityDamage;
