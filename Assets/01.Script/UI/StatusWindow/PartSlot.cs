@@ -5,6 +5,7 @@ using Hashira.Items.Weapons;
 using Hashira.UI.DragSystem;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
@@ -19,8 +20,11 @@ namespace Hashira.UI.StatusWindow
         public event Action OnChangedPartsEvent;
         private RectTransform _rectTransform;
 
+        private Outline _outline;
+
         private void Awake()
         {
+            _outline = GetComponent<Outline>();
             _rectTransform = transform as RectTransform;
         }
 
@@ -65,15 +69,13 @@ namespace Hashira.UI.StatusWindow
 
         public void OnSelectStart()
         {
+            Debug.Log("파츠 선택");
+            _outline.enabled = true;
         }
 
         public void OnSelectEnd()
         {
-        }
-
-        public IStatable GetStatable()
-        {
-            return Item as IStatable;
+            _outline.enabled = false;
         }
     }
 }

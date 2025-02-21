@@ -87,13 +87,8 @@ namespace Hashira.UI.DragSystem
             {
                 _currentSelectedObject?.OnSelectEnd();
                 _currentSelectedObject = selectableObject;
-                return;
-            }
-
-            if (_currentSelectedObject == null)
-            {
-                _currentSelectedObject = selectableObject;
                 _currentSelectedObject?.OnSelectStart();
+                return;
             }
         }
 

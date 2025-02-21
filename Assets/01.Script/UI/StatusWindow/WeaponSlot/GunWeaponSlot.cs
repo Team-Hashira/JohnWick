@@ -6,6 +6,7 @@ using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
 using Hashira.UI.DragSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
@@ -19,8 +20,14 @@ namespace Hashira.UI.StatusWindow
         public Item Item { get; set; }
 
         private RectTransform _rectTransform;
+        private Outline _outline;
 
-		public void HandleWeaponChanged(Weapon weapon)
+        private void Awake()
+        {
+            _outline = GetComponent<Outline>();
+        }
+
+        public void HandleWeaponChanged(Weapon weapon)
         {
             _rectTransform ??= transform as RectTransform;
 
@@ -73,17 +80,14 @@ namespace Hashira.UI.StatusWindow
             return partSlot;
         }
 
-        public IStatable GetStatable()
-        {
-            return Item as IStatable;
-        }
-
         public void OnSelectStart()
         {
+            _outline.enabled = true;
         }
 
         public void OnSelectEnd()
         {
+            _outline.enabled = false;
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7985789165829298135}
   - component: {fileID: 7155392045800994008}
   - component: {fileID: 8720548288729135734}
+  - component: {fileID: 2607429560013622348}
   m_Layer: 5
   m_Name: PartSlot
   m_TagString: Untagged
@@ -92,6 +93,21 @@ MonoBehaviour:
   _icon: {fileID: 5744324718581994883}
   isAllType: 0
   partType: 0
+--- !u!114 &2607429560013622348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251024399901003806}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4192494680038430489
 GameObject:
   m_ObjectHideFlags: 0

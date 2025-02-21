@@ -3,6 +3,7 @@ using Hashira.Items;
 using Hashira.Items.Weapons;
 using Hashira.UI.DragSystem;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
@@ -12,6 +13,12 @@ namespace Hashira.UI.StatusWindow
 
         public int SlotIndex { get; set; }
         public Item Item { get; set; }
+        private Outline _outline;
+
+        private void Awake()
+        {
+            _outline = GetComponent<Outline>();
+        }
 
         public IStatable GetStatable()
         {
@@ -24,12 +31,14 @@ namespace Hashira.UI.StatusWindow
             _icon.Init(this);
         }
 
-        public void OnSelectEnd()
-        {
-        }
-
         public void OnSelectStart()
         {
+            _outline.enabled = true;
+        }
+
+        public void OnSelectEnd()
+        {
+            _outline.enabled = false;
         }
     }
 }
