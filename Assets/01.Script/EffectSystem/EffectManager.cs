@@ -4,6 +4,7 @@ using System.Linq;
 using Hashira.EffectSystem.Effects;
 using Hashira.Entities;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Hashira.EffectSystem
 {
@@ -28,7 +29,7 @@ namespace Hashira.EffectSystem
             _effectDictionary.TryAdd(entity, new Dictionary<Type, List<Effect>>());
             _effectDictionary[entity].TryAdd(typeof(T), new List<Effect>());
 
-            if (IsCanAddEffect(_effectDictionary[entity][typeof(T)]) == false) return;
+            if (IsCanAddEffect(entity, effect) == false) return;
 
             _effectDictionary[entity][typeof(T)].Add(effect);
             
@@ -36,9 +37,9 @@ namespace Hashira.EffectSystem
             EffectAddedEvent?.Invoke(effect);
 		}
 
-        public void AddEffect(Entity entity, Effect effect)
+        public void AddEffect<T>(Entity entity, T effect) where T : Effect
         {
-            Type type = effect.GetType();
+            Type type = typeof(T);
             effect.name = type.Name;
             effect.effectUIDataSO = _effectUIDataSOList.FirstOrDefault(x => x.name == type.Name);
             effect.entity = entity;
@@ -47,7 +48,7 @@ namespace Hashira.EffectSystem
             _effectDictionary.TryAdd(entity, new Dictionary<Type, List<Effect>>());
             _effectDictionary[entity].TryAdd(type, new List<Effect>());
 
-            if (IsCanAddEffect(_effectDictionary[entity][type]) == false) return;
+            if (IsCanAddEffect(entity, effect) == false) return;
 
             _effectDictionary[entity][type].Add(effect);
 
@@ -150,10 +151,10 @@ namespace Hashira.EffectSystem
                 .ToDictionary(x => x.Key, x => x.Value);
         }
 
-        private bool IsCanAddEffect(List<Effect> effectList)
+        private bool IsCanAddEffect<T>(Entity entity, T effect) where T : Effect
         {
-            if (Effect.maxActiveCount < 0) return true;
-            return Effect.maxActiveCount > effectList.Count;
+            if (effect.MaxActiveCount < 0) return true;
+            return effect.MaxActiveCount > _effectDictionary[entity][typeof(T)].Count;
         }
 
         private void EffectInterfaceLogic(Effect effect)

@@ -2,6 +2,7 @@ using Crogen.CrogenPooling;
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -59,7 +60,8 @@ namespace Hashira.Projectiles
 
         private void MarkAttack()
         {
-            foreach (EntityHealth entityHealth in _markedEntityHealthList.Keys)
+            List<EntityHealth> entityHealthList = _markedEntityHealthList.Keys.ToList();
+            foreach (EntityHealth entityHealth in entityHealthList)
             {
                 _markedEntityHealthList[entityHealth].Push();
                 entityHealth.OnDieEvent -= HandleDieEvent;
