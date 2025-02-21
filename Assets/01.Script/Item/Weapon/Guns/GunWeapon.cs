@@ -149,10 +149,19 @@ namespace Hashira.Items.Weapons
             }
         }
 
+        public bool CheckWeaponPartsType(EWeaponPartsType eWeaponPartsType)
+        {
+            return _partsSlotDictionary.ContainsKey(eWeaponPartsType);
+        }
+
+        public bool CheckPartsSlotEmpty(EWeaponPartsType eWeaponPartsType)
+        {
+            return _partsSlotDictionary[eWeaponPartsType] == null;
+        }
 
         public WeaponParts EquipParts(EWeaponPartsType eWeaponPartsType, WeaponParts parts)
         {
-            if (_partsSlotDictionary.ContainsKey(eWeaponPartsType) == false) return parts;
+            if (CheckWeaponPartsType(eWeaponPartsType) == false) return parts;
 
             WeaponParts prevPartsSO = _partsSlotDictionary[eWeaponPartsType];
 

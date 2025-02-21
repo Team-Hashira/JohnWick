@@ -20,11 +20,6 @@ namespace Hashira.UI.StatusWindow
             _outline = GetComponent<Outline>();
         }
 
-        public IStatable GetStatable()
-        {
-            return Item as IStatable;
-        }
-
         public void HandleWeaponChanged(Weapon weapon)
         {
             Item = weapon;
