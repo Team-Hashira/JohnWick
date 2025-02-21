@@ -16,6 +16,9 @@ namespace Hashira.UI.DragSystem
         private ISelectableObject _selectableObject;
         public bool IsDragging { get; private set; } = false;
 
+        public bool CanSelect { get; private set; } = true;
+        public bool CanDrag { get; private set; } = true;
+
         private void Awake()
         {
             _graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
@@ -33,6 +36,8 @@ namespace Hashira.UI.DragSystem
 
         private void HandleDrag(bool isMouseDown)
         {
+            if (CanDrag == false) return;
+
             if (isMouseDown)
             {
                 var rayCastResult = GetUIUnderCursor();
@@ -57,11 +62,12 @@ namespace Hashira.UI.DragSystem
 
         private void HandleSelect(Vector2 mousePos)
         {
+            if (CanSelect == false) return;
             var rayCastResult = GetUIUnderCursor();
             if (rayCastResult == null) return;
             ISelectableObject selectableObject = null;
 
-            for (int i = rayCastResult.Count-1; i >= 0 ; --i)
+            for (int i = 0; i < rayCastResult.Count; i++)
             {
                 selectableObject = rayCastResult[i].gameObject.GetComponent<ISelectableObject>();
                 if (selectableObject != null) break;
@@ -81,7 +87,11 @@ namespace Hashira.UI.DragSystem
             }
         }
 
-        public ISelectableObject GetCurrentSelectedObject() => _selectableObject;
+        public ISelectableObject GetCurrentSelectedObject()
+        {
+            if ( CanSelect == false) return null;
+            return _selectableObject;
+        }
 
         public static List<RaycastResult> GetUIUnderCursor()
         {
