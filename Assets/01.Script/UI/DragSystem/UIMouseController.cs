@@ -10,7 +10,7 @@ namespace Hashira.UI.DragSystem
         public Canvas canvas;
         [SerializeField] private InputReaderSO _inputReader;
         private static GraphicRaycaster _graphicRaycaster; // UI가 포함된 Canvas에 연결된 GraphicRaycaster
-        private static EventSystem _eventSystem;          // EventSystem 오브젝트
+        private static EventSystem _eventSystem;           // EventSystem 오브젝트
         private static Vector2 MousePosition { get; set; } 
         private IDraggableObject _currentDragObject;
         private ISelectableObject _selectableObject;
@@ -60,7 +60,8 @@ namespace Hashira.UI.DragSystem
             var rayCastResult = GetUIUnderCursor();
             if (rayCastResult == null) return;
             ISelectableObject selectableObject = null;
-            for (int i = 0; i < rayCastResult.Count; i++)
+
+            for (int i = rayCastResult.Count-1; i >= 0 ; --i)
             {
                 selectableObject = rayCastResult[i].gameObject.GetComponent<ISelectableObject>();
                 if (selectableObject != null) break;
@@ -79,6 +80,8 @@ namespace Hashira.UI.DragSystem
                 _selectableObject?.OnSelectStart();
             }
         }
+
+        public ISelectableObject GetCurrentSelectedObject() => _selectableObject;
 
         public static List<RaycastResult> GetUIUnderCursor()
         {

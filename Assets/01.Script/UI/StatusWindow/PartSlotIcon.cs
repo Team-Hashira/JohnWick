@@ -10,7 +10,7 @@ namespace Hashira.UI.StatusWindow
     public class PartSlotIcon : MonoBehaviour, IDraggableObject
     {
         [SerializeField] private DroppedParts _droppedPartsPrefab;
-        public bool CanDrag => PartSlot.BasePart != null;
+        public bool CanDrag => PartSlot.Item != null;
         public Vector2 DragStartPosition { get; set; }
         public Vector2 DragEndPosition { get; set; }
         
@@ -26,13 +26,13 @@ namespace Hashira.UI.StatusWindow
         private void OnDisable()
         {
             SetToOriginTrm();
-            UIMouseController.Instance.ResetDrag();
+            UIMouseController.Instance?.ResetDrag();
         }
 
         public void Init(PartSlot partSlot)
         {
-            _image.sprite = partSlot.BasePart?.WeaponPartsSO.itemDefaultSprite;
-            _image.color = partSlot.BasePart != null ? Color.white : Color.clear;  
+            _image.sprite = partSlot.Item?.ItemSO.itemDefaultSprite;
+            _image.color = partSlot.Item != null ? Color.white : Color.clear;  
             PartSlot = partSlot;
         }
 
@@ -53,7 +53,7 @@ namespace Hashira.UI.StatusWindow
         public void OnDragEnd(Vector2 curPos)
         {
             // 없으면 움직이면 안됨
-            if (PartSlot.BasePart == null)
+            if (PartSlot.Item == null)
             {
                 SetToOriginTrm();
                 return;
@@ -63,7 +63,7 @@ namespace Hashira.UI.StatusWindow
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
-                ItemDropUtility.DroppedItem(PartSlot.BasePart, pos);
+                ItemDropUtility.DroppedItem(PartSlot.Item, pos);
                 PartSlot.EquipParts(PartSlot.partType, null);
                 SetToOriginTrm();
                 return;

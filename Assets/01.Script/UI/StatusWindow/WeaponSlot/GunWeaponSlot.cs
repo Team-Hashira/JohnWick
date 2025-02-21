@@ -1,19 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
+using Hashira.Core.StatSystem;
+using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
+using Hashira.UI.DragSystem;
 using UnityEngine;
 
 namespace Hashira.UI.StatusWindow
 {
-    public class GunWeaponSlot : MonoBehaviour, IWeaponSlot
+    public class GunWeaponSlot : MonoBehaviour, IWeaponSlot, ISelectableObject
     {
         [SerializeField] private PartSlot _partSlotPrefab; 
-        public Weapon BaseWeapon { get; set; }
         public GunWeapon GunWeapon;
         [SerializeField] private WeaponSlotIcon _icon;
         private readonly List<PartSlot> _partSlotList = new();
         public int SlotIndex { get; set; }
+        public Item Item { get; set; }
+
         private RectTransform _rectTransform;
 
 		public void HandleWeaponChanged(Weapon weapon)
@@ -29,9 +33,9 @@ namespace Hashira.UI.StatusWindow
                 Destroy(partSlot.gameObject);
             }
             _partSlotList.Clear();
-            
-            BaseWeapon = weapon;
-            GunWeapon = BaseWeapon as GunWeapon;
+
+            Item = weapon;
+            GunWeapon = Item as GunWeapon;
             _icon.Init(this);
 
             // 새로 추가
@@ -67,6 +71,19 @@ namespace Hashira.UI.StatusWindow
             _partSlotList.Add(partSlot);
 
             return partSlot;
+        }
+
+        public IStatable GetStatable()
+        {
+            return Item as IStatable;
+        }
+
+        public void OnSelectStart()
+        {
+        }
+
+        public void OnSelectEnd()
+        {
         }
     }
 }

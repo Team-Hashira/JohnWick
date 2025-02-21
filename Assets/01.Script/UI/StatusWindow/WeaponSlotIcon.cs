@@ -13,7 +13,7 @@ namespace Hashira.UI.StatusWindow
     public class WeaponSlotIcon : MonoBehaviour, IDraggableObject
     {
         [SerializeField] private DroppedWeapon _droppedWeaponPrefab;
-        public bool CanDrag => Parent.BaseWeapon != null;
+        public bool CanDrag => Parent.Item != null;
         public Vector2 DragStartPosition { get; set; }
         public Vector2 DragEndPosition { get; set; }
         
@@ -41,8 +41,8 @@ namespace Hashira.UI.StatusWindow
 
         public void Init(IWeaponSlot gunWeaponSlot)
         {
-            _image.sprite = gunWeaponSlot.BaseWeapon?.WeaponSO.itemIcon;
-            _image.color = gunWeaponSlot.BaseWeapon != null ? Color.white : Color.clear;  
+            _image.sprite = (gunWeaponSlot.Item as GunWeapon)?.WeaponSO.itemIcon;
+            _image.color = gunWeaponSlot.Item != null ? Color.white : Color.clear;  
             Parent = gunWeaponSlot;
         }
         
@@ -62,7 +62,7 @@ namespace Hashira.UI.StatusWindow
 
         public void OnDragEnd(Vector2 curPos)
         {
-            if (Parent.BaseWeapon == null)
+            if (Parent.Item == null)
             {
                 SetToOriginTrm();
                 return;
@@ -72,7 +72,7 @@ namespace Hashira.UI.StatusWindow
             if (raycastResult[1].gameObject.name.Equals("BlackSolid"))
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
-                Weapon dropWeapon = Parent.BaseWeapon;
+                Weapon dropWeapon = Parent.Item as Weapon;
                 if (Parent.SlotIndex < _entityGunWeapon.Weapons.Length)
                     _entityGunWeapon.RemoveWeapon(Parent.SlotIndex);
                 else

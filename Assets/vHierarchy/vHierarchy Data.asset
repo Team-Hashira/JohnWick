@@ -120,5 +120,11 @@ MonoBehaviour:
         - colorIndex: 4
           iconNameOrGuid: 
     - goDatas_byGlobalId:
-        keys: []
-        values: []
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-1-d79df72a98059454cacd4bcbd4977f9e-571257322719895466-0
+        - globalObjectIdString: GlobalObjectId_V1-1-d79df72a98059454cacd4bcbd4977f9e-2655629110592449698-0
+        values:
+        - colorIndex: 5
+          iconNameOrGuid: 
+        - colorIndex: 6
+          iconNameOrGuid: 

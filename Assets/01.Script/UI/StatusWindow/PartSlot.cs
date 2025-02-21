@@ -1,17 +1,21 @@
+using Hashira.Core.StatSystem;
+using Hashira.Items;
 using Hashira.Items.PartsSystem;
+using Hashira.Items.Weapons;
 using Hashira.UI.DragSystem;
 using System;
 using UnityEngine;
 
 namespace Hashira.UI.StatusWindow
 {
-    public class PartSlot : MonoBehaviour, ISelectableObject
+    public class PartSlot : MonoBehaviour, ISlot, ISelectableObject
     {
         [SerializeField] private PartSlotIcon _icon;
         public bool isAllType = false;
         public EWeaponPartsType partType;
-        public WeaponParts BasePart { get; private set; }
         public GunWeaponSlot WeaponSlot { get; private set; }
+        public Item Item { get; set; }
+
         public event Action OnChangedPartsEvent;
         private RectTransform _rectTransform;
 
@@ -23,7 +27,7 @@ namespace Hashira.UI.StatusWindow
         public void Init(GunWeaponSlot weaponSlot, WeaponParts weaponPart)
         {
             WeaponSlot = weaponSlot;
-            BasePart = weaponPart;
+            Item = weaponPart;
             _icon.Init(this);
         }
 
@@ -31,7 +35,7 @@ namespace Hashira.UI.StatusWindow
         {
             if (isAllType)
             {
-                BasePart = parts;
+                Item = parts;
                 if (parts != null) partType = parts.WeaponPartsSO.partsType;
                 _icon.Init(this);
 
@@ -40,35 +44,36 @@ namespace Hashira.UI.StatusWindow
             }
 
             OnChangedPartsEvent?.Invoke();
-            WeaponSlot.GunWeapon.EquipParts(eWeaponPartsType, parts);
+            (WeaponSlot.Item as GunWeapon).EquipParts(eWeaponPartsType, parts);
         }
 
         public WeaponParts UnEquipParts(EWeaponPartsType eWeaponPartsType)
         {
-
             if (isAllType)
             {
-                var temp = BasePart;
-                BasePart = null;
+                var temp = Item;
+                Item = null;
                 _icon.Init(this);
 
                 OnChangedPartsEvent?.Invoke();
-                return temp;
+                return temp as WeaponParts;
             }
 
             OnChangedPartsEvent?.Invoke();
-            return WeaponSlot.GunWeapon.UnEquipParts(eWeaponPartsType);
+            return (WeaponSlot.Item as GunWeapon).UnEquipParts(eWeaponPartsType);
         }
 
         public void OnSelectStart()
         {
-            if (BasePart == null) return;
-            WeaponDescriptionContainer.Instance.Open(BasePart.WeaponPartsSO, _rectTransform);
         }
 
         public void OnSelectEnd()
         {
-            WeaponDescriptionContainer.Instance.Close();
+        }
+
+        public IStatable GetStatable()
+        {
+            return Item as IStatable;
         }
     }
 }

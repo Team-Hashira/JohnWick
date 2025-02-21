@@ -28,7 +28,7 @@ namespace Hashira.UI.StatusWindow
         {
             for (int i = 0;i < weaponParts.Length; i++)
             {
-                weaponParts[i] = slots[i].BasePart;
+                weaponParts[i] = slots[i].Item as WeaponParts;
             }
         }
 
