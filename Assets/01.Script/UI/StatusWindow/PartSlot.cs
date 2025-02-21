@@ -69,7 +69,6 @@ namespace Hashira.UI.StatusWindow
 
         public void OnSelectStart()
         {
-            Debug.Log("파츠 선택");
             _outline.enabled = true;
         }
 
