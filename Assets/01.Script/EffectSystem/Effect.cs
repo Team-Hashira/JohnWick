@@ -7,14 +7,12 @@ namespace Hashira.EffectSystem
         public string name;
         public virtual int MaxActiveCount { get; private set; } = 1;
 
-        public EntityEffector baseEffector;
         public EffectUIDataSO effectUIDataSO;
-        public Entity entity;
+        public EntityEffector entityEffector;
 		public EntityStat entityStat;
 
         public virtual void Enable()
         {
-
 		}
 
         public virtual void Update()

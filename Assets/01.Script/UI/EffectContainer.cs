@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Hashira.EffectSystem;
+using Hashira.Entities;
 using UnityEngine;
 
 namespace Hashira.UI.Effect
@@ -13,6 +14,8 @@ namespace Hashira.UI.Effect
 
         private EffectManager _effectManager;
 
+        private EntityEffector _playerEntityEffector;
+
         private void Awake()
         {
             _effectManager = EffectManager.Instance;
@@ -20,14 +23,16 @@ namespace Hashira.UI.Effect
 
         private void Start()
         {
-            _effectManager.EffectAddedEvent += AddEffectUI;
-            _effectManager.EffectRemovedEvent += RemoveEffectUI;
+            _playerEntityEffector = GameManager.Instance.Player.GetEntityComponent<EntityEffector>();
+
+            _playerEntityEffector.EffectAddedEvent += AddEffectUI;
+            _playerEntityEffector.EffectRemovedEvent += RemoveEffectUI;
         }
 
         private void OnDestroy()
         {
-            _effectManager.EffectAddedEvent -= AddEffectUI;
-            _effectManager.EffectRemovedEvent -= RemoveEffectUI;
+            _playerEntityEffector.EffectAddedEvent -= AddEffectUI;
+            _playerEntityEffector.EffectRemovedEvent -= RemoveEffectUI;
         }
 
         private void AddEffectUI(EffectSystem.Effect effect)
