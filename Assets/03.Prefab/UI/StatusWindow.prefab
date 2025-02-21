@@ -249,6 +249,7 @@ MonoBehaviour:
   _descriptionText: {fileID: 6696495985616451052}
   _statusNameText: {fileID: 5723900040579796061}
   _statusValueText: {fileID: 5136383647908297431}
+  _playerProfileIcon: {fileID: 21300000, guid: d01f15e1b5b95494aa5bac88f4036ace, type: 3}
 --- !u!1 &750974521331952462
 GameObject:
   m_ObjectHideFlags: 0

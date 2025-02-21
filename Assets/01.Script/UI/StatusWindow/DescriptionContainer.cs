@@ -17,7 +17,9 @@ namespace Hashira.UI.StatusWindow
         [SerializeField] private TextMeshProUGUI _descriptionText;
         [SerializeField] private TextMeshProUGUI _statusNameText;
         [SerializeField] private TextMeshProUGUI _statusValueText;
-        
+        [Space(25)]
+        [SerializeField] private Sprite _playerProfileIcon;
+
         private Player _player;
         private EntityStat _entityStat;
         
@@ -38,8 +40,7 @@ namespace Hashira.UI.StatusWindow
 
             if (_entityStat != null)
             {
-                StatElement[] statElements = _entityStat.StatDictionary.GetElements();
-                SetStatusText(statElements);
+                SetPlayerStatusProfile();
             }
         }
 
@@ -53,7 +54,11 @@ namespace Hashira.UI.StatusWindow
         {
             ISelectableObject selectableObject = UIMouseController.Instance.CurrentSelectedObject;
 
-            if (selectableObject is ISlot slot == false) return;
+            if (selectableObject is ISlot slot == false)
+            {
+                SetPlayerStatusProfile();
+                return;
+            }
             if (slot.Item == null) return;
 
             Item item = slot.Item;
@@ -77,6 +82,16 @@ namespace Hashira.UI.StatusWindow
                 _statusNameText.text += $"{statElement.elementSO.displayName}\n";
                 _statusValueText.text += $"{statElement.Value}\n";
             }
+        }
+
+        private void SetPlayerStatusProfile()
+        {
+            _iconImage.sprite = _playerProfileIcon;
+            _itemNameText.text = "할머니";
+            _descriptionText.text = "평범한 할머니다.";
+
+            StatElement[] statElements = _entityStat.StatDictionary.GetElements();
+            SetStatusText(statElements);
         }
     }
 }
