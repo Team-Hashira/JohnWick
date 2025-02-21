@@ -36,8 +36,11 @@ namespace Hashira.UI.StatusWindow
             if (UIMouseController.Instance != null)
                 UIMouseController.Instance.CanSelect = true;
 
-            StatElement[] statElements = _entityStat.StatDictionary.GetElements();
-            SetStatusText(statElements);
+            if (_entityStat != null)
+            {
+                StatElement[] statElements = _entityStat.StatDictionary.GetElements();
+                SetStatusText(statElements);
+            }
         }
 
         private void OnDisable()
@@ -58,15 +61,10 @@ namespace Hashira.UI.StatusWindow
 
             _iconImage.sprite = itemSO.itemIcon;
             _itemNameText.text = itemSO.itemDisplayName;
-            _itemTypeText.text = itemSO.itemDisplayName;
             _descriptionText.text = itemSO.itemDescription;
 
-            if (item is IStatable statable)
-            {
-                Debug.Log(itemSO.ToString());
-                StatElement[] statElements = statable.StatDictionary.GetElements();
-                SetStatusText(statElements);
-            }
+            StatElement[] statElements = item.StatDictionary.GetElements();
+            SetStatusText(statElements);
         }
 
         private void SetStatusText(StatElement[] statElements)
