@@ -12,7 +12,6 @@ namespace Hashira
         private float _damageDelay;
         private float _ignitionDuration;
 
-        private Ignition _ignition = new Ignition();
 
         public void Setup(int damage, float damageDelay, float duration)
         {
@@ -25,15 +24,15 @@ namespace Hashira
         public override void OnProjectileCreate(Projectile projectile)
         {
             base.OnProjectileCreate(projectile);
-            _ignition = new Ignition();
-            _ignition.Setup(_ignitionDamage, _damageDelay, _ignitionDuration);
         }
 
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
             if (damageable is EntityHealth entityHealth)
             {
-                EffectManager.Instance.AddEffect(entityHealth.Owner, _ignition);
+                Ignition ignition = new Ignition();
+                ignition.Setup(_ignitionDamage, _damageDelay, _ignitionDuration);
+                EffectManager.Instance.AddEffect(entityHealth.Owner, ignition);
             }
         }
     }

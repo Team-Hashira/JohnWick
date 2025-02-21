@@ -9,6 +9,8 @@ namespace Hashira.EffectSystem.Effects
         private float _damageDelay = 0.5f;
         private float _lastDamageTime;
 
+        public override int MaxActiveCount => -1;
+
         float ICoolTimeEffect.Duration { get; set; } = 5;
         float ICoolTimeEffect.Time { get; set; }
 

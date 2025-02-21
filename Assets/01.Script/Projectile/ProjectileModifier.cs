@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    public class ProjectileModifier
+    public class ProjectileModifier : ICloneable
     {
         protected Projectile _projectile;
+
         //총알이 생겨날 당시
         public virtual void OnProjectileCreate(Projectile projectile)
         {
@@ -15,5 +17,7 @@ namespace Hashira.Projectiles
         {
 
         }
+
+        public object Clone() => MemberwiseClone();
     }
 }
