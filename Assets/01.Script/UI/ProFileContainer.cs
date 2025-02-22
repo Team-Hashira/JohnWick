@@ -66,7 +66,6 @@ namespace Hashira.UI
 
         private void HandleWeaponChange(Weapon weapon)
         {
-
             _weaponSlotNumberText.text = (_entityGunWeapon.CurrentIndex+1).ToString();
 
 			if (weapon == null)

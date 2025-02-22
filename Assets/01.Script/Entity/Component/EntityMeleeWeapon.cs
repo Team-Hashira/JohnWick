@@ -67,7 +67,7 @@ namespace Hashira.Entities.Components
 
             _lastMeleeAttackTime = Time.time;
 
-            HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
+            HandleChangedCurrentWeapon(CurrentWeapon);
 
             if (GunWaepon != null)
                 GunWaepon.IsMeleeWeaponMode = true;
@@ -79,7 +79,7 @@ namespace Hashira.Entities.Components
         {
             if (CurrentWeapon == null) return;
 
-            HandleChangedCurrentWeaponChangedEvent(CurrentWeapon);
+            HandleChangedCurrentWeapon(CurrentWeapon);
 
             if (GunWaepon != null)
                 GunWaepon.IsMeleeWeaponMode = true;

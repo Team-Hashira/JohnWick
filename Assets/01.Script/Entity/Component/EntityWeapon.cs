@@ -33,7 +33,7 @@ namespace Hashira.Entities.Components
             Entity = entity;
             _spriteRenderer = VisualTrm.GetComponent<SpriteRenderer>();
             CurrentIndex = 0;
-            OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
+            OnCurrentWeaponChanged += HandleChangedCurrentWeapon;
 
             _startYPos = transform.localPosition.y;
 
@@ -47,7 +47,7 @@ namespace Hashira.Entities.Components
 
         }
 
-        protected virtual void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
+        protected virtual void HandleChangedCurrentWeapon(Weapon weapon)
         {
             _spriteRenderer.sprite = weapon?.WeaponSO.itemDefaultSprite;
 
@@ -98,7 +98,7 @@ namespace Hashira.Entities.Components
             CurrentWeapon?.Equip(this);
 
             OnChangedWeaponEvents[CurrentIndex]?.Invoke(weapon);
-
+            OnCurrentWeaponChanged?.Invoke(weapon);
             return prevGunWeapon;
         }
 
@@ -145,7 +145,7 @@ namespace Hashira.Entities.Components
 
         public virtual void Dispose()
         {
-            OnCurrentWeaponChanged -= HandleChangedCurrentWeaponChangedEvent;
+            OnCurrentWeaponChanged -= HandleChangedCurrentWeapon;
         }
     }
 }

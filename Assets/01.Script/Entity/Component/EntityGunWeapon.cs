@@ -38,7 +38,7 @@ namespace Hashira.Entities.Components
 
             PartsRenderer.Init();
 
-            OnCurrentWeaponChanged += HandleChangedCurrentWeaponChangedEvent;
+            OnCurrentWeaponChanged += HandleChangedCurrentWeapon;
         }
 
         public override void AfterInit()
@@ -57,9 +57,9 @@ namespace Hashira.Entities.Components
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
-        protected override void HandleChangedCurrentWeaponChangedEvent(Weapon weapon)
+        protected override void HandleChangedCurrentWeapon(Weapon weapon)
         {
-            base.HandleChangedCurrentWeaponChangedEvent(weapon);
+            base.HandleChangedCurrentWeapon(weapon);
 
             PartsRenderer.SetGun(weapon as GunWeapon);
 
