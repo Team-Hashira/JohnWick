@@ -1,29 +1,31 @@
 using Hashira.Items.Weapons;
+using Hashira.Projectiles;
 using UnityEngine;
 
 namespace Hashira.Items.PartsSystem
 {
+    //무장탄띠 기능 보류
     public class ArmedBeltParts : WeaponParts
     {
-        private IgnitionProjectileModifier _ignitionProjectileModifier;
+        private GunStatIncreaseProjectileModifier _gunStatIncreaseProjectileModifier;
 
         public override object Clone()
         {
-            _ignitionProjectileModifier = new IgnitionProjectileModifier();
-            _ignitionProjectileModifier.Setup(20, 0.5f, 5f);
+            _gunStatIncreaseProjectileModifier = new GunStatIncreaseProjectileModifier();
+            
             return base.Clone();
         }
 
         public override void Equip(GunWeapon weapon)
         {
             base.Equip(weapon);
-            _weapon.AddProjectileModifier(_ignitionProjectileModifier);
+            _weapon.AddProjectileModifier(_gunStatIncreaseProjectileModifier);
         }
 
         public override void UnEquip()
         {
             base.UnEquip();
-            _weapon.RemoveProjectileModifier(_ignitionProjectileModifier);
+            _weapon.RemoveProjectileModifier(_gunStatIncreaseProjectileModifier);
         }
     }
 }
