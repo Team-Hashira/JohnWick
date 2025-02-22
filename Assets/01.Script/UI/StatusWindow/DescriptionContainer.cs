@@ -65,6 +65,7 @@ namespace Hashira.UI.StatusWindow
             ItemSO itemSO = item.ItemSO;
 
             _iconImage.sprite = itemSO.itemIcon;
+            _itemTypeText.text = "장현우";
             _itemNameText.text = itemSO.itemDisplayName;
             _descriptionText.text = itemSO.itemDescription;
 
@@ -87,6 +88,7 @@ namespace Hashira.UI.StatusWindow
         private void SetPlayerStatusProfile()
         {
             _iconImage.sprite = _playerProfileIcon;
+            _itemTypeText.text = string.Empty;
             _itemNameText.text = "할머니";
             _descriptionText.text = "평범한 할머니다.";
 
