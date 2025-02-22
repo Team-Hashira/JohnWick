@@ -94,8 +94,9 @@ namespace Hashira.Entities
         {
             foreach (var effectList in _effectDictionary)
             {
-                foreach (var effect in effectList.Value)
+                for (int i = 0; i < effectList.Value.Count; i++)
                 {
+                    var effect = effectList.Value[i];
                     // 버프가 수명이 다해서 없어질 때 체크
                     if (effect == null)
                     {
@@ -104,6 +105,7 @@ namespace Hashira.Entities
                     }
 
                     EffectInterfaceLogic(effect);
+                    effect.Update();
                 }
             }
         }

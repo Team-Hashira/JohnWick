@@ -12,7 +12,6 @@ namespace Hashira
         private float _damageDelay;
         private float _ignitionDuration;
 
-
         public void Setup(int damage, float damageDelay, float duration)
         {
             _ignitionDamage = damage;
@@ -32,7 +31,10 @@ namespace Hashira
             {
                 Ignition ignition = new Ignition();
                 ignition.Setup(_ignitionDamage, _damageDelay, _ignitionDuration);
-                EffectManager.Instance.AddEffect(entityHealth.Owner, ignition);
+                if (entityHealth.Owner.TryGetEntityComponent(out EntityEffector effector, true))
+                {
+                    effector.AddEffect(ignition);
+                }
             }
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Hashira.EffectSystem;
+using Hashira.EffectSystem.Effects;
 using Hashira.Entities;
 using UnityEngine;
 
@@ -33,6 +34,12 @@ namespace Hashira.UI.Effect
         {
             _playerEntityEffector.EffectAddedEvent -= AddEffectUI;
             _playerEntityEffector.EffectRemovedEvent -= RemoveEffectUI;
+        }
+
+        private void Update()
+        {
+            if(Input.GetKeyUp(KeyCode.Escape))
+                _playerEntityEffector.AddEffect<IncreaseMoveSpeed>();
         }
 
         private void AddEffectUI(EffectSystem.Effect effect)
