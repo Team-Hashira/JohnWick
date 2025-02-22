@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Hashira.Core.StatSystem;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
