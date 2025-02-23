@@ -27,7 +27,7 @@ MonoBehaviour:
   overrideStatElementList:
   - Name: "\uACF5\uACA9\uB825"
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    _baseValue: 140
+    _baseValue: 250
   - Name: "\uACF5\uACA9\uC18D\uB3C4"
     elementSO: {fileID: 11400000, guid: 30b403b6577f03f439e586ddc8dcdb14, type: 2}
     _baseValue: 2
