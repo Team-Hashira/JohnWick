@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
-    public class MeleeWeaponSlot : MonoBehaviour, IWeaponSlot, ISelectableObject
+    public class SubItemSlot : MonoBehaviour, IWeaponSlot, ISelectableObject
     {
         [SerializeField] private WeaponSlotIcon _icon;
 
