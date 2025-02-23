@@ -29,7 +29,7 @@ namespace Hashira.Items.Weapons
         }
         public override void ItemUpdate()
         {
-            if (EntityWeapon.WeaponCount() > 1)
+            if (EntityWeaponHolder.WeaponCount() > 1)
                 currentCoolTime += Time.deltaTime;
         }
         public override void UnEquip()

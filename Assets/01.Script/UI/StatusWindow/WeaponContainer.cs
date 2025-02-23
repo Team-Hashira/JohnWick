@@ -23,9 +23,11 @@ namespace Hashira.UI.StatusWindow
             
             _entityGunWeapon = _player.GetEntityComponent<EntityWeaponHolder>();
             _entitySubItemWeapon = _player.GetEntityComponent<EntitySubItemHolder>();
+
+            SlotSetting();
         }
 
-        private void Start()
+        private void SlotSetting()
         {
             for (var i = 0; i < _entityGunWeapon.OnChangedWeaponEvents.Length; i++)
             {

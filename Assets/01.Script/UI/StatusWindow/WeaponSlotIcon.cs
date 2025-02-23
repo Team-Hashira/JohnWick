@@ -18,7 +18,7 @@ namespace Hashira.UI.StatusWindow
         public Vector2 DragEndPosition { get; set; }
         
         public RectTransform RectTransform { get; set; }
-        public IWeaponSlot Parent { get; private set; }
+        public ISlot Parent { get; private set; }
         [SerializeField] private Image _image;
 
         private EntityWeaponHolder _entityGunWeapon;
@@ -45,11 +45,11 @@ namespace Hashira.UI.StatusWindow
             _entityMeleeWeapon = _player.GetEntityComponent<EntitySubItemHolder>();
         }
 
-        public void Init(IWeaponSlot gunWeaponSlot)
+        public void Init(ISlot itemSlot)
         {
-            _image.sprite = (gunWeaponSlot.Item as GunWeapon)?.WeaponSO.itemIcon;
-            _image.color = gunWeaponSlot.Item != null ? Color.white : Color.clear;  
-            Parent = gunWeaponSlot;
+            _image.sprite = (itemSlot.Item as GunWeapon)?.WeaponSO.itemIcon;
+            _image.color = itemSlot.Item != null ? Color.white : Color.clear;  
+            Parent = itemSlot;
         }
         
         public void OnDragStart()
@@ -79,10 +79,10 @@ namespace Hashira.UI.StatusWindow
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
                 Weapon dropWeapon = Parent.Item as Weapon;
-                if (Parent.SlotIndex < _entityGunWeapon.Items.Length)
-                    _entityGunWeapon.RemoveWeapon(Parent.SlotIndex);
-                else
-                    _entityMeleeWeapon.RemoveWeapon(Parent.SlotIndex - _entityGunWeapon.Items.Length);
+                if (Parent is IWeaponSlot weaponSlot)
+                    _entityGunWeapon.RemoveWeapon(weaponSlot.SlotIndex);
+                else if (Parent is ISubItemSlot subItemSlot)
+                    _entityMeleeWeapon.RemoveWeapon(subItemSlot.SlotIndex - _entityGunWeapon.Items.Length);
                 ItemDropUtility.DroppedItem(dropWeapon, pos);
             } 
             

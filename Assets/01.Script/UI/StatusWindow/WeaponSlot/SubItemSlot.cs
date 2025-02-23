@@ -24,7 +24,7 @@ namespace Hashira.UI.StatusWindow
         public void HandleSubItemChanged(SubItem weapon)
         {
             Item = weapon;
-            //_icon.Init(this);
+            _icon.Init(this);
         }
 
         public void OnSelectStart()

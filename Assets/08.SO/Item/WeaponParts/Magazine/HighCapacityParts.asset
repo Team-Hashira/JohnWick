@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: HighCapacityParts
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -1057668103, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemDefaultSprite: {fileID: -1057668103, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: HighCapacity
   itemDisplayName: "\uB300\uC6A9\uB7C9 \uD0C4\uCC3D"

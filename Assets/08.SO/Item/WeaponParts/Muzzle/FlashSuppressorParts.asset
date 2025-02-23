@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: FlashSuppressorParts
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 1295986232, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemDefaultSprite: {fileID: 1295986232, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: FlashSuppressor
   itemDisplayName: "\uC18C\uC5FC\uAE30"

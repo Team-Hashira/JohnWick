@@ -106,8 +106,28 @@ namespace Hashira.Entities.Components
             OnCurrentItemChanged?.Invoke(CurrentItem);
         }
 
+        public int WeaponCount()
+        {
+            int itemCount = 0;
+            for (int i = 0; i < Items.Length; i++)
+            {
+                if (Items[i] != null)
+                    itemCount++;
+            }
+            return itemCount;
+        }
+
         public void WeaponSwap()
         {
+            // 무기가 하나 밖에 없는데 Swap이 필요없음
+            if (WeaponCount() <= 1) return;
+
+            if (CurrentItem is Weapon weapon)
+            {
+                if (weapon.CanSwap == false) return;
+                weapon.currentCoolTime = 0;
+            }
+
             for (int i = 0; i < Items.Length; i++)
             {
                 CurrentIndex++;
