@@ -15,7 +15,6 @@ namespace Crogen.CrogenPooling
         {
             target.OnPush();
             target.gameObject.transform.SetParent(_poolManager.transform);
-            target.gameObject.transform.localScale = Vector3.one;
             target.gameObject.transform.gameObject.SetActive(false);
             PoolManager.poolDict[target.OriginPoolType].Push(target);
         }

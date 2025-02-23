@@ -33,6 +33,12 @@ namespace Hashira.UI.StatusWindow
             RectTransform = transform as RectTransform;
         }
 
+        private void OnDisable()
+        {
+            SetToOriginTrm();
+            UIMouseController.Instance?.ResetDrag();
+        }
+
         private void Start()
         {
             _entityGunWeapon = _player.GetEntityComponent<EntityGunWeapon>();

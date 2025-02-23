@@ -1,6 +1,8 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Hashira.Object
 {
@@ -20,7 +22,9 @@ namespace Hashira.Object
 
         public EEntityPartType ApplyDamage(int value, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
         {
-            var explosionEffect = PopCore.Pop(_explosionEffectPoolType, transform.position, Quaternion.identity);
+            var explosionEffect = PopCore.Pop(_explosionEffectPoolType, transform.position, Quaternion.identity) as SimplePoolingObject;
+            var originScale = explosionEffect.gameObject.transform.localScale;
+
             explosionEffect.gameObject.transform.localScale = Vector3.one * _circleDamageCaster.radius;
 
             _circleDamageCaster.CastDamage(_explosionDamage, Vector3.zero, knockback, EAttackType.Fire);
@@ -28,5 +32,7 @@ namespace Hashira.Object
             Destroy(gameObject);
             return EEntityPartType.Body;
         }
+
+
     }
 }
