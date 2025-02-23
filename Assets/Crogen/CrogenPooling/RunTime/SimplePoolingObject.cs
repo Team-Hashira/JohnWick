@@ -39,4 +39,9 @@ public class SimplePoolingObject : MonoBehaviour, IPoolingObject
             }
         }
 	}
+
+    public void SetScale(float scale)
+    {
+        transform.localScale = Vector3.one * scale;
+    }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   _statElements:
   - Name: Health
     elementSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
-    _baseValue: 500
+    _baseValue: 700
   - Name: AttackPower
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     _baseValue: 10
@@ -24,7 +24,7 @@ MonoBehaviour:
     _baseValue: 10
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
-    _baseValue: 10
+    _baseValue: 18
   - Name: FieldOfView
     elementSO: {fileID: 11400000, guid: 716401084645e5b459a667648b423fce, type: 2}
     _baseValue: 360
