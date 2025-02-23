@@ -19,8 +19,8 @@ namespace Hashira.Players
         protected EntityStateMachine _stateMachine;
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
-        protected EntityGunWeapon _weaponGunHolderCompo;
-        protected EntityMeleeWeapon _weaponMeleeHolderCompo;
+        protected EntityWeaponHolder _weaponGunHolderCompo;
+        protected EntitySubItemHolder _weaponMeleeHolderCompo;
         protected EntityInteractor _interactor;
         protected PlayerMover _playerMover;
 
@@ -126,33 +126,33 @@ namespace Hashira.Players
                 }
                 else
                 {
-                    Debug.Log("½ºÅ×¹Ì³ª ºÎÁ·!");
+                    Debug.Log("ìŠ¤í…Œë¯¸ë‚˜ ë¶€ì¡±!");
                 }
             }
         }
 
         private void HandleMeleeAttackEvent(bool isDown)
         {
-            _isRightMousePress = isDown;
-            if (isDown)
-            {
-                _lastRightClickTime = Time.time;
-            }
-            else
-            {
-                if (_isChargingParrying)
-                {
-                    TimeManager.UndoTimeScale();
-                    _isChargingParrying = false;
-                    _weaponMeleeHolderCompo?.ChargeAttack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
-                    if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
-                        chromaticAberration.active = false;
-                }
-                else
-                {
-                    _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
-                }
-            }
+            //_isRightMousePress = isDown;
+            //if (isDown)
+            //{
+            //    _lastRightClickTime = Time.time;
+            //}
+            //else
+            //{
+            //    if (_isChargingParrying)
+            //    {
+            //        TimeManager.UndoTimeScale();
+            //        _isChargingParrying = false;
+            //        _weaponMeleeHolderCompo?.ChargeAttack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
+            //        if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
+            //            chromaticAberration.active = false;
+            //    }
+            //    else
+            //    {
+            //        _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
+            //    }
+            //}
         }
 
         private void HandleAttackEvent(bool isDown)
@@ -174,8 +174,8 @@ namespace Hashira.Players
             _playerMover = GetEntityComponent<PlayerMover>();
             _statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
-            _weaponGunHolderCompo = GetEntityComponent<EntityGunWeapon>();
-            _weaponMeleeHolderCompo = GetEntityComponent<EntityMeleeWeapon>();
+            _weaponGunHolderCompo = GetEntityComponent<EntityWeaponHolder>();
+            _weaponMeleeHolderCompo = GetEntityComponent<EntitySubItemHolder>();
             _interactor = GetEntityComponent<EntityInteractor>();
             _stateMachine = GetEntityComponent<EntityStateMachine>();
             _damageStat = _statCompo.StatDictionary["AttackPower"];
@@ -234,7 +234,7 @@ namespace Hashira.Players
             }
             if (_isChargingParrying)
             {
-                //Â÷Â¡Áß...
+                //ì°¨ì§•ì¤‘...
             }
         }
 

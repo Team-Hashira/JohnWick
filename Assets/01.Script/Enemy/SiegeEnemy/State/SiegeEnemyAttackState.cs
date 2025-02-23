@@ -13,7 +13,7 @@ namespace Hashira.Enemies.SiegeEnemy
         private Player _target;
 
         private EntityRenderer _entityRenderer;
-        private EntityGunWeapon _entityGunWeapon;
+        private EntityWeaponHolder _entityGunWeapon;
         private EntityStat _entityStat;
         private EnemyPathfinder _enemyPathfinder;
 
@@ -27,7 +27,7 @@ namespace Hashira.Enemies.SiegeEnemy
             _siegeEnemy = entity as SiegeEnemy;
 
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
-            _entityGunWeapon = entity.GetEntityComponent<EntityGunWeapon>();
+            _entityGunWeapon = entity.GetEntityComponent<EntityWeaponHolder>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
             _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
 

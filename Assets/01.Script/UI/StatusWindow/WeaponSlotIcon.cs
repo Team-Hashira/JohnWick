@@ -21,8 +21,8 @@ namespace Hashira.UI.StatusWindow
         public IWeaponSlot Parent { get; private set; }
         [SerializeField] private Image _image;
 
-        private EntityGunWeapon _entityGunWeapon;
-        private EntityMeleeWeapon _entityMeleeWeapon;
+        private EntityWeaponHolder _entityGunWeapon;
+        private EntitySubItemHolder _entityMeleeWeapon;
 
         private Player _player;
         
@@ -35,8 +35,8 @@ namespace Hashira.UI.StatusWindow
 
         private void Start()
         {
-            _entityGunWeapon = _player.GetEntityComponent<EntityGunWeapon>();
-            _entityMeleeWeapon = _player.GetEntityComponent<EntityMeleeWeapon>();
+            _entityGunWeapon = _player.GetEntityComponent<EntityWeaponHolder>();
+            _entityMeleeWeapon = _player.GetEntityComponent<EntitySubItemHolder>();
         }
 
         public void Init(IWeaponSlot gunWeaponSlot)
@@ -73,10 +73,10 @@ namespace Hashira.UI.StatusWindow
             {
                 Vector2 pos = GameManager.Instance.Player.transform.position;
                 Weapon dropWeapon = Parent.Item as Weapon;
-                if (Parent.SlotIndex < _entityGunWeapon.Weapons.Length)
+                if (Parent.SlotIndex < _entityGunWeapon.Items.Length)
                     _entityGunWeapon.RemoveWeapon(Parent.SlotIndex);
                 else
-                    _entityMeleeWeapon.RemoveWeapon(Parent.SlotIndex - _entityGunWeapon.Weapons.Length);
+                    _entityMeleeWeapon.RemoveWeapon(Parent.SlotIndex - _entityGunWeapon.Items.Length);
                 ItemDropUtility.DroppedItem(dropWeapon, pos);
             } 
             

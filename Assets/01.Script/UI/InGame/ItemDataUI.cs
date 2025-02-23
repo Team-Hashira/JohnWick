@@ -2,6 +2,7 @@ using Hashira.Core;
 using Hashira.Core.StatSystem;
 using Hashira.Items;
 using Hashira.Items.PartsSystem;
+using Hashira.Items.SubItems;
 using Hashira.Items.Weapons;
 using System.Data;
 using TMPro;
@@ -30,8 +31,8 @@ namespace Hashira.UI.InGame
             _itemDescriptionText.text = item.ItemSO.itemDescription;
             if (item is GunWeapon gunWeapon)
                 _itemTypeText.text = "원거리무기";
-            else if (item is MeleeWeapon meleeWeapon)
-                _itemTypeText.text = "근접무기";
+            else if (item is SubItem subItem)
+                _itemTypeText.text = "보조 아이템";
             else if (item is WeaponParts weaponParts)
             {
                 foreach (var gunSO in weaponParts.WeaponPartsSO.partsSpriteDictionary.Keys)

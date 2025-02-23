@@ -1,5 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Items;
+using Hashira.Items.SubItems;
 using Hashira.Items.Weapons;
 using Hashira.UI.DragSystem;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Hashira.UI.StatusWindow
 {
-    public class MeleeWeaponSlot : MonoBehaviour, IWeaponSlot, ISelectableObject
+    public class MeleeWeaponSlot : MonoBehaviour, ISubItemSlot, ISelectableObject
     {
         [SerializeField] private WeaponSlotIcon _icon;
 
@@ -20,10 +21,10 @@ namespace Hashira.UI.StatusWindow
             _outline = GetComponent<Outline>();
         }
 
-        public void HandleWeaponChanged(Weapon weapon)
+        public void HandleSubItemChanged(SubItem weapon)
         {
             Item = weapon;
-            _icon.Init(this);
+            //_icon.Init(this);
         }
 
         public void OnSelectStart()

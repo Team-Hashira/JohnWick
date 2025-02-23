@@ -32,9 +32,9 @@ namespace Hashira.Entities.Interacts
         {
             base.Interaction(entity);
 
-            EntityGunWeapon weaponHolder = entity.GetEntityComponent<EntityGunWeapon>();
+            EntityWeaponHolder weaponHolder = entity.GetEntityComponent<EntityWeaponHolder>();
 
-            if (weaponHolder.CurrentWeapon != null && weaponHolder.CurrentWeapon is GunWeapon gunWeapon)
+            if (weaponHolder.CurrentItem != null && weaponHolder.CurrentItem is GunWeapon gunWeapon)
             {
                 if (gunWeapon.CheckWeaponPartsType(_partsSO.partsType))
                 {
@@ -56,8 +56,8 @@ namespace Hashira.Entities.Interacts
         public override void SetItemData()
         {
             base.SetItemData();
-            if (_entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon) &&
-                entityWeapon.CurrentWeapon != null && entityWeapon.CurrentWeapon is GunWeapon gunWeapon &&
+            if (_entity.TryGetEntityComponent(out EntityWeaponHolder entityWeapon) &&
+                entityWeapon.CurrentItem != null && entityWeapon.CurrentItem is GunWeapon gunWeapon &&
                 gunWeapon.TryGetParts(_partsSO.partsType, out WeaponParts comparisonParts))
             {
                 _itemDataController.SetItem(_parts, comparisonParts);

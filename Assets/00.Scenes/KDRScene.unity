@@ -1349,6 +1349,27 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f10ed32730b73e047beed77ff3cb3dee, type: 3}
+--- !u!1 &645849496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1168156252607547634, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+  m_PrefabInstance: {fileID: 651278449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &645849500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645849496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e22b8cb57fcde4b820685b2796cc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <VisualTrm>k__BackingField: {fileID: 774661905}
+  _defaultWeapons:
+  - {fileID: 0}
+  <DamageCaster>k__BackingField: {fileID: 0}
 --- !u!1001 &651278449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1453,10 +1474,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.88352424
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9044624719610803174, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1168156252607547634, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 645849500}
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
 --- !u!114 &651278450 stripped
 MonoBehaviour:
@@ -1527,6 +1552,11 @@ MonoBehaviour:
   <TapSectionList>k__BackingField: []
   buttonGroup: {fileID: 873366384}
   panelGroup: {fileID: 2011188262}
+--- !u!4 &774661905 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7028462452996302252, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
+  m_PrefabInstance: {fileID: 651278449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &793581844
 PrefabInstance:
   m_ObjectHideFlags: 0

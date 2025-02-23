@@ -24,7 +24,7 @@ namespace Hashira.Entities.Interacts
         private bool _isHolding;
 
         protected Entity _entity;
-        protected EntityGunWeapon _entityWeapon;
+        protected EntityWeaponHolder _entityWeapon;
         protected ItemDataUIController _itemDataController;
 
         protected override void Awake()
@@ -37,7 +37,7 @@ namespace Hashira.Entities.Interacts
         public void HoldInteractionStart(Entity entity)
         {
             _entity = entity;
-            _entityWeapon = _entity.GetEntityComponent<EntityGunWeapon>();
+            _entityWeapon = _entity.GetEntityComponent<EntityWeaponHolder>();
             _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
             _isHolding = true;
             
