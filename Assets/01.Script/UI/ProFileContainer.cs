@@ -15,6 +15,7 @@ namespace Hashira.UI
         [SerializeField] private TextMeshProUGUI _hpText;
 
         [Header("Weapon")]
+        [SerializeField] private Image _weaponSwapCoolTimeContainer;
         [SerializeField] private ReloadContainer _reloadContainer; 
         [SerializeField] private Image _weaponIconImage;
         [SerializeField] private Slider _weaponLoadSlider;
@@ -57,6 +58,12 @@ namespace Hashira.UI
             {
                 GunWeapon gunWeapon = _entityGunWeapon.CurrentWeapon as GunWeapon;
                 HandleUseWeapon(gunWeapon.BulletAmount, gunWeapon.StatDictionary["MagazineCapacity"].IntValue);
+
+                // Swap CoolTime
+                if (gunWeapon.CanSwap == false)
+                    _weaponSwapCoolTimeContainer.fillAmount = gunWeapon.currentCoolTime / gunWeapon.WeaponSO.SwapCoolTime;
+                else
+                    _weaponSwapCoolTimeContainer.fillAmount = 1;
             }
             else
             {

@@ -150,6 +150,82 @@ MonoBehaviour:
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &789637085257638462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2327973567920823169}
+  - component: {fileID: 5033163083823397171}
+  - component: {fileID: 412190777820148837}
+  m_Layer: 5
+  m_Name: WeaponSwapCoolTimeContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2327973567920823169
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789637085257638462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2159767534059807087}
+  m_Father: {fileID: 1576597958147284835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -9.5, y: 10.400001}
+  m_SizeDelta: {x: 235, y: 86.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5033163083823397171
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789637085257638462}
+  m_CullTransparentMesh: 1
+--- !u!114 &412190777820148837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789637085257638462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.7254902, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -189900875, guid: dc5dcd2e636b76043a2b8833d558e7ff, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 0
+  m_FillClockwise: 1
+  m_FillOrigin: 2
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.4
 --- !u!1 &1369261086259220706
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +654,7 @@ GameObject:
   - component: {fileID: 5268500140134709217}
   - component: {fileID: 4662042108296811063}
   m_Layer: 5
-  m_Name: WeaponContainer
+  m_Name: WeaponContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -591,18 +667,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4307526086582552420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 446982845551955977}
   - {fileID: 1012138162018486302}
-  m_Father: {fileID: 1576597958147284835}
+  m_Father: {fileID: 2327973567920823169}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9.5, y: 10.4}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 225, y: 76.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2734605847559875704
@@ -1207,7 +1283,7 @@ GameObject:
   - component: {fileID: 1576597958147284835}
   - component: {fileID: 5012464828134610926}
   m_Layer: 5
-  m_Name: ProfileContainer
+  m_Name: ProFileContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1226,7 +1302,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7156451575977011793}
-  - {fileID: 2159767534059807087}
+  - {fileID: 2327973567920823169}
   - {fileID: 3674645362179900115}
   - {fileID: 3459275018021949163}
   - {fileID: 5863163819917434089}
@@ -1251,6 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpSlider: {fileID: 4943638899191563783}
   _hpText: {fileID: 6503652228129167497}
+  _weaponSwapCoolTimeContainer: {fileID: 412190777820148837}
   _reloadContainer: {fileID: 9162226892318761969}
   _weaponIconImage: {fileID: 7180532779310659041}
   _weaponLoadSlider: {fileID: 7204078018050371516}

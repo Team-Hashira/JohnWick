@@ -12,6 +12,8 @@ namespace Hashira.Items.Weapons
         [field: SerializeField] public Vector3 RightHandOffset { get; internal set; }
         [field: SerializeField] public Vector3 LeftHandOffset { get; internal set; }
         [field: SerializeField] public float GrapRotate { get; internal set; }
+        [field: SerializeField] public float SwapCoolTime { get; internal set; } = 2.0f;
+
         [Header("Stat")]
         public List<StatElement> overrideStatElementList = new List<StatElement>();
         [VisibleInspectorSO] public StatBaseSO baseStat;

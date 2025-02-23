@@ -1,6 +1,6 @@
-using Hashira.Core.EventSystem;
 using Hashira.Items.Weapons;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Hashira.Entities.Components
@@ -117,6 +117,17 @@ namespace Hashira.Entities.Components
                 return index >= Weapons.Length ? Weapons.Length - 1 : index;
         }
 
+        public int WeaponCount()
+        {
+            int weaponCount = 0;
+            for (int i = 0; i < Weapons.Length; i++)
+            {
+                if (Weapons[i] != null)
+                    weaponCount++;
+            }
+            return weaponCount;
+        }
+
         public void WeaponChange(int index)
         {
             if (index >= Weapons.Length)
@@ -128,6 +139,12 @@ namespace Hashira.Entities.Components
 
         public void WeaponSwap()
         {
+            // 무기가 하나 밖에 없는데 Swap이 필요없음
+            if (WeaponCount() <= 1) return;
+
+            if (CurrentWeapon.CanSwap == false) return;
+            CurrentWeapon.currentCoolTime = 0;
+
             for (int i = 0; i < Weapons.Length; i++)
             {
                 CurrentIndex++;
