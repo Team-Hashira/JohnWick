@@ -1,3 +1,4 @@
+using Hashira.Players;
 using System;
 using TMPro;
 using UnityEngine;
@@ -29,7 +30,7 @@ namespace Hashira.Entities.Interacts
             _holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
         }
 
-        public virtual void Interaction(Entity entity)
+        public virtual void Interaction(Player entity)
         {
             if (CanInteraction == false) return;
             OnInteractionEvent?.Invoke();
