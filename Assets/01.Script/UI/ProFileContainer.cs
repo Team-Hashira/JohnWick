@@ -15,6 +15,7 @@ namespace Hashira.UI
         [SerializeField] private TextMeshProUGUI _hpText;
 
         [Header("Weapon")]
+        [SerializeField] private Image _weaponSwapCoolTimeContainer;
         [SerializeField] private ReloadContainer _reloadContainer; 
         [SerializeField] private Image _weaponIconImage;
         [SerializeField] private Slider _weaponLoadSlider;
@@ -23,7 +24,7 @@ namespace Hashira.UI
 
         private Player _player;
         private EntityHealth _playerHealth;
-        private EntityGunWeapon _entityGunWeapon;
+        private EntityWeaponHolder _entityGunWeapon;
             
         private void Awake()
         {
@@ -31,7 +32,7 @@ namespace Hashira.UI
             _weaponLoadText.text = "-";
             _weaponLoadSlider.value = 1;
             _playerHealth = _player.GetEntityComponent<EntityHealth>();
-            _entityGunWeapon = _player.GetEntityComponent<EntityGunWeapon>();
+            _entityGunWeapon = _player.GetEntityComponent<EntityWeaponHolder>();
             
             _playerHealth.OnHealthChangedEvent += HandleHpChange;
             _entityGunWeapon.OnCurrentWeaponChanged += HandleWeaponChange;
@@ -53,10 +54,16 @@ namespace Hashira.UI
 
         private void Update()
         {
-            if (_entityGunWeapon.CurrentWeapon != null)
+            if (_entityGunWeapon.CurrentItem != null)
             {
-                GunWeapon gunWeapon = _entityGunWeapon.CurrentWeapon as GunWeapon;
+                GunWeapon gunWeapon = _entityGunWeapon.CurrentItem as GunWeapon;
                 HandleUseWeapon(gunWeapon.BulletAmount, gunWeapon.StatDictionary["MagazineCapacity"].IntValue);
+
+                // Swap CoolTime
+                if (gunWeapon.CanSwap == false)
+                    _weaponSwapCoolTimeContainer.fillAmount = gunWeapon.currentCoolTime / gunWeapon.WeaponSO.SwapCoolTime;
+                else
+                    _weaponSwapCoolTimeContainer.fillAmount = 1;
             }
             else
             {

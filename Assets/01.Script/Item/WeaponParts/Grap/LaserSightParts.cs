@@ -10,7 +10,7 @@ namespace Hashira.Items.PartsSystem
         private static LayerMask _WhatIsObstacle = LayerMask.GetMask("Ground", "Enemy", "Object");
 
         private LineRenderer _lineRenderer;
-        private EntityGunWeapon _entityWeapon;
+        private EntityWeaponHolder _entityWeapon;
         private Transform _weaponVisual;
 
         private MarkAttackProjectileModifier _markAttackProjectileModifier;
@@ -58,7 +58,7 @@ namespace Hashira.Items.PartsSystem
             base.PartsUpdate();
             RaycastHit2D hit;
 
-            if (_entityWeapon.IsMeleeWeaponMode)
+            if (_entityWeapon.IsSubItemMode)
                 _lineRenderer.SetPosition(1, Vector3.zero);
             else if (hit = Physics2D.Raycast(_lineRenderer.transform.position, _lineRenderer.transform.right, 100, _WhatIsObstacle))
                 _lineRenderer.SetPosition(1, Vector3.right * hit.distance);
@@ -70,7 +70,7 @@ namespace Hashira.Items.PartsSystem
         {
             base.UnEquip();
             _weapon.RemoveProjectileModifier(_markAttackProjectileModifier);
-            if (_entityWeapon.CurrentWeapon == _weapon) _lineRenderer.enabled = false;
+            if (_entityWeapon.CurrentItem == _weapon) _lineRenderer.enabled = false;
             _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
         }
     }

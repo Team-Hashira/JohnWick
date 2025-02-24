@@ -1,7 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities.Components;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hashira.Items.Weapons
@@ -10,7 +9,10 @@ namespace Hashira.Items.Weapons
     {
         public WeaponSO WeaponSO { get; private set; }
 
-        public EntityWeapon EntityWeapon { get; private set; }
+        public EntityWeaponHolder EntityWeaponHolder { get; private set; }
+
+        public float currentCoolTime = 0;
+        public bool CanSwap => currentCoolTime > WeaponSO.SwapCoolTime;
 
         private int _entityDamage;
         public LayerMask WhatIsTarget { get; private set; }
@@ -21,16 +23,18 @@ namespace Hashira.Items.Weapons
             WeaponSO = ItemSO as WeaponSO;
         }
 
-        public virtual void Equip(EntityWeapon entityWeapon)
+        public override void Equip(EntityItemHolder entityWeapon)
         {
-            EntityWeapon = entityWeapon;
+            EntityWeaponHolder = entityWeapon as EntityWeaponHolder;
         }
-        public virtual void WeaponUpdate()
+        public override void ItemUpdate()
         {
+            if (EntityWeaponHolder.WeaponCount() > 1)
+                currentCoolTime += Time.deltaTime;
         }
-        public virtual void UnEquip()
+        public override void UnEquip()
         {
-            EntityWeapon = null;
+            EntityWeaponHolder = null;
         }
 
         public virtual void Attack(int damage, bool isDown, LayerMask whatIsTarget)

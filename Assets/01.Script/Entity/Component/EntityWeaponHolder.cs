@@ -1,3 +1,4 @@
+using Hashira.Items;
 using Hashira.Items.PartsSystem;
 using Hashira.Items.Weapons;
 using Hashira.Players;
@@ -6,8 +7,9 @@ using UnityEngine;
 
 namespace Hashira.Entities.Components
 {
-    public class EntityGunWeapon : EntityWeapon
+    public class EntityWeaponHolder : EntityItemHolder
     {
+        public Weapon CurrentWeapon => CurrentItem as Weapon;
         [SerializeField] private GunSO[] _defaultWeapons;
 
         [field: SerializeField] public PartsRenderer PartsRenderer { get; private set; }
@@ -22,7 +24,7 @@ namespace Hashira.Entities.Components
 
         private float _currentReloadTime;
 
-        public bool IsMeleeWeaponMode;
+        public bool IsSubItemMode;
 
         public event Action<float> OnReloadEvent;
 
@@ -30,25 +32,37 @@ namespace Hashira.Entities.Components
 
         private Bounds _visualBounds;
 
+        public Action<Weapon>[] OnChangedWeaponEvents;
+        public Action<Weapon> OnCurrentWeaponChanged;
+
         public override void Initialize(Entity entity)
         {
             base.Initialize(entity);
 
+            Items = new Item[_defaultWeapons.Length];
+
+            OnChangedItemEvents = new Action<Item>[_defaultWeapons.Length];
             OnChangedWeaponEvents = new Action<Weapon>[_defaultWeapons.Length];
+            for (int i = 0; i < OnChangedItemEvents.Length; i++)
+            {
+                int index = i;
+                OnChangedItemEvents[index] += item => OnChangedWeaponEvents[index]?.Invoke(item as Weapon);
+            }
+            OnCurrentItemChanged += item => OnCurrentWeaponChanged?.Invoke(item as Weapon);
 
             PartsRenderer.Init();
 
-            OnCurrentWeaponChanged += HandleChangedCurrentWeapon;
+            OnCurrentWeaponChanged += HandleChangedCurrentItem;
         }
 
         public override void AfterInit()
         {
             base.AfterInit();
-            Weapons = new GunWeapon[_defaultWeapons.Length];
+            Items = new GunWeapon[_defaultWeapons.Length];
             for (int i = 0; i < _defaultWeapons.Length; i++)
             {
                 if (_defaultWeapons[i] == null) continue;
-                EquipWeapon(_defaultWeapons[i].GetItemClass() as GunWeapon, i);
+                EquipItem(_defaultWeapons[i].GetItemClass() as GunWeapon, i);
             }
         }
 
@@ -57,9 +71,25 @@ namespace Hashira.Entities.Components
             OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
-        protected override void HandleChangedCurrentWeapon(Weapon weapon)
+        protected override void HandleChangedCurrentItem(Item item)
         {
-            base.HandleChangedCurrentWeapon(weapon);
+            base.HandleChangedCurrentItem(item);
+
+            Weapon weapon = item as Weapon;
+
+            if (weapon != null)
+            {
+                Vector3 position = transform.localPosition;
+                position.y = _startYPos + weapon.WeaponSO.GrapOffset.y;
+                transform.localPosition = position;
+                VisualTrm.localEulerAngles = new Vector3(0, 0, weapon.WeaponSO.GrapRotate);
+
+                Vector3 visualPosition = VisualTrm.localPosition;
+                visualPosition.x = weapon.WeaponSO.GrapOffset.x;
+                visualPosition.y = 0;
+
+                VisualTrm.localPosition = visualPosition;
+            }
 
             PartsRenderer.SetGun(weapon as GunWeapon);
 
@@ -81,29 +111,31 @@ namespace Hashira.Entities.Components
             bool isCurrentWeapon = index == CurrentIndex;
             base.RemoveWeapon(index);
 
-            if (IsMeleeWeaponMode == false && isCurrentWeapon)
+            if (IsSubItemMode == false && isCurrentWeapon)
                 OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
         }
 
-        public override Weapon EquipWeapon(Weapon weapon, int index = -1)
+        public override T EquipItem<T>(T Item, int index = -1)
         {
-            (weapon as GunWeapon)?.SetPartsRenderer(PartsRenderer);
+            (Item as GunWeapon)?.SetPartsRenderer(PartsRenderer);
 
-            if (IsMeleeWeaponMode == false && (index == CurrentIndex || index == -1))
-                OnCurrentWeaponChanged?.Invoke(weapon);
+            if (IsSubItemMode == false && (index == CurrentIndex || index == -1))
+                OnCurrentWeaponChanged?.Invoke(CurrentWeapon);
 
-            return base.EquipWeapon(weapon, index);
+            return base.EquipItem(Item, index);
         }
 
-        public override void Attack(int damage, bool isDown, LayerMask whatIsTarget)
+        public virtual void Attack(int damage, bool isDown, LayerMask whatIsTarget)
         {
             if (IsReloading) return;
-            base.Attack(damage, isDown, whatIsTarget);
+            CurrentWeapon?.Attack(damage, isDown, whatIsTarget);
+            if (isDown)
+                _soundGenerator.SoundGenerate(10);
         }
 
         public void LookTarget(Vector3 targetPos)
         {
-            if (IsMeleeWeaponMode)
+            if (IsSubItemMode)
                 return;
 
             Facing = Mathf.Sign(targetPos.x - transform.position.x);
@@ -119,10 +151,10 @@ namespace Hashira.Entities.Components
         public void Reload()
         {
             if (IsReloading) return;
-            if (CurrentWeapon != null && CurrentWeapon is GunWeapon)
+            if (CurrentItem != null && CurrentItem is GunWeapon)
             {
                 IsReloading = true;
-                _currentReloadTime = 1 / CurrentWeapon.StatDictionary["ReloadSpeed"].Value;
+                _currentReloadTime = 1 / CurrentItem.StatDictionary["ReloadSpeed"].Value;
             }
         }
 
@@ -145,7 +177,7 @@ namespace Hashira.Entities.Components
                     _currentReloadTime = 0;
                     IsReloading = false;
                     OnReloadEvent?.Invoke(_currentReloadTime);
-                    (CurrentWeapon as GunWeapon)?.Reload();
+                    (CurrentItem as GunWeapon)?.Reload();
                 }
             }
 

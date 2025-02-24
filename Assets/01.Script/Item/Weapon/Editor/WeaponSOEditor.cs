@@ -68,14 +68,14 @@ namespace Hashira.Items.Weapons.Editor
         }
     }
     
-    //ÀÌºÎºĞ ÇÊ¿ä ¾øÀ»µí
-    [CustomEditor(typeof(MeleeSO))]
-    public class MeleeSOEditor : UnityEditor.Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-        }
-    }
+    ////ì´ë¶€ë¶„ í•„ìš” ì—†ì„ë“¯
+    //[CustomEditor(typeof(SubItemSO))]
+    //public class MeleeSOEditor : UnityEditor.Editor
+    //{
+    //    public override void OnInspectorGUI()
+    //    {
+    //        base.OnInspectorGUI();
+    //    }
+    //}
 }
 #endif

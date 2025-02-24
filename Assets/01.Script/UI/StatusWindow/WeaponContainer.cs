@@ -1,4 +1,5 @@
 using Hashira.Entities.Components;
+using Hashira.Items.Weapons;
 using Hashira.Players;
 using UnityEngine;
 
@@ -6,42 +7,46 @@ namespace Hashira.UI.StatusWindow
 {
     public class WeaponContainer : MonoBehaviour
     {
-        private IWeaponSlot[] _slots;
+        private ISubItemSlot _subItemSlots;
+        private IWeaponSlot[] _weaponSlots;
         private Player _player;
-        private EntityGunWeapon _entityGunWeapon;
-        private EntityMeleeWeapon _entityMeleeWeapon;
+        private EntityWeaponHolder _entityGunWeapon;
+        private EntitySubItemHolder _entitySubItemWeapon;
 
         private int _meleeWeaponIndex;
 
         private void Awake()
         {
-            _slots = GetComponentsInChildren<IWeaponSlot>();
+            _subItemSlots = GetComponentInChildren<ISubItemSlot>();
+            _weaponSlots = GetComponentsInChildren<IWeaponSlot>();
             _player = GameManager.Instance.Player;
             
-            _entityGunWeapon = _player.GetEntityComponent<EntityGunWeapon>();
-            _entityMeleeWeapon = _player.GetEntityComponent<EntityMeleeWeapon>();
+            _entityGunWeapon = _player.GetEntityComponent<EntityWeaponHolder>();
+            _entitySubItemWeapon = _player.GetEntityComponent<EntitySubItemHolder>();
+
+            SlotSetting();
         }
 
-        private void Start()
+        private void SlotSetting()
         {
             for (var i = 0; i < _entityGunWeapon.OnChangedWeaponEvents.Length; i++)
             {
-                _entityGunWeapon.OnChangedWeaponEvents[i] += _slots[i].HandleWeaponChanged;
-                _slots[i].HandleWeaponChanged(_entityGunWeapon.Weapons[i]);
-                _slots[i].SlotIndex = i;
+                _entityGunWeapon.OnChangedWeaponEvents[i] += _weaponSlots[i].HandleWeaponChanged;
+                _weaponSlots[i].HandleWeaponChanged(_entityGunWeapon.Items[i] as Weapon);
+                _weaponSlots[i].SlotIndex = i;
             }
             _meleeWeaponIndex = _entityGunWeapon.OnChangedWeaponEvents.Length;
-            _entityMeleeWeapon.OnChangedWeaponEvents[0] += _slots[_meleeWeaponIndex].HandleWeaponChanged;
-            _slots[_meleeWeaponIndex].HandleWeaponChanged(_entityMeleeWeapon.Weapons[0]);
-            _slots[_meleeWeaponIndex].SlotIndex = _meleeWeaponIndex;
+            _entitySubItemWeapon.OnChangedSubItemEvents[0] += _subItemSlots.HandleSubItemChanged;
+            _subItemSlots.HandleSubItemChanged(_entitySubItemWeapon.SubItems[0]);
+            _subItemSlots.SlotIndex = _meleeWeaponIndex;
         }
 
         private void OnDestroy()
         {
             for (var i = 0; i < _entityGunWeapon.OnChangedWeaponEvents.Length; i++)
-                _entityGunWeapon.OnChangedWeaponEvents[i] -= _slots[i].HandleWeaponChanged;
+                _entityGunWeapon.OnChangedWeaponEvents[i] -= _weaponSlots[i].HandleWeaponChanged;
 
-            _entityMeleeWeapon.OnChangedWeaponEvents[0] -= _slots[_meleeWeaponIndex].HandleWeaponChanged;
+            _entitySubItemWeapon.OnChangedSubItemEvents[0] -= _subItemSlots.HandleSubItemChanged;
         }
     }
 }

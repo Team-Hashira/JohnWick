@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.U2D.IK;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using Hashira.Items;
 
 namespace Hashira.Entities.Components
 {
@@ -34,7 +35,7 @@ namespace Hashira.Entities.Components
         private Entity _entity;
         private EntityMover _mover;
         private EntityRenderer _renderer;
-        private EntityGunWeapon _weapon;
+        private EntityWeaponHolder _weapon;
 
         private Dictionary<EAnimationTriggerType, int> _triggerDictionary = new();
         public event Action<EAnimationTriggerType, int> OnAnimationTriggeredEvent;
@@ -48,13 +49,13 @@ namespace Hashira.Entities.Components
         {
             _mover = _entity.GetEntityComponent<PlayerMover>();
             _renderer = _entity.GetEntityComponent<EntityRenderer>();
-            _weapon = _entity.GetEntityComponent<EntityGunWeapon>();
-            if (_weapon != null) _weapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvnet;
+            _weapon = _entity.GetEntityComponent<EntityWeaponHolder>();
+            if (_weapon != null) _weapon.OnCurrentWeaponChanged += HandleCurrentItemChangedEvnet;
         }
 
-        private void HandleCurrentWeaponChangedEvnet(Weapon weapon)
+        private void HandleCurrentItemChangedEvnet(Item item)
         {
-            if (_rightHandSolver != null && _leftHandSolver != null)
+            if (item is Weapon weapon && _rightHandSolver != null && _leftHandSolver != null)
             {
                 if (weapon == null)
                 {
@@ -95,7 +96,7 @@ namespace Hashira.Entities.Components
         }
         public void Dispose()
         {
-            if (_weapon != null) _weapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvnet;
+            if (_weapon != null) _weapon.OnCurrentWeaponChanged -= HandleCurrentItemChangedEvnet;
         }
 
         #region Param Funcs

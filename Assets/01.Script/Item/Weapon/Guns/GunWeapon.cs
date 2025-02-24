@@ -15,7 +15,7 @@ namespace Hashira.Items.Weapons
     public class GunWeapon : Weapon
     {
         public GunSO GunSO { get; private set; }
-        public EntityGunWeapon EntityGunWeapon { get; private set; }
+        public EntityWeaponHolder EntityGunWeapon { get; private set; }
         public EntitySoundGenerator EntitySoundGenerator { get; private set; }
 
         public event Action<int> OnFireEvent;
@@ -63,10 +63,10 @@ namespace Hashira.Items.Weapons
             EntityGunWeapon.CartridgeCaseParticle.Play();
         }
 
-        public override void Equip(EntityWeapon entityWeapon)
+        public override void Equip(EntityItemHolder entityWeapon)
         {
             base.Equip(entityWeapon);
-            EntityGunWeapon = entityWeapon as EntityGunWeapon;
+            EntityGunWeapon = entityWeapon as EntityWeaponHolder;
 			EntitySoundGenerator = entityWeapon.Entity.GetEntityComponent<EntitySoundGenerator>();
 
 		}
@@ -141,9 +141,9 @@ namespace Hashira.Items.Weapons
             return Mathf.CeilToInt(base.CalculateDamage() * (Random.Range(_precisionStat.Value, 100f - (100f - _precisionStat.Value) / 1.5f)) / 100);
         }
 
-        public override void WeaponUpdate()
+        public override void ItemUpdate()
         {
-            base.WeaponUpdate();
+            base.ItemUpdate();
             foreach (WeaponParts parts in _partsSlotDictionary.Values)
             {
                 parts?.PartsUpdate();

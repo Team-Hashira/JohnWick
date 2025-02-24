@@ -35,11 +35,11 @@ namespace Hashira.Entities.Interacts
                 gunWeapon.SetPartsRenderer(_partsRenderer);
                 _partsRenderer.SetGun(gunWeapon);
             }
-            else if(item is MeleeWeapon meleeWeapon)
-            {
-                _weapon = meleeWeapon;
-                _weaponSO = meleeWeapon.MeleeSO;
-            }
+            //else if(item is SubItem subItem)
+            //{
+            //    _weapon = subItem;
+            //    _weaponSO = subItem.SubItemSO;
+            //}
 
             base.SetItem(item);
         }
@@ -49,13 +49,8 @@ namespace Hashira.Entities.Interacts
             Weapon weapon = null;
             if (_weapon is GunWeapon gunWeapon)
             {
-                EntityGunWeapon weaponHolder = entity.GetEntityComponent<EntityGunWeapon>();
-                weapon = weaponHolder?.EquipWeapon(gunWeapon);
-            }
-            else if (_weapon is MeleeWeapon meleeWeapon)
-            {
-                EntityMeleeWeapon weaponHolder = entity.GetEntityComponent<EntityMeleeWeapon>();
-                weapon = weaponHolder?.EquipWeapon(meleeWeapon);
+                EntityWeaponHolder weaponHolder = entity.GetEntityComponent<EntityWeaponHolder>();
+                weapon = weaponHolder?.EquipItem(gunWeapon);
             }
 
             if (weapon != null) ItemDropUtility.DroppedItem(weapon, entity.transform.position);
@@ -70,13 +65,9 @@ namespace Hashira.Entities.Interacts
             base.SetItemData();
             ItemDataUIController itemDataController
                 = UIManager.Instance.PopupUIActive<ItemDataUIController>(EPopupUIName.ItemDataUI, true)[0];
-            if (_weapon is GunWeapon && _entity.TryGetEntityComponent(out EntityGunWeapon entityWeapon))
+            if (_weapon is GunWeapon && _entity.TryGetEntityComponent(out EntityWeaponHolder entityWeapon))
             {
                 itemDataController.SetItem(_weapon, entityWeapon.CurrentWeapon);
-            }
-            else if (_weapon is MeleeWeapon && _entity.TryGetEntityComponent(out EntityMeleeWeapon entityMeleeWeapon))
-            {
-                itemDataController.SetItem(_weapon, entityMeleeWeapon.CurrentWeapon);
             }
             else
             {

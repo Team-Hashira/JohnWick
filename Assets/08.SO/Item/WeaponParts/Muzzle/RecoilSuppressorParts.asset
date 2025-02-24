@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4513d778a088ba41b74b3ba567078f1, type: 3}
   m_Name: RecoilSuppressorParts
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -1370634941, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemDefaultSprite: {fileID: -1370634941, guid: b141040168b445a468e1af2a3643043c, type: 3}
   itemName: RecoilSuppressor
   itemDisplayName: "\uBCF4\uC815\uAE30"
@@ -36,7 +36,7 @@ MonoBehaviour:
     _baseValue: 10
   - Name: "\uBC18\uB3D9"
     elementSO: {fileID: 11400000, guid: fca3f31ba63d0c147880f5f4858bce95, type: 2}
-    _baseValue: -6
+    _baseValue: -2
   - Name: "\uAD00\uD1B5\uB825"
     elementSO: {fileID: 11400000, guid: 5b9bf81b7c848594ea76655dc9939382, type: 2}
     _baseValue: 4

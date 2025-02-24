@@ -1,4 +1,5 @@
 using Hashira.Core.StatSystem;
+using Hashira.Entities.Components;
 using Hashira.Items.Weapons;
 using System;
 using UnityEngine;
@@ -41,7 +42,7 @@ namespace Hashira.Items.PartsSystem
             transform = renderer?[WeaponPartsSO.partsType].transform;
         }
 
-        public virtual void UnEquip()
+        public override void UnEquip()
         {
             _weapon.OnPartsRendererChangedEvent -= HandlePartsRendererChangedEvent;
 
@@ -52,6 +53,17 @@ namespace Hashira.Items.PartsSystem
         public virtual void PartsUpdate()
         {
 
+        }
+
+        //여기 해야해
+        public override void Equip(EntityItemHolder holder)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ItemUpdate()
+        {
+            throw new NotImplementedException();
         }
     }
 }

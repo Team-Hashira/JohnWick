@@ -13,7 +13,7 @@ namespace Hashira.Enemies.CommonEnemy
         private Player _target;
 
         private EntityRenderer _entityRenderer;
-        private EntityMeleeWeapon _entityMeleeWeapon;
+        private EntitySubItemHolder _entitySubItemHolder;
         private EntityStat _entityStat;
         private EnemyPathfinder _enemyPathfinder;
 
@@ -27,7 +27,7 @@ namespace Hashira.Enemies.CommonEnemy
             _commonEnemy = entity as CommonEnemy;
 
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
-            _entityMeleeWeapon = entity.GetEntityComponent<EntityMeleeWeapon>();
+            _entitySubItemHolder = entity.GetEntityComponent<EntitySubItemHolder>();
             _entityStat = entity.GetEntityComponent<EntityStat>();
             _enemyPathfinder = entity.GetEntityComponent<EnemyPathfinder>();
 
@@ -52,7 +52,8 @@ namespace Hashira.Enemies.CommonEnemy
             {
                 if (_lastAttackTime + 1.5f < Time.time)
                 {
-                    _entityMeleeWeapon.Attack(1, true, _commonEnemy.WhatIsPlayer);
+                    //_entitySubItemHolder.Attack(1, true, _commonEnemy.WhatIsPlayer);
+                    _entitySubItemHolder.Use();
                     _lastAttackTime = Time.time;
                 }
             }
