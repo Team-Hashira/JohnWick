@@ -16,7 +16,7 @@ namespace Hashira.Entities.Components
     }
 
     [RequireComponent(typeof(Animator))]
-    public class EntityAnimator : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDisposable
+    public class EntityAnimator : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent
     {
         [field: SerializeField] public Animator Animator { get; private set; }
         [SerializeField] private AnimatorParamSO _moveDirParamSO;
@@ -33,7 +33,6 @@ namespace Hashira.Entities.Components
         private Entity _entity;
         private EntityMover _mover;
         private EntityRenderer _renderer;
-        private EntityWeaponHolder _weapon;
 
         private Dictionary<EAnimationTriggerType, int> _triggerDictionary = new();
         public event Action<EAnimationTriggerType, int> OnAnimationTriggeredEvent;
@@ -47,28 +46,6 @@ namespace Hashira.Entities.Components
         {
             _mover = _entity.GetEntityComponent<PlayerMover>();
             _renderer = _entity.GetEntityComponent<EntityRenderer>();
-            _weapon = _entity.GetEntityComponent<EntityWeaponHolder>();
-            if (_weapon != null) _weapon.OnCurrentWeaponChanged += HandleCurrentItemChangedEvnet;
-        }
-
-        private void HandleCurrentItemChangedEvnet(Item item)
-        {
-            if (item is Weapon weapon && _rightHandSolver != null && _leftHandSolver != null)
-            {
-                if (weapon == null)
-                {
-                    _rightHandSolver.GetChain(0).target = _targetEmptyR;
-                    _leftHandSolver.GetChain(0).target = _targetEmptyL;
-                }
-                else
-                {
-                    _rightHandSolver.GetChain(0).target = _targetWeaponR;
-                    _leftHandSolver.GetChain(0).target = _targetWeaponL;
-
-                    _rightHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.RightHandOffset;
-                    _leftHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.LeftHandOffset;
-                }
-            }
         }
 
         private void AnimationTrigger(EAnimationTriggerType eAnimationTriggerType)
@@ -91,10 +68,6 @@ namespace Hashira.Entities.Components
                 SetParam(_moveDirParamSO, xVelocity);
                 SetParam(_yVelocityParamSO, _mover.Velocity.y);
             }
-        }
-        public void Dispose()
-        {
-            if (_weapon != null) _weapon.OnCurrentWeaponChanged -= HandleCurrentItemChangedEvnet;
         }
 
         #region Param Funcs

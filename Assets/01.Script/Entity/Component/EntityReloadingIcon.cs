@@ -9,7 +9,6 @@ namespace Hashira.Entities.Components
         [SerializeField] private Transform _visualTrm;
         [SerializeField] private SpriteRenderer _charging;
         
-        private EntityWeaponHolder _entityWeapon;
         private Material _chargingMat;
 
         private Entity _entity;
@@ -17,13 +16,12 @@ namespace Hashira.Entities.Components
 
         public void AfterInit()
         {
-            _entityWeapon = _entity.GetEntityComponent<EntityWeaponHolder>();
-            _entityWeapon.OnReloadEvent += HandleReloadEvent;
+            //재장전 시간받는거 구독하기
         }
 
         public void Dispose()
         {
-            _entityWeapon.OnReloadEvent -= HandleReloadEvent;
+            //재장전 시간받는거 구독풀기
         }
 
         public void Initialize(Entity entity)

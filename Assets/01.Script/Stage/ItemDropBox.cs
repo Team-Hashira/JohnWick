@@ -28,7 +28,7 @@ namespace Hashira.Stage
 
 			for (int i = 0; i < items.Length; i++)
 			{
-				ItemDropUtility.DroppedItem(items[i].GetItemClass(), (Vector2)transform.position + _dropOffset);
+				ItemDropUtility.DroppedItem(/*items[i].GetItemClass(), (Vector2)transform.position + _dropOffset*/);
 			}
 
 			OpenEvent?.Invoke();
