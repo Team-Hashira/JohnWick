@@ -1,7 +1,5 @@
 using AYellowpaper.SerializedCollections;
 using Hashira.Items;
-using Hashira.Items.PartsSystem;
-using Hashira.Items.Weapons;
 using UnityEngine;
 
 namespace Hashira.Entities.Components
@@ -10,7 +8,7 @@ namespace Hashira.Entities.Components
     {
         [SerializeField] private SerializedDictionary<ItemSO, float> _itemPercent;
         private Entity _entity;
-        
+
         private void HandleItemDrop()
         {
             float percent = Random.Range(0, 100.0f);
@@ -27,7 +25,7 @@ namespace Hashira.Entities.Components
                 lastSum = sum;
             }
         }
-        
+
         public void Initialize(Entity entity)
         {
             _entity = entity;

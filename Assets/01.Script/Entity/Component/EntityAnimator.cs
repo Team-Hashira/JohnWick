@@ -1,12 +1,10 @@
-using Hashira.Items.Weapons;
 using Hashira.Core.AnimationSystem;
+using Hashira.Items;
 using Hashira.Players;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D.IK;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
-using Hashira.Items;
 
 namespace Hashira.Entities.Components
 {
@@ -60,14 +58,14 @@ namespace Hashira.Entities.Components
                 if (weapon == null)
                 {
                     _rightHandSolver.GetChain(0).target = _targetEmptyR;
-					_leftHandSolver.GetChain(0).target = _targetEmptyL;
-				}
+                    _leftHandSolver.GetChain(0).target = _targetEmptyL;
+                }
                 else
                 {
-					_rightHandSolver.GetChain(0).target = _targetWeaponR;
-					_leftHandSolver.GetChain(0).target = _targetWeaponL;
+                    _rightHandSolver.GetChain(0).target = _targetWeaponR;
+                    _leftHandSolver.GetChain(0).target = _targetWeaponL;
 
-					_rightHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.RightHandOffset;
+                    _rightHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.RightHandOffset;
                     _leftHandSolver.GetChain(0).target.localPosition = weapon.WeaponSO.LeftHandOffset;
                 }
             }

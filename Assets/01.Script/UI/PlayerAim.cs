@@ -1,5 +1,3 @@
-using Hashira.Entities.Components;
-using Hashira.Items.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +13,7 @@ namespace Hashira
         private float _startCircleSize;
 
         private RectTransform rectTransform;
-        private EntityWeaponHolder _playerGunWeapon;
+        //private EntityWeaponHolder _playerGunWeapon; //기본 총기 만들때 다시 구현 (총기가 애임을 봐야함) 재장전 공격 가능 등등도 구현해야해
 
 
         [Header("Color setting")]
@@ -35,11 +33,6 @@ namespace Hashira
             }
         }
 
-        private void Start()
-        {
-            _playerGunWeapon = GameManager.Instance.Player.GetEntityComponent<EntityWeaponHolder>();
-        }
-
         private void Update()
         {
             if (_inputReader.MousePosition != Vector2.zero)
@@ -47,12 +40,12 @@ namespace Hashira
                 rectTransform.anchoredPosition = _inputReader.MousePosition;
             }
 
-            SetSize(_playerGunWeapon.Recoil * 0.2f + 1);
-            if (_playerGunWeapon.CurrentItem is GunWeapon gun && gun != null)
-                SetColor(gun.BulletAmount > 0 && !_playerGunWeapon.IsReloading && _playerGunWeapon.gameObject.activeSelf && _playerGunWeapon.IsStuck == false ? 
-                    (gun.IsCanFire ? _defaultColor : _delayColor) : _inactiveColor);
-            else
-                SetColor(Color.white);
+            //SetSize(_playerGunWeapon.Recoil * 0.2f + 1);
+            //if (_playerGunWeapon.CurrentItem is GunWeapon gun && gun != null)
+            //    SetColor(gun.BulletAmount > 0 && !_playerGunWeapon.IsReloading && _playerGunWeapon.gameObject.activeSelf && _playerGunWeapon.IsStuck == false ?
+            //        (gun.IsCanFire ? _defaultColor : _delayColor) : _inactiveColor);
+            //else
+            //    SetColor(Color.white);
         }
 
         public void SetSize(float size)

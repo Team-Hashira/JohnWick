@@ -1,9 +1,6 @@
 using Hashira.Core.StatSystem;
-using Hashira.Entities.Components;
-using Hashira.Items.PartsSystem;
-using Hashira.Items.Weapons;
+using Hashira.Players;
 using System;
-using UnityEngine;
 
 namespace Hashira.Items
 {
@@ -14,7 +11,7 @@ namespace Hashira.Items
 
         public virtual object Clone() => MemberwiseClone();
 
-        public abstract void Equip(EntityItemHolder holder);
+        public abstract void Equip(Player player);
         public abstract void UnEquip();
 
         /// <summary>
@@ -28,4 +25,3 @@ namespace Hashira.Items
         }
     }
 }
- 

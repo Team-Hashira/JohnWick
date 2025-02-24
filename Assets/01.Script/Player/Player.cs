@@ -1,7 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Entities.Components;
-using Hashira.Items.Weapons;
 using Hashira.TargetPoint;
 using System;
 using System.Collections;
@@ -19,12 +18,8 @@ namespace Hashira.Players
         protected EntityStateMachine _stateMachine;
         protected EntityRenderer _renderCompo;
         protected EntityStat _statCompo;
-        protected EntityWeaponHolder _weaponGunHolderCompo;
-        protected EntitySubItemHolder _weaponMeleeHolderCompo;
         protected EntityInteractor _interactor;
         protected PlayerMover _playerMover;
-
-        private Weapon CurrentWeapon => _weaponGunHolderCompo.CurrentWeapon;
 
         protected StatElement _damageStat;
 
@@ -46,26 +41,24 @@ namespace Hashira.Players
         private bool _isRightMousePress;
         private bool _isChargingParrying;
 
-		private EntityHealth _entityHealth;
+        private EntityHealth _entityHealth;
 
-		protected override void Awake()
+        protected override void Awake()
         {
             base.Awake();
 
-			_entityHealth = GetEntityComponent<EntityHealth>();
+            _entityHealth = GetEntityComponent<EntityHealth>();
 
-			_entityHealth.OnHealthChangedEvent += HandleHealthChange;
-			InputReader.OnDashEvent += HandleDashEvent;
+            _entityHealth.OnHealthChangedEvent += HandleHealthChange;
+            InputReader.OnDashEvent += HandleDashEvent;
             InputReader.OnInteractEvent += HandleInteractEvent;
             InputReader.OnSprintToggleEvent += HandleSprintToggle;
 
-            InputReader.OnReloadEvent += _weaponGunHolderCompo.Reload;
+            //InputReader.OnReloadEvent += _weaponGunHolderCompo.Reload; //재장전 만들꺼면 다시 구현
             InputReader.OnAttackEvent += HandleAttackEvent;
-            InputReader.OnMeleeAttackEvent += HandleMeleeAttackEvent;
-            InputReader.OnWeaponSwapEvent += HandleWeaponSwapEvent;
         }
 
-		private void Start()
+        private void Start()
         {
             TargetPointManager.Instance.ShowTargetPoint(transform, Color.cyan);
 
@@ -79,31 +72,31 @@ namespace Hashira.Players
                 TargetPointManager.Instance.CloseTargetPoint(transform);
         }
 
-		#region Handles
+        #region Handles
 
-		private void HandleHealthChange(int old, int cur)
-		{
-            if(old > cur)
+        private void HandleHealthChange(int old, int cur)
+        {
+            if (old > cur)
             {
                 CameraManager.Instance.ShakeCamera(5, 5, 0.3f);
                 StartCoroutine(HitScreenEffectCoroutine());
             }
-		}
+        }
 
         private IEnumerator HitScreenEffectCoroutine()
         {
-			if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
+            if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
             {
                 if (chromaticAberration.active == false)
                 {
                     chromaticAberration.active = true;
                     yield return new WaitForSeconds(0.1f);
-					chromaticAberration.active = false;
-				}
-			}
-		}
+                    chromaticAberration.active = false;
+                }
+            }
+        }
 
-		private void HandleInteractEvent(bool isDown)
+        private void HandleInteractEvent(bool isDown)
         {
             _interactor.Interact(isDown);
         }
@@ -131,38 +124,9 @@ namespace Hashira.Players
             }
         }
 
-        private void HandleMeleeAttackEvent(bool isDown)
-        {
-            //_isRightMousePress = isDown;
-            //if (isDown)
-            //{
-            //    _lastRightClickTime = Time.time;
-            //}
-            //else
-            //{
-            //    if (_isChargingParrying)
-            //    {
-            //        TimeManager.UndoTimeScale();
-            //        _isChargingParrying = false;
-            //        _weaponMeleeHolderCompo?.ChargeAttack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
-            //        if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
-            //            chromaticAberration.active = false;
-            //    }
-            //    else
-            //    {
-            //        _weaponMeleeHolderCompo?.Attack(_damageStat.IntValue, true, _whatIsTarget | _whatIsObstacle);
-            //    }
-            //}
-        }
-
         private void HandleAttackEvent(bool isDown)
         {
-            _weaponGunHolderCompo?.Attack(_damageStat.IntValue, isDown, _whatIsTarget | _whatIsObstacle);
-        }
-
-        private void HandleWeaponSwapEvent()
-        {
-            _weaponGunHolderCompo.WeaponSwap();
+            //공격
         }
 
         #endregion
@@ -174,8 +138,6 @@ namespace Hashira.Players
             _playerMover = GetEntityComponent<PlayerMover>();
             _statCompo = GetEntityComponent<EntityStat>();
             _renderCompo = GetEntityComponent<EntityRenderer>();
-            _weaponGunHolderCompo = GetEntityComponent<EntityWeaponHolder>();
-            _weaponMeleeHolderCompo = GetEntityComponent<EntitySubItemHolder>();
             _interactor = GetEntityComponent<EntityInteractor>();
             _stateMachine = GetEntityComponent<EntityStateMachine>();
             _damageStat = _statCompo.StatDictionary["AttackPower"];
@@ -204,8 +166,6 @@ namespace Hashira.Players
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(InputReader.MousePosition);
             mousePos.z = 0;
-            _weaponGunHolderCompo.LookTarget(mousePos);
-
             _renderCompo.SetUsualFacingTarget(mousePos);
 
 
@@ -242,15 +202,13 @@ namespace Hashira.Players
         {
             base.OnDestroy();
 
-			_entityHealth.OnHealthChangedEvent -= HandleHealthChange;
-			InputReader.OnDashEvent -= HandleDashEvent;
+            _entityHealth.OnHealthChangedEvent -= HandleHealthChange;
+            InputReader.OnDashEvent -= HandleDashEvent;
             InputReader.OnInteractEvent -= HandleInteractEvent;
             InputReader.OnSprintToggleEvent -= HandleSprintToggle;
 
-            InputReader.OnReloadEvent -= _weaponGunHolderCompo.Reload;
+            //InputReader.OnReloadEvent -= _weaponGunHolderCompo.Reload; //재장전시 구현
             InputReader.OnAttackEvent -= HandleAttackEvent;
-            InputReader.OnMeleeAttackEvent -= HandleMeleeAttackEvent;
-            InputReader.OnWeaponSwapEvent -= HandleWeaponSwapEvent;
         }
     }
 }

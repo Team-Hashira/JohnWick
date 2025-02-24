@@ -1,9 +1,6 @@
-using Hashira.Core.StatSystem;
-using Hashira.Items.PartsSystem;
-using Hashira.Items.Weapons;
+using Doryu.CustomAttributes;
 using System;
 using UnityEngine;
-using Doryu.CustomAttributes;
 
 namespace Hashira.Items
 {
@@ -47,7 +44,7 @@ namespace Hashira.Items
             string thisTag = GetType().ToString().Replace("SO", "");
             int tagStartIdx = thisTag.LastIndexOf(".");                 //Namespace.Class
             string namespaceName = thisTag[..tagStartIdx];              //Namespace
-            string typeName;                                            
+            string typeName;
             if (useCustomClass)
             {
                 string tagName = thisTag[++tagStartIdx..];              //Class
