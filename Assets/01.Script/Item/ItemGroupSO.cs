@@ -1,4 +1,5 @@
 using Hashira.Items;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira
@@ -6,9 +7,9 @@ namespace Hashira
     [CreateAssetMenu(fileName = "ItemGruop", menuName = "SO/Item/ItemGroup")]
     public class ItemGroupSO : ScriptableObject
     {
-        public ItemSO[] itemSOs;
+        public List<ItemSO> itemSOList;
 
-        public ItemSO this[int index] { get => itemSOs[index]; }
-        public int Length => itemSOs.Length;
+        public ItemSO this[int index] { get => itemSOList[index]; }
+        public int Length => itemSOList.Count;
     }
 }

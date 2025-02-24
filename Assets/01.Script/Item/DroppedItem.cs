@@ -1,13 +1,19 @@
+using Crogen.CrogenPooling;
+using Hashira.Entities.Components;
 using Hashira.Entities.Interacts;
 using Hashira.Players;
 using UnityEngine;
 
 namespace Hashira.Items
 {
-    public class DroppedItem : KeyInteractObject
+    public class DroppedItem : KeyInteractObject, IPoolingObject
     {
         public Rigidbody2D Rigidbody2D { get; private set; }
-        private Item _item;
+
+        public string OriginPoolType { get; set; }
+        GameObject IPoolingObject.gameObject { get; set; }
+
+        protected Item _item;
 
         protected override void Awake()
         {
@@ -28,6 +34,17 @@ namespace Hashira.Items
         public void SetItem(Item item)
         {
             _item = item;
+        }
+
+        public void OnPop()
+        {
+            _keyGuideObject.SetActive(false);
+            _holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
+        }
+
+        public void OnPush()
+        {
+
         }
     }
 }
