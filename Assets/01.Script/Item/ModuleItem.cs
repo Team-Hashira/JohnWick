@@ -1,7 +1,7 @@
 using Hashira.Players;
 using UnityEngine;
 
-namespace Hashira.Items
+namespace Hashira.Items.Module
 {
     public class ModuleItem : Item
     {
