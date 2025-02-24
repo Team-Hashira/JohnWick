@@ -1,4 +1,5 @@
 using Hashira.Entities.Interacts;
+using Hashira.Players;
 using System.Linq;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ namespace Hashira.Entities
             else
             {
                 if (_isHolding == false)
-                    Interactable?.Interaction(_entity);
+                    Interactable?.Interaction(_entity as Player);
                 else
                 {
                     _isHolding = false;

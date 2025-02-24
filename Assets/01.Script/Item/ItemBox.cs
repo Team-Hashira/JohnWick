@@ -4,6 +4,7 @@ using Hashira.Items;
 using UnityEngine;
 using Doryu.CustomAttributes;
 using Crogen.CrogenPooling;
+using Hashira.Players;
 
 namespace Hashira
 {
@@ -38,10 +39,10 @@ namespace Hashira
             _nameText.text = objectName;
         }
 
-        public override void Interaction(Entity entity)
+        public override void Interaction(Player player)
         {
             if (CanInteraction == false) return;
-            base.Interaction(entity);
+            base.Interaction(player);
 
             _droppedItems = new DroppedItem[_itemCount]; 
 
@@ -49,7 +50,7 @@ namespace Hashira
             {
 				ItemSO itemSO = _isRandomItem ? _itemGroup[Random.Range(0, _itemGroup.Length)] : _item;
 				Item item = itemSO.GetItemClass();
-				DroppedItem droppedItem = ItemDropUtility.DroppedItem(/*item, transform.position*/);
+				DroppedItem droppedItem = ItemDropUtility.DroppedItem(item, transform.position);
 
                 float percent = (i + 0.5f) / _itemCount;
 
@@ -57,9 +58,9 @@ namespace Hashira
 
 				Vector2 velocity = Vector2.up * _jump + Vector2.right * Mathf.Lerp(min, max, percent);
 
-				//droppedItem.Rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
+				droppedItem.Rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
 
-				//droppedItem.OnInteractionSuccesEvent += HandleSelectComplate;
+				droppedItem.OnInteractionSuccesEvent += HandleSelectComplate;
                 _droppedItems[i] = droppedItem;
 			}
 
