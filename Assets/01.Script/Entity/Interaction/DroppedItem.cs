@@ -34,14 +34,16 @@ namespace Hashira.Entities.Interacts
             Collider = GetComponent<CircleCollider2D>();
         }
 
+
+
         public void HoldInteractionStart(Entity entity)
         {
-            _entity = entity;
-            _entityWeapon = _entity.GetEntityComponent<EntityWeaponHolder>();
-            _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
-            _isHolding = true;
+            //_entity = entity;
+            //_entityWeapon = _entity.GetEntityComponent<EntityWeaponHolder>();
+            //_entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
+            //_isHolding = true;
             
-            _holdStartTime = Time.time;
+            //_holdStartTime = Time.time;
         }
 
         private void HandleCurrentWeaponChangedEvent(Weapon weapon)
@@ -51,11 +53,11 @@ namespace Hashira.Entities.Interacts
 
         public void HoldInteractionEnd()
         {
-            _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
-            UIManager.Instance.PopupUIActive<ItemDataUIController>(EPopupUIName.ItemDataUI, false);
-            _entity = null;
-            _isHolding = false;
-            _holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
+            //_entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            //UIManager.Instance.PopupUIActive<ItemDataUIController>(EPopupUIName.ItemDataUI, false);
+            //_entity = null;
+            //_isHolding = false;
+            //_holdOutlineMat.SetFloat(_FillAmountShaderHash, 0);
         }
 
         public void SetItem(ItemSO itemSO)
@@ -101,5 +103,21 @@ namespace Hashira.Entities.Interacts
         }
 
         public virtual void OnPush() {}
+
+        public override void OffInteractable()
+        {
+            base.OffInteractable();
+            _entityWeapon.OnCurrentWeaponChanged -= HandleCurrentWeaponChangedEvent;
+            UIManager.Instance.PopupUIActive<ItemDataUIController>(EPopupUIName.ItemDataUI, false);
+        }
+
+        public override void OnInteractable()
+        {
+            base.OnInteractable();
+            _entity = GameManager.Instance.Player;
+            _entityWeapon = _entity.GetEntityComponent<EntityWeaponHolder>();
+            _entityWeapon.OnCurrentWeaponChanged += HandleCurrentWeaponChangedEvent;
+            SetItemData();
+        }
     }
 }
