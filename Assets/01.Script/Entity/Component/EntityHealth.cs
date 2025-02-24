@@ -44,7 +44,7 @@ namespace Hashira.Entities
         private float _currentknockbackTime = 0;
         private float _knockbackDirectionX;
 
-        private List<DamageHandler> _damageCalculatorModifierList;
+        private Dictionary<EDamageHandlerLayer, DamageHandler> _damageHandlerDict;
 
         public void Initialize(Entity entity)
         {
@@ -102,10 +102,11 @@ namespace Hashira.Entities
         {
             //int finalDamage = attackType == EAttackType.HeadShot ? damage * 2 : damage;
             int finalDamage = damage;
-            for (int i = 0; i < _damageCalculatorModifierList.Count; i++)
+            for (int i = 0; i < DamageHandlerOrder.OrderList.Count; i++)
             {
                 EDamageHandlerStatus status =
-                    _damageCalculatorModifierList[i].Calculate(finalDamage, entityPartType, attackType, out finalDamage);
+                    _damageHandlerDict[DamageHandlerOrder.OrderList[i]]
+                        .Calculate(finalDamage, entityPartType, attackType, out finalDamage);
                 if (status == EDamageHandlerStatus.Stop)
                     break;
             }
