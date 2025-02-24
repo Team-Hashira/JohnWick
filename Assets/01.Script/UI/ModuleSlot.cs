@@ -4,16 +4,11 @@ namespace Hashira.UI
 {
     public class ModuleSlot : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
+        ModuleItemSO _baseModuleSO;
 
-        // Update is called once per frame
-        void Update()
+        public void Init(ModuleItemSO baseModule)
         {
-        
+            _baseModuleSO = baseModule;
         }
     }
 }

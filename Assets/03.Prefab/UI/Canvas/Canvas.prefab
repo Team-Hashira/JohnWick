@@ -500,9 +500,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1206948666917375750, guid: 577fc078f17e21e4288cb4dbc8b8d4fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2247420900500598317, guid: 577fc078f17e21e4288cb4dbc8b8d4fc, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5973438719416682021, guid: 577fc078f17e21e4288cb4dbc8b8d4fc, type: 3}
       propertyPath: m_Pivot.x
