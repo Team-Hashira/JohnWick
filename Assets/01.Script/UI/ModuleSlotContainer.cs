@@ -1,3 +1,5 @@
+using Hashira.Items;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.UI
@@ -6,20 +8,27 @@ namespace Hashira.UI
     {
         [SerializeField] private ModuleSlot _moduleSlotPrefab;
         [SerializeField] private float _range = 500f;
+
+        private PlayerModule _playerModule;
+
         private void OnEnable()
         {
+            _playerModule ??= GameManager.Instance.Player.GetEntityComponent<PlayerModule>();
+
             LoadModules();
         }
 
         private void LoadModules()
         {
-            int count = 10;
+            List<ModuleItem> list = _playerModule.ListModules;
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 var moduleSlot = Instantiate(_moduleSlotPrefab, transform);
-                float value = i / (float)count * 2 * Mathf.PI;
+                float value = i / (float)list.Count * 2 * Mathf.PI;
                 (moduleSlot.transform as RectTransform).anchoredPosition = new Vector2(Mathf.Sin(value), Mathf.Cos(value)) * _range;
+
+                moduleSlot.Init(list[i].ItemSO as ModuleItemSO);
             }
         }
     }
