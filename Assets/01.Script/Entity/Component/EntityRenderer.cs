@@ -11,7 +11,7 @@ namespace Hashira.Entities
         private Entity _entity;
 
         [field: SerializeField] public Transform VisualTrm { get; private set; }
-        [SerializeField] private List<GameObject> _armObject;
+        //[SerializeField] private List<GameObject> _armObject;
         [SerializeField] private bool _onFlip;
 
         public List<SpriteRenderer> SpriteRendererList;
@@ -34,7 +34,7 @@ namespace Hashira.Entities
 
         public void SetArmActive(bool active)
         {
-            _armObject.ForEach(gameObject => gameObject.SetActive(active));
+            //_armObject.ForEach(gameObject => gameObject.SetActive(active));
         }
 
         public void Blink(float duration, Ease ease = Ease.Linear)

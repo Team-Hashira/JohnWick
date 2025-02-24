@@ -24,11 +24,11 @@ namespace Hashira.Entities.Components
         [SerializeField] private LimbSolver2D _rightHandSolver;
         [SerializeField] private LimbSolver2D _leftHandSolver;
 
-        [Header("-----IK Targets")]
-        [SerializeField] private Transform _targetEmptyR;
-        [SerializeField] private Transform _targetEmptyL;
-        [SerializeField] private Transform _targetWeaponR;
-        [SerializeField] private Transform _targetWeaponL;
+        //[Header("-----IK Targets")]
+        //[SerializeField] private Transform _targetEmptyR;
+        //[SerializeField] private Transform _targetEmptyL;
+        //[SerializeField] private Transform _targetWeaponR;
+        //[SerializeField] private Transform _targetWeaponL;
 
         private Entity _entity;
         private EntityMover _mover;
