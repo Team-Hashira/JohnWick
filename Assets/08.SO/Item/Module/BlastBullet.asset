@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
-  m_Name: Test2Module
+  m_Name: BlastBullet
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
-  itemDefaultSprite: {fileID: 0}
-  itemName: s
-  itemDisplayName: 
-  itemDescription: 
+  itemIcon: {fileID: -6928453641244209690, guid: 7f24b7264698d384897f08b902fb68b8, type: 3}
+  itemDefaultSprite: {fileID: -6928453641244209690, guid: 7f24b7264698d384897f08b902fb68b8, type: 3}
+  itemName: BlastBullet
+  itemDisplayName: "\uBE14\uB798\uC2A4\uD130 \uD0C4\uD658"
+  itemDescription: "\uC801\uC5D0 \uC801\uC911\uD55C \uD0C4\uD658\uC774 3\uAC1C\uB85C
+    \uD30C\uD3B8\uC774 \uD284\uB2E4."
   itemRating: 0
-  useCustomClass: 0
+  useCustomClass: 1
   defaultClass: 
   <StatVariationList>k__BackingField: []

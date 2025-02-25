@@ -10,7 +10,7 @@ namespace Hashira.UI
         [SerializeField] private Image _healthImage;
         private EntityHealth _playerHealth;
 
-        private void Awake()
+        private void Start()
         {
             _playerHealth = GameManager.Instance.Player.GetEntityComponent<EntityHealth>();
             _playerHealth.OnHealthChangedEvent += HandleHealthChange;

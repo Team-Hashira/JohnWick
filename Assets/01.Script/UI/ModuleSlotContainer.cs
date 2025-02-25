@@ -16,9 +16,12 @@ namespace Hashira.UI
 
         private void OnEnable()
         {
-            _playerModule ??= GameManager.Instance.Player.GetEntityComponent<PlayerModule>();
-
             LoadModules();
+        }
+
+        private void Start()
+        {
+            _playerModule = GameManager.Instance.Player.GetEntityComponent<PlayerModule>();
         }
 
         private void OnDisable()
@@ -28,6 +31,7 @@ namespace Hashira.UI
 
         private void LoadModules()
         {
+            if (_playerModule == null) return;
             List<Module> list = _playerModule.ListModules;
             Dictionary<Type, int> moduleAndCountDict = new Dictionary<Type, int>();
 
