@@ -44,11 +44,12 @@ namespace Hashira.Entities
         private float _currentknockbackTime = 0;
         private float _knockbackDirectionX;
 
-        private List<DamageHandler> _damageCalculatorModifierList;
+        private Dictionary<EDamageHandlerLayer, List<DamageHandler>> _damageHandlerDict;
 
         public void Initialize(Entity entity)
         {
             Owner = entity;
+            _damageHandlerDict = new Dictionary<EDamageHandlerLayer, List<DamageHandler>>();
         }
 
         public void AfterInit()
@@ -102,14 +103,26 @@ namespace Hashira.Entities
         {
             //int finalDamage = attackType == EAttackType.HeadShot ? damage * 2 : damage;
             int finalDamage = damage;
-            for (int i = 0; i < _damageCalculatorModifierList.Count; i++)
+            for (int i = 0; i < DamageHandlerOrder.OrderList.Count; i++)
             {
-                EDamageHandlerStatus status =
-                    _damageCalculatorModifierList[i].Calculate(finalDamage, entityPartType, attackType, out finalDamage);
+                List<DamageHandler> handler = _damageHandlerDict[DamageHandlerOrder.OrderList[i]];
+                EDamageHandlerStatus status = CalculateDamageHandlerList(finalDamage, entityPartType, attackType, handler, out finalDamage);
                 if (status == EDamageHandlerStatus.Stop)
                     break;
             }
             return finalDamage;
+        }
+
+        public EDamageHandlerStatus CalculateDamageHandlerList(int damage, EEntityPartType entityPartType, EAttackType attackType, List<DamageHandler> handlerList, out int finalDamage)
+        {
+            finalDamage = damage;
+            foreach (DamageHandler handler in handlerList)
+            {
+                EDamageHandlerStatus status = handler.Calculate(damage, entityPartType, attackType, out finalDamage);
+                if (status == EDamageHandlerStatus.Stop)
+                    return EDamageHandlerStatus.Stop;
+            }
+            return EDamageHandlerStatus.Continue;
         }
 
         public void ApplyRecovery(int recovery)
@@ -160,6 +173,23 @@ namespace Hashira.Entities
             _knockbackDirectionX = Mathf.Sign(hitDir.x) * (knockbackPower / _entityMover.Rigidbody2D.mass);
             _entityStateMachine.ChangeState("Hit");
             IsKnockback = true;
+        }
+
+        public void AddDamageHandler(EDamageHandlerLayer layer, DamageHandler handler)
+        {
+            if (_damageHandlerDict[layer] == null)
+                _damageHandlerDict[layer] = new List<DamageHandler>();
+            _damageHandlerDict[layer].Add(handler);
+        }
+
+        public void RemoveDamageHandler(DamageHandler handler)
+        {
+            foreach (var list in _damageHandlerDict.Values)
+            {
+                bool isRemoved = list.Remove(handler);
+                if (isRemoved)
+                    break;
+            }
         }
     }
 }
