@@ -6,7 +6,7 @@ namespace Hashira.Projectiles
 {
     public class AimingProjectileModifier : ProjectileModifier
     {
-        [SerializeField] private float _delay = 10f;
+        [SerializeField] private float _cooldown = 10f;
         
         private bool _isCanAimingBullet = false;
 
@@ -20,7 +20,7 @@ namespace Hashira.Projectiles
         {
             base.OnUpdate();
 
-            if (CooldownUtillity.CheckCooldown("AimingBullet", _delay) && _isCanAimingBullet == false)
+            if (CooldownUtillity.CheckCooldown("AimingBullet", _cooldown) && _isCanAimingBullet == false)
             {
                 _isCanAimingBullet = true;
                 _attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
@@ -30,7 +30,7 @@ namespace Hashira.Projectiles
         public override void OnUnEquip()
         {
             base.OnUnEquip();
-            if (CooldownUtillity.CheckCooldown("AimingBullet", _delay))
+            if (CooldownUtillity.CheckCooldown("AimingBullet", _cooldown))
                 HandleProjectileCreateEvent(null);
         }
 

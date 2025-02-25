@@ -21,4 +21,15 @@ MonoBehaviour:
   itemRating: 0
   useCustomClass: 1
   defaultClass: 
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: 2d7c0670e8989ce47bb0a0c2f2b4ccf9, type: 2}
+    projectileModifier:
+      rid: 40250401228587317
   <StatVariationList>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 40250401228587317
+      type: {class: BombProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data:
+        _cooldown: 12

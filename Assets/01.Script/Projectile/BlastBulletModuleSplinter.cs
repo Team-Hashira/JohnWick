@@ -1,7 +1,7 @@
 using Crogen.CrogenPooling;
 using UnityEngine;
 
-namespace Hashira.Items.Modules
+namespace Hashira.Projectiles
 {
     public class BlastBulletModuleSplinter : MonoBehaviour, IPoolingObject
     {

@@ -23,4 +23,14 @@ MonoBehaviour:
   itemRating: 0
   useCustomClass: 1
   defaultClass: 
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: 8ae95b6e3b711024581b1da2a316fdf3, type: 2}
+    projectileModifier:
+      rid: 40250401228587318
   <StatVariationList>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 40250401228587318
+      type: {class: HomingProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data: 
