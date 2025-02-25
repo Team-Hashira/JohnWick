@@ -1,3 +1,4 @@
+using Hashira.Items.Module;
 using UnityEngine;
 
 namespace Hashira.UI

@@ -5,6 +5,8 @@ using System;
 using UnityEngine;
 using Hashira.Entities.Components;
 using Hashira.Core;
+using System.Collections.Generic;
+using Hashira.Core.DamageHandler;
 
 namespace Hashira.Entities
 {
@@ -22,7 +24,7 @@ namespace Hashira.Entities
 
         [SerializeField] private StatElementSO _healthStatSO;
 
-        public Entity Owner {  get; private set; }
+        public Entity Owner { get; private set; }
         private StatElement _maxHealth;
         private bool _isInvincible;
         public bool IsDie { get; private set; }
@@ -40,9 +42,11 @@ namespace Hashira.Entities
         [HideInInspectorByCondition(nameof(canKnockback))]
         public float knockbackTime = 0.2f;
         private float _currentknockbackTime = 0;
-        private float _knockbackDirectionX; 
+        private float _knockbackDirectionX;
 
-		public void Initialize(Entity entity)
+        private List<DamageHandler> _damageCalculatorModifierList;
+
+        public void Initialize(Entity entity)
         {
             Owner = entity;
         }
@@ -50,14 +54,14 @@ namespace Hashira.Entities
         public void AfterInit()
         {
             _maxHealth = Owner.GetEntityComponent<EntityStat>().StatDictionary[_healthStatSO];
-			_entityMover = Owner.GetEntityComponent<EntityMover>(true);
-			_entityStateMachine = Owner.GetEntityComponent<EntityStateMachine>();
+            _entityMover = Owner.GetEntityComponent<EntityMover>(true);
+            _entityStateMachine = Owner.GetEntityComponent<EntityStateMachine>();
 
-			_isInvincible = _maxHealth == null;
+            _isInvincible = _maxHealth == null;
             Health = MaxHealth;
-		}
+        }
 
-		public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
+        public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
         {
             EEntityPartType hitPoint = EEntityPartType.Body;
             if (raycastHit != default && Owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
@@ -79,9 +83,9 @@ namespace Hashira.Entities
                 Health = 0;
             OnHealthChangedEvent?.Invoke(prev, Health);
 
-			OnKnockback(knockback.normalized, knockback.magnitude);
+            OnKnockback(knockback.normalized, knockback.magnitude);
 
-			if (Health == 0) Die();
+            if (Health == 0) Die();
 
             return hitPoint;
         }
@@ -90,13 +94,21 @@ namespace Hashira.Entities
         {
             Color color = EnumUtility.AttackTypeColorDict[attackType];
 
-            DamageText damageText = gameObject.Pop(UIPoolType.DamageText, textPos, Quaternion.identity) .gameObject.GetComponent<DamageText>();
+            DamageText damageText = gameObject.Pop(UIPoolType.DamageText, textPos, Quaternion.identity).gameObject.GetComponent<DamageText>();
             damageText.Init(damage, color);
         }
 
-        private int CalculateDamage(int damage, EEntityPartType entityPartType, EAttackType attackType)
+        protected virtual int CalculateDamage(int damage, EEntityPartType entityPartType, EAttackType attackType)
         {
-            int finalDamage = attackType == EAttackType.HeadShot ? damage * 2 : damage;
+            //int finalDamage = attackType == EAttackType.HeadShot ? damage * 2 : damage;
+            int finalDamage = damage;
+            for (int i = 0; i < _damageCalculatorModifierList.Count; i++)
+            {
+                EDamageHandlerStatus status =
+                    _damageCalculatorModifierList[i].Calculate(finalDamage, entityPartType, attackType, out finalDamage);
+                if (status == EDamageHandlerStatus.Stop)
+                    break;
+            }
             return finalDamage;
         }
 
@@ -122,16 +134,16 @@ namespace Hashira.Entities
             IsDie = true;
             OnDieEvent?.Invoke();
             OnDieEvent = null;
-		}
+        }
 
-		private void Update()
-		{
-			if (IsKnockback)
+        private void Update()
+        {
+            if (IsKnockback)
             {
-				_entityMover.SetMovement(_knockbackDirectionX, true);
+                _entityMover.SetMovement(_knockbackDirectionX, true);
 
-				_currentknockbackTime += Time.deltaTime;
-                if( _currentknockbackTime > knockbackTime)
+                _currentknockbackTime += Time.deltaTime;
+                if (_currentknockbackTime > knockbackTime)
                 {
                     _currentknockbackTime = 0;
                     IsKnockback = false;
@@ -139,15 +151,15 @@ namespace Hashira.Entities
                     _entityMover.StopImmediately();
                 }
             }
-		}
+        }
 
-		public void OnKnockback(Vector2 hitDir, float knockbackPower)
+        public void OnKnockback(Vector2 hitDir, float knockbackPower)
         {
             _entityMover.StopImmediately();
             _entityMover.isManualMove = false;
-			_knockbackDirectionX = Mathf.Sign(hitDir.x) * (knockbackPower / _entityMover.Rigidbody2D.mass);
-			_entityStateMachine.ChangeState("Hit");
+            _knockbackDirectionX = Mathf.Sign(hitDir.x) * (knockbackPower / _entityMover.Rigidbody2D.mass);
+            _entityStateMachine.ChangeState("Hit");
             IsKnockback = true;
-		}
+        }
     }
 }
