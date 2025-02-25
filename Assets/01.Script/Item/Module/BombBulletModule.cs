@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Modules
 {
-    public class BombBulletModule : Module, IProjectileModifier
+    public class BombBulletModule : Module
     {
         private Projectile _projectile;
 
@@ -20,14 +20,12 @@ namespace Hashira.Items.Modules
             base.Equip(player);
             _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
             _prevProjectilePoolType = _player.Attacker.SetProjectile(ProjectilePoolType.Grenade);
-            //_player.Attacker.AddProjectileModifiers(this);
         }
 
         private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
             _player.Attacker.SetProjectile(_prevProjectilePoolType);
-            //_player.Attacker.RemoveProjectileModifiers(this);
             CooldownUtillity.StartCooldown("BombBullet");
             _isCanAimingBullet = false;
         }

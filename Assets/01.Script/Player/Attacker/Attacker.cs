@@ -25,7 +25,9 @@ namespace Hashira
 
         public event Action<List<Projectile>> OnProjectileCreateEvent;
 
-        private List<IProjectileModifier> _projectileModifiers = new List<IProjectileModifier>();
+        private List<ProjectileModifier> _projectileModifiers = new List<ProjectileModifier>();
+
+        private ProjectileModifier _currentMainModifier;
 
         private void Awake()
         {
@@ -44,10 +46,23 @@ namespace Hashira
             => _burstBulletCount++;
         public void RemoveBurstBullets()
             => _burstBulletCount--;
-        public void AddProjectileModifiers(IProjectileModifier projectileModifier)
-            => _projectileModifiers.Add(projectileModifier);
-        public void RemoveProjectileModifiers(IProjectileModifier projectileModifier)
-            => _projectileModifiers.Remove(projectileModifier);
+        public void AddProjectileModifiers(ProjectileModifier projectileModifier)
+        {
+            _projectileModifiers.Add(projectileModifier);
+            projectileModifier.OnEquip(this);
+        }
+        public void RemoveProjectileModifiers(ProjectileModifier projectileModifier)
+        {
+            _projectileModifiers.Remove(projectileModifier);
+            projectileModifier.OnUnEquip();
+        }
+
+        public bool TrySetMainProjectileModifier(ProjectileModifier currentMainModifier)
+        {
+            if (_currentMainModifier != null) return false;
+            _currentMainModifier = currentMainModifier;
+            return true;
+        }
 
         private void HandleAttackEvent(bool isDown)
         {

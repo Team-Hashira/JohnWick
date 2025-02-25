@@ -20,10 +20,21 @@ MonoBehaviour:
     \uAC08\uB77C\uC838\uC11C \uB0A0\uC544\uAC04\uB2E4.\n\uB2E8\uC77C \uCD1D\uC54C\uB300\uBBF8\uC9C0\uB294
     \uC870\uAE08 \uAC10\uC18C\uD55C\uB2E4.\r"
   itemRating: 0
-  useCustomClass: 1
-  defaultClass: 
+  useCustomClass: 0
+  defaultClass: Module
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: bda621c6542af0a48a7e378357120685, type: 2}
+    projectileModifier:
+      rid: 40250401228587088
   <StatVariationList>k__BackingField:
   - Name: 
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
     <Value>k__BackingField: -20
     <IsPercentAdjustment>k__BackingField: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 40250401228587088
+      type: {class: SplitProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data:
+        splitCount: 3

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Modules
 {
-    public class BlastBulletModule : Module, IProjectileModifier
+    public class BlastBulletModule : Module
     {
         private bool _isCanBlastBullet = true;
         float _delay = 8f;
@@ -17,13 +17,13 @@ namespace Hashira.Items.Modules
         {
             base.Equip(player);
             player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-            player.Attacker.AddProjectileModifiers(this);
+            //player.Attacker.AddProjectileModifiers(this);
         }
 
         private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
-            _player.Attacker.RemoveProjectileModifiers(this);
+            //_player.Attacker.RemoveProjectileModifiers(this);
             CooldownUtillity.StartCooldown("BlastBullet");
             _isCanBlastBullet = false;
         }
@@ -35,7 +35,7 @@ namespace Hashira.Items.Modules
             {
                 _isCanBlastBullet = true;
                 _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-                _player.Attacker.AddProjectileModifiers(this);
+                //_player.Attacker.AddProjectileModifiers(this);
             }
         }
 

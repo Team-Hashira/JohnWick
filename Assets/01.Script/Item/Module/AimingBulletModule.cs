@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Hashira.Items.Modules
 {
-    public class AimingBulletModule : Module, IProjectileModifier
+    public class AimingBulletModule : Module
     {
         private Projectile _projectile;
 
@@ -19,13 +19,13 @@ namespace Hashira.Items.Modules
         {
             base.Equip(player);
             _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-            _player.Attacker.AddProjectileModifiers(this);
+            //_player.Attacker.AddProjectileModifiers(this);
         }
 
         private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
-            _player.Attacker.RemoveProjectileModifiers(this);
+            //_player.Attacker.RemoveProjectileModifiers(this);
             CooldownUtillity.StartCooldown("AimingBullet");
             _isCanAimingBullet = false;
         }
@@ -38,7 +38,7 @@ namespace Hashira.Items.Modules
             {
                 _isCanAimingBullet = true;
                 _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-                _player.Attacker.AddProjectileModifiers(this);
+                //_player.Attacker.AddProjectileModifiers(this);
             }
         }
 

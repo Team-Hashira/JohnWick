@@ -14,10 +14,10 @@ namespace Doryu.CustomAttributes
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             float startXPos = position.x;
-            // ToggleFieldAttribute¸¦ °¡Á®¿À±â
+            // ToggleFieldAttributeë¥¼ ê°€ì ¸ì˜¤ê¸°
             ToggleFieldAttribute toggleField = (ToggleFieldAttribute)attribute;
 
-            // ÇöÀç °´Ã¼¿¡¼­ ÇØ´ç ¼Ó¼ºÀ» Ã£À½
+            // í˜„ì¬ ê°ì²´ì—ì„œ í•´ë‹¹ ì†ì„±ì„ ì°¾ìŒ
             SerializedProperty toggleProperty = property.serializedObject.FindProperty(toggleField.PropertyName);
 
             bool isEnabled = false;
@@ -29,16 +29,16 @@ namespace Doryu.CustomAttributes
                 }
                 else if (toggleProperty.propertyType == SerializedPropertyType.Enum)
                 {
-                    isEnabled = toggleProperty.enumValueIndex == toggleField.EnumValue;
+                    isEnabled = (toggleProperty.enumValueIndex & toggleField.EnumValue) > 0;
                 }
             }
 
-            // Åä±Û °ª¿¡ µû¶ó ¼Ó¼ºÀ» È°¼ºÈ­/ºñÈ°¼ºÈ­
+            // í† ê¸€ ê°’ì— ë”°ë¼ ì†ì„±ì„ í™œì„±í™”/ë¹„í™œì„±í™”
             if (isEnabled)
             {
                 EditorGUI.indentLevel++;
 
-                // ¿¬°á ¼±
+                // ì—°ê²° ì„ 
                 float lineHight = EditorGUI.GetPropertyHeight(property, null, false) + EditorGUIUtility.standardVerticalSpacing;
                 float lineWidth = 8;
                 float lineXPos = position.x + _ChiledInterval * (EditorGUI.indentLevel - 1.5f);
@@ -48,7 +48,7 @@ namespace Doryu.CustomAttributes
                 Rect horizontalLine = new Rect(lineXPos, position.y + lineHight / 2, lineWidth, 1);
                 EditorGUI.DrawRect(horizontalLine, Color.gray);
 
-                if (property.propertyType == SerializedPropertyType.Generic) // ±¸Á¶Ã¼ Ã³¸®
+                if (property.propertyType == SerializedPropertyType.Generic) // êµ¬ì¡°ì²´ ì²˜ë¦¬
                 {
                     string propertyPath = property.propertyPath;
                     bool isExpanded = _isExpandedDict.ContainsKey(propertyPath) ? _isExpandedDict[propertyPath] : false;
@@ -58,14 +58,14 @@ namespace Doryu.CustomAttributes
 
                     if (isExpanded)
                     {
-                        // ±¸Á¶Ã¼ÀÇ ÇÊµå ·»´õ¸µ
+                        // êµ¬ì¡°ì²´ì˜ í•„ë“œ ë Œë”ë§
                         EditorGUI.indentLevel++;
                         position.y += position.height + EditorGUIUtility.standardVerticalSpacing;
 
                         SerializedProperty childProperty = property.Copy();
                         SerializedProperty endProperty = property.GetEndProperty();
 
-                        childProperty.NextVisible(true); // Ã¹ ¹øÂ° ÀÚ½Ä ÇÊµå·Î ÀÌµ¿
+                        childProperty.NextVisible(true); // ì²« ë²ˆì§¸ ìì‹ í•„ë“œë¡œ ì´ë™
                         while (!SerializedProperty.EqualContents(childProperty, endProperty))
                         {
                             position.height = EditorGUI.GetPropertyHeight(childProperty, null, true);
@@ -85,7 +85,7 @@ namespace Doryu.CustomAttributes
                 }
                 else
                 {
-                    // ÀÏ¹İ ÇÊµå Ã³¸®
+                    // ì¼ë°˜ í•„ë“œ ì²˜ë¦¬
                     EditorGUI.PropertyField(position, property, label, true);
                 }
                 EditorGUI.indentLevel--;
@@ -129,9 +129,9 @@ namespace Doryu.CustomAttributes
                     float height = EditorGUI.GetPropertyHeight(property, label, false);
                     if (property.hasVisibleChildren)
                     {
-                        SerializedProperty tempProperty = property.Copy(); // ¿ø·¡ À§Ä¡ ÀúÀå
+                        SerializedProperty tempProperty = property.Copy(); // ì›ë˜ ìœ„ì¹˜ ì €ì¥
 
-                        if (property.NextVisible(true)) // ´ÙÀ½ ¼Ó¼ºÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+                        if (property.NextVisible(true)) // ë‹¤ìŒ ì†ì„±ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
                         {
                             do
                             {
@@ -139,7 +139,7 @@ namespace Doryu.CustomAttributes
                             } while (property.NextVisible(false) && !SerializedProperty.EqualContents(property, tempProperty.GetEndProperty()));
                         }
 
-                        property = tempProperty; // ¿ø·¡ À§Ä¡·Î º¹¿ø
+                        property = tempProperty; // ì›ë˜ ìœ„ì¹˜ë¡œ ë³µì›
                     }
                     height += EditorGUIUtility.standardVerticalSpacing;
                     return height;
