@@ -19,7 +19,6 @@ namespace Hashira
             _ignitionDuration = duration;
         }
 
-
         public override void OnProjectileCreate(Projectile projectile)
         {
             base.OnProjectileCreate(projectile);

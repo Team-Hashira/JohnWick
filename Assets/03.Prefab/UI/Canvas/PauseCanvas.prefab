@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 2247420900500598317}
   - component: {fileID: 5095626459536002980}
   - component: {fileID: 8711216862243481135}
+  - component: {fileID: 6825426193099924023}
   m_Layer: 5
   m_Name: PauseCanvas
   m_TagString: Untagged
@@ -187,10 +188,23 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206948666917375750}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6825426193099924023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206948666917375750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c47368c359c439488887d772129711d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
 --- !u!1 &8827392864973804971
 GameObject:
   m_ObjectHideFlags: 0

@@ -367,14 +367,6 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8693419312947519745, guid: 165015920502303418f48b63c10735d4, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8693419312947519745, guid: 165015920502303418f48b63c10735d4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -499,14 +491,6 @@ PrefabInstance:
     - target: {fileID: 1206948666917375750, guid: 577fc078f17e21e4288cb4dbc8b8d4fc, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 1206948666917375750, guid: 577fc078f17e21e4288cb4dbc8b8d4fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2247420900500598317, guid: 577fc078f17e21e4288cb4dbc8b8d4fc, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5973438719416682021, guid: 577fc078f17e21e4288cb4dbc8b8d4fc, type: 3}
       propertyPath: m_Pivot.x

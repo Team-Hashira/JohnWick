@@ -26,14 +26,11 @@ namespace Hashira.Items
             base.Interaction(player);
         }
 
-        public override void InteractionSucces()
-        {
-            base.InteractionSucces();
-        }
-
         public void SetItem(Item item)
         {
             _item = item;
+            _nameText.text = item.ItemSO.itemName;
+            _itemSprite.sprite = item.ItemSO.itemDefaultSprite;
         }
 
         public void OnPop()

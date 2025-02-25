@@ -141,4 +141,13 @@ namespace Hashira.Core.StatSystem
             return clonedStatElement;
         }
     }
+
+    [Serializable]
+    public class StatElementAdjustment
+    {
+        [HideInInspector] public string Name;
+        public StatElementSO elementSO;
+        [field: SerializeField] public float Value { get; private set; }
+        [field: SerializeField] public bool IsPercentAdjustment { get; private set; }
+    }
 }
