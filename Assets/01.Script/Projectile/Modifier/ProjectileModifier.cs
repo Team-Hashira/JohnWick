@@ -40,7 +40,16 @@ namespace Hashira.Projectiles
         }
 
         /// <summary>
-        /// 총알이 생겨날 당시
+        /// 총알이 생겨나기 직전
+        /// </summary>
+        /// <param name="projectile"></param>
+        public virtual void OnProjectileCreateReady()
+        {
+
+        }
+
+        /// <summary>
+        /// 총알이 생겨난 직후
         /// </summary>
         /// <param name="projectile"></param>
         public virtual void OnProjectileCreate(Projectile projectile)

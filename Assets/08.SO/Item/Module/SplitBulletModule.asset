@@ -27,22 +27,18 @@ MonoBehaviour:
     projectileModifier:
       rid: 40250401228587088
     conditionSetting:
-      condition: 0
+      condition: 1
       count: 0
       countType: 0
       countCondition: 0
       killType: 0
-      cooldown: 0
+      cooldown: 1
       className: 
-  <StatVariationList>k__BackingField:
-  - Name: 
-    elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    <Value>k__BackingField: -20
-    <IsPercentAdjustment>k__BackingField: 0
+  <StatVariationList>k__BackingField: []
   references:
     version: 2
     RefIds:
     - rid: 40250401228587088
       type: {class: SplitProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
       data:
-        _addProjectileCount: 1
+        _addProjectileCount: 5

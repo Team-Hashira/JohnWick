@@ -25,6 +25,7 @@ namespace Hashira
         private int _burstBulletCount = 1;
         private ProjectilePoolType _projectilePoolType = ProjectilePoolType.Bullet;
 
+        public event Action OnProjectileCreateReadyEvent;
         public event Action<List<Projectile>> OnProjectileCreateEvent;
 
         private List<Module> _moduleList = new List<Module>();
@@ -71,6 +72,7 @@ namespace Hashira
             float angle = _burstBulletCount * 5;
             if (isDown && _lastAttackTime + _attackDelay < Time.time)
             {
+                OnProjectileCreateReadyEvent?.Invoke();
                 _lastAttackTime = Time.time;
                 List<Projectile> createdProjectileList = new List<Projectile>();
                 for (int i = 0; i < _burstBulletCount; i++)

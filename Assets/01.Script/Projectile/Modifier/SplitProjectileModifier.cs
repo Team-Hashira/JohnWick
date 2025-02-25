@@ -7,19 +7,26 @@ namespace Hashira.Projectiles
     public class SplitProjectileModifier : ProjectileModifier
     {
         [SerializeField] private int _addProjectileCount;
+        private bool _isRemovedBurstBullets;
 
-        public override void OnEquip(Attacker attacker, ModifierExecuter modifierExecuter)
+        public override void OnProjectileCreateReady()
         {
-            base.OnEquip(attacker, modifierExecuter);
+            base.OnProjectileCreateReady();
             for (int i = 0; i < _addProjectileCount; i++)
                 _attacker.AddBurstBullets();
+            _isRemovedBurstBullets = false;
+            Debug.Log("추가");
         }
 
-        public override void OnUnEquip()
+        public override void OnProjectileCreate(Projectile projectile)
         {
-            base.OnUnEquip();
-            for (int i = 0; i < _addProjectileCount; i++)
-                _attacker.RemoveBurstBullets();
+            base.OnProjectileCreate(projectile);
+            if (_isRemovedBurstBullets == false)
+            {
+                _isRemovedBurstBullets = true;
+                for (int i = 0; i < _addProjectileCount; i++)
+                    _attacker.RemoveBurstBullets();
+            }
         }
     }
 }

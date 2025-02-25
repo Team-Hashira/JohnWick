@@ -4,6 +4,7 @@ using Hashira.Items.Modules;
 using Hashira.Projectiles;
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Hashira
@@ -75,19 +76,25 @@ namespace Hashira
             _modifierSetting = modifierSetting;
             _currentCount = 0;
             _key = $"{_module.ItemSO.itemName}_{_modifierSetting.projectileModifierSO.name}";
+            attacker.OnProjectileCreateReadyEvent += HandleProjectileCreateReadyEvent;
+            attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
             switch (modifierSetting.conditionSetting.condition)
             {
                 case EExecutionCondition.ByCount:
-                    {
-                        attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-
-                        break;
-                    }
+                    break;
                 case EExecutionCondition.ByCooldown:
                     CooldownUtillity.StartCooldown(_key);
                     break;
                 case EExecutionCondition.Custom:
                     break;
+            }
+        }
+
+        private void HandleProjectileCreateReadyEvent()
+        {
+            if (CheckCondition())
+            {
+                _modifierSetting.projectileModifier.OnProjectileCreateReady();
             }
         }
 

@@ -26,7 +26,7 @@ MonoBehaviour:
     projectileModifier:
       rid: 40250401228587316
     conditionSetting:
-      condition: 0
+      condition: 1
       count: 0
       countType: 0
       countCondition: 0
@@ -37,10 +37,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 40250401228587316
       type: {class: BlastProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
       data:
-        _cooldown: 8
+        _delay: 8
         _damage: 100

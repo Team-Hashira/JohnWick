@@ -33,8 +33,6 @@ namespace Hashira.Items.Modules
             ProjectileModifierList = new List<ProjectileModifier>();
             foreach (var modifierSetting in _moduleItemSO.ModifierList)
             {
-                Debug.Log(modifierSetting);
-                Debug.Log(modifierSetting.projectileModifierSO);
                 ModifierExecuter modifierExecuter = new ModifierExecuter();
                 modifierExecuter.Init(_attacker, modifierSetting, this);
                 modifierSetting.projectileModifier.OnEquip(_attacker, modifierExecuter);
