@@ -23,7 +23,7 @@ namespace Hashira.Projectiles
         public Transform Owner { get; set; }
 
         protected EAttackType _attackType;
-        [SerializeField] protected AnimationCurve _damageOverDistance;
+        protected AnimationCurve _damageOverDistance;
         private Vector3 _spawnPos;
 
         protected virtual void Awake()
@@ -109,6 +109,9 @@ namespace Hashira.Projectiles
                 Die();
             }
         }
+
+        public void DamageOverride(int damage)
+            => Damage = damage;
 
         public void SetAttackType(EAttackType eAttackType = EAttackType.Default)
             => _attackType = eAttackType;

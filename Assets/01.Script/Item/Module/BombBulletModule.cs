@@ -1,30 +1,29 @@
 using Hashira.Players;
 using Hashira.Projectiles;
-using System;
 using UnityEngine;
 
 namespace Hashira.Items.Modules
 {
-    public class AimingBulletModule : Module
+    public class BombBulletModule : Module
     {
-        private HeadShotProjectileModifier _headShotProjectile;
+        private BombProjectileModifier _bombProjectileModifier;
 
-        private float _delay = 10f;
+        private float _delay = 2f;
         private bool _isCanAimingBullet = false;
 
         public override void Equip(Player player)
         {
             base.Equip(player);
-            _headShotProjectile = new HeadShotProjectileModifier();
+            _bombProjectileModifier = new BombProjectileModifier();
             _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-            _player.Attacker.AddProjectileModifiers(_headShotProjectile);
+            _player.Attacker.AddProjectileModifiers(_bombProjectileModifier);
         }
 
         private void HandleProjectileCreateEvent()
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
-            _player.Attacker.RemoveProjectileModifiers(_headShotProjectile);
-            CooldownUtillity.StartCooldown("AimingBullet");
+            _player.Attacker.RemoveProjectileModifiers(_bombProjectileModifier);
+            CooldownUtillity.StartCooldown("BombBullet");
             _isCanAimingBullet = false;
         }
 
@@ -32,21 +31,19 @@ namespace Hashira.Items.Modules
         {
             base.ItemUpdate();
 
-            if (CooldownUtillity.CheckCooldown("AimingBullet", _delay) && _isCanAimingBullet == false)
+            if (CooldownUtillity.CheckCooldown("BombBullet", _delay) && _isCanAimingBullet == false)
             {
-                Debug.Log("사용 가능");
                 _isCanAimingBullet = true;
                 _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-                _player.Attacker.AddProjectileModifiers(_headShotProjectile);
+                _player.Attacker.AddProjectileModifiers(_bombProjectileModifier);
             }
         }
 
         public override void UnEquip()
         {
             base.UnEquip();
-            if (CooldownUtillity.CheckCooldown("AimingBullet", _delay))
+            if (CooldownUtillity.CheckCooldown("BombBullet", _delay))
                 HandleProjectileCreateEvent();
         }
     }
 }
- 
