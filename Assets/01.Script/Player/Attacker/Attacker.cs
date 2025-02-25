@@ -67,9 +67,11 @@ namespace Hashira
             }
         }
 
-        public void ChangeProjectile(ProjectilePoolType projectilePoolType)
+        public ProjectilePoolType SetProjectile(ProjectilePoolType projectilePoolType)
         {
+            ProjectilePoolType prev = _projectilePoolType;
             _projectilePoolType = projectilePoolType;
+            return prev;
         }
 
         private void Update()

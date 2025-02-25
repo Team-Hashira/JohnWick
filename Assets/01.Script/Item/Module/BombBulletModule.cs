@@ -10,20 +10,23 @@ namespace Hashira.Items.Modules
     {
         private Projectile _projectile;
 
-        private float _delay = 2f;
+        private float _delay = 0f;
         private bool _isCanAimingBullet = false;
+        private ProjectilePoolType _prevProjectilePoolType;
 
         public override void Equip(Player player)
         {
             base.Equip(player);
             _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-            _player.Attacker.AddProjectileModifiers(this);
+            _prevProjectilePoolType = _player.Attacker.SetProjectile(ProjectilePoolType.Grenade);
+            //_player.Attacker.AddProjectileModifiers(this);
         }
 
         private void HandleProjectileCreateEvent()
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
-            _player.Attacker.RemoveProjectileModifiers(this);
+            _player.Attacker.SetProjectile(_prevProjectilePoolType);
+            //_player.Attacker.RemoveProjectileModifiers(this);
             CooldownUtillity.StartCooldown("BombBullet");
             _isCanAimingBullet = false;
         }
@@ -36,7 +39,8 @@ namespace Hashira.Items.Modules
             {
                 _isCanAimingBullet = true;
                 _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-                _player.Attacker.AddProjectileModifiers(this);
+                _prevProjectilePoolType = _player.Attacker.SetProjectile(ProjectilePoolType.Grenade);
+                //_player.Attacker.AddProjectileModifiers(this);
             }
         }
 
