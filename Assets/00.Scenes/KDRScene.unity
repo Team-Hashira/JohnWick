@@ -320,6 +320,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6848
   _attackDelay: 0.1
+  _damageOverDistance:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &433539395 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6090564883746628450, guid: 768f7446f13d9d448b3ef9b7998d2db4, type: 3}
@@ -859,7 +865,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8982273915821645971, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8988597239362535847, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
       propertyPath: m_AnchorMax.y

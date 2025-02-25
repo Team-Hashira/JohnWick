@@ -12,6 +12,13 @@ namespace Hashira.Projectiles
         {
             _projectile = projectile;
         }
+
+        //총알의 Update시작 전
+        public virtual void OnProjectileUpdate()
+        {
+
+        }
+
         //총알이 충돌시
         public virtual void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {

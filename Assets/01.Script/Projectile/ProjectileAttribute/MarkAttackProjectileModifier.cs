@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Hashira.Projectiles
 {
+    //마킹인데 나중에 쓸까봐 냅둔다
     public class MarkAttackProjectileModifier : ProjectileModifier
     {
         private static Dictionary<EntityHealth, IPoolingObject> _markedEntityHealthList = new Dictionary<EntityHealth, IPoolingObject>();
