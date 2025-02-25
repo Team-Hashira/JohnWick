@@ -36,12 +36,6 @@ namespace Hashira.UI.Effect
             _playerEntityEffector.EffectRemovedEvent -= RemoveEffectUI;
         }
 
-        private void Update()
-        {
-            if(Input.GetKeyUp(KeyCode.Escape))
-                _playerEntityEffector.AddEffect<IncreaseMoveSpeed>();
-        }
-
         private void AddEffectUI(EffectSystem.Effect effect)
         {
             EffectSlot effectSlot = Instantiate(_effectSlotPrefab, transform);
