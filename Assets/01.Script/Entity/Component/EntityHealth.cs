@@ -49,6 +49,7 @@ namespace Hashira.Entities
         public void Initialize(Entity entity)
         {
             Owner = entity;
+            _damageHandlerDict = new Dictionary<EDamageHandlerLayer, DamageHandler>();
         }
 
         public void AfterInit()
