@@ -9,6 +9,7 @@ namespace Hashira.EffectSystem.Effects
 
         public float Duration { get; set; } = 5;
         public float Time { get; set; }
+        public float Amount { get; set; }
 
         public override int MaxActiveCount => 4;
 
@@ -16,7 +17,7 @@ namespace Hashira.EffectSystem.Effects
         {
             base.Enable();
             _speedStatElement = entityStat.StatDictionary["Speed"];
-            _speedStatElement.AddModify("DecreaseMoveSpeed", -30.0f, EModifyMode.Percent);
+            _speedStatElement.AddModify("DecreaseMoveSpeed", Amount, EModifyMode.Percent);
             //TODO 여기에 이펙트
         }
 
