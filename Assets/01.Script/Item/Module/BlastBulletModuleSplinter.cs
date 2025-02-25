@@ -27,8 +27,7 @@ namespace Hashira.Items.Modules
 
         public void Init(Vector2 dir, int damage)
         {
-            transform.up = dir;
-            _rigidbody.AddForce(dir);
+            _rigidbody.AddForce(dir, ForceMode2D.Impulse);
             _damage = damage;
         }
 
