@@ -19,7 +19,7 @@ MonoBehaviour:
   itemDescription: "\uC801\uC911\uC2DC \uBB34\uC870\uAC74 \uD5E4\uB4DC\uC0F7\uC774
     \uB418\uB294 \uD0C4\uC744 \uBC1C\uC0AC\uD55C\uB2E4."
   itemRating: 0
-  useCustomClass: 1
+  useCustomClass: 0
   defaultClass: 
   <ModifierList>k__BackingField:
   - projectileModifierSO: {fileID: 11400000, guid: 60ff841741294a448ae6d18e8ab7d129, type: 2}

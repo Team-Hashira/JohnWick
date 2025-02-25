@@ -29,7 +29,6 @@ namespace Hashira.Items.Modules
                 ProjectileModifierSetting projectileModifierSetting = ModifierList[i];
                 if (ModifierList[i].projectileModifierSO == null)
                 {
-                    Debug.Log(projectileModifierSetting.projectileModifierSO);
                     projectileModifierSetting.projectileModifier = null;
                     continue;
                 }

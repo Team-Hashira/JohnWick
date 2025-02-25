@@ -37,5 +37,5 @@ MonoBehaviour:
     - rid: 40250401228587088
       type: {class: SplitProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
       data:
-        addProjectileCount: 1
-        cooldown: 10
+        _addProjectileCount: 1
+        _cooldown: 10
