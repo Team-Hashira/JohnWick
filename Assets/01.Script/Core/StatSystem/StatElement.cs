@@ -7,7 +7,7 @@ namespace Hashira.Core.StatSystem
     public enum EModifyMode
     {
         Add,
-        Percnet
+        Percent
     }
 
     public struct StatModifier
