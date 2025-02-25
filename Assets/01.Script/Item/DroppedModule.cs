@@ -1,13 +1,13 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities.Components;
-using Hashira.Items.Module;
+using Hashira.Items.Modules;
 using Hashira.Players;
 
 namespace Hashira.Items
 {
     public class DroppedModule : DroppedItem
     {
-        private Module.Module ModuleItem => _item as Module.Module;
+        private Module ModuleItem => _item as Module;
 
         public override void Interaction(Player player)
         {

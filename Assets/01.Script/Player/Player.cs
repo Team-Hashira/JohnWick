@@ -14,6 +14,9 @@ namespace Hashira.Players
         [field: SerializeField] public InputReaderSO InputReader { get; private set; }
         [field: SerializeField] public Transform VisualTrm { get; private set; }
         [field: SerializeField] public ParticleSystem AfterImageParticle { get; private set; }
+        
+        
+        public Attacker Attacker { get; private set; }
 
         protected EntityStateMachine _stateMachine;
         protected EntityRenderer _renderCompo;
@@ -22,8 +25,6 @@ namespace Hashira.Players
         protected PlayerMover _playerMover;
 
         protected StatElement _damageStat;
-
-        public int bulletCount = 1; //임시
 
         [Header("=====Stamina setting=====")]
         [field: SerializeField] public float MaxStamina { get; private set; }
@@ -135,6 +136,7 @@ namespace Hashira.Players
 
         protected override void InitializeComponent()
         {
+            Attacker = FindAnyObjectByType<Attacker>();
             base.InitializeComponent();
 
             _playerMover = GetEntityComponent<PlayerMover>();
