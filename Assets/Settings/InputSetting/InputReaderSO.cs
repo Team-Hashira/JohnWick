@@ -25,6 +25,7 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
     public event Action<bool> OnClickEvent;
     public event Action OnSprintToggleEvent;
     public event Action<Vector2> OnMouseMoveEvent;
+    public event Action OnPauseEvent;
 
 	#endregion
 
@@ -192,4 +193,10 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
 	{
         OnSprintToggleEvent?.Invoke();
 	}
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            OnPauseEvent?.Invoke();
+    }
 }

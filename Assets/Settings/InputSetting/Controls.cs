@@ -452,6 +452,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""775d3678-28de-4f4d-94e8-8d046ba796a5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -916,6 +925,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""StatusTapMoveToSide"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c87e2d9-00c1-4ef3-84fc-03fe53fd3817"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1037,6 +1057,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_StatusTapMoveToSide = m_UI.FindAction("StatusTapMoveToSide", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         // System
         m_System = asset.FindActionMap("System", throwIfNotFound: true);
         m_System_MouseMove = m_System.FindAction("MouseMove", throwIfNotFound: true);
@@ -1238,6 +1259,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_StatusTapMoveToSide;
+    private readonly InputAction m_UI_Pause;
     public struct UIActions
     {
         private @Controls m_Wrapper;
@@ -1254,6 +1276,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @StatusTapMoveToSide => m_Wrapper.m_UI_StatusTapMoveToSide;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1299,6 +1322,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @StatusTapMoveToSide.started += instance.OnStatusTapMoveToSide;
             @StatusTapMoveToSide.performed += instance.OnStatusTapMoveToSide;
             @StatusTapMoveToSide.canceled += instance.OnStatusTapMoveToSide;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1339,6 +1365,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @StatusTapMoveToSide.started -= instance.OnStatusTapMoveToSide;
             @StatusTapMoveToSide.performed -= instance.OnStatusTapMoveToSide;
             @StatusTapMoveToSide.canceled -= instance.OnStatusTapMoveToSide;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1474,6 +1503,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnStatusTapMoveToSide(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface ISystemActions
     {
