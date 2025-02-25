@@ -1,11 +1,12 @@
 using Crogen.CrogenPooling;
 using Hashira.Players;
 using Hashira.Projectiles;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Items.Modules
 {
-    public class BlastBulletModule : Module, IProjectileModifier
+    public class BlastBulletModule : Module
     {
         float _delay = 8;
         private int _damage = 100;
@@ -14,13 +15,34 @@ namespace Hashira.Items.Modules
         public override void Equip(Player player)
         {
             base.Equip(player);
-            _player.Attacker.AddProjectileModifiers(this);
+            player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
+            //player.Attacker.AddProjectileModifiers(this);
+        }
+
+        private void HandleProjectileCreateEvent(List<Projectile> projectileList)
+        {
+            _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
+            //_player.Attacker.RemoveProjectileModifiers(this);
+            CooldownUtillity.StartCooldown("BlastBullet");
+            _isCanBlastBullet = false;
+        }
+
+        public override void ItemUpdate()
+        {
+            base.ItemUpdate();
+            if (CooldownUtillity.CheckCooldown("BlastBullet", _delay) && _isCanBlastBullet == false)
+            {
+                _isCanBlastBullet = true;
+                _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
+                //_player.Attacker.AddProjectileModifiers(this);
+            }
         }
 
         public override void UnEquip()
         {
             base.UnEquip();
-            _player.Attacker.RemoveProjectileModifiers(this);
+            if (CooldownUtillity.CheckCooldown("AimingBullet", _delay))
+                HandleProjectileCreateEvent(null);
         }
 
         public void OnProjectileCreate(Projectile projectile)

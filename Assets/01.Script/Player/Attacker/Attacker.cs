@@ -23,9 +23,11 @@ namespace Hashira
         private int _burstBulletCount = 1;
         private ProjectilePoolType _projectilePoolType = ProjectilePoolType.Bullet;
 
-        public event Action OnProjectileCreateEvent ;
+        public event Action<List<Projectile>> OnProjectileCreateEvent;
 
-        private List<IProjectileModifier> _projectileModifiers = new List<IProjectileModifier>();
+        private List<ProjectileModifier> _projectileModifiers = new List<ProjectileModifier>();
+
+        private ProjectileModifier _currentMainModifier;
 
         private void Awake()
         {
@@ -44,17 +46,31 @@ namespace Hashira
             => _burstBulletCount++;
         public void RemoveBurstBullets()
             => _burstBulletCount--;
-        public void AddProjectileModifiers(IProjectileModifier projectileModifier)
-            => _projectileModifiers.Add(projectileModifier);
-        public void RemoveProjectileModifiers(IProjectileModifier projectileModifier)
-            => _projectileModifiers.Remove(projectileModifier);
+        public void AddProjectileModifiers(ProjectileModifier projectileModifier)
+        {
+            _projectileModifiers.Add(projectileModifier);
+            projectileModifier.OnEquip(this);
+        }
+        public void RemoveProjectileModifiers(ProjectileModifier projectileModifier)
+        {
+            _projectileModifiers.Remove(projectileModifier);
+            projectileModifier.OnUnEquip();
+        }
+
+        public bool TrySetMainProjectileModifier(ProjectileModifier currentMainModifier)
+        {
+            if (_currentMainModifier != null) return false;
+            _currentMainModifier = currentMainModifier;
+            return true;
+        }
 
         private void HandleAttackEvent(bool isDown)
         {
-            float angle = _burstBulletCount * 10;
+            float angle = _burstBulletCount * 5;
             if (isDown && _lastAttackTime + _attackDelay < Time.time)
             {
                 _lastAttackTime = Time.time;
+                List<Projectile> createdProjectileList = new List<Projectile>();
                 for (int i = 0; i < _burstBulletCount; i++)
                 {
                     Vector2 targetPos = Camera.main.ScreenToWorldPoint(_input.MousePosition) - transform.position;
@@ -62,8 +78,10 @@ namespace Hashira
                     int damage = _playerStat.StatDictionary["AttackPower"].IntValue;
                     Projectile bullet = gameObject.Pop(_projectilePoolType, transform.position, Quaternion.identity) as Projectile;
                     bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, _projectileModifiers.ToList(), _damageOverDistance);
-                    OnProjectileCreateEvent?.Invoke();
+
+                    createdProjectileList.Add(bullet);
                 }
+                OnProjectileCreateEvent?.Invoke(createdProjectileList);
             }
         }
 

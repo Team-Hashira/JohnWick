@@ -1,6 +1,9 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Players;
+using Hashira.Projectiles;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Hashira.Items.Modules
 {
@@ -10,6 +13,9 @@ namespace Hashira.Items.Modules
         protected EntityStat _entityStat;
         protected Attacker _attacker;
         protected Player _player;
+
+        public List<ProjectileModifier> list;
+
 
         public override void Init(ItemSO itemSO)
         {
@@ -26,6 +32,10 @@ namespace Hashira.Items.Modules
             {
                 _entityStat.StatDictionary[adjustment.elementSO]
                     .AddModify(_moduleItemSO.itemName, adjustment.Value, adjustment.IsPercentAdjustment ? EModifyMode.Percent : EModifyMode.Add);
+            }
+            foreach (ProjectileModifierSetting projectileSetting in _moduleItemSO.ModifierList)
+            {
+                _player.Attacker.AddProjectileModifiers(projectileSetting.projectileModifier);
             }
         }
 

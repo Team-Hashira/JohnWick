@@ -2,15 +2,16 @@ using Crogen.CrogenPooling;
 using Hashira.Entities;
 using Hashira.Players;
 using Hashira.Projectiles;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Items.Modules
 {
-    public class BombBulletModule : Module, IProjectileModifier
+    public class BombBulletModule : Module
     {
         private Projectile _projectile;
 
-        private float _delay = 0f;
+        private float _delay = 12f;
         private bool _isCanAimingBullet = false;
         private ProjectilePoolType _prevProjectilePoolType;
 
@@ -19,14 +20,12 @@ namespace Hashira.Items.Modules
             base.Equip(player);
             _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
             _prevProjectilePoolType = _player.Attacker.SetProjectile(ProjectilePoolType.Grenade);
-            //_player.Attacker.AddProjectileModifiers(this);
         }
 
-        private void HandleProjectileCreateEvent()
+        private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
             _player.Attacker.SetProjectile(_prevProjectilePoolType);
-            //_player.Attacker.RemoveProjectileModifiers(this);
             CooldownUtillity.StartCooldown("BombBullet");
             _isCanAimingBullet = false;
         }
@@ -48,7 +47,7 @@ namespace Hashira.Items.Modules
         {
             base.UnEquip();
             if (CooldownUtillity.CheckCooldown("BombBullet", _delay))
-                HandleProjectileCreateEvent();
+                HandleProjectileCreateEvent(null);
         }
 
 
@@ -67,7 +66,6 @@ namespace Hashira.Items.Modules
 
         public void OnProjectileUpdate()
         {
-
         }
     }
 }
