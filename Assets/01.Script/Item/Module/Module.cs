@@ -1,15 +1,14 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.Players;
-using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-namespace Hashira.Items.Module
+namespace Hashira.Items.Modules
 {
     public class Module : Item
     {
         protected ModuleSO _moduleItemSO;
         protected EntityStat _entityStat;
+        protected Attacker _attacker;
         protected Player _player;
 
         public override void Init(ItemSO itemSO)
@@ -22,6 +21,7 @@ namespace Hashira.Items.Module
         {
             _player = player;
             _entityStat = player.GetEntityComponent<EntityStat>();
+            _attacker = player.Attacker;
             foreach (StatElementAdjustment adjustment in _moduleItemSO.StatVariationList)
             {
                 _entityStat.StatDictionary[adjustment.elementSO]

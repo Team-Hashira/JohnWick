@@ -1,6 +1,6 @@
 using Hashira.Entities.Components;
 using Hashira.Items;
-using Hashira.Items.Module;
+using Hashira.Items.Modules;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -2,7 +2,7 @@ using Hashira.Core.StatSystem;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hashira.Items.Module
+namespace Hashira.Items.Modules
 {
     [CreateAssetMenu(fileName = "Module", menuName = "SO/Item/Module")]
     public class ModuleSO : ItemSO

@@ -1,5 +1,5 @@
 using Hashira.Items;
-using Hashira.Items.Module;
+using Hashira.Items.Modules;
 using Hashira.Players;
 using System.Collections.Generic;
 using System.Linq;
