@@ -52,12 +52,10 @@ namespace Hashira
         public void AddModule(Module module)
         {
             _moduleList.Add(module);
-            module.Equip(_player);
         }
         public void RemoveModule(Module module)
         {
             _moduleList.Remove(module);
-            module.UnEquip();
         }
 
         public bool TrySetMainProjectileModifier(ProjectileModifier currentMainModifier)

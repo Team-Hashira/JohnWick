@@ -30,6 +30,7 @@ namespace Hashira.Entities.Components
         public void AddModule(Module moduleItem)
         {
             ListModules.Add(moduleItem);
+            _player.Attacker.AddModule(moduleItem);
             moduleItem.Equip(_player);
         }
 
@@ -40,6 +41,7 @@ namespace Hashira.Entities.Components
             if (removeTargetModule != default)
             {
                 ListModules.Remove(removeTargetModule);
+                _player.Attacker.RemoveModule(moduleItem);
                 moduleItem.UnEquip();
             }
         }

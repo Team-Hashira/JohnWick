@@ -36,6 +36,7 @@ namespace Hashira.Projectiles
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnProjectileHit(hit, damageable);
+
             _projectile.SetAttackType();
             _projectile.gameObject.Pop(EffectPoolType.BoomFire, hit.point, Quaternion.identity);
         }

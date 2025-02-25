@@ -50,7 +50,7 @@ namespace Hashira
             {
 				ItemSO itemSO = _isRandomItem ? _itemGroup[Random.Range(0, _itemGroup.Length)] : _item;
 				Item item = itemSO.GetItemClass();
-                Debug.Log(item.ItemSO);
+
                 DroppedItem droppedItem = ItemDropUtility.DroppedItem(item, transform.position);
 
                 float percent = (i + 0.5f) / _itemCount;

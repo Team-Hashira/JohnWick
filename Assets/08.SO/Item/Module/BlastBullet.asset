@@ -31,7 +31,7 @@ MonoBehaviour:
       countType: 0
       countCondition: 0
       killType: 0
-      cooldown: 0
+      cooldown: 1
       className: 
   <StatVariationList>k__BackingField: []
   references:
@@ -39,6 +39,4 @@ MonoBehaviour:
     RefIds:
     - rid: 40250401228587316
       type: {class: BlastProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
-      data:
-        _delay: 8
-        _damage: 100
+      data: 
