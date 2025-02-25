@@ -11,7 +11,7 @@ namespace Hashira.Items.Modules
         {
             base.Equip(player);
 
-            player.Attacker.OnProjectileCreateEvent += HandleOnProjectileCreateEvent;
+            //player.Attacker.OnProjectileCreateEvent += HandleOnProjectileCreateEvent;
             CooldownUtillity.StartCooldown("IceBall");
         }
 

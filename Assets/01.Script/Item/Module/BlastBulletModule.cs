@@ -24,18 +24,18 @@ namespace Hashira.Items.Modules
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
             //_player.Attacker.RemoveProjectileModifiers(this);
             CooldownUtillity.StartCooldown("BlastBullet");
-            _isCanBlastBullet = false;
+            //_isCanBlastBullet = false;
         }
 
         public override void ItemUpdate()
         {
             base.ItemUpdate();
-            if (CooldownUtillity.CheckCooldown("BlastBullet", _delay) && _isCanBlastBullet == false)
-            {
-                _isCanBlastBullet = true;
-                _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-                //_player.Attacker.AddProjectileModifiers(this);
-            }
+            //if (CooldownUtillity.CheckCooldown("BlastBullet", _delay) && _isCanBlastBullet == false)
+            //{
+            //    _isCanBlastBullet = true;
+            //    _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
+            //    //_player.Attacker.AddProjectileModifiers(this);
+            //}
         }
 
         public override void UnEquip()
