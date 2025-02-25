@@ -19,6 +19,8 @@ namespace Hashira.Projectiles
 
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
+            if (_projectile == null)
+                return;
             base.OnProjectileHit(hit, damageable);
             EntityHealth entityHealth = damageable as EntityHealth;
             if (entityHealth != null)

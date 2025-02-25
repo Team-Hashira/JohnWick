@@ -24,7 +24,7 @@ MonoBehaviour:
     _baseValue: 10
   - Name: Speed
     elementSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
-    _baseValue: 18
+    _baseValue: 5
   - Name: FieldOfView
     elementSO: {fileID: 11400000, guid: 716401084645e5b459a667648b423fce, type: 2}
     _baseValue: 360
