@@ -50,6 +50,10 @@ namespace Hashira.Entities
         {
             Owner = entity;
             _damageHandlerDict = new Dictionary<EDamageHandlerLayer, List<DamageHandler>>();
+            foreach (EDamageHandlerLayer layerEnum in Enum.GetValues(typeof(EDamageHandlerLayer)))
+            {
+                _damageHandlerDict.Add(layerEnum, new List<DamageHandler>());
+            }
         }
 
         public void AfterInit()
