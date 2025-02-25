@@ -21,7 +21,7 @@ namespace Hashira
         private float _lastAttackTime;
         private int _burstBulletCount = 1;
 
-        private List<ProjectileModifier> _projectileModifiers;
+        private List<ProjectileModifier> _projectileModifiers = new List<ProjectileModifier>();
 
         private void Awake()
         {

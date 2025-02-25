@@ -1,3 +1,4 @@
+using Hashira.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +22,8 @@ namespace Hashira.Projectiles
         protected List<Collider2D> _penetratedColliderList = new List<Collider2D>();
         public Transform Owner { get; set; }
 
-        protected AnimationCurve _damageOverDistance;
+        protected EAttackType _attackType;
+        [SerializeField] protected AnimationCurve _damageOverDistance;
         private Vector3 _spawnPos;
 
         protected virtual void Awake()
@@ -102,11 +104,14 @@ namespace Hashira.Projectiles
             else
                 transform.position += movement;
 
-            if (_damageOverDistance.keys[^1].time < Vector3.Distance(_spawnPos, transform.position) && _isDead == false)
+            if (_damageOverDistance.keys.Length != 0 && _damageOverDistance.keys[^1].time < Vector3.Distance(_spawnPos, transform.position) && _isDead == false)
             {
                 Die();
             }
         }
+
+        public void SetAttackType(EAttackType eAttackType = EAttackType.Default)
+            => _attackType = eAttackType;
 
         public virtual int CalculateDamage(float damage)
         {
@@ -145,7 +150,8 @@ namespace Hashira.Projectiles
 
             _projectileModifiers = projectileModifiers;
             _projectileModifiers ??= new List<ProjectileModifier>();
-            _projectileModifiers.ForEach(modifire => modifire.OnProjectileCreate(this));
+            for (int i = 0; i < _projectileModifiers.Count; i++)
+                _projectileModifiers[i]?.OnProjectileCreate(this);
 
             _spawnPos = transform.position;
         }
