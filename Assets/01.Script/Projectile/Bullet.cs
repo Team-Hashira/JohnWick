@@ -26,7 +26,7 @@ namespace Hashira.Projectiles
             {
                 int damage = CalculateDamage(Damage);
                 int penetrationDamage = CalculatePenetration(CalculateDamage(damage), _penetration - _currentPenetration);
-                EEntityPartType parts = damageable.ApplyDamage(penetrationDamage, hit, transform, transform.right * 4);
+                EEntityPartType parts = damageable.ApplyDamage(penetrationDamage, hit, transform, transform.right * 4, _attackType);
 
                 if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                 {
