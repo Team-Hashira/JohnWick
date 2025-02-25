@@ -31,7 +31,7 @@ namespace Hashira.Projectiles
 
         protected virtual void OnValidate()
         {
-            if (_projectileModifier != null || _projectileModifier.GetType().ToString() == className) return;
+            if (_projectileModifier != null && _projectileModifier.GetType().ToString() == className) return;
 
             string thisTag = GetType().ToString();
             int tagStartIdx = thisTag.LastIndexOf(".");                 //Namespace.Class

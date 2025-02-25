@@ -22,3 +22,4 @@ MonoBehaviour:
       type: {class: SplitProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
       data:
         addProjectileCount: 0
+        cooldown: 0

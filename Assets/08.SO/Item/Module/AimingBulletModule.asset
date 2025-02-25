@@ -21,5 +21,16 @@ MonoBehaviour:
   itemRating: 0
   useCustomClass: 1
   defaultClass: 
-  <ModifierList>k__BackingField: []
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: 60ff841741294a448ae6d18e8ab7d129, type: 2}
+    projectileModifier:
+      rid: 40250401228587104
   <StatVariationList>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 40250401228587104
+      type: {class: SplitProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data:
+        addProjectileCount: 0
+        cooldown: 0
