@@ -22,3 +22,6 @@ MonoBehaviour:
   - poolType: BlastBulletModuleSplinter
     prefab: {fileID: 6057784765937569486, guid: 64016656eac28c04fa8618205de9f595, type: 3}
     poolCount: 20
+  - poolType: IceBall
+    prefab: {fileID: 1526119696171436273, guid: ab8e7d2ecfb27684880f9897e99de0fb, type: 3}
+    poolCount: 5
