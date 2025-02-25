@@ -31,7 +31,7 @@ MonoBehaviour:
       countType: 0
       countCondition: 0
       killType: 0
-      cooldown: 1
+      cooldown: 8
       className: 
   <StatVariationList>k__BackingField: []
   references:

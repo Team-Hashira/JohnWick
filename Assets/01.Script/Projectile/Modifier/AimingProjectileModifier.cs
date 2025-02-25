@@ -6,8 +6,6 @@ namespace Hashira.Projectiles
 {
     public class AimingProjectileModifier : ProjectileModifier
     {
-        [SerializeField] private float _cooldown = 10f;
-        
         private bool _isCanAimingBullet = false;
 
         public override void OnProjectileCreate(Projectile projectile)

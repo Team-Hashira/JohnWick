@@ -29,9 +29,9 @@ namespace Hashira.Entities.Components
 
         public void AddModule(Module moduleItem)
         {
+            moduleItem.Equip(_player);
             ListModules.Add(moduleItem);
             _player.Attacker.AddModule(moduleItem);
-            moduleItem.Equip(_player);
         }
 
         public void RemoveModule<T>(T moduleItem) where T : Module
@@ -40,9 +40,9 @@ namespace Hashira.Entities.Components
                 = ListModules.FirstOrDefault(module => module.GetType() == typeof(T));
             if (removeTargetModule != default)
             {
+                moduleItem.UnEquip();
                 ListModules.Remove(removeTargetModule);
                 _player.Attacker.RemoveModule(moduleItem);
-                moduleItem.UnEquip();
             }
         }
     }
