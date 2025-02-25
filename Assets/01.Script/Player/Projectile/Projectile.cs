@@ -17,7 +17,7 @@ namespace Hashira.Projectiles
         protected SpriteRenderer _spriteRenderer;
         protected BoxCollider2D _collider;
 
-        protected List<ProjectileModifier> _projectileModifiers;
+        protected List<IProjectileModifier> _projectileModifiers;
 
         protected List<Collider2D> _penetratedColliderList = new List<Collider2D>();
         public Transform Owner { get; set; }
@@ -130,7 +130,7 @@ namespace Hashira.Projectiles
 
         protected virtual void OnHited(RaycastHit2D hit, IDamageable damageable) { }
 
-        public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = null, AnimationCurve damageOverDistance = null)
+        public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<IProjectileModifier> projectileModifiers = null, AnimationCurve damageOverDistance = null)
         {
             Damage = damage;
             _speed = speed;
@@ -152,7 +152,7 @@ namespace Hashira.Projectiles
             }
 
             _projectileModifiers = projectileModifiers;
-            _projectileModifiers ??= new List<ProjectileModifier>();
+            _projectileModifiers ??= new List<IProjectileModifier>();
             for (int i = 0; i < _projectileModifiers.Count; i++)
                 _projectileModifiers[i]?.OnProjectileCreate(this);
 
