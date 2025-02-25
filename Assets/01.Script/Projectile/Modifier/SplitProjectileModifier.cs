@@ -20,6 +20,9 @@ namespace Hashira.Projectiles
         public override void OnProjectileCreate(Projectile projectile)
         {
             base.OnProjectileCreate(projectile);
+
+            projectile.DamageOverride(Mathf.CeilToInt(projectile.Damage * 0.8f));
+
             if (_isRemovedBurstBullets == false)
             {
                 _isRemovedBurstBullets = true;

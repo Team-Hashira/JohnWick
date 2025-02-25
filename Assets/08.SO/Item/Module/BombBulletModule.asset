@@ -26,12 +26,12 @@ MonoBehaviour:
     projectileModifier:
       rid: 40250401228587317
     conditionSetting:
-      condition: 0
+      condition: 1
       count: 0
       countType: 0
       countCondition: 0
       killType: 0
-      cooldown: 0
+      cooldown: 12
       className: 
   <StatVariationList>k__BackingField: []
   references:
@@ -39,5 +39,4 @@ MonoBehaviour:
     RefIds:
     - rid: 40250401228587317
       type: {class: BombProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
-      data:
-        _cooldown: 12
+      data: 
