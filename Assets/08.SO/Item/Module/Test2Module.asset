@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f29b242c7b73946a496886973e0bf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
   m_Name: Test2Module
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: -1589914923298429795, guid: b059b94f10d376d4eb47c093d11907e8, type: 3}
-  itemDefaultSprite: {fileID: -1589914923298429795, guid: b059b94f10d376d4eb47c093d11907e8, type: 3}
-  itemName: "\uD14C\uC2A4\uD2B82 \uBAA8\uB4C8"
-  itemDisplayName: Test2
-  itemDescription: "\uD14C\uC2A4\uD2B8\uC6A9\uC785\uB2C8\uB2E42"
+  itemIcon: {fileID: 0}
+  itemDefaultSprite: {fileID: 0}
+  itemName: s
+  itemDisplayName: 
+  itemDescription: 
   itemRating: 0
   useCustomClass: 0
-  defaultClass: ModuleItem
+  defaultClass: 
   <StatVariationList>k__BackingField: []

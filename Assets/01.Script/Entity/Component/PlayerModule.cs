@@ -11,12 +11,12 @@ namespace Hashira.Entities.Components
     {
         private Player _player;
 
-        public List<ModuleItem> ListModules { get; private set; }
+        public List<Module> ListModules { get; private set; }
 
         public void Initialize(Entity entity)
         {
             _player = entity as Player;
-            ListModules = new List<ModuleItem>();
+            ListModules = new List<Module>();
         }
 
         private void Update()
@@ -27,15 +27,15 @@ namespace Hashira.Entities.Components
             }
         }
 
-        public void AddModule(ModuleItem moduleItem)
+        public void AddModule(Module moduleItem)
         {
             ListModules.Add(moduleItem);
             moduleItem.Equip(_player);
         }
 
-        public void RemoveModule<T>(T moduleItem) where T : ModuleItem
+        public void RemoveModule<T>(T moduleItem) where T : Module
         {
-            ModuleItem removeTargetModule
+            Module removeTargetModule
                 = ListModules.FirstOrDefault(module => module.GetType() == typeof(T));
             if (removeTargetModule != default)
             {

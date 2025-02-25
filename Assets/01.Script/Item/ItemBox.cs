@@ -60,7 +60,7 @@ namespace Hashira
 
 				droppedItem.Rigidbody2D.AddForce(velocity, ForceMode2D.Impulse);
 
-				droppedItem.OnInteractionSuccesEvent += HandleSelectComplate;
+				droppedItem.OnInteractionEvent += HandleSelectComplate;
                 _droppedItems[i] = droppedItem;
 			}
 
@@ -79,11 +79,11 @@ namespace Hashira
                     if (_droppedItems[i] == null) continue;
                     else if (_droppedItems[i].gameObject.activeSelf == false)
                     {
-                        //_droppedItems[i].OnInteractionSuccesEvent -= HandleSelectComplate;
+                        _droppedItems[i].OnInteractionEvent -= HandleSelectComplate;
                         _droppedItems[i] = null;
                         continue;
                     }
-                    //_droppedItems[i].Push();
+                    _droppedItems[i].Push();
                 }
 
                 Destroy(gameObject);
