@@ -1,7 +1,9 @@
 using Hashira.Entities;
 using Hashira.Players;
 using Hashira.Projectiles;
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Items.Modules
@@ -20,7 +22,7 @@ namespace Hashira.Items.Modules
             _player.Attacker.AddProjectileModifiers(this);
         }
 
-        private void HandleProjectileCreateEvent()
+        private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
             _player.Attacker.RemoveProjectileModifiers(this);
@@ -34,7 +36,6 @@ namespace Hashira.Items.Modules
 
             if (CooldownUtillity.CheckCooldown("AimingBullet", _delay) && _isCanAimingBullet == false)
             {
-                Debug.Log("사용 가능");
                 _isCanAimingBullet = true;
                 _player.Attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
                 _player.Attacker.AddProjectileModifiers(this);
@@ -45,7 +46,7 @@ namespace Hashira.Items.Modules
         {
             base.UnEquip();
             if (CooldownUtillity.CheckCooldown("AimingBullet", _delay))
-                HandleProjectileCreateEvent();
+                HandleProjectileCreateEvent(null);
         }
 
         public void OnProjectileCreate(Projectile projectile)

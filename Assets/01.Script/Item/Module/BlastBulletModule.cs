@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Players;
 using Hashira.Projectiles;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Items.Modules
@@ -19,7 +20,7 @@ namespace Hashira.Items.Modules
             player.Attacker.AddProjectileModifiers(this);
         }
 
-        private void HandleProjectileCreateEvent()
+        private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
             _player.Attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
             _player.Attacker.RemoveProjectileModifiers(this);
@@ -42,7 +43,7 @@ namespace Hashira.Items.Modules
         {
             base.UnEquip();
             if (CooldownUtillity.CheckCooldown("AimingBullet", _delay))
-                HandleProjectileCreateEvent();
+                HandleProjectileCreateEvent(null);
         }
 
         public void OnProjectileCreate(Projectile projectile)
