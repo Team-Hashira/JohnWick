@@ -12,13 +12,14 @@ namespace Hashira.Items.Modules
     {
         public ProjectileModifierSO projectileModifierSO;
         [SerializeReference] public ProjectileModifier projectileModifier;
+        public ExecutionConditionSetting conditionSetting;
     }
 
     [CreateAssetMenu(fileName = "Module", menuName = "SO/Item/Module")]
     public class ModuleSO : ItemSO
     {
         [Header("==========Module setting==========")]
-        
+
         [field: SerializeField] public List<ProjectileModifierSetting> ModifierList { get; private set; }
         [field: SerializeField] public List<StatElementAdjustment> StatVariationList { get; private set; }
 

@@ -5,19 +5,12 @@ namespace Hashira.Projectiles
 {
     public class BlastProjectileModifier : ProjectileModifier
     {
-        [SerializeField] private float _cooldown = 8;
+        [SerializeField] private float _delay = 8;
         [SerializeField] private int _damage = 100;
-
-        public override void OnProjectileCreate(Projectile projectile)
-        {
-            base.OnProjectileCreate(projectile);
-            _projectile = projectile;
-        }
 
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnProjectileHit(hit, damageable);
-            if (CooldownUtillity.CheckCooldown("BlastBullet", _cooldown, true) == false) return;
             _damage = (int)(_projectile.Damage * 0.3f);
 
             for (int i = -1; i <= 1; i++)
@@ -27,7 +20,8 @@ namespace Hashira.Projectiles
                 dir += Random.insideUnitCircle.normalized * 10f;
                 blastBulletModuleSplinter.Init(dir, _damage);
             }
-            CooldownUtillity.StartCooldown("BlastBullet");
+
+            Debug.Log("쓩");
         }
     }
 }

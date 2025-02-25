@@ -27,9 +27,9 @@ namespace Hashira.Projectiles
             _projectile.gameObject.Pop(EffectPoolType.BoomFire, hit.point, Quaternion.identity);
         }
 
-        public override void OnEquip(Attacker attacker)
+        public override void OnEquip(Attacker attacker, ModifierExecuter modifierExecuter)
         {
-            base.OnEquip(attacker);
+            base.OnEquip(attacker, modifierExecuter);
             _attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
             _prevProjectilePoolType = _attacker.SetProjectile(ProjectilePoolType.Grenade);
         }

@@ -1,10 +1,12 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities;
+using Hashira.Items.Modules;
 using Hashira.Players;
 using Hashira.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hashira
@@ -25,7 +27,7 @@ namespace Hashira
 
         public event Action<List<Projectile>> OnProjectileCreateEvent;
 
-        private List<ProjectileModifier> _projectileModifiers = new List<ProjectileModifier>();
+        private List<Module> _moduleList = new List<Module>();
 
         private ProjectileModifier _currentMainModifier;
 
@@ -46,15 +48,15 @@ namespace Hashira
             => _burstBulletCount++;
         public void RemoveBurstBullets()
             => _burstBulletCount--;
-        public void AddProjectileModifiers(ProjectileModifier projectileModifier)
+        public void AddModule(Module module)
         {
-            _projectileModifiers.Add(projectileModifier);
-            projectileModifier.OnEquip(this);
+            _moduleList.Add(module);
+            module.Equip(_player);
         }
-        public void RemoveProjectileModifiers(ProjectileModifier projectileModifier)
+        public void RemoveModule(Module module)
         {
-            _projectileModifiers.Remove(projectileModifier);
-            projectileModifier.OnUnEquip();
+            _moduleList.Remove(module);
+            module.UnEquip();
         }
 
         public bool TrySetMainProjectileModifier(ProjectileModifier currentMainModifier)
@@ -77,7 +79,9 @@ namespace Hashira
                     targetPos = Quaternion.Euler(0, 0, -angle / 2 + angle * (i + 0.5f) / _burstBulletCount) * targetPos;
                     int damage = _playerStat.StatDictionary["AttackPower"].IntValue;
                     Projectile bullet = gameObject.Pop(_projectilePoolType, transform.position, Quaternion.identity) as Projectile;
-                    bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, _projectileModifiers.ToList(), _damageOverDistance);
+                    List<ProjectileModifier> projectileModifiers = new List<ProjectileModifier>();
+                    _moduleList.ForEach(module => projectileModifiers.AddRange(module.ProjectileModifierList));
+                    bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, projectileModifiers, _damageOverDistance);
 
                     createdProjectileList.Add(bullet);
                 }

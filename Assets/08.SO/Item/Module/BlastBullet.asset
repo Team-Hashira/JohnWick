@@ -20,15 +20,25 @@ MonoBehaviour:
     \uD30C\uD3B8\uC774 \uD284\uB2E4."
   itemRating: 0
   useCustomClass: 0
-  defaultClass: 
+  defaultClass: Module
   <ModifierList>k__BackingField:
   - projectileModifierSO: {fileID: 11400000, guid: 58a60fb78c8ad9a49a9e4100d3a4ad5c, type: 2}
     projectileModifier:
       rid: 40250401228587316
+    conditionSetting:
+      condition: 0
+      count: 0
+      countType: 0
+      countCondition: 0
+      killType: 0
+      cooldown: 0
+      className: 
   <StatVariationList>k__BackingField: []
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 40250401228587316
       type: {class: BlastProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
       data:

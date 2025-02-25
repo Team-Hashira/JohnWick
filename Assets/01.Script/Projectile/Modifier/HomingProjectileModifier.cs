@@ -5,9 +5,9 @@ namespace Hashira.Projectiles
 {
     public class HomingProjectileModifier : ProjectileModifier
     {
-        public override void OnEquip(Attacker attacker)
+        public override void OnEquip(Attacker attacker, ModifierExecuter modifierExecuter)
         {
-            base.OnEquip(attacker);
+            base.OnEquip(attacker, modifierExecuter);
         }
 
         public override void OnProjectileCreate(Projectile projectile)

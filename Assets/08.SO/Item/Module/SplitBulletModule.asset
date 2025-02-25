@@ -26,6 +26,14 @@ MonoBehaviour:
   - projectileModifierSO: {fileID: 11400000, guid: bda621c6542af0a48a7e378357120685, type: 2}
     projectileModifier:
       rid: 40250401228587088
+    conditionSetting:
+      condition: 0
+      count: 0
+      countType: 0
+      countCondition: 0
+      killType: 0
+      cooldown: 0
+      className: 
   <StatVariationList>k__BackingField:
   - Name: 
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
@@ -38,4 +46,3 @@ MonoBehaviour:
       type: {class: SplitProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
       data:
         _addProjectileCount: 1
-        _cooldown: 10

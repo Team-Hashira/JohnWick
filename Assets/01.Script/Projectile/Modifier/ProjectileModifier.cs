@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hashira.Projectiles
@@ -6,8 +7,9 @@ namespace Hashira.Projectiles
     public class ProjectileModifier : ICloneable
     {
         protected Projectile _projectile;
-        protected ProjectileModifierSO _projectileModifierSO;
+        public ProjectileModifierSO ProjectileModifierSO { get; private set; }
         protected Attacker _attacker;
+        public ModifierExecuter ModifierExecuter { get; private set; }
 
         /// <summary>
         /// 가장 처음 클래스 생성시
@@ -15,15 +17,16 @@ namespace Hashira.Projectiles
         /// <param name="projectileModifierSO"></param>
         public void Init(ProjectileModifierSO projectileModifierSO)
         {
-            _projectileModifierSO = projectileModifierSO;
+            ProjectileModifierSO = projectileModifierSO;
         }
 
         /// <summary>
         /// 수정자가 추가될 때
         /// </summary>
         /// <param name="projectile"></param>
-        public virtual void OnEquip(Attacker attacker)
+        public virtual void OnEquip(Attacker attacker, ModifierExecuter modifierExecuter)
         {
+            ModifierExecuter = modifierExecuter;
             _attacker = attacker;
         }
 

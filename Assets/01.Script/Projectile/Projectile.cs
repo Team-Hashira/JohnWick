@@ -27,6 +27,8 @@ namespace Hashira.Projectiles
         protected AnimationCurve _damageOverDistance;
         private Vector3 _spawnPos;
 
+        public event Action<RaycastHit2D> OnHitEvent;
+
         protected virtual void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -73,6 +75,7 @@ namespace Hashira.Projectiles
 
                             isAnyHit = true;
                             _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, damageable));
+                            OnHitEvent?.Invoke(hit);
                         }
                     }
                     else
@@ -81,6 +84,7 @@ namespace Hashira.Projectiles
 
                         isAnyHit = true;
                         _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, null));
+                        OnHitEvent?.Invoke(hit);
                     }
 
 
@@ -154,8 +158,6 @@ namespace Hashira.Projectiles
 
             _projectileModifiers = projectileModifiers;
             _projectileModifiers ??= new List<ProjectileModifier>();
-            for (int i = 0; i < _projectileModifiers.Count; i++)
-                _projectileModifiers[i]?.OnProjectileCreate(this);
 
             _spawnPos = transform.position;
         }
@@ -171,6 +173,7 @@ namespace Hashira.Projectiles
         {
             base.DelayDie();
             _trailRenderer.enabled = false;
+            OnHitEvent = null;
         }
     }
 }

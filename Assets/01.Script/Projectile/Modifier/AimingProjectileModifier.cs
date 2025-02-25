@@ -10,37 +10,6 @@ namespace Hashira.Projectiles
         
         private bool _isCanAimingBullet = false;
 
-        public override void OnEquip(Attacker attacker)
-        {
-            base.OnEquip(attacker);
-            _attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-        }
-
-        public override void OnUpdate()
-        {
-            base.OnUpdate();
-
-            if (CooldownUtillity.CheckCooldown("AimingBullet", _cooldown) && _isCanAimingBullet == false)
-            {
-                _isCanAimingBullet = true;
-                _attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
-            }
-        }
-
-        public override void OnUnEquip()
-        {
-            base.OnUnEquip();
-            if (CooldownUtillity.CheckCooldown("AimingBullet", _cooldown))
-                HandleProjectileCreateEvent(null);
-        }
-
-        private void HandleProjectileCreateEvent(List<Projectile> projectileList)
-        {
-            _attacker.OnProjectileCreateEvent -= HandleProjectileCreateEvent;
-            CooldownUtillity.StartCooldown("AimingBullet");
-            _isCanAimingBullet = false;
-        }
-
         public override void OnProjectileCreate(Projectile projectile)
         {
             base.OnProjectileCreate(projectile);

@@ -22,11 +22,19 @@ MonoBehaviour:
     \uB0AE\uB2E4."
   itemRating: 0
   useCustomClass: 0
-  defaultClass: 
+  defaultClass: Module
   <ModifierList>k__BackingField:
   - projectileModifierSO: {fileID: 11400000, guid: 8ae95b6e3b711024581b1da2a316fdf3, type: 2}
     projectileModifier:
       rid: 40250401228587318
+    conditionSetting:
+      condition: 1
+      count: 0
+      countType: 0
+      countCondition: 0
+      killType: 0
+      cooldown: 8
+      className: 
   <StatVariationList>k__BackingField: []
   references:
     version: 2
