@@ -22,7 +22,7 @@ namespace Hashira.UI
 
         private void LoadModules()
         {
-            List<ModuleItem> list = _playerModule.ListModules;
+            List<Module> list = _playerModule.ListModules;
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -30,7 +30,7 @@ namespace Hashira.UI
                 float value = i / (float)list.Count * 2 * Mathf.PI;
                 (moduleSlot.transform as RectTransform).anchoredPosition = new Vector2(Mathf.Sin(value), Mathf.Cos(value)) * _range;
 
-                moduleSlot.Init(list[i].ItemSO as ModuleItemSO);
+                moduleSlot.Init(list[i].ItemSO as ModuleSO);
             }
         }
     }

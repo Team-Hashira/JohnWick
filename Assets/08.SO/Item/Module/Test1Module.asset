@@ -9,23 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84f29b242c7b73946a496886973e0bf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
   m_Name: Test1Module
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
-  itemDefaultSprite: {fileID: 2910620647352401644, guid: c3e09b1f8758fd945a1cda332c45c662, type: 3}
-  itemName: "\uD14C\uC2A4\uD2B81 \uBAA8\uB4C8"
-  itemDisplayName: Test1
-  itemDescription: "\uD14C\uC2A4\uD2B8\uC6A9\uC785\uB2C8\uB2E41\n"
-  itemRating: 1
-  useCustomClass: 0
-  defaultClass: ModuleItem
+  itemIcon: {fileID: 21300000, guid: d692758d79b727f438b5f94f4e1d4f42, type: 3}
+  itemDefaultSprite: {fileID: 21300000, guid: d692758d79b727f438b5f94f4e1d4f42, type: 3}
+  itemName: SplitBullet
+  itemDisplayName: "\uBD84\uC5F4 \uD0C4\uD658"
+  itemDescription: "\"\uBC1C\uC0AC\uD55C \uCD1D\uC54C\uC774 \uB450\uAC08\uB798\uB85C
+    \uAC08\uB77C\uC838\uC11C \uB0A0\uC544\uAC04\uB2E4.\n\uB2E8\uC77C \uCD1D\uC54C\uB300\uBBF8\uC9C0\uB294
+    \uC870\uAE08 \uAC10\uC18C\uD55C\uB2E4.\"\r\n"
+  itemRating: 0
+  useCustomClass: 1
+  defaultClass: 
   <StatVariationList>k__BackingField:
   - Name: 
     elementSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-    <Value>k__BackingField: 15
+    <Value>k__BackingField: -20
     <IsPercentAdjustment>k__BackingField: 0
-  - Name: 
-    elementSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
-    <Value>k__BackingField: 51
-    <IsPercentAdjustment>k__BackingField: 1

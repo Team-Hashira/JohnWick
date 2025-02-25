@@ -19,7 +19,6 @@ namespace Hashira.Entities.Interacts
         protected Material _holdOutlineMat;
 
         public event Action OnInteractionEvent;
-        public event Action OnInteractionSuccesEvent;
 
         public bool CanInteraction { get; set; } = true;
 
@@ -35,13 +34,7 @@ namespace Hashira.Entities.Interacts
             if (CanInteraction == false) return;
             OnInteractionEvent?.Invoke();
 			OnInteractionEvent = null;
-            OnInteractionSuccesEvent = null;
 		}
-
-        public virtual void InteractionSucces()
-        {
-            OnInteractionSuccesEvent?.Invoke();
-        }
 
         public virtual void OffInteractable()
         {

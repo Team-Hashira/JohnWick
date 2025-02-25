@@ -5,9 +5,9 @@ namespace Hashira.UI
 {
     public class ModuleSlot : MonoBehaviour
     {
-        ModuleItemSO _baseModuleSO;
+        ModuleSO _baseModuleSO;
 
-        public void Init(ModuleItemSO baseModule)
+        public void Init(ModuleSO baseModule)
         {
             _baseModuleSO = baseModule;
         }

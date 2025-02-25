@@ -7,7 +7,7 @@ namespace Hashira.Items
 {
     public class DroppedModule : DroppedItem
     {
-        private ModuleItem ModuleItem => _item as ModuleItem;
+        private Module.Module ModuleItem => _item as Module.Module;
 
         public override void Interaction(Player player)
         {

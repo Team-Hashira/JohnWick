@@ -23,6 +23,8 @@ namespace Hashira.Players
 
         protected StatElement _damageStat;
 
+        public int bulletCount = 1; //임시
+
         [Header("=====Stamina setting=====")]
         [field: SerializeField] public float MaxStamina { get; private set; }
         [SerializeField] private float _staminaRecoverySpeed;
