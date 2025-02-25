@@ -8,16 +8,9 @@ namespace Hashira.Projectiles
     {
         public int doubleAttackDamage = 100;
 
-        private float _coolTime = 8f;
-        private float _currentTime = 0f;
-
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnProjectileHit(hit, damageable);
-
-            if (_currentTime < _coolTime) return;
-
-            _currentTime = 0;
 
             for (int i = -1; i <= 1; i++)
             {
@@ -37,7 +30,6 @@ namespace Hashira.Projectiles
         public override void OnProjectileUpdate()
         {
             base.OnProjectileUpdate();
-            _currentTime += Time.deltaTime;
         }
     }
 }
