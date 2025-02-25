@@ -12,7 +12,7 @@ namespace Hashira.Projectiles
         [SerializeField] protected EffectPoolType _hitEffect;
         [SerializeField] protected EffectPoolType _spakleEffect;
 
-        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default, AnimationCurve damageOverDistance = null)
+        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<IProjectileModifier> projectileModifiers = default, AnimationCurve damageOverDistance = null)
         {
             base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers, damageOverDistance);
             Owner = owner;

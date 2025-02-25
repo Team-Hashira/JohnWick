@@ -14,7 +14,7 @@ namespace Hashira.Projectiles
 
         [SerializeField] private CircleDamageCaster2D _circleDamageCaster;
 
-        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = default, AnimationCurve damageOverDistance = null)
+        public override void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<IProjectileModifier> projectileModifiers = default, AnimationCurve damageOverDistance = null)
         {
             base.Init(whatIsTarget, direction, speed, damage, penetration, owner, projectileModifiers, damageOverDistance);
             _angle = Random.Range(-_minMaxAngle, _minMaxAngle);
