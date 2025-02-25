@@ -8,13 +8,13 @@ namespace Hashira.Items.Modules
         public override void Equip(Player player)
         {
             base.Equip(player);
-            //_player.bulletCount++;
+            _player.Attacker.AddBurstBullets();
         }
 
         public override void UnEquip()
         {
             base.UnEquip();
-            //_player.bulletCount--;
+            _player.Attacker.RemoveBurstBullets();
         }
     }
 }

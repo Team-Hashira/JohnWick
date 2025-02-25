@@ -17,6 +17,7 @@ namespace Hashira
         [SerializeField] private float _followSpeed = 4f;
         [SerializeField] private LayerMask _whatIsTarget;
         [SerializeField] private float _attackDelay;
+        [SerializeField] private AnimationCurve _damageOverDistance;
         private float _lastAttackTime;
         private int _burstBulletCount = 1;
 
@@ -30,6 +31,20 @@ namespace Hashira
             _lastAttackTime = Time.time;
         }
 
+        private void Start()
+        {
+            _playerStat = _player.GetEntityComponent<EntityStat>();
+        }
+
+        public void AddBurstBullets()
+            => _burstBulletCount++;
+        public void RemoveBurstBullets()
+            => _burstBulletCount--;
+        public void AddProjectileModifiers(ProjectileModifier projectileModifier)
+            => _projectileModifiers.Add(projectileModifier);
+        public void RemoveProjectileModifiers(ProjectileModifier projectileModifier)
+            => _projectileModifiers.Remove(projectileModifier);
+
         private void HandleAttackEvent(bool isDown)
         {
             float angle = 45f;
@@ -40,8 +55,9 @@ namespace Hashira
                 {
                     Vector2 targetPos = Camera.main.ScreenToWorldPoint(_input.MousePosition) - transform.position;
                     targetPos = Quaternion.Euler(0, 0, -angle / 2 + angle * (i + 0.5f) / _burstBulletCount) * targetPos;
+                    int damage = _playerStat.StatDictionary["AttackPower"].IntValue;
                     Bullet bullet = gameObject.Pop(ProjectilePoolType.Bullet, transform.position, Quaternion.identity) as Bullet;
-                    bullet.Init(_whatIsTarget, targetPos, 100f, _playerStat.StatDictionary["AttackPower"].IntValue, 0, _player.transform);
+                    bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, _projectileModifiers, _damageOverDistance);
                 }
             }
         }

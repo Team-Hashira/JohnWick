@@ -34,6 +34,9 @@ namespace Hashira.Projectiles
         {
             if (_isDead) return;
 
+            for (int i = 0; i < _projectileModifiers.Count; i++)
+                _projectileModifiers[i].OnProjectileUpdate();
+
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             bool isHit = _projectileCollider.CheckCollision(_whatIsTarget, out RaycastHit2D[] hits, movement);
             List<RaycastHit2D> newHitList = new List<RaycastHit2D>();
