@@ -105,16 +105,15 @@ namespace Hashira
                 foreach (Projectile projectile in projectileList)
                 {
                     _modifierSetting.projectileModifier.OnProjectileCreate(projectile);
+                    projectile.OnHitEvent += HandleHitEvent;
                 }
-            }
-            foreach (Projectile projectile in projectileList)
-            {
-                projectile.OnHitEvent += HandleHitEvent;
             }
         }
 
-        private void HandleHitEvent(RaycastHit2D hit)
+        private void HandleHitEvent(RaycastHit2D hit, IDamageable damageable)
         {
+            _modifierSetting.projectileModifier.OnProjectileHit(hit, damageable);
+
             if (hit.transform.TryGetComponent(out Entity entity) && entity.TryGetEntityComponent(out EntityHealth entityHealth))
             {
                 switch (_modifierSetting.conditionSetting.countCondition)

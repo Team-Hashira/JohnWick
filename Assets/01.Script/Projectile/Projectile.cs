@@ -27,7 +27,7 @@ namespace Hashira.Projectiles
         protected AnimationCurve _damageOverDistance;
         private Vector3 _spawnPos;
 
-        public event Action<RaycastHit2D> OnHitEvent;
+        public event Action<RaycastHit2D, IDamageable> OnHitEvent;
 
         protected virtual void Awake()
         {
@@ -74,8 +74,7 @@ namespace Hashira.Projectiles
                             OnHited(hit, damageable);
 
                             isAnyHit = true;
-                            _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, damageable));
-                            OnHitEvent?.Invoke(hit);
+                            OnHitEvent?.Invoke(hit, damageable);
                         }
                     }
                     else
@@ -83,8 +82,7 @@ namespace Hashira.Projectiles
                         OnHited(hit, null);
 
                         isAnyHit = true;
-                        _projectileModifiers.ForEach(modifire => modifire.OnProjectileHit(hit, null));
-                        OnHitEvent?.Invoke(hit);
+                        OnHitEvent?.Invoke(hit, null);
                     }
 
 
