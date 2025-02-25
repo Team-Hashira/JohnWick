@@ -25,7 +25,7 @@ namespace Hashira.Items.Modules
             foreach (StatElementAdjustment adjustment in _moduleItemSO.StatVariationList)
             {
                 _entityStat.StatDictionary[adjustment.elementSO]
-                    .AddModify(_moduleItemSO.itemName, adjustment.Value, adjustment.IsPercentAdjustment ? EModifyMode.Percnet : EModifyMode.Add);
+                    .AddModify(_moduleItemSO.itemName, adjustment.Value, adjustment.IsPercentAdjustment ? EModifyMode.Percent : EModifyMode.Add);
             }
         }
 
@@ -39,7 +39,7 @@ namespace Hashira.Items.Modules
             foreach (StatElementAdjustment adjustment in _moduleItemSO.StatVariationList)
             {
                 _entityStat.StatDictionary[adjustment.elementSO]
-                    .RemoveModify(_moduleItemSO.itemName, adjustment.IsPercentAdjustment ? EModifyMode.Percnet : EModifyMode.Add);
+                    .RemoveModify(_moduleItemSO.itemName, adjustment.IsPercentAdjustment ? EModifyMode.Percent : EModifyMode.Add);
             }
         }
     }

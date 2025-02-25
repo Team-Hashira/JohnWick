@@ -4,6 +4,7 @@ using Hashira.Players;
 using Hashira.Projectiles;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Hashira
@@ -20,6 +21,9 @@ namespace Hashira
         [SerializeField] private AnimationCurve _damageOverDistance;
         private float _lastAttackTime;
         private int _burstBulletCount = 1;
+        private ProjectilePoolType _projectilePoolType = ProjectilePoolType.Bullet;
+
+        public event Action OnProjectileCreateEvent ;
 
         private List<ProjectileModifier> _projectileModifiers = new List<ProjectileModifier>();
 
@@ -47,7 +51,7 @@ namespace Hashira
 
         private void HandleAttackEvent(bool isDown)
         {
-            float angle = 45f;
+            float angle = _burstBulletCount * 10;
             if (isDown && _lastAttackTime + _attackDelay < Time.time)
             {
                 _lastAttackTime = Time.time;
@@ -56,10 +60,16 @@ namespace Hashira
                     Vector2 targetPos = Camera.main.ScreenToWorldPoint(_input.MousePosition) - transform.position;
                     targetPos = Quaternion.Euler(0, 0, -angle / 2 + angle * (i + 0.5f) / _burstBulletCount) * targetPos;
                     int damage = _playerStat.StatDictionary["AttackPower"].IntValue;
-                    Bullet bullet = gameObject.Pop(ProjectilePoolType.Bullet, transform.position, Quaternion.identity) as Bullet;
-                    bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, _projectileModifiers, _damageOverDistance);
+                    Projectile bullet = gameObject.Pop(_projectilePoolType, transform.position, Quaternion.identity) as Projectile;
+                    bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, _projectileModifiers.ToList(), _damageOverDistance);
+                    OnProjectileCreateEvent?.Invoke();
                 }
             }
+        }
+
+        public void ChangeProjectile(ProjectilePoolType projectilePoolType)
+        {
+            _projectilePoolType = projectilePoolType;
         }
 
         private void Update()
