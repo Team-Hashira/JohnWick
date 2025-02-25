@@ -27,9 +27,14 @@ namespace Hashira.Items.Modules
             for (int i = 0; i < ModifierList.Count; i++)
             {
                 ProjectileModifierSetting projectileModifierSetting = ModifierList[i];
+                if (ModifierList[i].projectileModifierSO == null)
+                {
+                    Debug.Log(projectileModifierSetting.projectileModifierSO);
+                    projectileModifierSetting.projectileModifier = null;
+                    continue;
+                }
                 if (projectileModifierSetting.projectileModifier != null) continue;
                 projectileModifierSetting.projectileModifier = projectileModifierSetting.projectileModifierSO?.GetItemClass();
-                Debug.Log(projectileModifierSetting.projectileModifier);
             }
         }
     }

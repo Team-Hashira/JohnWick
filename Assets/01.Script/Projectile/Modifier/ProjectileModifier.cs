@@ -46,6 +46,14 @@ namespace Hashira.Projectiles
         }
 
         /// <summary>
+        /// Update시작 전
+        /// </summary>
+        public virtual void OnUpdate()
+        {
+
+        }
+
+        /// <summary>
         /// 총알의 Update시작 전
         /// </summary>
         public virtual void OnProjectileUpdate()

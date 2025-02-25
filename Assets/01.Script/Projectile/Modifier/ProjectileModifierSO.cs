@@ -28,9 +28,10 @@ namespace Hashira.Projectiles
         public ProjectileModifier GetItemClass()
             => _projectileModifier?.Clone() as ProjectileModifier;
 
-        protected virtual void OnEnable()
+
+        protected virtual void OnValidate()
         {
-            if (_projectileModifier != null) return;
+            if (_projectileModifier != null || _projectileModifier.GetType().ToString() == className) return;
 
             string thisTag = GetType().ToString();
             int tagStartIdx = thisTag.LastIndexOf(".");                 //Namespace.Class
