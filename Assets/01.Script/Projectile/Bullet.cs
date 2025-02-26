@@ -75,7 +75,7 @@ namespace Hashira.Projectiles
             else
                 CameraManager.Instance.ShakeCamera(4, 4, 0.15f);
 
-            _whatIsTarget = whatIsNewTargetLayer;
+            WhatIsTarget = whatIsNewTargetLayer;
             IsParryingable = false;
             Owner = owner;
             transform.localEulerAngles += new Vector3(0, 180, 0);

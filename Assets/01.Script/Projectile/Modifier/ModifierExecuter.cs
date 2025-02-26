@@ -74,13 +74,13 @@ namespace Hashira
         {
             _module = module;
             _modifierSetting = modifierSetting;
-            _currentCount = 0;
             _key = $"{_module.ItemSO.itemName}_{_modifierSetting.projectileModifierSO.name}";
             attacker.OnProjectileCreateReadyEvent += HandleProjectileCreateReadyEvent;
             attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
             switch (modifierSetting.conditionSetting.condition)
             {
                 case EExecutionCondition.ByCount:
+                    _currentCount = 0;
                     break;
                 case EExecutionCondition.ByCooldown:
                     CooldownUtillity.StartCooldown(_key);
@@ -100,21 +100,25 @@ namespace Hashira
 
         private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
+            if (_modifierSetting.conditionSetting.condition == EExecutionCondition.ByCount &&
+                _modifierSetting.conditionSetting.countCondition == ECountCondition.Shoot)
+            {
+                _currentCount++;
+            }
             if (CheckCondition())
             {
                 foreach (Projectile projectile in projectileList)
                 {
                     _modifierSetting.projectileModifier.OnProjectileCreate(projectile);
+                    projectile.OnHitEvent += HandleHitEvent;
                 }
-            }
-            foreach (Projectile projectile in projectileList)
-            {
-                projectile.OnHitEvent += HandleHitEvent;
             }
         }
 
-        private void HandleHitEvent(RaycastHit2D hit)
+        private void HandleHitEvent(RaycastHit2D hit, IDamageable damageable)
         {
+            _modifierSetting.projectileModifier.OnProjectileHit(hit, damageable);
+
             if (hit.transform.TryGetComponent(out Entity entity) && entity.TryGetEntityComponent(out EntityHealth entityHealth))
             {
                 switch (_modifierSetting.conditionSetting.countCondition)

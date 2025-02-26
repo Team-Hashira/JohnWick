@@ -5,15 +5,10 @@ namespace Hashira.Projectiles
 {
     public class BlastProjectileModifier : ProjectileModifier
     {
-        public override void OnProjectileCreateReady()
-        {
-            base.OnProjectileCreateReady();
-            ModifierExecuter.Reset();
-        }
-
         public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnProjectileHit(hit, damageable);
+
             int damage = (int)(_projectile.Damage * 0.3f);
 
             for (int i = -1; i <= 1; i++)
@@ -24,7 +19,7 @@ namespace Hashira.Projectiles
                 blastBulletModuleSplinter.Init(dir, damage);
             }
 
-            Debug.Log("sdsdsd");
+            ModifierExecuter.Reset();
         }
     }
 }

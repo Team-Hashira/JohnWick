@@ -26,19 +26,26 @@ MonoBehaviour:
   <ModifierList>k__BackingField:
   - projectileModifierSO: {fileID: 11400000, guid: 8ae95b6e3b711024581b1da2a316fdf3, type: 2}
     projectileModifier:
-      rid: 40250401228587318
+      rid: 40250413069631563
     conditionSetting:
-      condition: 1
-      count: 0
+      condition: 0
+      count: 10
       countType: 0
-      countCondition: 0
+      countCondition: 3
       killType: 0
-      cooldown: 8
+      cooldown: 0
       className: 
   <StatVariationList>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 40250401228587318
-      type: {class: HomingProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
-      data: 
+    - rid: 40250413069631563
+      type: {class: BonusProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data:
+        _poolType: 4
+        _whatIsTarget:
+          serializedVersion: 2
+          m_Bits: 512
+        _speed: 50
+        _damagePercent: 100
+        _penetration: 0
