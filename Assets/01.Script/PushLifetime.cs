@@ -13,13 +13,13 @@ namespace Hashira
             this.Push();
         }
 
-        public void OnPop()
+        public virtual void OnPop()
         {
             Spawn();
             _isDead = false;
         }
 
-        public void OnPush()
+        public virtual void OnPush()
         {
 
         }

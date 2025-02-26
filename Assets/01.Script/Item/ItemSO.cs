@@ -32,12 +32,12 @@ namespace Hashira.Items
         [ToggleField("useCustomClass", false)]
         public string defaultClass;
 
-        protected Item _itemClass;
+        [SerializeReference] protected Item _itemClass;
 
         public Item GetItemClass()
             => _itemClass?.Clone() as Item;
 
-        protected virtual void OnEnable()
+        protected virtual void OnValidate()
         {
             if (useCustomClass == false && defaultClass == "") return;
 
@@ -45,25 +45,29 @@ namespace Hashira.Items
             int tagStartIdx = thisTag.LastIndexOf(".");                 //Namespace.Class
             string namespaceName = thisTag[..tagStartIdx];              //Namespace
             string typeName;
+            string tagName = thisTag[++tagStartIdx..];
             if (useCustomClass)
-            {
-                string tagName = thisTag[++tagStartIdx..];              //Class
-                typeName = namespaceName + "." + itemName + tagName;    //Namespace.Item
+            {             //Class
+                typeName = $"{namespaceName}.{itemName}{tagName}";    //Namespace.Item
             }
             else
             {
-                typeName = namespaceName + "." + defaultClass;          //Namespace.Default
+                typeName = $"{namespaceName}.{defaultClass}";          //Namespace.Default
             }
+
+            if (_itemClass != null && _itemClass.ToString() == typeName) return;
+
 
             try
             {
                 Type type = Type.GetType(typeName);
-                Item foundWeapon = Activator.CreateInstance(type) as Item;
-                foundWeapon.Init(this);
-                _itemClass = foundWeapon;
+                Item item = Activator.CreateInstance(type) as Item;
+                item.Init(this);
+                _itemClass = item;
             }
             catch (Exception ex)
             {
+                _itemClass = null;
                 Debug.LogError($"{typeName} not found.\n" +
                                 $"Error : {ex.ToString()}");
             }

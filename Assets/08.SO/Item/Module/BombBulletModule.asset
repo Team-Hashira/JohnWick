@@ -19,6 +19,24 @@ MonoBehaviour:
   itemDescription: "\uD3ED\uBC1C\uD558\uB294 \uD0C4\uD658\uC744 \uBC1C\uC0AC\uD55C\uB2E4.\n\uD0C4\uD658\uC740
     \uBC14\uB2E5\uC774\uB098 \uBCBD\uC5D0 \uB9DE\uC544\uB3C4 \uD3ED\uBC1C\uD55C\uB2E4."
   itemRating: 0
-  useCustomClass: 1
-  defaultClass: 
+  useCustomClass: 0
+  defaultClass: Module
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: 2d7c0670e8989ce47bb0a0c2f2b4ccf9, type: 2}
+    projectileModifier:
+      rid: 40250401228587317
+    conditionSetting:
+      condition: 1
+      count: 0
+      countType: 0
+      countCondition: 0
+      killType: 0
+      cooldown: 12
+      className: 
   <StatVariationList>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 40250401228587317
+      type: {class: BombProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data: 
