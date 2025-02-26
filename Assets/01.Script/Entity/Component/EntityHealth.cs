@@ -16,6 +16,7 @@ namespace Hashira.Entities
         HeadShot,
         Fixed,
         Fire,
+        Electricity,
     }
 
     public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDamageable, IRecoverable

@@ -25,6 +25,11 @@ public class CircleDamageCaster2D : DamageCaster2D
     {
         _raycastHits = Physics2D.CircleCastAll(transform.position + transform.rotation * GetFinalCenter(center),
             GetScaledSize(radius), moveTo.normalized, moveTo.magnitude, _whatIsCastable);
+        if (moveTo == default)
+        {
+            for (int i = 0; i < _raycastHits.Length; i++)
+                _raycastHits[i].point = _raycastHits[i].transform.position;
+        }
         return _raycastHits;
     }
     

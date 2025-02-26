@@ -23,8 +23,9 @@ namespace Hashira.Items.Modules
         [field: SerializeField] public List<ProjectileModifierSetting> ModifierList { get; private set; }
         [field: SerializeField] public List<StatElementAdjustment> StatVariationList { get; private set; }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
+            base.OnValidate();
             for (int i = 0; i < ModifierList.Count; i++)
             {
                 ProjectileModifierSetting projectileModifierSetting = ModifierList[i];

@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Lifetime : MonoBehaviour
 {
     public float lifetime;
-    [SerializeField] private float _dieDelay;
+    [SerializeField] protected float _dieDelay;
     protected bool _isDead;
 
     public void Spawn()

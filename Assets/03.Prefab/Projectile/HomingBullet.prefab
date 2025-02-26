@@ -343,9 +343,9 @@ MonoBehaviour:
   _trailRenderer: {fileID: 205900602592173212}
   _hitEffect: 0
   _spakleEffect: 5
-  _whatIsObstacle:
+  _whatIsTarget:
     serializedVersion: 2
-    m_Bits: 38976
+    m_Bits: 512
   _radius: 20
   _homingPower: 5
 --- !u!114 &3727667140038213734
