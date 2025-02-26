@@ -14,7 +14,7 @@ namespace Hashira.Projectiles
         public int Damage { get; protected set; }
         protected int _penetration;
         protected int _currentPenetration;
-        protected LayerMask _whatIsTarget;
+        public LayerMask WhatIsTarget { get; protected set; }
         protected SpriteRenderer _spriteRenderer;
         protected BoxCollider2D _collider;
 
@@ -43,7 +43,7 @@ namespace Hashira.Projectiles
                 _projectileModifiers[i].OnProjectileUpdate();
 
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
-            bool isHit = _projectileCollider.CheckCollision(_whatIsTarget, out RaycastHit2D[] hits, movement);
+            bool isHit = _projectileCollider.CheckCollision(WhatIsTarget, out RaycastHit2D[] hits, movement);
             List<RaycastHit2D> newHitList = new List<RaycastHit2D>();
             for (int i = 0; i < hits.Length; i++)
             {
@@ -139,7 +139,7 @@ namespace Hashira.Projectiles
             _speed = speed;
             _penetration = penetration;
             _currentPenetration = penetration;
-            _whatIsTarget = whatIsTarget;
+            WhatIsTarget = whatIsTarget;
             transform.right = direction;
             _spriteRenderer.enabled = true;
             _trailRenderer.enabled = true;

@@ -74,13 +74,13 @@ namespace Hashira
         {
             _module = module;
             _modifierSetting = modifierSetting;
-            _currentCount = 0;
             _key = $"{_module.ItemSO.itemName}_{_modifierSetting.projectileModifierSO.name}";
             attacker.OnProjectileCreateReadyEvent += HandleProjectileCreateReadyEvent;
             attacker.OnProjectileCreateEvent += HandleProjectileCreateEvent;
             switch (modifierSetting.conditionSetting.condition)
             {
                 case EExecutionCondition.ByCount:
+                    _currentCount = 0;
                     break;
                 case EExecutionCondition.ByCooldown:
                     CooldownUtillity.StartCooldown(_key);
@@ -100,6 +100,11 @@ namespace Hashira
 
         private void HandleProjectileCreateEvent(List<Projectile> projectileList)
         {
+            if (_modifierSetting.conditionSetting.condition == EExecutionCondition.ByCount &&
+                _modifierSetting.conditionSetting.countCondition == ECountCondition.Shoot)
+            {
+                _currentCount++;
+            }
             if (CheckCondition())
             {
                 foreach (Projectile projectile in projectileList)

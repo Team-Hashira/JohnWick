@@ -26,7 +26,7 @@ namespace Hashira.Projectiles
         {
             base.OnHited(hit, damageable);
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f, DG.Tweening.Ease.InCirc);
-            _circleDamageCaster.SetLayerMask(_whatIsTarget);
+            _circleDamageCaster.SetLayerMask(WhatIsTarget);
             _circleDamageCaster.CastDamage(Damage, Vector2.zero, transform.right, attackType: Entities.EAttackType.Fire);
         }
 
