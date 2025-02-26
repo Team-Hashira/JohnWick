@@ -21,6 +21,7 @@ namespace Hashira.Entities
     public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDamageable, IRecoverable
     {
         public int Health { get; private set; }
+        public int Shield { get; set; }
 
         [SerializeField] private StatElementSO _healthStatSO;
 
@@ -31,6 +32,7 @@ namespace Hashira.Entities
 
         public int MaxHealth => _maxHealth.IntValue;
         public event Action<int, int> OnHealthChangedEvent;
+        public event Action OnHitedEvent;
         public event Action OnDieEvent;
 
         private EntityMover _entityMover;
@@ -63,6 +65,7 @@ namespace Hashira.Entities
         }
 
         public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
+
         {
             EEntityPartType hitPoint = EEntityPartType.Body;
             if (raycastHit != default && Owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
@@ -90,7 +93,6 @@ namespace Hashira.Entities
 
             return hitPoint;
         }
-
         private void CreateDamageText(int damage, Vector3 textPos, EAttackType attackType)
         {
             Color color = EnumUtility.AttackTypeColorDict[attackType];
