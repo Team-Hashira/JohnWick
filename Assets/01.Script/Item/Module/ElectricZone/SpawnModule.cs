@@ -7,7 +7,8 @@ namespace Hashira.Items.Modules
 {
     public class SpawnModule : Module
     {
-        [SerializeField] private float _delay;
+        [SerializeField] private float _cooldown;
+        [SerializeField] private float _cooldownStartDelay;
         [SerializeField] private OtherPoolType _poolingObject;
 
         public override void Equip(Player player)
@@ -19,11 +20,14 @@ namespace Hashira.Items.Modules
         {
             base.ItemUpdate();
 
-            if (CooldownUtillity.CheckCooldown("ElectricZoneModule", _delay, true))
+            if (CooldownUtillity.CheckCooldown("SpawnModule", _cooldown, true))
             {
                 _player.gameObject.Pop(_poolingObject, _player.transform.position, Quaternion.identity);
-                CooldownUtillity.StartCooldown("ElectricZoneModule");
+                CooldownUtillity.StartCooldown("SpawnModuleDelay");
             }
+
+            if (CooldownUtillity.CheckCooldown("SpawnModuleDelay", _cooldownStartDelay, true))
+                CooldownUtillity.StartCooldown("SpawnModule");
         }
 
         public override void UnEquip()
