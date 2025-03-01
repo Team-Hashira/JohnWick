@@ -1,33 +1,52 @@
 using Crogen.CrogenPooling;
-using Hashira.Items.Modules;
 using Hashira.Players;
 using UnityEngine;
 
 namespace Hashira.Items.Modules
-{
+{ 
     public class SpawnModule : Module
     {
-        [SerializeField] private float _cooldown;
+        /// <summary>
+        /// 처음 실행될때까지의 딜레이
+        /// </summary>
         [SerializeField] private float _cooldownStartDelay;
+        /// <summary>
+        /// 쿨타임
+        /// </summary>
+        [SerializeField] private float _cooldown;
+        /// <summary>
+        /// 쿨이 다시 돌기 시작할때까지의 시간
+        /// </summary>
+        [SerializeField] private float _cooldownDelay;
         [SerializeField] private OtherPoolType _poolingObject;
+        private bool _isFirst;
 
         public override void Equip(Player player)
         {
             base.Equip(player);
+            CooldownUtillity.StartCooldown("SpawnModuleStartDelay");
+            _isFirst = true;
         }
 
         public override void ItemUpdate()
         {
             base.ItemUpdate();
 
-            if (CooldownUtillity.CheckCooldown("SpawnModule", _cooldown, true))
+
+            if (CooldownUtillity.CheckCooldown("SpawnModuleStartDelay", _cooldownStartDelay))
             {
-                _player.gameObject.Pop(_poolingObject, _player.transform.position, Quaternion.identity);
-                CooldownUtillity.StartCooldown("SpawnModuleDelay");
+                if (CooldownUtillity.CheckCooldown("SpawnModule", _cooldown, _isFirst))
+                {
+                    _isFirst = false;
+                    _player.gameObject.Pop(_poolingObject, _player.transform.position, Quaternion.identity);
+                    CooldownUtillity.StartCooldown("SpawnModuleDelay");
+                }
+
+                if (CooldownUtillity.CheckCooldown("SpawnModuleDelay", _cooldownDelay, false))
+                    CooldownUtillity.StartCooldown("SpawnModule");
             }
 
-            if (CooldownUtillity.CheckCooldown("SpawnModuleDelay", _cooldownStartDelay, true))
-                CooldownUtillity.StartCooldown("SpawnModule");
+                
         }
 
         public override void UnEquip()
