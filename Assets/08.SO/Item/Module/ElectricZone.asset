@@ -24,14 +24,16 @@ MonoBehaviour:
   useCustomClass: 0
   defaultClass: SpawnModule
   _itemClass:
-    rid: 40250426260717650
+    rid: 9175521327006875734
   <ModifierList>k__BackingField: []
   <StatVariationList>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 40250426260717650
+    - rid: 9175521327006875734
       type: {class: SpawnModule, ns: Hashira.Items.Modules, asm: Assembly-CSharp}
       data:
-        _delay: 12
-        _poolingObject: 1
+        _cooldownStartDelay: 3
+        _cooldown: 50
+        _cooldownDelay: 10
+        _poolingObject: 0
