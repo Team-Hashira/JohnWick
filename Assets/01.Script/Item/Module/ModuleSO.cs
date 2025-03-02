@@ -34,8 +34,9 @@ namespace Hashira.Items.Modules
                     projectileModifierSetting.projectileModifier = null;
                     continue;
                 }
-                if (projectileModifierSetting.projectileModifier != null) continue;
-                projectileModifierSetting.projectileModifier = projectileModifierSetting.projectileModifierSO?.GetItemClass();
+                if (projectileModifierSetting.projectileModifier != null && projectileModifierSetting.projectileModifier.ProjectileModifierSO == projectileModifierSetting.projectileModifierSO) continue;
+                ProjectileModifier so = projectileModifierSetting.projectileModifierSO?.GetItemClass();
+                projectileModifierSetting.projectileModifier = so;
             }
         }
     }

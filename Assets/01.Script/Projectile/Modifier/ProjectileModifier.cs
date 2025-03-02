@@ -87,6 +87,11 @@ namespace Hashira.Projectiles
         /// 클론 할때마다
         /// </summary>
         /// <returns></returns>
-        public object Clone() => MemberwiseClone();
+        public object Clone()
+        {
+            ProjectileModifier projectileModifier = (ProjectileModifier)MemberwiseClone();
+            projectileModifier.ProjectileModifierSO = ProjectileModifierSO;
+            return projectileModifier;
+        }
     }
 }
