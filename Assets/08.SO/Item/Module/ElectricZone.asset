@@ -25,7 +25,18 @@ MonoBehaviour:
   defaultClass: SpawnModule
   _itemClass:
     rid: 9175521327006875734
-  <ModifierList>k__BackingField: []
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: d291a114655bd9d4cb881dd7575f1a84, type: 2}
+    projectileModifier:
+      rid: 9175521370710212608
+    conditionSetting:
+      condition: 0
+      count: 23
+      countType: 2
+      countCondition: 0
+      killType: 0
+      cooldown: 0
+      className: 
   <StatVariationList>k__BackingField: []
   references:
     version: 2
@@ -36,4 +47,11 @@ MonoBehaviour:
         _cooldownStartDelay: 3
         _cooldown: 50
         _cooldownDelay: 10
-        _poolingObject: 0
+        _poolingObject: 1
+    - rid: 9175521370710212608
+      type: {class: BonusDamageProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data:
+        _damageValue: 0
+        _withProjectileDamage: 0
+        _isPercent: 0
+        _attackType: 0
