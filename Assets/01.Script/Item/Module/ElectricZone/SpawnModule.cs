@@ -1,10 +1,12 @@
 using Crogen.CrogenPooling;
+using Hashira.Core.StatSystem;
 using Hashira.Players;
+using System;
 using UnityEngine;
 
 namespace Hashira.Items.Modules
 { 
-    public class SpawnModule : Module
+    public class SpawnModule : Module, ICloneable, IStatable
     {
         /// <summary>
         /// 처음 실행될때까지의 딜레이
