@@ -21,12 +21,10 @@ namespace Hashira.EffectSystem
 
         public virtual void Update()
         {
-
         }
 
         public virtual void Disable()
         {
-            
         }
     }
 }
