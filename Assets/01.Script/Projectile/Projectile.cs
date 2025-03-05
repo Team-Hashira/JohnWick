@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    public class Projectile : PushLifetime
+    public class Projectile : MonoBehaviour, IPoolingObject
     {
         [SerializeField] protected bool _canMultipleAttacks;
         [SerializeField] protected BoxDamageCaster2D _boxDamageCaster;
@@ -16,7 +17,6 @@ namespace Hashira.Projectiles
         protected int _currentPenetration;
         public LayerMask WhatIsTarget { get; protected set; }
 
-        protected List<ProjectileModifier> _projectileModifiers;
 
         protected List<Collider2D> _penetratedColliderList = new List<Collider2D>();
         public Transform Owner { get; set; }
@@ -33,28 +33,26 @@ namespace Hashira.Projectiles
 
         protected virtual void FixedUpdate()
         {
-            if (_isDead) return;
-
-            for (int i = 0; i < _projectileModifiers.Count; i++)
-                _projectileModifiers[i].OnProjectileUpdate();
-
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, movement, transform.right);
 
-            transform.position += movement;
 
             bool isHit = hitInfoes.Length > 0;
 
             if (isHit)
             {
+                if (hitInfoes.Length > 0) Debug.Log(hitInfoes[0].raycastHit.transform);
                 for (int i = 0; i < hitInfoes.Length; i++)
                     OnHited(hitInfoes[i]);
+                transform.position += transform.right * hitInfoes[0].raycastHit.distance;
 
                 this.Push();
             }
+            else
+                transform.position += movement;
         }
 
-        public void DamageOverride(int damage)
+        public void SetDamage(int damage)
             => Damage = damage;
 
         public void SetAttackType(EAttackType eAttackType = EAttackType.Default)
@@ -84,9 +82,6 @@ namespace Hashira.Projectiles
             _penetratedColliderList = new List<Collider2D>();
             Owner = owner;
 
-            _projectileModifiers = projectileModifiers;
-            _projectileModifiers ??= new List<ProjectileModifier>();
-
             _spawnPos = transform.position;
         }
 
@@ -95,15 +90,11 @@ namespace Hashira.Projectiles
         GameObject IPoolingObject.gameObject { get; set; }
         public virtual void OnPop()
         {
-            base.Die();
-            _spriteRenderer.enabled = false;
-            _collider.enabled = false;
+
         }
         public virtual void OnPush()
         {
-            base.DelayDie();
-            _trailRenderer.enabled = false;
-            OnHitEvent = null;
+
         }
         #endregion
     }
