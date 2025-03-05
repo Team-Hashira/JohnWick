@@ -2,6 +2,7 @@ using DG.Tweening;
 using Hashira.Cards;
 using Hashira.Core;
 using Hashira.Core.Attribute;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -73,7 +74,7 @@ namespace Hashira.LatestUI
             _selectSequence
                 .Append(RectTransform.DORotate(new Vector3(0, 360f), 0.3f, RotateMode.FastBeyond360))
                 .JoinCallback(() => _selectingCardPanel.Select(this))
-                .InsertCallback(_selectSequence.Duration() - 0.1f ,_selectingCardPanel.Close);
+                .InsertCallback(_selectSequence.Duration() - 0.1f, _selectingCardPanel.Close);
         }
 
         public void OnClickEnd()
@@ -105,9 +106,9 @@ namespace Hashira.LatestUI
             _layoutElement.ignoreLayout = true;
         }
 
-        private IEnumerator BezierCoroutine()
+        private IEnumerator ReloadCoroutine(Vector2 destination, Action OnComplete = null)
         {
-            yield return new WaitForSeconds(1);
+
         }
     }
 }
