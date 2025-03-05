@@ -8,15 +8,16 @@ namespace Hashira.Cards
     [CreateAssetMenu(fileName = "Card", menuName = "SO/Card")]
     public class CardSO : ScriptableObject
     {
-        [Header("==========Card setting==========")]
+        [Header("==========CardSO==========")]
 
-        public string iconSprite;
+        public Sprite iconSprite;
         public string cardName;
+        [TextArea]
         public string cardDescription;
         public int cost;
 
         public string effectClassName;
-        [SerializeReference] private Type _effectType;
+        private Type _effectType;
 
         protected virtual void OnValidate()
         {
@@ -34,7 +35,7 @@ namespace Hashira.Cards
             }
         }
 
-        public Effect GetEffectClass()
+        public virtual Effect GetEffectClass()
             => Activator.CreateInstance(_effectType) as Effect;
     }
 
