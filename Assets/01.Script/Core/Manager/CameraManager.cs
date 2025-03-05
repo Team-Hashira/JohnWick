@@ -1,12 +1,19 @@
 using AYellowpaper.SerializedCollections;
 using DG.Tweening;
-using System.Collections.Generic;
+using Hashira;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class CameraManager : MonoSingleton<CameraManager>
 {
-    [SerializeField] private SerializedDictionary<string, CinemachineCamera> _cameraDictionary = new SerializedDictionary<string, CinemachineCamera>();
+    [SerializeField] private AYellowpaper.SerializedCollections.SerializedDictionary<string, CinemachineCamera> _cameraDictionary = new AYellowpaper.SerializedCollections.SerializedDictionary<string, CinemachineCamera>();
+    [field: SerializeField] public Volume Volume { get; private set; }
+
+
+    private Sequence _shakeSequence;
+    private Sequence _aberrationSequence;
 
     private CinemachineVirtualCameraBase _currentCamera;
     public CinemachineVirtualCameraBase currentCamera 
@@ -66,7 +73,6 @@ public class CameraManager : MonoSingleton<CameraManager>
         currentMultiChannel = currentCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    private Sequence _shakeSequence;
     public void ShakeCamera(float amplitude, float frequency, float time, AnimationCurve curve)
     {
         if (_shakeSequence != null && _shakeSequence.IsActive()) _shakeSequence.Kill();
@@ -96,5 +102,34 @@ public class CameraManager : MonoSingleton<CameraManager>
                 DOTween.To(() => frequency,
                 value => currentMultiChannel.FrequencyGain = value,
                 0, time).SetEase(ease));
+    }
+
+    public void Aberration(float intensity, float time, AnimationCurve curve)
+    {
+        if (_aberrationSequence != null && _aberrationSequence.IsActive()) _aberrationSequence.Kill();
+        _aberrationSequence = DOTween.Sequence();
+
+        if (Volume.profile.TryGet(out ChromaticAberration chromaticAberration) && chromaticAberration.intensity.value < intensity)
+        {
+            _aberrationSequence
+                .Append(
+                    DOTween.To(() => intensity,
+                    value => chromaticAberration.intensity.value = value,
+                    0, time).SetEase(curve));
+        }
+    }
+    public void Aberration(float intensity, float time, Ease ease = Ease.Linear)
+    {
+        if (_aberrationSequence != null && _aberrationSequence.IsActive()) _aberrationSequence.Kill();
+        _aberrationSequence = DOTween.Sequence();
+
+        if (Volume.profile.TryGet(out ChromaticAberration chromaticAberration) && chromaticAberration.intensity.value < intensity)
+        {
+            _aberrationSequence
+                .Append(
+                    DOTween.To(() => intensity,
+                    value => chromaticAberration.intensity.value = value,
+                    0, time).SetEase(ease));
+        }
     }
 }

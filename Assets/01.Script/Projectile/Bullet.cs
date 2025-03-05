@@ -22,6 +22,7 @@ namespace Hashira.Projectiles
         protected override void OnHited(RaycastHit2D hit, IDamageable damageable)
         {
             base.OnHited(hit, damageable);
+            CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
             if (damageable != null)
             {
                 int damage = CalculateDamage(Damage);
