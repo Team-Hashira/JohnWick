@@ -51,11 +51,11 @@ namespace Hashira.LatestUI
             _cardImage.sprite = _cardSO.iconSprite;
             Vector2 randomPos = Random.insideUnitCircle.normalized;
             RectTransform.anchoredPosition = _defaultPosition + randomPos * Screen.width;
-            RectTransform.DOAnchorPos(_defaultPosition, 0.6f).SetEase(Ease.OutCubic).OnComplete(() =>
+            StartCoroutine(ReloadCoroutine(_defaultPosition, 0.8f, () =>
             {
                 Collider.enabled = true;
                 _layoutElement.ignoreLayout = false;
-            });
+            }));
         }
 
         public void Initialize(SelectingCardPanel panel)
@@ -107,9 +107,22 @@ namespace Hashira.LatestUI
             _layoutElement.ignoreLayout = true;
         }
 
-        private IEnumerator ReloadCoroutine(Vector2 destination, Action OnComplete = null)
+        private IEnumerator ReloadCoroutine(Vector2 destination, float duration, Action OnComplete = null)
         {
-            yield break;
+            Vector2 startPos = RectTransform.anchoredPosition;
+            //Vector2 randomPos = Random.insideUnitCircle.normalized;
+            //randomPos = destination + randomPos * (Screen.width * 0.5f);
+            float toAdd = 1f / duration;
+            float percent = 0;
+            while (percent < 1f)
+            {
+                float t = MathEx.OutSine(percent);
+                //RectTransform.anchoredPosition = MathEx.Bezier(t, startPos, randomPos, destination);
+                RectTransform.anchoredPosition = MathEx.Bezier(t, startPos, destination);
+                yield return null;
+                percent += Time.deltaTime * toAdd;
+            }
+            OnComplete?.Invoke();
         }
     }
 }

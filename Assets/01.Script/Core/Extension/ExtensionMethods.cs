@@ -23,6 +23,8 @@ public static class MathEx
             return Vector2.zero;
         if (positions.Length == 1) 
             return positions[0];
+        if(positions.Length == 2)
+            return Vector2.Lerp(positions[0], positions[1], t);
 
         Vector2[] nextPositions = new Vector2[positions.Length - 1];
 

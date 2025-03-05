@@ -27,7 +27,7 @@ namespace Hashira.LatestUI
 
         private void Start()
         {
-            Close();
+            SetActive(false, 0);
         }
 
         private void Update()
