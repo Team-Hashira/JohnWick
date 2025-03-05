@@ -108,7 +108,7 @@ namespace Hashira.LatestUI
 
         private IEnumerator ReloadCoroutine(Vector2 destination, Action OnComplete = null)
         {
-
+            yield break;
         }
     }
 }
