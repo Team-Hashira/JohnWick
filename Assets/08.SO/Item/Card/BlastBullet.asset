@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
+  m_Name: BlastBullet
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: -6928453641244209690, guid: 7f24b7264698d384897f08b902fb68b8, type: 3}
+  itemDefaultSprite: {fileID: -6928453641244209690, guid: 7f24b7264698d384897f08b902fb68b8, type: 3}
+  itemName: BlastBullet
+  itemDisplayName: "\uBE14\uB798\uC2A4\uD130 \uD0C4\uD658"
+  itemDescription: "\uC801\uC5D0 \uC801\uC911\uD55C \uD0C4\uD658\uC774 3\uAC1C\uB85C
+    \uD30C\uD3B8\uC774 \uD284\uB2E4."
+  itemRating: 0
+  useCustomClass: 0
+  defaultClass: Module
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: 58a60fb78c8ad9a49a9e4100d3a4ad5c, type: 2}
+    projectileModifier:
+      rid: 40250401228587316
+    conditionSetting:
+      condition: 1
+      count: 0
+      countType: 0
+      countCondition: 0
+      killType: 0
+      cooldown: 8
+      className: 
+  <StatVariationList>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 40250401228587316
+      type: {class: BlastProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data: 

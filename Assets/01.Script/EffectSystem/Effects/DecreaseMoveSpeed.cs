@@ -24,7 +24,7 @@ namespace Hashira.EffectSystem.Effects
         public override void Disable()
         {
             base.Disable();
-            _speedStatElement.RemoveModify("DecreaseMoveSpeed", EModifyMode.Percent);
+            _speedStatElement.RemoveModify("DecreaseMoveSpeed");
             //TODO 여기에 이펙트
         }
 

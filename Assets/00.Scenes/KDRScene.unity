@@ -1947,13 +1947,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 309907a9c9bb1334c8122753c6aa9978, type: 2}
   - {fileID: 11400000, guid: e880acf5e08e1664f87d36a723d823f2, type: 2}
   - {fileID: 11400000, guid: 8d7bdf0ec43a78440b5d3a3448251fd6, type: 2}
-  poolingPairs:
-  - poolType: LaserMark
-    prefab: {fileID: 4368402855624174704, guid: 20114f0776196bb4ea412ce3e1a569aa, type: 3}
-    poolCount: 10
-  - poolType: ElectricZone
-    prefab: {fileID: 901766612269462815, guid: 51702cce7de585f4899dcb970c52d305, type: 3}
-    poolCount: 10
+  poolingPairs: []
 --- !u!1 &1357776679
 GameObject:
   m_ObjectHideFlags: 0

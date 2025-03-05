@@ -9,7 +9,7 @@ namespace Hashira.Projectiles
         protected Projectile _projectile;
         public ProjectileModifierSO ProjectileModifierSO { get; private set; }
         protected Attacker _attacker;
-        public ModifierExecuter ModifierExecuter { get; private set; }
+        //public ModifierExecuter ModifierExecuter { get; private set; }
 
         /// <summary>
         /// 가장 처음 클래스 생성시
@@ -24,9 +24,9 @@ namespace Hashira.Projectiles
         /// 수정자가 추가될 때
         /// </summary>
         /// <param name="projectile"></param>
-        public virtual void OnEquip(Attacker attacker, ModifierExecuter modifierExecuter)
+        public virtual void OnEquip(Attacker attacker/*, ModifierExecuter modifierExecuter*/)
         {
-            ModifierExecuter = modifierExecuter;
+            //ModifierExecuter = modifierExecuter;
             _attacker = attacker;
         }
 

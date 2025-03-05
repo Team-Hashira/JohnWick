@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef843ff4ebdeee344a631d7c1ad9917f, type: 3}
   m_Name: Item
   m_EditorClassIdentifier: 
-  pairs:
-  - poolType: WeaponItem
-    prefab: {fileID: 8417756992034856346, guid: 56040c30ecc66a347b9ab95e80cf0db1, type: 3}
-    poolCount: 10
+  pairs: []
