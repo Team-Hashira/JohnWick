@@ -12,7 +12,7 @@ namespace Hashira.Projectiles
         public override void OnProjectileCreate(Projectile projectile)
         {
             base.OnProjectileCreate(projectile);
-            projectile.DamageOverride((int)(projectile.Damage * MultiplyValue) + AddValue);
+            projectile.SetDamage((int)(projectile.Damage * MultiplyValue) + AddValue);
         }
     }
 }
