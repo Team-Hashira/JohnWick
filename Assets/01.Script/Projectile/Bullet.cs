@@ -30,25 +30,9 @@ namespace Hashira.Projectiles
 
                 if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                 {
-                    ////Effect
-                    //ParticleSystem wallBloodEffect = gameObject.Pop(EffectPoolType.SpreadWallBlood, hit.point, transform.rotation)
-                    //    .gameObject.GetComponent<ParticleSystem>();
-                    //var limitVelocityOverLifetimeModule = wallBloodEffect.limitVelocityOverLifetime;
-
-                    ////Effect
-                    //ParticleSystem bloodBackEffect = gameObject.Pop(EffectPoolType.HitBloodBack, hit.point, transform.rotation)
-                    //    .gameObject.GetComponent<ParticleSystem>();
-
-                    //if (parts == EEntityPartType.Head)
-                    //{
-                    //    //Effect
-                    //    gameObject.Pop(EffectPoolType.HitBlood, hit.point, Quaternion.LookRotation(Vector3.back, hit.normal));
-                    //    limitVelocityOverLifetimeModule.dampen = 0.6f;
-                    //}
-                    //else
-                    //{
-                    //    limitVelocityOverLifetimeModule.dampen = 0.9f;
-                    //}
+                    gameObject.Pop(EffectPoolType.BulletHitEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, -hit.normal));
+                    gameObject.Pop(EffectPoolType.HitBlood, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
+                    // TODO 데미지 입혀야 함
                 }
             }
             else
