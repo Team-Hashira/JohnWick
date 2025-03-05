@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
+  m_Name: DoubleShotCard
+  m_EditorClassIdentifier: 
+  iconSprite: {fileID: 0}
+  cardDisplayName: "\uC5F0\uC18D \uBC1C\uC0AC"
+  cardName: DoubleShot
+  cardDescription: "4\uBC1C \uB2F9 \uD0C4\uD658 \uD558\uB098\uB97C \uCD94\uAC00\uB85C
+    \uBC1C\uC0AC\uD55C\uB2E4."
+  needCost: 5
+  effectClassName: 

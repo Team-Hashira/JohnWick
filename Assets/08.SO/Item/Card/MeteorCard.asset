@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
-  m_Name: AimingBulletModule
+  m_Name: MeteorCard
   m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 39453174b9e439e4cac970cdb874525b, type: 3}
-  cardName: 
-  cardDescription: Heha
-  needCost: 0
+  cardDisplayName: "\uBA54\uD14C\uC624"
+  cardName: Meteor
+  cardDescription: "\uC8FC\uAE30\uC801\uC73C\uB85C \uBA54\uD14C\uC624\uAC00 \uB5A8\uC5B4\uC9C4\uB2E4."
+  needCost: 3
   effectClassName: 

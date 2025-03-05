@@ -11,6 +11,7 @@ namespace Hashira.Cards
         [Header("==========CardSO==========")]
 
         public Sprite iconSprite;
+        public string cardDisplayName;
         public string cardName;
         [TextArea]
         public string cardDescription;
