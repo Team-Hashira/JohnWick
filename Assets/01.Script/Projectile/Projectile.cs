@@ -12,6 +12,7 @@ namespace Hashira.Projectiles
         [SerializeField] protected TrailRenderer _trailRenderer;
         protected float _speed;
         public int Damage { get; protected set; }
+
         protected int _penetration;
         protected int _currentPenetration;
         public LayerMask WhatIsTarget { get; protected set; }

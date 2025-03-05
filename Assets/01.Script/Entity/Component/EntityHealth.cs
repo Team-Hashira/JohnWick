@@ -35,7 +35,7 @@ namespace Hashira.Entities
     public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDamageable, IRecoverable
     {
         public int Health { get; private set; }
-        public Stack<Shield> Shields { get; set; }
+        public Stack<Shield> Shields { get; set; } = new Stack<Shield>();
 
         [SerializeField] private StatElementSO _healthStatSO;
 

@@ -17,12 +17,12 @@ public class TrailRendererPoolingExtension : MonoBehaviour
 
 		if (_trailRenderer == null)
 		{
-			Debug.LogError("TrailRenderer°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			Debug.LogError("TrailRendererê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 			return;
 		}
 
 		if (_owner == null)
-			Debug.LogError("TrailRenderer¿¡°Ô IPoolingObject¸¦ »ó¼Ó¹Ş´Â ºÎ¸ğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			Debug.LogError("TrailRendererì—ê²Œ IPoolingObjectë¥¼ ìƒì†ë°›ëŠ” ë¶€ëª¨ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 	}
 
 	private void OnDisable()

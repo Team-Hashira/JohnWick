@@ -10,14 +10,13 @@ namespace Hashira.Core.StatSystem
         Percent
     }
 
-    [Serializable]
     public struct StatModifier
     {
-        [SerializeField] private float _originValue;
-        [SerializeField] private bool _canValueOverlap;
+        private float _originValue;
+        private bool _canValueOverlap;
 
         private int _overlapCount;
-        [field: SerializeField] public EModifyMode Mode { get; private set; }
+        public EModifyMode Mode { get; private set; }
         public float Value { get; private set; }
 
         public StatModifier(float originValue, EModifyMode mode, bool canValueOverlap)
@@ -125,7 +124,9 @@ namespace Hashira.Core.StatSystem
         public void AddModify(string key, StatModifier statModifier)
         {
             if (_modifiers.ContainsKey(key))
+            {
                 _modifiers[key]++;
+            }
             else
                 _modifiers[key] = statModifier;
 

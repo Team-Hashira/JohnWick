@@ -9,13 +9,16 @@ namespace Hashira.Cards
     {
         [Header("==========StatCardSO==========")]
         public StatElementSO statSO;
-        public StatModifier statModifier;
+        public float value;
+        public bool canValueOverlap;
+        public EModifyMode mode;
 
         public override Effect GetEffectClass()
         {
             Effect effect = base.GetEffectClass();
             if (effect is StatEffect statEffect)
             {
+                StatModifier statModifier = new StatModifier(value, mode, canValueOverlap);
                 statEffect.Init(statSO, statModifier);
                 return statEffect;
             }

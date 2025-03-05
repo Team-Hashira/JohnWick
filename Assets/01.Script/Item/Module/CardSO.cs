@@ -14,7 +14,7 @@ namespace Hashira.Cards
         public string cardName;
         [TextArea]
         public string cardDescription;
-        public int cost;
+        public int needCost;
 
         public string effectClassName;
         private Type _effectType;
