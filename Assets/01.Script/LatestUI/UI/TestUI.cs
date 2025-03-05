@@ -1,3 +1,4 @@
+#if UNITY_EDTIOR
 using UnityEngine;
 
 namespace Hashira.LatestUI
@@ -38,7 +39,6 @@ namespace Hashira.LatestUI
         {
             Debug.Log("OnCursorExit");
         }
-
-
     }
 }
+#endif
