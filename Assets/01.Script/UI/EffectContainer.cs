@@ -38,6 +38,8 @@ namespace Hashira.UI.Effect
 
         private void AddEffectUI(EffectSystem.Effect effect)
         {
+            if (effect.Visable == false) return;
+
             EffectSlot effectSlot = Instantiate(_effectSlotPrefab, transform);
             effectSlot.Init(effect);
             _currentSlots.Add(effectSlot);   
@@ -45,7 +47,10 @@ namespace Hashira.UI.Effect
         
         private void RemoveEffectUI(EffectSystem.Effect effect)
         {
+            if (effect.Visable == false) return;
+
             EffectSlot effectSlot = _currentSlots.FirstOrDefault(x => x.Equals(effect));
+            if (effectSlot == null) return;
 
             if (effectSlot != null)
             {
