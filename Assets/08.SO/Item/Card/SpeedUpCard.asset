@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10f1e2d724d95c34884867aac498a418, type: 3}
-  m_Name: StatCard
+  m_Name: SpeedUpCard
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 0}
-  cardName: 12
-  cardDescription: 123
-  needCost: 10
+  iconSprite: {fileID: 9164377327771133166, guid: 1b147efbc07e0c543b5c19eba04ecbff, type: 3}
+  cardDisplayName: "\uC774\uB3D9\uC18D\uB3C4"
+  cardName: SpeedUp
+  cardDescription: "\uC774\uB3D9\uC18D\uB3C4\uAC00 \uC0C1\uC2B9\uD55C\uB2E4."
+  needCost: 2
   effectClassName: StatEffect
-  statSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
-  value: 10
+  statSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
+  value: 5
   canValueOverlap: 1
   mode: 0

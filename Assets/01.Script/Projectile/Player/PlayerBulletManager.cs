@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Hashira.Projectiles.Player
 {
@@ -10,11 +11,8 @@ namespace Hashira.Projectiles.Player
 
         public int HandleOnModifier { get; private set; }
 
-        public List<Projectile> projectileList;
-
         private void Start()
         {
-            projectileList = new List<Projectile>();
             _playerAttacker = GameManager.Instance.Player.GetComponent<Attacker>();
         }
 

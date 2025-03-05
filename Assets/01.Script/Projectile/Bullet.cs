@@ -22,13 +22,14 @@ namespace Hashira.Projectiles
         protected override void OnHited(HitInfo hitInfo)
         {
             base.OnHited(hitInfo);
-            CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
 
             var damageable = hitInfo.damageable;
             var hit = hitInfo.raycastHit;
 
             if (damageable != null)
             {
+                CameraManager.Instance.ShakeCamera(8, 8, 0.3f);
+
                 int damage = CalculateDamage(Damage);
                 int penetrationDamage = CalculatePenetration(CalculateDamage(damage), _penetration - _currentPenetration);
                 EEntityPartType parts = damageable.ApplyDamage(penetrationDamage, hit, transform, transform.right * 4, _attackType);
