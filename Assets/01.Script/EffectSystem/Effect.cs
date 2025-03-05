@@ -10,6 +10,7 @@ namespace Hashira.EffectSystem
     {
         public string name;
         public virtual int MaxActiveCount { get; private set; } = 1;
+        public bool Visable { get; private set; } = true;
 
         public EffectUIDataSO effectUIDataSO;
         public EntityEffector entityEffector;
@@ -21,12 +22,10 @@ namespace Hashira.EffectSystem
 
         public virtual void Update()
         {
-
         }
 
         public virtual void Disable()
         {
-            
         }
     }
 }

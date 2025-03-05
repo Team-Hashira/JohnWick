@@ -1,3 +1,4 @@
+using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using Hashira.FSM;
 using UnityEngine;
@@ -10,12 +11,18 @@ namespace Hashira.Enemies.TestEnemy
         private float _moveTimer = 0;
 
         private EntityRenderer _entityRenderer;
+        private EntityStat _entityStat;
         private EnemyMover _enemyMover;
+
+        private StatElement _speedElement;
 
         public TestEnemyPatrolState(Entity entity, StateSO stateSO) : base(entity, stateSO)
         {
             _entityRenderer = entity.GetEntityComponent<EntityRenderer>();
+            _entityStat = entity.GetEntityComponent<EntityStat>();
             _enemyMover = entity.GetEntityComponent<EnemyMover>();
+
+            _speedElement = _entityStat.StatDictionary["Speed"];
         }
 
         public override void OnEnter()
@@ -28,7 +35,7 @@ namespace Hashira.Enemies.TestEnemy
         public override void OnUpdate()
         {
             base.OnUpdate();
-            _enemyMover.SetMovement(_entityRenderer.FacingDirection * 5);
+            _enemyMover.SetMovement(_entityRenderer.FacingDirection * _speedElement.Value);
             _moveTimer += Time.deltaTime;
             if (_moveTimer >= _moveTime)
             {

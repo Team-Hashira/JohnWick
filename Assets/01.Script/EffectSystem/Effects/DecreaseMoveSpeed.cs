@@ -17,7 +17,7 @@ namespace Hashira.EffectSystem.Effects
         {
             base.Enable();
             _speedStatElement = entityStat.StatDictionary["Speed"];
-            _speedStatElement.AddModify("DecreaseMoveSpeed", Amount, EModifyMode.Percent);
+            _speedStatElement.AddModify("DecreaseMoveSpeed", -Amount, EModifyMode.Percent);
             //TODO 여기에 이펙트
         }
 
