@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f1e2d724d95c34884867aac498a418, type: 3}
   m_Name: StatCard
   m_EditorClassIdentifier: 
-  iconSprite: 123
+  iconSprite: {fileID: 0}
   cardName: 12
   cardDescription: 123
-  cost: 3
+  needCost: 10
   effectClassName: StatEffect
-  statSO: {fileID: 11400000, guid: 7eac9fb3893a7bd4b813c481f1f4dfab, type: 2}
-  statModifier:
-    _originValue: 100
-    _canValueOverlap: 1
-    <Mode>k__BackingField: 0
+  statSO: {fileID: 11400000, guid: 84a89d9661229b7429b05e19a5ad830e, type: 2}
+  value: 10
+  canValueOverlap: 1
+  mode: 0

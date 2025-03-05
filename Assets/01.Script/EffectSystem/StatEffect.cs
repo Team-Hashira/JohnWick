@@ -1,14 +1,19 @@
 using Hashira.Core.StatSystem;
 using Hashira.Entities;
+using UnityEngine;
 
 namespace Hashira.EffectSystem
 {
-    public class StatEffect : Effect
+    public class StatEffect : Effect, ICoolTimeEffect
     {
         private StatDictionary _statDictionary;
         private StatElementSO _statSO;
         private StatModifier _statModifier;
         private string _key;
+
+        public float Duration { get; set; } = 10;
+        public float Time { get; set; }
+        public override int MaxActiveCount => -1;
 
         public void Init(StatElementSO statSO, StatModifier statModifier)
         {
@@ -28,6 +33,11 @@ namespace Hashira.EffectSystem
         {
             base.Disable();
             _statDictionary[_statSO].RemoveModify(_key);
+        }
+
+        public void OnTimeOut()
+        {
+
         }
     }
 }
