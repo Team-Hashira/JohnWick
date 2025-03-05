@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Hashira.LatestUI
 {
@@ -21,10 +22,25 @@ namespace Hashira.LatestUI
             {
                 card.Initialize(this);
             }
+
+        }
+
+        private void Start()
+        {
+            Open();
+        }
+
+        private void Update()
+        {
+            if (Keyboard.current.uKey.wasPressedThisFrame)
+            {
+                Open();
+            }
         }
 
         public void Open()
         {
+            _canvasGroup.alpha = 1f;
             foreach (var card in _selectableCards)
             {
                 card.Reload();
