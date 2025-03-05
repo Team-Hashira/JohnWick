@@ -2,6 +2,7 @@ using DG.Tweening;
 using Hashira.Cards;
 using Hashira.Core;
 using Hashira.Core.Attribute;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,6 +38,7 @@ namespace Hashira.LatestUI
         [SerializeField]
         private CardSO _input;
 
+
         public void Reload()
         {
             Collider.enabled = false;
@@ -57,6 +59,7 @@ namespace Hashira.LatestUI
         public void Initialize(SelectingCardPanel panel)
         {
             _layoutElement = GetComponent<LayoutElement>();
+            Collider.enabled = false;
             _selectingCardPanel = panel;
             _defaultPosition = RectTransform.anchoredPosition;
             _defaultScale = RectTransform.localScale;
@@ -66,6 +69,7 @@ namespace Hashira.LatestUI
         {
             _selectSequence = DOTween.Sequence();
             _layoutElement.ignoreLayout = true;
+            Collider.enabled = false;
             _selectSequence
                 .Append(RectTransform.DORotate(new Vector3(0, 360f), 0.3f, RotateMode.FastBeyond360))
                 .JoinCallback(() => _selectingCardPanel.Select(this))
@@ -99,6 +103,11 @@ namespace Hashira.LatestUI
             RectTransform.DOAnchorPosX(x, 0.6f).SetEase(Ease.InBack);
 
             _layoutElement.ignoreLayout = true;
+        }
+
+        private IEnumerator BezierCoroutine()
+        {
+            yield return new WaitForSeconds(1);
         }
     }
 }

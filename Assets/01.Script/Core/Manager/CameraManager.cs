@@ -128,6 +128,7 @@ public class CameraManager : MonoSingleton<CameraManager>
                     DOTween.To(() => intensity,
                     value => chromaticAberration.intensity.value = value,
                     0, time).SetEase(ease));
+
         }
     }
 }
