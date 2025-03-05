@@ -61,7 +61,7 @@ public abstract class DamageCaster2D : MonoBehaviour
 		{
 			if (_raycastHits[i].collider == null)
 			{
-				break;
+				continue;
 			}
 			else
             {
@@ -73,17 +73,16 @@ public abstract class DamageCaster2D : MonoBehaviour
                     entity.TryGetEntityComponent(out EntityPartCollider entityPartCollider) && 
                     entityPartColliderSet.Contains(entityPartCollider) == false)
                     entityPartColliderSet.Add(entityPartCollider);
-                else break;
-
+                else continue;
 
                 damageable.ApplyDamage(damage, _raycastHits[i], transform, knockback, attackType);
 
-                hitInfoes[i].raycastHit = _raycastHits[i];
                 hitInfoes[i].damageable = damageable;
 
-                OnDamageCastSuccessEvent?.Invoke(_raycastHits[i]);
             }
-		}
+            hitInfoes[i].raycastHit = _raycastHits[i];
+            OnDamageCastSuccessEvent?.Invoke(_raycastHits[i]);
+        }
 
 		OnCasterEvent?.Invoke();
 		//이거 내부적으로 메모리를 직접 초기화해서 가벼움
