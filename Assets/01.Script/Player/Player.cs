@@ -82,7 +82,7 @@ namespace Hashira.Players
             if (old > cur)
             {
                 CameraManager.Instance.ShakeCamera(5, 5, 0.3f);
-                CameraManager.Instance.Aberration(0.5f, 0.1f);
+                CameraManager.Instance.Aberration(1f, 0.1f);
             }
         }
 
