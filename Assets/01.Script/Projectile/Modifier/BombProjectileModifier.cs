@@ -11,34 +11,24 @@ namespace Hashira.Projectiles
 
         private ProjectilePoolType _prevProjectilePoolType;
 
-        private bool _isFirst;
-
-        public override void OnProjectileCreateReady()
-        {
-            base.OnProjectileCreateReady();
-            _prevProjectilePoolType = _attacker.SetProjectile(ProjectilePoolType.Grenade);
-            _isFirst = true;
-        }
 
         public override void OnProjectileCreate(Projectile projectile)
         {
+            _prevProjectilePoolType = _attacker.SetProjectile(ProjectilePoolType.Grenade);
+
             base.OnProjectileCreate(projectile);
-            if (_isFirst)
-            {
-                _attacker.SetProjectile(_prevProjectilePoolType);
-                _projectile.SetAttackType(EAttackType.Fire);
-                _projectile.DamageOverride(_damage);
-                _isFirst = false;
-                //ModifierExecuter.Reset();
-            }
+            _attacker.SetProjectile(_prevProjectilePoolType);
+            projectile.SetAttackType(EAttackType.Fire);
+            projectile.SetDamage(_damage);
+            //ModifierExecuter.Reset();
         }
 
-        public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
+        public override void OnProjectileHit(Projectile projectile, HitInfo hitInfo)
         {
-            base.OnProjectileHit(hit, damageable);
+            base.OnProjectileHit(projectile, hitInfo);
 
-            _projectile.SetAttackType();
-            _projectile.gameObject.Pop(EffectPoolType.BoomFire, hit.point, Quaternion.identity);
+            projectile.SetAttackType();
+            projectile.gameObject.Pop(EffectPoolType.BoomFire, hitInfo.raycastHit.point, Quaternion.identity);
         }
     }
 }

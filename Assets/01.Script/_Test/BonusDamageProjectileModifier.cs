@@ -12,20 +12,20 @@ namespace Hashira.Projectiles
         [SerializeField] private bool _isPercent;
         [SerializeField] private EAttackType _attackType;
 
-        public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
+        public override void OnProjectileHit(Projectile projectile, HitInfo hitInfo)
         {
-            base.OnProjectileHit(hit, damageable);
+            base.OnProjectileHit(projectile, hitInfo);
             float damage;
             if (_withProjectileDamage)
             {
                 if (_isPercent)
-                    damage = _projectile.Damage * (_damageValue / 100);
+                    damage = projectile.Damage * (_damageValue / 100);
                 else
-                    damage = _projectile.Damage + _damageValue;
+                    damage = projectile.Damage + _damageValue;
             }
             else
                 damage = _damageValue;
-            damageable?.ApplyDamage(Mathf.CeilToInt(damage), hit, _projectile.transform, attackType: _attackType);
+            hitInfo.damageable?.ApplyDamage(Mathf.CeilToInt(damage),hitInfo.raycastHit, projectile.transform, attackType: _attackType);
         }
     }
 }

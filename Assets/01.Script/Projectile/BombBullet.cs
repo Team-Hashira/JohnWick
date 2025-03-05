@@ -22,9 +22,9 @@ namespace Hashira.Projectiles
             _direction = direction;
         }
 
-        protected override void OnHited(RaycastHit2D hit, IDamageable damageable)
+        protected override void OnHited(HitInfo hitInfo)
         {
-            base.OnHited(hit, damageable);
+            base.OnHited(hitInfo);
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f, DG.Tweening.Ease.InCirc);
             _circleDamageCaster.SetLayerMask(WhatIsTarget);
             _circleDamageCaster.CastDamage(Damage, Vector2.zero, transform.right, attackType: Entities.EAttackType.Fire);
@@ -49,12 +49,6 @@ namespace Hashira.Projectiles
 
             transform.right = /*Quaternion.Euler(0, 0, _angle) * */_direction;
             base.FixedUpdate();
-        }
-
-        public override void Die()
-        {
-            gameObject.Pop(EffectPoolType.BoomFire, transform.position, Quaternion.identity);
-            base.Die();
         }
     }
 }

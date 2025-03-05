@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Doryu.CustomAttributes;
 
 namespace Hashira.Projectiles
 {
@@ -25,11 +24,12 @@ namespace Hashira.Projectiles
 
         protected ProjectileModifier _projectileModifier;
 
+        protected Type _itemType;
+
         public ProjectileModifier GetItemClass()
         {
-            return _projectileModifier?.Clone() as ProjectileModifier;
+            return Activator.CreateInstance(_itemType) as ProjectileModifier;
         }
-
 
         protected virtual void OnValidate()
         {
@@ -40,8 +40,8 @@ namespace Hashira.Projectiles
 
             try
             {
-                Type type = Type.GetType(typeName);
-                ProjectileModifier foundModifier = Activator.CreateInstance(type) as ProjectileModifier;
+                _itemType = Type.GetType(typeName);
+                ProjectileModifier foundModifier = Activator.CreateInstance(_itemType) as ProjectileModifier;
                 foundModifier.Init(this);
                 _projectileModifier = foundModifier;
             }

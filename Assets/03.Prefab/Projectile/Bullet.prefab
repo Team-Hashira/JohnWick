@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7374134666529482837}
   - component: {fileID: 3470204695144833513}
   - component: {fileID: 3964518662618131671}
-  - component: {fileID: 8440955077746115221}
   - component: {fileID: 7427627695541568035}
+  - component: {fileID: 4076902178225054032}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.809, y: 0.019, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.93750006}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1.5625001}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3520797815251656534}
@@ -104,51 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e29dbcfa22e6be14ca67d25b8dedb8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 2
-  _dieDelay: 0.2
   _canMultipleAttacks: 0
-  _projectileCollider: {fileID: 8440955077746115221}
-  _trailRenderer: {fileID: 2507159377879925505}
-  _damageOverDistance:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -2.8771958
-      outSlope: -2.8771958
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.07949604
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _boxDamageCaster: {fileID: 0}
   _hitEffect: 0
   _spakleEffect: 5
---- !u!114 &8440955077746115221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714320040144927719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9309762dc0d1c2e448aacaf5b47cc0bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 0.075, y: 0.0375}
-  offset: {x: 0, y: 0}
 --- !u!61 &7427627695541568035
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -195,6 +154,27 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.252, y: 0.126}
   m_EdgeRadius: 0
+--- !u!114 &4076902178225054032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714320040144927719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6481a3c94b541ce409c28ab0b2650c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excluded: 0
+  allocationCount: 6
+  _whatIsCastable:
+    serializedVersion: 2
+    m_Bits: 2624
+  _usingExcludeCast: 1
+  excludedDamageCasterList: []
+  center: {x: 0, y: 0}
+  size: {x: 0.3, y: 0.2}
 --- !u!1 &6738201707468345862
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +340,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.037
+    widthMultiplier: 0.06
     widthCurve:
       serializedVersion: 2
       m_Curve:

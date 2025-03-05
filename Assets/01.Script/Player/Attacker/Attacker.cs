@@ -72,6 +72,8 @@ namespace Hashira
                     List<ProjectileModifier> projectileModifiers = new List<ProjectileModifier>();
                     //_moduleList.ForEach(module => projectileModifiers.AddRange(module.ProjectileModifierList));
                     bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, projectileModifiers, _damageOverDistance);
+                    CameraManager.Instance.ShakeCamera(6, 6, 0.15f);
+                    CameraManager.Instance.Aberration(0.6f, 0.2f);
 
                     createdProjectileList.Add(bullet);
                 }

@@ -11,14 +11,13 @@ namespace Hashira.Projectiles
         public override void OnProjectileCreate(Projectile projectile)
         {
             base.OnProjectileCreate(projectile);
-            _projectile = projectile;
-            _projectile.SetAttackType(EAttackType.HeadShot);
+            projectile.SetAttackType(EAttackType.HeadShot);
         }
 
-        public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
+        public override void OnProjectileHit(Projectile projectile, HitInfo hitInfo)
         {
-            base.OnProjectileHit(hit, damageable);
-            _projectile.SetAttackType();
+            base.OnProjectileHit(projectile, hitInfo);
+            projectile.SetAttackType();
         }
     }
 }

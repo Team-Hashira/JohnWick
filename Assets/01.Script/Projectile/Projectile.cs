@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
@@ -5,19 +6,16 @@ using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    public class Projectile : PushLifetime
+    public class Projectile : MonoBehaviour, IPoolingObject
     {
         [SerializeField] protected bool _canMultipleAttacks;
-        [SerializeField] protected ProjectileCollider2D _projectileCollider;
-        [SerializeField] protected TrailRenderer _trailRenderer;
+        [SerializeField] protected BoxDamageCaster2D _boxDamageCaster;
         protected float _speed;
         public int Damage { get; protected set; }
 
         protected int _penetration;
         protected int _currentPenetration;
         public LayerMask WhatIsTarget { get; protected set; }
-        protected SpriteRenderer _spriteRenderer;
-        protected BoxCollider2D _collider;
 
         protected List<ProjectileModifier> _projectileModifiers;
 
@@ -25,96 +23,34 @@ namespace Hashira.Projectiles
         public Transform Owner { get; set; }
 
         protected EAttackType _attackType;
-        protected AnimationCurve _damageOverDistance;
         private Vector3 _spawnPos;
 
-        public event Action<RaycastHit2D, IDamageable> OnHitEvent;
+        public event Action<HitInfo> OnHitEvent;
 
         protected virtual void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            _collider = GetComponent<BoxCollider2D>();
+            _boxDamageCaster = GetComponent<BoxDamageCaster2D>();
         }
 
         protected virtual void FixedUpdate()
         {
-            if (_isDead) return;
-
-            for (int i = 0; i < _projectileModifiers.Count; i++)
-                _projectileModifiers[i].OnProjectileUpdate();
-
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
-            bool isHit = _projectileCollider.CheckCollision(WhatIsTarget, out RaycastHit2D[] hits, movement);
-            List<RaycastHit2D> newHitList = new List<RaycastHit2D>();
-            for (int i = 0; i < hits.Length; i++)
+            HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, movement, transform.right);
+
+            transform.position += movement;
+
+            bool isHit = hitInfoes.Length > 0;
+
+            if (isHit)
             {
-                if (_penetratedColliderList.Contains(hits[i].collider) == false)
-                {
-                    newHitList.Add(hits[i]);
-                }
-            }
-            if (_canMultipleAttacks == false && newHitList.Count > 1)
-                newHitList = new List<RaycastHit2D>() { newHitList[0] };
+                for (int i = 0; i < hitInfoes.Length; i++)
+                    OnHited(hitInfoes[i]);
 
-            if (isHit && newHitList.Count > 0)
-            {
-                float movedDistance = 0;
-                bool isAnyHit = false;
-
-                //Damage
-                newHitList.ForEach(hit =>
-                {
-                    //Move
-                    transform.position += transform.right * (hit.distance - movedDistance);
-                    movedDistance += hit.distance;
-
-                    if (hit.transform.TryGetComponent(out IDamageable damageable))
-                    {
-                        if (damageable.IsEvasion == false)
-                        {
-                            OnHited(hit, damageable);
-
-                            isAnyHit = true;
-                            OnHitEvent?.Invoke(hit, damageable);
-                        }
-                    }
-                    else
-                    {
-                        OnHited(hit, null);
-
-                        isAnyHit = true;
-                        OnHitEvent?.Invoke(hit, null);
-                    }
-
-
-                    // Penetration
-                    if (hit.transform.TryGetComponent(out IPenetrable penetrable))
-                    {
-                        _currentPenetration -= penetrable.Resistivity;
-                        if (_currentPenetration > 0)
-                        {
-                            _penetratedColliderList.Add(hit.collider);
-                        }
-                        else
-                            Die();
-                    }
-                    else
-                        Die();
-                });
-
-                if (isAnyHit == false)
-                    transform.position += movement;
-            }
-            else
-                transform.position += movement;
-
-            if (_damageOverDistance.keys.Length != 0 && _damageOverDistance.keys[^1].time < Vector3.Distance(_spawnPos, transform.position) && _isDead == false)
-            {
-                Die();
+                this.Push();
             }
         }
 
-        public void DamageOverride(int damage)
+        public void SetDamage(int damage)
             => Damage = damage;
 
         public void SetAttackType(EAttackType eAttackType = EAttackType.Default)
@@ -122,8 +58,7 @@ namespace Hashira.Projectiles
 
         public virtual int CalculateDamage(float damage)
         {
-            float finalDamage = damage * _damageOverDistance.Evaluate(Vector3.Distance(_spawnPos, transform.position));
-            return Mathf.CeilToInt(finalDamage);
+            return Mathf.CeilToInt(damage);
         }
 
         public int CalculatePenetration(float damage, int penetratedCount)
@@ -132,7 +67,7 @@ namespace Hashira.Projectiles
             return CalculatePenetration(damage * 0.8f, penetratedCount - 1);
         }
 
-        protected virtual void OnHited(RaycastHit2D hit, IDamageable damageable) { }
+        protected virtual void OnHited(HitInfo hitInfo) { }
 
         public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = null, AnimationCurve damageOverDistance = null)
         {
@@ -142,18 +77,8 @@ namespace Hashira.Projectiles
             _currentPenetration = penetration;
             WhatIsTarget = whatIsTarget;
             transform.right = direction;
-            _spriteRenderer.enabled = true;
-            _trailRenderer.enabled = true;
-            _collider.enabled = true;
             _penetratedColliderList = new List<Collider2D>();
             Owner = owner;
-            _damageOverDistance = damageOverDistance;
-            if (_damageOverDistance == null)
-            {
-                _damageOverDistance = new AnimationCurve();
-                _damageOverDistance.AddKey(0, 1);
-                _damageOverDistance.AddKey(10000, 1);
-            }
 
             _projectileModifiers = projectileModifiers;
             _projectileModifiers ??= new List<ProjectileModifier>();
@@ -161,18 +86,15 @@ namespace Hashira.Projectiles
             _spawnPos = transform.position;
         }
 
-        public override void Die()
+        #region Pooling
+        public string OriginPoolType { get; set; }
+        GameObject IPoolingObject.gameObject { get; set; }
+        public virtual void OnPop()
         {
-            base.Die();
-            _spriteRenderer.enabled = false;
-            _collider.enabled = false;
         }
-
-        public override void DelayDie()
+        public virtual void OnPush()
         {
-            base.DelayDie();
-            _trailRenderer.enabled = false;
-            OnHitEvent = null;
         }
+        #endregion
     }
 }
