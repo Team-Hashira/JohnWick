@@ -23,8 +23,9 @@ namespace Hashira.Items.Modules
         [field: SerializeField] public List<ProjectileModifierSetting> ModifierList { get; private set; }
         [field: SerializeField] public List<StatElementAdjustment> StatVariationList { get; private set; }
 
-        private void OnValidate()
+        protected override void OnValidate()
         {
+            base.OnValidate();
             for (int i = 0; i < ModifierList.Count; i++)
             {
                 ProjectileModifierSetting projectileModifierSetting = ModifierList[i];
@@ -33,8 +34,9 @@ namespace Hashira.Items.Modules
                     projectileModifierSetting.projectileModifier = null;
                     continue;
                 }
-                if (projectileModifierSetting.projectileModifier != null) continue;
-                projectileModifierSetting.projectileModifier = projectileModifierSetting.projectileModifierSO?.GetItemClass();
+                if (projectileModifierSetting.projectileModifier != null && projectileModifierSetting.projectileModifier.ProjectileModifierSO == projectileModifierSetting.projectileModifierSO) continue;
+                ProjectileModifier so = projectileModifierSetting.projectileModifierSO?.GetItemClass();
+                projectileModifierSetting.projectileModifier = so;
             }
         }
     }

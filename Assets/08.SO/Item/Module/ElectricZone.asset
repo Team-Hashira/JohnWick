@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
+  m_Name: ElectricZone
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: -6083870683379881006, guid: 85dd61eab646a594a8b3865fd3f53df2, type: 3}
+  itemDefaultSprite: {fileID: -6083870683379881006, guid: 85dd61eab646a594a8b3865fd3f53df2, type: 3}
+  itemName: ElectricZone
+  itemDisplayName: "\uAC10\uC804\uC9C0\uB300"
+  itemDescription: "\uD50C\uB808\uC774\uC5B4\uB97C \uC911\uC2EC\uC73C\uB85C \uCEE4\uB2E4\uB780
+    \uAC10\uC804\uC9C0\uB300\uAC00 \uC0DD\uACA8\uB09C\uB2E4.\n\uAC10\uC804\uC9C0\uB300\uB294
+    \uBE60\uB978 \uAC04\uACA9\uC73C\uB85C \uB300\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4.\n\uAC10\uC804\uC9C0\uB300\uB294
+    \uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uB098\uD0C0\uB09C\uB2E4."
+  itemRating: 0
+  useCustomClass: 0
+  defaultClass: SpawnModule
+  _itemClass:
+    rid: 9175521327006875734
+  <ModifierList>k__BackingField:
+  - projectileModifierSO: {fileID: 11400000, guid: d291a114655bd9d4cb881dd7575f1a84, type: 2}
+    projectileModifier:
+      rid: 9175521370710212608
+    conditionSetting:
+      condition: 0
+      count: 23
+      countType: 2
+      countCondition: 0
+      killType: 0
+      cooldown: 0
+      className: 
+  <StatVariationList>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 9175521327006875734
+      type: {class: SpawnModule, ns: Hashira.Items.Modules, asm: Assembly-CSharp}
+      data:
+        _cooldownStartDelay: 3
+        _cooldown: 50
+        _cooldownDelay: 10
+        _poolingObject: 1
+    - rid: 9175521370710212608
+      type: {class: BonusDamageProjectileModifier, ns: Hashira.Projectiles, asm: Assembly-CSharp}
+      data:
+        _damageValue: 0
+        _withProjectileDamage: 0
+        _isPercent: 0
+        _attackType: 0

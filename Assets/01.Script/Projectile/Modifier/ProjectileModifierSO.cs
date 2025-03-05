@@ -23,16 +23,16 @@ namespace Hashira.Projectiles
         [Header("==========ProjectileModifier setting==========")]
         public string className;
 
-        [SerializeReference] protected ProjectileModifier _projectileModifier;
+        protected ProjectileModifier _projectileModifier;
 
         public ProjectileModifier GetItemClass()
-            => _projectileModifier?.Clone() as ProjectileModifier;
+        {
+            return _projectileModifier?.Clone() as ProjectileModifier;
+        }
 
 
         protected virtual void OnValidate()
         {
-            if (_projectileModifier != null && _projectileModifier.GetType().Name == className) return;
-
             string thisTag = GetType().ToString();
             int tagStartIdx = thisTag.LastIndexOf(".");                 //Namespace.Class
             string namespaceName = thisTag[..tagStartIdx];              //Namespace
@@ -49,6 +49,7 @@ namespace Hashira.Projectiles
             {
                 Debug.LogError($"{typeName} not found.\n" +
                                 $"Error : {ex.ToString()}");
+                _projectileModifier = null;
             }
         }
     }

@@ -16,3 +16,6 @@ MonoBehaviour:
   - poolType: LaserMark
     prefab: {fileID: 4368402855624174704, guid: 20114f0776196bb4ea412ce3e1a569aa, type: 3}
     poolCount: 10
+  - poolType: ElectricZone
+    prefab: {fileID: 901766612269462815, guid: 51702cce7de585f4899dcb970c52d305, type: 3}
+    poolCount: 10

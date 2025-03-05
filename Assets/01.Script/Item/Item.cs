@@ -4,6 +4,7 @@ using System;
 
 namespace Hashira.Items
 {
+    [Serializable]
     public abstract class Item : ICloneable, IStatable
     {
         public ItemSO ItemSO { get; private set; }

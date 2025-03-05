@@ -7,6 +7,7 @@ using Hashira.Entities.Components;
 using Hashira.Core;
 using System.Collections.Generic;
 using Hashira.Core.DamageHandler;
+using System.Linq;
 
 namespace Hashira.Entities
 {
@@ -16,11 +17,25 @@ namespace Hashira.Entities
         HeadShot,
         Fixed,
         Fire,
+        Electricity,
+    }
+
+    public struct Shield
+    {
+        public Shield(int value, Guid guid)
+        {
+            this.value = value;
+            this.guid = guid;
+        }
+
+        public int value;
+        public Guid guid;
     }
 
     public class EntityHealth : MonoBehaviour, IEntityComponent, IAfterInitialzeComponent, IDamageable, IRecoverable
     {
         public int Health { get; private set; }
+        public Stack<Shield> Shields { get; set; }
 
         [SerializeField] private StatElementSO _healthStatSO;
 
@@ -31,6 +46,7 @@ namespace Hashira.Entities
 
         public int MaxHealth => _maxHealth.IntValue;
         public event Action<int, int> OnHealthChangedEvent;
+        public event Action OnHitedEvent;
         public event Action OnDieEvent;
 
         private EntityMover _entityMover;
@@ -76,6 +92,27 @@ namespace Hashira.Entities
             }
 
             if (IsDie) return hitPoint;
+
+            int shieldValue = 0;
+
+            while (shieldValue < damage && Shields.Count() > 0)
+            {
+                // 감쇠시킬 쉴드 값 더해주기
+                Shield shield = Shields.Pop();
+                shieldValue += shield.value;
+
+                // 받은 데미지보다 쉴드값이 더 클 때
+                if (shieldValue > damage)
+                {
+                    Shields.Push(new Shield(shieldValue - damage, shield.guid));
+                    
+                    // 아예 상쇄시키기
+                    return hitPoint;
+                }
+            }
+
+            // 데미지 감쇠
+            damage -= shieldValue;
 
             int prev = Health;
             int finalDamage = CalculateDamage(damage, hitPoint, attackType);
@@ -139,6 +176,25 @@ namespace Hashira.Entities
                 Health = MaxHealth;
             OnHealthChangedEvent?.Invoke(prev, Health);
         }
+
+#region Shield
+
+        public Shield GetShield(Guid guid)
+            => Shields.FirstOrDefault(x => x.guid.Equals(guid));
+
+        public void AddShield(int value, Guid guid)
+        {
+            Shields.Push(new Shield(value, guid));
+        }
+
+        public Guid AddShield(int value)
+        {
+            Guid guid = Guid.NewGuid();
+            Shields.Push(new Shield(value, guid));
+            return guid;
+        }
+
+#endregion
 
         public void Resurrection()
         {

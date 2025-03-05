@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 using Hashira.Entities;
+using UnityEditor.VersionControl;
 
 public abstract class DamageCaster2D : MonoBehaviour
 {
@@ -41,13 +42,13 @@ public abstract class DamageCaster2D : MonoBehaviour
 	{
 		CastOverlap(moveTo);
 
-		//Á¦¿Ü
+		//ì œì™¸
 		if (_usingExcludeCast)
 			ExcludeCast(_raycastHits);
-		 
 
-		//µ¥¹ÌÁö ÀÔÈ÷±â
-		for (int i = 0; i < _raycastHits.Length && i < allocationCount; ++i)
+        HashSet<EntityPartCollider> entityPartColliderSet = new HashSet<EntityPartCollider>();
+        //ë°ë¯¸ì§€ ì…íˆê¸°
+        for (int i = 0; i < _raycastHits.Length && i < allocationCount; ++i)
 		{
 			if (_raycastHits[i].collider == null)
 			{
@@ -59,13 +60,20 @@ public abstract class DamageCaster2D : MonoBehaviour
             }
             if (_raycastHits[i].transform.TryGetComponent(out IDamageable damageable))
 			{
-				damageable.ApplyDamage(damage, _raycastHits[i], transform, knockback, attackType);
+                if (_raycastHits[i].transform.TryGetComponent(out Entity entity) && 
+                    entity.TryGetEntityComponent(out EntityPartCollider entityPartCollider) && 
+                    entityPartColliderSet.Contains(entityPartCollider) == false)
+                    entityPartColliderSet.Add(entityPartCollider);
+                else break;
+
+
+                damageable.ApplyDamage(damage, _raycastHits[i], transform, knockback, attackType);
                 OnDamageCastSuccessEvent?.Invoke(_raycastHits[i]);
             }
 		}
 
 		OnCasterEvent?.Invoke();
-		//ÀÌ°Å ³»ºÎÀûÀ¸·Î ¸Ş¸ğ¸®¸¦ Á÷Á¢ ÃÊ±âÈ­ÇØ¼­ °¡º­¿ò
+		//ì´ê±° ë‚´ë¶€ì ìœ¼ë¡œ ë©”ëª¨ë¦¬ë¥¼ ì§ì ‘ ì´ˆê¸°í™”í•´ì„œ ê°€ë²¼ì›€
 		Array.Clear(_raycastHits, 0, _raycastHits.Length);
 	}
 

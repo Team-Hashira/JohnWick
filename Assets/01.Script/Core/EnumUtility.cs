@@ -24,6 +24,7 @@ namespace Hashira.Core
                 { EAttackType.HeadShot, new Color(1, 1, 0, 1)},
                 { EAttackType.Fixed, new Color(0.5f, 0.5f, 0.5f, 1)},
                 { EAttackType.Fire, new Color(1, 0, 0, 1)},
+                { EAttackType.Electricity, new Color(0.8f, 0, 0.8f, 1)},
             };
     }
 }
