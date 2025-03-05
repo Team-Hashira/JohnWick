@@ -23,7 +23,7 @@ namespace Hashira.LatestUI
             UIBase[] uiBases = GameObject.FindObjectsByType<UIBase>(FindObjectsSortMode.None);
             _uiBaseList = uiBases.ToList();
 
-            foreach (UIBase uiBase in uiBases)
+            foreach (UIBase uiBase in _uiBaseList)
             {
                 if (uiBase is IUserInterface ui)
                 {
