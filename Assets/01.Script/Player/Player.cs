@@ -82,7 +82,7 @@ namespace Hashira.Players
             if (old > cur)
             {
                 CameraManager.Instance.ShakeCamera(5, 5, 0.3f);
-                CameraManager.Instance.Aberration(0.5f, 0.1f);
+                CameraManager.Instance.Aberration(1f, 0.1f);
             }
         }
 
@@ -176,6 +176,11 @@ namespace Hashira.Players
                 _lastRightClickTime + _chargingParryingStartDelay < Time.time)
             {
                 _isChargingParrying = true;
+                if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
+                {
+                    chromaticAberration.active = true;
+                    chromaticAberration.intensity.value = 1f;
+                }
                 TimeManager.SetTimeScale(_slowTimeScale);
             }
             if (_isChargingParrying)

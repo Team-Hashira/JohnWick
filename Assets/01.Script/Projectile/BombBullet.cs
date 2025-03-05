@@ -51,10 +51,10 @@ namespace Hashira.Projectiles
             base.FixedUpdate();
         }
 
-        public override void OnPush()
+        public override void Die()
         {
-            base.OnPush();
             gameObject.Pop(EffectPoolType.BoomFire, transform.position, Quaternion.identity);
+            base.Die();
         }
     }
 }

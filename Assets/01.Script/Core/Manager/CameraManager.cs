@@ -1,6 +1,4 @@
-using AYellowpaper.SerializedCollections;
 using DG.Tweening;
-using Hashira;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -16,7 +14,7 @@ public class CameraManager : MonoSingleton<CameraManager>
     private Sequence _aberrationSequence;
 
     private CinemachineVirtualCameraBase _currentCamera;
-    public CinemachineVirtualCameraBase currentCamera 
+    public CinemachineVirtualCameraBase currentCamera
     {
         get
         {
@@ -38,7 +36,7 @@ public class CameraManager : MonoSingleton<CameraManager>
     private CinemachineBasicMultiChannelPerlin _currentMultiChannel;
     private CinemachineBasicMultiChannelPerlin currentMultiChannel
     {
-        get 
+        get
         {
             if (_currentMultiChannel == null)
                 _currentMultiChannel = currentCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
@@ -50,7 +48,7 @@ public class CameraManager : MonoSingleton<CameraManager>
     public void MoveToPlayerPositionimmediately()
     {
         currentCamera.ForceCameraPosition(currentCamera.Follow.position, Quaternion.identity);
-	}
+    }
 
     public void ChangeCamera(CinemachineCamera camera)
     {

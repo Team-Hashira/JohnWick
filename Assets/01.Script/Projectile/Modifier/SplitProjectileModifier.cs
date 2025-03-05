@@ -16,7 +16,7 @@ namespace Hashira.Projectiles
 
             base.OnProjectileCreate(projectile);
 
-            projectile.SetDamage(Mathf.CeilToInt(projectile.Damage * 0.8f));
+            projectile.DamageOverride(Mathf.CeilToInt(projectile.Damage * 0.8f));
 
             if (_isRemovedBurstBullets == false)
             {

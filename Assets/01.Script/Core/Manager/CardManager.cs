@@ -1,13 +1,11 @@
-using Hashira.Cards;
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hashira
+namespace Hashira.Cards
 {
-    public class CardManager : MonoSingleton<CardManager>
+    public class CardManager
     {
-        public List<CardSO> cardList;
+        private List<CardSO> cardList;
 
         public void AddCard(CardSO cardSO)
         {

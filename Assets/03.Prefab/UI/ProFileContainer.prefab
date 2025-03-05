@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 1576597958147284835}
   - component: {fileID: 8623714780015696540}
   m_Layer: 5
-  m_Name: ProFileContainer
+  m_Name: ProfileContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
