@@ -19,6 +19,6 @@ MonoBehaviour:
   needCost: 2
   effectClassName: StatEffect
   statSO: {fileID: 11400000, guid: 646a98131ca8d0143b0500c096910bd8, type: 2}
-  value: 100
+  value: 5
   canValueOverlap: 1
-  mode: 1
+  mode: 0

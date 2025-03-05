@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace Hashira.EffectSystem.Effects
 {
-    public class IncreaseMoveSpeed : Effect, ICoolTimeEffect
+    public class MultipleShot : Effect, ICoolTimeEffect
     {
-        private StatElement _speedStatElement;
-
         public float Duration { get; set; } = 5;
         public float Time { get; set; }
 
@@ -15,9 +13,6 @@ namespace Hashira.EffectSystem.Effects
         public override void Enable()
         {
             base.Enable();
-            _speedStatElement = entityStat.StatDictionary["Speed"];
-            _speedStatElement.AddModify("IncreaseMoveSpeed", 30.0f, EModifyMode.Percent);
-            //TODO 여기에 이펙트
         }
 
         public override void Update()
@@ -31,8 +26,6 @@ namespace Hashira.EffectSystem.Effects
         public override void Disable()
         {
             base.Disable();
-            _speedStatElement.RemoveModify("IncreaseMoveSpeed");
-            //TODO 여기에 이펙트
         }
 
         public void OnTimeOut()
