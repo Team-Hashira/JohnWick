@@ -29,7 +29,7 @@ namespace Hashira.Projectiles
                 for (int i = 0; i < _addProjectileCount; i++)
                     _attacker.RemoveBurstBullets();
 
-                ModifierExecuter.Reset();
+                //ModifierExecuter.Reset();
             }
         }
     }
