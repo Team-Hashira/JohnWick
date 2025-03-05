@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    public class Projectile : PushLifetime
+    public class Projectile : MonoBehaviour, IPoolingObject
     {
         [SerializeField] protected bool _canMultipleAttacks;
         [SerializeField] protected BoxDamageCaster2D _boxDamageCaster;
@@ -33,11 +34,6 @@ namespace Hashira.Projectiles
 
         protected virtual void FixedUpdate()
         {
-            if (_isDead) return;
-
-            for (int i = 0; i < _projectileModifiers.Count; i++)
-                _projectileModifiers[i].OnProjectileUpdate();
-
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, movement, transform.right);
 
@@ -54,7 +50,7 @@ namespace Hashira.Projectiles
             }
         }
 
-        public void DamageOverride(int damage)
+        public void SetDamage(int damage)
             => Damage = damage;
 
         public void SetAttackType(EAttackType eAttackType = EAttackType.Default)
@@ -95,15 +91,9 @@ namespace Hashira.Projectiles
         GameObject IPoolingObject.gameObject { get; set; }
         public virtual void OnPop()
         {
-            base.Die();
-            _spriteRenderer.enabled = false;
-            _collider.enabled = false;
         }
         public virtual void OnPush()
         {
-            base.DelayDie();
-            _trailRenderer.enabled = false;
-            OnHitEvent = null;
         }
         #endregion
     }
