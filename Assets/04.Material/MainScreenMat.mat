@@ -44,6 +44,22 @@ Material:
         m_Texture: {fileID: 8400000, guid: d0fb666e55aa51648a2af75600b8129e, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_3bcc1982a3634f1390edbcbb1c74eacb_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c6c716fef020d1f4e856715a5476532c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_6e492d740888448483c8edffbd252c21_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_a095cbc08ade497990f2b12a94d361a2_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2DLOD_b91308c8657e4c448c485c363f02cb0f_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c6c716fef020d1f4e856715a5476532c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,16 +77,37 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
+    - _BugEyes_Value: 0
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 10
+    - _Float: 0
+    - _Float_1: 0
+    - _NULL: 0
+    - _NoiseWaveSpeed: 0
+    - _NoiseWaveValue: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Range: 0
+    - _Rotate_Value: 0
+    - _SimpleShckWave_Speed: 1
+    - _SimpleShckWave_Value: 0
     - _SrcBlend: 5
     - _Surface: 1
+    - _TestValue: 2
+    - _TwirlDistortValue: 0
+    - _TwirlDistort_Value: 0
+    - _Value: 1.33
+    - _VoronoiNoiseValue: 0
+    - _VoronoiNoise_Value: 0
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
-    m_Colors: []
+    m_Colors:
+    - _Max: {r: 0, g: 0, b: 0, a: 0}
+    - _Min: {r: 1.57, g: 0, b: 0, a: 0}
+    - _NoiseWaveOffset: {r: -0.5, g: 0, b: 0, a: 0}
+    - _Offset: {r: -3, g: 0, b: 0, a: 0}
+    - _PlayerPos: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
