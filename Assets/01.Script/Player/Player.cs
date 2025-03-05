@@ -201,5 +201,10 @@ namespace Hashira.Players
             //InputReader.OnReloadEvent -= _weaponGunHolderCompo.Reload; //재장전시 구현
             InputReader.OnAttackEvent -= HandleAttackEvent;
         }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            _playerMover.OnCollision(collision);
+        }
     }
 }

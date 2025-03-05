@@ -100,6 +100,8 @@ Material:
     - _Value: 1.33
     - _VoronoiNoiseValue: 0
     - _VoronoiNoise_Value: 0
+    - _WallShockWave_Strength: 0
+    - _WallShockWave_Value: 0
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
@@ -109,5 +111,7 @@ Material:
     - _NoiseWaveOffset: {r: -0.5, g: 0, b: 0, a: 0}
     - _Offset: {r: -3, g: 0, b: 0, a: 0}
     - _PlayerPos: {r: 0, g: 0, b: 0, a: 0}
+    - _WallShockWave_Max: {r: 0, g: 0, b: 0, a: 0}
+    - _WallShockWave_Min: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

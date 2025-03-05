@@ -1,5 +1,6 @@
 using Hashira.Entities;
 using Hashira.FSM;
+using Hashira.MainScreen;
 using UnityEngine;
 
 namespace Hashira.Players
@@ -10,7 +11,6 @@ namespace Hashira.Players
         public float rollingDelay = 1;
         private float _currentDelayTime = 0;
 		public bool IsSprint { get; private set; } = false;
-
 		private void Update()
 		{
             if(_currentDelayTime < rollingDelay)
@@ -31,5 +31,18 @@ namespace Hashira.Players
 		{
 			IsSprint = !IsSprint;
 		}
-	}
+
+        private void FixedUpdate()
+        {
+        }
+
+        public void OnCollision(Collision2D collision)
+        {
+            if (Rigidbody2D.linearVelocity.magnitude > 1)
+            {
+                MainScreenEffect.OnWallShockWaveEffect(transform.position);
+            }
+            Debug.Log(Rigidbody2D.linearVelocity.magnitude);
+        }
+    }
 }
