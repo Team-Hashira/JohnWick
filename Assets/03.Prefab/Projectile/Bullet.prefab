@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7374134666529482837}
+  - component: {fileID: 7761038047795811286}
   - component: {fileID: 3470204695144833513}
-  - component: {fileID: 3964518662618131671}
   - component: {fileID: 7427627695541568035}
   - component: {fileID: 4076902178225054032}
   m_Layer: 10
@@ -37,6 +37,22 @@ Transform:
   - {fileID: 5735273873423023722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7761038047795811286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714320040144927719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62da0b96313b83547883048d9271f421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canMultipleAttacks: 0
+  _boxDamageCaster: {fileID: 0}
+  _hitEffect: 0
+  _spakleEffect: 5
 --- !u!212 &3470204695144833513
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,22 +108,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3964518662618131671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714320040144927719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e29dbcfa22e6be14ca67d25b8dedb8de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _canMultipleAttacks: 0
-  _boxDamageCaster: {fileID: 0}
-  _hitEffect: 0
-  _spakleEffect: 5
 --- !u!61 &7427627695541568035
 BoxCollider2D:
   m_ObjectHideFlags: 0
