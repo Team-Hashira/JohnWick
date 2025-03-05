@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
   m_Name: DoubleShotCard
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: b1306fb877166894e82184f3af52e8db, type: 3}
   cardDisplayName: "\uC5F0\uC18D \uBC1C\uC0AC"
   cardName: DoubleShot
   cardDescription: "4\uBC1C \uB2F9 \uD0C4\uD658 \uD558\uB098\uB97C \uCD94\uAC00\uB85C

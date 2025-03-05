@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
-  m_Name: MeteorCard
+  m_Name: TimeUpCard
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: -5112411665633824946, guid: 8a04adf78ee5bb341a6f71af06bb7df6, type: 3}
-  cardDisplayName: "\uBA54\uD14C\uC624"
-  cardName: Meteor
-  cardDescription: "\uC8FC\uAE30\uC801\uC73C\uB85C \uBA54\uD14C\uC624\uAC00 \uB5A8\uC5B4\uC9C4\uB2E4."
+  iconSprite: {fileID: 7911317380994672701, guid: 1b147efbc07e0c543b5c19eba04ecbff, type: 3}
+  cardDisplayName: "\uC2DC\uAC04 \uC99D\uAC00"
+  cardName: TimeUp
+  cardDescription: "\uD074\uB9AC\uC5B4 \uC81C\uD55C\uC2DC\uAC04\uC774 \uB298\uC5B4\uB09C\uB2E4."
   needCost: 3
   effectClassName: 
