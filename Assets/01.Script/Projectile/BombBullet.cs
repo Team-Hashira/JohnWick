@@ -50,11 +50,5 @@ namespace Hashira.Projectiles
             transform.right = /*Quaternion.Euler(0, 0, _angle) * */_direction;
             base.FixedUpdate();
         }
-
-        public override void OnPush()
-        {
-            base.OnPush();
-            gameObject.Pop(EffectPoolType.BoomFire, transform.position, Quaternion.identity);
-        }
     }
 }

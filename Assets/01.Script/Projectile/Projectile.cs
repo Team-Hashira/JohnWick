@@ -17,6 +17,7 @@ namespace Hashira.Projectiles
         protected int _currentPenetration;
         public LayerMask WhatIsTarget { get; protected set; }
 
+        protected List<ProjectileModifier> _projectileModifiers;
 
         protected List<Collider2D> _penetratedColliderList = new List<Collider2D>();
         public Transform Owner { get; set; }
@@ -36,20 +37,17 @@ namespace Hashira.Projectiles
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, movement, transform.right);
 
+            transform.position += movement;
 
             bool isHit = hitInfoes.Length > 0;
 
             if (isHit)
             {
-                if (hitInfoes.Length > 0) Debug.Log(hitInfoes[0].raycastHit.transform);
                 for (int i = 0; i < hitInfoes.Length; i++)
                     OnHited(hitInfoes[i]);
-                transform.position += transform.right * hitInfoes[0].raycastHit.distance;
 
                 this.Push();
             }
-            else
-                transform.position += movement;
         }
 
         public void SetDamage(int damage)
@@ -82,6 +80,9 @@ namespace Hashira.Projectiles
             _penetratedColliderList = new List<Collider2D>();
             Owner = owner;
 
+            _projectileModifiers = projectileModifiers;
+            _projectileModifiers ??= new List<ProjectileModifier>();
+
             _spawnPos = transform.position;
         }
 
@@ -90,11 +91,9 @@ namespace Hashira.Projectiles
         GameObject IPoolingObject.gameObject { get; set; }
         public virtual void OnPop()
         {
-
         }
         public virtual void OnPush()
         {
-
         }
         #endregion
     }
