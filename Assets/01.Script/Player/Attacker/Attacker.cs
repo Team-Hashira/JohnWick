@@ -1,6 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities;
-using Hashira.Items.Modules;
+using Hashira.Items.Cards;
 using Hashira.Players;
 using Hashira.Projectiles;
 using System;
@@ -28,8 +28,6 @@ namespace Hashira
         public event Action OnProjectileCreateReadyEvent;
         public event Action<List<Projectile>> OnProjectileCreateEvent;
 
-        private List<Module> _moduleList = new List<Module>();
-
         private ProjectileModifier _currentMainModifier;
 
         private void Awake()
@@ -49,14 +47,6 @@ namespace Hashira
             => _burstBulletCount++;
         public void RemoveBurstBullets()
             => _burstBulletCount--;
-        public void AddModule(Module module)
-        {
-            _moduleList.Add(module);
-        }
-        public void RemoveModule(Module module)
-        {
-            _moduleList.Remove(module);
-        }
 
         public bool TrySetMainProjectileModifier(ProjectileModifier currentMainModifier)
         {
@@ -80,7 +70,7 @@ namespace Hashira
                     int damage = _playerStat.StatDictionary["AttackPower"].IntValue;
                     Projectile bullet = gameObject.Pop(_projectilePoolType, transform.position, Quaternion.identity) as Projectile;
                     List<ProjectileModifier> projectileModifiers = new List<ProjectileModifier>();
-                    _moduleList.ForEach(module => projectileModifiers.AddRange(module.ProjectileModifierList));
+                    //_moduleList.ForEach(module => projectileModifiers.AddRange(module.ProjectileModifierList));
                     bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, projectileModifiers, _damageOverDistance);
 
                     createdProjectileList.Add(bullet);

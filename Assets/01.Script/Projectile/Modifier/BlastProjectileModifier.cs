@@ -19,7 +19,7 @@ namespace Hashira.Projectiles
                 blastBulletModuleSplinter.Init(dir, damage);
             }
 
-            ModifierExecuter.Reset();
+            //ModifierExecuter.Reset();
         }
     }
 }

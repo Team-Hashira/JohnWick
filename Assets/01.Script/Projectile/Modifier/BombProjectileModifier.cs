@@ -29,7 +29,7 @@ namespace Hashira.Projectiles
                 _projectile.SetAttackType(EAttackType.Fire);
                 _projectile.DamageOverride(_damage);
                 _isFirst = false;
-                ModifierExecuter.Reset();
+                //ModifierExecuter.Reset();
             }
         }
 
