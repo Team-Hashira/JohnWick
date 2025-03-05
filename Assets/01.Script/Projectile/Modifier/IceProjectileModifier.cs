@@ -17,12 +17,12 @@ namespace Hashira.Projectiles
             Debug.Log("작동해라");
         }
 
-        public override void OnProjectileHit(RaycastHit2D hit, IDamageable damageable)
+        public override void OnProjectileHit(Projectile projectile, HitInfo hitInfo)
         {
-            if (_projectile == null)
+            if (projectile == null)
                 return;
-            base.OnProjectileHit(hit, damageable);
-            EntityHealth entityHealth = damageable as EntityHealth;
+            base.OnProjectileHit(projectile, hitInfo);
+            EntityHealth entityHealth = hitInfo.damageable as EntityHealth;
             if (entityHealth != null)
             {
                 var effector = entityHealth.Owner.GetEntityComponent<EntityEffector>();

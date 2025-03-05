@@ -10,10 +10,10 @@ namespace Hashira.Projectiles
 {
     public class IceBall : Projectile
     {
-        protected override void OnHited(RaycastHit2D hit, IDamageable damageable)
+        protected override void OnHited(HitInfo hitInfo)
         {
-            base.OnHited(hit, damageable);
-            EntityHealth health = damageable as EntityHealth;
+            base.OnHited(hitInfo);
+            EntityHealth health = hitInfo.damageable as EntityHealth;
             if(health != null)
             {
                 if(health.Owner.TryGetEntityComponent(out EntityEffector effector))

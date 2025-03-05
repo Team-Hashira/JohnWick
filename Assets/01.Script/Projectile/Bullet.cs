@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    public class Bullet : Projectile, IParryingable
+    public class Bullet : Projectile
     {
         public bool IsParryingable { get; set; }
         [SerializeField] protected EffectPoolType _hitEffect;
@@ -19,10 +19,14 @@ namespace Hashira.Projectiles
             IsParryingable = true;
         }
 
-        protected override void OnHited(RaycastHit2D hit, IDamageable damageable)
+        protected override void OnHited(HitInfo hitInfo)
         {
-            base.OnHited(hit, damageable);
+            base.OnHited(hitInfo);
             CameraManager.Instance.ShakeCamera(8, 8, 0.2f);
+
+            var damageable = hitInfo.damageable;
+            var hit = hitInfo.raycastHit;
+
             if (damageable != null)
             {
                 int damage = CalculateDamage(Damage);
@@ -41,29 +45,6 @@ namespace Hashira.Projectiles
                 //Effect
                 gameObject.Pop(_spakleEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
             }
-        }
-
-        public void Parrying(LayerMask whatIsNewTargetLayer, Transform owner, bool isChargedParrying)
-        {
-            if (IsParryingable == false) return;
-
-            Quaternion effectRotation = transform.rotation * Quaternion.Euler(0, 0, -90);
-            gameObject.Pop(EffectPoolType.HitSparkleEffect, transform.position, effectRotation);
-
-            if (isChargedParrying)
-            {
-                CameraManager.Instance.ShakeCamera(15, 11, 0.25f);
-                Damage *= 10;
-                _speed *= 10;
-                gameObject.Pop(EffectPoolType.HitSparkleEffect, transform.position, effectRotation);
-            }
-            else
-                CameraManager.Instance.ShakeCamera(4, 4, 0.15f);
-
-            WhatIsTarget = whatIsNewTargetLayer;
-            IsParryingable = false;
-            Owner = owner;
-            transform.localEulerAngles += new Vector3(0, 180, 0);
         }
     }
 }

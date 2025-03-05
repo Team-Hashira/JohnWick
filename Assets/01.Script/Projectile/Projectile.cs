@@ -21,10 +21,9 @@ namespace Hashira.Projectiles
         public Transform Owner { get; set; }
 
         protected EAttackType _attackType;
-        protected AnimationCurve _damageOverDistance;
         private Vector3 _spawnPos;
 
-        public event Action<RaycastHit2D, IDamageable> OnHitEvent;
+        public event Action<HitInfo> OnHitEvent;
 
         protected virtual void Awake()
         {
@@ -34,9 +33,9 @@ namespace Hashira.Projectiles
         protected virtual void FixedUpdate()
         {
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
-            transform.position += movement;
+            HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, movement, transform.right);
 
-            HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, transform.position, transform.right);
+            transform.position += movement;
 
             bool isHit = hitInfoes.Length > 0;
 
@@ -46,15 +45,7 @@ namespace Hashira.Projectiles
                     OnHited(hitInfoes[i]);
 
                 this.Push();
-                return;
             }
-
-            float spawnPosToCurPosDis = Vector3.Distance(_spawnPos, transform.position);
-            float time = _damageOverDistance.keys[^1].time;
-            bool isDie = _damageOverDistance.keys.Length != 0 && time < spawnPosToCurPosDis;
-
-            if (isDie)
-                this.Push();
         }
 
         public void SetDamage(int damage)
@@ -63,8 +54,7 @@ namespace Hashira.Projectiles
             => _attackType = eAttackType;
         public virtual int CalculateDamage(float damage)
         {
-            float finalDamage = damage * _damageOverDistance.Evaluate(Vector3.Distance(_spawnPos, transform.position));
-            return Mathf.CeilToInt(finalDamage);
+            return Mathf.CeilToInt(damage);
         }
         public int CalculatePenetration(float damage, int penetratedCount)
         {
@@ -84,13 +74,6 @@ namespace Hashira.Projectiles
             transform.right = direction;
             _penetratedColliderList = new List<Collider2D>();
             Owner = owner;
-            _damageOverDistance = damageOverDistance;
-            if (_damageOverDistance == null)
-            {
-                _damageOverDistance = new AnimationCurve();
-                _damageOverDistance.AddKey(0, 1);
-                _damageOverDistance.AddKey(10000, 1);
-            }
 
             _spawnPos = transform.position;
         }

@@ -1,8 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities;
-using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Hashira.Object
 {
@@ -32,7 +30,5 @@ namespace Hashira.Object
             Destroy(gameObject);
             return EEntityPartType.Body;
         }
-
-
     }
 }

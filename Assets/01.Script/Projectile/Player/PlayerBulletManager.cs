@@ -8,16 +8,17 @@ namespace Hashira.Projectiles.Player
         protected List<ProjectileModifier> _projectileModifiers = new List<ProjectileModifier>();
         private Attacker _playerAttacker;
 
+        public int HandleOnModifier { get; private set; }
+
+        public List<Projectile> projectileList;
+
         private void Start()
         {
+            projectileList = new List<Projectile>();
             _playerAttacker = GameManager.Instance.Player.GetComponent<Attacker>();
         }
 
-        private void FixedUpdate()
-        {
-            for (int i = 0; i < _projectileModifiers.Count; i++)
-                _projectileModifiers[i].OnProjectileUpdate();
-        }
+        public List<ProjectileModifier> GetModifierList => _projectileModifiers;
 
         public void EquipBulletModifier(ProjectileModifier projectileModifier)
         {

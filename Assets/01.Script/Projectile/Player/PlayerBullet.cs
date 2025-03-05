@@ -18,19 +18,24 @@ namespace Hashira.Projectiles.Player
             _playerBulletManager = PlayerBulletManager.Instance;
         }
 
-        protected override void Awake()
+        private void Update()
         {
-            base.Awake();
+            for (int i = 0; i < PlayerBulletManager.Instance.GetModifierList.Count; i++)
+                PlayerBulletManager.Instance.GetModifierList[i].OnUpdate(this);
         }
 
-        protected override void FixedUpdate()
+        protected override void OnHited(HitInfo hitInfo)
         {
-            base.FixedUpdate();
+            base.OnHited(hitInfo);
+            for (int i = 0; i < PlayerBulletManager.Instance.GetModifierList.Count; i++)
+                PlayerBulletManager.Instance.GetModifierList[i].OnProjectileHit(this, hitInfo);
         }
 
-        protected override void OnHited(RaycastHit2D hit, IDamageable damageable)
+        public override void OnPop()
         {
-            base.OnHited(hit, damageable);
+            base.OnPop();
+            for (int i = 0; i < PlayerBulletManager.Instance.GetModifierList.Count; i++)
+                PlayerBulletManager.Instance.GetModifierList[i].OnProjectileCreate(this);
         }
     }
 }
