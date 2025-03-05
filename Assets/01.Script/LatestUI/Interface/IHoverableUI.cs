@@ -6,7 +6,7 @@ namespace Hashira.LatestUI
     {
         public Collider2D Collider { get; set; }
 
-        public void OnMouseEnter();
-        public void OnMouseExit();
+        public void OnCursorEnter();
+        public void OnCursorExit();
     }
 }

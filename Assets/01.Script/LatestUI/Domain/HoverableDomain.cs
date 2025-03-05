@@ -37,7 +37,10 @@ namespace Hashira.LatestUI
                 {
                     if (_hoverableDict.TryGetValue(hoverable.GetHashCode(), out hoverable))
                     {
-                        CallOnMouseExit(hoverable);
+                        if (hoverable != null)
+                        {
+                            CallOnMouseExit(hoverable);
+                        }
                     }
                 }
             }
@@ -45,13 +48,16 @@ namespace Hashira.LatestUI
 
         public void CallOnMouseEnter(IHoverableUI ui)
         {
-            ui.OnMouseEnter();
-            _hoverableDict.Add(ui.GetHashCode(), ui);
+            ui.OnCursorEnter();
+            if (_hoverableDict.TryGetValue(ui.GetHashCode(), out IHoverableUI h))
+                _hoverableDict[ui.GetHashCode()] = ui;
+            else
+                _hoverableDict.Add(ui.GetHashCode(), ui);
         }
 
         public void CallOnMouseExit(IHoverableUI ui)
         {
-            ui.OnMouseExit();
+            ui.OnCursorExit();
             _hoverableDict[ui.GetHashCode()] = null;
         }
     }

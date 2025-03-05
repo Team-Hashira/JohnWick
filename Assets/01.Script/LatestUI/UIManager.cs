@@ -31,16 +31,22 @@ namespace Hashira.LatestUI
                     {
                         if (typeof(IUserInterface).IsAssignableFrom(interfaceType))
                         {
+                            if (interfaceType == typeof(IUserInterface))
+                                continue;
                             if (_uiDomainDict.TryGetValue(interfaceType, out var list))
                             {
-                                if (list == null)
-                                {
-                                    string interfaceName = interfaceType.ToString();
-                                    string domainName = interfaceName.Substring(1, interfaceName.IndexOf("UI"));
-                                    Type domainType = Type.GetType($"{domainName}Domain");
-                                    UIManagementDomain domain = Activator.CreateInstance(domainType) as UIManagementDomain;
-                                    _uiDomainDict.Add(interfaceType, domain);
-                                }
+                                _uiDomainDict[interfaceType].AddUI(ui);
+                            }
+                            else
+                            {
+                                string interfaceName = interfaceType.ToString();
+                                int startIndex = interfaceName.IndexOf('I', 16);
+
+                                string domainName = 
+                                    interfaceName.Substring(startIndex + 1, interfaceName.IndexOf("UI", startIndex) - startIndex - 1);
+                                Type domainType = Type.GetType($"{GetType().Namespace}.{domainName}Domain");
+                                UIManagementDomain domain = Activator.CreateInstance(domainType) as UIManagementDomain;
+                                _uiDomainDict.Add(interfaceType, domain);
                                 _uiDomainDict[interfaceType].AddUI(ui);
                             }
                         }
@@ -54,7 +60,7 @@ namespace Hashira.LatestUI
             MousePosition = Mouse.current.position.value;
             WorldMousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
 
-            foreach(var doamin in _uiDomainDict.Values)
+            foreach (var doamin in _uiDomainDict.Values)
             {
                 doamin.UpdateUI();
             }
