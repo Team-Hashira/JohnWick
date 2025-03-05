@@ -27,7 +27,7 @@ namespace Hashira.Projectiles
             {
                 _attacker.SetProjectile(_prevProjectilePoolType);
                 _projectile.SetAttackType(EAttackType.Fire);
-                _projectile.DamageOverride(_damage);
+                _projectile.SetDamage(_damage);
                 _isFirst = false;
                 //ModifierExecuter.Reset();
             }

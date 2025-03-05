@@ -1,3 +1,4 @@
+using Crogen.CrogenPooling;
 using Hashira.Entities;
 using System;
 using System.Collections.Generic;
@@ -5,11 +6,10 @@ using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    public class Projectile : PushLifetime
+    public class Projectile : MonoBehaviour, IPoolingObject
     {
         [SerializeField] protected bool _canMultipleAttacks;
         [SerializeField] protected ProjectileCollider2D _projectileCollider;
-        [SerializeField] protected TrailRenderer _trailRenderer;
         protected float _speed;
         public int Damage { get; protected set; }
 
@@ -19,10 +19,10 @@ namespace Hashira.Projectiles
         protected SpriteRenderer _spriteRenderer;
         protected BoxCollider2D _collider;
 
-        protected List<ProjectileModifier> _projectileModifiers;
-
         protected List<Collider2D> _penetratedColliderList = new List<Collider2D>();
         public Transform Owner { get; set; }
+        public string OriginPoolType { get; set; }
+        GameObject IPoolingObject.gameObject { get; set; }
 
         protected EAttackType _attackType;
         protected AnimationCurve _damageOverDistance;
@@ -38,11 +38,6 @@ namespace Hashira.Projectiles
 
         protected virtual void FixedUpdate()
         {
-            if (_isDead) return;
-
-            for (int i = 0; i < _projectileModifiers.Count; i++)
-                _projectileModifiers[i].OnProjectileUpdate();
-
             Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
             bool isHit = _projectileCollider.CheckCollision(WhatIsTarget, out RaycastHit2D[] hits, movement);
             List<RaycastHit2D> newHitList = new List<RaycastHit2D>();
@@ -96,10 +91,10 @@ namespace Hashira.Projectiles
                             _penetratedColliderList.Add(hit.collider);
                         }
                         else
-                            Die();
+                            this.Push();
                     }
                     else
-                        Die();
+                        this.Push();
                 });
 
                 if (isAnyHit == false)
@@ -108,24 +103,21 @@ namespace Hashira.Projectiles
             else
                 transform.position += movement;
 
-            if (_damageOverDistance.keys.Length != 0 && _damageOverDistance.keys[^1].time < Vector3.Distance(_spawnPos, transform.position) && _isDead == false)
+            if (_damageOverDistance.keys.Length != 0 && _damageOverDistance.keys[^1].time < Vector3.Distance(_spawnPos, transform.position))
             {
-                Die();
+                this.Push();
             }
         }
 
-        public void DamageOverride(int damage)
+        public void SetDamage(int damage)
             => Damage = damage;
-
         public void SetAttackType(EAttackType eAttackType = EAttackType.Default)
             => _attackType = eAttackType;
-
         public virtual int CalculateDamage(float damage)
         {
             float finalDamage = damage * _damageOverDistance.Evaluate(Vector3.Distance(_spawnPos, transform.position));
             return Mathf.CeilToInt(finalDamage);
         }
-
         public int CalculatePenetration(float damage, int penetratedCount)
         {
             if (penetratedCount == 0) return Mathf.CeilToInt(damage);
@@ -143,7 +135,6 @@ namespace Hashira.Projectiles
             WhatIsTarget = whatIsTarget;
             transform.right = direction;
             _spriteRenderer.enabled = true;
-            _trailRenderer.enabled = true;
             _collider.enabled = true;
             _penetratedColliderList = new List<Collider2D>();
             Owner = owner;
@@ -155,24 +146,15 @@ namespace Hashira.Projectiles
                 _damageOverDistance.AddKey(10000, 1);
             }
 
-            _projectileModifiers = projectileModifiers;
-            _projectileModifiers ??= new List<ProjectileModifier>();
-
             _spawnPos = transform.position;
         }
 
-        public override void Die()
+        public virtual void OnPop()
         {
-            base.Die();
-            _spriteRenderer.enabled = false;
-            _collider.enabled = false;
         }
 
-        public override void DelayDie()
+        public virtual void OnPush()
         {
-            base.DelayDie();
-            _trailRenderer.enabled = false;
-            OnHitEvent = null;
         }
     }
 }
