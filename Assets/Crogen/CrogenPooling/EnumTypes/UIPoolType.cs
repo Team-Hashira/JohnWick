@@ -2,6 +2,6 @@ namespace Crogen.CrogenPooling
 {
     public enum UIPoolType
     {
-        DamageText, TargetPointContent, TargetPointMapSign, UseableCardUI, 
+        DamageText, TargetPointContent, TargetPointMapSign, UseableCardUI, BookCardUI, 
     }
 }

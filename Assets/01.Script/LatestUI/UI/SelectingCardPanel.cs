@@ -10,7 +10,7 @@ namespace Hashira.LatestUI
         public string Key { get; set; }
 
         [SerializeField]
-        private SelectableCardUI[] _selectableCards;
+        private RewardCardUI[] _selectableCards;
         [SerializeField]
         private CardSetSO _cardSet;
 
@@ -63,7 +63,7 @@ namespace Hashira.LatestUI
             _canvasGroup.blocksRaycasts = true;
         }
 
-        public void Select(SelectableCardUI card)
+        public void Select(RewardCardUI card)
         {
             foreach(var c in _selectableCards)
             {
