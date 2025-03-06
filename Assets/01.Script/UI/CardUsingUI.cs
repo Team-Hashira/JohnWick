@@ -12,7 +12,7 @@ namespace Hashira.LatestUI
         [field: SerializeField] public string Key { get; set; }
 
 
-        [SerializeField] private Button _rerollBtn;
+        [SerializeField] private Button _rerollBtn, _stageBtn;
         [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
 
         private void Awake()
@@ -20,6 +20,7 @@ namespace Hashira.LatestUI
             _canvasGroup = GetComponent<CanvasGroup>();
 
             _rerollBtn.onClick.AddListener(_useableCardDrower.Reroll);
+            _stageBtn.onClick.AddListener(GameManager.Instance.StartStage);
             Cost.OnCostChangedEvent += CostTextUpdate;
             CostTextUpdate(Cost.CurrentCost);
 
