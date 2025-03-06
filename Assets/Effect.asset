@@ -55,3 +55,6 @@ MonoBehaviour:
   - poolType: LightningVFX
     prefab: {fileID: 7950339184027253787, guid: 57396fb57131e0941a33ff9127af7967, type: 3}
     poolCount: 20
+  - poolType: MeteorVFX
+    prefab: {fileID: 0}
+    poolCount: 20
