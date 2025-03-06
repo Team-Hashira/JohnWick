@@ -18,4 +18,5 @@ MonoBehaviour:
   cardDescription: "\uD0C4\uC774 \uACE0\uBB34\uD0C4\uC774 \uB418\uC5B4 \uBCBD\uC774\uB098
     \uBC14\uB2E5\uC5D0 \uB2FF\uC558\uC744 \uB54C \uD295\uAE34\uB2E4."
   needCost: 6
-  effectClassName: 
+  effectClassName: RubberBullet
+  _effectTypeIs: 

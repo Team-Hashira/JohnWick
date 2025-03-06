@@ -2,7 +2,7 @@ using Hashira.Core.StatSystem;
 using Hashira.Entities;
 using UnityEngine;
 
-namespace Hashira.EffectSystem
+namespace Hashira.EffectSystem.Effects
 {
     public class StatEffect : Effect, ICoolTimeEffect
     {

@@ -142,8 +142,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: This is Very Awesome Description.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3c06ec7a245a4ff47810fd62bb924bf7, type: 2}
+  m_sharedMaterial: {fileID: -1479311474554455719, guid: 3c06ec7a245a4ff47810fd62bb924bf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -352,7 +352,6 @@ MonoBehaviour:
   <Collider>k__BackingField: {fileID: 8112879546624997288}
   _cardImage: {fileID: 6166924649455707346}
   _descrptionText: {fileID: 7937874993729633306}
-  _input: {fileID: 11400000, guid: 331188f674ea679489b6da3131276ff6, type: 2}
 --- !u!114 &5349895531622513532
 MonoBehaviour:
   m_ObjectHideFlags: 0

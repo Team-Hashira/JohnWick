@@ -13,7 +13,7 @@ namespace Hashira.Projectiles.Player
 
         private void Start()
         {
-            _playerAttacker = GameManager.Instance.Player.GetComponent<Attacker>();
+            _playerAttacker = GameManager.Instance.Player.Attacker;
         }
 
         public List<ProjectileModifier> GetModifierList => _projectileModifiers;

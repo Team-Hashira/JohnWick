@@ -35,18 +35,18 @@ namespace Hashira.LatestUI
         [SerializeField]
         private TextMeshProUGUI _descrptionText;
 
-        [Header("Test")]
-        [Dependent]
-        [SerializeField]
-        private CardSO _input;
+        //[Header("Test")]
+        //[Dependent]
+        //[SerializeField]
+        //private CardSO _input;
 
 
-        public void Reload()
+        public void Reload(CardSO cardSO)
         {
             Collider.enabled = false;
             _layoutElement.ignoreLayout = true;
             RectTransform.localScale = _defaultScale;
-            _cardSO = _input;
+            _cardSO = cardSO;
             _descrptionText.text = _cardSO.cardDescription;
             _cardImage.sprite = _cardSO.iconSprite;
             Vector2 randomPos = Random.insideUnitCircle.normalized;
@@ -76,6 +76,8 @@ namespace Hashira.LatestUI
                 .Append(RectTransform.DORotate(new Vector3(0, 360f), 0.3f, RotateMode.FastBeyond360))
                 .JoinCallback(() => _selectingCardPanel.Select(this))
                 .InsertCallback(_selectSequence.Duration() - 0.1f, _selectingCardPanel.Close);
+
+            PlayerManager.Instance.CardManager.AddCard(_cardSO);
         }
 
         public void OnClickEnd()

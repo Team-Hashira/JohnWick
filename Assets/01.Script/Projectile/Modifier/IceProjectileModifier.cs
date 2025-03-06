@@ -26,7 +26,7 @@ namespace Hashira.Projectiles
             if (entityHealth != null)
             {
                 var effector = entityHealth.Owner.GetEntityComponent<EntityEffector>();
-                var effect = new DecreaseMoveSpeed();
+                var effect = new RubberBullet();
                 effect.Duration = Duration;
                 effect.Amount = Amount;
                 effector.AddEffect(effect);

@@ -22,3 +22,6 @@ MonoBehaviour:
   - poolType: TargetPointMapSign
     prefab: {fileID: 3171226481966633437, guid: e86cc7d5e3af2ea40959eac1bf9526e7, type: 3}
     poolCount: 30
+  - poolType: TargetPointMapSign
+    prefab: {fileID: 3171226481966633437, guid: e86cc7d5e3af2ea40959eac1bf9526e7, type: 3}
+    poolCount: 30
