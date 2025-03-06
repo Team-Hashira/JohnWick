@@ -8,10 +8,10 @@ namespace Hashira.Projectiles
 {
     public class Projectile : MonoBehaviour, IPoolingObject
     {
+        public bool CanDieSelf { get; set; } = true;
         [SerializeField] protected bool _canMultipleAttacks;
-        [SerializeField] protected bool _canDieSelf;
         [SerializeField] protected BoxDamageCaster2D _boxDamageCaster;
-        protected float _speed;
+        public float Speed { get; private set; }
         public int Damage { get; protected set; }
 
         protected int _penetration;
@@ -35,7 +35,7 @@ namespace Hashira.Projectiles
 
         protected virtual void FixedUpdate()
         {
-            Vector3 movement = transform.right * Time.fixedDeltaTime * _speed;
+            Vector3 movement = transform.right * Time.fixedDeltaTime * Speed;
             HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, movement, transform.right);
 
             transform.position += movement;
@@ -46,8 +46,8 @@ namespace Hashira.Projectiles
             {
                 for (int i = 0; i < hitInfoes.Length; i++)
                     OnHited(hitInfoes[i]);
-
-                this.Push();
+                if (CanDieSelf)
+                    this.Push();
             }
         }
 
@@ -68,12 +68,19 @@ namespace Hashira.Projectiles
             return CalculatePenetration(damage * 0.8f, penetratedCount - 1);
         }
 
+        public void Redirection(Vector2 direction, float speed = -1f)
+        {
+            transform.right = direction;
+            if (speed != -1f)
+                Speed = speed;
+        }
+
         protected virtual void OnHited(HitInfo hitInfo) { }
 
         public virtual void Init(LayerMask whatIsTarget, Vector3 direction, float speed, int damage, int penetration, Transform owner, List<ProjectileModifier> projectileModifiers = null, AnimationCurve damageOverDistance = null)
         {
             Damage = damage;
-            _speed = speed;
+            Speed = speed;
             _penetration = penetration;
             _currentPenetration = penetration;
             WhatIsTarget = whatIsTarget;

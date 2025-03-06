@@ -43,7 +43,7 @@ namespace Hashira.LatestUI
             SetActive(true, 0);
             foreach (var card in _selectableCards)
             {
-                card.Reload();
+                //card.Reload();
             }
         }
 
