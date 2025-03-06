@@ -20,11 +20,14 @@ namespace Hashira.Cards
         public string effectClassName;
         private Type _effectType;
 
+        [Doryu.CustomAttributes.Uncorrectable]
+        [SerializeField] private string _effectTypeIs;
+
         protected virtual void OnValidate()
         {
             if (_effectType != null && _effectType.Name == effectClassName) return;
 
-            string className = $"{typeof(Effect).Namespace}.{effectClassName}";
+            string className = $"{typeof(Effect).Namespace}.Effects.{effectClassName}";
             try
             {
                 _effectType = Type.GetType(className);
@@ -34,6 +37,8 @@ namespace Hashira.Cards
                 Debug.LogError($"{className} is not found.\n" +
                     $"Error : {e.ToString()}");
             }
+
+            _effectTypeIs = _effectType?.Name;
         }
 
         public virtual Effect GetEffectClass()

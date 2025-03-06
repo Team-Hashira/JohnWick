@@ -1,5 +1,6 @@
 using Hashira.Core.StatSystem;
 using Hashira.EffectSystem;
+using Hashira.EffectSystem.Effects;
 using UnityEngine;
 
 namespace Hashira.Cards
@@ -12,7 +13,7 @@ namespace Hashira.Cards
         public float value;
         public bool canValueOverlap;
         public EModifyMode mode;
-
+        
         public override Effect GetEffectClass()
         {
             Effect effect = base.GetEffectClass();

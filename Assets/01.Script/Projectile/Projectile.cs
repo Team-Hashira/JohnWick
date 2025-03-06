@@ -9,6 +9,7 @@ namespace Hashira.Projectiles
     public class Projectile : MonoBehaviour, IPoolingObject
     {
         [SerializeField] protected bool _canMultipleAttacks;
+        [SerializeField] protected bool _canDieSelf;
         [SerializeField] protected BoxDamageCaster2D _boxDamageCaster;
         protected float _speed;
         public int Damage { get; protected set; }

@@ -6,26 +6,25 @@ namespace Hashira.Projectiles
 {
     public class SplitProjectileModifier : ProjectileModifier
     {
-        [SerializeField] private int _addProjectileCount;
-        private bool _isRemovedBurstBullets;
-            
-        public override void OnProjectileCreate(Projectile projectile)
+        private int _addProjectileCount;
+
+        public void Init(int count)
         {
+            _addProjectileCount = count;
+        }
+
+        public override void OnEquip(Attacker attacker)
+        {
+            base.OnEquip(attacker);
             for (int i = 0; i < _addProjectileCount; i++)
                 _attacker.AddBurstBullets();
+        }
 
-            base.OnProjectileCreate(projectile);
-
-            projectile.SetDamage(Mathf.CeilToInt(projectile.Damage * 0.8f));
-
-            if (_isRemovedBurstBullets == false)
-            {
-                _isRemovedBurstBullets = true;
-                for (int i = 0; i < _addProjectileCount; i++)
-                    _attacker.RemoveBurstBullets();
-
-                //ModifierExecuter.Reset();
-            }
+        public override void OnUnEquip()
+        {
+            base.OnUnEquip();
+            for (int i = 0; i < _addProjectileCount; i++)
+                _attacker.RemoveBurstBullets();
         }
     }
 }

@@ -1,12 +1,10 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities;
-using Hashira.Items.Cards;
 using Hashira.Players;
 using Hashira.Projectiles;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hashira
@@ -23,6 +21,7 @@ namespace Hashira
         [SerializeField] private AnimationCurve _damageOverDistance;
         private float _lastAttackTime;
         private int _burstBulletCount = 1;
+        private int _shootCount = 1;
         private ProjectilePoolType _projectilePoolType = ProjectilePoolType.Bullet;
 
         public event Action OnProjectileCreateReadyEvent;
@@ -47,6 +46,10 @@ namespace Hashira
             => _burstBulletCount++;
         public void RemoveBurstBullets()
             => _burstBulletCount--;
+        public void AddShootCount()
+            => _shootCount++;
+        public void RemoveShootCount()
+            => _shootCount--;
 
         public bool TrySetMainProjectileModifier(ProjectileModifier currentMainModifier)
         {
@@ -57,8 +60,18 @@ namespace Hashira
 
         private void HandleAttackEvent(bool isDown)
         {
-            float angle = _burstBulletCount * 5;
             if (isDown && _lastAttackTime + _attackDelay < Time.time)
+            {
+                StartCoroutine(AttackCoroutine());
+            }
+        }
+
+        private IEnumerator AttackCoroutine()
+        {
+            WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
+
+            float angle = _burstBulletCount * 5;
+            for (int count = 0; count < _shootCount; count++)
             {
                 OnProjectileCreateReadyEvent?.Invoke();
                 _lastAttackTime = Time.time;
@@ -78,6 +91,8 @@ namespace Hashira
                     createdProjectileList.Add(bullet);
                 }
                 OnProjectileCreateEvent?.Invoke(createdProjectileList);
+
+                yield return waitForSeconds;
             }
         }
 
