@@ -62,16 +62,16 @@ namespace Hashira
         {
             if (isDown && _lastAttackTime + _attackDelay < Time.time)
             {
-                StartCoroutine(AttackCoroutine());
+                StartCoroutine(AttackCoroutine(_shootCount));
             }
         }
 
-        private IEnumerator AttackCoroutine()
+        private IEnumerator AttackCoroutine(int shootCount)
         {
             WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
 
             float angle = _burstBulletCount * 5;
-            for (int count = 0; count < _shootCount; count++)
+            for (int count = 0; count < shootCount; count++)
             {
                 OnProjectileCreateReadyEvent?.Invoke();
                 _lastAttackTime = Time.time;

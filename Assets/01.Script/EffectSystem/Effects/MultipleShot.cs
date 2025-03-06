@@ -19,7 +19,7 @@ namespace Hashira.EffectSystem.Effects
         {
             base.Enable();
             _shootCountProjectileModifier = new ShootCountProjectileModifier();
-            _shootCountProjectileModifier.Init(1);
+            _shootCountProjectileModifier.Init(1, 4);
             PlayerBulletManager.Instance.EquipBulletModifier(_shootCountProjectileModifier);
         }
 

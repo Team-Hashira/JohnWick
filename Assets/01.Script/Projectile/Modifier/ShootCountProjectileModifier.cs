@@ -8,7 +8,7 @@ namespace Hashira
         private int _shootCount;
         private int _delay;
         private int _currentDelay;
-        private bool _isOn;
+        private bool _isEnable;
 
         public void Init(int count, int delay)
         {
@@ -20,27 +20,40 @@ namespace Hashira
         public override void OnEquip(Attacker attacker)
         {
             base.OnEquip(attacker);
-            _isOn = true;
+            _isEnable = true;
+            for (int i = 0; i < _shootCount; i++)
+                _attacker.AddShootCount();
         }
 
         public override void OnProjectileCreate(Projectile projectile)
         {
             base.OnProjectileCreate(projectile);
-            if (_currentDelay <= 0 && _isOn)
+            if (_isEnable)
             {
-                _currentDelay = _delay;
+                _isEnable = false;
+                for (int i = 0; i < _shootCount; i++)
+                    _attacker.RemoveShootCount();
+            }
+
+            _currentDelay++;
+            if (_currentDelay > _delay)
+            {
+                _isEnable = true;
+                _currentDelay = 0;
                 for (int i = 0; i < _shootCount; i++)
                     _attacker.AddShootCount();
             }
-
-            _currentDelay--;
         }
 
         public override void OnUnEquip()
         {
             base.OnUnEquip();
-            for (int i = 0; i < _shootCount; i++)
-                _attacker.RemoveShootCount();
+            if (_isEnable)
+            {
+                for (int i = 0; i < _shootCount; i++)
+                    _attacker.RemoveShootCount();
+                _currentDelay = _delay;
+            }
         }
     }
 }
