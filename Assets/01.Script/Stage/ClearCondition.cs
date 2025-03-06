@@ -35,6 +35,9 @@ namespace Hashira.Stage
 			--_enemyCount;
 			if (_enemyCount <= 0)
 				ClearEvent?.Invoke();
+
+            for (int i = 0; i < enemies.Length; i++)
+                enemies[i].gameObject.SetActive(true);
 		}
 	}
 
