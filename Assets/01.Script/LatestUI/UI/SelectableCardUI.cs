@@ -77,7 +77,7 @@ namespace Hashira.LatestUI
                 .JoinCallback(() => _selectingCardPanel.Select(this))
                 .InsertCallback(_selectSequence.Duration() - 0.1f, _selectingCardPanel.Close)
                 //카드 선택으로
-                .InsertCallback(0.1f, GameManager.Instance.StartCardUse);
+                .InsertCallback(0.5f, GameManager.Instance.StartCardUse);
 
             PlayerManager.Instance.CardManager.AddCard(_cardSO);
         }

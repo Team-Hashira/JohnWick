@@ -16,7 +16,7 @@ namespace Hashira.LatestUI
 
         private CardSO _cardSO;
 
-        [SerializeField] private TextMeshProUGUI _description;
+        [SerializeField] private TextMeshProUGUI _descriptionText, _costText;
         [SerializeField] private Image _icon;
 
         private void Start()
@@ -27,7 +27,8 @@ namespace Hashira.LatestUI
         public void SetCard(CardSO cardSO)
         {
             _cardSO = cardSO;
-            _description.text = cardSO.cardDescription;
+            _descriptionText.text = cardSO.cardDescription;
+            _costText.text = $"{cardSO.needCost}";
             _icon.sprite = cardSO.iconSprite;
         }
 

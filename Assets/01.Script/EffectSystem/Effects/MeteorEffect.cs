@@ -9,6 +9,7 @@ namespace Hashira.EffectSystem.Effects
     {
         private readonly float _delayTime = 8f;
         private float _curTime = 0f;
+        public override int MaxActiveCount => -1;
 
         public override void Disable()
         {

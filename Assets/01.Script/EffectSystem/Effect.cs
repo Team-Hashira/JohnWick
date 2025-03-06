@@ -12,7 +12,6 @@ namespace Hashira.EffectSystem
         public virtual int MaxActiveCount { get; private set; } = 1;
         public bool Visable { get; private set; } = true;
 
-        public EffectUIDataSO effectUIDataSO;
         public EntityEffector entityEffector;
 		public EntityStat entityStat;
         public Attacker attacker;

@@ -1,5 +1,4 @@
 using Hashira.Core;
-using System;
 using UnityEngine;
 
 namespace Hashira.Stage
@@ -12,12 +11,17 @@ namespace Hashira.Stage
         public void GenerateStage()
         {
             _currentStage = Instantiate(_stage, transform);
-            _currentStage.AllClearEvent.AddListener(GameManager.Instance.StartCardSelec);
+            _currentStage.AllClearEvent.AddListener(() =>
+            {
+                ClearStage();
+            });
         }
 
         public void ClearStage()
         {
-            Destroy(_currentStage);
+            GameManager.Instance.StartCardSelec();
+            Destroy(_currentStage.gameObject);
+            Cost.AddCost(20);
         }
     }
 }

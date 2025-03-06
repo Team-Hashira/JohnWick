@@ -1,4 +1,5 @@
 using Hashira.Projectiles;
+using System;
 using UnityEngine;
 
 namespace Hashira
@@ -23,11 +24,12 @@ namespace Hashira
             _isEnable = true;
             for (int i = 0; i < _shootCount; i++)
                 _attacker.AddShootCount();
+
+            _attacker.OnShootEvent += HandleShootEvent;
         }
 
-        public override void OnProjectileCreate(Projectile projectile)
+        private void HandleShootEvent()
         {
-            base.OnProjectileCreate(projectile);
             if (_isEnable)
             {
                 _isEnable = false;

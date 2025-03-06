@@ -18,7 +18,6 @@ namespace Hashira.UI.Effect
         {
             //여기서 다른 UI 정보들까지 싹 다 초기화
             this.effectBase = effectBase;
-            _iconImage.sprite = effectBase.effectUIDataSO.icon;
         }
 
         private void Update()

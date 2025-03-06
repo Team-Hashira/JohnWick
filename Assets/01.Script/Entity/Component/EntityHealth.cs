@@ -84,6 +84,7 @@ namespace Hashira.Entities
 
         public EEntityPartType ApplyDamage(int damage, RaycastHit2D raycastHit, Transform attackerTrm, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
         {
+            Debug.Log("Hit");
             EEntityPartType hitPoint = EEntityPartType.Body;
             if (raycastHit != default && Owner.TryGetEntityComponent(out EntityPartCollider entityPartCollider))
             {
