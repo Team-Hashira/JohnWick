@@ -113,7 +113,31 @@ MonoBehaviour:
     enemies:
     - {fileID: 6455304128283801242}
     - {fileID: 5114308386199293536}
-  _areaClearConditionalList: []
+  - isClear: 0
+    ClearEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    enemies:
+    - {fileID: 6455304128283801242}
+    - {fileID: 5114308386199293536}
+  _areaClearConditionalList:
+  - isClear: 0
+    ClearEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    area: {fileID: 0}
   _otherClearConditionalList: []
 --- !u!1 &6053739059537789907
 GameObject:

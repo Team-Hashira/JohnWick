@@ -51,8 +51,10 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
             SystemActions.SetCallbacks(this);
         }
 
-        PlayerActive(true);
-        UIActive(true);
+        _controls.Enable();
+
+        //PlayerActive(true);
+        //UIActive(true);
         InteractKeyUpdate();
     }
 
