@@ -349,6 +349,8 @@ MonoBehaviour:
   _stateList:
   - {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
   - {fileID: 11400000, guid: df30a348952a1794ba54c27626cf4824, type: 2}
+  - {fileID: 11400000, guid: be980842f5cb9d84688accd90bbe333b, type: 2}
+  - {fileID: 11400000, guid: 0b22993233790d841839f9a8bb30f408, type: 2}
   _startState: {fileID: 11400000, guid: 16f626d5cadb69d4696c31f2cce8bc51, type: 2}
 --- !u!114 &6063461500707173854
 MonoBehaviour:

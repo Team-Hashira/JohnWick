@@ -27,7 +27,7 @@ namespace Hashira.LatestUI
 
         private void Start()
         {
-            Open();
+            SetActive(false, 0);
         }
 
         private void Update()
@@ -40,7 +40,7 @@ namespace Hashira.LatestUI
 
         public void Open()
         {
-            _canvasGroup.alpha = 1f;
+            SetActive(true, 0);
             foreach (var card in _selectableCards)
             {
                 card.Reload();
@@ -49,7 +49,15 @@ namespace Hashira.LatestUI
 
         public void Close()
         {
-            _canvasGroup.DOFade(0, 0.5f);
+            SetActive(false);
+        }
+
+        public void SetActive(bool isActive, float duration = 0.5f)
+        {
+            float alpha = isActive ? 1f : 0;
+            _canvasGroup.DOFade(alpha, duration);
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = true;
         }
 
         public void Select(SelectableCardUI card)

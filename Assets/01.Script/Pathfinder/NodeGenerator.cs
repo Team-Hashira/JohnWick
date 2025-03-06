@@ -195,7 +195,7 @@ namespace Hashira.Pathfind
 
         private bool IsEmptyOnLeftOrRight(Vector3Int posiiton)
         {
-            Vector2Int[] dirs = Direction2D.GetDirections(DirectionType.Left, DirectionType.Right); //�˻� �������κ��� ���ʸ� Ž��.
+            Vector2Int[] dirs = Direction2D.GetIntDirections(DirectionType.Left, DirectionType.Right); //�˻� �������κ��� ���ʸ� Ž��.
             foreach (var dir in dirs) // ����ִ��� üŷ.
             {
                 if (!_groundTilemap.HasTile(posiiton + (Vector3Int)dir)) // �ٷ� ���� ����ִ��� üũ.
@@ -208,7 +208,7 @@ namespace Hashira.Pathfind
 
         private bool IsWallOnLeftOrRight(Vector3Int posiiton)
         {
-            Vector2Int[] wallDirs = Direction2D.GetDirections(DirectionType.Left, DirectionType.Right); //�˻� �������κ��� ���ʸ� Ž��.
+            Vector2Int[] wallDirs = Direction2D.GetIntDirections(DirectionType.Left, DirectionType.Right); //�˻� �������κ��� ���ʸ� Ž��.
             foreach (var dir in wallDirs) // �� Ÿ������ üŷ.
             {
                 if (_groundTilemap.HasTile(posiiton + (Vector3Int)dir)) // �ٷ� ���� ���� �ִ��� üũ.

@@ -19,11 +19,12 @@ namespace Hashira.Pathfind
 
     public static class Direction2D
     {
-        private static Dictionary<DirectionType, Vector2Int> _directionDict;
+        private static Dictionary<DirectionType, Vector2Int> _intDirectionDict;
+        private static Dictionary<DirectionType, Vector2> _directionDict;
 
         static Direction2D()
         {
-            _directionDict = new Dictionary<DirectionType, Vector2Int>()
+            _intDirectionDict = new Dictionary<DirectionType, Vector2Int>()
             {
                 { DirectionType.Zero, Vector2Int.zero },
                 { DirectionType.Up, Vector2Int.up },
@@ -34,6 +35,18 @@ namespace Hashira.Pathfind
                 { DirectionType.LowerLeft, new Vector2Int(-1,-1) },
                 { DirectionType.Left, Vector2Int.left },
                 { DirectionType.UpperLeft, new Vector2Int(-1,1)},
+            };
+            _directionDict = new Dictionary<DirectionType, Vector2>()
+            {
+                { DirectionType.Zero, Vector2.zero },
+                { DirectionType.Up, Vector2.up },
+                { DirectionType.UpperRight, new Vector2(1,1)},
+                { DirectionType.Right, Vector2.right },
+                { DirectionType.LowerRight, new Vector2(1,-1)},
+                { DirectionType.Down, Vector2.down },
+                { DirectionType.LowerLeft, new Vector2(-1,-1) },
+                { DirectionType.Left, Vector2.left },
+                { DirectionType.UpperLeft, new Vector2(-1,1)},
             };
         }
 
@@ -117,15 +130,29 @@ namespace Hashira.Pathfind
                 new Vector2Int(-1,1),
             };
 
-        public static Vector2Int GetDirection(DirectionType directionType)
+        public static Vector2 GetDirection(DirectionType directionType)
             => _directionDict[directionType];
 
-        public static Vector2Int[] GetDirections(params DirectionType[] directionTypes)
+        public static Vector2[] GetDirections(params DirectionType[] directionTypes)
+        {
+            Vector2[] directions = new Vector2[directionTypes.Length];
+            for (int i = 0; i < directionTypes.Length; i++)
+            {
+                directions[i] = _directionDict[directionTypes[i]];
+            }
+            return directions;
+        }
+
+
+        public static Vector2Int GetIntDirection(DirectionType directionType)
+            => _intDirectionDict[directionType];
+
+        public static Vector2Int[] GetIntDirections(params DirectionType[] directionTypes)
         {
             Vector2Int[] directions = new Vector2Int[directionTypes.Length];
             for(int i = 0; i < directionTypes.Length; i++)
             {
-                directions[i] = _directionDict[directionTypes[i]];
+                directions[i] = _intDirectionDict[directionTypes[i]];
             }
             return directions;
         }
