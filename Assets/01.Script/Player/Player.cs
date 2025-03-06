@@ -176,11 +176,6 @@ namespace Hashira.Players
                 _lastRightClickTime + _chargingParryingStartDelay < Time.time)
             {
                 _isChargingParrying = true;
-                if (GameManager.Instance.Volume.profile.TryGet(out ChromaticAberration chromaticAberration))
-                {
-                    chromaticAberration.active = true;
-                    chromaticAberration.intensity.value = 1f;
-                }
                 TimeManager.SetTimeScale(_slowTimeScale);
             }
             if (_isChargingParrying)

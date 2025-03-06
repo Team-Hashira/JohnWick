@@ -14,7 +14,7 @@ namespace Hashira.Stage
                 _size * (Vector2)transform.localScale, 0, _whatIsPlayer);
             if (colliders.Length != 0)
             {
-                _stageGenerator.Clear();
+                //_stageGenerator.Clear();
             }
         }
 
