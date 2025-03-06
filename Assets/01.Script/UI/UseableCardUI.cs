@@ -18,7 +18,7 @@ namespace Hashira.LatestUI
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private Image _icon;
 
-        private void Awake()
+        private void Start()
         {
             UIManager.Instance.AddUI(this);
         }
