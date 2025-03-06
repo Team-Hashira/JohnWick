@@ -14,8 +14,8 @@ namespace Hashira.LatestUI
             List<CardSO> cardSOList = PlayerManager.Instance.CardManager.GetRandomCard(_cardCount);
             for (int i = 0; i < cardSOList.Count; i++)
             {
-                //UseableCardUI useableCardUI = gameObject.Pop(UIPoolType.);
-                //useableCardUI[i].SetCard(cardSOList[i]);
+                UseableCardUI useableCardUI = gameObject.Pop(UIPoolType.UseableCardUI, transform) as UseableCardUI;
+                useableCardUI.SetCard(cardSOList[i]);
             }
         }
     }
