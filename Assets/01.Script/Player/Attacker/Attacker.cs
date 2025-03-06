@@ -1,7 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Core;
 using Hashira.Entities;
-using Hashira.Items.Cards;
 using Hashira.MainScreen;
 using Hashira.Players;
 using Hashira.Projectiles;
