@@ -7,6 +7,8 @@ namespace Hashira.MainScreen
     {
         private static Material _mainScreenMat;
 
+        private static Transform _transform;
+
         // SimpeShockWave
         private static readonly int _simpleShckWave_ValueID = Shader.PropertyToID("_SimpleShckWave_Value");
         private static readonly int _playerPos = Shader.PropertyToID("_PlayerPos");
@@ -22,6 +24,7 @@ namespace Hashira.MainScreen
 
         private void Awake()
         {
+            _transform = this.transform;
             _mainScreenMat = GetComponent<MeshRenderer>().material;
         }
 
@@ -85,6 +88,11 @@ namespace Hashira.MainScreen
         public void OnRotateEffect(float value)
         {
             _mainScreenMat.DOFloat(value, _rotate_value, 0.25f).SetEase(Ease.OutBounce);
+        }
+
+        public static void OnShake(float strength, int vibrato, float time)
+        {
+            _transform.DOShakePosition(time, strength, vibrato);
         }
     }
 }

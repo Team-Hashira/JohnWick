@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Entities;
 using Hashira.Items.Cards;
+using Hashira.MainScreen;
 using Hashira.Players;
 using Hashira.Projectiles;
 using System;
@@ -72,8 +73,7 @@ namespace Hashira
                     List<ProjectileModifier> projectileModifiers = new List<ProjectileModifier>();
                     //_moduleList.ForEach(module => projectileModifiers.AddRange(module.ProjectileModifierList));
                     bullet.Init(_whatIsTarget, targetPos, 100f, damage, 0, _player.transform, projectileModifiers, _damageOverDistance);
-                    CameraManager.Instance.ShakeCamera(6, 6, 0.15f);
-                    CameraManager.Instance.Aberration(0.6f, 0.2f);
+                    MainScreenEffect.OnShake(0.25f, 10, 0.1f);
 
                     createdProjectileList.Add(bullet);
                 }

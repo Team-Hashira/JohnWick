@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Combat;
 using Hashira.Entities;
+using Hashira.MainScreen;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ namespace Hashira.Projectiles
 
             if (damageable != null)
             {
-                CameraManager.Instance.ShakeCamera(8, 8, 0.3f);
+                MainScreenEffect.OnShake(0.45f, 12, 0.1f);
 
                 int damage = CalculateDamage(Damage);
                 int penetrationDamage = CalculatePenetration(CalculateDamage(damage), _penetration - _currentPenetration);

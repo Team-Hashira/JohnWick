@@ -9,7 +9,7 @@ namespace Hashira.Stage
 		[SerializeField] private List<AreaClearCondition> _areaClearConditionalList;
 		[SerializeField] private List<OtherClearCondition> _otherClearConditionalList;
 
-		private void Awake()
+		private void Start()
 		{
 			_enemyClearConditionalList.ForEach(condition => condition.Init());
 			_areaClearConditionalList.ForEach(condition => condition.Init());
