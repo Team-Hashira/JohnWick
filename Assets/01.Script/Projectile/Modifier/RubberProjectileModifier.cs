@@ -39,7 +39,6 @@ namespace Hashira.Projectiles
                 reflect.Normalize();
                 projectile.Redirection(reflect);
                 projectile.transform.position += (Vector3)reflect * projectile.Speed * 2 * Time.deltaTime;
-                Debug.Log(_bounceCountDict[projectile]);
             }
         }
 
