@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Hashira.LatestUI
 {
-    public class SelectableCardUI : UIBase, IClickableUI, IHoverableUI
+    public class RewardCardUI : UIBase, IClickableUI, IHoverableUI
     {
         [field: SerializeField]
         public Collider2D Collider { get; set; }

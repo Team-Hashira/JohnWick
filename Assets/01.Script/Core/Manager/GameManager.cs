@@ -18,7 +18,7 @@ namespace Hashira.Core
         {
             _toggleDomain = Hashira.LatestUI.UIManager.Instance.GetDomain<ToggleDomain>(typeof(IToggleUI));
             _playerMover = PlayerManager.Instance.Player.GetEntityComponent<EntityMover>(true);
-            StartCardSelec();
+            //StartCardSelec();
         }
 
         public void StartCardUse()

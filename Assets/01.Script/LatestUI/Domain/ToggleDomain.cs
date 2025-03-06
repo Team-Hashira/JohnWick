@@ -12,8 +12,11 @@ namespace Hashira.LatestUI
             _uiDictionary = new Dictionary<string, IToggleUI>();
         }
 
-        public void OpenUI(string key)
-            => _uiDictionary[key].Open();
+        public IToggleUI OpenUI(string key)
+        {
+            _uiDictionary[key].Open();
+            return _uiDictionary[key];
+        }
 
         public void CloseUI(string key)
             => _uiDictionary[key].Close();

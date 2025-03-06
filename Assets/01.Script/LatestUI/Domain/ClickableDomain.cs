@@ -5,7 +5,6 @@ namespace Hashira.LatestUI
 {
     public class ClickableDomain : UIManagementDomain
     {
-
         public override void UpdateUI()
         {
             base.UpdateUI();
