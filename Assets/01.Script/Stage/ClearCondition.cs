@@ -2,7 +2,6 @@ using Hashira.Enemies;
 using Hashira.Entities;
 using UnityEngine;
 using UnityEngine.Events;
-using Hashira.Stage.Area;
 
 namespace Hashira.Stage
 {
@@ -35,34 +34,12 @@ namespace Hashira.Stage
 			--_enemyCount;
 			if (_enemyCount <= 0)
 				ClearEvent?.Invoke();
+		}
 
+        public void ShowAllEnemies()
+        {
             for (int i = 0; i < enemies.Length; i++)
                 enemies[i].gameObject.SetActive(true);
-		}
-	}
-
-	[System.Serializable]
-	public class AreaClearCondition : ClearCondition
-	{
-		public Area.Area area;
-
-		public override void Init()
-		{
-			area.ClearEvent.AddListener(HandleClear);
-		}
-
-		private void HandleClear()
-		{
-			area.ClearEvent.AddListener(HandleClear);
-			ClearEvent?.Invoke();
-		}
-	}
-
-	[System.Serializable]
-	public class OtherClearCondition : ClearCondition
-	{
-		public override void Init()
-		{
-		}
+        }
 	}
 }

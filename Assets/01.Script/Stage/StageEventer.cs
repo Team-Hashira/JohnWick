@@ -1,29 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Hashira.Stage
 {
 	public class StageEventer : MonoBehaviour
 	{
+        public UnityEvent AllClearEvent;
+
 		[SerializeField] private List<EnemyClearCondition> _enemyClearConditionalList;
-		[SerializeField] private List<AreaClearCondition> _areaClearConditionalList;
-		[SerializeField] private List<OtherClearCondition> _otherClearConditionalList;
 
 		private void Start()
 		{
 			_enemyClearConditionalList.ForEach(condition => condition.Init());
-			_areaClearConditionalList.ForEach(condition => condition.Init());
-			_otherClearConditionalList.ForEach(condition => condition.Init());
+
+            for (int i = 0; i < _enemyClearConditionalList.Count-1; i++)
+            {
+                _enemyClearConditionalList[i].ClearEvent.AddListener(() => _enemyClearConditionalList[i+1].ShowAllEnemies());
+            }
+
+
+            _enemyClearConditionalList[_enemyClearConditionalList.Count - 1].ClearEvent.AddListener(StageAllClear);
 		}
 
-		public void InvokeOtherClearConidition(int index)
-		{
-			_otherClearConditionalList[index].Init();
-		}
-
-		public void InvokeAllOtherClearConidition()
-		{
-			_otherClearConditionalList.ForEach(condition => condition.Init());
-		}
+        private void StageAllClear()
+        {
+            AllClearEvent?.Invoke();
+        }
 	}
 }

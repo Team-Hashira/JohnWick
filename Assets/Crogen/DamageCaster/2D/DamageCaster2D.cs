@@ -46,7 +46,7 @@ public abstract class DamageCaster2D : MonoBehaviour
 
     public void CastDamage(int damage)
     {
-        CastDamage(damage);
+        CastDamage(damage, Vector2.zero);
     }
 
 	public virtual HitInfo[] CastDamage(int damage, Vector2 moveTo = default, Vector2 knockback = default, EAttackType attackType = EAttackType.Default)
