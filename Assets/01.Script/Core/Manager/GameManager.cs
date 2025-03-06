@@ -1,8 +1,5 @@
-using Hashira.Players;
 using Hashira.Stage;
-using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Hashira. Core
 {
