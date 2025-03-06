@@ -92,7 +92,7 @@ namespace Hashira.MainScreen
 
         public static void OnShake(float strength, int vibrato, float time)
         {
-            _transform.DOShakePosition(time, strength, vibrato);
+            _transform.DOShakePosition(time, strength, vibrato).OnComplete(() => _transform.position = Vector3.zero);
         }
     }
 }
