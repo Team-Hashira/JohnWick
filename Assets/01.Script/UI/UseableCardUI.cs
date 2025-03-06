@@ -30,6 +30,7 @@ namespace Hashira.LatestUI
             if (Cost.TryRemoveCost(_cardSO.needCost))
             {
                 GameManager.Instance.Player.GetEntityComponent<EntityEffector>().AddEffect(_cardSO.GetEffectClass());
+                this.Push();
             }
             else
             {
