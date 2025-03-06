@@ -413,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &272915366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1596,7 +1596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1003137563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1633,8 +1633,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Key>k__BackingField: 
-  _boxRects: []
-  _boxOriginPositions: []
+  _boxRects:
+  - {fileID: 1763606946}
+  - {fileID: 642004219}
+  - {fileID: 342871202}
+  - {fileID: 393834617}
+  _boxOriginPositions:
+  - {x: 2481, y: -803}
+  - {x: 1479, y: 1296}
+  - {x: -2469, y: 628}
+  - {x: -1592, y: -1298}
   _syncWithRects: 0
 --- !u!1 &1050138698
 GameObject:
