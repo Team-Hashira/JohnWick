@@ -18,6 +18,11 @@ namespace Hashira.LatestUI
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private Image _icon;
 
+        private void Awake()
+        {
+            UIManager.Instance.AddUI(this);
+        }
+
         public void SetCard(CardSO cardSO)
         {
             _cardSO = cardSO;
