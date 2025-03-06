@@ -74,7 +74,6 @@ namespace Hashira
             float angle = _burstBulletCount * 5;
             for (int count = 0; count < shootCount; count++)
             {
-                OnProjectileCreateReadyEvent?.Invoke();
                 _lastAttackTime = Time.time;
                 List<Projectile> createdProjectileList = new List<Projectile>();
                 for (int i = 0; i < _burstBulletCount; i++)

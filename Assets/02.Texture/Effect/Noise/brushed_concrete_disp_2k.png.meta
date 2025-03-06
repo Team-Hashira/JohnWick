@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      brushed_concrete_disp_2k_0: 2963615455530336068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

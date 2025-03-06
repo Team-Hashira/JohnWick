@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      StylizedTrail01_0: 434713887581619440
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

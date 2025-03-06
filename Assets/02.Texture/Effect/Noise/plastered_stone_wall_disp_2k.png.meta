@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      plastered_stone_wall_disp_2k_0: -3774649139051436270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
