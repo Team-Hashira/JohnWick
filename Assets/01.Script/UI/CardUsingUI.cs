@@ -20,6 +20,7 @@ namespace Hashira.LatestUI
             if (Keyboard.current.uKey.wasPressedThisFrame)
             {
                 Open();
+                //CardDraw();
             }
         }
 
