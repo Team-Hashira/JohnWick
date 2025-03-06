@@ -3423,6 +3423,9 @@ MonoBehaviour:
   - poolType: MeleeAttackEffect
     prefab: {fileID: 4274427982390344803, guid: f3b83b2dce9c32a4e8ea3be80f65dd3d, type: 3}
     poolCount: 20
+  - poolType: LightningVFX
+    prefab: {fileID: 7950339184027253787, guid: 57396fb57131e0941a33ff9127af7967, type: 3}
+    poolCount: 20
 --- !u!1 &1411020521
 GameObject:
   m_ObjectHideFlags: 0
