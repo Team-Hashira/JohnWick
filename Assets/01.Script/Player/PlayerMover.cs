@@ -11,6 +11,9 @@ namespace Hashira.Players
         public float rollingDelay = 1;
         private float _currentDelayTime = 0;
 		public bool IsSprint { get; private set; } = false;
+
+        private float _lastVelocityValue;
+
 		private void Update()
 		{
             if(_currentDelayTime < rollingDelay)
@@ -32,17 +35,19 @@ namespace Hashira.Players
 			IsSprint = !IsSprint;
 		}
 
-        private void FixedUpdate()
+        protected override void FixedUpdate()
         {
+            base.FixedUpdate();
+            _lastVelocityValue = Rigidbody2D.linearVelocity.magnitude;
         }
 
         public void OnCollision(Collision2D collision)
         {
-            if (Rigidbody2D.linearVelocity.magnitude > 1)
+            if (_lastVelocityValue > 1)
             {
                 MainScreenEffect.OnWallShockWaveEffect(transform.position);
             }
-            Debug.Log(Rigidbody2D.linearVelocity.magnitude);
+            Debug.Log(_lastVelocityValue);
         }
     }
 }

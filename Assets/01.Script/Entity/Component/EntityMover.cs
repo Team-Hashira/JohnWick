@@ -49,7 +49,7 @@ namespace Hashira.Entities
             _whatIsGround |= _oneWayPlatform;
         }
 
-        private void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             GroundAndNodeCheck();
             ApplyGravity();
@@ -89,17 +89,17 @@ namespace Hashira.Entities
 
         private void ApplyVelocity()
         {
-            //±âº» ¿òÁ÷ÀÓ Á¶ÀÛ
+            //ê¸°ë³¸ ì›€ì§ì„ ì¡°ì‘
             if (IsGrounded)
             {
-                //¹Ù´ÚÀÇ ±â¿í±â¿¡ µû¶ó ÈûÀÇ ¹æÇâ È¸Àü
+                //ë°”ë‹¥ì˜ ê¸°ìš±ê¸°ì— ë”°ë¼ í˜ì˜ ë°©í–¥ íšŒì „
                 Velocity = Vector3.ProjectOnPlane(Vector2.right, _hitedGround.normal).normalized * _xMovement;
                 Velocity += _hitedGround.normal * _yMovement;
             }
             else
                 Velocity = new Vector2(_xMovement, _yMovement);
 
-            //´ëÀÔ
+            //ëŒ€ì…
             Rigidbody2D.linearVelocity = Velocity;
         }
 
