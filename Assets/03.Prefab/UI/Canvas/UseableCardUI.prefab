@@ -348,3 +348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad9a833104b7c48870f6426c78dd71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Collider>k__BackingField: {fileID: 3094843076608185386}
+  _description: {fileID: 5170975988743877155}
+  _icon: {fileID: 5847663453151711890}

@@ -9,7 +9,7 @@ namespace Hashira.LatestUI
 {
     public class UseableCardUI : UIBase, IClickableUI, IHoverableUI, IPoolingObject
     {
-        public Collider2D Collider { get; set; }
+        [field: SerializeField] public Collider2D Collider { get; set; }
         public string OriginPoolType { get; set; }
         GameObject IPoolingObject.gameObject { get; set; }
 
@@ -55,7 +55,7 @@ namespace Hashira.LatestUI
 
         public void OnPop()
         {
-
+            transform.localScale = Vector3.one;
         }
 
         public void OnPush()
