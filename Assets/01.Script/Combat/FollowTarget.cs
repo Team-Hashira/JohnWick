@@ -1,3 +1,4 @@
+using Hashira.Core;
 using UnityEngine;
 
 namespace Hashira.Combat
@@ -14,7 +15,7 @@ namespace Hashira.Combat
 
         private void Awake()
         {
-            _target = GameManager.Instance.Player.transform;
+            _target = PlayerManager.Instance.Player.transform;
         }
 
         private void LateUpdate()

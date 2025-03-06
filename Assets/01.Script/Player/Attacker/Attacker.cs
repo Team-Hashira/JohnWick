@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Core;
 using Hashira.Entities;
 using Hashira.Items.Cards;
 using Hashira.MainScreen;
@@ -32,7 +33,7 @@ namespace Hashira
 
         private void Awake()
         {
-            _player = GameManager.Instance.Player;
+            _player = PlayerManager.Instance.Player;
 
             _input.OnAttackEvent += HandleAttackEvent;
             _lastAttackTime = Time.time;

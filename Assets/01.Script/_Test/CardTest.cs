@@ -1,4 +1,5 @@
 using Hashira.Cards;
+using Hashira.Core;
 using Hashira.Entities;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Hashira
             {
                 if (Cost.TryRemoveCost(cardSO.needCost))
                 {
-                    GameManager.Instance.Player.GetEntityComponent<EntityEffector>().AddEffect(cardSO.GetEffectClass());
+                    PlayerManager.Instance.Player.GetEntityComponent<EntityEffector>().AddEffect(cardSO.GetEffectClass());
                     Debug.Log(Cost.CurrentCost);
                 }
             }

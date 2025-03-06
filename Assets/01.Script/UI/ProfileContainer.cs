@@ -1,3 +1,4 @@
+using Hashira.Core;
 using Hashira.Entities;
 using System;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Hashira.UI
 
         private void Start()
         {
-            _playerHealth = GameManager.Instance.Player.GetEntityComponent<EntityHealth>();
+            _playerHealth = PlayerManager.Instance.Player.GetEntityComponent<EntityHealth>();
             _playerHealth.OnHealthChangedEvent += HandleHealthChange;
         }
 

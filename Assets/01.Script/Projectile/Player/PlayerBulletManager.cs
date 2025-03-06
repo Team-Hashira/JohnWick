@@ -1,3 +1,4 @@
+using Hashira.Core;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Hashira.Projectiles.Player
 
         private void Start()
         {
-            _playerAttacker = GameManager.Instance.Player.Attacker;
+            _playerAttacker = PlayerManager.Instance.Player.Attacker;
         }
 
         public List<ProjectileModifier> GetModifierList => _projectileModifiers;

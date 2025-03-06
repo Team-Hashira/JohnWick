@@ -1,3 +1,4 @@
+using Hashira.Core;
 using Hashira.Players;
 using System;
 using UnityEngine;
@@ -24,7 +25,7 @@ namespace Hashira.UI
 
         private void Awake()
         {
-            _player = GameManager.Instance.Player;
+            _player = PlayerManager.Instance.Player;
 
             _visualColor = _visualRenderer.color;
             _backgroundColor = _backgroundRenderer.color;

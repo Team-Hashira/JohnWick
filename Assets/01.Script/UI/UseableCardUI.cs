@@ -1,5 +1,6 @@
 using Crogen.CrogenPooling;
 using Hashira.Cards;
+using Hashira.Core;
 using Hashira.Entities;
 using TMPro;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Hashira.LatestUI
         {
             if (Cost.TryRemoveCost(_cardSO.needCost))
             {
-                GameManager.Instance.Player.GetEntityComponent<EntityEffector>().AddEffect(_cardSO.GetEffectClass());
+                PlayerManager.Instance.Player.GetEntityComponent<EntityEffector>().AddEffect(_cardSO.GetEffectClass());
                 this.Push();
             }
             else

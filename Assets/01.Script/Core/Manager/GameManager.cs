@@ -1,12 +1,22 @@
 using Hashira.Players;
+using Hashira.Stage;
+using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Hashira
+namespace Hashira. Core
 {
     public class GameManager : MonoSingleton<GameManager>
     {
-        [field:SerializeField] public Player Player { get; private set; }
-        [field:SerializeField] public Volume Volume { get; private set; }
+        [SerializeField] private StageGenerator _stageGenerator;
+
+        public void StartStage()
+        {
+            _stageGenerator.GenerateStage();
+        }
+        public void ClearStage()
+        {
+            _stageGenerator.ClearStage();
+        }
     }
 }
