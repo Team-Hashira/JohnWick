@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace Hashira.LatestUI
 {
+    public delegate void OnClickEvent();
+
     public interface IClickableUI : IUserInterface
     {
         public Collider2D Collider { get; set; }

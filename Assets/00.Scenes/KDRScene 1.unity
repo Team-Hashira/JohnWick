@@ -491,6 +491,7 @@ MonoBehaviour:
   - {fileID: 1300878223}
   - {fileID: 1383439777}
   - {fileID: 993547113}
+  _cardSet: {fileID: 0}
 --- !u!1001 &327954122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -990,8 +991,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6d0da3043b07e4b92572bbbbef26cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 651278450}
-  <Volume>k__BackingField: {fileID: 0}
+  _stageGenerator: {fileID: 0}
+  _inputReader: {fileID: 0}
 --- !u!4 &558232225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1668159220426729888, guid: b05318d1e7d3d1c4ebff39777fd2aaad, type: 3}
@@ -1171,17 +1172,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
---- !u!114 &651278450 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8831168981273924249, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 651278449}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3840bb3d46322f48ba7fe24724ba183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &651278451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
@@ -3139,12 +3129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e216623b23e7fa44f9bdfa5ac1c45bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chapterSO:
-  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
-  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
-  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
-  _confineColliderPrefab: {fileID: 2945706858643288433, guid: 7764fc5b49aaca04ba41fe42e7df99cd, type: 3}
-  _startPoint: {fileID: 1922978163}
+  _stage: {fileID: 0}
 --- !u!4 &1934674211
 Transform:
   m_ObjectHideFlags: 0
