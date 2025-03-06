@@ -23,6 +23,11 @@ namespace Hashira.LatestUI
 
         public OnClickEvent OnClickEvent;
 
+        private void Start()
+        {
+            UIManager.Instance.AddUI(this);
+        }
+
         public void Initialize(CardSO cardSO)
         {
             _cardSO = cardSO;
