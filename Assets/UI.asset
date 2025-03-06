@@ -25,3 +25,6 @@ MonoBehaviour:
   - poolType: UseableCardUI
     prefab: {fileID: 8000213582033439777, guid: c5e3fa785068743488b47d233cc35376, type: 3}
     poolCount: 10
+  - poolType: BookCardUI
+    prefab: {fileID: 800066966225909706, guid: 5d3c75a3bfd1c4e4f95ffbb49e23730f, type: 3}
+    poolCount: 20
