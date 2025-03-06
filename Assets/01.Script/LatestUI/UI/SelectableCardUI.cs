@@ -76,6 +76,8 @@ namespace Hashira.LatestUI
                 .Append(RectTransform.DORotate(new Vector3(0, 360f), 0.3f, RotateMode.FastBeyond360))
                 .JoinCallback(() => _selectingCardPanel.Select(this))
                 .InsertCallback(_selectSequence.Duration() - 0.1f, _selectingCardPanel.Close);
+
+            PlayerManager.Instance.CardManager.AddCard(_cardSO);
         }
 
         public void OnClickEnd()

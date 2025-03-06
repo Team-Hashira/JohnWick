@@ -11,6 +11,8 @@ namespace Hashira.LatestUI
 
         [SerializeField]
         private SelectableCardUI[] _selectableCards;
+        [SerializeField]
+        private CardSetSO _cardSet;
 
         private CanvasGroup _canvasGroup;
 
@@ -43,7 +45,7 @@ namespace Hashira.LatestUI
             SetActive(true, 0);
             foreach (var card in _selectableCards)
             {
-                card.Reload();
+                card.Reload(_cardSet.GetRandomCard());
             }
         }
 
