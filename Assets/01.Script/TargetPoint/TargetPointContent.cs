@@ -1,4 +1,5 @@
 using Crogen.CrogenPooling;
+using Hashira.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,7 +33,7 @@ namespace Hashira.TargetPoint.UI
 		{
 			_rectTransform = transform as RectTransform;
 			_playerCameraTrm = Camera.main.transform;
-			_playerTrm = GameManager.Instance.Player.transform;
+			_playerTrm = PlayerManager.Instance.Player.transform;
 		}
 
 		private void FixedUpdate()

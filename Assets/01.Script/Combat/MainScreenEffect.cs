@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Hashira.Core;
 using UnityEngine;
 
 namespace Hashira.MainScreen
@@ -30,7 +31,7 @@ namespace Hashira.MainScreen
 
         private void Update()
         {
-            var playerPos = GameManager.Instance.Player.transform.position;
+            var playerPos = PlayerManager.Instance.Player.transform.position;
 
             if (Input.GetKeyDown(KeyCode.Space))
             {

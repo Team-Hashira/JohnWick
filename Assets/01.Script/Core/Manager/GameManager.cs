@@ -14,5 +14,9 @@ namespace Hashira. Core
         {
             _stageGenerator.GenerateStage();
         }
+        public void ClearStage()
+        {
+            _stageGenerator.ClearStage();
+        }
     }
 }

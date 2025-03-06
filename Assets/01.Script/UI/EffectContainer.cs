@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hashira.Core;
 using Hashira.EffectSystem;
 using Hashira.EffectSystem.Effects;
 using Hashira.Entities;
@@ -24,7 +25,7 @@ namespace Hashira.UI.Effect
 
         private void Start()
         {
-            _playerEntityEffector = GameManager.Instance.Player.GetEntityComponent<EntityEffector>();
+            _playerEntityEffector = PlayerManager.Instance.Player.GetEntityComponent<EntityEffector>();
 
             _playerEntityEffector.EffectAddedEvent += AddEffectUI;
             _playerEntityEffector.EffectRemovedEvent += RemoveEffectUI;

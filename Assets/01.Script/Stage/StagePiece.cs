@@ -1,3 +1,4 @@
+using Hashira.Core;
 using UnityEngine;
 
 namespace Hashira.Stage
@@ -13,7 +14,7 @@ namespace Hashira.Stage
 
         public void SetPlayerPosToSpawnPoint()
         {
-            GameManager.Instance.Player.transform.position = _playerSpawnPoint.position;
+            PlayerManager.Instance.Player.transform.position = _playerSpawnPoint.position;
         }
         
         public virtual void Init(Vector3 startPosition)
