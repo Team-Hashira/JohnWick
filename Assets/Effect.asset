@@ -58,3 +58,6 @@ MonoBehaviour:
   - poolType: MeteorVFX
     prefab: {fileID: 6476999283014598217, guid: 8a5bf979fc01e024fb3ff0654a1bbf09, type: 3}
     poolCount: 20
+  - poolType: GlitchVFX
+    prefab: {fileID: 5117585115354556994, guid: d8759baac33c6ce479201e5d6d6b7771, type: 3}
+    poolCount: 50

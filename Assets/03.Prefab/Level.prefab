@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075d9a2baad1659438f940c6adf1d148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllClearEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _enemyClearConditionalList:
   - isClear: 0
     ClearEvent:
@@ -113,8 +116,6 @@ MonoBehaviour:
     enemies:
     - {fileID: 6455304128283801242}
     - {fileID: 5114308386199293536}
-  _areaClearConditionalList: []
-  _otherClearConditionalList: []
 --- !u!1 &6053739059537789907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,7 +2683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 80c65e0dc208079498679c00f3f34fac, type: 3}
       propertyPath: m_Layer
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

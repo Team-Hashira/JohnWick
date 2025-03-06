@@ -21,6 +21,14 @@ namespace Hashira.Stage
 
 
             _enemyClearConditionalList[_enemyClearConditionalList.Count - 1].ClearEvent.AddListener(StageAllClear);
+
+            for (int i = 0; i < _enemyClearConditionalList[0].enemies.Length; i++)
+                _enemyClearConditionalList[0].enemies[i].gameObject.SetActive(true);
+
+            for (int i = 1; i < _enemyClearConditionalList.Count; i++)
+                for (int j = 0; j < _enemyClearConditionalList[i].enemies.Length; j++)
+                    _enemyClearConditionalList[i].enemies[j].gameObject.SetActive(false);
+                
 		}
 
         private void StageAllClear()

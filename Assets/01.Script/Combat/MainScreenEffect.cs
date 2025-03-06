@@ -66,7 +66,6 @@ namespace Hashira.MainScreen
 
         public static void OnWallShockWaveEffect(Vector2 pos)
         {
-            Debug.Log("dfdf");
             Vector2 abs = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
             Vector2 normal = new Vector2(Mathf.Sign(pos.x), Mathf.Sign(pos.y)) * 0.5f + Vector2.one * 0.5f;
 
@@ -75,13 +74,16 @@ namespace Hashira.MainScreen
                 abs.x > abs.y ? normal.x > 0.5f ? normal.x - 0.1f : normal.x + 0.1f : 0,
                 abs.x < abs.y ? normal.y > 0.5f ? normal.y - 0.1f : normal.y + 0.1f : 0);
 
-            _mainScreenMat.SetVector(_wallShockWave_MaxID, max);
-            _mainScreenMat.SetVector(_wallShockWave_MinID, min);
-
-            _mainScreenMat.SetFloat(_wallShockWave_StrengthID, 1);
-            _mainScreenMat.SetFloat(_wallShockWave_ValueID, 0);
-
             Sequence seq = DOTween.Sequence();
+            seq.AppendCallback(() =>
+            {
+                _mainScreenMat.SetVector(_wallShockWave_MaxID, max);
+                _mainScreenMat.SetVector(_wallShockWave_MinID, min);
+
+                _mainScreenMat.SetFloat(_wallShockWave_StrengthID, 0.5f);
+                _mainScreenMat.SetFloat(_wallShockWave_ValueID, 0);
+
+            });
             seq.Append(_mainScreenMat.DOFloat(1, _wallShockWave_ValueID, 1.75f));
             seq.Append(_mainScreenMat.DOFloat(0, _wallShockWave_StrengthID, 0.1f));
         }

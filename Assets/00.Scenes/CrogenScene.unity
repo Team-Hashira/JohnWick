@@ -3417,6 +3417,9 @@ MonoBehaviour:
   - poolType: MeteorVFX
     prefab: {fileID: 6476999283014598217, guid: 8a5bf979fc01e024fb3ff0654a1bbf09, type: 3}
     poolCount: 20
+  - poolType: GlitchVFX
+    prefab: {fileID: 5117585115354556994, guid: d8759baac33c6ce479201e5d6d6b7771, type: 3}
+    poolCount: 50
 --- !u!1 &1411020521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,6 +3464,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075d9a2baad1659438f940c6adf1d148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllClearEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _enemyClearConditionalList:
   - isClear: 0
     ClearEvent:
@@ -3487,8 +3493,6 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     enemies: []
-  _areaClearConditionalList: []
-  _otherClearConditionalList: []
 --- !u!1 &1442627409
 GameObject:
   m_ObjectHideFlags: 0
@@ -4062,6 +4066,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 4300449145128528686, guid: 768f7446f13d9d448b3ef9b7998d2db4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 3145985
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688896298347571728, guid: 768f7446f13d9d448b3ef9b7998d2db4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 261879
+      objectReference: {fileID: 0}
     - target: {fileID: 6090564883746628450, guid: 768f7446f13d9d448b3ef9b7998d2db4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4287,7 +4299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 80c65e0dc208079498679c00f3f34fac, type: 3}
       propertyPath: m_Layer
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
