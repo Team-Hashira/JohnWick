@@ -2,9 +2,12 @@ using DG.Tweening;
 using Hashira.Cards;
 using Hashira.Core;
 using Hashira.Core.Attribute;
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Hashira.LatestUI
 {
@@ -37,6 +40,7 @@ namespace Hashira.LatestUI
         [SerializeField]
         private CardSO _input;
 
+
         public void Reload()
         {
             Collider.enabled = false;
@@ -47,16 +51,17 @@ namespace Hashira.LatestUI
             _cardImage.sprite = _cardSO.iconSprite;
             Vector2 randomPos = Random.insideUnitCircle.normalized;
             RectTransform.anchoredPosition = _defaultPosition + randomPos * Screen.width;
-            RectTransform.DOAnchorPos(_defaultPosition, 0.6f).SetEase(Ease.OutCubic).OnComplete(() =>
+            StartCoroutine(ReloadCoroutine(_defaultPosition, 0.8f, () =>
             {
                 Collider.enabled = true;
                 _layoutElement.ignoreLayout = false;
-            });
+            }));
         }
 
         public void Initialize(SelectingCardPanel panel)
         {
             _layoutElement = GetComponent<LayoutElement>();
+            Collider.enabled = false;
             _selectingCardPanel = panel;
             _defaultPosition = RectTransform.anchoredPosition;
             _defaultScale = RectTransform.localScale;
@@ -66,10 +71,11 @@ namespace Hashira.LatestUI
         {
             _selectSequence = DOTween.Sequence();
             _layoutElement.ignoreLayout = true;
+            Collider.enabled = false;
             _selectSequence
                 .Append(RectTransform.DORotate(new Vector3(0, 360f), 0.3f, RotateMode.FastBeyond360))
                 .JoinCallback(() => _selectingCardPanel.Select(this))
-                .InsertCallback(_selectSequence.Duration() - 0.1f ,_selectingCardPanel.Close);
+                .InsertCallback(_selectSequence.Duration() - 0.1f, _selectingCardPanel.Close);
         }
 
         public void OnClickEnd()
@@ -99,6 +105,24 @@ namespace Hashira.LatestUI
             RectTransform.DOAnchorPosX(x, 0.6f).SetEase(Ease.InBack);
 
             _layoutElement.ignoreLayout = true;
+        }
+
+        private IEnumerator ReloadCoroutine(Vector2 destination, float duration, Action OnComplete = null)
+        {
+            Vector2 startPos = RectTransform.anchoredPosition;
+            //Vector2 randomPos = Random.insideUnitCircle.normalized;
+            //randomPos = destination + randomPos * (Screen.width * 0.5f);
+            float toAdd = 1f / duration;
+            float percent = 0;
+            while (percent < 1f)
+            {
+                float t = MathEx.OutSine(percent);
+                //RectTransform.anchoredPosition = MathEx.Bezier(t, startPos, randomPos, destination);
+                RectTransform.anchoredPosition = MathEx.Bezier(t, startPos, destination);
+                yield return null;
+                percent += Time.deltaTime * toAdd;
+            }
+            OnComplete?.Invoke();
         }
     }
 }
