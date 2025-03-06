@@ -40,6 +40,8 @@ namespace Hashira.Stage
         {
             for (int i = 0; i < enemies.Length; i++)
                 enemies[i].gameObject.SetActive(true);
+
+            Debug.Log("dfdf");
         }
 	}
 }

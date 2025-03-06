@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Hashira.Stage
 {
-    public class EndStagePiece : StagePiece
+    public class EndStagePiece : Stage
     {
         [SerializeField] private Vector2 _offset, _size;
         [SerializeField] private LayerMask _whatIsPlayer;

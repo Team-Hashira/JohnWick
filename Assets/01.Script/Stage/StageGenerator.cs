@@ -5,13 +5,13 @@ namespace Hashira.Stage
 {
     public class StageGenerator : MonoSingleton<StageGenerator>
     {
-        [SerializeField] private StageEventer _stage;
-        private StageEventer _currentStage;
+        [SerializeField] private Stage _stage;
+        private Stage _currentStage;
 
         public void GenerateStage()
         {
             _currentStage = Instantiate(_stage, transform);
-            _currentStage.AllClearEvent.AddListener(() =>
+            _currentStage.OnAllClearEvent.AddListener(() =>
             {
                 ClearStage();
             });
