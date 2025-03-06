@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Hashira.Projectiles
 {
-    //Todo
     public class RubberProjectileModifier : ProjectileModifier
     {
         private Dictionary<Projectile, int> _bounceCountDict;
