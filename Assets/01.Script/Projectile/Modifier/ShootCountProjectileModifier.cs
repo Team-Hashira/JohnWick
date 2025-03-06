@@ -38,7 +38,7 @@ namespace Hashira
             }
 
             _currentDelay++;
-            if (_currentDelay > _delay)
+            if (_currentDelay >= _delay)
             {
                 _isEnable = true;
                 _currentDelay = 0;
