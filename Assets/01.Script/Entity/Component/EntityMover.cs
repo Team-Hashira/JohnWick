@@ -15,6 +15,7 @@ namespace Hashira.Entities
         [SerializeField] protected LayerMask _whatIsGround;
         [SerializeField] private LayerMask _oneWayPlatform;
         protected RaycastHit2D _hitedGround;
+        protected bool _gravityActive;
         protected float _gravity;
         protected float _gravityScale;
 
@@ -46,6 +47,7 @@ namespace Hashira.Entities
             _xMovement = 0;
             _entity = entity;
             isManualMove = true;
+            _gravityActive = true;
             _whatIsGround |= _oneWayPlatform;
         }
 
@@ -56,8 +58,15 @@ namespace Hashira.Entities
             ApplyVelocity();
         }
 
+        public void SetGravity(bool active)
+        {
+            _gravityActive = active;
+        }
+
         private void ApplyGravity()
         {
+            if (_gravityActive == false) return;
+
             if (IsGrounded)
             {
                 _yMovement = -3;

@@ -63,7 +63,7 @@ namespace Hashira.Players
 
         private void Start()
         {
-            TargetPointManager.Instance.ShowTargetPoint(transform, Color.cyan);
+            //TargetPointManager.Instance.ShowTargetPoint(transform, Color.cyan);
 
             _currentStamina = MaxStamina;
             OnStaminaChangedEvent?.Invoke(_currentStamina, _currentStamina);
@@ -71,8 +71,8 @@ namespace Hashira.Players
 
         private void OnDisable()
         {
-            if (TargetPointManager.Instance != null)
-                TargetPointManager.Instance.CloseTargetPoint(transform);
+            //if (TargetPointManager.Instance != null)
+            //    TargetPointManager.Instance.CloseTargetPoint(transform);
         }
 
         #region Handles

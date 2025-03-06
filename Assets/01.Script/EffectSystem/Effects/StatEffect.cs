@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Hashira.EffectSystem.Effects
 {
-    public class StatEffect : Effect, ICoolTimeEffect
+    public class StatEffect : Effect
     {
         private StatDictionary _statDictionary;
         private StatElementSO _statSO;

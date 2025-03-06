@@ -8,8 +8,9 @@ namespace Hashira
     {
         //혹시몰라서 넣은 값
         private const int MaxCost = 1000;
+        private const int StartCost = 10;
 
-        public static int CurrentCost { get; private set; } = 0;
+        public static int CurrentCost { get; private set; } = StartCost;
         public static event Action<int> OnCostChangedEvent;
 
         public static void AddCost(int value)

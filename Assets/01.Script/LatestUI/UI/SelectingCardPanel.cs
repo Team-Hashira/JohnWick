@@ -34,10 +34,11 @@ namespace Hashira.LatestUI
 
         private void Update()
         {
-            if (Keyboard.current.uKey.wasPressedThisFrame)
-            {
-                Open();
-            }
+            //Debug
+            //if (Keyboard.current.uKey.wasPressedThisFrame)
+            //{
+            //    Open();
+            //}
         }
 
         public void Open()

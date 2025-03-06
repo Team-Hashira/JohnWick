@@ -17,4 +17,5 @@ MonoBehaviour:
   cardName: Meteor
   cardDescription: "\uC8FC\uAE30\uC801\uC73C\uB85C \uBA54\uD14C\uC624\uAC00 \uB5A8\uC5B4\uC9C4\uB2E4."
   needCost: 3
-  effectClassName: 
+  effectClassName: MeteorEffect
+  _effectTypeIs: MeteorEffect

@@ -27,6 +27,7 @@ namespace Hashira
         private ProjectilePoolType _projectilePoolType = ProjectilePoolType.Bullet;
 
         public event Action<List<Projectile>> OnProjectileCreateEvent;
+        public event Action OnShootEvent;
 
         private ProjectileModifier _currentMainModifier;
 
@@ -64,6 +65,7 @@ namespace Hashira
             if (isDown && _lastAttackTime + _attackDelay < Time.time)
             {
                 StartCoroutine(AttackCoroutine(_shootCount));
+                OnShootEvent?.Invoke();
             }
         }
 

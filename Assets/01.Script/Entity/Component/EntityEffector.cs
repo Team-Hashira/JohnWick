@@ -20,11 +20,8 @@ namespace Hashira.Entities
 
         public void AddEffect(Effect effect)
         {
-            var effectUIDataSOList = EffectManager.Instance.EffectUIDataSOList;
-
             Type type = effect.GetType();
             effect.name = type.Name;
-            effect.effectUIDataSO = effectUIDataSOList.FirstOrDefault(x => x.name == type.Name);
             effect.entityEffector = this;
             effect.entityStat = this.Entity.GetEntityComponent<EntityStat>();
 
@@ -42,7 +39,6 @@ namespace Hashira.Entities
             T effect = new T()
             {
                 name = typeof(T).Name,
-                effectUIDataSO = EffectManager.Instance.EffectUIDataSOList.FirstOrDefault(x => x.name == typeof(T).Name),
                 entityEffector = this,
                 entityStat = Entity.GetEntityComponent<EntityStat>()
             };

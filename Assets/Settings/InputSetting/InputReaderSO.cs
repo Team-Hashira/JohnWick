@@ -52,7 +52,26 @@ public class InputReaderSO : ScriptableObject, Controls.IPlayerActions, Controls
         }
 
         _controls.Enable();
+
+        //PlayerActive(true);
+        //UIActive(true);
         InteractKeyUpdate();
+    }
+
+    public void PlayerActive(bool active)
+    {
+        if (active)
+            _controls.Player.Enable();
+        else
+            _controls.Player.Disable();
+    }
+
+    public void UIActive(bool active)
+    {
+        if (active)
+            _controls.UI.Enable();
+        else
+            _controls.UI.Disable();
     }
 
     private void InteractKeyUpdate()

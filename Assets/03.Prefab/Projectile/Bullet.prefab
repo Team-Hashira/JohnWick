@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canMultipleAttacks: 0
-  _boxDamageCaster: {fileID: 0}
+  _boxDamageCaster: {fileID: 4076902178225054032}
   _hitEffect: 0
   _spakleEffect: 5
 --- !u!212 &3470204695144833513

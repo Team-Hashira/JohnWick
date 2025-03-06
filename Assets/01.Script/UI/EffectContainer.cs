@@ -14,14 +14,7 @@ namespace Hashira.UI.Effect
         [SerializeField] private EffectSlot _effectSlotPrefab;
         private readonly List<EffectSlot> _currentSlots = new List<EffectSlot>();
 
-        private EffectManager _effectManager;
-
         private EntityEffector _playerEntityEffector;
-
-        private void Awake()
-        {
-            _effectManager = EffectManager.Instance;
-        }
 
         private void Start()
         {

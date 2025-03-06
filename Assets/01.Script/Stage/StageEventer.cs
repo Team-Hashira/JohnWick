@@ -1,3 +1,4 @@
+using Hashira.Core;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,6 +7,9 @@ namespace Hashira.Stage
 {
 	public class StageEventer : MonoBehaviour
 	{
+        [SerializeField] private Transform _startPlayerPosTrm;
+
+
         public UnityEvent AllClearEvent;
 
 		[SerializeField] private List<EnemyClearCondition> _enemyClearConditionalList;
@@ -29,8 +33,10 @@ namespace Hashira.Stage
                 for (int j = 0; j < _enemyClearConditionalList[i].enemies.Length; j++)
                     _enemyClearConditionalList[i].enemies[j].gameObject.SetActive(false);
                 
-		}
 
+            PlayerManager.Instance.Player.transform.position = _startPlayerPosTrm.position;
+        }
+        
         private void StageAllClear()
         {
             AllClearEvent?.Invoke();
