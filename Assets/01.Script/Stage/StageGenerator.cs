@@ -12,7 +12,7 @@ namespace Hashira.Stage
         public void GenerateStage()
         {
             _currentStage = Instantiate(_stage, transform);
-            _currentStage.AllClearEvent.AddListener(GameManager.Instance.)
+            _currentStage.AllClearEvent.AddListener(GameManager.Instance.StartCardSelec);
         }
 
         public void ClearStage()
