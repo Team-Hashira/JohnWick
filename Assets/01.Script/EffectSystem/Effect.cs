@@ -15,10 +15,12 @@ namespace Hashira.EffectSystem
         public EffectUIDataSO effectUIDataSO;
         public EntityEffector entityEffector;
 		public EntityStat entityStat;
+        public Attacker attacker;
 
         public virtual void Enable()
         {
-		}
+            attacker = GameObject.FindFirstObjectByType<Attacker>();
+        }
 
         public virtual void Update()
         {

@@ -9796,6 +9796,7 @@ GameObject:
   - component: {fileID: 3962230189378136445}
   - component: {fileID: 44329623565945013}
   - component: {fileID: 1898606572831759145}
+  - component: {fileID: 3952663971711529560}
   m_Layer: 0
   m_Name: LightningVFX
   m_TagString: Untagged
@@ -14650,7 +14651,41 @@ MonoBehaviour:
         m_CallState: 2
   pushEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3952663971711529560}
+        m_TargetAssemblyTypeName: DamageCaster2D, Assembly-CSharp
+        m_MethodName: CastDamage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 40
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3952663971711529560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950339184027253787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3bd21fc361000479e0b5aa722e462d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excluded: 0
+  allocationCount: 1
+  _whatIsCastable:
+    serializedVersion: 2
+    m_Bits: 704
+  _usingExcludeCast: 0
+  excludedDamageCasterList: []
+  center: {x: 0, y: 0}
+  isLocalScale: 1
+  radius: 1
 --- !u!1 &8929688912989120695
 GameObject:
   m_ObjectHideFlags: 0

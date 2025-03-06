@@ -17,4 +17,4 @@ MonoBehaviour:
   cardName: LightningShock
   cardDescription: "\uC8FC\uAE30\uC801\uC73C\uB85C \uB099\uB8B0\uAC00 \uB5A8\uC5B4\uC9C4\uB2E4."
   needCost: 6
-  effectClassName: 
+  effectClassName: LightningShorkEffect
