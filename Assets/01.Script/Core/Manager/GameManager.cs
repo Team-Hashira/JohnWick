@@ -12,20 +12,24 @@ namespace Hashira.Core
         [SerializeField] private InputReaderSO _inputReader;
 
         private EntityMover _playerMover;
+        private ToggleDomain _toggleDomain;
 
         private void Start()
         {
-            _inputReader.PlayerActive(false);
-            ToggleDomain toggleDomain = Hashira.LatestUI.UIManager.Instance.GetDomain<ToggleDomain>(typeof(IToggleUI));
-            toggleDomain.OpenUI("SelectingCardPanel");
+            _toggleDomain = Hashira.LatestUI.UIManager.Instance.GetDomain<ToggleDomain>(typeof(IToggleUI));
             _playerMover = PlayerManager.Instance.Player.GetEntityComponent<EntityMover>(true);
-            _playerMover.SetGravity(false);
+            StartCardSelec();
         }
 
         public void StartCardUse()
         {
-            ToggleDomain toggleDomain = Hashira.LatestUI.UIManager.Instance.GetDomain<ToggleDomain>(typeof(IToggleUI));
-            toggleDomain.OpenUI("CardUsingUI");
+            _toggleDomain.OpenUI("CardUsingUI");
+        }
+        public void StartCardSelec()
+        {
+            _inputReader.PlayerActive(false);
+            _toggleDomain.OpenUI("SelectingCardPanel");
+            _playerMover.SetGravity(false);
         }
 
         public void StartStage()
