@@ -23,18 +23,16 @@ namespace Hashira.Stage
                 _enemyClearConditionalList[i].ClearEvent.AddListener(() => _enemyClearConditionalList[i+1].ShowAllEnemies());
             }
 
-
             _enemyClearConditionalList[_enemyClearConditionalList.Count - 1].ClearEvent.AddListener(StageAllClear);
 
-            for (int i = 0; i < _enemyClearConditionalList[0].enemies.Length; i++)
-                _enemyClearConditionalList[0].enemies[i].gameObject.SetActive(true);
+            _enemyClearConditionalList[0].ShowAllEnemies();
 
             for (int i = 1; i < _enemyClearConditionalList.Count; i++)
                 for (int j = 0; j < _enemyClearConditionalList[i].enemies.Length; j++)
                     _enemyClearConditionalList[i].enemies[j].gameObject.SetActive(false);
                 
 
-            PlayerManager.Instance.Player.transform.position = _startPlayerPosTrm.position;
+            //PlayerManager.Instance.Player.transform.position = _startPlayerPosTrm.position;
         }
         
         private void StageAllClear()
