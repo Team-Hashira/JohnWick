@@ -699,6 +699,7 @@ MonoBehaviour:
   _useableCardDrower: {fileID: 1081608608}
   <Key>k__BackingField: CardUsingUI
   _rerollBtn: {fileID: 271757598}
+  _stageBtn: {fileID: 1915360966}
   _textMeshProUGUI: {fileID: 1101312726}
 --- !u!1 &341397909
 GameObject:
@@ -1281,7 +1282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6d0da3043b07e4b92572bbbbef26cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Player>k__BackingField: {fileID: 651278450}
+  _stageGenerator: {fileID: 991871468}
+  _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
 --- !u!4 &558232225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1668159220426729888, guid: b05318d1e7d3d1c4ebff39777fd2aaad, type: 3}
@@ -1460,17 +1462,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
---- !u!114 &651278450 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8831168981273924249, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
-  m_PrefabInstance: {fileID: 651278449}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3840bb3d46322f48ba7fe24724ba183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &651278451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2365600500662696666, guid: d5c16977089fcc940b69d22684bd9f1e, type: 3}
@@ -1967,7 +1958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parentCanvas: {fileID: 1261876068}
-  _targetPointContentPoolType: 0
+  _targetPointContentPoolType: 1
   _targetPointSignPoolType: 2
 --- !u!1 &991871466
 GameObject:

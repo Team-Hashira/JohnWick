@@ -75,7 +75,9 @@ namespace Hashira.LatestUI
             _selectSequence
                 .Append(RectTransform.DORotate(new Vector3(0, 360f), 0.3f, RotateMode.FastBeyond360))
                 .JoinCallback(() => _selectingCardPanel.Select(this))
-                .InsertCallback(_selectSequence.Duration() - 0.1f, _selectingCardPanel.Close);
+                .InsertCallback(_selectSequence.Duration() - 0.1f, _selectingCardPanel.Close)
+                //카드 선택으로
+                .InsertCallback(0.1f, GameManager.Instance.StartCardUse);
 
             PlayerManager.Instance.CardManager.AddCard(_cardSO);
         }

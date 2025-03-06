@@ -52,6 +52,7 @@ public class PoolManager : MonoBehaviour
 
     public static IPoolingObject CreateObject(PoolCategorySO poolCategory, PoolPair poolPair, Vector3 vec, Quaternion rot)
     {
+        Debug.Log(poolPair.poolType);
         GameObject poolObject = Instantiate(poolPair.prefab);
         IPoolingObject poolingObject = poolObject.GetComponent<IPoolingObject>();
 

@@ -21,7 +21,12 @@ namespace Hashira.LatestUI
             _canvasGroup = GetComponent<CanvasGroup>();
 
             _rerollBtn.onClick.AddListener(_useableCardDrower.Reroll);
-            _stageBtn.onClick.AddListener(GameManager.Instance.StartStage);
+            _stageBtn.onClick.AddListener(() =>
+            {
+                //Stage 시작
+                GameManager.Instance.StartStage();
+                Close();
+            });
             Cost.OnCostChangedEvent += CostTextUpdate;
             CostTextUpdate(Cost.CurrentCost);
 
@@ -35,11 +40,11 @@ namespace Hashira.LatestUI
 
         private void Update()
         {
-            if (Keyboard.current.iKey.wasPressedThisFrame)
-            {
-                Open();
-                _useableCardDrower.CardDraw();
-            }
+            //Debug
+            //if (Keyboard.current.iKey.wasPressedThisFrame)
+            //{
+            //    Open();
+            //}
         }
 
         public void Close()
@@ -50,6 +55,7 @@ namespace Hashira.LatestUI
         public void Open()
         {
             _canvasGroup.alpha = 1;
+            _useableCardDrower.CardDraw();
         }
     }
 }
