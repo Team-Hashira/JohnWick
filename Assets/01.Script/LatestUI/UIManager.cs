@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -69,6 +70,25 @@ namespace Hashira.LatestUI
         public T GetDomain<T>(Type interfaceType) where T : UIManagementDomain
         {
             return _uiDomainDict[interfaceType] as T;
+        }
+
+        public void AddUI(UIBase uiBase)
+        {
+            if (uiBase is IUserInterface ui)
+            {
+                foreach (Type interfaceType in uiBase.GetType().GetInterfaces())
+                {
+                    if (typeof(IUserInterface).IsAssignableFrom(interfaceType))
+                    {
+                        if (interfaceType == typeof(IUserInterface))
+                            continue;
+                        if (_uiDomainDict.TryGetValue(interfaceType, out var list))
+                        {
+                            _uiDomainDict[interfaceType].AddUI(ui);
+                        }
+                    }
+                }
+            }
         }
     }
 }
