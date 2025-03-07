@@ -132,24 +132,11 @@ namespace Hashira.MainScreen
 
             Vector2 finalViewport = curViewportPos;
 
-            switch (directionType)
-            {
-                case DirectionType.Up:
-                    finalViewport.y = Mathf.Clamp01(curViewportPos.y + 1);
-                    break;
-                case DirectionType.Right:
-                    finalViewport.x = Mathf.Clamp01(curViewportPos.x + 1);
-                    break;
-                case DirectionType.Down:
-                    finalViewport.y = Mathf.Clamp01(curViewportPos.y - 1);
-                    break;
-                case DirectionType.Left:
-                    finalViewport.x = Mathf.Clamp01(curViewportPos.x - 1);
-                    break;
-                case DirectionType.Zero:
-                    finalViewport = new Vector2(0.5f, 0.5f);
-                    break;
-            }
+            Vector2 dir = Direction2D.GetIntDirection(directionType);
+
+            finalViewport = new Vector2(
+                Mathf.Clamp01(curViewportPos.x + dir.x),
+                Mathf.Clamp01(curViewportPos.y + dir.y));
 
             OnMoveScreenSide(finalViewport);
         }
