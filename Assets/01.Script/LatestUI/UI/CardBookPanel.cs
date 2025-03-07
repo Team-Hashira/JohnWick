@@ -76,8 +76,8 @@ namespace Hashira.LatestUI
         {
             float alpha = isActive ? 1f : 0;
             _canvasGroup.DOFade(alpha, duration);
-            _canvasGroup.interactable = false;
-            _canvasGroup.blocksRaycasts = true;
+            _canvasGroup.interactable = isActive;
+            _canvasGroup.blocksRaycasts = isActive;
         }
     }
 }

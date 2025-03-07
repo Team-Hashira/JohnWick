@@ -54,10 +54,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 1
+    - _ColorMask: 15
     - _Range: 0.2
-    - _RedDots: 0
+    - _RedDots: 1
     - _Speed: 5
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UIMaskSoftnessX: 1
+    - _UIMaskSoftnessY: 1
     m_Colors:
+    - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _GlichRange: {r: 1.2, g: 1.2, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

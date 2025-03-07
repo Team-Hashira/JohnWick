@@ -25,6 +25,7 @@ namespace Hashira.LatestUI
             {
                 //Stage 시작
                 GameManager.Instance.StartStage();
+                Debug.Log("시작");
                 Close();
             });
             Cost.OnCostChangedEvent += CostTextUpdate;

@@ -526,6 +526,7 @@ MonoBehaviour:
   <Collider>k__BackingField: {fileID: 8112879546624997288}
   _cardImage: {fileID: 6166924649455707346}
   _descrptionText: {fileID: 7937874993729633306}
+  _costText: {fileID: 8219757204665554918}
 --- !u!114 &5349895531622513532
 MonoBehaviour:
   m_ObjectHideFlags: 0

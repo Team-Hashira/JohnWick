@@ -33,7 +33,7 @@ namespace Hashira.LatestUI
         [SerializeField]
         private Image _cardImage;
         [SerializeField]
-        private TextMeshProUGUI _descrptionText;
+        private TextMeshProUGUI _descrptionText, _costText;
 
         //[Header("Test")]
         //[Dependent]
@@ -48,6 +48,7 @@ namespace Hashira.LatestUI
             RectTransform.localScale = _defaultScale;
             _cardSO = cardSO;
             _descrptionText.text = _cardSO.cardDescription;
+            _costText.text = $"{_cardSO.needCost}";
             _cardImage.sprite = _cardSO.iconSprite;
             Vector2 randomPos = Random.insideUnitCircle.normalized;
             RectTransform.anchoredPosition = _defaultPosition + randomPos * Screen.width;
