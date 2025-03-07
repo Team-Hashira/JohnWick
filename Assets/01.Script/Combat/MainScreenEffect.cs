@@ -30,7 +30,6 @@ namespace Hashira.MainScreen
             _transform = this.transform;
             _mainScreenMat = GetComponent<MeshRenderer>().material;
         }
-
         private void Update()
         {
             var playerPos = PlayerManager.Instance.Player.transform.position;
