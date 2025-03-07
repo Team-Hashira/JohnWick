@@ -30,6 +30,7 @@ namespace Hashira.Core
             _inputReader.PlayerActive(false);
             _toggleDomain.OpenUI("SelectingCardPanel");
             _playerMover.SetGravity(false);
+            PlayerManager.Instance.Player.transform.position = new Vector3(0, 10000, 0);
         }
 
         public void StartStage()
@@ -43,6 +44,7 @@ namespace Hashira.Core
             _inputReader.PlayerActive(false);
             _stageGenerator.ClearStage();
             _playerMover.SetGravity(false);
+            PlayerManager.Instance.Player.transform.position = new Vector3(0, 10000, 0);
         }
     }
 }
