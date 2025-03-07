@@ -1,5 +1,6 @@
 using DG.Tweening;
 using Hashira.Core;
+using Hashira.Pathfind;
 using UnityEngine;
 
 namespace Hashira.MainScreen
@@ -7,7 +8,7 @@ namespace Hashira.MainScreen
     public class MainScreenEffect : MonoBehaviour
     {
         private static Material _mainScreenMat;
-
+        private static Transform _levelTransform;
         private static Transform _transform;
 
         // SimpeShockWave
@@ -25,18 +26,13 @@ namespace Hashira.MainScreen
 
         private void Awake()
         {
+            _levelTransform = FindFirstObjectByType<Stage.Stage>().transform;
             _transform = this.transform;
             _mainScreenMat = GetComponent<MeshRenderer>().material;
         }
-
         private void Update()
         {
             var playerPos = PlayerManager.Instance.Player.transform.position;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                OnShockWaveEffect(playerPos);
-            }
 
             if (Input.GetKey(KeyCode.Alpha0))
             {
@@ -52,6 +48,21 @@ namespace Hashira.MainScreen
             {
                 OnRotateEffect(180);
             }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                OnLocalMoveScreenSide(DirectionType.Up);
+
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                OnLocalMoveScreenSide(DirectionType.Down);
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+                OnLocalMoveScreenSide(DirectionType.Right);
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                OnLocalMoveScreenSide(DirectionType.Left);
+
+            if (Input.GetKeyDown(KeyCode.Backspace))
+                OnLocalMoveScreenSide(DirectionType.Zero);
         }
 
         public void SetPlayerPos(Vector2 pos) => _mainScreenMat.SetVector(_playerPos, pos);
@@ -88,9 +99,64 @@ namespace Hashira.MainScreen
             seq.Append(_mainScreenMat.DOFloat(0, _wallShockWave_StrengthID, 0.1f));
         }
 
-        public void OnRotateEffect(float value)
+        public static void OnRotateEffect(float value)
         {
-            _mainScreenMat.DOFloat(value, _rotate_value, 0.25f).SetEase(Ease.OutBounce);
+            _levelTransform.DORotate(new Vector3(0, 0, value), 0.25f).SetEase(Ease.OutBounce);
+        }
+
+        public static void OnMoveScreenSide(Vector2 viewPort)
+        {
+            Vector2 worldPos = Camera.main.ViewportToWorldPoint(viewPort);
+
+            Vector2 stageScale = _transform.localScale;
+
+            Vector2 min = Camera.main.ViewportToWorldPoint(Vector2.zero);
+            min += stageScale;
+            Vector2 max = Camera.main.ViewportToWorldPoint(Vector2.one);
+            max -= stageScale;
+
+            worldPos = new Vector2(
+                Mathf.Clamp(worldPos.x, min.x, max.x), 
+                Mathf.Clamp(worldPos.y, min.y, max.y));
+
+            _levelTransform.DOMove(worldPos, 0.25f).SetEase(Ease.OutBounce);
+        }
+
+        /// <summary>
+        /// Only Use Up, Right, Down, Left, Zero
+        /// </summary>
+        /// <param name="directionType"></param>
+        public static void OnLocalMoveScreenSide(DirectionType directionType)
+        {
+            Vector2 curViewportPos = Camera.main.WorldToViewportPoint(_levelTransform.position);
+
+            Vector2 finalViewport = curViewportPos;
+
+            switch (directionType)
+            {
+                case DirectionType.Up:
+                    finalViewport.y = Mathf.Clamp01(curViewportPos.y + 1);
+                    break;
+                case DirectionType.Right:
+                    finalViewport.x = Mathf.Clamp01(curViewportPos.x + 1);
+                    break;
+                case DirectionType.Down:
+                    finalViewport.y = Mathf.Clamp01(curViewportPos.y - 1);
+                    break;
+                case DirectionType.Left:
+                    finalViewport.x = Mathf.Clamp01(curViewportPos.x - 1);
+                    break;
+                case DirectionType.Zero:
+                    finalViewport = new Vector2(0.5f, 0.5f);
+                    break;
+            }
+
+            OnMoveScreenSide(finalViewport);
+        }
+
+        public static void OnMoveEffect(Vector2 pos)
+        {
+            _levelTransform.DOMove(pos, 0.25f).SetEase(Ease.OutBounce);
         }
 
         public static void OnShake(float strength, int vibrato, float time)

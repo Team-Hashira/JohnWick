@@ -43,11 +43,6 @@ namespace Hashira.Players
 
         public void OnCollision(Collision2D collision)
         {
-            if (_lastVelocityValue > 1)
-            {
-                MainScreenEffect.OnWallShockWaveEffect(transform.position);
-            }
-            Debug.Log(_lastVelocityValue);
         }
     }
 }
