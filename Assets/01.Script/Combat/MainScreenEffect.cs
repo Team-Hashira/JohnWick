@@ -24,6 +24,11 @@ namespace Hashira.MainScreen
         // Rotate
         private static readonly int _rotate_value = Shader.PropertyToID("_Rotate_Value");
 
+        // Tweens
+        private static Tween _moveTween;
+        private static Tween _rotateTween;
+        private static Tween _shakeTween;
+
         private void Awake()
         {
             _levelTransform = FindFirstObjectByType<Stage.Stage>().transform;
@@ -101,7 +106,8 @@ namespace Hashira.MainScreen
 
         public static void OnRotateEffect(float value)
         {
-            _levelTransform.DORotate(new Vector3(0, 0, value), 0.25f).SetEase(Ease.OutBounce);
+            _rotateTween?.Kill();
+            _rotateTween = _levelTransform.DORotate(new Vector3(0, 0, value), 0.25f).SetEase(Ease.OutBounce);
         }
 
         public static void OnMoveScreenSide(Vector2 viewPort)
@@ -119,7 +125,8 @@ namespace Hashira.MainScreen
                 Mathf.Clamp(worldPos.x, min.x, max.x), 
                 Mathf.Clamp(worldPos.y, min.y, max.y));
 
-            _levelTransform.DOMove(worldPos, 0.25f).SetEase(Ease.OutBounce);
+            _moveTween?.Kill();
+            _moveTween = _levelTransform.DOMove(worldPos, 0.25f).SetEase(Ease.OutBounce);
         }
 
         /// <summary>
@@ -148,7 +155,8 @@ namespace Hashira.MainScreen
 
         public static void OnShake(float strength, int vibrato, float time)
         {
-            _transform.DOShakePosition(time, strength, vibrato).OnComplete(() => _transform.position = Vector3.zero);
+            _shakeTween?.Kill();
+            _shakeTween = _transform.DOShakePosition(time, strength, vibrato).OnComplete(() => _transform.position = Vector3.zero);
         }
     }
 }
