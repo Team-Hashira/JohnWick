@@ -11,6 +11,8 @@ namespace Hashira.LatestUI
         [SerializeField] private int _reroll = 10;
         [SerializeField] private int _cardCount = 4;
 
+        [SerializeField] private int _interval = 10;
+
         private List<UseableCardUI> _useableCardUILsit = new List<UseableCardUI>();
 
         public void CardDraw()
@@ -34,6 +36,15 @@ namespace Hashira.LatestUI
             {
                 CardDraw();
             }
+        }
+
+        private void Update()
+        {
+            //for (int i = 0; i < _useableCardUILsit.Count; i++)
+            //{
+            //    Vector2 targetPos = _useableCardUILsit[i].transform.position;
+            //    _useableCardUILsit[i].transform.position = Vector3.Lerp();
+            //}
         }
     }
 }
