@@ -135,15 +135,28 @@ namespace Hashira.MainScreen
         /// <param name="directionType"></param>
         public static void OnLocalMoveScreenSide(DirectionType directionType)
         {
-            Vector2 curViewportPos = Camera.main.WorldToViewportPoint(_levelTransform.position);
-
-            Vector2 finalViewport = curViewportPos;
-
             Vector2 dir = Direction2D.GetIntDirection(directionType);
+
+            Vector2 curViewportPos = Camera.main.WorldToViewportPoint(_levelTransform.position);
+            Vector2 finalViewport = curViewportPos;
 
             finalViewport = new Vector2(
                 Mathf.Clamp01(curViewportPos.x + dir.x),
                 Mathf.Clamp01(curViewportPos.y + dir.y));
+
+            OnMoveScreenSide(finalViewport);
+        }
+
+        public static void OnLocalMoveScreenSide(Vector2 direction)
+        {
+            direction = direction.normalized * float.MaxValue;
+
+            Vector2 curViewportPos = Camera.main.WorldToViewportPoint(_levelTransform.position);
+            Vector2 finalViewport = curViewportPos;
+
+            finalViewport = new Vector2(
+                Mathf.Clamp01(curViewportPos.x + direction.x),
+                Mathf.Clamp01(curViewportPos.y + direction.y));
 
             OnMoveScreenSide(finalViewport);
         }
@@ -156,7 +169,7 @@ namespace Hashira.MainScreen
         public static void OnShake(float strength, int vibrato, float time)
         {
             _shakeTween?.Kill();
-            _shakeTween = _transform.DOShakePosition(time, strength, vibrato).OnComplete(() => _transform.position = Vector3.zero);
+            _shakeTween = _levelTransform.DOShakePosition(time, strength, vibrato).OnComplete(() => _transform.position = Vector3.zero);
         }
     }
 }
