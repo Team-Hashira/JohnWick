@@ -631,8 +631,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6d0da3043b07e4b92572bbbbef26cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stageGenerator: {fileID: 0}
-  _inputReader: {fileID: 0}
+  _stageGenerator: {fileID: 1970071378}
+  _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
 --- !u!1 &727948802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,6 +1573,10 @@ PrefabInstance:
     - target: {fileID: 7042647141873436127, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7087025894530869652, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 39.80005
       objectReference: {fileID: 0}
     - target: {fileID: 7601982923280151029, guid: f9665c5715e31534ea7299a3f57f46a9, type: 3}
       propertyPath: m_IsActive

@@ -58,7 +58,32 @@ namespace Hashira.Stage
         public int CurrentWaveCount { get; private set; } = 0;
         public UnityEvent OnAllClearEvent;
         
-        public List<Enemy> enemyList;
+        [HideInInspector] public List<Enemy> enemyList;
+
+        public Wave GetCurrentWave() => waves[CurrentWaveCount];
+
+        public Enemy[] GetEnabledRandomEnemies(int count)
+        {
+            List<Enemy> curEnemyList = GetEnabledEnemies().ToList();
+
+            int finalCount = Mathf.Clamp(count, 0, curEnemyList.Count);
+            Enemy[] finalEnemies = new Enemy[finalCount];
+
+            for (int i = 0; i < finalCount; i++)
+            {
+                int random = UnityEngine.Random.Range(0, curEnemyList.Count);
+
+                finalEnemies[i] = curEnemyList[random];
+                curEnemyList.RemoveAt(random);
+            }
+
+            return finalEnemies;
+        }
+
+        public Enemy[] GetEnabledEnemies()
+        {
+            return enemyList.Where(x => x.gameObject.activeSelf.Equals(true)).ToArray();
+        }
 
         private void Start()
         {
