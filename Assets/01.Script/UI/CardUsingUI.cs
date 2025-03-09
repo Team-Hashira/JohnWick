@@ -58,11 +58,15 @@ namespace Hashira.LatestUI
         public void Close()
         {
             _canvasGroup.alpha = 0;
+            _canvasGroup.interactable = false;
+            _canvasGroup.blocksRaycasts = false;
         }
 
         public void Open()
         {
             _canvasGroup.alpha = 1;
+            _canvasGroup.interactable = true;
+            _canvasGroup.blocksRaycasts = true;
             _useableCardDrower.CardDraw();
         }
     }

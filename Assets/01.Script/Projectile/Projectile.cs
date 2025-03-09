@@ -36,7 +36,12 @@ namespace Hashira.Projectiles
         protected virtual void FixedUpdate()
         {
             Vector3 movement = transform.right * Time.fixedDeltaTime * Speed;
-            HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(Damage, movement, transform.right);
+
+            //이것저것 데미지 추가연산
+            int damage = CalculateDamage(Damage);
+            //관통 뎀감 연산
+            int penetrationDamage = CalculatePenetration(CalculateDamage(damage), _penetration - _currentPenetration);
+            HitInfo[] hitInfoes = _boxDamageCaster.CastDamage(penetrationDamage, movement, transform.right);
 
             transform.position += movement;
 
