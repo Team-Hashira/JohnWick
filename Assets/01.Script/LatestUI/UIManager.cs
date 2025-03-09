@@ -60,7 +60,10 @@ namespace Hashira.LatestUI
         {
             MousePosition = Mouse.current.position.value;
             WorldMousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+        }
 
+        private void LateUpdate()
+        {
             foreach (var doamin in _uiDomainDict.Values)
             {
                 doamin.UpdateUI();

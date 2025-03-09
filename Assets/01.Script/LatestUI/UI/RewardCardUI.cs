@@ -49,7 +49,7 @@ namespace Hashira.LatestUI
             _cardSO = cardSO;
             _descrptionText.text = _cardSO.cardDescription;
             _costText.text = $"{_cardSO.needCost}";
-            _cardImage.sprite = _cardSO.iconSprite;
+            _cardImage.sprite = _cardSO.cardSprite;
             Vector2 randomPos = Random.insideUnitCircle.normalized;
             RectTransform.anchoredPosition = _defaultPosition + randomPos * Screen.width;
             StartCoroutine(ReloadCoroutine(_defaultPosition, 0.8f, () =>

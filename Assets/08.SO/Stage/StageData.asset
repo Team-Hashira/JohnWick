@@ -13,14 +13,5 @@ MonoBehaviour:
   m_Name: StageData
   m_EditorClassIdentifier: 
   stageName: "\uC9C0\uD558\uCCA0"
-  stagePiceDatas:
-  - stagePices:
-    - {fileID: 4630675202584551368, guid: 2fdb7c6ae90e52045b3412e3ce887269, type: 3}
-  - stagePices:
-    - {fileID: 2838240787304443735, guid: deb01322fcd1ca7408f495fc90b4635d, type: 3}
-  - stagePices:
-    - {fileID: 7185545562151483485, guid: bb1e84ae0dc19a54580882e337178c2b, type: 3}
-  - stagePices:
-    - {fileID: 4848505327925815244, guid: 4d54cf2485d20b344ac851c5e16d7051, type: 3}
-  - stagePices:
-    - {fileID: 3447781891085579937, guid: 30338b603afda4b49941897ffdfdacd6, type: 3}
+  stagePrefabs:
+  - {fileID: 8741627194626069266, guid: 3ea689fc02c6c42428e54e6e3a647bde, type: 3}

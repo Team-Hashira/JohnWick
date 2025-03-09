@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
   m_Name: RubberBullet
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 21300000, guid: d692758d79b727f438b5f94f4e1d4f42, type: 3}
+  cardSprite: {fileID: 21300000, guid: d692758d79b727f438b5f94f4e1d4f42, type: 3}
   cardDisplayName: "\uACE0\uBB34\uD0C4"
   cardName: RubberBullet
   cardDescription: "\uD0C4\uC774 \uACE0\uBB34\uD0C4\uC774 \uB418\uC5B4 \uBCBD\uC774\uB098
