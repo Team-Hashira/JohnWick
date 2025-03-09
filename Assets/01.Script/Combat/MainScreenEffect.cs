@@ -28,6 +28,8 @@ namespace Hashira.MainScreen
         private static Tween _moveTween;
         private static Tween _rotateTween;
         private static Tween _shakeTween;
+        private static Tween _reverseXTween;
+        private static Tween _reverseYTween;
 
         private void Awake()
         {
@@ -68,6 +70,12 @@ namespace Hashira.MainScreen
 
             if (Input.GetKeyDown(KeyCode.Backspace))
                 OnLocalMoveScreenSide(DirectionType.Zero);
+
+            if (Input.GetKeyDown(KeyCode.Equals))
+                OnReverseX();
+
+            if (Input.GetKeyDown(KeyCode.Minus))
+                OnReverseY();
         }
 
         public void SetPlayerPos(Vector2 pos) => _mainScreenMat.SetVector(_playerPos, pos);
@@ -170,6 +178,18 @@ namespace Hashira.MainScreen
         {
             _shakeTween?.Kill();
             _shakeTween = _levelTransform.DOShakePosition(time, strength, vibrato).OnComplete(() => _transform.position = Vector3.zero);
+        }
+
+        public static void OnReverseX()
+        {
+            _reverseXTween?.Kill();
+            _reverseXTween = _transform.DOScaleX(_transform.localScale.x * -1, 0.25f);
+        }
+
+        public static void OnReverseY()
+        {
+            _reverseYTween?.Kill();
+            _reverseYTween = _transform.DOScaleY(_transform.localScale.y * -1, 0.25f);
         }
     }
 }
