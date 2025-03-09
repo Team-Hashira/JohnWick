@@ -1762,7 +1762,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e216623b23e7fa44f9bdfa5ac1c45bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floors: []
+  floors:
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
+  - {fileID: 11400000, guid: d63185592f12bb543980261cade10371, type: 2}
 --- !u!1001 &993547111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2786,7 +2796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00020599365, y: 0.00000031622628}
+  m_AnchoredPosition: {x: 0.00020599365, y: 0.00040779586}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1526736003
