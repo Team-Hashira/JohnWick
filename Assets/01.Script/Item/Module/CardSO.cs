@@ -2,7 +2,6 @@ using Hashira.EffectSystem;
 using Hashira.Projectiles;
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Hashira.Cards
 {
