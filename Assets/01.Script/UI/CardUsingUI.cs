@@ -16,7 +16,7 @@ namespace Hashira.LatestUI
         [SerializeField] private int _rerollCost = 10;
         [SerializeField] private Button _rerollBtn, _stageBtn;
         [SerializeField] private TextMeshProUGUI _rerollCostText, _currentCostText;
-
+         
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
