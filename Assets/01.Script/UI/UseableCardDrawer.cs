@@ -1,6 +1,7 @@
 using Crogen.CrogenPooling;
 using Hashira.Cards;
 using Hashira.Core;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,12 @@ namespace Hashira.LatestUI
 {
     public class UseableCardDrawer : MonoBehaviour
     {
-        [SerializeField] private int _reroll = 10;
         [SerializeField] private int _cardCount = 4;
 
         [SerializeField] private int _interval = 10;
+        [SerializeField] private int _spreadMovingSpeed = 10;
+
+        [field: SerializeField] public Transform CardUsePos { get; private set; }
 
         private List<UseableCardUI> _useableCardUILsit = new List<UseableCardUI>();
 
@@ -26,25 +29,30 @@ namespace Hashira.LatestUI
             for (int i = 0; i < cardSOList.Count; i++)
             {
                 UseableCardUI useableCardUI = gameObject.Pop(UIPoolType.UseableCardUI, transform) as UseableCardUI;
-                useableCardUI.SetCard(cardSOList[i]);
-                _useableCardUILsit.Add(useableCardUI);
+                useableCardUI.SetCard(cardSOList[i], this);
+                EnterSpread(useableCardUI);
             }
         }
-        public void Reroll()
+
+        public void ExitSpread(UseableCardUI useableCardUI)
         {
-            if (Cost.TryRemoveCost(_reroll))
-            {
-                CardDraw();
-            }
+            _useableCardUILsit.Remove(useableCardUI);
+        }
+
+        public void EnterSpread(UseableCardUI useableCardUI)
+        {
+            _useableCardUILsit.Add(useableCardUI);
         }
 
         private void Update()
         {
-            //for (int i = 0; i < _useableCardUILsit.Count; i++)
-            //{
-            //    Vector2 targetPos = _useableCardUILsit[i].transform.position;
-            //    _useableCardUILsit[i].transform.position = Vector3.Lerp();
-            //}
+            int cardCount = _useableCardUILsit.Count;
+            for (int i = 0; i < cardCount; i++)
+            {
+                Vector2 currentPos = _useableCardUILsit[i].transform.position;
+                Vector2 targetPos = transform.position + Vector3.right * (i + 0.5f - (float)cardCount / 2) * _interval;
+                _useableCardUILsit[i].transform.position = Vector3.Lerp(currentPos, targetPos, Time.deltaTime * _spreadMovingSpeed);
+            }
         }
     }
 }

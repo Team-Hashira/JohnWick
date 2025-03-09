@@ -13,14 +13,21 @@ namespace Hashira.LatestUI
         [field: SerializeField] public string Key { get; set; }
 
 
+        [SerializeField] private int _rerollCost = 10;
         [SerializeField] private Button _rerollBtn, _stageBtn;
-        [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
+        [SerializeField] private TextMeshProUGUI _rerollCostText, _currentCostText;
 
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
 
-            _rerollBtn.onClick.AddListener(_useableCardDrower.Reroll);
+            _rerollCostText.text = $"{_rerollCost}";
+
+            _rerollBtn.onClick.AddListener(() => 
+            { 
+                if (Cost.TryRemoveCost(_rerollCost))
+                    _useableCardDrower.CardDraw();
+            });
             _stageBtn.onClick.AddListener(() =>
             {
                 //Stage 시작
@@ -36,7 +43,7 @@ namespace Hashira.LatestUI
 
         private void CostTextUpdate(int cost)
         {
-            _textMeshProUGUI.text = $"{cost}";
+            _currentCostText.text = $"{cost}";
         }
 
         private void Update()
