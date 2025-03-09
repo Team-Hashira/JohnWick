@@ -37,6 +37,8 @@ namespace Hashira.EffectSystem.Effects
         {
             Enemy[] enemies = GameObject.FindObjectsByType<Enemy>(sortMode: FindObjectsSortMode.None);
 
+            if (enemies.Length == 0) return;    //Enemy가 0일때 Index오류 방지용 --> KDR
+
             PopCore.Pop(EffectPoolType.LightningVFX, enemies[Random.Range(0, enemies.Length)].transform.position, Quaternion.identity);
         }
     }

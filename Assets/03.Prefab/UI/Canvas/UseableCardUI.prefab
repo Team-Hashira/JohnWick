@@ -581,6 +581,7 @@ MonoBehaviour:
   _descriptionText: {fileID: 5170975988743877155}
   _costText: {fileID: 2792708688923343686}
   _icon: {fileID: 5847663453151711890}
+  _inputReader: {fileID: 11400000, guid: 5378af5b1531b2f448d2eba2084c2c9c, type: 2}
 --- !u!1 &8643477639961648735
 GameObject:
   m_ObjectHideFlags: 0
