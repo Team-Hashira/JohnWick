@@ -67,7 +67,7 @@ namespace Hashira.LatestUI
             _useableCardDrawer = useableCardDrawer;
             _descriptionText.text = cardSO.cardDescription;
             _costText.text = $"{cardSO.needCost}";
-            _icon.sprite = cardSO.iconSprite;
+            _icon.sprite = cardSO.cardSprite;
         }
 
         public void OnClick()

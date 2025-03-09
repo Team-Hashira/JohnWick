@@ -2,6 +2,7 @@ using Hashira.EffectSystem;
 using Hashira.Projectiles;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hashira.Cards
 {
@@ -10,7 +11,7 @@ namespace Hashira.Cards
     {
         [Header("==========CardSO==========")]
 
-        public Sprite iconSprite;
+        public Sprite cardSprite;
         public string cardDisplayName;
         public string cardName;
         [TextArea]
@@ -42,7 +43,11 @@ namespace Hashira.Cards
         }
 
         public virtual Effect GetEffectClass()
-            => Activator.CreateInstance(_effectType) as Effect;
+        {
+            Effect effect = Activator.CreateInstance(_effectType) as Effect;
+            effect.SetCardSO(this);
+            return effect;
+        }
     }
 
     //지울꺼

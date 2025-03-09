@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535c441e6221feb499e9b67ed503e5ad, type: 3}
   m_Name: TimeUpCard
   m_EditorClassIdentifier: 
-  iconSprite: {fileID: 7911317380994672701, guid: 1b147efbc07e0c543b5c19eba04ecbff, type: 3}
+  cardSprite: {fileID: 7911317380994672701, guid: 1b147efbc07e0c543b5c19eba04ecbff, type: 3}
   cardDisplayName: "\uC2DC\uAC04 \uC99D\uAC00"
   cardName: TimeUp
   cardDescription: "\uD074\uB9AC\uC5B4 \uC81C\uD55C\uC2DC\uAC04\uC774 \uB298\uC5B4\uB09C\uB2E4."
   needCost: 3
   effectClassName: 
+  _effectTypeIs: 

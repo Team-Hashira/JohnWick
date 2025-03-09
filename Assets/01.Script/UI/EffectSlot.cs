@@ -18,6 +18,9 @@ namespace Hashira.UI.Effect
         {
             //여기서 다른 UI 정보들까지 싹 다 초기화
             this.effectBase = effectBase;
+            _coolTimeGauge.fillAmount = 0;
+            _coolTimeText.text = string.Empty;
+            _iconImage.sprite = effectBase.CardSO.cardSprite;
         }
 
         private void Update()

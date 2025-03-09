@@ -31,7 +31,7 @@ namespace Hashira.LatestUI
         public void Initialize(CardSO cardSO)
         {
             _cardSO = cardSO;
-            _cardImage.sprite = _cardSO.iconSprite;
+            _cardImage.sprite = _cardSO.cardSprite;
             _descriptionText.text = cardSO.cardDescription;
         }
 
