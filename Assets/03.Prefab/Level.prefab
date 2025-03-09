@@ -104,6 +104,7 @@ MonoBehaviour:
   OnAllClearEvent:
     m_PersistentCalls:
       m_Calls: []
+  enemyList: []
 --- !u!1 &955716987931589164
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +177,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 261879
+    m_Bits: 1048567
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: d0fb666e55aa51648a2af75600b8129e, type: 2}
   m_TargetDisplay: 0
