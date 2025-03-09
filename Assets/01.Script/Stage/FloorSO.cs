@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Hashira.Stage
 {
-    [CreateAssetMenu(menuName = "SO/Chapter")]
-    public class ChapterSO : ScriptableObject
+    [CreateAssetMenu(menuName = "SO/Floor")]
+    public class FloorSO : ScriptableObject
     {
         public StageDataSO[] stages;
         
