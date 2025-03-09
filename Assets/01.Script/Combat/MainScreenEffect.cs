@@ -35,6 +35,7 @@ namespace Hashira.MainScreen
         private static Tween _shakeTween;
         private static Tween _reverseXTween;
         private static Tween _reverseYTween;
+        private static Tween _scalingTween;
 
         private void Awake()
         {
@@ -57,16 +58,28 @@ namespace Hashira.MainScreen
             {
                 OnRotate(0);
             }
-
             if (Input.GetKey(KeyCode.Alpha1))
             {
                 OnRotate(35);
             }
-
             if (Input.GetKey(KeyCode.Alpha2))
             {
                 OnRotate(180);
             }
+
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                OnScaling();
+            }
+            if (Input.GetKey(KeyCode.Alpha4))
+            {
+                OnScaling(0.5f);
+            }
+            if (Input.GetKey(KeyCode.Alpha5))
+            {
+                OnScaling(0.25f);
+            }
+
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
                 OnLocalMoveScreenSide(DirectionType.Up);
@@ -186,6 +199,12 @@ namespace Hashira.MainScreen
             _shakeTween = _transform.DOShakePosition(time, strength, vibrato)
                 .OnStart(()=> startPos = _transform.position)
                 .OnComplete(() => _transform.position = startPos);
+        }
+
+        public static void OnScaling(float scale = 1)
+        {
+            _scalingTween?.Kill();
+            _scalingTween = DOTween.To(() => _cinemachineCamera.Lens.OrthographicSize, x => _cinemachineCamera.Lens.OrthographicSize = x, 10 * (1f/scale), 0.25f).SetEase(Ease.OutBounce);
         }
 
         public static void OnReverseX()
