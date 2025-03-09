@@ -48,7 +48,7 @@ namespace Hashira.Enemies
             _attackRangeElement = _entityStat.StatDictionary["AttackRange"];
         }
 
-        private void HandleDieEvent()
+        private void HandleDieEvent(Entity _)
         {
             gameObject.Pop(_dieEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);

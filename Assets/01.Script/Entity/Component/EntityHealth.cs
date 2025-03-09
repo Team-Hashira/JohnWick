@@ -47,7 +47,7 @@ namespace Hashira.Entities
         public int MaxHealth => _maxHealth.IntValue;
         public event Action<int, int> OnHealthChangedEvent;
         public event Action OnHitedEvent;
-        public event Action OnDieEvent;
+        public event Action<Entity> OnDieEvent;
 
         private EntityMover _entityMover;
         private EntityStateMachine _entityStateMachine;
@@ -206,7 +206,7 @@ namespace Hashira.Entities
         public void Die()
         {
             IsDie = true;
-            OnDieEvent?.Invoke();
+            OnDieEvent?.Invoke(Owner);
             OnDieEvent = null;
         }
 

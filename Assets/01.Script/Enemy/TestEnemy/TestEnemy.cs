@@ -13,7 +13,7 @@ namespace Hashira.Enemies.TestEnemy
             GetEntityComponent<EntityHealth>().OnDieEvent += HandleOnDieEvent;
         }
 
-        private void HandleOnDieEvent()
+        private void HandleOnDieEvent(Entity _)
         {
             GetEntityComponent<EntityStateMachine>().ChangeState("Dead");
         }

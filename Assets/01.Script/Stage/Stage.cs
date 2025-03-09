@@ -3,6 +3,8 @@ using Hashira.Enemies;
 using Hashira.Entities;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,12 +32,11 @@ namespace Hashira.Stage
             }
         }
 
-        private void HandleEnemyCounting()
+        private void HandleEnemyCounting(Entity entity)
         {
             --_enemyCount;
+            _owner.enemyList.Remove(entity as Enemy);
             if (_enemyCount > 0) return;
-
-            Debug.Log("dfdf");
 
             ClearEvent?.Invoke();
             _owner.AddWaveCount();
@@ -56,11 +57,16 @@ namespace Hashira.Stage
         protected StageGenerator _stageGenerator;
         public int CurrentWaveCount { get; private set; } = 0;
         public UnityEvent OnAllClearEvent;
+        
+        public List<Enemy> enemyList;
 
         private void Start()
         {
             for (int i = 0; i < waves.Length; i++)
+            {
                 waves[i].Init(this);
+                enemyList.AddRange(waves[i].enemies);
+            }
 
             for (int i = 0; i < waves.Length; i++)
                 waves[i].SetActiveAllEnemies(false);
