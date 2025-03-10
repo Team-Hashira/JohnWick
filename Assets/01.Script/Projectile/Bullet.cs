@@ -33,8 +33,8 @@ namespace Hashira.Projectiles
 
                 if (damageable is EntityHealth health && health.TryGetComponent(out Entity entity))
                 {
+                    gameObject.Pop(EffectPoolType.BulletHitEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, -hit.normal));
                     //피 튀기는거
-                    //gameObject.Pop(EffectPoolType.BulletHitEffect, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, -hit.normal));
                     //gameObject.Pop(EffectPoolType.HitBlood, hit.point + hit.normal * 0.1f, Quaternion.LookRotation(Vector3.back, hit.normal));
                 }
             }

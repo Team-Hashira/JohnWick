@@ -2,7 +2,6 @@ using Hashira.EffectSystem;
 using Hashira.Projectiles;
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Hashira.Cards
 {
@@ -24,6 +23,7 @@ namespace Hashira.Cards
         [Doryu.CustomAttributes.Uncorrectable]
         [SerializeField] private string _effectTypeIs;
 
+
         protected virtual void OnValidate()
         {
             if (_effectType != null && _effectType.Name == effectClassName) return;
@@ -44,6 +44,22 @@ namespace Hashira.Cards
 
         public virtual Effect GetEffectClass()
         {
+            if (_effectType == null)
+            {
+                string className = $"{typeof(Effect).Namespace}.Effects.{effectClassName}";
+                try
+                {
+                    _effectType = Type.GetType(className);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"{className} is not found.\n" +
+                        $"Error : {e.ToString()}");
+                }
+            }
+
+            _effectTypeIs = _effectType?.Name;
+
             Effect effect = Activator.CreateInstance(_effectType) as Effect;
             effect.SetCardSO(this);
             return effect;
