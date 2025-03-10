@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 491566395199263092}
   - component: {fileID: 3154953824006890625}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NearBackgroundGlobalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &491566395199263092
 Transform:
   m_ObjectHideFlags: 0
@@ -94,13 +94,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6732818602976185239}
   - component: {fileID: 4000503433880382325}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UIGlobalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6732818602976185239
 Transform:
   m_ObjectHideFlags: 0
@@ -216,11 +216,11 @@ MonoBehaviour:
   m_LightType: 4
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.7452829, g: 0.91101855, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000ddd6b784779eea6e23be148c15d7f12ae364cb2da98fc6ec
+  m_ApplyToSortingLayers: e72201341fc8e88dcf238b920000000015d7f12a779eea6eddd6b78423be148ce364cb2da98fc6ec1b93bf536ba6a282
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -262,13 +262,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7031356406184413729}
   - component: {fileID: 1194050510258020088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BackgroundGlobalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7031356406184413729
 Transform:
   m_ObjectHideFlags: 0

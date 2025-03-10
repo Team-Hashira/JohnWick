@@ -20,6 +20,8 @@ namespace Hashira.Entities
 
         public void AddEffect(Effect effect)
         {
+            if (effect == null) return;
+
             Type type = effect.GetType();
             effect.name = type.Name;
             effect.entityEffector = this;
