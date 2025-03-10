@@ -16,6 +16,7 @@ namespace Hashira.MainScreen
         public static Transform GetLevelTransform() => _levelTransform;
         public static Transform GetTransform() => _transform;
 
+        private static Vector2 originPos;
         private static Vector2 viewportMin;
         private static Vector2 viewportMax;
 
@@ -189,16 +190,15 @@ namespace Hashira.MainScreen
 
             Vector3 cameraPos = -(Vector3)pos;
             cameraPos.z = _cinemachineCamera.transform.position.z;
-            _moveTween = _cinemachineCamera.transform.DOMove(cameraPos, 0.25f).SetEase(Ease.OutBounce);
+            _moveTween = _cinemachineCamera.transform.DOMove(cameraPos, 0.25f).SetEase(Ease.OutBounce)
+                .OnComplete(()=>originPos = _transform.position);
         }
 
         public static void OnShake(float strength, int vibrato, float time)
         {
-            Vector2 startPos = Vector2.zero;
             _shakeTween?.Kill();
             _shakeTween = _transform.DOShakePosition(time, strength, vibrato)
-                .OnStart(()=> startPos = _transform.position)
-                .OnComplete(() => _transform.position = startPos);
+                .OnComplete(() => _transform.position = originPos);
         }
 
         public static void OnScaling(float scale = 1)
