@@ -47,10 +47,11 @@ namespace Hashira.LatestUI
         private void Update()
         {
             int cardCount = _useableCardUILsit.Count;
+            float interval = (float)_interval / 1920 * Screen.width * ((1920f / 1080) / ((float)Screen.width / Screen.height));
             for (int i = 0; i < cardCount; i++)
             {
                 Vector2 currentPos = _useableCardUILsit[i].transform.position;
-                Vector2 targetPos = transform.position + Vector3.right * (i + 0.5f - (float)cardCount / 2) * _interval;
+                Vector2 targetPos = transform.position + Vector3.right * (i + 0.5f - (float)cardCount / 2) * interval;
                 _useableCardUILsit[i].transform.position = Vector3.Lerp(currentPos, targetPos, Time.deltaTime * _spreadMovingSpeed);
             }
         }
