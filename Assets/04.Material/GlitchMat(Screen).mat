@@ -47,9 +47,9 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _Dots: 0
-    - _NoiseCount: 0.58
+    - _NoiseCount: -0.35
     - _NoiseValue: 4.91
-    - _Range: 0.2
+    - _Range: 0.56
     - _SinScale: 1
     - _Speed: 3
     - _Wave: 0.01
