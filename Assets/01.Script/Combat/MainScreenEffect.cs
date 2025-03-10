@@ -1,6 +1,8 @@
 using DG.Tweening;
 using Hashira.Core;
 using Hashira.Pathfind;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -11,7 +13,9 @@ namespace Hashira.MainScreen
         private static Material _mainScreenMat;
         private static Transform _levelTransform;
         private static Transform _transform;
+        private static MainScreenEffect _mainScreenEffect;
         private static CinemachineCamera _cinemachineCamera;
+        private static CinemachineBasicMultiChannelPerlin _cinemachineBasicMultiChannelPerlin;
 
         public static Transform GetLevelTransform() => _levelTransform;
         public static Transform GetTransform() => _transform;
@@ -33,7 +37,6 @@ namespace Hashira.MainScreen
         // Tweens
         private static Tween _moveTween;
         private static Tween _rotateTween;
-        private static Tween _shakeTween;
         private static Tween _reverseXTween;
         private static Tween _reverseYTween;
         private static Tween _scalingTween;
@@ -42,8 +45,10 @@ namespace Hashira.MainScreen
         {
             _levelTransform = FindFirstObjectByType<Stage.Stage>().transform;
             _transform = this.transform;
+            _mainScreenEffect = this;
             _mainScreenMat = GetComponent<MeshRenderer>().material;
             _cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+            _cinemachineBasicMultiChannelPerlin = _cinemachineCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
 
             Vector2 stageScale = _transform.localScale;
             viewportMin = Camera.main.ViewportToWorldPoint(Vector2.zero);
@@ -54,7 +59,7 @@ namespace Hashira.MainScreen
         private void Update()
         {
             var playerPos = PlayerManager.Instance.Player.transform.position;
-
+           
             if (Input.GetKey(KeyCode.Alpha0))
             {
                 OnRotate(0);
@@ -194,11 +199,20 @@ namespace Hashira.MainScreen
                 .OnComplete(()=>originPos = _transform.position);
         }
 
-        public static void OnShake(float strength, int vibrato, float time)
+        public static void OnShake(float amplitude, float frequency, float duration)
         {
-            _shakeTween?.Kill();
-            _shakeTween = _transform.DOShakePosition(time, strength, vibrato)
-                .OnComplete(() => _transform.position = originPos);
+            _mainScreenEffect.StartCoroutine(_mainScreenEffect.CoroutineShaking(amplitude, frequency, duration));
+        }
+
+        private IEnumerator CoroutineShaking(float amplitude, float frequency, float duration)
+        {
+            _cinemachineBasicMultiChannelPerlin.FrequencyGain += amplitude;
+            _cinemachineBasicMultiChannelPerlin.AmplitudeGain += frequency;
+
+            yield return new WaitForSeconds(duration);
+
+            _cinemachineBasicMultiChannelPerlin.FrequencyGain -= amplitude;
+            _cinemachineBasicMultiChannelPerlin.AmplitudeGain -= frequency;
         }
 
         public static void OnScaling(float scale = 1)
