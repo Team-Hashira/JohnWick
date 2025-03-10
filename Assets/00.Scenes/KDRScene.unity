@@ -532,7 +532,6 @@ GameObject:
   m_Component:
   - component: {fileID: 272915366}
   - component: {fileID: 272915369}
-  - component: {fileID: 272915368}
   - component: {fileID: 272915367}
   m_Layer: 5
   m_Name: SelectingCardPanel
@@ -575,32 +574,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &272915368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272915365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 150
-    m_Right: 150
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!114 &272915369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Key>k__BackingField: SelectingCardPanel
+  _space: 500
   _selectableCards:
   - {fileID: 1300878223}
   - {fileID: 1383439777}
@@ -1867,7 +1841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4147124556144666203, guid: fd1d44597c3407a4490249a42df3993f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4147124556144666203, guid: fd1d44597c3407a4490249a42df3993f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1893,7 +1867,8 @@ PrefabInstance:
       propertyPath: m_IgnoreLayout
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5349895531622513532, guid: fd1d44597c3407a4490249a42df3993f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2386,7 +2361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4147124556144666203, guid: fd1d44597c3407a4490249a42df3993f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -540
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4147124556144666203, guid: fd1d44597c3407a4490249a42df3993f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2408,7 +2383,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SelectableCardUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5349895531622513532, guid: fd1d44597c3407a4490249a42df3993f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2604,7 +2580,8 @@ PrefabInstance:
       propertyPath: m_IgnoreLayout
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5349895531622513532, guid: fd1d44597c3407a4490249a42df3993f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2820,7 +2797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000019073486, y: 0.00020808508}
+  m_AnchoredPosition: {x: -0.000019073486, y: 0.0009351347}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1526736003
@@ -3315,7 +3292,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 97408959}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999584
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -15,6 +15,8 @@ public static class MathEx
         => 1f - (1f - x) * (1f - x);
     public static float OutCubic(float x)
         => 1f - Mathf.Pow(1f - x, 3f);
+    public static float OutCirc(float x)
+        => Mathf.Sqrt(1 - Mathf.Pow(x - 1, 2));
     #endregion
 
     public static Vector2 Bezier(float t, params Vector2[] positions)

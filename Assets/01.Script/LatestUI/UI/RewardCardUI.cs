@@ -19,10 +19,9 @@ namespace Hashira.LatestUI
 
         private CardSO _cardSO;
 
-        private LayoutElement _layoutElement;
+        private RewardCardPanel _selectingCardPanel;
 
-        private SelectingCardPanel _selectingCardPanel;
-
+        [SerializeField]
         private Vector2 _defaultPosition;
         private Vector2 _defaultScale;
 
@@ -44,24 +43,21 @@ namespace Hashira.LatestUI
         public void Reload(CardSO cardSO)
         {
             Collider.enabled = false;
-            _layoutElement.ignoreLayout = true;
             RectTransform.localScale = _defaultScale;
             _cardSO = cardSO;
             _descrptionText.text = _cardSO.cardDescription;
             _costText.text = $"{_cardSO.needCost}";
             _cardImage.sprite = _cardSO.cardSprite;
             Vector2 randomPos = Random.insideUnitCircle.normalized;
-            RectTransform.anchoredPosition = _defaultPosition + randomPos * Screen.width;
-            StartCoroutine(ReloadCoroutine(_defaultPosition, 0.8f, () =>
+            RectTransform.anchoredPosition = Vector2.zero;
+            StartCoroutine(ReloadCoroutine(_defaultPosition, 0.7f, () =>
             {
                 Collider.enabled = true;
-                _layoutElement.ignoreLayout = false;
             }));
         }
 
-        public void Initialize(SelectingCardPanel panel)
+        public void Initialize(RewardCardPanel panel)
         {
-            _layoutElement = GetComponent<LayoutElement>();
             Collider.enabled = false;
             _selectingCardPanel = panel;
             _defaultPosition = RectTransform.anchoredPosition;
@@ -71,7 +67,6 @@ namespace Hashira.LatestUI
         public void OnClick()
         {
             _selectSequence = DOTween.Sequence();
-            _layoutElement.ignoreLayout = true;
             Collider.enabled = false;
             _selectSequence
                 .Append(RectTransform.DORotate(new Vector3(0, 360f), 0.3f, RotateMode.FastBeyond360))
@@ -108,8 +103,6 @@ namespace Hashira.LatestUI
             Collider.enabled = false;
             float x = direction == 1 ? Screen.width * 1.5f : -Screen.width * 0.5f;
             RectTransform.DOAnchorPosX(x, 0.6f).SetEase(Ease.InBack);
-
-            _layoutElement.ignoreLayout = true;
         }
 
         private IEnumerator ReloadCoroutine(Vector2 destination, float duration, Action OnComplete = null)
@@ -121,7 +114,7 @@ namespace Hashira.LatestUI
             float percent = 0;
             while (percent < 1f)
             {
-                float t = MathEx.OutSine(percent);
+                float t = MathEx.OutCubic(percent);
                 //RectTransform.anchoredPosition = MathEx.Bezier(t, startPos, randomPos, destination);
                 RectTransform.anchoredPosition = MathEx.Bezier(t, startPos, destination);
                 yield return null;

@@ -1,8 +1,9 @@
 using DG.Tweening;
 using Hashira.Cards;
 using System;
+using TMPro;
 using UnityEngine;
-using static UnityEngine.UI.Toggle;
+using UnityEngine.UI;
 
 namespace Hashira.LatestUI
 {
@@ -13,11 +14,15 @@ namespace Hashira.LatestUI
 
         public event OnToggleEvent OnToggleEvent;
 
+        private Image _noImage;
+        private TextMeshProUGUI _tmp;
+
         private float _xSize = Screen.width * 0.37f;
 
         private void Awake()
         {
             RectTransform.sizeDelta = new Vector2(_xSize, RectTransform.sizeDelta.y);
+            RectTransform.anchoredPosition = new Vector2(_xSize, RectTransform.anchoredPosition.y);
         }
 
         public void SetInfo(CardSO card)
