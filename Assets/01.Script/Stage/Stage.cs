@@ -3,6 +3,8 @@ using Hashira.Enemies;
 using Hashira.Entities;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,12 +32,11 @@ namespace Hashira.Stage
             }
         }
 
-        private void HandleEnemyCounting()
+        private void HandleEnemyCounting(Entity entity)
         {
             --_enemyCount;
+            _owner.enemyList.Remove(entity as Enemy);
             if (_enemyCount > 0) return;
-
-            Debug.Log("dfdf");
 
             ClearEvent?.Invoke();
             _owner.AddWaveCount();
@@ -56,11 +57,41 @@ namespace Hashira.Stage
         protected StageGenerator _stageGenerator;
         public int CurrentWaveCount { get; private set; } = 0;
         public UnityEvent OnAllClearEvent;
+        
+        [HideInInspector] public List<Enemy> enemyList;
+
+        public Wave GetCurrentWave() => waves[CurrentWaveCount];
+
+        public Enemy[] GetEnabledRandomEnemies(int count)
+        {
+            List<Enemy> curEnemyList = GetEnabledEnemies().ToList();
+
+            int finalCount = Mathf.Clamp(count, 0, curEnemyList.Count);
+            Enemy[] finalEnemies = new Enemy[finalCount];
+
+            for (int i = 0; i < finalCount; i++)
+            {
+                int random = UnityEngine.Random.Range(0, curEnemyList.Count);
+
+                finalEnemies[i] = curEnemyList[random];
+                curEnemyList.RemoveAt(random);
+            }
+
+            return finalEnemies;
+        }
+
+        public Enemy[] GetEnabledEnemies()
+        {
+            return enemyList.Where(x => x.gameObject.activeSelf.Equals(true)).ToArray();
+        }
 
         private void Start()
         {
             for (int i = 0; i < waves.Length; i++)
+            {
                 waves[i].Init(this);
+                enemyList.AddRange(waves[i].enemies);
+            }
 
             for (int i = 0; i < waves.Length; i++)
                 waves[i].SetActiveAllEnemies(false);

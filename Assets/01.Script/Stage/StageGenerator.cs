@@ -15,6 +15,8 @@ namespace Hashira.Stage
         public event Action OnFloorUpEvent;
         public event Action OnNextStageEvent;
 
+        public Stage GetCurrentStage() => _currentStage;
+
         public void GenerateStage()
         {
             _currentStage = Instantiate(floors[currentFloor][CurrentStage].GetRandomStage(), transform);

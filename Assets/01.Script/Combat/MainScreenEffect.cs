@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Hashira.Core;
 using Hashira.Pathfind;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Hashira.MainScreen
@@ -10,6 +11,13 @@ namespace Hashira.MainScreen
         private static Material _mainScreenMat;
         private static Transform _levelTransform;
         private static Transform _transform;
+        private static CinemachineCamera _cinemachineCamera;
+
+        public static Transform GetLevelTransform() => _levelTransform;
+        public static Transform GetTransform() => _transform;
+
+        private static Vector2 viewportMin;
+        private static Vector2 viewportMax;
 
         // SimpeShockWave
         private static readonly int _simpleShckWave_ValueID = Shader.PropertyToID("_SimpleShckWave_Value");
@@ -21,19 +29,26 @@ namespace Hashira.MainScreen
         private static readonly int _wallShockWave_MaxID = Shader.PropertyToID("_WallShockWave_Max");
         private static readonly int _wallShockWave_MinID = Shader.PropertyToID("_WallShockWave_Min");
 
-        // Rotate
-        private static readonly int _rotate_value = Shader.PropertyToID("_Rotate_Value");
-
         // Tweens
         private static Tween _moveTween;
         private static Tween _rotateTween;
         private static Tween _shakeTween;
+        private static Tween _reverseXTween;
+        private static Tween _reverseYTween;
+        private static Tween _scalingTween;
 
         private void Awake()
         {
             _levelTransform = FindFirstObjectByType<Stage.Stage>().transform;
             _transform = this.transform;
             _mainScreenMat = GetComponent<MeshRenderer>().material;
+            _cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+
+            Vector2 stageScale = _transform.localScale;
+            viewportMin = Camera.main.ViewportToWorldPoint(Vector2.zero);
+            viewportMin += stageScale;
+            viewportMax = Camera.main.ViewportToWorldPoint(Vector2.one);
+            viewportMax -= stageScale;
         }
         private void Update()
         {
@@ -41,18 +56,30 @@ namespace Hashira.MainScreen
 
             if (Input.GetKey(KeyCode.Alpha0))
             {
-                OnRotateEffect(0);
+                OnRotate(0);
             }
-
             if (Input.GetKey(KeyCode.Alpha1))
             {
-                OnRotateEffect(35);
+                OnRotate(35);
             }
-
             if (Input.GetKey(KeyCode.Alpha2))
             {
-                OnRotateEffect(180);
+                OnRotate(180);
             }
+
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                OnScaling();
+            }
+            if (Input.GetKey(KeyCode.Alpha4))
+            {
+                OnScaling(0.5f);
+            }
+            if (Input.GetKey(KeyCode.Alpha5))
+            {
+                OnScaling(0.25f);
+            }
+
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
                 OnLocalMoveScreenSide(DirectionType.Up);
@@ -68,9 +95,15 @@ namespace Hashira.MainScreen
 
             if (Input.GetKeyDown(KeyCode.Backspace))
                 OnLocalMoveScreenSide(DirectionType.Zero);
+
+            if (Input.GetKeyDown(KeyCode.Equals))
+                OnReverseX();
+
+            if (Input.GetKeyDown(KeyCode.Minus))
+                OnReverseY();
         }
 
-        public void SetPlayerPos(Vector2 pos) => _mainScreenMat.SetVector(_playerPos, pos);
+        private void SetPlayerPos(Vector2 pos) => _mainScreenMat.SetVector(_playerPos, pos);
 
         public void OnShockWaveEffect(Vector2 pos)
         {
@@ -104,29 +137,10 @@ namespace Hashira.MainScreen
             seq.Append(_mainScreenMat.DOFloat(0, _wallShockWave_StrengthID, 0.1f));
         }
 
-        public static void OnRotateEffect(float value)
+        public static void OnRotate(float value)
         {
             _rotateTween?.Kill();
-            _rotateTween = _levelTransform.DORotate(new Vector3(0, 0, value), 0.25f).SetEase(Ease.OutBounce);
-        }
-
-        public static void OnMoveScreenSide(Vector2 viewPort)
-        {
-            Vector2 worldPos = Camera.main.ViewportToWorldPoint(viewPort);
-
-            Vector2 stageScale = _transform.localScale;
-
-            Vector2 min = Camera.main.ViewportToWorldPoint(Vector2.zero);
-            min += stageScale;
-            Vector2 max = Camera.main.ViewportToWorldPoint(Vector2.one);
-            max -= stageScale;
-
-            worldPos = new Vector2(
-                Mathf.Clamp(worldPos.x, min.x, max.x), 
-                Mathf.Clamp(worldPos.y, min.y, max.y));
-
-            _moveTween?.Kill();
-            _moveTween = _levelTransform.DOMove(worldPos, 0.25f).SetEase(Ease.OutBounce);
+            _rotateTween = _cinemachineCamera.transform.DORotate(new Vector3(0, 0, -value), 0.25f).SetEase(Ease.OutBounce);
         }
 
         /// <summary>
@@ -135,11 +149,10 @@ namespace Hashira.MainScreen
         /// <param name="directionType"></param>
         public static void OnLocalMoveScreenSide(DirectionType directionType)
         {
-            Vector2 curViewportPos = Camera.main.WorldToViewportPoint(_levelTransform.position);
+            Vector2 dir = (Vector2)Direction2D.GetIntDirection(directionType) * float.MaxValue;
 
+            Vector2 curViewportPos = Camera.main.WorldToViewportPoint(-Camera.main.transform.position);
             Vector2 finalViewport = curViewportPos;
-
-            Vector2 dir = Direction2D.GetIntDirection(directionType);
 
             finalViewport = new Vector2(
                 Mathf.Clamp01(curViewportPos.x + dir.x),
@@ -147,16 +160,62 @@ namespace Hashira.MainScreen
 
             OnMoveScreenSide(finalViewport);
         }
-
-        public static void OnMoveEffect(Vector2 pos)
+        public static void OnLocalMoveScreenSide(Vector2 direction)
         {
-            _levelTransform.DOMove(pos, 0.25f).SetEase(Ease.OutBounce);
+            direction = direction.normalized * float.MaxValue;
+
+            Vector2 curViewportPos = Camera.main.WorldToViewportPoint(_transform.position);
+            Vector2 finalViewport = curViewportPos;
+
+            finalViewport = new Vector2(
+                Mathf.Clamp01(curViewportPos.x + direction.x),
+                Mathf.Clamp01(curViewportPos.y + direction.y));
+
+            OnMoveScreenSide(finalViewport);
+        }
+        public static void OnMoveScreenSide(Vector2 viewPort)
+        {
+            Vector2 worldPos = Camera.main.ViewportToWorldPoint(viewPort);
+
+            worldPos = new Vector2(
+                Mathf.Clamp(worldPos.x, viewportMin.x, viewportMax.x),
+                Mathf.Clamp(worldPos.y, viewportMin.y, viewportMax.y));
+
+            OnMove(worldPos);
+        }
+        public static void OnMove(Vector2 pos)
+        {
+            _moveTween?.Kill();
+
+            Vector3 cameraPos = -(Vector3)pos;
+            cameraPos.z = _cinemachineCamera.transform.position.z;
+            _moveTween = _cinemachineCamera.transform.DOMove(cameraPos, 0.25f).SetEase(Ease.OutBounce);
         }
 
         public static void OnShake(float strength, int vibrato, float time)
         {
+            Vector2 startPos = Vector2.zero;
             _shakeTween?.Kill();
-            _shakeTween = _transform.DOShakePosition(time, strength, vibrato).OnComplete(() => _transform.position = Vector3.zero);
+            _shakeTween = _transform.DOShakePosition(time, strength, vibrato)
+                .OnStart(()=> startPos = _transform.position)
+                .OnComplete(() => _transform.position = startPos);
+        }
+
+        public static void OnScaling(float scale = 1)
+        {
+            _scalingTween?.Kill();
+            _scalingTween = DOTween.To(() => _cinemachineCamera.Lens.OrthographicSize, x => _cinemachineCamera.Lens.OrthographicSize = x, 10 * (1f/scale), 0.25f).SetEase(Ease.OutBounce);
+        }
+
+        public static void OnReverseX()
+        {
+            _reverseXTween?.Kill();
+            _reverseXTween = _transform.DOScaleX(_transform.localScale.x * -1, 0.25f);
+        }
+        public static void OnReverseY()
+        {
+            _reverseYTween?.Kill();
+            _reverseYTween = _transform.DOScaleY(_transform.localScale.y * -1, 0.25f);
         }
     }
 }
