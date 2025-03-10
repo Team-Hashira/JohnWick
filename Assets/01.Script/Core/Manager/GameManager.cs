@@ -28,7 +28,7 @@ namespace Hashira.Core
         public void StartCardSelec()
         {
             _inputReader.PlayerActive(false);
-            _toggleDomain.OpenUI("SelectingCardPanel");
+            _toggleDomain.OpenUI("RewardCardPanel");
             _playerMover.SetGravity(false);
             PlayerManager.Instance.Player.transform.position = new Vector3(0, 10000, 0);
         }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Hashira.LatestUI
@@ -6,6 +7,7 @@ namespace Hashira.LatestUI
 
     public interface IClickableUI : IUserInterface
     {
+        [Obsolete]
         public Collider2D Collider { get; set; }
 
         public void OnClick();

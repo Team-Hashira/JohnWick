@@ -13,11 +13,14 @@ namespace Hashira.LatestUI
 
         private Dictionary<Type, UIManagementDomain> _uiDomainDict;
 
+        public static UIInteractor UIInteractor;
+
         public static Vector2 MousePosition;
         public static Vector2 WorldMousePosition;
 
         private void Awake()
         {
+            UIInteractor = FindFirstObjectByType<UIInteractor>();
             _uiBaseList = new List<UIBase>();
             _uiDomainDict = new Dictionary<Type, UIManagementDomain>();
 
@@ -73,6 +76,11 @@ namespace Hashira.LatestUI
         public T GetDomain<T>(Type interfaceType) where T : UIManagementDomain
         {
             return _uiDomainDict[interfaceType] as T;
+        }
+
+        public T GetDomain<T, I>() where T : UIManagementDomain where I : IUserInterface
+        {
+            return _uiDomainDict[typeof(I)] as T;
         }
 
         public void AddUI(UIBase uiBase)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,8 @@ namespace Hashira.LatestUI
 {
     public class ClickableDomain : UIManagementDomain
     {
+        private IClickableUI _clickedUI;
+
         public override void UpdateUI()
         {
             base.UpdateUI();
@@ -12,25 +15,35 @@ namespace Hashira.LatestUI
             {
                 foreach (var ui in _uiList)
                 {
-                    IClickableUI clickable = ui as IClickableUI;
-                    bool isOverlapped = clickable.Collider.OverlapPoint(UIManager.MousePosition);
-                    if (isOverlapped)
+                    GameObject uiObject;
+                    bool isUIUnderCursor = UIManager.UIInteractor.IsUIUnderCursor(out uiObject);
+                    if (isUIUnderCursor)
                     {
-                        clickable.OnClick();
+                        if (uiObject.TryGetComponent(out IClickableUI clickable))
+                        {
+                            {
+                                _clickedUI = clickable;
+                                _clickedUI.OnClick();
+                            }
+                        }
                     }
                 }
             }
-            else if(Mouse.current.leftButton.wasReleasedThisFrame)
+            else if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
-                foreach (var ui in _uiList)
+                if (_clickedUI == null)
+                    return;
+                GameObject uiObject;
+                bool isUIUnderCursor = UIManager.UIInteractor.IsUIUnderCursor(out uiObject);
+                if (isUIUnderCursor)
                 {
-                    IClickableUI clickable = ui as IClickableUI;
-                    bool isOverlapped = clickable.Collider.OverlapPoint(UIManager.MousePosition);
-                    if (isOverlapped)
+                    if (uiObject.TryGetComponent(out IClickableUI clickable))
                     {
-                        clickable.OnClickEnd();
+                        if (clickable == _clickedUI)
+                            _clickedUI.OnClickEnd();
                     }
                 }
+                _clickedUI = null;
             }
         }
     }

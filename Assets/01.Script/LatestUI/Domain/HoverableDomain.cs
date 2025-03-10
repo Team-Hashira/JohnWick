@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,60 +6,56 @@ namespace Hashira.LatestUI
 {
     public class HoverableDomain : UIManagementDomain
     {
-        private Dictionary<int, IHoverableUI> _hoverableDict;
-
-        public HoverableDomain()
-        {
-            _hoverableDict = new Dictionary<int, IHoverableUI>();
-        }
+        private IHoverableUI _hoveredUI;
 
         public override void UpdateUI()
         {
             base.UpdateUI();
-            foreach (var ui in _uiList)
+            if (_hoveredUI == null)
             {
-                IHoverableUI hoverable = ui as IHoverableUI;
-                bool isOverlapped = hoverable.Collider.OverlapPoint(UIManager.MousePosition);
-                if (isOverlapped)
+                foreach (var ui in _uiList)
                 {
-                    if (_hoverableDict.TryGetValue(hoverable.GetHashCode(), out IHoverableUI h))
+                    GameObject uiObject;
+                    bool isUIUnderCursor = UIManager.UIInteractor.IsUIUnderCursor(out uiObject);
+                    if (isUIUnderCursor)
                     {
-                        if (h == null)
+                        if (uiObject.TryGetComponent(out IHoverableUI hoverable))
                         {
-                            CallOnMouseEnter(hoverable);
-                        }
-                    }
-                    else
-                    {
-                        CallOnMouseEnter(hoverable);
-                    }
-                }
-                else
-                {
-                    if (_hoverableDict.TryGetValue(hoverable.GetHashCode(), out hoverable))
-                    {
-                        if (hoverable != null)
-                        {
-                            CallOnMouseExit(hoverable);
+                            _hoveredUI = hoverable;
+                            _hoveredUI.OnCursorEnter();
+                            break;
                         }
                     }
                 }
             }
-        }
-
-        public void CallOnMouseEnter(IHoverableUI ui)
-        {
-            ui.OnCursorEnter();
-            if (_hoverableDict.TryGetValue(ui.GetHashCode(), out IHoverableUI h))
-                _hoverableDict[ui.GetHashCode()] = ui;
             else
-                _hoverableDict.Add(ui.GetHashCode(), ui);
+            {
+                GameObject uiObject;
+                bool isUIUnderCursor = UIManager.UIInteractor.IsUIUnderCursor(out uiObject);
+                if (!isUIUnderCursor)
+                {
+                    CallOnCursorExit();
+                }
+                else
+                {
+                    if (uiObject.TryGetComponent(out IHoverableUI hoverable))
+                    {
+                        if (_hoveredUI != hoverable)
+                        {
+                            CallOnCursorExit();
+                        }
+                    }
+                    else
+                    {
+                        CallOnCursorExit();
+                    }
+                }
+            }
         }
-
-        public void CallOnMouseExit(IHoverableUI ui)
+        private void CallOnCursorExit()
         {
-            ui.OnCursorExit();
-            _hoverableDict[ui.GetHashCode()] = null;
+            _hoveredUI.OnCursorExit();
+            _hoveredUI = null;
         }
     }
 }

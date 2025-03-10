@@ -87,7 +87,7 @@ namespace Hashira.LatestUI
             if (_setDefaultTween != null && _setDefaultTween.IsActive())
                 _setDefaultTween.Kill();
             _hoverSequence = DOTween.Sequence();
-            _hoverSequence.Append(RectTransform.DOScale(_defaultScale * new Vector2(1.5f, 1.5f), 0.3f));
+            _hoverSequence.Append(RectTransform.DOScale(_defaultScale * new Vector2(1.3f, 1.3f), 0.2f));
         }
 
         public void OnCursorExit()
