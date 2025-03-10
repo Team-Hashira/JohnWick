@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Hashira.LatestUI
 {
-    public class UseableCardDrawer : MonoBehaviour
+    public class UseableCardDrawer : UIBase
     {
         [SerializeField] private int _cardCount = 4;
 
